@@ -29,9 +29,14 @@ Gem::Specification.new do |gem|
   gem.homepage      = "http://www.getchef.com/"
 
   gem.files         = `git ls-files`.split($/)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  gem.executables   = %w( chef )
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
   gem.add_dependency "mixlib-cli", "~> 1.4"
+
+  %w(rspec-core rspec-expectations rspec-mocks).each do |dev_gem|
+    gem.add_development_dependency dev_gem, "~> 2.14.0"
+  end
+  gem.add_development_dependency "pry-debugger"
 end

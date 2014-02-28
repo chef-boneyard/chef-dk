@@ -17,10 +17,13 @@
 
 require 'mixlib/cli'
 require 'chef-dk/version'
+require 'chef-dk/sub_command'
+require 'chef-dk/command/verify'
 
 module ChefDK
   class CLI
     include Mixlib::CLI
+    include ChefDK::SubCommand
 
     option :version,
       :short        => "-v",
@@ -30,12 +33,22 @@ module ChefDK
       :proc         => lambda {|v| puts "Chef Development Kit Version: #{ChefDK::VERSION}"},
       :exit         => 0
 
+    option :help,
+      :short        => "-h",
+      :long         => "--help",
+      :description  => "Show this message",
+      :boolean      => true,
+      :proc         => lambda {|v| puts "Available commands are: #{sub_commands.keys.join(", ")}"},
+      :exit         => 0
+
+    sub_command "verify", ChefDK::Command::Verify
+
     def initialize
       super
     end
 
     def run
-      parse_options
+      run_sub_commands(ARGV) || parse_options
     end
 
   end
