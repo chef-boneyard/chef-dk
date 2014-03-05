@@ -16,7 +16,6 @@
 #
 
 require 'mixlib/cli'
-require 'chef-dk/sub_command'
 
 module ChefDK
   module Command

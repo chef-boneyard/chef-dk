@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 #
 # Copyright:: Copyright (c) 2014 Chef Software Inc.
 # License:: Apache License, Version 2.0
@@ -16,8 +15,10 @@
 # limitations under the License.
 #
 
-require 'rubygems'
-$:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
-require 'chef-dk/cli'
 
-ChefDK::CLI.new(ARGV.clone).run
+ChefDK.commands do |c|
+  c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications"
+
+  c.builtin "gem", :GemForwarder, require_path: "chef-dk/command/gem",
+    desc: "Runs the `gem` command in context of the embedded ruby"
+end

@@ -29,7 +29,7 @@ module ChefDK
       banner "Usage: chef gem GEM_COMMANDS_AND_OPTIONS"
 
       def run(params)
-        Gem::GemRunner.new.run( ARGV.clone )
+        Gem::GemRunner.new.run( params.clone )
       rescue Gem::SystemExitException => e
         exit( e.exit_code )
       end

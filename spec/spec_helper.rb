@@ -18,3 +18,8 @@
 require 'rubygems'
 require 'rspec/mocks'
 require 'pry-debugger'
+
+RSpec.configure do |c|
+  c.include ChefDK
+end
+
