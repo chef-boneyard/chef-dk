@@ -47,7 +47,7 @@ BANNER
 
     def initialize(argv)
       @argv = argv
-      super() # XXX: mixlib-cli #initialize doesn't allow arguments
+      super() # mixlib-cli #initialize doesn't allow arguments
     end
 
     def run
