@@ -19,6 +19,7 @@ require 'mixlib/cli'
 require 'chef-dk/version'
 require 'chef-dk/sub_command'
 require 'chef-dk/command/verify'
+require 'chef-dk/command/gem'
 
 module ChefDK
   class CLI
@@ -42,6 +43,7 @@ module ChefDK
       :exit         => 0
 
     sub_command "verify", ChefDK::Command::Verify
+    sub_command "gem", ChefDK::Command::GemForwarder
 
     def initialize
       super
