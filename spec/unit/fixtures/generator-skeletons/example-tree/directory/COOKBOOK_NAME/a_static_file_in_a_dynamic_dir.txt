@@ -1,0 +1,2 @@
+The parent directory of this file should be renamed to match
+'cookbook_name'

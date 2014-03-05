@@ -16,7 +16,12 @@
 #
 
 module Helpers
+
   def fixtures_path
     File.expand_path(File.dirname(__FILE__) + "/unit/fixtures/")
+  end
+
+  def project_root
+    File.expand_path("../..", __FILE__)
   end
 end
