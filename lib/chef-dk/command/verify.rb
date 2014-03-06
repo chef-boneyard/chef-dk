@@ -17,12 +17,10 @@
 
 require 'chef-dk/command/base'
 require 'chef-dk/exceptions'
-require 'chef-dk/helpers'
 
 module ChefDK
   module Command
     class Verify < ChefDK::Command::Base
-      include ChefDK::Helpers
       include ChefDK::Exceptions
 
       banner "Usage: chef verify"
@@ -79,8 +77,6 @@ module ChefDK
       end
 
       def run(params = [ ])
-        parse_options(params)
-
         locate_omnibus_dir
         invoke_tests
         wait_for_tests

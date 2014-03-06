@@ -80,7 +80,7 @@ BANNER
       return false if subcommand_name.nil?
       return false if option?(subcommand_name)
       if have_command?(subcommand_name)
-        instantiate_subcommand(subcommand_name).run(subcommand_params)
+        instantiate_subcommand(subcommand_name).run_with_default_options(subcommand_params)
       else
         err("Unknown command `#{subcommand_name}'.")
         show_help
