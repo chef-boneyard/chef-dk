@@ -15,12 +15,35 @@
 # limitations under the License.
 #
 
-require 'rubygems'
-require 'rspec/mocks'
-require 'pry-debugger'
+require 'mixlib/shellout'
 
-FIXTURES_PATH = File.expand_path(File.dirname(__FILE__) + "/unit/fixtures/")
+module ChefDK
+  module Helpers
 
-RSpec.configure do |c|
-  c.include ChefDK
+    #
+    # Runs given commands using mixlib-shellout
+    #
+    def system_command(*command_args)
+      cmd = Mixlib::ShellOut.new(*command_args)
+      cmd.run_command
+      cmd
+    end
+
+    def err(message)
+      stderr.print("#{message}\n")
+    end
+
+    def msg(message)
+      stdout.print("#{message}\n")
+    end
+
+    def stdout
+      $stdout
+    end
+
+    def stderr
+      $stderr
+    end
+
+  end
 end

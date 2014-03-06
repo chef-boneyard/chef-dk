@@ -16,6 +16,7 @@ Gemfile.local
 # http://gembundler.com/man/bundle-exec.1.html
 b/
 binstubs/
+vendor/
 
 # RVM and RBENV ruby version files
 .rbenv-version

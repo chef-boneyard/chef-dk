@@ -34,6 +34,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency "mixlib-cli", "~> 1.4"
+  gem.add_dependency "mixlib-shellout", "~> 1.3"
 
   %w(rspec-core rspec-expectations rspec-mocks).each do |dev_gem|
     gem.add_development_dependency dev_gem, "~> 2.14.0"

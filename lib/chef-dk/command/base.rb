@@ -26,12 +26,12 @@ module ChefDK
         :short        => "-h",
         :long         => "--help",
         :description  => "Show this message",
-        :on           => :tail,
         :boolean      => true
 
       def initialize
         super
       end
+
     end
   end
 end

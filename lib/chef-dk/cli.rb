@@ -19,10 +19,12 @@ require 'mixlib/cli'
 require 'chef-dk/version'
 require 'chef-dk/commands_map'
 require 'chef-dk/builtin_commands'
+require 'chef-dk/helpers'
 
 module ChefDK
   class CLI
     include Mixlib::CLI
+    include ChefDK::Helpers
 
     banner(<<-BANNER)
 Usage:
@@ -94,22 +96,6 @@ BANNER
       subcommand_specs.each do |name, spec|
         msg("    #{"#{name}".ljust(justify_length)}#{spec.description}")
       end
-    end
-
-    def err(message)
-      stderr.print("#{message}\n")
-    end
-
-    def msg(message)
-      stdout.print("#{message}\n")
-    end
-
-    def stdout
-      $stdout
-    end
-
-    def stderr
-      $stderr
     end
 
     def exit(n)

@@ -15,12 +15,20 @@
 # limitations under the License.
 #
 
-require 'rubygems'
-require 'rspec/mocks'
-require 'pry-debugger'
+module ChefDK
+  module Exceptions
 
-FIXTURES_PATH = File.expand_path(File.dirname(__FILE__) + "/unit/fixtures/")
+    class MissingComponentError < RuntimeError
+      def initialize(component_name)
+        super("Component #{component_name} is missing.")
+      end
+    end
 
-RSpec.configure do |c|
-  c.include ChefDK
+    class OmnibusInstallNotFound < RuntimeError
+      def initialize()
+        super("Can not find omnibus installation directory for Chef.")
+      end
+    end
+
+  end
 end
