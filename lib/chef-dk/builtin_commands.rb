@@ -15,25 +15,10 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'rubygems'
-require 'rubygems/gem_runner'
-require 'rubygems/exceptions'
-require 'pp'
 
-module ChefDK
-  module Command
+ChefDK.commands do |c|
+  c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications"
 
-    # Forwards all commands to rubygems.
-    class GemForwarder < ChefDK::Command::Base
-      banner "Usage: chef gem GEM_COMMANDS_AND_OPTIONS"
-
-      def run(params)
-        Gem::GemRunner.new.run( params.clone )
-      rescue Gem::SystemExitException => e
-        exit( e.exit_code )
-      end
-    end
-  end
+  c.builtin "gem", :GemForwarder, require_path: "chef-dk/command/gem",
+    desc: "Runs the `gem` command in context of the embedded ruby"
 end
-
