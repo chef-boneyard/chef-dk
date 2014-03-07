@@ -27,23 +27,23 @@ describe ChefDK::Command::Verify do
 
   describe "when locating omnibus directory" do
     it "should find omnibus directory from ruby path" do
-      Gem.stub(:ruby).and_return(File.join(FIXTURES_PATH, "eg_omnibus_dir/valid/embedded/bin/ruby"))
+      Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
       command_instance.locate_omnibus_dir
       expect(command_instance.omnibus_dir).to include("eg_omnibus_dir/valid/embedded")
     end
 
     it "should raise OmnibusInstallNotFound if directory is not looking like omnibus" do
-      Gem.stub(:ruby).and_return(File.join(FIXTURES_PATH,".rbenv/versions/2.1.1/bin/ruby"))
+      Gem.stub(:ruby).and_return(File.join(fixtures_path,".rbenv/versions/2.1.1/bin/ruby"))
       expect{command_instance.locate_omnibus_dir}.to raise_error(ChefDK::Exceptions::OmnibusInstallNotFound)
     end
 
     it "raises OmnibusInstallNotFound if omnibus directory doesn't exist" do
-      Gem.stub(:ruby).and_return(File.join(FIXTURES_PATH,"eg_omnibus_dir/missing_apps/embedded/bin/ruby"))
+      Gem.stub(:ruby).and_return(File.join(fixtures_path,"eg_omnibus_dir/missing_apps/embedded/bin/ruby"))
       expect{command_instance.locate_omnibus_dir}.to raise_error(ChefDK::Exceptions::OmnibusInstallNotFound)
     end
 
     it "raises MissingComponentError when a component doesn't exist" do
-      Gem.stub(:ruby).and_return(File.join(FIXTURES_PATH,"eg_omnibus_dir/missing_component/embedded/bin/ruby"))
+      Gem.stub(:ruby).and_return(File.join(fixtures_path,"eg_omnibus_dir/missing_component/embedded/bin/ruby"))
       expect{command_instance.locate_omnibus_dir}.to raise_error(ChefDK::Exceptions::MissingComponentError)
     end
   end
@@ -69,7 +69,7 @@ describe ChefDK::Command::Verify do
 
     describe "with single command with success" do
       before do
-        Gem.stub(:ruby).and_return(File.join(FIXTURES_PATH, "eg_omnibus_dir/valid/embedded/bin/ruby"))
+        Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
         command_instance.stub(:components).and_return({
           "successful_comp" => {
             :base_dir => "berkshelf",
@@ -91,7 +91,7 @@ describe ChefDK::Command::Verify do
 
     describe "with single command with failure" do
       before do
-        Gem.stub(:ruby).and_return(File.join(FIXTURES_PATH, "eg_omnibus_dir/valid/embedded/bin/ruby"))
+        Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
         command_instance.stub(:components).and_return({
           "failing_comp" => {
             :base_dir => "chef",
@@ -113,7 +113,7 @@ describe ChefDK::Command::Verify do
 
     describe "with multiple commands with success" do
       before do
-        Gem.stub(:ruby).and_return(File.join(FIXTURES_PATH, "eg_omnibus_dir/valid/embedded/bin/ruby"))
+        Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
         command_instance.stub(:components).and_return({
           "successful_comp_1" => {
             :base_dir => "berkshelf",
@@ -147,7 +147,7 @@ describe ChefDK::Command::Verify do
 
     describe "with multiple commands with failures" do
       before do
-        Gem.stub(:ruby).and_return(File.join(FIXTURES_PATH, "eg_omnibus_dir/valid/embedded/bin/ruby"))
+        Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
         command_instance.stub(:components).and_return({
           "successful_comp_1" => {
             :base_dir => "berkshelf",

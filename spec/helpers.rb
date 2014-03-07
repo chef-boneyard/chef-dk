@@ -15,12 +15,8 @@
 # limitations under the License.
 #
 
-require 'rubygems'
-require 'rspec/mocks'
-require 'pry-debugger'
-require 'helpers'
-
-RSpec.configure do |c|
-  c.include ChefDK
-  c.include Helpers
+module Helpers
+  def fixtures_path
+    File.expand_path(File.dirname(__FILE__) + "/unit/fixtures/")
+  end
 end
