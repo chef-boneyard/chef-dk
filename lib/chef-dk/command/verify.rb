@@ -16,16 +16,145 @@
 #
 
 require 'chef-dk/command/base'
+require 'chef-dk/exceptions'
 
 module ChefDK
   module Command
     class Verify < ChefDK::Command::Base
-      banner "Usage: chef verify <<TBD: options>>"
+      include ChefDK::Exceptions
 
-      def run(params)
-        parse_options
-        puts "TODO: Implement verify."
+      banner "Usage: chef verify"
+
+      class << self
+        def component(name, arguments)
+          components[name] = arguments
+        end
+
+        def components
+          @components ||= {}
+          @components
+        end
       end
+
+      def components
+        self.class.components
+      end
+
+      #
+      # Components included in Chef Development kit:
+      # :base_dir => Relative path of the component w.r.t. #{omnibus_dir}/apps
+      # :test_cmd => Test command to be launched for the component
+      #
+      component "berkshelf",
+        :base_dir => "berkshelf",
+        # For berks the real command to run is "bundle exec thor spec:ci"
+        # We can't run it right now since mercurial specs are included in the
+        # test suite by default. We will be able to switch to that command when
+        # this is merged:
+        # https://github.com/berkshelf/berkshelf/pull/1021
+        :test_cmd => "bundle exec rspec --color --format progress spec/unit --tag ~hg && \
+          bundle exec cucumber --color --format progress --tags ~@no_run --strict"
+
+      component "test-kitchen",
+        :base_dir => "test-kitchen",
+        :test_cmd => "bundle exec rake"
+
+      component "chef-client",
+        :base_dir => "chef",
+        :test_cmd => "bundle exec rspec"
+
+
+      attr_reader :omnibus_dir
+      attr_reader :verification_threads
+      attr_reader :verification_results
+      attr_reader :verification_status
+
+      def initialize
+        super
+        @verification_threads = [ ]
+        @verification_results = [ ]
+        @verification_status = 0
+      end
+
+      def run(params = [ ])
+        locate_omnibus_dir
+        invoke_tests
+        wait_for_tests
+        report_results
+
+        verification_status
+      end
+
+      #
+      # Locates the directory components are installed on the system.
+      #
+      # In omnibus installations ruby lives at:
+      # omnibus_install_dir/embedded/bin and components live at
+      # omnibus_install_dir/embedded/apps
+      #
+      def locate_omnibus_dir
+        @omnibus_dir = File.expand_path(File.join(Gem.ruby, "..","..", "apps"))
+        raise OmnibusInstallNotFound.new() unless File.directory? omnibus_dir
+
+        components.each do |component, component_info|
+          unless File.exists? component_path(component_info)
+            raise MissingComponentError.new(component)
+          end
+        end
+      end
+
+      def component_path(component_info)
+        File.join(omnibus_dir, component_info[:base_dir])
+      end
+
+      def invoke_tests
+        components.each do |component, component_info|
+          # Run the component specs in parallel
+          verification_threads << Thread.new do
+            result = system_command component_info[:test_cmd],
+              :cwd => component_path(component_info),
+              :env => {
+                "PATH" => "#{File.join(omnibus_dir, "bin")}:#{ENV['PATH']}"
+              },
+              :timeout => 3600
+
+            @verification_status = 1 if result.exitstatus != 0
+
+            {
+              :component => component,
+              :result => result
+            }
+          end
+
+          msg("Running verification for component '#{component}'")
+        end
+      end
+
+      def wait_for_tests
+        while !verification_threads.empty?
+          verification_threads.each do |t|
+            if t.join(1)
+              verification_threads.delete t
+              verification_results << t.value
+              msg("")
+              msg(t.value[:result].stdout)
+              msg(t.value[:result].stderr) if t.value[:result].stderr
+            else
+              $stdout.write "."
+            end
+          end
+        end
+      end
+
+      def report_results
+        msg("")
+        msg("---------------------------------------------")
+        verification_results.each do |result|
+          message = result[:result].exitstatus == 0 ? "succeeded" : "failed"
+          msg("Verification of component '#{result[:component]}' #{message}.")
+        end
+      end
+
     end
   end
 end

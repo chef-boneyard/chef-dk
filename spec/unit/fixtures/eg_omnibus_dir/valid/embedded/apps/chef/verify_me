@@ -1,0 +1,2 @@
+echo "i'm not feeling good today..."
+exit(1)
