@@ -28,6 +28,8 @@ Gem::Specification.new do |gem|
   gem.summary       = gem.description
   gem.homepage      = "http://www.getchef.com/"
 
+  gem.required_ruby_version = '>= 2.0'
+
   gem.files         = `git ls-files`.split($/)
   gem.executables   = %w( chef )
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
