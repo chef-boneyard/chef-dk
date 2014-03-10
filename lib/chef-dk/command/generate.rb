@@ -83,7 +83,7 @@ module ChefDK
       end
 
       def chef_runner
-        @chef_runner ||= ChefRunner.new(cookbook_path, ["default_cookbook::cookbook"])
+        @chef_runner ||= ChefRunner.new(cookbook_path, ["code_generator::cookbook"])
       end
 
       def cookbook_path
