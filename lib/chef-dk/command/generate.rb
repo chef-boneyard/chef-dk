@@ -17,44 +17,9 @@
 
 require 'chef-dk/command/base'
 require 'chef-dk/chef_runner'
+require 'chef-dk/generator'
 
 module ChefDK
-
-  module Generator
-
-    class AppConfig
-      attr_accessor :root
-      attr_accessor :cookbook_name
-      attr_accessor :author_name
-      attr_accessor :author_email
-      attr_accessor :license_description
-      attr_accessor :license_text
-    end
-
-    def self.app
-      @app ||= AppConfig.new
-    end
-
-    module TemplateHelper
-
-      def self.delegate_to_app_config(name)
-        define_method(name) do
-          ChefDK::Generator.app.public_send(name)
-        end
-      end
-
-      # delegate all the attributes of app_config
-      delegate_to_app_config :root
-      delegate_to_app_config :cookbook_name
-      delegate_to_app_config :author_name
-      delegate_to_app_config :author_email
-      delegate_to_app_config :license_description
-      delegate_to_app_config :license_text
-
-    end
-
-  end
-
   module Command
     class Generate < Base
 
