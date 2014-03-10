@@ -63,6 +63,9 @@ module ChefDK
         :base_dir => "chef",
         :test_cmd => "bundle exec rspec"
 
+      component "chef-dk",
+        :base_dir => "chef-dk",
+        :test_cmd => "bundle exec rspec"
 
       attr_reader :omnibus_dir
       attr_reader :verification_threads
