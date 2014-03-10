@@ -15,9 +15,27 @@
 # limitations under the License.
 #
 
-source 'https://rubygems.org'
+module TestHelpers
 
-gemspec :name => "chef-dk"
+  # A globally accessible place where we can put some state to verify that a
+  # test performed a certain operation.
+  def self.test_state
+    @test_state ||= {}
+  end
 
-# We need Chef 11.12+ because we use Ohai 7 features
-gem "chef", :git => "git://github.com/opscode/chef.git", :branch => "master"
+  def self.reset!
+    @test_state = nil
+  end
+
+  def test_state
+    TestHelpers.test_state
+  end
+
+  def fixtures_path
+    File.expand_path(File.dirname(__FILE__) + "/unit/fixtures/")
+  end
+
+  def project_root
+    File.expand_path("../..", __FILE__)
+  end
+end

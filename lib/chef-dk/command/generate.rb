@@ -16,7 +16,7 @@
 #
 
 require 'chef-dk/command/base'
-require 'chef'
+require 'chef-dk/chef_runner'
 
 module ChefDK
 
@@ -55,7 +55,6 @@ module ChefDK
 
   end
 
-
   module Command
     class Generate < Base
 
@@ -75,13 +74,20 @@ module ChefDK
 
       def run(params)
         setup_app
-        setup_chef
         run_chef
         return 0
       end
 
       def run_chef
-        Chef::Runner.new(run_context).converge
+        chef_runner.converge
+      end
+
+      def chef_runner
+        @chef_runner ||= ChefRunner.new(cookbook_path, ["default_cookbook::cookbook"])
+      end
+
+      def cookbook_path
+        File.expand_path("../../skeletons", __FILE__)
       end
 
       def setup_app
@@ -89,18 +95,6 @@ module ChefDK
       end
 
       def setup_chef
-        Chef::Config.solo = true
-        Chef::Config.cookbook_path = File.expand_path("../../skeletons", __FILE__)
-        Chef::Config.color = true
-        Chef::Config.diff_disabled = true
-        formatter = Chef::Formatters.new(:doc, $stdout, $stderr)
-        ohai = Ohai::System.new
-        ohai.all_plugins # TODO: only need platform/version
-        policy_builder = Chef::PolicyBuilder::ExpandNodeObject.new("chef-dk", ohai.data, {}, nil, formatter)
-        policy_builder.load_node
-        policy_builder.build_node
-        policy_builder.node.run_list("recipe[default_cookbook::cookbook]")
-        policy_builder.expand_run_list
         @run_context = policy_builder.setup_run_context
       end
 

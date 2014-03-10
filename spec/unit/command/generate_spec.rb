@@ -15,13 +15,6 @@
 # limitations under the License.
 #
 
-module Helpers
+require 'spec_helper'
+require 'chef-dk/command/generate'
 
-  def fixtures_path
-    File.expand_path(File.dirname(__FILE__) + "/unit/fixtures/")
-  end
-
-  def project_root
-    File.expand_path("../..", __FILE__)
-  end
-end
