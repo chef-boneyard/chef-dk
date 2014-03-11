@@ -18,49 +18,67 @@
 require 'chef-dk/command/base'
 require 'chef-dk/chef_runner'
 require 'chef-dk/generator'
+require 'chef-dk/command/generator_commands'
 
 module ChefDK
   module Command
     class Generate < Base
 
-      # chef generate app path/to/basename --skel=path/to/skeleton --example-code
-      # chef generate cookbook path/to/basename --skel=path/to/skeleton --example-code
+      GeneratorCommand = Struct.new(:name, :class_name, :description)
+
+      def self.generators
+        @generators ||= []
+      end
+
+      def self.generator(name, class_name, description)
+        generators << GeneratorCommand.new(name, class_name, description)
+      end
+
+      generator(:app, :APP, "Generate an application repo")
+      generator(:cookbook, :Cookbook, "Generate a single cookbook")
+
+      def self.banner_headline
+        <<-E
+Usage: chef generate GENERATOR [options]
+
+Available generators:
+E
+      end
+
+      def self.generator_list
+        justify_size = generators.map {|g| g.name.size }.max + 2
+        generators.map {|g| "  #{g.name.to_s.ljust(justify_size)}#{g.description}"}.join("\n")
+      end
+
+      def self.banner
+        banner_headline + generator_list + "\n"
+      end
+
+      # chef generate app path/to/basename --skel=path/to/skeleton --example
+      # chef generate cookbook path/to/basename --skel=path/to/skeleton --example
       # chef generate template name [path/to/cookbook_root] (inferred from cwd) --from=source_file
       # chef generate file name [path/to/cookbook_root] (inferred from cwd) --from=source_file
+      # chef generate recipe name [path/to/cookbook/root] (inferred from cwd)
       # chef generate lwrp name [path/to/cookbook_root] (inferred from cwd)
       # chef generate attr name [path/to/cookbook_root] (inferred from cwd)
 
-      attr_reader :run_context
-
       def initialize(*args)
         super
-        @run_context = nil
       end
 
       def run(params)
-        setup_app
-        run_chef
-        return 0
+        if generator_spec = generator_for(params[0])
+          params.shift
+          generator = GeneratorCommands.build(generator_spec.class_name, params)
+          generator.run
+        else
+          msg(banner)
+          1
+        end
       end
 
-      def run_chef
-        chef_runner.converge
-      end
-
-      def chef_runner
-        @chef_runner ||= ChefRunner.new(cookbook_path, ["code_generator::cookbook"])
-      end
-
-      def cookbook_path
-        File.expand_path("../../skeletons", __FILE__)
-      end
-
-      def setup_app
-        Generator.app.root = File.join(Dir.pwd, "demo-#{Time.now.to_i}") #FIXME
-      end
-
-      def setup_chef
-        @run_context = policy_builder.setup_run_context
+      def generator_for(arg)
+        self.class.generators.find {|g| g.name.to_s == arg}
       end
 
     end
