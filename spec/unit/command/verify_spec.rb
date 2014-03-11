@@ -80,6 +80,10 @@ describe ChefDK::Command::Verify do
         run_command(0)
       end
 
+      it "should have embedded/bin on the PATH" do
+        expect(stdout).to include(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin"))
+      end
+
       it "should report the success of the command" do
         expect(stdout).to include("Verification of component 'successful_comp' succeeded.")
       end

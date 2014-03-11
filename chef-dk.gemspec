@@ -30,7 +30,9 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = '>= 2.0'
 
-  gem.files         = `git ls-files`.split($/)
+  gem.files = %w(Rakefile LICENSE README.md CONTRIBUTING.md) + Dir.glob("{lib,spec}/**/*", File::FNM_DOTMATCH).reject do |f|
+    File.directory?(f)
+  end
   gem.executables   = %w( chef )
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]

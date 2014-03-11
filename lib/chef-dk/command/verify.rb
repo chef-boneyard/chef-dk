@@ -63,6 +63,9 @@ module ChefDK
         :base_dir => "chef",
         :test_cmd => "bundle exec rspec"
 
+      component "chef-dk",
+        :base_dir => "chef-dk",
+        :test_cmd => "bundle exec rspec"
 
       attr_reader :omnibus_dir
       attr_reader :verification_threads
@@ -111,10 +114,13 @@ module ChefDK
         components.each do |component, component_info|
           # Run the component specs in parallel
           verification_threads << Thread.new do
+            bin_path = File.expand_path(File.join(omnibus_dir, "..", "bin"))
             result = system_command component_info[:test_cmd],
               :cwd => component_path(component_info),
               :env => {
-                "PATH" => "#{File.join(omnibus_dir, "bin")}:#{ENV['PATH']}"
+                # Add the embedded/bin to the PATH so that bundle executable can
+                # be found while running the tests.
+                "PATH" => "#{bin_path}:#{ENV['PATH']}"
               },
               :timeout => 3600
 
