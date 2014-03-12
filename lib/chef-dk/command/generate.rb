@@ -34,6 +34,7 @@ module ChefDK
 
       generator(:app, :APP, "Generate an application repo")
       generator(:cookbook, :Cookbook, "Generate a single cookbook")
+      generator(:recipe, :Recipe, "Generate a new recipe")
 
       def self.banner_headline
         <<-E

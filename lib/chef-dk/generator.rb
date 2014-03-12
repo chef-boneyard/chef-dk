@@ -22,6 +22,7 @@ module ChefDK
     class Context
       attr_accessor :root
       attr_accessor :cookbook_name
+      attr_accessor :recipe_name
       attr_accessor :author_name
       attr_accessor :author_email
       attr_accessor :license_description
@@ -47,6 +48,7 @@ module ChefDK
       # delegate all the attributes of app_config
       delegate_to_app_context :root
       delegate_to_app_context :cookbook_name
+      delegate_to_app_context :recipe_name
       delegate_to_app_context :author_name
       delegate_to_app_context :author_email
       delegate_to_app_context :license_description
