@@ -15,6 +15,10 @@
 # limitations under the License.
 #
 
+require 'mixlib/cli'
+require 'chef-dk/command/base'
+require 'chef-dk/chef_runner'
+require 'chef-dk/generator'
 
 module ChefDK
   module Command
@@ -24,8 +28,7 @@ module ChefDK
         const_get(class_name).new(params)
       end
 
-      class Base
-        include Mixlib::CLI
+      class Base < Command::Base
 
         attr_reader :params
 
@@ -42,8 +45,11 @@ module ChefDK
           File.expand_path("../../skeletons", __FILE__)
         end
 
-        def setup_app
-          Generator.app.root = File.join(Dir.pwd, "demo-#{Time.now.to_i}") #FIXME
+        def setup_context
+        end
+
+        def generator_context
+          Generator.context
         end
 
       end
@@ -54,18 +60,42 @@ module ChefDK
         banner "Usage: chef generate cookbook NAME [options]"
 
         attr_reader :errors
+        attr_reader :cookbook_name
 
         def initialize(params)
+          @params_valid = true
+          @cookbook_name = nil
           super
         end
 
         def run
-          setup_app
-          chef_runner.converge
+          read_and_validate_params
+          if params_valid?
+            setup_context
+            chef_runner.converge
+          else
+            msg(banner)
+            1
+          end
+        end
+
+        def setup_context
+          generator_context.root = Dir.pwd
+          generator_context.cookbook_name = cookbook_name
         end
 
         def recipe
           "cookbook"
+        end
+
+        def read_and_validate_params
+          arguments = parse_options(params)
+          @cookbook_name = arguments[0]
+          @params_valid = false unless @cookbook_name
+        end
+
+        def params_valid?
+          @params_valid
         end
 
       end

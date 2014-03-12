@@ -19,7 +19,7 @@ module ChefDK
 
   module Generator
 
-    class AppConfig
+    class Context
       attr_accessor :root
       attr_accessor :cookbook_name
       attr_accessor :author_name
@@ -28,25 +28,29 @@ module ChefDK
       attr_accessor :license_text
     end
 
-    def self.app
-      @app ||= AppConfig.new
+    def self.reset
+      @context = nil
+    end
+
+    def self.context
+      @context ||= Context.new
     end
 
     module TemplateHelper
 
-      def self.delegate_to_app_config(name)
+      def self.delegate_to_app_context(name)
         define_method(name) do
-          ChefDK::Generator.app.public_send(name)
+          ChefDK::Generator.context.public_send(name)
         end
       end
 
       # delegate all the attributes of app_config
-      delegate_to_app_config :root
-      delegate_to_app_config :cookbook_name
-      delegate_to_app_config :author_name
-      delegate_to_app_config :author_email
-      delegate_to_app_config :license_description
-      delegate_to_app_config :license_text
+      delegate_to_app_context :root
+      delegate_to_app_context :cookbook_name
+      delegate_to_app_context :author_name
+      delegate_to_app_context :author_email
+      delegate_to_app_context :license_description
+      delegate_to_app_context :license_text
 
     end
 

@@ -1,37 +1,38 @@
 
 
-app = ChefDK::Generator.app
+context = ChefDK::Generator.context
+cookbook_dir = File.join(context.root, context.cookbook_name)
 
 # cookbook root dir
-directory app.root
+directory cookbook_dir
 
 # metadata.rb
-template "#{app.root}/metadata.rb" do
+template "#{cookbook_dir}/metadata.rb" do
   helpers(ChefDK::Generator::TemplateHelper)
 end
 
 # README
-template "#{app.root}/README.md" do
+template "#{cookbook_dir}/README.md" do
   helpers(ChefDK::Generator::TemplateHelper)
 end
 
 # chefignore
-cookbook_file "#{app.root}/chefignore"
+cookbook_file "#{cookbook_dir}/chefignore"
 
 # Berks
-cookbook_file "#{app.root}/Berksfile"
+cookbook_file "#{cookbook_dir}/Berksfile"
 
 # TK
-template "#{app.root}/.kitchen.yml" do
+template "#{cookbook_dir}/.kitchen.yml" do
   source "kitchen.yml"
   helpers(ChefDK::Generator::TemplateHelper)
 end
 
 # Recipes
 
-directory "#{app.root}/recipes"
+directory "#{cookbook_dir}/recipes"
 
-template "#{app.root}/recipes/default.rb" do
+template "#{cookbook_dir}/recipes/default.rb" do
   source "default_recipe.rb.erb"
   helpers(ChefDK::Generator::TemplateHelper)
 end
@@ -41,10 +42,10 @@ if system("git --version")
 
   execute("initialize-git") do
     command("git init .")
-    cwd app.root
+    cwd cookbook_dir
   end
 
-  cookbook_file "#{app.root}/.gitignore" do
+  cookbook_file "#{cookbook_dir}/.gitignore" do
     source "gitignore"
   end
 end

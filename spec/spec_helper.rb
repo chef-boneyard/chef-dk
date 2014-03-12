@@ -23,4 +23,6 @@ require 'test_helpers'
 RSpec.configure do |c|
   c.include ChefDK
   c.include TestHelpers
+
+  c.after(:all) { clear_tempdir }
 end

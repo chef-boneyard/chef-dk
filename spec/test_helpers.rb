@@ -15,6 +15,8 @@
 # limitations under the License.
 #
 
+require 'fileutils'
+
 module TestHelpers
 
   # A globally accessible place where we can put some state to verify that a
@@ -37,5 +39,18 @@ module TestHelpers
 
   def project_root
     File.expand_path("../..", __FILE__)
+  end
+
+  def reset_tempdir
+    clear_tempdir
+    FileUtils.mkdir_p(tempdir)
+  end
+
+  def clear_tempdir
+    FileUtils.rm_rf(tempdir)
+  end
+
+  def tempdir
+    File.join(project_root, "spec/unit/specs-tmpdir" )
   end
 end

@@ -16,8 +16,6 @@
 #
 
 require 'chef-dk/command/base'
-require 'chef-dk/chef_runner'
-require 'chef-dk/generator'
 require 'chef-dk/command/generator_commands'
 
 module ChefDK
