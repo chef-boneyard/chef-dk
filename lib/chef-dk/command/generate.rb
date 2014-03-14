@@ -35,6 +35,10 @@ module ChefDK
       generator(:app, :APP, "Generate an application repo")
       generator(:cookbook, :Cookbook, "Generate a single cookbook")
       generator(:recipe, :Recipe, "Generate a new recipe")
+      generator(:attribute, :Attribute, "Generate an attributes file")
+      generator(:template, :Template, "Generate a file template")
+      generator(:file, :CookbookFile, "Generate a cookbook file")
+      generator(:lwrp, :LWRP, "Generate a lightweight resource/provider")
 
       def self.banner_headline
         <<-E
@@ -54,12 +58,7 @@ E
       end
 
       # chef generate app path/to/basename --skel=path/to/skeleton --example
-      # chef generate cookbook path/to/basename --skel=path/to/skeleton --example
-      # chef generate template name [path/to/cookbook_root] (inferred from cwd) --from=source_file
       # chef generate file name [path/to/cookbook_root] (inferred from cwd) --from=source_file
-      # chef generate recipe name [path/to/cookbook/root] (inferred from cwd)
-      # chef generate lwrp name [path/to/cookbook_root] (inferred from cwd)
-      # chef generate attr name [path/to/cookbook_root] (inferred from cwd)
 
       def initialize(*args)
         super
@@ -78,6 +77,19 @@ E
 
       def generator_for(arg)
         self.class.generators.find {|g| g.name.to_s == arg}
+      end
+
+      # In the Base class, this is defined to be true if any args match "-h" or
+      # "--help". Here we override that behavior such that if the first
+      # argument is a valid generator name, like `chef generate cookbook -h`,
+      # we delegate the request to the specified generator.
+      def needs_help?(params)
+        return false if have_generator?(params[0])
+        super
+      end
+
+      def have_generator?(name)
+        self.class.generators.map {|g| g.name.to_s}.include?(name)
       end
 
     end

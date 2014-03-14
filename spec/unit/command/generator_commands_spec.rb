@@ -126,7 +126,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
 end
 
-describe ChefDK::Command::GeneratorCommands::Recipe do
+shared_examples_for "a file generator" do
 
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
@@ -163,16 +163,16 @@ describe ChefDK::Command::GeneratorCommands::Recipe do
     let(:argv) { [] }
 
     it "emits an error message and exits" do
-      expected_stdout = "Usage: chef generate recipe [path/to/cookbook] NAME [options]\n"
+      expected_stdout = "Usage: chef generate #{generator_name} [path/to/cookbook] NAME [options]"
 
       expect(recipe_generator.run).to eq(1)
-      expect(stdout).to eq(expected_stdout)
+      expect(stdout).to include(expected_stdout)
     end
   end
 
   context "when CWD is a cookbook" do
 
-    let(:argv) { %w[new_recipe] }
+    let(:argv) { [ new_file_name ] }
 
     before do
       reset_tempdir
@@ -186,7 +186,7 @@ describe ChefDK::Command::GeneratorCommands::Recipe do
 
         expect(generator_context.root).to eq(expected_cookbook_root)
         expect(generator_context.cookbook_name).to eq(cookbook_name)
-        expect(generator_context.recipe_name).to eq("new_recipe")
+        expect(generator_context.new_file_basename).to eq(new_file_name)
       end
     end
 
@@ -196,27 +196,29 @@ describe ChefDK::Command::GeneratorCommands::Recipe do
         recipe_generator.run
       end
 
-      expect(File).to exist(File.join(cookbook_path, "recipes/new_recipe.rb"))
+        generated_files.each do |expected_file|
+          expect(File).to exist(File.join(cookbook_path, expected_file))
+        end
     end
 
   end
 
   context "when CWD is not a cookbook" do
     context "and path to the cookbook is not given in the agv" do
-      let(:argv) { ["new_recipe"] }
+      let(:argv) { [ new_file_name ] }
 
       it "emits an error message and exits" do
-        expected_stdout = "Usage: chef generate recipe [path/to/cookbook] NAME [options]\n"
+        expected_stdout = "Usage: chef generate #{generator_name} [path/to/cookbook] NAME [options]"
         expected_stderr = "Error: Directory #{Dir.pwd} is not a cookbook\n"
 
         expect(recipe_generator.run).to eq(1)
-        expect(stdout).to eq(expected_stdout)
+        expect(stdout).to include(expected_stdout)
         expect(stderr).to eq(expected_stderr)
       end
     end
 
     context "and path to the cookbook is given in the argv" do
-      let(:argv) { [cookbook_path, "new_recipe"] }
+      let(:argv) { [cookbook_path, new_file_name ] }
 
       it "configures the generator context" do
         recipe_generator.read_and_validate_params
@@ -224,14 +226,16 @@ describe ChefDK::Command::GeneratorCommands::Recipe do
 
         expect(generator_context.root).to eq(File.dirname(cookbook_path))
         expect(generator_context.cookbook_name).to eq(cookbook_name)
-        expect(generator_context.recipe_name).to eq("new_recipe")
+        expect(generator_context.new_file_basename).to eq(new_file_name)
       end
 
       it "creates a new recipe" do
         recipe_generator.chef_runner.stub(:stdout).and_return(stdout_io)
         recipe_generator.run
 
-        expect(File).to exist(File.join(cookbook_path, "recipes/new_recipe.rb"))
+        generated_files.each do |expected_file|
+          expect(File).to exist(File.join(cookbook_path, expected_file))
+        end
       end
 
     end
@@ -239,3 +243,57 @@ describe ChefDK::Command::GeneratorCommands::Recipe do
 
 end
 
+describe ChefDK::Command::GeneratorCommands::Recipe do
+
+  include_examples "a file generator" do
+
+    let(:generator_name) { "recipe" }
+    let(:generated_files) { [ "recipes/new_recipe.rb" ] }
+    let(:new_file_name) { "new_recipe" }
+
+  end
+end
+
+describe ChefDK::Command::GeneratorCommands::Attribute do
+
+  include_examples "a file generator" do
+
+    let(:generator_name) { "attribute" }
+    let(:generated_files) { [ "attributes/new_attribute_file.rb" ] }
+    let(:new_file_name) { "new_attribute_file" }
+
+  end
+end
+
+describe ChefDK::Command::GeneratorCommands::LWRP do
+
+  include_examples "a file generator" do
+
+    let(:generator_name) { "lwrp" }
+    let(:generated_files) { [ "resources/new_lwrp.rb", "providers/new_lwrp.rb" ] }
+    let(:new_file_name) { "new_lwrp" }
+
+  end
+end
+
+describe ChefDK::Command::GeneratorCommands::Template do
+
+  include_examples "a file generator" do
+
+    let(:generator_name) { "template" }
+    let(:generated_files) { [ "templates/default/new_template.txt.erb" ] }
+    let(:new_file_name) { "new_template.txt" }
+
+  end
+end
+
+describe ChefDK::Command::GeneratorCommands::CookbookFile do
+
+  include_examples "a file generator" do
+
+    let(:generator_name) { "file" }
+    let(:generated_files) { [ "files/default/new_file.txt" ] }
+    let(:new_file_name) { "new_file.txt" }
+
+  end
+end

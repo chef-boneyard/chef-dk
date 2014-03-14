@@ -113,19 +113,16 @@ module ChefDK
 
       end
 
-      # chef generate recipe [path/to/cookbook/root] name
-      class Recipe < Base
-
-        banner "Usage: chef generate recipe [path/to/cookbook] NAME [options]"
+      class CookbookCodeFile < Base
 
         attr_reader :errors
         attr_reader :cookbook_path
-        attr_reader :recipe_name
+        attr_reader :new_file_basename
 
         def initialize(params)
           @params_valid = true
           @cookbook_full_path = nil
-          @recipe_name = nil
+          @new_file_basename = nil
           @errors = []
           super
         end
@@ -137,7 +134,8 @@ module ChefDK
             chef_runner.converge
           else
             errors.each {|error| err("Error: #{error}") }
-            msg(banner)
+            parse_options
+            msg(opt_parser)
             1
           end
         end
@@ -145,7 +143,7 @@ module ChefDK
         def setup_context
           generator_context.root = cookbook_root
           generator_context.cookbook_name = cookbook_name
-          generator_context.recipe_name = recipe_name
+          generator_context.new_file_basename = new_file_basename
         end
 
         def cookbook_root
@@ -156,20 +154,16 @@ module ChefDK
           File.basename(cookbook_path)
         end
 
-        def recipe
-          'recipe'
-        end
-
         def read_and_validate_params
           arguments = parse_options(params)
           case arguments.size
           when 1
-            @recipe_name = arguments[0]
+            @new_file_basename = arguments[0]
             @cookbook_path = Dir.pwd
             validate_cookbook_path
           when 2
             @cookbook_path = arguments[0]
-            @recipe_name = arguments[1]
+            @new_file_basename = arguments[1]
           else
             @params_valid = false
           end
@@ -186,7 +180,85 @@ module ChefDK
           @params_valid
         end
       end
+
+      # chef generate recipe [path/to/cookbook/root] name
+      class Recipe < CookbookCodeFile
+
+        banner "Usage: chef generate recipe [path/to/cookbook] NAME [options]"
+
+        def recipe
+          'recipe'
+        end
+
+      end
+
+      # chef generate attribute [path/to/cookbook_root] NAME
+      class Attribute < CookbookCodeFile
+
+        banner "Usage: chef generate attribute [path/to/cookbook] NAME [options]"
+
+        def recipe
+          'attribute'
+        end
+
+      end
+
+      # chef generate lwrp [path/to/cookbook_root] NAME
+      class LWRP < CookbookCodeFile
+
+        banner "Usage: chef generate lwrp [path/to/cookbook] NAME [options]"
+
+        def recipe
+          'lwrp'
+        end
+
+      end
+
+      # chef generate template [path/to/cookbook_root] name --source=source_file
+      class Template < CookbookCodeFile
+
+        option :source,
+          :short => "-s SOURCE_FILE",
+          :long  => "--source SOURCE_FILE",
+          :description => "Copy content from SOURCE_FILE"
+
+
+        banner "Usage: chef generate template [path/to/cookbook] NAME [options]"
+
+        def recipe
+          'template'
+        end
+
+        def setup_context
+          super
+          generator_context.content_source = config[:source]
+        end
+
+      end
+
+      # chef generate file [path/to/cookbook_root] name --source=source_file
+      class CookbookFile < CookbookCodeFile
+        option :source,
+          :short => "-s SOURCE_FILE",
+          :long  => "--source SOURCE_FILE",
+          :description => "Copy content from SOURCE_FILE"
+
+
+        banner "Usage: chef generate file [path/to/cookbook] NAME [options]"
+
+        def recipe
+          'cookbook_file'
+        end
+
+        def setup_context
+          super
+          generator_context.content_source = config[:source]
+        end
+      end
+
     end
+
+
   end
 end
 
