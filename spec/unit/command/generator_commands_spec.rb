@@ -18,6 +18,70 @@
 require 'spec_helper'
 require 'chef-dk/command/generator_commands'
 
+describe ChefDK::Command::GeneratorCommands::App do
+
+  let(:argv) { %w[new_app] }
+
+  let(:stdout_io) { StringIO.new }
+  let(:stderr_io) { StringIO.new }
+
+  let(:expected_cookbook_file_relpaths) do
+    %w[
+      .gitignore
+      .kitchen.yml
+      README.md
+      cookbooks/new_app/Berksfile
+      cookbooks/new_app/chefignore
+      cookbooks/new_app/metadata.rb
+      cookbooks/new_app/recipes
+      cookbooks/new_app/recipes/default.rb
+    ]
+  end
+
+  let(:expected_cookbook_files) do
+    expected_cookbook_file_relpaths.map do |relpath|
+      File.join(tempdir, "new_app", relpath)
+    end
+  end
+
+  subject(:cookbook_generator) { described_class.new(argv) }
+
+  def generator_context
+    ChefDK::Generator.context
+  end
+
+  before do
+    ChefDK::Generator.reset
+  end
+
+  context "when given the name of the cookbook to generate" do
+
+    before do
+      reset_tempdir
+    end
+
+    it "configures the generator context" do
+      cookbook_generator.read_and_validate_params
+      cookbook_generator.setup_context
+      expect(generator_context.app_root).to eq(Dir.pwd)
+      expect(generator_context.app_name).to eq("new_app")
+    end
+
+    it "creates a new cookbook" do
+      Dir.chdir(tempdir) do
+        cookbook_generator.chef_runner.stub(:stdout).and_return(stdout_io)
+        cookbook_generator.run
+      end
+      generated_files = Dir.glob("#{tempdir}/new_app/**/*", File::FNM_DOTMATCH)
+      expected_cookbook_files.each do |expected_file|
+        expect(generated_files).to include(expected_file)
+      end
+    end
+
+  end
+
+end
+
 describe ChefDK::Command::GeneratorCommands::Cookbook do
 
   let(:argv) { %w[new_cookbook] }
@@ -44,7 +108,11 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
     end
   end
 
-  subject(:cookbook_generator) { described_class.new(argv) }
+  subject(:cookbook_generator) do
+    g = described_class.new(argv)
+    g.stub(:cookbook_path_in_git_repo?).and_return(false)
+    g
+  end
 
   def generator_context
     ChefDK::Generator.context
@@ -91,7 +159,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
     it "configures the generator context" do
       cookbook_generator.read_and_validate_params
       cookbook_generator.setup_context
-      expect(generator_context.root).to eq(Dir.pwd)
+      expect(generator_context.cookbook_root).to eq(Dir.pwd)
       expect(generator_context.cookbook_name).to eq("new_cookbook")
     end
 
@@ -118,7 +186,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
     it "configures the generator context" do
       cookbook_generator.read_and_validate_params
       cookbook_generator.setup_context
-      expect(generator_context.root).to eq(tempdir)
+      expect(generator_context.cookbook_root).to eq(tempdir)
       expect(generator_context.cookbook_name).to eq("a_new_cookbook")
     end
 
@@ -184,7 +252,7 @@ shared_examples_for "a file generator" do
         recipe_generator.read_and_validate_params
         recipe_generator.setup_context
 
-        expect(generator_context.root).to eq(expected_cookbook_root)
+        expect(generator_context.cookbook_root).to eq(expected_cookbook_root)
         expect(generator_context.cookbook_name).to eq(cookbook_name)
         expect(generator_context.new_file_basename).to eq(new_file_name)
       end
@@ -224,7 +292,7 @@ shared_examples_for "a file generator" do
         recipe_generator.read_and_validate_params
         recipe_generator.setup_context
 
-        expect(generator_context.root).to eq(File.dirname(cookbook_path))
+        expect(generator_context.cookbook_root).to eq(File.dirname(cookbook_path))
         expect(generator_context.cookbook_name).to eq(cookbook_name)
         expect(generator_context.new_file_basename).to eq(new_file_name)
       end

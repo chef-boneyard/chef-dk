@@ -16,6 +16,8 @@
 #
 
 require 'mixlib/cli'
+require 'rbconfig'
+require 'pathname'
 require 'chef-dk/command/base'
 require 'chef-dk/chef_runner'
 require 'chef-dk/generator'
@@ -46,10 +48,78 @@ module ChefDK
         end
 
         def setup_context
+          Generator.context.have_git = have_git?
+          Generator.context.skip_git_init = false
         end
 
         def generator_context
           Generator.context
+        end
+
+        def have_git?
+          path = ENV["PATH"] || ""
+          paths = path.split(File::PATH_SEPARATOR)
+          paths.any? {|bin_path| File.exist?(File.join(bin_path, "git#{RbConfig::CONFIG['EXEEXT']}"))}
+        end
+
+      end
+
+      # chef generate app path/to/basename --skel=path/to/skeleton --example
+      class App < Base
+
+        banner "Usage: chef generate app NAME [options]"
+
+        attr_reader :errors
+
+        attr_reader :app_name_or_path
+
+        def initialize(params)
+          @params_valid = true
+          @app_name = nil
+          super
+        end
+
+        def run
+          read_and_validate_params
+          if params_valid?
+            setup_context
+            chef_runner.converge
+          else
+            msg(banner)
+            1
+          end
+        end
+
+        def setup_context
+          super
+          generator_context.app_root = app_root
+          generator_context.app_name = app_name
+        end
+
+        def recipe
+          "app"
+        end
+
+        def app_name
+          File.basename(app_full_path)
+        end
+
+        def app_root
+          File.dirname(app_full_path)
+        end
+
+        def app_full_path
+          File.expand_path(app_name_or_path, Dir.pwd)
+        end
+
+        def read_and_validate_params
+          arguments = parse_options(params)
+          @app_name_or_path = arguments[0]
+          @params_valid = false unless @app_name_or_path
+        end
+
+        def params_valid?
+          @params_valid
         end
 
       end
@@ -81,7 +151,9 @@ module ChefDK
         end
 
         def setup_context
-          generator_context.root = cookbook_root
+          super
+          generator_context.skip_git_init = cookbook_path_in_git_repo?
+          generator_context.cookbook_root = cookbook_root
           generator_context.cookbook_name = cookbook_name
         end
 
@@ -109,6 +181,13 @@ module ChefDK
 
         def params_valid?
           @params_valid
+        end
+
+        def cookbook_path_in_git_repo?
+          Pathname.new(cookbook_full_path).ascend do |dir|
+            return true if File.directory?(File.join(dir.to_s, ".git"))
+          end
+          false
         end
 
       end
@@ -141,7 +220,8 @@ module ChefDK
         end
 
         def setup_context
-          generator_context.root = cookbook_root
+          super
+          generator_context.cookbook_root = cookbook_root
           generator_context.cookbook_name = cookbook_name
           generator_context.new_file_basename = new_file_basename
         end

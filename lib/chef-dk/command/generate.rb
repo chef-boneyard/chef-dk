@@ -32,7 +32,7 @@ module ChefDK
         generators << GeneratorCommand.new(name, class_name, description)
       end
 
-      generator(:app, :APP, "Generate an application repo")
+      generator(:app, :App, "Generate an application repo")
       generator(:cookbook, :Cookbook, "Generate a single cookbook")
       generator(:recipe, :Recipe, "Generate a new recipe")
       generator(:attribute, :Attribute, "Generate an attributes file")

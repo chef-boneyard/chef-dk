@@ -1,7 +1,7 @@
 
 
 context = ChefDK::Generator.context
-cookbook_dir = File.join(context.root, context.cookbook_name)
+cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
 
 # cookbook root dir
 directory cookbook_dir
@@ -38,7 +38,7 @@ template "#{cookbook_dir}/recipes/default.rb" do
 end
 
 # git
-if system("git --version")
+if context.have_git && !context.skip_git_init
 
   execute("initialize-git") do
     command("git init .")
