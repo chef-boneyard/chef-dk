@@ -19,5 +19,3 @@ source 'https://rubygems.org'
 
 gemspec :name => "chef-dk"
 
-# We need Chef 11.12+ because we use Ohai 7 features
-gem "chef", :git => "git://github.com/opscode/chef.git", :branch => "master"
