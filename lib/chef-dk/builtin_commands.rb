@@ -21,4 +21,6 @@ ChefDK.commands do |c|
 
   c.builtin "gem", :GemForwarder, require_path: "chef-dk/command/gem",
     desc: "Runs the `gem` command in context of the embedded ruby"
+
+  c.builtin "generate", :Generate, desc: "Generate a new app, cookbook, or component"
 end
