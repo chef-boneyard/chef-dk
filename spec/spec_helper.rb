@@ -18,9 +18,15 @@
 require 'rubygems'
 require 'rspec/mocks'
 require 'pry-debugger'
-require 'helpers'
+require 'test_helpers'
 
 RSpec.configure do |c|
   c.include ChefDK
-  c.include Helpers
+  c.include TestHelpers
+
+  c.after(:all) { clear_tempdir }
+
+  c.filter_run :focus => true
+  c.run_all_when_everything_filtered = true
+  c.treat_symbols_as_metadata_keys_with_true_values = true
 end
