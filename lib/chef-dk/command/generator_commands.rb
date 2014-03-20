@@ -24,12 +24,25 @@ require 'chef-dk/generator'
 
 module ChefDK
   module Command
+
+    # ## GeneratorCommands
+    #
+    # This module is the namespace for all subcommands of `chef generate`
     module GeneratorCommands
 
       def self.build(class_name, params)
         const_get(class_name).new(params)
       end
 
+      # ## Base
+      #
+      # Base class for `chef generate` subcommands. Contains basic behaviors
+      # for setting up the generator context, detecting git, and launching a
+      # chef converge.
+      #
+      # The behavior of the generators is largely delegated to a chef cookbook.
+      # The default implementation is the `code_generator` cookbook in
+      # chef-dk/skeletons/code_generator.
       class Base < Command::Base
 
         attr_reader :params
@@ -39,23 +52,33 @@ module ChefDK
           @params = params
         end
 
+        # An instance of ChefRunner. Calling ChefRunner#converge will trigger
+        # convergence and generate the desired code.
         def chef_runner
           @chef_runner ||= ChefRunner.new(skeleton_cookbook_path, ["code_generator::#{recipe}"])
         end
 
+        # Path to the directory where the code_generator cookbook is located.
+        # For now, this is hard coded to the 'skeletons' directory in this
+        # repo.
         def skeleton_cookbook_path
           File.expand_path("../../skeletons", __FILE__)
         end
 
+        # Sets git related generator_context values.
         def setup_context
           Generator.context.have_git = have_git?
           Generator.context.skip_git_init = false
         end
 
+        # Delegates to `Generator.context`, the singleton instance of
+        # Generator::Context
         def generator_context
           Generator.context
         end
 
+        # Checks the `PATH` for the presence of a `git` (or `git.exe`, on
+        # windows) executable.
         def have_git?
           path = ENV["PATH"] || ""
           paths = path.split(File::PATH_SEPARATOR)
@@ -64,7 +87,10 @@ module ChefDK
 
       end
 
+      # ## App
       # chef generate app path/to/basename --skel=path/to/skeleton --example
+      #
+      # Generates a full "application" directory structure.
       class App < Base
 
         banner "Usage: chef generate app NAME [options]"
@@ -124,7 +150,12 @@ module ChefDK
 
       end
 
+      # ## CookbookFile
       # chef generate cookbook path/to/basename --skel=path/to/skeleton --example
+      #
+      # Generates a basic cookbook directory structure. Most file types are
+      # omitted, the user is expected to add additional files as needed using
+      # the relevant generators.
       class Cookbook < Base
 
         banner "Usage: chef generate cookbook NAME [options]"
@@ -192,6 +223,9 @@ module ChefDK
 
       end
 
+      # ## CookbookCodeFile
+      # A base class for generators that add individual files to existing
+      # cookbooks.
       class CookbookCodeFile < Base
 
         attr_reader :errors
