@@ -38,11 +38,9 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency "mixlib-cli", "~> 1.4"
-  gem.add_dependency "mixlib-shellout", "~> 1.3"
+  gem.add_dependency "mixlib-shellout", "~> 1.4"
 
-  # TODO: We really just want to specify "~> 11.12", but this does not pick up
-  # prerelease versions. This can be fixed after 11.12.0 is released.
-  gem.add_dependency "chef", "~> 11.12.0.alpha.0"
+  gem.add_dependency "chef", "~> 11.12.0"
 
   %w(rspec-core rspec-expectations rspec-mocks).each do |dev_gem|
     gem.add_development_dependency dev_gem, "~> 2.14.0"
