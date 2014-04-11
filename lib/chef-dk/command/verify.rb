@@ -53,7 +53,7 @@ module ChefDK
         # this is merged:
         # https://github.com/berkshelf/berkshelf/pull/1021
         :test_cmd => "bundle exec rspec --color --format progress spec/unit --tag ~hg && \
-          bundle exec cucumber --color --format progress --tags ~@no_run --strict"
+          bundle exec cucumber --color --format progress --tags ~@no_run --tags ~@spawn --strict"
 
       component "test-kitchen",
         :base_dir => "test-kitchen",
