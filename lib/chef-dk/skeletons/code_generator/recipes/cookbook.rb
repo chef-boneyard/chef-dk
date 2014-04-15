@@ -14,6 +14,7 @@ end
 # README
 template "#{cookbook_dir}/README.md" do
   helpers(ChefDK::Generator::TemplateHelper)
+  variables(:_name => context.cookbook_name)
 end
 
 # chefignore

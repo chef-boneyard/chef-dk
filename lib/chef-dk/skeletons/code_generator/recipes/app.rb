@@ -21,6 +21,7 @@ end
 # README
 template "#{app_dir}/README.md" do
   helpers(ChefDK::Generator::TemplateHelper)
+  variables(:_name => context.app_name)
 end
 
 # Generated Cookbook:
