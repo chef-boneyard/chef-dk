@@ -24,7 +24,6 @@ module ChefDK
       banner "Usage: chef exec SYSTEM_COMMAND"
 
       def run(params)
-        ruby_engine = defined?(RUBY_ENGINE) ? RUBY_ENGINE : 'ruby'
         env = {
           'PATH' => "/opt/chefdk/bin:/opt/chefdk/embedded/bin:#{ENV['PATH']}",
           'GEM_ROOT' => Gem.default_dir.inspect,
