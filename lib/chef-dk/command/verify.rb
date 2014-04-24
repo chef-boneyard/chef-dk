@@ -48,12 +48,10 @@ module ChefDK
       component "berkshelf",
         :base_dir => "berkshelf",
         # For berks the real command to run is "bundle exec thor spec:ci"
-        # We can't run it right now since mercurial and graphviz specs are included in the
-        # test suite by default. We will be able to switch to that command when
-        # these are merged:
-        # https://github.com/berkshelf/berkshelf/pull/1021 (mercurial)
-        # https://github.com/berkshelf/berkshelf/pull/1163 (graphviz)
-        :test_cmd => "bundle exec rspec --color --format progress spec/unit --tag ~hg --tag ~graphviz && \
+        # We can't run it right now since graphviz specs are included in the
+        # test suite by default. We will be able to switch to that command when/if
+        # Graphviz is added to omnibus.
+        :test_cmd => "bundle exec rspec --color --format progress spec/unit --tag ~graphviz && \
           bundle exec cucumber --color --format progress --tags ~@no_run --tags ~@spawn --strict"
 
       component "test-kitchen",
