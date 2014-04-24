@@ -17,13 +17,10 @@
 
 
 ChefDK.commands do |c|
-  c.builtin "exec", :Exec, require_path: "chef-dk/command/exec",
-    desc: "Runs the command in context of the embedded ruby"
+  c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications"
 
   c.builtin "gem", :GemForwarder, require_path: "chef-dk/command/gem",
     desc: "Runs the `gem` command in context of the embedded ruby"
 
   c.builtin "generate", :Generate, desc: "Generate a new app, cookbook, or component"
-
-  c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications"
 end
