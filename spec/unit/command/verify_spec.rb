@@ -21,7 +21,9 @@ require 'chef-dk/command/verify'
 describe ChefDK::Command::Verify do
   let(:command_instance) { ChefDK::Command::Verify.new() }
 
-  def run_command(expected_exit_code, command_options = [ ])
+  let(:command_options) { [] }
+
+  def run_command(expected_exit_code)
     expect(command_instance.run(command_options)).to eq(expected_exit_code)
   end
 
@@ -64,7 +66,7 @@ describe ChefDK::Command::Verify do
     end
 
     it "should have components by default" do
-      expect(command_instance.banner).to eq("Usage: chef verify")
+      expect(command_instance.banner).to eq("Usage: chef verify [component, ...] [options]")
     end
 
     describe "with single command with success" do
@@ -146,6 +148,17 @@ describe ChefDK::Command::Verify do
         index_first = stdout.index("you are good to go...")
         index_second = stdout.index("my friend everything is good...")
         expect(index_second > index_first).to be_true
+      end
+
+      context "and components are filtered by CLI args" do
+
+        let(:command_options) { [ "successful_comp_2" ] }
+
+        it "verifies only the desired component" do
+          expect(stdout).to_not include("Verification of component 'successful_comp_1' succeeded.")
+          expect(stdout).to include("Verification of component 'successful_comp_2' succeeded.")
+        end
+
       end
     end
 

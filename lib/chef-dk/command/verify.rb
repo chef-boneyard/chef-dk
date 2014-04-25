@@ -23,7 +23,11 @@ module ChefDK
     class Verify < ChefDK::Command::Base
       include ChefDK::Exceptions
 
-      banner "Usage: chef verify"
+      banner "Usage: chef verify [component, ...] [options]"
+
+      option :omnibus_dir,
+        :long         => "--omnibus-dir OMNIBUS_DIR",
+        :description  => "Alternate path to omnibus install (used for testing)"
 
       class << self
         def component(name, arguments)
@@ -79,6 +83,9 @@ module ChefDK
       end
 
       def run(params = [ ])
+        @components_filter = parse_options(params)
+        @components_filter.unshift # remove 'verify' from the remaining args
+
         locate_omnibus_dir
         invoke_tests
         wait_for_tests
@@ -95,8 +102,9 @@ module ChefDK
       # omnibus_install_dir/embedded/apps
       #
       def locate_omnibus_dir
-        @omnibus_dir = File.expand_path(File.join(Gem.ruby, "..","..", "apps"))
-        raise OmnibusInstallNotFound.new() unless File.directory? omnibus_dir
+        @omnibus_dir = config[:omnibus_dir] || File.expand_path(File.join(Gem.ruby, "..","..", "apps"))
+
+        raise OmnibusInstallNotFound.new() unless (omnibus_dir and File.directory?(omnibus_dir) )
 
         components.each do |component, component_info|
           unless File.exists? component_path(component_info)
@@ -109,8 +117,18 @@ module ChefDK
         File.join(omnibus_dir, component_info[:base_dir])
       end
 
+      def components_to_test
+        if @components_filter.empty?
+          components
+        else
+          components.select do |name, test_params|
+            @components_filter.include?(name)
+          end
+        end
+      end
+
       def invoke_tests
-        components.each do |component, component_info|
+        components_to_test.each do |component, component_info|
           # Run the component specs in parallel
           verification_threads << Thread.new do
             bin_path = File.expand_path(File.join(omnibus_dir, "..", "bin"))
