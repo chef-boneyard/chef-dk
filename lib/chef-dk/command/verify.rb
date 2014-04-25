@@ -29,9 +29,17 @@ module ChefDK
         :long         => "--omnibus-dir OMNIBUS_DIR",
         :description  => "Alternate path to omnibus install (used for testing)"
 
+      option :unit,
+        :long         => "--unit",
+        :description  => "Run bundled app unit tests (only smoke tests run by default)"
+
       option :integration,
         :long         => "--integration",
         :description  => "Run integration tests. Possibly dangerous, for development systems only"
+
+      option :verbose,
+        :long         => "--verbose",
+        :description  => "Display all test output, not just failing tests"
 
       class << self
         def component(name, arguments)
@@ -60,21 +68,25 @@ module ChefDK
         # test suite by default. We will be able to switch to that command when/if
         # Graphviz is added to omnibus.
         :test_cmd => "bundle exec rspec --color --format progress spec/unit --tag ~graphviz",
-        :integration_cmd => "bundle exec cucumber --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict"
+        :integration_cmd => "bundle exec cucumber --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict",
+        :smoke => "touch Berksfile; berks install"
 
       component "test-kitchen",
         :base_dir => "test-kitchen",
         :test_cmd => "bundle exec rake unit",
-        :integration_cmd => "bundle exec rake features"
+        :integration_cmd => "bundle exec rake features",
+        :smoke => "kitchen init"
 
       component "chef-client",
         :base_dir => "chef",
         :test_cmd => "bundle exec rspec -fp spec/unit",
-        :integration_cmd => "bundle exec rspec -fp spec/integration spec/functional"
+        :integration_cmd => "bundle exec rspec -fp spec/integration spec/functional",
+        :smoke => "touch apply.rb; chef-apply apply.rb"
 
       component "chef-dk",
         :base_dir => "chef-dk",
-        :test_cmd => "bundle exec rspec"
+        :test_cmd => "bundle exec rspec",
+        :smoke => "chef generate cookbook example"
 
       attr_reader :omnibus_dir
       attr_reader :verification_threads
@@ -150,7 +162,12 @@ module ChefDK
             }
 
             results = []
-            results << system_command(component_info[:test_cmd], test_cmd_opts)
+
+            results << run_smoke_test(component_info[:smoke], test_cmd_opts)
+
+            if config[:unit]
+              results << system_command(component_info[:test_cmd], test_cmd_opts)
+            end
 
             if config[:integration]
               results << system_command(component_info[:integration_cmd], test_cmd_opts)
@@ -174,16 +191,26 @@ module ChefDK
         end
       end
 
+      def run_smoke_test(command, command_opts)
+        command_opts = command_opts.dup
+        Dir.mktmpdir do |tmpdir|
+          command_opts[:cwd] = tmpdir
+          system_command(command, command_opts)
+        end
+      end
+
       def wait_for_tests
         while !verification_threads.empty?
           verification_threads.each do |t|
             if t.join(1)
               verification_threads.delete t
               verification_results << t.value
-              msg("")
               t.value[:results].each do |result|
-                msg(result.stdout)
-                msg(result.stderr) if result.stderr
+                if config[:verbose] || t.value[:component_status] != 0
+                  msg("")
+                  msg(result.stdout)
+                  msg(result.stderr) if result.stderr
+                end
               end
             else
               $stdout.write "."
