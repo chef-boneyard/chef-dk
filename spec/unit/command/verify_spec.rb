@@ -21,8 +21,21 @@ require 'chef-dk/command/verify'
 describe ChefDK::Command::Verify do
   let(:command_instance) { ChefDK::Command::Verify.new() }
 
-  def run_command(expected_exit_code, command_options = [ ])
+  let(:command_options) { [] }
+
+  let(:components) { {} }
+
+  def run_command(expected_exit_code)
     expect(command_instance.run(command_options)).to eq(expected_exit_code)
+  end
+
+  it "defines berks, tk, chef and chef-dk components by default" do
+    expect(command_instance.components).not_to be_empty
+    expect(command_instance.components.keys).to match_array(%w{berkshelf test-kitchen chef-client chef-dk})
+  end
+
+  it "has a usage banner" do
+    expect(command_instance.banner).to eq("Usage: chef verify [component, ...] [options]")
   end
 
   describe "when locating omnibus directory" do
@@ -50,140 +63,248 @@ describe ChefDK::Command::Verify do
 
   describe "when running verify command" do
     let(:stdout_io) { StringIO.new }
+    let(:ruby_path) { File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby") }
 
     def stdout
       stdout_io.string
     end
 
     before do
+      Gem.stub(:ruby).and_return(ruby_path)
       command_instance.stub(:stdout).and_return(stdout_io)
+      command_instance.stub(:components).and_return(components)
     end
 
-    it "should have components by default" do
-      expect(command_instance.components).not_to be_empty
+    context "when running smoke tests only" do
+      describe "with single command with success" do
+        let(:components) do
+          {
+            "successful_comp" => {
+              # The verify_me script in chef exits non-zero, but our "smoke test" should succeed
+              :base_dir => "chef",
+              :test_cmd => "./verify_me",
+              :integration_cmd => "./integration_test",
+              :smoke => "true"
+            }
+          }
+        end
+
+        before do
+          run_command(0)
+        end
+
+        it "should report the success of the command" do
+          expect(stdout).to include("Verification of component 'successful_comp' succeeded.")
+        end
+
+      end
+
+      describe "with single command with failure" do
+        let(:components) do
+          {
+            "failing_comp" => {
+              # our fake berkshelf's unit tests succeed but our smoke test should fail
+              :base_dir => "berkshelf",
+              :test_cmd => "./verify_me",
+              :smoke => "false"
+            }
+          }
+        end
+
+        before do
+          run_command(1)
+        end
+
+        it "should report the failure of the command" do
+          expect(stdout).to include("Verification of component 'failing_comp' failed.")
+        end
+
+      end
     end
 
-    it "should have components by default" do
-      expect(command_instance.banner).to eq("Usage: chef verify")
-    end
+    context "when running unit tests" do
 
-    describe "with single command with success" do
-      before do
-        Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
-        command_instance.stub(:components).and_return({
+      let(:command_options) { %w{--unit --verbose} }
+
+      let(:components) do
+        {
           "successful_comp" => {
             :base_dir => "berkshelf",
-            :test_cmd => "./verify_me"
+            :test_cmd => "./verify_me",
+            :integration_cmd => "./integration_test",
+            :smoke => "true"
           }
-        })
-
-        run_command(0)
+        }
       end
 
-      it "should have embedded/bin on the PATH" do
-        expect(stdout).to include(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin"))
+      describe "with single command with success" do
+        before do
+          run_command(0)
+        end
+
+        it "should have embedded/bin on the PATH" do
+          expect(stdout).to include(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin"))
+        end
+
+        it "should report the success of the command" do
+          expect(stdout).to include("Verification of component 'successful_comp' succeeded.")
+        end
+
+        it "reports the component test output" do
+          expect(stdout).to include("you are good to go...")
+        end
+
+        context "and --verbose is not enabled" do
+
+          let(:command_options) { %w{--unit} }
+
+          it "omits the component test output" do
+            expect(stdout).to_not include("you are good to go...")
+          end
+        end
+
+        context "and --integration flag is given" do
+
+          let(:command_options) { %w{--integration --verbose} }
+
+          it "should run the integration command also" do
+            expect(stdout).to include("integration tests OK")
+          end
+
+          context "and no integration test command is specifed for the component" do
+
+            let(:components) do
+              {
+                "successful_comp" => {
+                  :base_dir => "berkshelf",
+                  :test_cmd => "./verify_me",
+                  :smoke => "true"
+                }
+              }
+            end
+
+            it "skips the integration test and succeeds" do
+              expect(stdout).to include("Verification of component 'successful_comp' succeeded.")
+            end
+
+          end
+
+        end
+
       end
 
-      it "should report the success of the command" do
-        expect(stdout).to include("Verification of component 'successful_comp' succeeded.")
-      end
-
-      it "reports the component test output" do
-        expect(stdout).to include("you are good to go...")
-      end
-    end
-
-    describe "with single command with failure" do
-      before do
-        Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
-        command_instance.stub(:components).and_return({
-          "failing_comp" => {
-            :base_dir => "chef",
-            :test_cmd => "./verify_me"
+      describe "with single command with failure" do
+        let(:components) do
+          {
+            "failing_comp" => {
+              :base_dir => "chef",
+              :test_cmd => "./verify_me",
+              :smoke => "true"
+            }
           }
-        })
+        end
 
-        run_command(1)
+        before do
+          run_command(1)
+        end
+
+        it "should report the failure of the command" do
+          expect(stdout).to include("Verification of component 'failing_comp' failed.")
+        end
+
+        it "reports the component test output" do
+          expect(stdout).to include("i'm not feeling good today...")
+        end
       end
 
-      it "should report the failure of the command" do
-        expect(stdout).to include("Verification of component 'failing_comp' failed.")
-      end
-
-      it "reports the component test output" do
-        expect(stdout).to include("i'm not feeling good today...")
-      end
-    end
-
-    describe "with multiple commands with success" do
-      before do
-        Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
-        command_instance.stub(:components).and_return({
-          "successful_comp_1" => {
-            :base_dir => "berkshelf",
-            :test_cmd => "./verify_me"
-          },
-          "successful_comp_2" => {
-            :base_dir => "test-kitchen",
-            :test_cmd => "./verify_me"
+      describe "with multiple commands with success" do
+        let(:components) do
+          {
+            "successful_comp_1" => {
+              :base_dir => "berkshelf",
+              :test_cmd => "./verify_me",
+              :smoke => "true"
+            },
+            "successful_comp_2" => {
+              :base_dir => "test-kitchen",
+              :test_cmd => "./verify_me",
+              :smoke => "true"
+            }
           }
-        })
+        end
 
-        run_command(0)
+        before do
+          run_command(0)
+        end
+
+        it "should report the success of the command" do
+          expect(stdout).to include("Verification of component 'successful_comp_1' succeeded.")
+          expect(stdout).to include("Verification of component 'successful_comp_2' succeeded.")
+        end
+
+        it "reports the component test outputs" do
+          expect(stdout).to include("you are good to go...")
+          expect(stdout).to include("my friend everything is good...")
+        end
+
+        it "should report the output of the first verification first" do
+          index_first = stdout.index("you are good to go...")
+          index_second = stdout.index("my friend everything is good...")
+          expect(index_second > index_first).to be_true
+        end
+
+        context "and components are filtered by CLI args" do
+
+          let(:command_options) { [ "successful_comp_2" ] }
+
+          it "verifies only the desired component" do
+            expect(stdout).to_not include("Verification of component 'successful_comp_1' succeeded.")
+            expect(stdout).to include("Verification of component 'successful_comp_2' succeeded.")
+          end
+
+        end
       end
 
-      it "should report the success of the command" do
-        expect(stdout).to include("Verification of component 'successful_comp_1' succeeded.")
-        expect(stdout).to include("Verification of component 'successful_comp_2' succeeded.")
-      end
+      describe "with multiple commands with failures" do
+        let(:components) do
+          {
+            "successful_comp_1" => {
+              :base_dir => "berkshelf",
+              :test_cmd => "./verify_me",
+              :smoke => "true"
+            },
+            "successful_comp_2" => {
+              :base_dir => "test-kitchen",
+              :test_cmd => "./verify_me",
+              :smoke => "true"
+            },
+            "failing_comp" => {
+              :base_dir => "chef",
+              :test_cmd => "./verify_me",
+              :smoke => "true"
+            }
 
-      it "reports the component test outputs" do
-        expect(stdout).to include("you are good to go...")
-        expect(stdout).to include("my friend everything is good...")
-      end
-
-      it "should report the output of the first verification first" do
-        index_first = stdout.index("you are good to go...")
-        index_second = stdout.index("my friend everything is good...")
-        expect(index_second > index_first).to be_true
-      end
-    end
-
-    describe "with multiple commands with failures" do
-      before do
-        Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
-        command_instance.stub(:components).and_return({
-          "successful_comp_1" => {
-            :base_dir => "berkshelf",
-            :test_cmd => "./verify_me"
-          },
-          "successful_comp_2" => {
-            :base_dir => "test-kitchen",
-            :test_cmd => "./verify_me"
-          },
-          "failing_comp" => {
-            :base_dir => "chef",
-            :test_cmd => "./verify_me"
           }
+        end
 
-        })
+        before do
+          run_command(1)
+        end
 
-        run_command(1)
+        it "should report the success and failure of the commands" do
+          expect(stdout).to include("Verification of component 'successful_comp_1' succeeded.")
+          expect(stdout).to include("Verification of component 'successful_comp_2' succeeded.")
+          expect(stdout).to include("Verification of component 'failing_comp' failed.")
+        end
+
+        it "reports the component test outputs" do
+          expect(stdout).to include("you are good to go...")
+          expect(stdout).to include("my friend everything is good...")
+          expect(stdout).to include("i'm not feeling good today...")
+        end
       end
 
-      it "should report the success and failure of the commands" do
-        expect(stdout).to include("Verification of component 'successful_comp_1' succeeded.")
-        expect(stdout).to include("Verification of component 'successful_comp_2' succeeded.")
-        expect(stdout).to include("Verification of component 'failing_comp' failed.")
-      end
-
-      it "reports the component test outputs" do
-        expect(stdout).to include("you are good to go...")
-        expect(stdout).to include("my friend everything is good...")
-        expect(stdout).to include("i'm not feeling good today...")
-      end
     end
-
   end
 
 end

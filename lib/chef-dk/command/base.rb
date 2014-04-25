@@ -48,7 +48,7 @@ module ChefDK
       #
       def run_with_default_options(params = [ ])
         if needs_help?(params)
-          msg(banner)
+          msg(opt_parser.to_s)
           0
         elsif needs_version?(params)
           msg("Chef Development Kit Version: #{ChefDK::VERSION}")
