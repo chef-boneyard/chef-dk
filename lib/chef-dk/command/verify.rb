@@ -169,7 +169,7 @@ module ChefDK
               results << system_command(component_info[:test_cmd], test_cmd_opts)
             end
 
-            if config[:integration]
+            if config[:integration] && component_info[:integration_cmd]
               results << system_command(component_info[:integration_cmd], test_cmd_opts)
             end
 

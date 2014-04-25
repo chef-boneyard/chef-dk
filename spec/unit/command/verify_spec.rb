@@ -23,8 +23,19 @@ describe ChefDK::Command::Verify do
 
   let(:command_options) { [] }
 
+  let(:components) { {} }
+
   def run_command(expected_exit_code)
     expect(command_instance.run(command_options)).to eq(expected_exit_code)
+  end
+
+  it "defines berks, tk, chef and chef-dk components by default" do
+    expect(command_instance.components).not_to be_empty
+    expect(command_instance.components.keys).to match_array(%w{berkshelf test-kitchen chef-client chef-dk})
+  end
+
+  it "has a usage banner" do
+    expect(command_instance.banner).to eq("Usage: chef verify [component, ...] [options]")
   end
 
   describe "when locating omnibus directory" do
@@ -52,28 +63,22 @@ describe ChefDK::Command::Verify do
 
   describe "when running verify command" do
     let(:stdout_io) { StringIO.new }
+    let(:ruby_path) { File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby") }
 
     def stdout
       stdout_io.string
     end
 
     before do
+      Gem.stub(:ruby).and_return(ruby_path)
       command_instance.stub(:stdout).and_return(stdout_io)
-    end
-
-    it "should have components by default" do
-      expect(command_instance.components).not_to be_empty
-    end
-
-    it "should have components by default" do
-      expect(command_instance.banner).to eq("Usage: chef verify [component, ...] [options]")
+      command_instance.stub(:components).and_return(components)
     end
 
     context "when running smoke tests only" do
       describe "with single command with success" do
-        before do
-          Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
-          command_instance.stub(:components).and_return({
+        let(:components) do
+          {
             "successful_comp" => {
               # The verify_me script in chef exits non-zero, but our "smoke test" should succeed
               :base_dir => "chef",
@@ -81,8 +86,10 @@ describe ChefDK::Command::Verify do
               :integration_cmd => "./integration_test",
               :smoke => "true"
             }
-          })
+          }
+        end
 
+        before do
           run_command(0)
         end
 
@@ -93,17 +100,18 @@ describe ChefDK::Command::Verify do
       end
 
       describe "with single command with failure" do
-        before do
-          Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
-          command_instance.stub(:components).and_return({
+        let(:components) do
+          {
             "failing_comp" => {
               # our fake berkshelf's unit tests succeed but our smoke test should fail
               :base_dir => "berkshelf",
               :test_cmd => "./verify_me",
               :smoke => "false"
             }
-          })
+          }
+        end
 
+        before do
           run_command(1)
         end
 
@@ -118,18 +126,19 @@ describe ChefDK::Command::Verify do
 
       let(:command_options) { %w{--unit --verbose} }
 
+      let(:components) do
+        {
+          "successful_comp" => {
+            :base_dir => "berkshelf",
+            :test_cmd => "./verify_me",
+            :integration_cmd => "./integration_test",
+            :smoke => "true"
+          }
+        }
+      end
+
       describe "with single command with success" do
         before do
-          Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
-          command_instance.stub(:components).and_return({
-            "successful_comp" => {
-              :base_dir => "berkshelf",
-              :test_cmd => "./verify_me",
-              :integration_cmd => "./integration_test",
-              :smoke => "true"
-            }
-          })
-
           run_command(0)
         end
 
@@ -162,21 +171,40 @@ describe ChefDK::Command::Verify do
             expect(stdout).to include("integration tests OK")
           end
 
+          context "and no integration test command is specifed for the component" do
+
+            let(:components) do
+              {
+                "successful_comp" => {
+                  :base_dir => "berkshelf",
+                  :test_cmd => "./verify_me",
+                  :smoke => "true"
+                }
+              }
+            end
+
+            it "skips the integration test and succeeds" do
+              expect(stdout).to include("Verification of component 'successful_comp' succeeded.")
+            end
+
+          end
+
         end
 
       end
 
       describe "with single command with failure" do
-        before do
-          Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
-          command_instance.stub(:components).and_return({
+        let(:components) do
+          {
             "failing_comp" => {
               :base_dir => "chef",
               :test_cmd => "./verify_me",
               :smoke => "true"
             }
-          })
+          }
+        end
 
+        before do
           run_command(1)
         end
 
@@ -190,9 +218,8 @@ describe ChefDK::Command::Verify do
       end
 
       describe "with multiple commands with success" do
-        before do
-          Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
-          command_instance.stub(:components).and_return({
+        let(:components) do
+          {
             "successful_comp_1" => {
               :base_dir => "berkshelf",
               :test_cmd => "./verify_me",
@@ -203,8 +230,10 @@ describe ChefDK::Command::Verify do
               :test_cmd => "./verify_me",
               :smoke => "true"
             }
-          })
+          }
+        end
 
+        before do
           run_command(0)
         end
 
@@ -237,9 +266,8 @@ describe ChefDK::Command::Verify do
       end
 
       describe "with multiple commands with failures" do
-        before do
-          Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
-          command_instance.stub(:components).and_return({
+        let(:components) do
+          {
             "successful_comp_1" => {
               :base_dir => "berkshelf",
               :test_cmd => "./verify_me",
@@ -256,8 +284,10 @@ describe ChefDK::Command::Verify do
               :smoke => "true"
             }
 
-          })
+          }
+        end
 
+        before do
           run_command(1)
         end
 
