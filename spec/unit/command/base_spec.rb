@@ -52,12 +52,17 @@ describe ChefDK::Command::Base do
 
   it "should print the banner for -h" do
     run_command(["-h"])
-    expect(stdout).to eq("use me please\n")
+    expect(stdout).to include("use me please\n")
   end
 
   it "should print the banner for --help" do
     run_command(["--help"])
-    expect(stdout).to eq("use me please\n")
+    expect(stdout).to include("use me please\n")
+  end
+
+  it "prints the options along with the banner when displaying the help message" do
+    run_command(["--help"])
+    expect(stdout).to include("-u, --user                       If the user exists")
   end
 
   it "should print the version for -v" do
