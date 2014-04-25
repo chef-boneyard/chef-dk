@@ -52,7 +52,7 @@ module ChefDK
         # test suite by default. We will be able to switch to that command when/if
         # Graphviz is added to omnibus.
         :test_cmd => "bundle exec rspec --color --format progress spec/unit --tag ~graphviz && \
-          bundle exec cucumber --color --format progress --tags ~@no_run --tags ~@spawn --strict"
+          bundle exec cucumber --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict"
 
       component "test-kitchen",
         :base_dir => "test-kitchen",
