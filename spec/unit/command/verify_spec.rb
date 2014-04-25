@@ -75,7 +75,8 @@ describe ChefDK::Command::Verify do
         command_instance.stub(:components).and_return({
           "successful_comp" => {
             :base_dir => "berkshelf",
-            :test_cmd => "./verify_me"
+            :test_cmd => "./verify_me",
+            :integration_cmd => "./integration_test"
           }
         })
 
@@ -93,6 +94,17 @@ describe ChefDK::Command::Verify do
       it "reports the component test output" do
         expect(stdout).to include("you are good to go...")
       end
+
+      context "and --integration flag is given" do
+
+        let(:command_options) { %w{--integration} }
+
+        it "should run the integration command also" do
+          expect(stdout).to include("integration tests OK")
+        end
+
+      end
+
     end
 
     describe "with single command with failure" do

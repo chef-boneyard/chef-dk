@@ -29,6 +29,10 @@ module ChefDK
         :long         => "--omnibus-dir OMNIBUS_DIR",
         :description  => "Alternate path to omnibus install (used for testing)"
 
+      option :integration,
+        :long         => "--integration",
+        :description  => "Run integration tests. Possibly dangerous, for development systems only"
+
       class << self
         def component(name, arguments)
           components[name] = arguments
@@ -55,16 +59,18 @@ module ChefDK
         # We can't run it right now since graphviz specs are included in the
         # test suite by default. We will be able to switch to that command when/if
         # Graphviz is added to omnibus.
-        :test_cmd => "bundle exec rspec --color --format progress spec/unit --tag ~graphviz && \
-          bundle exec cucumber --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict"
+        :test_cmd => "bundle exec rspec --color --format progress spec/unit --tag ~graphviz",
+        :integration_cmd => "bundle exec cucumber --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict"
 
       component "test-kitchen",
         :base_dir => "test-kitchen",
-        :test_cmd => "bundle exec rake"
+        :test_cmd => "bundle exec rake unit",
+        :integration_cmd => "bundle exec rake features"
 
       component "chef-client",
         :base_dir => "chef",
-        :test_cmd => "bundle exec rspec -fp spec/unit"
+        :test_cmd => "bundle exec rspec -fp spec/unit",
+        :integration_cmd => "bundle exec rspec -fp spec/integration spec/functional"
 
       component "chef-dk",
         :base_dir => "chef-dk",
@@ -132,7 +138,8 @@ module ChefDK
           # Run the component specs in parallel
           verification_threads << Thread.new do
             bin_path = File.expand_path(File.join(omnibus_dir, "..", "bin"))
-            result = system_command component_info[:test_cmd],
+
+            test_cmd_opts = {
               :cwd => component_path(component_info),
               :env => {
                 # Add the embedded/bin to the PATH so that bundle executable can
@@ -140,12 +147,26 @@ module ChefDK
                 "PATH" => "#{bin_path}:#{ENV['PATH']}"
               },
               :timeout => 3600
+            }
 
-            @verification_status = 1 if result.exitstatus != 0
+            results = []
+            results << system_command(component_info[:test_cmd], test_cmd_opts)
+
+            if config[:integration]
+              results << system_command(component_info[:integration_cmd], test_cmd_opts)
+            end
+
+            if results.any? {|r| r.exitstatus != 0 }
+              component_status = 1
+              @verification_status = 1
+            else
+              component_status = 0
+            end
 
             {
               :component => component,
-              :result => result
+              :results => results,
+              :component_status => component_status
             }
           end
 
@@ -160,8 +181,10 @@ module ChefDK
               verification_threads.delete t
               verification_results << t.value
               msg("")
-              msg(t.value[:result].stdout)
-              msg(t.value[:result].stderr) if t.value[:result].stderr
+              t.value[:results].each do |result|
+                msg(result.stdout)
+                msg(result.stderr) if result.stderr
+              end
             else
               $stdout.write "."
             end
@@ -173,7 +196,7 @@ module ChefDK
         msg("")
         msg("---------------------------------------------")
         verification_results.each do |result|
-          message = result[:result].exitstatus == 0 ? "succeeded" : "failed"
+          message = result[:component_status] == 0 ? "succeeded" : "failed"
           msg("Verification of component '#{result[:component]}' #{message}.")
         end
       end
