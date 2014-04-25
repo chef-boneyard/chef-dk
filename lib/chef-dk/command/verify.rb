@@ -64,7 +64,7 @@ module ChefDK
 
       component "chef-client",
         :base_dir => "chef",
-        :test_cmd => "bundle exec rspec"
+        :test_cmd => "bundle exec rspec -fp spec/unit"
 
       component "chef-dk",
         :base_dir => "chef-dk",
