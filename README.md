@@ -20,7 +20,7 @@ On Mac OS X, you can also use [homebrew-cask](http://caskroom.io)
 to install ChefDK.
 
 Once you install the package, the `chef-client` suite, `berks`,
-`kitchen` and this application (`chef`) will be symlinked into your
+`kitchen`, and this application (`chef`) will be symlinked into your
 system bin directory, ready to use.
 
 ## Usage
