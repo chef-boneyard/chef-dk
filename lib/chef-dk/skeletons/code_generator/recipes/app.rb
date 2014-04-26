@@ -14,7 +14,7 @@ directory app_dir
 
 # TK
 template "#{app_dir}/.kitchen.yml" do
-  source "kitchen.yml"
+  source 'kitchen.yml.erb'
   helpers(ChefDK::Generator::TemplateHelper)
 end
 

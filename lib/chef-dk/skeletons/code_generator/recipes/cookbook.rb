@@ -24,7 +24,7 @@ cookbook_file "#{cookbook_dir}/Berksfile"
 
 # TK
 template "#{cookbook_dir}/.kitchen.yml" do
-  source "kitchen.yml"
+  source 'kitchen.yml.erb'
   helpers(ChefDK::Generator::TemplateHelper)
 end
 
