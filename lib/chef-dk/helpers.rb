@@ -16,9 +16,12 @@
 #
 
 require 'mixlib/shellout'
+require 'chef-dk/exceptions'
 
 module ChefDK
   module Helpers
+
+    include ChefDK::Exceptions
 
     #
     # Runs given commands using mixlib-shellout
@@ -53,8 +56,8 @@ module ChefDK
       @omnibus_root ||= config[:omnibus_dir] || omnibus_expand_path(Gem.ruby, "..", "..", "..")
     end
 
-    def omnibus_app_dir
-      @ominbus_app_dir ||= omnibus_expand_path(omnibus_root, "embedded", "app")
+    def omnibus_apps_dir
+      @ominbus_apps_dir ||= omnibus_expand_path(omnibus_root, "embedded", "apps")
     end
 
     def omnibus_bin_dir

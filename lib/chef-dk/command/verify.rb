@@ -21,8 +21,6 @@ require 'chef-dk/exceptions'
 module ChefDK
   module Command
     class Verify < ChefDK::Command::Base
-      include ChefDK::Exceptions
-
       banner "Usage: chef verify [component, ...] [options]"
 
       option :omnibus_dir,
@@ -58,7 +56,7 @@ module ChefDK
 
       #
       # Components included in Chef Development kit:
-      # :base_dir => Relative path of the component w.r.t. omnibus_app_dir
+      # :base_dir => Relative path of the component w.r.t. omnibus_apps_dir
       # :test_cmd => Test command to be launched for the component
       #
       component "berkshelf",
@@ -120,7 +118,7 @@ module ChefDK
       end
 
       def component_path(component_info)
-        File.join(omnibus_app_dir, component_info[:base_dir])
+        File.join(omnibus_apps_dir, component_info[:base_dir])
       end
 
       def components_to_test
