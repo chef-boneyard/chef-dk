@@ -24,8 +24,9 @@ module ChefDK
       banner "Usage: chef exec SYSTEM_COMMAND"
 
       def run(params)
+        user_bin_dir = File.expand_path(File.join(Gem.user_home, '.chefdk', 'bin'))
         env = {
-          'PATH' => "#{Gem.default_bindir}:#{omnibus_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}",
+          'PATH' => "#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}",
           'GEM_ROOT' => Gem.default_dir.inspect,
           'GEM_HOME' => ENV['GEM_HOME'],
           'GEM_PATH' => Gem.path.join(':'),
