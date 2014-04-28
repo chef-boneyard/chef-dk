@@ -25,7 +25,7 @@ module ChefDK
 
       def run(params)
         env = {
-          'PATH' => "#{omnibus_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}",
+          'PATH' => "#{Gem.default_bindir}:#{omnibus_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}",
           'GEM_ROOT' => Gem.default_dir.inspect,
           'GEM_HOME' => ENV['GEM_HOME'],
           'GEM_PATH' => Gem.path.join(':'),
