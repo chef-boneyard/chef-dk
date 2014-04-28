@@ -30,10 +30,8 @@ module ChefDK
           'GEM_HOME' => ENV['GEM_HOME'],
           'GEM_PATH' => Gem.path.join(':'),
         }
-        cmd = Mixlib::ShellOut.new( *params.clone, :env => env, :live_stream => STDOUT )
-        cmd.run_command
-        cmd.error!
-        true
+        exec env, *params
+        raise "Exec failed without an exception, your ruby is buggy"  # should never get here
       end
     end
   end
