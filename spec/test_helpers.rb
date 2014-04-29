@@ -16,6 +16,7 @@
 #
 
 require 'fileutils'
+require 'tmpdir'
 
 module TestHelpers
 
@@ -48,9 +49,11 @@ module TestHelpers
 
   def clear_tempdir
     FileUtils.rm_rf(tempdir)
+    @tmpdir = nil
   end
 
   def tempdir
-    File.join(project_root, "spec/unit/specs-tmpdir" )
+    @tmpdir ||= Dir.mktmpdir("chef-dk")
+    File.realpath(@tmpdir)
   end
 end
