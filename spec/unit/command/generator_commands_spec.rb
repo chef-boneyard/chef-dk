@@ -225,6 +225,7 @@ shared_examples_for "a file generator" do
 
   before do
     ChefDK::Generator.reset
+    reset_tempdir
   end
 
   context "when argv is empty" do
@@ -243,7 +244,6 @@ shared_examples_for "a file generator" do
     let(:argv) { [ new_file_name ] }
 
     before do
-      reset_tempdir
       FileUtils.cp_r(File.join(fixtures_path, "example_cookbook"), tempdir)
     end
 
@@ -287,6 +287,10 @@ shared_examples_for "a file generator" do
 
     context "and path to the cookbook is given in the argv" do
       let(:argv) { [cookbook_path, new_file_name ] }
+
+      before do
+        FileUtils.cp_r(File.join(fixtures_path, "example_cookbook"), tempdir)
+      end
 
       it "configures the generator context" do
         recipe_generator.read_and_validate_params
