@@ -53,10 +53,22 @@ BANNER
     end
 
     def run
-      if exit_code = run_subcommands(argv)
+      subcommand_name, *subcommand_params = argv
+
+      #
+      # Runs the appropriate subcommand if the given parameters contain any
+      # subcommands.
+      #
+      if subcommand_name.nil? || option?(subcommand_name)
+        handle_options
+      elsif have_command?(subcommand_name)
+        subcommand = instantiate_subcommand(subcommand_name)
+        exit_code = subcommand.run_with_default_options(subcommand_params)
         exit normalized_exit_code(exit_code)
       else
-        handle_options
+        err "Unknown command `#{subcommand_name}'."
+        show_help
+        exit 1
       end
     end
 
@@ -69,23 +81,6 @@ BANNER
         show_help
       end
       exit 0
-    end
-
-    #
-    # Runs the appropriate sub_command if the given parameters contain any
-    # sub_commands.
-    #
-    def run_subcommands(params)
-      subcommand_name, *subcommand_params = params
-      return false if subcommand_name.nil?
-      return false if option?(subcommand_name)
-      if have_command?(subcommand_name)
-        instantiate_subcommand(subcommand_name).run_with_default_options(subcommand_params)
-      else
-        err("Unknown command `#{subcommand_name}'.")
-        show_help
-        1
-      end
     end
 
     def show_help
