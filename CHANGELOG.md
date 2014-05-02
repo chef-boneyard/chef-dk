@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Added subcommand
+
+The 'chef exec' subcommand added to execute commands with the PATH and ruby environment
+of the chefdk omnibus environment (analogous to 'bundle exec').
+
+* [chef exec](https://github.com/opscode/chef-dk/pull/22)
+
 ## Last Release: 0.1.0
 
 ### Berkshelf Updates
