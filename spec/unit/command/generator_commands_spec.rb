@@ -99,6 +99,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       README.md
       recipes
       recipes/default.rb
+      .rubocop.yml
     ]
   end
 

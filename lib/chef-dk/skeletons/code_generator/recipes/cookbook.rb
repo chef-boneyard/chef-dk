@@ -1,5 +1,3 @@
-
-
 context = ChefDK::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
 
@@ -21,6 +19,11 @@ cookbook_file "#{cookbook_dir}/chefignore"
 
 # Berks
 cookbook_file "#{cookbook_dir}/Berksfile"
+
+# Rubocop Yaml
+cookbook_file "#{cookbook_dir}/.rubocop.yml" do
+  source 'rubocop.yml'
+end
 
 # TK
 template "#{cookbook_dir}/.kitchen.yml" do
@@ -49,5 +52,3 @@ if context.have_git && !context.skip_git_init
     source "gitignore"
   end
 end
-
-
