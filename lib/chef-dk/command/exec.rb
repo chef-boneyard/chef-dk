@@ -15,15 +15,19 @@
 # limitations under the License.
 #
 
+require 'chef-dk/command/base'
+require 'mixlib/shellout'
 
-ChefDK.commands do |c|
-  c.builtin "exec", :Exec, require_path: "chef-dk/command/exec",
-    desc: "Runs the command in context of the embedded ruby"
+module ChefDK
+  module Command
+    class Exec < ChefDK::Command::Base
+      banner "Usage: chef exec SYSTEM_COMMAND"
 
-  c.builtin "gem", :GemForwarder, require_path: "chef-dk/command/gem",
-    desc: "Runs the `gem` command in context of the embedded ruby"
-
-  c.builtin "generate", :Generate, desc: "Generate a new app, cookbook, or component"
-
-  c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications"
+      def run(params)
+        exec omnibus_env, *params
+        raise "Exec failed without an exception, your ruby is buggy"  # should never get here
+      end
+    end
+  end
 end
+

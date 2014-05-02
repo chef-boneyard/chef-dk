@@ -16,9 +16,12 @@
 #
 
 require 'mixlib/shellout'
+require 'chef-dk/exceptions'
 
 module ChefDK
   module Helpers
+
+    include ChefDK::Exceptions
 
     #
     # Runs given commands using mixlib-shellout
@@ -43,6 +46,51 @@ module ChefDK
 
     def stderr
       $stderr
+    end
+
+    #
+    # Locates the omnibus directories
+    #
+
+    def omnibus_root
+      @omnibus_root ||= config[:omnibus_dir] || omnibus_expand_path(Gem.ruby, "..", "..", "..")
+    end
+
+    def omnibus_apps_dir
+      @ominbus_apps_dir ||= omnibus_expand_path(omnibus_root, "embedded", "apps")
+    end
+
+    def omnibus_bin_dir
+      @omnibus_bin_dir ||= omnibus_expand_path(omnibus_root, "bin")
+    end
+
+    def omnibus_embedded_bin_dir
+      @omnibus_embedded_bin_dir ||= omnibus_expand_path(omnibus_root, "embedded", "bin")
+    end
+
+    private
+
+    def omnibus_expand_path(*paths)
+      dir = File.expand_path(File.join(paths))
+      raise OmnibusInstallNotFound.new() unless ( dir and File.directory?(dir) )
+      dir
+    end
+
+    #
+    # environment vars for omnibus
+    #
+
+    def omnibus_env
+      @omnibus_env ||=
+        begin
+          user_bin_dir = File.expand_path(File.join(Gem.user_dir, 'bin'))
+          env = {
+            'PATH' => "#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}",
+            'GEM_ROOT' => Gem.default_dir.inspect,
+            'GEM_HOME' => Gem.paths.home,
+            'GEM_PATH' => Gem.path.join(':'),
+          }
+        end
     end
 
   end

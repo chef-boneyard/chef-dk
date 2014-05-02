@@ -21,8 +21,6 @@ require 'chef-dk/exceptions'
 module ChefDK
   module Command
     class Verify < ChefDK::Command::Base
-      include ChefDK::Exceptions
-
       banner "Usage: chef verify [component, ...] [options]"
 
       option :omnibus_dir,
@@ -58,7 +56,7 @@ module ChefDK
 
       #
       # Components included in Chef Development kit:
-      # :base_dir => Relative path of the component w.r.t. #{omnibus_dir}/apps
+      # :base_dir => Relative path of the component w.r.t. omnibus_apps_dir
       # :test_cmd => Test command to be launched for the component
       #
       component "berkshelf",
@@ -88,7 +86,6 @@ module ChefDK
         :test_cmd => "bundle exec rspec",
         :smoke => "chef generate cookbook example"
 
-      attr_reader :omnibus_dir
       attr_reader :verification_threads
       attr_reader :verification_results
       attr_reader :verification_status
@@ -104,7 +101,7 @@ module ChefDK
         @components_filter = parse_options(params)
         @components_filter.unshift # remove 'verify' from the remaining args
 
-        locate_omnibus_dir
+        validate_components!
         invoke_tests
         wait_for_tests
         report_results
@@ -112,18 +109,7 @@ module ChefDK
         verification_status
       end
 
-      #
-      # Locates the directory components are installed on the system.
-      #
-      # In omnibus installations ruby lives at:
-      # omnibus_install_dir/embedded/bin and components live at
-      # omnibus_install_dir/embedded/apps
-      #
-      def locate_omnibus_dir
-        @omnibus_dir = config[:omnibus_dir] || File.expand_path(File.join(Gem.ruby, "..","..", "apps"))
-
-        raise OmnibusInstallNotFound.new() unless (omnibus_dir and File.directory?(omnibus_dir) )
-
+      def validate_components!
         components.each do |component, component_info|
           unless File.exists? component_path(component_info)
             raise MissingComponentError.new(component)
@@ -132,7 +118,7 @@ module ChefDK
       end
 
       def component_path(component_info)
-        File.join(omnibus_dir, component_info[:base_dir])
+        File.join(omnibus_apps_dir, component_info[:base_dir])
       end
 
       def components_to_test
@@ -149,14 +135,12 @@ module ChefDK
         components_to_test.each do |component, component_info|
           # Run the component specs in parallel
           verification_threads << Thread.new do
-            bin_path = File.expand_path(File.join(omnibus_dir, "..", "bin"))
-
             test_cmd_opts = {
               :cwd => component_path(component_info),
               :env => {
                 # Add the embedded/bin to the PATH so that bundle executable can
                 # be found while running the tests.
-                "PATH" => "#{bin_path}:#{ENV['PATH']}"
+                "PATH" => "#{omnibus_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}"
               },
               :timeout => 3600
             }
