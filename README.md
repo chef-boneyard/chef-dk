@@ -96,6 +96,11 @@ sensitive to your machine's configuration. If you choose to run these,
 we recommend to only run them on dedicated, isolated hosts (we do this
 in our build cluster to verify each build).
 
+### `chef exec`
+`chef exec <command>` runs any arbitrary shell command with the PATH
+environment variable and the ruby environment variables (GEM_HOME,
+GEM_PATH, etc) setup to point at the embedded ChefDK omnibus environment.
+
 ### Using ChefDK as Your Primary Development Environment
 
 By default, ChefDK only adds a few select applications to your `PATH`
