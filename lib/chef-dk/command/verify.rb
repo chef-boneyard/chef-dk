@@ -102,7 +102,6 @@ module ChefDK
 
       def run(params = [ ])
         @components_filter = parse_options(params)
-        @components_filter.unshift # remove 'verify' from the remaining args
 
         locate_omnibus_dir
         invoke_tests
