@@ -45,6 +45,12 @@ module ChefDK
       # chef-dk/skeletons/code_generator.
       class Base < Command::Base
 
+        option :skeleton,
+          :long  => "--skel SKELETON_DIR",
+          :description => "Use SKELETON_DIR code_generator cookbook",
+          :default => File.expand_path("../../skeletons", __FILE__),
+          :proc => Proc.new { |s| File.expand_path(s) }
+
         attr_reader :params
 
         def initialize(params)
@@ -62,7 +68,7 @@ module ChefDK
         # For now, this is hard coded to the 'skeletons' directory in this
         # repo.
         def skeleton_cookbook_path
-          File.expand_path("../../skeletons", __FILE__)
+          config[:skeleton]
         end
 
         # Sets git related generator_context values.

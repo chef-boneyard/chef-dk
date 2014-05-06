@@ -192,6 +192,34 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
   end
 
+  context "when given a cookbook skeleton path" do
+    let(:skeleton_cookbook) { File.join(tempdir, 'a_skeleton_cookbook') }
+    let(:argv) { ["new_cookbook", "--skel", skeleton_cookbook] }
+
+    before do
+      reset_tempdir
+    end
+
+    it "configures the generator context" do
+      cookbook_generator.read_and_validate_params
+      cookbook_generator.setup_context
+      expect(generator_context.cookbook_root).to eq(Dir.pwd)
+      expect(generator_context.cookbook_name).to eq("new_cookbook")
+      expect(cookbook_generator.chef_runner.cookbook_path).to eq(skeleton_cookbook)
+    end
+
+    it "creates a new cookbook" do
+      Dir.chdir(tempdir) do
+        cookbook_generator.chef_runner.stub(:stdout).and_return(stdout_io)
+        cookbook_generator.run
+      end
+      generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
+      expected_cookbook_files.each do |expected_file|
+        expect(generated_files).to include(expected_file)
+      end
+    end
+  end
+
 end
 
 shared_examples_for "a file generator" do
