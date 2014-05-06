@@ -99,7 +99,6 @@ module ChefDK
 
       def run(params = [ ])
         @components_filter = parse_options(params)
-        @components_filter.unshift # remove 'verify' from the remaining args
 
         validate_components!
         invoke_tests
