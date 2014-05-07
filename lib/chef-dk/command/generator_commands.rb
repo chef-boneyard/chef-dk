@@ -25,6 +25,20 @@ require 'chef-dk/generator'
 module ChefDK
   module Command
 
+    # ## SharedGeneratorOptions
+    #
+    # This module is the namespace for all subcommands of `chef generate`
+    module SharedGeneratorOptions
+      include Mixlib::CLI
+
+      option :skeleton,
+        :long  => "--skel SKELETON_DIR",
+        :description => "Use SKELETON_DIR code_generator cookbook",
+        :default => File.expand_path("../../skeletons", __FILE__),
+        :proc => Proc.new { |s| File.expand_path(s) },
+        :on => :tail
+    end
+
     # ## GeneratorCommands
     #
     # This module is the namespace for all subcommands of `chef generate`
@@ -45,17 +59,12 @@ module ChefDK
       # chef-dk/skeletons/code_generator.
       class Base < Command::Base
 
-        option :skeleton,
-          :long  => "--skel SKELETON_DIR",
-          :description => "Use SKELETON_DIR code_generator cookbook",
-          :default => File.expand_path("../../skeletons", __FILE__),
-          :proc => Proc.new { |s| File.expand_path(s) }
-
         attr_reader :params
 
         def initialize(params)
           super()
           @params = params
+          options.merge!(SharedGeneratorOptions.options)
         end
 
         # An instance of ChefRunner. Calling ChefRunner#converge will trigger
