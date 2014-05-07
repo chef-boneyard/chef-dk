@@ -348,6 +348,8 @@ module ChefDK
 
         banner "Usage: chef generate lwrp [path/to/cookbook] NAME [options]"
 
+        options.merge!(SharedGeneratorOptions.options)
+
         def recipe
           'lwrp'
         end
@@ -362,8 +364,9 @@ module ChefDK
           :long  => "--source SOURCE_FILE",
           :description => "Copy content from SOURCE_FILE"
 
-
         banner "Usage: chef generate template [path/to/cookbook] NAME [options]"
+
+        options.merge!(SharedGeneratorOptions.options)
 
         def recipe
           'template'
@@ -383,8 +386,9 @@ module ChefDK
           :long  => "--source SOURCE_FILE",
           :description => "Copy content from SOURCE_FILE"
 
-
         banner "Usage: chef generate file [path/to/cookbook] NAME [options]"
+
+        options.merge!(SharedGeneratorOptions.options)
 
         def recipe
           'cookbook_file'
