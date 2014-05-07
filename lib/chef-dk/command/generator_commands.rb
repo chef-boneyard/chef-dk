@@ -32,9 +32,9 @@ module ChefDK
       include Mixlib::CLI
 
       option :generator_cookbook,
-        :short => "-g GENERATOR_COOKBOOK_DIR",
-        :long  => "--generator-cookbook GENERATOR_COOKBOOK_DIR",
-        :description => "Use GENERATOR_COOKBOOK_DIR for the code_generator cookbook",
+        :short => "-g GENERATOR_COOKBOOK_PATH",
+        :long  => "--generator-cookbook GENERATOR_COOKBOOK_PATH",
+        :description => "Use GENERATOR_COOKBOOK_PATH for the code_generator cookbook",
         :default => File.expand_path("../../skeletons", __FILE__),
         :proc => Proc.new { |s| File.expand_path(s) },
         :on => :tail
