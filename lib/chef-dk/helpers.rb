@@ -53,7 +53,7 @@ module ChefDK
     #
 
     def omnibus_root
-      @omnibus_root ||= config[:omnibus_dir] || omnibus_expand_path(Gem.ruby, "..", "..", "..")
+      @omnibus_root ||= omnibus_expand_path(Gem.ruby, "..", "..", "..")
     end
 
     def omnibus_apps_dir
