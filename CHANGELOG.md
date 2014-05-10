@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+### Added option to generate subcommand
+
+The 'chef generate' subcommand now has the '--generator-cookbook' option to let you
+specify a path to an alternate skeleton cookbook for generating cookbooks. For an
+example, look at 'lib/chef-dk/skeletons' which is the default if this option
+is not specified. Your cookbook will need to be named `code_generator` in order
+for the recipes to be run.
+
+* [Add skeleton option for chef generate](https://github.com/opscode/chef-dk/pull/40) by [martinisoft](https://github.com/martinisoft)
+
 ### Added subcommand
 
 The 'chef exec' subcommand added to execute commands with the PATH and ruby environment
