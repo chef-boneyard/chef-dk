@@ -18,6 +18,15 @@
 require 'spec_helper'
 require 'chef-dk/command/verify'
 
+module Gem
+
+  # We stub Gem.ruby because `verify` uses it to locate the omnibus directory,
+  # but we also use it in some of the "test commands" in these tests.
+  class << self
+    alias :real_ruby :ruby
+  end
+end
+
 describe ChefDK::Command::Verify do
   let(:command_instance) { ChefDK::Command::Verify.new() }
 
@@ -65,11 +74,13 @@ describe ChefDK::Command::Verify do
     let(:ruby_path) { File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby") }
 
     def run_unit_test
-      lambda { |_self| sh("./verify_me") }
+      # Set rubyopt to empty to prevent bundler from infecting the ruby
+      # subcommands (and loading a bunch of extra gems).
+      lambda { |_self| sh("#{Gem.real_ruby} verify_me", env: { "RUBYOPT" => ""}) }
     end
 
     def run_integration_test
-      lambda { |_self| sh("./integration_test") }
+      lambda { |_self| sh("#{Gem.real_ruby} integration_test", env: { "RUBYOPT" => ""}) }
     end
 
     let(:all_tests_ok) do
