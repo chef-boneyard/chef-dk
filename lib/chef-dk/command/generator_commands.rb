@@ -25,6 +25,21 @@ require 'chef-dk/generator'
 module ChefDK
   module Command
 
+    # ## SharedGeneratorOptions
+    #
+    # These CLI options are shared amongst the generator commands
+    module SharedGeneratorOptions
+      include Mixlib::CLI
+
+      option :generator_cookbook,
+        :short => "-g GENERATOR_COOKBOOK_PATH",
+        :long  => "--generator-cookbook GENERATOR_COOKBOOK_PATH",
+        :description => "Use GENERATOR_COOKBOOK_PATH for the code_generator cookbook",
+        :default => File.expand_path("../../skeletons", __FILE__),
+        :proc => Proc.new { |s| File.expand_path(s) },
+        :on => :tail
+    end
+
     # ## GeneratorCommands
     #
     # This module is the namespace for all subcommands of `chef generate`
@@ -47,6 +62,8 @@ module ChefDK
 
         attr_reader :params
 
+        options.merge!(SharedGeneratorOptions.options)
+
         def initialize(params)
           super()
           @params = params
@@ -55,14 +72,14 @@ module ChefDK
         # An instance of ChefRunner. Calling ChefRunner#converge will trigger
         # convergence and generate the desired code.
         def chef_runner
-          @chef_runner ||= ChefRunner.new(skeleton_cookbook_path, ["code_generator::#{recipe}"])
+          @chef_runner ||= ChefRunner.new(generator_cookbook_path, ["code_generator::#{recipe}"])
         end
 
         # Path to the directory where the code_generator cookbook is located.
         # For now, this is hard coded to the 'skeletons' directory in this
         # repo.
-        def skeleton_cookbook_path
-          File.expand_path("../../skeletons", __FILE__)
+        def generator_cookbook_path
+          config[:generator_cookbook]
         end
 
         # Sets git related generator_context values.
@@ -88,7 +105,7 @@ module ChefDK
       end
 
       # ## App
-      # chef generate app path/to/basename --skel=path/to/skeleton --example
+      # chef generate app path/to/basename --generator-cookbook=path/to/generator
       #
       # Generates a full "application" directory structure.
       class App < Base
@@ -96,8 +113,9 @@ module ChefDK
         banner "Usage: chef generate app NAME [options]"
 
         attr_reader :errors
-
         attr_reader :app_name_or_path
+
+        options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
           @params_valid = true
@@ -151,7 +169,7 @@ module ChefDK
       end
 
       # ## CookbookFile
-      # chef generate cookbook path/to/basename --skel=path/to/skeleton --example
+      # chef generate cookbook path/to/basename --generator-cookbook=path/to/generator
       #
       # Generates a basic cookbook directory structure. Most file types are
       # omitted, the user is expected to add additional files as needed using
@@ -163,6 +181,8 @@ module ChefDK
         attr_reader :errors
 
         attr_reader :cookbook_name_or_path
+
+        options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
           @params_valid = true
@@ -232,6 +252,8 @@ module ChefDK
         attr_reader :cookbook_path
         attr_reader :new_file_basename
 
+        options.merge!(SharedGeneratorOptions.options)
+
         def initialize(params)
           @params_valid = true
           @cookbook_full_path = nil
@@ -300,6 +322,8 @@ module ChefDK
 
         banner "Usage: chef generate recipe [path/to/cookbook] NAME [options]"
 
+        options.merge!(SharedGeneratorOptions.options)
+
         def recipe
           'recipe'
         end
@@ -311,6 +335,8 @@ module ChefDK
 
         banner "Usage: chef generate attribute [path/to/cookbook] NAME [options]"
 
+        options.merge!(SharedGeneratorOptions.options)
+
         def recipe
           'attribute'
         end
@@ -321,6 +347,8 @@ module ChefDK
       class LWRP < CookbookCodeFile
 
         banner "Usage: chef generate lwrp [path/to/cookbook] NAME [options]"
+
+        options.merge!(SharedGeneratorOptions.options)
 
         def recipe
           'lwrp'
@@ -336,8 +364,9 @@ module ChefDK
           :long  => "--source SOURCE_FILE",
           :description => "Copy content from SOURCE_FILE"
 
-
         banner "Usage: chef generate template [path/to/cookbook] NAME [options]"
+
+        options.merge!(SharedGeneratorOptions.options)
 
         def recipe
           'template'
@@ -357,8 +386,9 @@ module ChefDK
           :long  => "--source SOURCE_FILE",
           :description => "Copy content from SOURCE_FILE"
 
-
         banner "Usage: chef generate file [path/to/cookbook] NAME [options]"
+
+        options.merge!(SharedGeneratorOptions.options)
 
         def recipe
           'cookbook_file'
