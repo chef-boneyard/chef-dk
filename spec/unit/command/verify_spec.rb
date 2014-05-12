@@ -60,52 +60,6 @@ describe ChefDK::Command::Verify do
     end
   end
 
-  describe "defining components" do
-
-    let(:command_class) { Class.new(ChefDK::Command::Verify) }
-
-    let(:result) { {} }
-
-    def define_component
-      result_hash = result # so we can capture it in blocks
-      command_class.add_component(:berks) do |c|
-        c.base_dir = "berkshelf"
-        c.unit_test { result_hash[:unit_test] = true }
-        c.integration_test { result_hash[:integration_test] = true }
-        c.smoke_test { result_hash[:smoke_test] = true }
-      end
-    end
-
-    let(:component) do
-      define_component
-      command_class.component(:berks)
-    end
-
-    it "defines the component" do
-      expect(component.name).to eq(:berks)
-    end
-
-    it "sets the component base directory" do
-      expect(component.base_dir).to eq("berkshelf")
-    end
-
-    it "defines a unit test block" do
-      component.run_unit_test
-      expect(result[:unit_test]).to be_true
-    end
-
-    it "defines an integration test block" do
-      component.run_integration_test
-      expect(result[:integration_test]).to be_true
-    end
-
-    it "defines a smoke test block" do
-      component.run_smoke_test
-      expect(result[:smoke_test]).to be_true
-    end
-
-  end
-
   describe "when running verify command" do
     let(:stdout_io) { StringIO.new }
     let(:ruby_path) { File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby") }
