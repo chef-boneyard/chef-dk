@@ -17,10 +17,13 @@
 
 require 'chef-dk/command/base'
 require 'chef-dk/exceptions'
+require 'chef-dk/component_test'
 
 module ChefDK
   module Command
     class Verify < ChefDK::Command::Base
+
+
       banner "Usage: chef verify [component, ...] [options]"
 
       option :omnibus_dir,
@@ -40,13 +43,22 @@ module ChefDK
         :description  => "Display all test output, not just failing tests"
 
       class << self
-        def component(name, arguments)
-          components[name] = arguments
+        def add_component(name, _delete_me=nil)
+          component = ComponentTest.new(name)
+          yield component if block_given? #delete this conditional
+          component_map[name] = component
+        end
+
+        def component(name)
+          component_map[name]
         end
 
         def components
-          @components ||= {}
-          @components
+          component_map.values
+        end
+
+        def component_map
+          @component_map ||= {}
         end
       end
 
@@ -59,32 +71,48 @@ module ChefDK
       # :base_dir => Relative path of the component w.r.t. omnibus_apps_dir
       # :test_cmd => Test command to be launched for the component
       #
-      component "berkshelf",
-        :base_dir => "berkshelf",
+      add_component "berkshelf" do |c|
+        c.base_dir = "berkshelf"
         # For berks the real command to run is "bundle exec thor spec:ci"
         # We can't run it right now since graphviz specs are included in the
         # test suite by default. We will be able to switch to that command when/if
         # Graphviz is added to omnibus.
-        :test_cmd => "bundle exec rspec --color --format progress spec/unit --tag ~graphviz",
-        :integration_cmd => "bundle exec cucumber --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict",
-        :smoke => "touch Berksfile; berks install"
+        c.unit_test { sh("bundle exec rspec --color --format progress spec/unit --tag ~graphviz") }
+        c.integration_test { sh("bundle exec cucumber --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict") }
 
-      component "test-kitchen",
-        :base_dir => "test-kitchen",
-        :test_cmd => "bundle exec rake unit",
-        :integration_cmd => "bundle exec rake features",
-        :smoke => "kitchen init"
+        c.smoke_test do
+          tmpdir do |cwd|
+            FileUtils.touch(File.join(cwd,"Berksfile"))
+            sh("berks install", cwd: cwd)
+          end
+        end
+      end
 
-      component "chef-client",
-        :base_dir => "chef",
-        :test_cmd => "bundle exec rspec -fp spec/unit",
-        :integration_cmd => "bundle exec rspec -fp spec/integration spec/functional",
-        :smoke => "touch apply.rb; chef-apply apply.rb"
+      add_component "test-kitchen" do |c|
+        c.base_dir = "test-kitchen"
+        c.unit_test { sh("bundle exec rake unit") }
+        c.integration_test { sh("bundle exec rake features") }
+        c.smoke_test { run_in_tmpdir("kitchen init") }
+      end
 
-      component "chef-dk",
-        :base_dir => "chef-dk",
-        :test_cmd => "bundle exec rspec",
-        :smoke => "chef generate cookbook example"
+      add_component "chef-client" do |c|
+        c.base_dir = "chef"
+        c.unit_test { sh("bundle exec rspec -fp spec/unit") }
+        c.integration_test { sh("bundle exec rspec -fp spec/integration spec/functional") }
+
+        c.smoke_test do
+          tmpdir do |cwd|
+            FileUtils.touch(File.join(cwd, "apply.rb"))
+            sh("chef-apply apply.rb", cwd: cwd)
+          end
+        end
+      end
+
+      add_component "chef-dk" do |c|
+        c.base_dir = "chef-dk"
+        c.unit_test { sh("bundle exec rspec") }
+        c.smoke_test { run_in_tmpdir("chef generate cookbook example") }
+      end
 
       attr_reader :verification_threads
       attr_reader :verification_results
@@ -108,52 +136,42 @@ module ChefDK
         verification_status
       end
 
-      def validate_components!
-        components.each do |component, component_info|
-          unless File.exists? component_path(component_info)
-            raise MissingComponentError.new(component)
-          end
-        end
+      def omnibus_root
+        config[:omnibus_dir] || super
       end
 
-      def component_path(component_info)
-        File.join(omnibus_apps_dir, component_info[:base_dir])
+      def validate_components!
+        components.each do |component|
+          component.omnibus_root = omnibus_root
+          component.assert_present!
+        end
       end
 
       def components_to_test
         if @components_filter.empty?
           components
         else
-          components.select do |name, test_params|
-            @components_filter.include?(name)
+          components.select do |component|
+            @components_filter.include?(component.name.to_s)
           end
         end
       end
 
       def invoke_tests
-        components_to_test.each do |component, component_info|
+        components_to_test.each do |component|
           # Run the component specs in parallel
           verification_threads << Thread.new do
-            test_cmd_opts = {
-              :cwd => component_path(component_info),
-              :env => {
-                # Add the embedded/bin to the PATH so that bundle executable can
-                # be found while running the tests.
-                "PATH" => "#{omnibus_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}"
-              },
-              :timeout => 3600
-            }
 
             results = []
 
-            results << run_smoke_test(component_info[:smoke], test_cmd_opts)
+            results << component.run_smoke_test
 
             if config[:unit]
-              results << system_command(component_info[:test_cmd], test_cmd_opts)
+              results << component.run_unit_test
             end
 
-            if config[:integration] && component_info[:integration_cmd]
-              results << system_command(component_info[:integration_cmd], test_cmd_opts)
+            if config[:integration]
+              results << component.run_integration_test
             end
 
             if results.any? {|r| r.exitstatus != 0 }
@@ -170,15 +188,7 @@ module ChefDK
             }
           end
 
-          msg("Running verification for component '#{component}'")
-        end
-      end
-
-      def run_smoke_test(command, command_opts)
-        command_opts = command_opts.dup
-        Dir.mktmpdir do |tmpdir|
-          command_opts[:cwd] = tmpdir
-          system_command(command, command_opts)
+          msg("Running verification for component '#{component.name}'")
         end
       end
 
@@ -207,7 +217,7 @@ module ChefDK
         msg("---------------------------------------------")
         verification_results.each do |result|
           message = result[:component_status] == 0 ? "succeeded" : "failed"
-          msg("Verification of component '#{result[:component]}' #{message}.")
+          msg("Verification of component '#{result[:component].name}' #{message}.")
         end
       end
 

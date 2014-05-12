@@ -31,7 +31,7 @@ describe ChefDK::Command::Verify do
 
   it "defines berks, tk, chef and chef-dk components by default" do
     expect(command_instance.components).not_to be_empty
-    expect(command_instance.components.keys).to match_array(%w{berkshelf test-kitchen chef-client chef-dk})
+    expect(command_instance.components.map(&:name)).to match_array(%w{berkshelf test-kitchen chef-client chef-dk})
   end
 
   it "has a usage banner" do
@@ -77,15 +77,15 @@ describe ChefDK::Command::Verify do
     context "when running smoke tests only" do
       describe "with single command with success" do
         let(:components) do
-          {
-            "successful_comp" => {
+          [
+            ChefDK::ComponentTest.new("successful_comp").tap do |c|
               # The verify_me script in chef exits non-zero, but our "smoke test" should succeed
-              :base_dir => "chef",
-              :test_cmd => "./verify_me",
-              :integration_cmd => "./integration_test",
-              :smoke => "true"
-            }
-          }
+              c.base_dir = "chef"
+              c.unit_test { sh("./verify_me") }
+              c.integration_test { sh("./integration_test") }
+              c.smoke_test { sh("true") }
+            end
+          ]
         end
 
         before do
@@ -100,14 +100,14 @@ describe ChefDK::Command::Verify do
 
       describe "with single command with failure" do
         let(:components) do
-          {
-            "failing_comp" => {
+          [
+            ChefDK::ComponentTest.new("failing_comp").tap do |c|
               # our fake berkshelf's unit tests succeed but our smoke test should fail
-              :base_dir => "berkshelf",
-              :test_cmd => "./verify_me",
-              :smoke => "false"
-            }
-          }
+              c.base_dir = "berkshelf"
+              c.unit_test { sh("./verify_me") }
+              c.smoke_test { sh("false") }
+            end
+          ]
         end
 
         before do
@@ -126,14 +126,14 @@ describe ChefDK::Command::Verify do
       let(:command_options) { %w{--unit --verbose} }
 
       let(:components) do
-        {
-          "successful_comp" => {
-            :base_dir => "berkshelf",
-            :test_cmd => "./verify_me",
-            :integration_cmd => "./integration_test",
-            :smoke => "true"
-          }
-        }
+        [
+          ChefDK::ComponentTest.new("successful_comp").tap do |c|
+            c.base_dir = "berkshelf"
+            c.unit_test { sh("./verify_me") }
+            c.integration_test { sh("./integration_test") }
+            c.smoke_test { sh("true") }
+          end
+        ]
       end
 
       describe "with single command with success" do
@@ -173,13 +173,13 @@ describe ChefDK::Command::Verify do
           context "and no integration test command is specifed for the component" do
 
             let(:components) do
-              {
-                "successful_comp" => {
-                  :base_dir => "berkshelf",
-                  :test_cmd => "./verify_me",
-                  :smoke => "true"
-                }
-              }
+              [
+                ChefDK::ComponentTest.new("successful_comp").tap do |c|
+                  c.base_dir = "berkshelf"
+                  c.unit_test { sh("./verify_me") }
+                  c.smoke_test { sh("true") }
+                end
+              ]
             end
 
             it "skips the integration test and succeeds" do
@@ -194,13 +194,13 @@ describe ChefDK::Command::Verify do
 
       describe "with single command with failure" do
         let(:components) do
-          {
-            "failing_comp" => {
-              :base_dir => "chef",
-              :test_cmd => "./verify_me",
-              :smoke => "true"
-            }
-          }
+          [
+            ChefDK::ComponentTest.new("failing_comp").tap do |c|
+              c.base_dir = "chef"
+              c.unit_test { sh("./verify_me") }
+              c.smoke_test { sh("true") }
+            end
+          ]
         end
 
         before do
@@ -218,18 +218,19 @@ describe ChefDK::Command::Verify do
 
       describe "with multiple commands with success" do
         let(:components) do
-          {
-            "successful_comp_1" => {
-              :base_dir => "berkshelf",
-              :test_cmd => "./verify_me",
-              :smoke => "true"
-            },
-            "successful_comp_2" => {
-              :base_dir => "test-kitchen",
-              :test_cmd => "./verify_me",
-              :smoke => "true"
-            }
-          }
+          [
+            ChefDK::ComponentTest.new("successful_comp_1").tap do |c|
+              c.base_dir = "berkshelf"
+              c.unit_test { sh("./verify_me") }
+              c.smoke_test { sh("true") }
+            end,
+
+            ChefDK::ComponentTest.new("successful_comp_2").tap do |c|
+              c.base_dir = "test-kitchen"
+              c.unit_test { sh("./verify_me") }
+              c.smoke_test { sh("true") }
+            end
+          ]
         end
 
         before do
@@ -266,24 +267,25 @@ describe ChefDK::Command::Verify do
 
       describe "with multiple commands with failures" do
         let(:components) do
-          {
-            "successful_comp_1" => {
-              :base_dir => "berkshelf",
-              :test_cmd => "./verify_me",
-              :smoke => "true"
-            },
-            "successful_comp_2" => {
-              :base_dir => "test-kitchen",
-              :test_cmd => "./verify_me",
-              :smoke => "true"
-            },
-            "failing_comp" => {
-              :base_dir => "chef",
-              :test_cmd => "./verify_me",
-              :smoke => "true"
-            }
+          [
+            ChefDK::ComponentTest.new("successful_comp_1").tap do |c|
+              c.base_dir = "berkshelf"
+              c.unit_test { sh("./verify_me") }
+              c.smoke_test { sh("true") }
+            end,
 
-          }
+            ChefDK::ComponentTest.new("successful_comp_2").tap do |c|
+              c.base_dir = "test-kitchen"
+              c.unit_test { sh("./verify_me") }
+              c.smoke_test { sh("true") }
+            end,
+
+            ChefDK::ComponentTest.new("failing_comp").tap do |c|
+              c.base_dir = "chef"
+              c.unit_test { sh("./verify_me") }
+              c.smoke_test { sh("true") }
+            end
+          ]
         end
 
         before do
