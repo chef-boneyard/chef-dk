@@ -79,7 +79,13 @@ module ChefDK
         # Graphviz is added to omnibus.
         c.unit_test { sh("bundle exec rspec --color --format progress spec/unit --tag ~graphviz") }
         c.integration_test { sh("bundle exec cucumber --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict") }
-        c.smoke_test { run_in_tmpdir("touch Berksfile; berks install") }
+
+        c.smoke_test do
+          tmpdir do |cwd|
+            FileUtils.touch(File.join(cwd,"Berksfile"))
+            sh("berks install", cwd: cwd)
+          end
+        end
       end
 
       add_component "test-kitchen" do |c|
@@ -93,7 +99,13 @@ module ChefDK
         c.base_dir = "chef"
         c.unit_test { sh("bundle exec rspec -fp spec/unit") }
         c.integration_test { sh("bundle exec rspec -fp spec/integration spec/functional") }
-        c.smoke_test { run_in_tmpdir("touch apply.rb; chef-apply apply.rb") }
+
+        c.smoke_test do
+          tmpdir do |cwd|
+            FileUtils.touch(File.join(cwd, "apply.rb"))
+            sh("chef-apply apply.rb", cwd: cwd)
+          end
+        end
       end
 
       add_component "chef-dk" do |c|
