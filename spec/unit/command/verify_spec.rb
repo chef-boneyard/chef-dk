@@ -64,6 +64,59 @@ describe ChefDK::Command::Verify do
     let(:stdout_io) { StringIO.new }
     let(:ruby_path) { File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby") }
 
+    def run_unit_test
+      lambda { |_self| sh("./verify_me") }
+    end
+
+    def run_integration_test
+      lambda { |_self| sh("./integration_test") }
+    end
+
+    let(:all_tests_ok) do
+      ChefDK::ComponentTest.new("successful_comp").tap do |c|
+        c.base_dir = "berkshelf"
+        c.unit_test(&run_unit_test)
+        c.integration_test(&run_integration_test)
+        c.smoke_test { sh("true") }
+      end
+    end
+
+    let(:all_tests_ok_2) do
+      ChefDK::ComponentTest.new("successful_comp_2").tap do |c|
+        c.base_dir = "test-kitchen"
+        c.unit_test(&run_unit_test)
+        c.smoke_test { sh("true") }
+      end
+    end
+
+    let(:failing_unit_test) do
+      ChefDK::ComponentTest.new("failing_comp").tap do |c|
+        c.base_dir = "chef"
+        c.unit_test(&run_unit_test)
+        c.smoke_test { sh("true") }
+      end
+    end
+
+    let(:passing_smoke_test_only) do
+      component = failing_unit_test.dup
+      component.smoke_test { sh("true") }
+      component
+    end
+
+    let(:failing_smoke_test_only) do
+      component = all_tests_ok.dup
+      component.smoke_test { sh("false") }
+      component
+    end
+
+    let(:component_without_integration_tests) do
+      ChefDK::ComponentTest.new("successful_comp").tap do |c|
+        c.base_dir = "berkshelf"
+        c.unit_test { sh("./verify_me") }
+        c.smoke_test { sh("true") }
+      end
+    end
+
     def stdout
       stdout_io.string
     end
@@ -77,15 +130,7 @@ describe ChefDK::Command::Verify do
     context "when running smoke tests only" do
       describe "with single command with success" do
         let(:components) do
-          [
-            ChefDK::ComponentTest.new("successful_comp").tap do |c|
-              # The verify_me script in chef exits non-zero, but our "smoke test" should succeed
-              c.base_dir = "chef"
-              c.unit_test { sh("./verify_me") }
-              c.integration_test { sh("./integration_test") }
-              c.smoke_test { sh("true") }
-            end
-          ]
+          [ passing_smoke_test_only ]
         end
 
         before do
@@ -93,21 +138,14 @@ describe ChefDK::Command::Verify do
         end
 
         it "should report the success of the command" do
-          expect(stdout).to include("Verification of component 'successful_comp' succeeded.")
+          expect(stdout).to include("Verification of component 'failing_comp' succeeded.")
         end
 
       end
 
       describe "with single command with failure" do
         let(:components) do
-          [
-            ChefDK::ComponentTest.new("failing_comp").tap do |c|
-              # our fake berkshelf's unit tests succeed but our smoke test should fail
-              c.base_dir = "berkshelf"
-              c.unit_test { sh("./verify_me") }
-              c.smoke_test { sh("false") }
-            end
-          ]
+          [ failing_smoke_test_only ]
         end
 
         before do
@@ -115,7 +153,7 @@ describe ChefDK::Command::Verify do
         end
 
         it "should report the failure of the command" do
-          expect(stdout).to include("Verification of component 'failing_comp' failed.")
+          expect(stdout).to include("Verification of component 'successful_comp' failed.")
         end
 
       end
@@ -126,14 +164,7 @@ describe ChefDK::Command::Verify do
       let(:command_options) { %w{--unit --verbose} }
 
       let(:components) do
-        [
-          ChefDK::ComponentTest.new("successful_comp").tap do |c|
-            c.base_dir = "berkshelf"
-            c.unit_test { sh("./verify_me") }
-            c.integration_test { sh("./integration_test") }
-            c.smoke_test { sh("true") }
-          end
-        ]
+        [ all_tests_ok ]
       end
 
       describe "with single command with success" do
@@ -173,13 +204,7 @@ describe ChefDK::Command::Verify do
           context "and no integration test command is specifed for the component" do
 
             let(:components) do
-              [
-                ChefDK::ComponentTest.new("successful_comp").tap do |c|
-                  c.base_dir = "berkshelf"
-                  c.unit_test { sh("./verify_me") }
-                  c.smoke_test { sh("true") }
-                end
-              ]
+              [ component_without_integration_tests ]
             end
 
             it "skips the integration test and succeeds" do
@@ -194,13 +219,7 @@ describe ChefDK::Command::Verify do
 
       describe "with single command with failure" do
         let(:components) do
-          [
-            ChefDK::ComponentTest.new("failing_comp").tap do |c|
-              c.base_dir = "chef"
-              c.unit_test { sh("./verify_me") }
-              c.smoke_test { sh("true") }
-            end
-          ]
+          [ failing_unit_test ]
         end
 
         before do
@@ -218,19 +237,7 @@ describe ChefDK::Command::Verify do
 
       describe "with multiple commands with success" do
         let(:components) do
-          [
-            ChefDK::ComponentTest.new("successful_comp_1").tap do |c|
-              c.base_dir = "berkshelf"
-              c.unit_test { sh("./verify_me") }
-              c.smoke_test { sh("true") }
-            end,
-
-            ChefDK::ComponentTest.new("successful_comp_2").tap do |c|
-              c.base_dir = "test-kitchen"
-              c.unit_test { sh("./verify_me") }
-              c.smoke_test { sh("true") }
-            end
-          ]
+          [ all_tests_ok, all_tests_ok_2 ]
         end
 
         before do
@@ -238,7 +245,7 @@ describe ChefDK::Command::Verify do
         end
 
         it "should report the success of the command" do
-          expect(stdout).to include("Verification of component 'successful_comp_1' succeeded.")
+          expect(stdout).to include("Verification of component 'successful_comp' succeeded.")
           expect(stdout).to include("Verification of component 'successful_comp_2' succeeded.")
         end
 
@@ -267,25 +274,7 @@ describe ChefDK::Command::Verify do
 
       describe "with multiple commands with failures" do
         let(:components) do
-          [
-            ChefDK::ComponentTest.new("successful_comp_1").tap do |c|
-              c.base_dir = "berkshelf"
-              c.unit_test { sh("./verify_me") }
-              c.smoke_test { sh("true") }
-            end,
-
-            ChefDK::ComponentTest.new("successful_comp_2").tap do |c|
-              c.base_dir = "test-kitchen"
-              c.unit_test { sh("./verify_me") }
-              c.smoke_test { sh("true") }
-            end,
-
-            ChefDK::ComponentTest.new("failing_comp").tap do |c|
-              c.base_dir = "chef"
-              c.unit_test { sh("./verify_me") }
-              c.smoke_test { sh("true") }
-            end
-          ]
+          [ all_tests_ok, all_tests_ok_2, failing_unit_test ]
         end
 
         before do
@@ -293,7 +282,7 @@ describe ChefDK::Command::Verify do
         end
 
         it "should report the success and failure of the commands" do
-          expect(stdout).to include("Verification of component 'successful_comp_1' succeeded.")
+          expect(stdout).to include("Verification of component 'successful_comp' succeeded.")
           expect(stdout).to include("Verification of component 'successful_comp_2' succeeded.")
           expect(stdout).to include("Verification of component 'failing_comp' failed.")
         end
