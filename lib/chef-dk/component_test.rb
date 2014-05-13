@@ -78,6 +78,11 @@ module ChefDK
 
     def sh(command, options={})
       combined_opts = default_command_options.merge(options)
+
+      # Env is a hash, so it needs to be merged separately
+      if options.key?(:env)
+        combined_opts[:env] = default_command_options[:env].merge(options[:env])
+      end
       system_command(command, combined_opts)
     end
 
