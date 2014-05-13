@@ -95,9 +95,9 @@ describe ChefDK::ComponentTest do
 
         c.unit_test { sh("true") }
 
-        c.integration_test { sh("pwd") }
+        c.integration_test { sh("ruby -e 'puts Dir.pwd'", env: { "RUBYOPT" => "" }) }
 
-        c.smoke_test { run_in_tmpdir("pwd") }
+        c.smoke_test { run_in_tmpdir("ruby -e 'puts Dir.pwd'", env: { "RUBYOPT" => "" }) }
       end
     end
 
