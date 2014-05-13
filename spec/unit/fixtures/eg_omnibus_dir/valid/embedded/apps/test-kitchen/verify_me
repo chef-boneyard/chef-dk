@@ -1,1 +1,2 @@
-echo "my friend everything is good..."
+#!/usr/bin/env ruby
+puts "my friend everything is good..."

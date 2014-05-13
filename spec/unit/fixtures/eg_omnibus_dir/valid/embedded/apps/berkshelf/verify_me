@@ -1,3 +1,5 @@
-echo $PATH
+#!/usr/bin/env ruby
+puts ENV['PATH']
 
-echo "you are good to go..."
+puts "you are good to go..."
+exit 0

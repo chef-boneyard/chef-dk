@@ -1,1 +1,2 @@
-echo "integration tests OK"
+#!/usr/bin/env ruby
+puts "integration tests OK"
