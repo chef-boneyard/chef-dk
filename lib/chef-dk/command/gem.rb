@@ -33,7 +33,10 @@ module ChefDK
       rescue Gem::SystemExitException => e
         exit( e.exit_code )
       end
+
+      def needs_version?(params)
+        !params.empty? && (params[0] == "-v" || params[0] == "--version")
+      end
     end
   end
 end
-
