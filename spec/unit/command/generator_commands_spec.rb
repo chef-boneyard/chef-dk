@@ -387,6 +387,17 @@ describe ChefDK::Command::GeneratorCommands::Template do
   end
 end
 
+describe ChefDK::Command::GeneratorCommands::Template do
+
+  include_examples "a file generator" do
+
+    let(:generator_name) { "template" }
+    let(:generated_files) { [ "templates/default/new_template.erb" ] }
+    let(:new_file_name) { "new_template.erb" }
+
+  end
+end
+
 describe ChefDK::Command::GeneratorCommands::CookbookFile do
 
   include_examples "a file generator" do
