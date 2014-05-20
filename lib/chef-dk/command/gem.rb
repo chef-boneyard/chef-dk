@@ -33,7 +33,14 @@ module ChefDK
       rescue Gem::SystemExitException => e
         exit( e.exit_code )
       end
+
+      # Lazy solution: By automatically returning false, we force ChefDK::Base to
+      # call this class' run method, so that Gem::GemRunner can handle the -v flag
+      # appropriately (showing the gem version, or installing a specific version
+      # of a gem).
+      def needs_version?(params)
+        false
+      end
     end
   end
 end
-
