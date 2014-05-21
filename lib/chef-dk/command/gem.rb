@@ -29,7 +29,8 @@ module ChefDK
       banner "Usage: chef gem GEM_COMMANDS_AND_OPTIONS"
 
       def run(params)
-        Gem::GemRunner.new.run( params.clone )
+        retval = Gem::GemRunner.new.run( params.clone )
+        retval.nil? ? true : retval
       rescue Gem::SystemExitException => e
         exit( e.exit_code )
       end
