@@ -32,8 +32,12 @@ describe ChefDK::PolicyfileLock do
     File.expand_path("spec/unit/fixtures/cookbook_cache", project_root)
   end
 
+  let(:cookbook_search_root) do
+    File.expand_path("spec/unit/fixtures/", project_root)
+  end
+
   let(:policyfile_lock_options) do
-    { cache_path: cache_path }
+    { cache_path: cache_path, cookbook_search_root: cookbook_search_root }
   end
 
   context "when a cookbook is not in the cache" do
@@ -99,6 +103,59 @@ describe ChefDK::PolicyfileLock do
       expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
     end
 
+  end
+
+  context "with a policyfile containing a local cookbook" do
+
+    let(:policyfile_lock) do
+      ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
+
+        p.name = "dev_cookbook"
+
+        p.run_list = [ "recipe[bar]" ]
+        p.local_cookbook("bar") do |cb|
+          cb.source = "dev_cookbooks/bar"
+        end
+
+      end
+    end
+
+    let(:compiled_policyfile) do
+      {
+
+        "name" => "minimal_policyfile",
+
+        "run_list" => ["recipe[bar]"],
+
+        "cookbook_locks" => {
+
+          "bar" => {
+            "version" => "1.0.0",
+            "identifier" => "8c11f479fd05c3abaac9a4f0a6421620c9d99b6d",
+            "dotted_decimal_identifier" => id_to_dotted("8c11f479fd05c3abaac9a4f0a6421620c9d99b6d"),
+
+            "source" => "dev_cookbooks/bar",
+            "cache_key" => nil,
+            "scm_info" => {
+              "scm" => "git",
+              # To get this info, you need to do something like:
+              # figure out branch or assume 'master'
+              # git config --get branch.master.remote
+              # git config --get remote.opscode.url
+              "remote" => "git@github.com:myorg/bar-cookbook.git",
+              "ref" => "d867188a29db0ec438ae812a0fae90f3c267f38e",
+              "working_tree_clean" => true,
+              "published" => false
+            },
+          },
+        }
+      }
+    end
+
+    it "computes a lockfile including git data" do
+      pending "write git cookbook profiler"
+      expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
+    end
   end
 
   context "with a policyfile using custom identifiers" do

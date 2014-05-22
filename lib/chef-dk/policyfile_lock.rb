@@ -47,7 +47,33 @@ module ChefDK
 
     end
 
-    NULL = Object.new.freeze
+    class LocalCookbook
+
+      attr_accessor :source
+      attr_reader :cookbook_search_root
+
+      def initialize(name, cookbook_search_root)
+        @name = name
+        @cookbook_search_root = cookbook_search_root
+      end
+
+      def cookbook_path
+        File.expand_path(source, cookbook_search_root)
+      end
+
+      def to_lock
+        identifiers = CookbookProfiler::Identifiers.new(cookbook_path)
+
+        {
+          "version" => identifiers.semver_version,
+          "identifier" => identifiers.content_identifier,
+          "dotted_decimal_identifier" => identifiers.dotted_decimal_identifier,
+          "source" => source,
+          "cache_key" => nil
+        }
+      end
+
+    end
 
     def self.build(options = {})
       lock = new(options)
@@ -59,6 +85,7 @@ module ChefDK
     attr_accessor :run_list
     attr_reader :cookbook_locks
     attr_reader :cache_path
+    attr_reader :cookbook_search_root
 
     def initialize(options = {})
       @name = nil
@@ -71,6 +98,12 @@ module ChefDK
       cached_cookbook = CachedCookbook.new(name, cache_path)
       yield cached_cookbook
       @cookbook_locks[name] = cached_cookbook
+    end
+
+    def local_cookbook(name)
+      local_cookbook = LocalCookbook.new(name, cookbook_search_root)
+      yield local_cookbook
+      @cookbook_locks[name] = local_cookbook
     end
 
     def to_lock
@@ -92,6 +125,7 @@ module ChefDK
 
     def handle_options(options)
       @cache_path = options[:cache_path]
+      @cookbook_search_root = options[:cookbook_search_root]
     end
   end
 end
