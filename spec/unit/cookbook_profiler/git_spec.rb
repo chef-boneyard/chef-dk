@@ -16,6 +16,7 @@
 #
 
 require 'spec_helper'
+require 'shared/setup_git_cookbooks'
 require 'fileutils'
 require 'chef-dk/helpers'
 require 'chef-dk/cookbook_profiler/git'
@@ -24,27 +25,10 @@ describe ChefDK::CookbookProfiler::Git do
 
   include ChefDK::Helpers
 
-  let(:cookbook_pristine_path) do
-    File.expand_path("spec/unit/fixtures/dev_cookbooks/bar-cookbook.gitbundle", project_root)
-  end
-
-  let(:cookbook_path) { File.join(tempdir, "bar") }
+  include_context "setup git cookbooks"
 
   let(:git_profiler) do
     ChefDK::CookbookProfiler::Git.new(cookbook_path)
-  end
-
-  let(:current_rev) { 'dfc68070c47cbf4267be14ea87f80680cb5dafb3' }
-
-  before do
-    reset_tempdir
-    system_command("git clone #{cookbook_pristine_path} #{cookbook_path}")
-    system_command("git reset --hard #{current_rev}", cwd: cookbook_path)
-    system_command("git remote remove origin", cwd: cookbook_path)
-  end
-
-  after do
-    clear_tempdir
   end
 
   def edit_repo
