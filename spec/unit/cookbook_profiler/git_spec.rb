@@ -60,13 +60,8 @@ describe ChefDK::CookbookProfiler::Git do
   end
 
   context "with a remote configured" do
-    let(:remote_url) { "file://#{tempdir}/bar-cookbook.git" }
 
-    before do
-      system_command("git init --bare #{tempdir}/bar-cookbook.git")
-      system_command("git remote add origin #{remote_url}", cwd: cookbook_path)
-      system_command("git push -u origin master", cwd: cookbook_path)
-    end
+    include_context "setup git cookbook remote"
 
     context "given a clean repo with all commits published to the remote" do
 

@@ -41,3 +41,13 @@ RSpec.shared_context "setup git cookbooks" do
   end
 
 end
+
+RSpec.shared_context "setup git cookbook remote" do
+  let(:remote_url) { "file://#{tempdir}/bar-cookbook.git" }
+
+  before do
+    system_command("git init --bare #{tempdir}/bar-cookbook.git")
+    system_command("git remote add origin #{remote_url}", cwd: cookbook_path)
+    system_command("git push -u origin master", cwd: cookbook_path)
+  end
+end

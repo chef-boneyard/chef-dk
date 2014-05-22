@@ -29,6 +29,21 @@ module ChefDK
         @cookbook_path = cookbook_path
       end
 
+      def profile_data
+        {
+          "scm" => "git",
+          # To get this info, you need to do something like:
+          # figure out branch or assume 'master'
+          # git config --get branch.master.remote
+          # git config --get remote.opscode.url
+          "remote" => remote,
+          "revision" => revision,
+          "working_tree_clean" => clean?,
+          "published" => !unpublished_commits?,
+          "synchronized_remote_branches" => synchronized_remotes
+        }
+      end
+
       def revision
         git!("rev-parse HEAD").stdout.strip
       end

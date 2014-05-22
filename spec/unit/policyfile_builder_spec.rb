@@ -16,6 +16,7 @@
 #
 
 require 'spec_helper'
+require 'shared/setup_git_cookbooks'
 require 'chef-dk/policyfile_lock.rb'
 
 describe ChefDK::PolicyfileLock do
@@ -107,6 +108,13 @@ describe ChefDK::PolicyfileLock do
 
   context "with a policyfile containing a local cookbook" do
 
+    include_context "setup git cookbooks"
+    include_context "setup git cookbook remote"
+
+    let(:cookbook_search_root) do
+      tempdir
+    end
+
     let(:policyfile_lock) do
       ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
 
@@ -114,7 +122,7 @@ describe ChefDK::PolicyfileLock do
 
         p.run_list = [ "recipe[bar]" ]
         p.local_cookbook("bar") do |cb|
-          cb.source = "dev_cookbooks/bar"
+          cb.source = "bar"
         end
 
       end
@@ -123,38 +131,47 @@ describe ChefDK::PolicyfileLock do
     let(:compiled_policyfile) do
       {
 
-        "name" => "minimal_policyfile",
+        "name" => "dev_cookbook",
 
         "run_list" => ["recipe[bar]"],
 
         "cookbook_locks" => {
 
           "bar" => {
-            "version" => "1.0.0",
-            "identifier" => "8c11f479fd05c3abaac9a4f0a6421620c9d99b6d",
-            "dotted_decimal_identifier" => id_to_dotted("8c11f479fd05c3abaac9a4f0a6421620c9d99b6d"),
+            "version" => "0.1.0",
+            "identifier" => "f7694dbebe4109dfc857af7e2e4475c322c65259",
+            "dotted_decimal_identifier" => id_to_dotted("f7694dbebe4109dfc857af7e2e4475c322c65259"),
 
-            "source" => "dev_cookbooks/bar",
+            "source" => "bar",
             "cache_key" => nil,
             "scm_info" => {
               "scm" => "git",
-              # To get this info, you need to do something like:
-              # figure out branch or assume 'master'
-              # git config --get branch.master.remote
-              # git config --get remote.opscode.url
-              "remote" => "git@github.com:myorg/bar-cookbook.git",
-              "ref" => "d867188a29db0ec438ae812a0fae90f3c267f38e",
+              "remote" => remote_url,
+              "revision" => current_rev,
               "working_tree_clean" => true,
-              "published" => false
+              "published" => true,
+              "synchronized_remote_branches"=>["origin/master"]
             },
           },
         }
       }
     end
 
+    def expect_hash_equal(actual, expected)
+      expected.each do |key, expected_value|
+        expect(actual).to have_key(key)
+        if expected_value.kind_of?(Hash)
+          expect_hash_equal(actual[key], expected_value)
+        else
+          expect(actual[key]).to eq(expected_value)
+        end
+      end
+      expect(actual).to eq(expected)
+    end
+
     it "computes a lockfile including git data" do
-      pending "write git cookbook profiler"
-      expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
+      actual_lock = policyfile_lock.to_lock
+      expect_hash_equal(actual_lock, compiled_policyfile)
     end
   end
 

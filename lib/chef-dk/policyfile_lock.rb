@@ -16,6 +16,8 @@
 #
 
 require 'chef-dk/cookbook_profiler/identifiers'
+require 'chef-dk/cookbook_profiler/null_scm'
+require 'chef-dk/cookbook_profiler/git'
 
 module ChefDK
   class PolicyfileLock
@@ -61,6 +63,14 @@ module ChefDK
         File.expand_path(source, cookbook_search_root)
       end
 
+      def scm_profiler
+        if File.exist?(File.join(cookbook_path, ".git"))
+          CookbookProfiler::Git.new(cookbook_path)
+        else
+          CookbookProfiler::NullSCM.new(cookbook_path)
+        end
+      end
+
       def to_lock
         identifiers = CookbookProfiler::Identifiers.new(cookbook_path)
 
@@ -69,7 +79,8 @@ module ChefDK
           "identifier" => identifiers.content_identifier,
           "dotted_decimal_identifier" => identifiers.dotted_decimal_identifier,
           "source" => source,
-          "cache_key" => nil
+          "cache_key" => nil,
+          "scm_info" => scm_profiler.profile_data
         }
       end
 
