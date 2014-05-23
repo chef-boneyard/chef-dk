@@ -31,9 +31,9 @@ RSpec.shared_context "setup git cookbooks" do
 
   before do
     reset_tempdir
-    system_command("git clone #{cookbook_pristine_path} #{cookbook_path}")
-    system_command("git reset --hard #{current_rev}", cwd: cookbook_path)
-    system_command("git remote remove origin", cwd: cookbook_path)
+    system_command("git clone #{cookbook_pristine_path} #{cookbook_path}").error!
+    system_command("git reset --hard #{current_rev}", cwd: cookbook_path).error!
+    system_command("git remote remove origin", cwd: cookbook_path).error!
   end
 
   after do
@@ -46,8 +46,8 @@ RSpec.shared_context "setup git cookbook remote" do
   let(:remote_url) { "file://#{tempdir}/bar-cookbook.git" }
 
   before do
-    system_command("git init --bare #{tempdir}/bar-cookbook.git")
-    system_command("git remote add origin #{remote_url}", cwd: cookbook_path)
-    system_command("git push -u origin master", cwd: cookbook_path)
+    system_command("git init --bare #{tempdir}/bar-cookbook.git").error!
+    system_command("git remote add origin #{remote_url}", cwd: cookbook_path).error!
+    system_command("git push -u origin master", cwd: cookbook_path).error!
   end
 end

@@ -91,7 +91,7 @@ describe ChefDK::CookbookProfiler::Git do
 
       before do
         edit_repo
-        system_command("git commit -a -m 'update readme'", cwd: cookbook_path)
+        system_command("git commit -a -m 'update readme'", cwd: cookbook_path).error!
       end
 
       it "reports that the repo is clean" do
