@@ -44,12 +44,12 @@ describe ChefDK::Command::Exec do
 
     it "should raise OmnibusInstallNotFound if directory is not looking like omnibus" do
       Gem.stub(:ruby).and_return(File.join(fixtures_path,".rbenv/versions/2.1.1/bin/ruby"))
-      expect{command_instance.omnibus_bin_dir}.to raise_error(ChefDK::Exceptions::OmnibusInstallNotFound)
+      expect{command_instance.omnibus_bin_dir}.to raise_error(ChefDK::OmnibusInstallNotFound)
     end
 
     it "should raise OmnibusInstallNotFound if directory is not looking like omnibus" do
       Gem.stub(:ruby).and_return(File.join(fixtures_path,".rbenv/versions/2.1.1/bin/ruby"))
-      expect{command_instance.omnibus_embedded_bin_dir}.to raise_error(ChefDK::Exceptions::OmnibusInstallNotFound)
+      expect{command_instance.omnibus_embedded_bin_dir}.to raise_error(ChefDK::OmnibusInstallNotFound)
     end
   end
 

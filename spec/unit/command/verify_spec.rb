@@ -55,17 +55,17 @@ describe ChefDK::Command::Verify do
 
     it "should raise OmnibusInstallNotFound if directory is not looking like omnibus" do
       Gem.stub(:ruby).and_return(File.join(fixtures_path,".rbenv/versions/2.1.1/bin/ruby"))
-      expect{command_instance.omnibus_apps_dir}.to raise_error(ChefDK::Exceptions::OmnibusInstallNotFound)
+      expect{command_instance.omnibus_apps_dir}.to raise_error(ChefDK::OmnibusInstallNotFound)
     end
 
     it "raises OmnibusInstallNotFound if omnibus directory doesn't exist" do
       Gem.stub(:ruby).and_return(File.join(fixtures_path,"eg_omnibus_dir/missing_apps/embedded/bin/ruby"))
-      expect{command_instance.omnibus_apps_dir}.to raise_error(ChefDK::Exceptions::OmnibusInstallNotFound)
+      expect{command_instance.omnibus_apps_dir}.to raise_error(ChefDK::OmnibusInstallNotFound)
     end
 
     it "raises MissingComponentError when a component doesn't exist" do
       Gem.stub(:ruby).and_return(File.join(fixtures_path,"eg_omnibus_dir/missing_component/embedded/bin/ruby"))
-      expect{command_instance.validate_components!}.to raise_error(ChefDK::Exceptions::MissingComponentError)
+      expect{command_instance.validate_components!}.to raise_error(ChefDK::MissingComponentError)
     end
   end
 
