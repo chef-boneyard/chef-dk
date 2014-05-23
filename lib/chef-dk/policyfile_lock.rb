@@ -25,6 +25,7 @@ module ChefDK
     class CachedCookbook
 
       attr_accessor :cache_key
+      attr_accessor :origin
       attr_writer :identifier
       attr_writer :dotted_decimal_identifier
       attr_reader :cache_path
@@ -32,6 +33,10 @@ module ChefDK
       def initialize(name, cache_path)
         @name = name
         @cache_path = cache_path
+        @origin = nil
+        @cache_key = nil
+        @identifier = nil
+        @dotted_decimal_identifier = nil
       end
 
       def cookbook_path
@@ -51,7 +56,8 @@ module ChefDK
           "version" => identifiers.semver_version,
           "identifier" => identifier,
           "dotted_decimal_identifier" => dotted_decimal_identifier,
-          "cache_key" => cache_key
+          "cache_key" => cache_key,
+          "origin" => origin
         }
       end
 

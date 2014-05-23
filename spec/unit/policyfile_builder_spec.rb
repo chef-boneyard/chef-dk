@@ -103,7 +103,8 @@ describe ChefDK::PolicyfileLock do
             "version" => "1.0.0",
             "identifier" => "e4611e9b5ec0636a18979e7dd22537222a2eab47",
             "dotted_decimal_identifier" => id_to_dotted("e4611e9b5ec0636a18979e7dd22537222a2eab47"),
-            "cache_key" => "foo-1.0.0"
+            "cache_key" => "foo-1.0.0",
+            "origin" => nil
           },
         }
       }
@@ -222,7 +223,8 @@ describe ChefDK::PolicyfileLock do
             "version" => "1.0.0",
             "identifier" => "1.0.0",
             "dotted_decimal_identifier" => "1.0.0",
-            "cache_key" => "foo-1.0.0"
+            "cache_key" => "foo-1.0.0",
+            "origin" => nil
           },
 
           "bar" => {
@@ -252,6 +254,13 @@ describe ChefDK::PolicyfileLock do
   end
 
   context "with a policyfile lock with a mix of cached and local cookbooks" do
+
+    include_context "setup git cookbooks"
+
+    let(:cookbook_search_root) do
+      tempdir
+    end
+
     let(:policyfile_lock) do
 
       ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
@@ -260,7 +269,7 @@ describe ChefDK::PolicyfileLock do
         p.name = "basic_example"
 
         # Required. Should be fully expanded without roles
-        p.runlist = ["recipe[foo]", "recipe[bar]", "recipe[baz::non_default]"]
+        p.run_list = ["recipe[foo]", "recipe[bar]", "recipe[baz::non_default]"]
 
         # A cached_cookbook is stored in the cache directory in a subdirectory
         # given by 'cache_key'. It is assumed to be static (not modified by the
@@ -273,15 +282,13 @@ describe ChefDK::PolicyfileLock do
           cb.origin = "https://community.getchef.com/api/cookbooks/foo/1.0.0"
         end
 
-        p.cached_cookbook("bar") do |cb|
-          cb.cache_key = "bar-f59ee7a5bca6a4e606b67f7f856b768d847c39bb"
-          cb.origin = "git://github.com/opscode-cookbooks/bar.git"
+        p.local_cookbook("bar") do |cb|
+          cb.source = "bar"
         end
 
-        p.local_cookbook("baz") do |cb|
-          # for a local source, we assume the cookbook is in development and
-          # could be modified, we will check the identifier before uploading
-          cb.source = "my_cookbooks/baz"
+        p.cached_cookbook("baz") do |cb|
+          cb.cache_key = "baz-f59ee7a5bca6a4e606b67f7f856b768d847c39bb"
+          cb.origin = "git://github.com/opscode-cookbooks/bar.git"
         end
 
         p.cached_cookbook("dep_of_bar") do |cb|
@@ -304,41 +311,41 @@ describe ChefDK::PolicyfileLock do
 
           "foo" => {
             "version" => "1.0.0",
-            "identifier" => "168d2102fb11c9617cd8a981166c8adc30a6e915",
-            "dotted_decimal_identifier" => id_to_dotted("168d2102fb11c9617cd8a981166c8adc30a6e915"),
+            "identifier" => "e4611e9b5ec0636a18979e7dd22537222a2eab47",
+            "dotted_decimal_identifier" => id_to_dotted("e4611e9b5ec0636a18979e7dd22537222a2eab47"),
             "origin" => "https://community.getchef.com/api/cookbooks/foo/1.0.0",
             "cache_key" => "foo-1.0.0"
           },
 
           "bar" => {
-            "version" => "2.0.0",
-            "identifier" => "feab40e1fca77c7360ccca1481bb8ba5f919ce3a",
-            "dotted_decimal_identifier" => id_to_dotted("feab40e1fca77c7360ccca1481bb8ba5f919ce3a"),
-            "origin" => "git://github.com/opscode-cookbooks/bar.git",
-            "cache_key" => "bar-f59ee7a5bca6a4e606b67f7f856b768d847c39bb"
+            "version" => "0.1.0",
+            "identifier" => "f7694dbebe4109dfc857af7e2e4475c322c65259",
+            "dotted_decimal_identifier" => id_to_dotted("f7694dbebe4109dfc857af7e2e4475c322c65259"),
+            "source" => "bar",
+            "cache_key" => nil,
+
+            "scm_info" => {
+              "scm" => "git",
+              "remote" => nil,
+              "revision" => current_rev,
+              "working_tree_clean" => true,
+              "published" => false,
+              "synchronized_remote_branches"=>[]
+            },
           },
 
           "baz" => {
             "version" => "1.2.3",
-            "source" => "my_coookbooks/baz",
-            "cache_key" => nil,
-            "scm_info" => {
-              "scm" => "git",
-              # To get this info, you need to do something like:
-              # figure out branch or assume 'master'
-              # git config --get branch.master.remote
-              # git config --get remote.opscode.url
-              "remote" => "git@github.com:myorg/baz-cookbook.git",
-              "ref" => "d867188a29db0ec438ae812a0fae90f3c267f38e",
-              "working_tree_clean" => false,
-              "published" => false
-            },
+            "identifier"=>"08c6ac1d202f4d59ad67953559084886f6ba710a",
+            "dotted_decimal_identifier" => id_to_dotted("08c6ac1d202f4d59ad67953559084886f6ba710a"),
+            "cache_key" => "baz-f59ee7a5bca6a4e606b67f7f856b768d847c39bb",
+            "origin" => "git://github.com/opscode-cookbooks/bar.git"
           },
 
           "dep_of_bar" => {
             "version" => "1.2.3",
-            "identifier" => "3d9d097332199fdafc3237c0ec11fcd784c11b4d",
-            "dotted_decimal_identifier" => id_to_dotted("3d9d097332199fdafc3237c0ec11fcd784c11b4d"),
+            "identifier" => "e6c08ea35bce8009386710d8c9bcd6caa036e8bc",
+            "dotted_decimal_identifier" => id_to_dotted("e6c08ea35bce8009386710d8c9bcd6caa036e8bc"),
             "origin" => "https://chef-server.example.com/cookbooks/dep_of_bar/1.2.3",
             "cache_key" => "dep_of_bar-1.2.3",
 
@@ -350,7 +357,20 @@ describe ChefDK::PolicyfileLock do
     end
 
     it "generates a lockfile with the relevant profile data for each cookbook" do
-      pending
+      generated = policyfile_lock.to_lock
+      expect(generated['name']).to eq(compiled_policyfile['name'])
+      expect(generated['run_list']).to eq(compiled_policyfile['run_list'])
+
+      generated_locks = generated['cookbook_locks']
+      expected_locks = compiled_policyfile['cookbook_locks']
+
+      # test individually so failures are easier to read
+      expect(generated_locks['foo']).to eq(expected_locks['foo'])
+      expect(generated_locks['bar']).to eq(expected_locks['bar'])
+      expect(generated_locks['baz']).to eq(expected_locks['baz'])
+      expect(generated_locks['dep_of_bar']).to eq(expected_locks['dep_of_bar'])
+
+      expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
     end
 
   end
