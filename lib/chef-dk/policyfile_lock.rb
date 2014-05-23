@@ -25,6 +25,8 @@ module ChefDK
     class CachedCookbook
 
       attr_accessor :cache_key
+      attr_writer :identifier
+      attr_writer :dotted_decimal_identifier
       attr_reader :cache_path
 
       def initialize(name, cache_path)
@@ -36,15 +38,25 @@ module ChefDK
         File.join(cache_path, cache_key)
       end
 
-      def to_lock
-        identifiers = CookbookProfiler::Identifiers.new(cookbook_path)
+      def identifier
+        @identifier || identifiers.content_identifier
+      end
 
+      def dotted_decimal_identifier
+        @dotted_decimal_identifier || identifiers.dotted_decimal_identifier
+      end
+
+      def to_lock
         {
           "version" => identifiers.semver_version,
-          "identifier" => identifiers.content_identifier,
-          "dotted_decimal_identifier" => identifiers.dotted_decimal_identifier,
+          "identifier" => identifier,
+          "dotted_decimal_identifier" => dotted_decimal_identifier,
           "cache_key" => cache_key
         }
+      end
+
+      def identifiers
+        @identifiers ||= CookbookProfiler::Identifiers.new(cookbook_path)
       end
 
     end
@@ -52,10 +64,13 @@ module ChefDK
     class LocalCookbook
 
       attr_accessor :source
+      attr_writer :identifier
+      attr_writer :dotted_decimal_identifier
       attr_reader :cookbook_search_root
 
       def initialize(name, cookbook_search_root)
         @name = name
+        @identifier = nil
         @cookbook_search_root = cookbook_search_root
       end
 
@@ -71,17 +86,28 @@ module ChefDK
         end
       end
 
+      def identifier
+        @identifier || identifiers.content_identifier
+      end
+
+      def dotted_decimal_identifier
+        @dotted_decimal_identifier || identifiers.dotted_decimal_identifier
+      end
+
       def to_lock
-        identifiers = CookbookProfiler::Identifiers.new(cookbook_path)
 
         {
           "version" => identifiers.semver_version,
-          "identifier" => identifiers.content_identifier,
-          "dotted_decimal_identifier" => identifiers.dotted_decimal_identifier,
+          "identifier" => identifier,
+          "dotted_decimal_identifier" => dotted_decimal_identifier,
           "source" => source,
           "cache_key" => nil,
           "scm_info" => scm_profiler.profile_data
         }
+      end
+
+      def identifiers
+        @identifiers ||= CookbookProfiler::Identifiers.new(cookbook_path)
       end
 
     end
@@ -94,6 +120,7 @@ module ChefDK
 
     attr_accessor :name
     attr_accessor :run_list
+
     attr_reader :cookbook_locks
     attr_reader :cache_path
     attr_reader :cookbook_search_root

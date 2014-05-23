@@ -29,6 +29,19 @@ describe ChefDK::PolicyfileLock do
     decimal_integers.join(".")
   end
 
+  # For debugging giant nested hashes...
+  def expect_hash_equal(actual, expected)
+    expected.each do |key, expected_value|
+      expect(actual).to have_key(key)
+      if expected_value.kind_of?(Hash)
+        expect_hash_equal(actual[key], expected_value)
+      else
+        expect(actual[key]).to eq(expected_value)
+      end
+    end
+    expect(actual).to eq(expected)
+  end
+
   let(:cache_path) do
     File.expand_path("spec/unit/fixtures/cookbook_cache", project_root)
   end
@@ -157,26 +170,21 @@ describe ChefDK::PolicyfileLock do
       }
     end
 
-    def expect_hash_equal(actual, expected)
-      expected.each do |key, expected_value|
-        expect(actual).to have_key(key)
-        if expected_value.kind_of?(Hash)
-          expect_hash_equal(actual[key], expected_value)
-        else
-          expect(actual[key]).to eq(expected_value)
-        end
-      end
-      expect(actual).to eq(expected)
-    end
-
     it "computes a lockfile including git data" do
       actual_lock = policyfile_lock.to_lock
-      expect_hash_equal(actual_lock, compiled_policyfile)
+      expect(actual_lock).to eq(compiled_policyfile)
     end
   end
 
   context "with a policyfile using custom identifiers" do
-    let(:custom_identifier_policyfile) do
+
+    include_context "setup git cookbooks"
+
+    let(:cookbook_search_root) do
+      tempdir
+    end
+
+    let(:policyfile_lock) do
       ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
 
         p.name = "custom_identifier"
@@ -191,11 +199,17 @@ describe ChefDK::PolicyfileLock do
           cb.identifier = "1.0.0"
           cb.dotted_decimal_identifier ="1.0.0"
         end
+
+        p.local_cookbook("bar") do |cb|
+          cb.source = "bar"
+          cb.identifier = "0.1.0"
+          cb.dotted_decimal_identifier = "0.1.0"
+        end
       end
 
     end
 
-    let(:custom_identifier_policyfile_compiled) do
+    let(:compiled_policyfile) do
       {
 
         "name" => "custom_identifier",
@@ -208,15 +222,31 @@ describe ChefDK::PolicyfileLock do
             "version" => "1.0.0",
             "identifier" => "1.0.0",
             "dotted_decimal_identifier" => "1.0.0",
-            "origin" => "https://community.getchef.com/api/cookbooks/foo/1.0.0",
             "cache_key" => "foo-1.0.0"
+          },
+
+          "bar" => {
+            "version" => "0.1.0",
+            "identifier" => "0.1.0",
+            "dotted_decimal_identifier" => "0.1.0",
+
+            "source" => "bar",
+            "cache_key" => nil,
+            "scm_info" => {
+              "scm" => "git",
+              "remote" => nil,
+              "revision" => current_rev,
+              "working_tree_clean" => true,
+              "published" => false,
+              "synchronized_remote_branches"=>[]
+            },
           },
         }
       }
     end
 
     it "generates a lockfile with custom identifiers" do
-      pending
+      expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
     end
 
   end
