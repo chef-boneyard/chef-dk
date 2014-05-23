@@ -91,6 +91,8 @@ describe ChefDK::CookbookProfiler::Git do
 
       before do
         edit_repo
+        system_command('git config --local user.name "Alice"', cwd: cookbook_path).error!
+        system_command('git config --local user.email "alice@example.com"', cwd: cookbook_path).error!
         system_command("git commit -a -m 'update readme' --author 'Alice <alice@example.com>'", cwd: cookbook_path).error!
       end
 
