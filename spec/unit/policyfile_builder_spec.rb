@@ -70,7 +70,7 @@ describe ChefDK::PolicyfileLock do
     end
 
     it "raises a descriptive error" do
-      pending
+      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::CachedCookbookNotFound)
     end
 
   end

@@ -24,6 +24,7 @@ module ChefDK
 
     class CachedCookbook
 
+      attr_reader :name
       attr_accessor :cache_key
       attr_accessor :origin
       attr_writer :identifier
@@ -52,6 +53,7 @@ module ChefDK
       end
 
       def to_lock
+        validate!
         {
           "version" => identifiers.semver_version,
           "identifier" => identifier,
@@ -63,6 +65,12 @@ module ChefDK
 
       def identifiers
         @identifiers ||= CookbookProfiler::Identifiers.new(cookbook_path)
+      end
+
+      def validate!
+        unless File.exist?(cookbook_path)
+          raise CachedCookbookNotFound, "Cookbook `#{name}' not found at expected cache location `#{cookbook_path}'"
+        end
       end
 
     end

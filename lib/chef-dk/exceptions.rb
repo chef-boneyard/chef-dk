@@ -16,6 +16,10 @@
 #
 
 module ChefDK
+
+  class CachedCookbookNotFound < StandardError
+  end
+
   module Exceptions
 
     class MissingComponentError < RuntimeError
