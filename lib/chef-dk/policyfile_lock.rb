@@ -22,13 +22,33 @@ require 'chef-dk/cookbook_profiler/git'
 module ChefDK
   class PolicyfileLock
 
+    # CachedCookbook objects represent a cookbook that has been fetched from an
+    # upstream canonical source and stored (presumed unmodified).
     class CachedCookbook
 
+      # The cookbook name (without any version or other info suffixed)
       attr_reader :name
+
+      # The directory name in the cookbook cache where the cookbook is stored.
+      # By convention, this should be the name of the cookbook followed by a
+      # hyphen and then some sort of version identifier (depending on the
+      # cookbook source).
       attr_accessor :cache_key
+
+      # A URI pointing to the canonical source of the cookbook.
       attr_accessor :origin
+
+      # A string that uniquely identifies the cookbook version. If not
+      # explicitly set, an identifier is generated based on the cookbook's
+      # content.
       attr_writer :identifier
+
+      # A string in "X.Y.Z" version number format that uniquely identifies the
+      # cookbook version. This is for compatibility with Chef Server 11.x,
+      # where cookbooks are stored by x.y.z version numbers.
       attr_writer :dotted_decimal_identifier
+
+      # The root of the cookbook cache.
       attr_reader :cache_path
 
       def initialize(name, cache_path)
@@ -75,11 +95,25 @@ module ChefDK
 
     end
 
+    # LocalCookbook objects represent cookbooks that are sourced from the local
+    # filesystem and are assumed to be under active development.
     class LocalCookbook
 
+      # A relative or absolute path to the cookbook. If a relative path is
+      # given, it is resolved relative to #cookbook_search_root
       attr_accessor :source
+
+      # A string that uniquely identifies the cookbook version. If not
+      # explicitly set, an identifier is generated based on the cookbook's
+      # content.
       attr_writer :identifier
+
+      # A string in "X.Y.Z" version number format that uniquely identifies the
+      # cookbook version. This is for compatibility with Chef Server 11.x,
+      # where cookbooks are stored by x.y.z version numbers.
       attr_writer :dotted_decimal_identifier
+
+      # The root path from which source is expanded.
       attr_reader :cookbook_search_root
 
       def initialize(name, cookbook_search_root)
