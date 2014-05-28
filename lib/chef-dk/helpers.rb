@@ -21,8 +21,6 @@ require 'chef-dk/exceptions'
 module ChefDK
   module Helpers
 
-    include ChefDK::Exceptions
-
     #
     # Runs given commands using mixlib-shellout
     #
@@ -84,7 +82,7 @@ module ChefDK
       @omnibus_env ||=
         begin
           user_bin_dir = File.expand_path(File.join(Gem.user_dir, 'bin'))
-          env = {
+          {
             'PATH' => "#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}",
             'GEM_ROOT' => Gem.default_dir.inspect,
             'GEM_HOME' => Gem.paths.home,

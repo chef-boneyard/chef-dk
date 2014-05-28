@@ -16,21 +16,17 @@
 #
 
 module ChefDK
+  module CookbookProfiler
+    class NullSCM
 
-  class CachedCookbookNotFound < StandardError
-  end
+      def initialize(cookbook_path)
+      end
 
+      def profile_data
+        nil
+      end
 
-  class MissingComponentError < RuntimeError
-    def initialize(component_name)
-      super("Component #{component_name} is missing.")
     end
   end
-
-  class OmnibusInstallNotFound < RuntimeError
-    def initialize()
-      super("Can not find omnibus installation directory for Chef.")
-    end
-  end
-
 end
+
