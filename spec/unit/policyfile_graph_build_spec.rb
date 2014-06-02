@@ -16,60 +16,323 @@
 #
 
 require 'spec_helper'
+require 'chef-dk/policyfile_compiler'
 
-describe "Build a graph from a policyfile" do
+describe ChefDK::PolicyfileCompiler do
 
-  # Given no local or git cookbooks and an empty run list
-  # * it emits an empty solution
+  let(:policyfile) { ChefDK::PolicyfileCompiler.evaluate(policyfile_rb, "TestPolicyfile.rb") }
 
-  # Given a run list and no local or git cookbooks
-  #   And the default source is the community site
-  #   * it emits a solution with cookbooks from the community site
-  #   And the default source is the chef-server
-  #   * it emits a solution with cookbooks from the chef-server
+  describe "Evaluate a policyfile" do
 
-  # Given a local cookbook with no dependencies and only that cookbook in the run list:
-  # * it emits a solution with just the one cookbook
+    describe "when the policyfile is not valid" do
+      context "Given an empty policyfile" do
 
-  # Given a local cookbook with a dependency and only the local cookbook in the run list:
-  #   And the default source is the community site:
-  #   * it emits a solution with the cookbook, its dependency and transitive
-  #     dependencies as given by the community metadata API service.
-  #   And the default source is the chef server:
-  #   * it emits a solution with the cookbook, its dependency and transitive
-  #     dependencies as given by the chef-server
+        let(:policyfile_rb) { "" }
 
-  # Give a git-sourced cookbook with no dependencies and only the git cookbook in the run list:
-  # * it emits a solution with just the one cookbook.
+        it "has an invalid run_list" do
+          expect(policyfile.errors).to include("Invalid run_list. run_list cannot be empty")
+        end
 
-  # Given a git-sourced cookbook with a dependency and only the git cookbook in the run list:
-  #   And the default source is the community site:
-  #   * it emits a solution with the cookbook, its dependency and transitive
-  #     dependencies as given by the community metadata API service.
-  #   And the default source is the chef server:
-  #   * it emits a solution with the cookbook, its dependency and transitive
-  #     dependencies as given by the chef-server
+      end
 
-  # Given a local cookbook with a run list containing the local cookbook and another cookbook:
-  #   And the default source is the community site:
-  #   * it emits a solution with the local cookbook and a remote cookbook that
-  #   satisfies the run list requirements, plus dependency and transitive
-  #   dependencies as given by the community metadata API service.
-  #   And the default source is the chef server:
-  #   * it emits a solution with the local cookbook and a remote cookbook that
-  #   satisfies the run list requirements, plus dependency and transitive
-  #   dependencies as given by the chef server.
+      context "Given a policyfile with a syntax error" do
 
-  # Given a local cookbook with a dependency and another local cookbook that satisfies the dependency:
-  # * it emits a solution using the local cookbooks
+        let(:policyfile_rb) { "{{{{::::{{::" }
 
-  # Given a local cookbook with a dependency and a git cookbook that satisfies the dependency:
-  # * it emits a solution with the git and local cookbooks
+        it "has a syntax error message" do
+          expected_error=<<-E
+Invalid ruby syntax in policyfile 'TestPolicyfile.rb':
 
-  # Given two local cookbooks with conflicting dependencies
-  # * it raises an error explaining that no solution was found.
+TestPolicyfile.rb:1: syntax error, unexpected :: at EXPR_BEG, expecting tCONSTANT
+{{{{::::{{::
+        ^
+TestPolicyfile.rb:1: syntax error, unexpected end-of-input, expecting tCONSTANT
+{{{{::::{{::
+            ^
+E
+          expect(policyfile).to have(1).errors
+          expect(policyfile.errors.first).to eq(expected_error.chomp)
+        end
 
-  # Given a local cookbook with dependencies with conflicting transitive dependencies
-  # * it raises an error explaining that no solution was found.
+      end
 
+      context "Given a policyfile with a ruby error" do
+
+        let(:policyfile_rb) { "raise 'oops'" }
+
+        it "has an error message with code context" do
+          expect(policyfile).to have(1).errors
+          expected_message = <<-E
+Evaluation of policyfile 'TestPolicyfile.rb' raised an exception
+  Exception: RuntimeError "oops"
+
+  Relevant Code:
+    1: raise 'oops'
+
+  Backtrace:
+    TestPolicyfile.rb:1:in `evaluate!'
+E
+          expect(policyfile.errors.first).to eq(expected_message)
+        end
+      end
+
+      context "when policyfile evaluation is aborted by user signal" do
+
+        let(:policyfile_rb) { "raise Interrupt" }
+
+        it "allows the exception to bubble up" do
+          expect { policyfile }.to raise_error(Interrupt)
+        end
+      end
+
+      context "when given an invalid default source type" do
+
+        let(:policyfile_rb) do
+          <<-EOH
+            run_list "foo"
+            default_source :herp, "derp"
+          EOH
+        end
+
+        it "has an invalid source error" do
+          expect(policyfile).to have(1).errors
+          expect(policyfile.errors.first).to eq("Invalid default_source type ':herp'")
+        end
+      end
+
+      context "when the url is omitted for chef server default source" do
+        let(:policyfile_rb) do
+          <<-EOH
+            run_list "foo"
+            default_source :chef_server
+          EOH
+        end
+
+        it "has an invalid source error" do
+          expect(policyfile).to have(1).errors
+          expect(policyfile.errors.first).to eq("You must specify the server's URI when using a default_source :chef_server")
+        end
+
+      end
+    end
+
+    context "Given a minimal valid policyfile" do
+
+      let(:policyfile_rb) do
+        <<-EOH
+          run_list "foo", "bar"
+        EOH
+      end
+
+      it "has no errors" do
+        expect(policyfile.errors).to eq([])
+      end
+
+      it "has a run_list" do
+        expect(policyfile.run_list).to eq(%w[foo bar])
+      end
+
+      it "has no default cookbook source" do
+        expect(policyfile.default_source).to be_nil
+      end
+
+      context "with the default source set to the community site" do
+
+        let(:policyfile_rb) do
+          <<-EOH
+            run_list "foo", "bar"
+            default_source :community
+          EOH
+        end
+
+        it "has a default source" do
+          expect(policyfile.errors).to eq([])
+          expected = ChefDK::PolicyfileCompiler::CommunityCookbookSource.new("https://api.berkshelf.com")
+          expect(policyfile.default_source).to eq(expected)
+        end
+
+        context "with a custom URI" do
+
+          let(:policyfile_rb) do
+            <<-EOH
+              run_list "foo", "bar"
+              default_source :community, "https://cookbook-api.example.com"
+            EOH
+          end
+
+          it "has a default source" do
+            expect(policyfile.errors).to eq([])
+            expected = ChefDK::PolicyfileCompiler::CommunityCookbookSource.new("https://cookbook-api.example.com")
+            expect(policyfile.default_source).to eq(expected)
+          end
+
+        end
+
+      end
+
+      context "with the default source set to a chef server" do
+
+        let(:policyfile_rb) do
+          <<-EOH
+            run_list "foo", "bar"
+            default_source :chef_server, "https://mychef.example.com"
+          EOH
+        end
+
+        it "has a default source" do
+          expect(policyfile.errors).to eq([])
+          expected = ChefDK::PolicyfileCompiler::ChefServerCookbookSource.new("https://mychef.example.com")
+          expect(policyfile.default_source).to eq(expected)
+        end
+
+      end
+
+    end
+
+    describe "assigning cookbooks to specific sources" do
+
+      before do
+        expect(policyfile.errors).to eq([])
+      end
+
+      context "when a cookbook is assigned to a local source" do
+
+        let(:policyfile_rb) do
+          <<-EOH
+            run_list "foo"
+            cookbook "foo", path: "local_cookbooks/foo"
+          EOH
+        end
+
+        it "sets the source of the cookbook to the local path" do
+          expect(policyfile.cookbook_source_overrides).to eq("foo" => { path: "local_cookbooks/foo" })
+        end
+
+      end
+
+      context "when a cookbook is assigned to a git source" do
+        let(:policyfile_rb) do
+          <<-EOH
+            run_list "foo"
+            cookbook "foo", git: "git://example.com:me/foo-cookbook.git"
+          EOH
+        end
+
+        it "sets the source of the cookbook to the git URL" do
+          expect(policyfile.cookbook_source_overrides).to eq("foo" => { git: "git://example.com:me/foo-cookbook.git" })
+        end
+
+      end
+
+      context "when a cookbook is assigned to a chef_server source" do
+        let(:policyfile_rb) do
+          <<-EOH
+            run_list "foo"
+            cookbook "foo", chef_server: "https://mychefserver.example.com"
+          EOH
+        end
+
+        it "sets the source of the cookbook to the git URL" do
+          expect(policyfile.cookbook_source_overrides).to eq("foo" => { chef_server: "https://mychefserver.example.com" })
+        end
+
+      end
+
+    end
+
+    describe "assigning a cookbook to conflicting sources" do
+      let(:policyfile_rb) do
+        <<-EOH
+          run_list "foo"
+          cookbook "foo", path: "local_cookbooks/foo"
+          cookbook "foo", chef_server: "https://mychefserver.example.com"
+        EOH
+      end
+
+      it "has a conflicting sources error" do
+        expected = <<-EOH
+Cookbook 'foo' assigned to conflicting sources
+
+Previous source: {:path=>"local_cookbooks/foo"}
+Conflicts with: {:chef_server=>"https://mychefserver.example.com"}
+EOH
+        expect(policyfile).to have(1).errors
+        expect(policyfile.errors.first).to eq(expected)
+      end
+
+    end
+
+  end
+
+  describe "Build a graph from a policyfile" do
+
+    context "Given no local or git cookbooks and an empty run list" do
+      it "emits an empty solution"
+    end
+
+    context "Given a run list and no local or git cookbooks" do
+      context "And the default source is the community site" do
+        it "emits a solution with cookbooks from the community site"
+      end
+
+      context "And the default source is the chef-server" do
+        it "emits a solution with cookbooks from the chef-server"
+      end
+    end
+
+    context "Given a local cookbook with no dependencies and only that cookbook in the run list" do
+      it "emits a solution with just the one cookbook"
+    end
+
+    context "Given a local cookbook with a dependency and only the local cookbook in the run list" do
+      context "And the default source is the community site" do
+        # TODO: break into smaller assertions
+        it "emits a solution with the cookbook, its dependency and transitive dependencies as given by the community metadata API service."
+      end
+      context "And the default source is the chef server" do
+        it "emits a solution with the cookbook, its dependency and transitive dependencies as given by the chef-server"
+      end
+    end
+
+    context "Given a git-sourced cookbook with no dependencies and only the git cookbook in the run list" do
+      it "emits a solution with just the one cookbook."
+    end
+
+    context "Given a git-sourced cookbook with a dependency and only the git cookbook in the run list" do
+      context "And the default source is the community site" do
+        # TODO: break into smaller assertions
+        it "emits a solution with the cookbook, its dependency and transitive dependencies as given by the community metadata API service."
+      end
+      context "And the default source is the chef server" do
+        # TODO: break into smaller assertions
+        it "emits a solution with the cookbook, its dependency and transitive dependencies as given by the chef-server"
+      end
+    end
+
+    context "Given a local cookbook with a run list containing the local cookbook and another cookbook" do
+      context "And the default source is the community site" do
+        it "emits a solution with the local cookbook and a remote cookbook that satisfies the run list requirements, plus dependency and transitive dependencies as given by the community metadata API service."
+      end
+      context "And the default source is the chef server" do
+        it "emits a solution with the local cookbook and a remote cookbook that satisfies the run list requirements, plus dependency and transitive dependencies as given by the chef server."
+      end
+    end
+
+    context "Given a local cookbook with a dependency and another local cookbook that satisfies the dependency" do
+      it "emits a solution using the local cookbooks"
+    end
+
+    context "Given a local cookbook with a dependency and a git cookbook that satisfies the dependency" do
+      it "emits a solution with the git and local cookbooks"
+    end
+
+    context "Given two local cookbooks with conflicting dependencies" do
+      it "raises an error explaining that no solution was found."
+    end
+
+    context "Given a local cookbook with dependencies with conflicting transitive dependencies" do
+      it "raises an error explaining that no solution was found."
+    end
+
+  end
 end
