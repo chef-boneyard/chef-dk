@@ -78,8 +78,9 @@ other Ruby applications that are not packaged with ChefDK.
 
 Gems are installed to a `.chefdk` directory in your home directory; any
 executables included with a gem you install will be created in
-`~/.chefdk/gem/ruby/2.1.0/bin`, so add this to your `PATH` if you plan
-to use executables installed this way.
+`~/.chefdk/gem/ruby/2.1.0/bin`. You can run these executables with
+`chef exec`, or use `chef shell-init` to add ChefDK's paths to your
+environment. Those commands are documented below.
 
 #### `chef verify`
 `chef verify` tests the embedded applications. By default it runs a
