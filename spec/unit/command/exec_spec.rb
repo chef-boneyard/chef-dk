@@ -67,9 +67,11 @@ describe ChefDK::Command::Exec do
 
       let(:omnibus_embedded_bin_dir) { "/foo/embedded/bin" }
 
+      let(:omnibus_bin_dir) { "/foo/bin" }
+
       let(:expected_env) do
         {
-          'PATH' => "#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}",
+          'PATH' => "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}",
           'GEM_ROOT' => Gem.default_dir.inspect,
           'GEM_HOME' => ENV['GEM_HOME'],
           'GEM_PATH' => Gem.path.join(':'),
@@ -78,6 +80,7 @@ describe ChefDK::Command::Exec do
 
       before do
         command_instance.stub(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
+        command_instance.stub(:omnibus_bin_dir).and_return(omnibus_bin_dir)
       end
 
       it "should call exec to fire off the command with the correct environment" do
@@ -91,11 +94,13 @@ describe ChefDK::Command::Exec do
 
       let(:user_bin_dir) { File.expand_path(File.join(Gem.user_dir, 'bin')) }
 
+      let(:omnibus_bin_dir) { "/foo/bin" }
+
       let(:omnibus_embedded_bin_dir) { "/foo/embedded/bin" }
 
       let(:expected_env) do
         {
-          'PATH' => "#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}",
+          'PATH' => "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}",
           'GEM_ROOT' => Gem.default_dir.inspect,
           'GEM_HOME' => Gem.paths.home,
           'GEM_PATH' => Gem.path.join(':'),
@@ -104,6 +109,7 @@ describe ChefDK::Command::Exec do
 
       before do
         command_instance.stub(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
+        command_instance.stub(:omnibus_bin_dir).and_return(omnibus_bin_dir)
       end
 
       it "should raise Errno::ENOENT" do

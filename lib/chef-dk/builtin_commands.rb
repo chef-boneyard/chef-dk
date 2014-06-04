@@ -25,5 +25,7 @@ ChefDK.commands do |c|
 
   c.builtin "generate", :Generate, desc: "Generate a new app, cookbook, or component"
 
+  c.builtin "shell-init", :ShellInit, desc: "Initialize your shell to use ChefDK as your primary ruby"
+
   c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications"
 end
