@@ -21,14 +21,16 @@ require 'chef-dk/command/shell_init'
 describe ChefDK::Command::ShellInit do
 
   let(:stdout_io) { StringIO.new }
+  let(:stderr_io) { StringIO.new }
 
   let(:command_instance) do
     ChefDK::Command::ShellInit.new.tap do |c|
       c.stub(:stdout).and_return(stdout_io)
+      c.stub(:stderr).and_return(stderr_io)
     end
   end
 
-  let(:argv) { [] }
+  let(:argv) { ['bash'] }
 
   let(:user_bin_dir) { File.expand_path(File.join(Gem.user_dir, 'bin')) }
 
@@ -64,6 +66,29 @@ EOH
       expect(stdout_io.string).to eq(expected_environment_commands)
     end
 
+    context "when no shell is specified" do
+
+      let(:argv) { [] }
+
+      it "exits with an error message" do
+        expect(command_instance.run(argv)).to eq(1)
+        expect(stderr_io.string).to include("Please specify what shell you are using")
+      end
+
+    end
+
+    context "when an unsupported shell is specified" do
+
+      let(:argv) { ['nosuchsh'] }
+
+      it "exits with an error message" do
+        expect(command_instance.run(argv)).to eq(1)
+        expect(stderr_io.string).to include("Shell `nosuchsh' is not currently supported")
+        expect(stderr_io.string).to include("Supported shells are: bash zsh sh")
+      end
+
+    end
+
   end
 
   context "with an explicit omnibus directory as an argument" do
@@ -72,7 +97,7 @@ EOH
     let(:omnibus_bin_dir) { File.join(omnibus_root, "bin") }
     let(:omnibus_embedded_bin_dir) { File.join(omnibus_root, "embedded/bin") }
 
-    let(:argv) { ["--omnibus-dir", omnibus_root] }
+    let(:argv) { ["bash", "--omnibus-dir", omnibus_root] }
 
     it "emits a script to add ChefDK's ruby to the shell environment" do
       command_instance.run(argv)

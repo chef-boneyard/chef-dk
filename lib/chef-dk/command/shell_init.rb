@@ -21,6 +21,9 @@ require 'mixlib/shellout'
 module ChefDK
   module Command
     class ShellInit < ChefDK::Command::Base
+
+      SUPPORTED_SHELLS = %w[ bash zsh sh ].map(&:freeze).freeze
+
       banner(<<-HELP)
 Usage: chef shell-init
 
@@ -50,7 +53,17 @@ HELP
       def run(argv)
         # Currently we don't have any shell-specific features, so we ignore the
         # shell name. We'll need it if we add completion.
-        _shell_name = parse_options(argv)
+        remaining_args = parse_options(argv)
+        shell_name = remaining_args.first
+        if shell_name.nil?
+          err("Please specify what shell you are using\n")
+          err(opt_parser.to_s)
+          return 1
+        elsif !SUPPORTED_SHELLS.include?(shell_name)
+          err("Shell `#{shell_name}' is not currently supported")
+          err("Supported shells are: #{SUPPORTED_SHELLS.join(' ')}")
+          return 1
+        end
 
         env = omnibus_env.dup
         path = env.delete("PATH")
