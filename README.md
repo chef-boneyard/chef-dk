@@ -101,6 +101,12 @@ in our build cluster to verify each build).
 environment variable and the ruby environment variables (GEM_HOME,
 GEM_PATH, etc) setup to point at the embedded ChefDK omnibus environment.
 
+### `chef shell-init`
+`chef shell-init SHELL_NAME` emits shell commands that modify your
+environment to make ChefDK your primary ruby. For more information to
+help you decide if this is desirable and instructions, see "Using ChefDK
+as Your Primary Development Environment" below.
+
 ### Using ChefDK as Your Primary Development Environment
 
 By default, ChefDK only adds a few select applications to your `PATH`
@@ -112,10 +118,27 @@ provided applications appear first in your `PATH` before any
 gem-installed versions and you're good to go.
 
 If you'd like to use ChefDK as your primary Ruby/Chef development
-environment, however, you can do so by making a few modifications to
-your environment:
-* Add `/opt/chefdk/embedded/bin` to your `PATH`. This gives you access
-to ChefDK's embedded `ruby` and support applications.
-* Add `~/.chefdk/gem/ruby/2.1.0/bin` to your `PATH`. This will allow you
-to run any command line applications you install via `chef gem`.
+environment, however, you can do so by initializing your shell with
+ChefDK's environment.
+
+To try it temporarily, in a new terminal session, run:
+
+    eval "$(chef shell-init SHELL_NAME)"
+
+where `SHELL_NAME` is the name of your shell, (usually bash, but zsh is
+also common). This modifies your `PATH` and `GEM_*` environment
+variables to include ChefDK's paths (run without the `eval` to see the
+generated code). Now your default `ruby` and associated tools will be
+the ones from ChefDK:
+
+    which ruby
+    # => /opt/chefdk/embedded/bin/ruby
+
+To add ChefDK to your shell's environment permanently, add the
+initialization step to your shell's profile:
+
+    echo 'eval "$(chef shell-init SHELL_NAME)"' >> ~/.YOUR_SHELL_PROFILE
+
+Where `YOUR_SHELL_PROFILE` is `~/.bash_profile` for most bash users,
+`~/.zshrc` for zsh, and `~/.bashrc` on Ubuntu.
 
