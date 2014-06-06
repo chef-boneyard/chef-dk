@@ -2,19 +2,19 @@
 
 Chef Development Kit (Chef DK) brings Chef and the development tools developed by the Chef Community together and acts as the consistent interface to this awesomeness. This awesomeness is composed of:
 
-* [Chef](http://www.getchef.com)
-* [Berkshelf](http://berkshelf.com)
-* [Test Kitchen](http://kitchen.ci)
-* [ChefSpec](http://code.sethvargo.com/chefspec/)
-* [Foodcritic](http://acrmp.github.io/foodcritic/)
+* [Chef][]
+* [Berkshelf][]
+* [Test Kitchen][]
+* [ChefSpec][]
+* [Foodcritic][]
 
 This repository contains the code for the `chef` command. The full
 package is built via the 'chefdk' project in
-[omnibus-chef.](https://github.com/opscode/omnibus-chef)
+[omnibus-chef](https://github.com/opscode/omnibus-chef).
 
 ## Installation
 
-You can get the latest release of ChefDK from [our downloads page.](http://www.getchef.com/downloads/chef-dk/)
+You can get the [latest release of ChefDK from the downloads page][ChefDK].
 
 On Mac OS X, you can also use [homebrew-cask](http://caskroom.io)
 to install ChefDK.
@@ -25,10 +25,10 @@ system bin directory, ready to use.
 
 ## Usage
 
-For help with Berkshelf, Test Kitchen, ChefSpec or FoodCritic, visit
-those projects' homepages for documentation and guides. For help with
-`chef-client` and `knife`, visit the [Chef documentation](http://docs.opscode.com)
-and [Learn Chef](https://learnchef.opscode.com).
+For help with [Berkshelf][], [Test Kitchen][], [ChefSpec][] or [Foodcritic][],
+visit those projects' homepages for documentation and guides. For help with
+`chef-client` and `knife`, visit the [Chef documentation][]
+and [LearnChef][].
 
 ### The `chef` Command
 
@@ -143,3 +143,13 @@ initialization step to your shell's profile:
 Where `YOUR_SHELL_PROFILE` is `~/.bash_profile` for most bash users,
 `~/.zshrc` for zsh, and `~/.bashrc` on Ubuntu.
 
+- - -
+
+[Berkshelf]: http://berkshelf.com "Berkshelf"
+[Chef]: https://www.getchef.com "Chef"
+[ChefDK]: https://www.getchef.com/downloads/chef-dk "Chef Development Kit"
+[Chef Documentation]: http://docs.opscode.com "Chef Documentation"
+[ChefSpec]: http://chefspec.org "ChefSpec"
+[Foodcritic]: http://foodcritic.io "Foodcritic"
+[LearnChef]: (https://learnchef.opscode.com). "#learnchef"
+[Test Kitchen]: http://kitchen.ci "Test Kitchen"
