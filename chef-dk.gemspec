@@ -40,7 +40,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "mixlib-cli", "~> 1.5"
   gem.add_dependency "mixlib-shellout", "~> 1.4"
 
-  gem.add_dependency "chef", "~> 11.12"
+  gem.add_dependency "chef", "= 11.14.0.alpha.4"
 
   %w(rspec-core rspec-expectations rspec-mocks).each do |dev_gem|
     gem.add_development_dependency dev_gem, "~> 2.14.0"
