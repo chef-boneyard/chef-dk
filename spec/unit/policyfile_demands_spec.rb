@@ -29,11 +29,13 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
   let(:external_cookbook_universe) { {} }
 
   let(:policyfile) do
-    ChefDK::PolicyfileCompiler.new("", "TestPolicyfile.rb").tap do |p|
+    policyfile = ChefDK::PolicyfileCompiler.new.build do |p|
       p.default_source(*default_source) if default_source
       p.run_list(*run_list)
-      p.stub(:cache_manager).and_return(cache_manager)
     end
+
+    policyfile.stub(:cache_manager).and_return(cache_manager)
+    policyfile
   end
 
   let(:demands) { policyfile.graph_demands }
@@ -159,7 +161,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     let(:run_list) { ['local-cookbook'] }
 
     before do
-      policyfile.cookbook('local-cookbook', path: "/foo")
+      policyfile.dsl.cookbook('local-cookbook', path: "/foo")
       cache_manager.stub(:cookbook_version).with("local-cookbook").and_return("2.3.4")
       cache_manager.stub(:cookbook_dependencies).with("local-cookbook").and_return({ "2.3.4" => [] })
     end
@@ -186,7 +188,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       include_context "community default source"
 
       before do
-        policyfile.cookbook("local-cookbook", path: "foo/")
+        policyfile.dsl.cookbook("local-cookbook", path: "foo/")
         cache_manager.stub(:cookbook_version).with("local-cookbook").and_return("2.3.4")
         cache_manager.stub(:cookbook_dependencies).with("local-cookbook").and_return({
           "2.3.4" => [ [ "local-cookbook-dep-one", "~> 1.0"] ]
@@ -211,7 +213,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       include_context "chef server default source"
 
       before do
-        policyfile.cookbook("local-cookbook", path: "foo/")
+        policyfile.dsl.cookbook("local-cookbook", path: "foo/")
         cache_manager.stub(:cookbook_version).with("local-cookbook").and_return("2.3.4")
         cache_manager.stub(:cookbook_dependencies).with("local-cookbook").and_return({
           "2.3.4" => [ [ "local-cookbook-dep-one", "~> 1.0"] ]
@@ -240,7 +242,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     let(:run_list) { ["git-sourced-cookbook"] }
 
     before do
-      policyfile.cookbook("git-sourced-cookbook", git: "git://git.example.org:user/a-cookbook.git")
+      policyfile.dsl.cookbook("git-sourced-cookbook", git: "git://git.example.org:user/a-cookbook.git")
       cache_manager.stub(:cookbook_version).with("git-sourced-cookbook").and_return("8.6.7")
       cache_manager.stub(:cookbook_dependencies).with("git-sourced-cookbook").and_return({
         "8.6.7" => [ ]
@@ -264,7 +266,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     let(:run_list) { ["git-sourced-cookbook"] }
 
     before do
-      policyfile.cookbook("git-sourced-cookbook", git: "git://git.example.org:user/a-cookbook.git")
+      policyfile.dsl.cookbook("git-sourced-cookbook", git: "git://git.example.org:user/a-cookbook.git")
       cache_manager.stub(:cookbook_version).with("git-sourced-cookbook").and_return("8.6.7")
       cache_manager.stub(:cookbook_dependencies).with("git-sourced-cookbook").and_return({
         "8.6.7" => [ ["git-sourced-cookbook-dep", "~> 2.2" ] ]
@@ -313,7 +315,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     let(:run_list) { ['local-cookbook', 'remote-cookbook'] }
 
     before do
-      policyfile.cookbook("local-cookbook", path: "foo/")
+      policyfile.dsl.cookbook("local-cookbook", path: "foo/")
       cache_manager.stub(:cookbook_version).with("local-cookbook").and_return("2.3.4")
       cache_manager.stub(:cookbook_dependencies).with("local-cookbook").and_return("2.3.4" => [])
     end

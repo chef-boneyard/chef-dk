@@ -70,7 +70,7 @@ Evaluation of policyfile 'TestPolicyfile.rb' raised an exception
     1: raise 'oops'
 
   Backtrace:
-    TestPolicyfile.rb:1:in `evaluate!'
+    TestPolicyfile.rb:1:in `eval_policyfile'
 E
           expect(policyfile.errors.first).to eq(expected_message)
         end
@@ -147,7 +147,7 @@ E
 
         it "has a default source" do
           expect(policyfile.errors).to eq([])
-          expected = ChefDK::PolicyfileCompiler::CommunityCookbookSource.new("https://api.berkshelf.com")
+          expected = ChefDK::Policyfile::CommunityCookbookSource.new("https://api.berkshelf.com")
           expect(policyfile.default_source).to eq(expected)
         end
 
@@ -162,7 +162,7 @@ E
 
           it "has a default source" do
             expect(policyfile.errors).to eq([])
-            expected = ChefDK::PolicyfileCompiler::CommunityCookbookSource.new("https://cookbook-api.example.com")
+            expected = ChefDK::Policyfile::CommunityCookbookSource.new("https://cookbook-api.example.com")
             expect(policyfile.default_source).to eq(expected)
           end
 
@@ -181,7 +181,7 @@ E
 
         it "has a default source" do
           expect(policyfile.errors).to eq([])
-          expected = ChefDK::PolicyfileCompiler::ChefServerCookbookSource.new("https://mychef.example.com")
+          expected = ChefDK::Policyfile::ChefServerCookbookSource.new("https://mychef.example.com")
           expect(policyfile.default_source).to eq(expected)
         end
 
