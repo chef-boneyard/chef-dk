@@ -68,6 +68,14 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
         "remote-cb" => {
           "1.1.1" => [ ]
+        },
+
+        "local-cookbook-dep-one" => {
+          "1.5.0" => [ ]
+        },
+
+        "git-sourced-cookbook-dep" => {
+          "2.8.0" => [ ]
         }
 
       }
@@ -102,7 +110,17 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
         "private-cookbook" => {
           "0.1.0" => [ ]
+        },
+
+        "local-cookbook-dep-one" => {
+          "1.6.0" => [ ]
+        },
+
+        "git-sourced-cookbook-dep" => {
+          "2.9.0" => [ ]
         }
+
+
       }
     end
   end
@@ -123,6 +141,10 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     it "uses an empty universe for dependencies" do
       expect(policyfile.artifacts_graph).to eq({})
     end
+
+    it "has an empty solution" do
+      expect(policyfile.graph_solution).to eq({})
+    end
   end
 
   context "Given a run list and no local or git cookbooks" do
@@ -140,6 +162,11 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       it "uses the community site universe for dependencies" do
         expect(policyfile.artifacts_graph).to eq(external_cookbook_universe)
       end
+
+      it "uses the community cookbook in the solution" do
+        expect(policyfile.graph_solution).to eq({"remote-cb" => "1.1.1"})
+      end
+
     end
 
     context "And the default source is the chef-server" do
@@ -152,6 +179,10 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
       it "uses the chef-server universe for dependencies" do
         expect(policyfile.artifacts_graph).to eq(external_cookbook_universe)
+      end
+
+      it "uses the chef-server cookbook in the solution" do
+        expect(policyfile.graph_solution).to eq({"remote-cb" => "1.1.1"})
       end
     end
   end
@@ -207,6 +238,10 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         expect(policyfile.artifacts_graph).to eq(expected_artifacts_graph)
       end
 
+      it "uses the local cookbook in the solution and gets dependencies remotely" do
+        expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "local-cookbook-dep-one" => "1.5.0"})
+      end
+
     end
     context "And the default source is the chef server" do
 
@@ -234,6 +269,11 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         }
         expect(policyfile.artifacts_graph).to eq(expected_artifacts_graph)
       end
+
+      it "uses the local cookbook in the solution and gets dependencies remotely" do
+        expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "local-cookbook-dep-one" => "1.6.0"})
+      end
+
     end
   end
 
@@ -258,6 +298,10 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         "git-sourced-cookbook" => { "8.6.7" => [ ] }
       }
       expect(policyfile.artifacts_graph).to eq(expected_artifacts_graph)
+    end
+
+    it "uses the git sourced cookbook in the solution" do
+      expect(policyfile.graph_solution).to eq({"git-sourced-cookbook" => "8.6.7"})
     end
   end
 
@@ -289,6 +333,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         expect(policyfile.artifacts_graph).to eq(expected_artifacts_graph)
       end
 
+      it "uses the git sourced cookbook with remote dependencies in the solution" do
+        expect(policyfile.graph_solution).to eq({"git-sourced-cookbook" => "8.6.7", "git-sourced-cookbook-dep" => "2.8.0"})
+      end
     end
 
     context "And the default source is the chef server" do
@@ -307,12 +354,15 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         expect(policyfile.artifacts_graph).to eq(expected_artifacts_graph)
       end
 
+      it "uses the git sourced cookbook with remote dependencies in the solution" do
+        expect(policyfile.graph_solution).to eq({"git-sourced-cookbook" => "8.6.7", "git-sourced-cookbook-dep" => "2.9.0"})
+      end
     end
   end
 
   context "Given a local cookbook with a run list containing the local cookbook and another cookbook" do
 
-    let(:run_list) { ['local-cookbook', 'remote-cookbook'] }
+    let(:run_list) { ['local-cookbook', 'remote-cb'] }
 
     before do
       policyfile.dsl.cookbook("local-cookbook", path: "foo/")
@@ -325,13 +375,17 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       include_context "community default source"
 
       it "demands a solution with the local cookbook and any version of the other cookbook" do
-        expect(demands).to eq([["local-cookbook", "= 2.3.4"], ["remote-cookbook", ">= 0.0.0"]])
+        expect(demands).to eq([["local-cookbook", "= 2.3.4"], ["remote-cb", ">= 0.0.0"]])
       end
 
       it "overrides the community universe with the local cookbook and deps" do
         expected_artifacts_graph = external_cookbook_universe.dup
         expected_artifacts_graph["local-cookbook"] = { "2.3.4" => [ ] }
         expect(policyfile.artifacts_graph).to eq(expected_artifacts_graph)
+      end
+
+      it "uses the locally specified cookbook and remote cookbooks in the solution" do
+        expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "remote-cb" => "1.1.1"})
       end
 
     end
@@ -341,13 +395,17 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       include_context "chef server default source"
 
       it "demands a solution with the local cookbook and any version of the other cookbook" do
-        expect(demands).to eq([["local-cookbook", "= 2.3.4"], ["remote-cookbook", ">= 0.0.0"]])
+        expect(demands).to eq([["local-cookbook", "= 2.3.4"], ["remote-cb", ">= 0.0.0"]])
       end
 
       it "overrides the chef-server universe with the local cookbook and deps" do
         expected_artifacts_graph = external_cookbook_universe.dup
         expected_artifacts_graph["local-cookbook"] = { "2.3.4" => [ ] }
         expect(policyfile.artifacts_graph).to eq(expected_artifacts_graph)
+      end
+
+      it "uses the locally specified cookbook and remote cookbooks in the solution" do
+        expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "remote-cb" => "1.1.1"})
       end
 
     end

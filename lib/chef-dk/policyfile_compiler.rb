@@ -15,9 +15,10 @@
 # limitations under the License.
 #
 
+require 'solve'
+require 'forwardable'
 require 'chef-dk/policyfile/dsl'
 require 'chef/run_list/run_list_item'
-require 'forwardable'
 
 module ChefDK
 
@@ -54,6 +55,23 @@ module ChefDK
     ##
     # Compilation Methods
     ##
+
+    def graph_solution
+      @solution ||= Solve.it!(graph, graph_demands)
+    end
+
+    def graph
+      @graph ||= Solve::Graph.new.tap do |g|
+        artifacts_graph.each do |name, dependencies_by_version|
+          dependencies_by_version.each do |version, dependencies|
+            artifact = g.artifact(name, version)
+            dependencies.each do |dep_name, constraint|
+              artifact.dependency(dep_name, constraint)
+            end
+          end
+        end
+      end
+    end
 
     def graph_demands
       cookbooks_in_run_list.map do |cookbook_name, version_constraint|
