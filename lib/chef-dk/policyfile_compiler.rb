@@ -49,10 +49,6 @@ module ChefDK
     end
 
     ##
-    # DSL Methods
-    ##
-
-    ##
     # Compilation Methods
     ##
 
