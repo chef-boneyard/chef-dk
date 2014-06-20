@@ -19,5 +19,4 @@ source 'https://rubygems.org'
 
 gemspec :name => "chef-dk"
 
-gem "chef", ">= 11.14.0.alpha.1"
-
+gem "chef", ">= 11.14.0.alpha.4"
