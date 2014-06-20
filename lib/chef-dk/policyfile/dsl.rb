@@ -16,6 +16,7 @@
 #
 
 require 'chef-dk/policyfile/cookbook_source'
+require 'chef-dk/policyfile/cookbook_spec'
 
 module ChefDK
   module Policyfile
@@ -51,14 +52,27 @@ module ChefDK
         end
       end
 
-      def cookbook(name, source_opts={})
+      # TODO: maybe use keyword args?
+      # (name, constraint=">= 0.0.0", git: nil, path: nil, github: nil)
+      def cookbook(name, *version_and_source_opts)
+        source_options =
+          if version_and_source_opts.last.is_a?(Hash)
+            version_and_source_opts.pop
+          else
+            {}
+          end
+
+        constraint = version_and_source_opts.first || ">= 0.0.0"
+        spec = CookbookSpec.new(name, constraint, source_options)
+
+
         if existing_source = @cookbook_source_overrides[name]
           err = "Cookbook '#{name}' assigned to conflicting sources\n\n"
-          err << "Previous source: #{existing_source.inspect}\n"
-          err << "Conflicts with: #{source_opts.inspect}\n"
+          err << "Previous source: #{existing_source.source_options.inspect}\n"
+          err << "Conflicts with: #{source_options.inspect}\n"
           @errors << err
         else
-          @cookbook_source_overrides[name] = source_opts
+          @cookbook_source_overrides[name] = spec
         end
       end
 

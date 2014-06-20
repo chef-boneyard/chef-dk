@@ -18,6 +18,7 @@
 require 'solve'
 require 'forwardable'
 require 'chef-dk/policyfile/dsl'
+require 'chef-dk/cookbook_cache_manager'
 require 'chef/run_list/run_list_item'
 
 module ChefDK
@@ -48,12 +49,30 @@ module ChefDK
       @dsl = Policyfile::DSL.new
     end
 
+    ## TODO: move this to the right place, test.
+
+    class PolicyfileError < StandardError; end
+    def error!
+      unless errors.empty?
+        raise PolicyfileError, errors.join("\n")
+      end
+    end
+
     ##
     # Compilation Methods
     ##
 
+    # TODO: test
+    def cache_fixed_version_cookbooks
+      cookbook_source_overrides.each do |_cookbook_name, cookbook_spec|
+        cookbook_spec.ensure_cached
+      end
+    end
+
     def graph_solution
-      @solution ||= Solve.it!(graph, graph_demands)
+      return @solution if @solution
+      cache_fixed_version_cookbooks
+      @solution = Solve.it!(graph, graph_demands)
     end
 
     def graph
@@ -80,9 +99,9 @@ module ChefDK
     end
 
     def local_artifacts_graph
-      cookbooks_in_run_list.inject({}) do |local_artifacts, cookbook_name|
-        if cookbook_version_fixed?(cookbook_name)
-          local_artifacts[cookbook_name] = cache_manager.cookbook_dependencies(cookbook_name)
+      cookbook_source_overrides.inject({}) do |local_artifacts, (cookbook_name, cookbook_spec)|
+        if cookbook_spec.version_fixed?
+          local_artifacts[cookbook_name] = { cookbook_spec.version => cookbook_spec.dependencies }
         end
         local_artifacts
       end
@@ -93,8 +112,8 @@ module ChefDK
     end
 
     def version_constraint_for(cookbook_name)
-      if cookbook_version_fixed?(cookbook_name)
-        version = cache_manager.cookbook_version(cookbook_name)
+      if cookbook_spec = cookbook_source_overrides[cookbook_name]
+        version = cookbook_spec.version
         "= #{version}"
       else
         DEFAULT_DEMAND_CONSTRAINT
@@ -102,15 +121,15 @@ module ChefDK
     end
 
     def cookbook_version_fixed?(cookbook_name)
-      if source_options = cookbook_source_overrides[cookbook_name]
-        SOURCE_TYPES_WITH_FIXED_VERSIONS.any? { |type| source_options.key?(type) }
+      if cookbook_spec = cookbook_source_overrides[cookbook_name]
+        cookbook_spec.version_fixed?
       else
         false
       end
     end
 
     def cache_manager
-      raise "TODO"
+      @cache_manager ||= CookbookCacheManager.new(self)
     end
 
     def run_list_graph_demands
