@@ -41,4 +41,6 @@ module ChefDK
   class UnsupportedFeature < StandardError
   end
 
+  class PolicyfileError < StandardError
+  end
 end

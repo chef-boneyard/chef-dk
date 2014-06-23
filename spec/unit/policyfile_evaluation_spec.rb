@@ -25,6 +25,16 @@ describe ChefDK::PolicyfileCompiler do
   describe "Evaluate a policyfile" do
 
     describe "when the policyfile is not valid" do
+
+      describe "when error! is called" do
+
+        let(:policyfile_rb) { "raise 'oops'" }
+
+        it "raises a PolicyfileError" do
+          expect { policyfile.error! }.to raise_error(ChefDK::PolicyfileError)
+        end
+      end
+
       context "Given an empty policyfile" do
 
         let(:policyfile_rb) { "" }

@@ -49,9 +49,6 @@ module ChefDK
       @dsl = Policyfile::DSL.new
     end
 
-    ## TODO: move this to the right place, test.
-
-    class PolicyfileError < StandardError; end
     def error!
       unless errors.empty?
         raise PolicyfileError, errors.join("\n")
@@ -65,13 +62,6 @@ module ChefDK
     ##
     # Compilation Methods
     ##
-
-    # TODO: test
-    def cache_fixed_version_cookbooks
-      cookbook_source_overrides.each do |_cookbook_name, cookbook_spec|
-        cookbook_spec.ensure_cached
-      end
-    end
 
     def graph_solution
       return @solution if @solution
@@ -153,6 +143,15 @@ module ChefDK
       @dsl.eval_policyfile(policyfile_string, policyfile_filename)
       self
     end
+
+    private
+
+    def cache_fixed_version_cookbooks
+      cookbook_source_overrides.each do |_cookbook_name, cookbook_spec|
+        cookbook_spec.ensure_cached
+      end
+    end
+
 
   end
 end
