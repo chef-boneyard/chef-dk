@@ -55,8 +55,6 @@ module ChefDK
         end
       end
 
-      # TODO: maybe use keyword args?
-      # (name, constraint=">= 0.0.0", git: nil, path: nil, github: nil)
       def cookbook(name, *version_and_source_opts)
         source_options =
           if version_and_source_opts.last.is_a?(Hash)

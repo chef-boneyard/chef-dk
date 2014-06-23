@@ -17,8 +17,8 @@
 
 require 'cookbook-omnifetch'
 require 'fileutils'
-require 'chef/cookbook/metadata'
 require 'chef-dk/exceptions'
+require 'chef-dk/cookbook_metadata'
 # TODO: chef bug. Chef::HTTP::Simple needs to require this itself.
 require 'chef/http/cookie_manager'
 require 'chef/http/validate_content_length'
@@ -42,19 +42,6 @@ module ChefDK
     end
   end
 
-  # TODO: relocate, add tests
-  class CookbookMetadata < Chef::Cookbook::Metadata
-
-    def self.from_path(path)
-      metadata_rb_path = File.join(path, "metadata.rb")
-      new.tap { |m| m.from_file(metadata_rb_path) }
-    end
-
-    def cookbook_name
-      name
-    end
-
-  end
 end
 
 # TODO: best location for this?
