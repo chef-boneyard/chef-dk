@@ -58,6 +58,10 @@ module ChefDK
       end
     end
 
+    def cookbook_spec_for(cookbook_name)
+      cookbook_source_overrides[cookbook_name]
+    end
+
     ##
     # Compilation Methods
     ##

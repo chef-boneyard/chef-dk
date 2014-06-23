@@ -82,17 +82,6 @@ module ChefDK
       @http_connections = {}
     end
 
-    def cookbook_version(cookbook_name)
-      metadata_for(cookbook_name).version
-    end
-
-    # TODO: tests
-    def ensure_cached(cookbook_spec)
-      ensure_cache_dir_exists
-      installer = CookbookOmnifetch.init(cookbook_spec, cookbook_spec.source_options)
-      installer.install unless installer.installed?
-    end
-
     def ensure_cache_dir_exists
       unless File.exist?(CookbookOmnifetch.storage_path)
         FileUtils.mkdir_p(CookbookOmnifetch.storage_path)
@@ -135,32 +124,6 @@ module ChefDK
     def fetch_community_universe
       graph_json = http_connection_for(default_source.uri).get("/universe")
       JSON.parse(graph_json)
-    end
-
-    def metadata_for(cookbook_name)
-      if cached_metadata = @local_cookbooks_metadata[cookbook_name]
-        return cached_metadata
-      else
-        metadata = load_metadata_for(cookbook_name)
-        @local_cookbooks_metadata[cookbook_name] = metadata
-        metadata
-      end
-    end
-
-    def load_metadata_for(cookbook_name)
-      local_cookbook_path = path_to_local_cookbook(cookbook_name)
-      metadata_rb_path = File.join(local_cookbook_path, "metadata.rb")
-      if !File.exist?(local_cookbook_path)
-        raise LocalCookbookNotFound, "Cookbook `#{cookbook_name}' not found in the expected location (#{local_cookbook_path})"
-      elsif !File.exist?(metadata_rb_path)
-        raise MalformedCookbook, "Cookbook `#{cookbook_name}' does not contain a metadata.rb file (expected to find it at path #{metadata_rb_path})"
-      end
-      Chef::Cookbook::Metadata.new.tap { |m| m.from_file(metadata_rb_path) }
-    end
-
-    def path_to_local_cookbook(cookbook_name)
-      relative_path = policyfile.cookbook_source_overrides[cookbook_name][:path]
-      File.expand_path(relative_path, relative_root)
     end
 
   end

@@ -27,11 +27,14 @@ module ChefDK
       attr_reader :default_source
       attr_reader :cookbook_source_overrides
 
+      attr_accessor :policyfile_filename
+
       def initialize
         @errors = []
         @run_list = []
         @default_source = nil
         @cookbook_source_overrides = {}
+        @policyfile_filename = nil
       end
 
       def run_list(*run_list_items)
@@ -63,7 +66,7 @@ module ChefDK
           end
 
         constraint = version_and_source_opts.first || ">= 0.0.0"
-        spec = CookbookSpec.new(name, constraint, source_options)
+        spec = CookbookSpec.new(name, constraint, source_options, policyfile_filename)
 
 
         if existing_source = @cookbook_source_overrides[name]
@@ -77,6 +80,7 @@ module ChefDK
       end
 
       def eval_policyfile(policyfile_string, policyfile_filename)
+        @policyfile_filename = policyfile_filename
         instance_eval(policyfile_string, policyfile_filename)
         validate!
         self
