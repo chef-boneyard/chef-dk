@@ -21,7 +21,6 @@ require 'cookbook-omnifetch'
 module ChefDK
   module Policyfile
 
-    # TODO: tests.
     class CookbookSpec
 
       SOURCE_TYPES = [:git, :github, :path]
@@ -41,6 +40,7 @@ module ChefDK
       def ==(other)
         other.kind_of?(self.class) and
           other.name == name and
+          other.version_constraint == version_constraint and
           other.source_options == source_options
       end
 
@@ -52,8 +52,8 @@ module ChefDK
         @installer ||= CookbookOmnifetch.init(self, source_options)
       end
 
-      # TODO: this won't be true for community site or chef-server sourced cookbooks
       def version_fixed?
+        # NOTE: this won't be true for community site or chef-server sourced cookbooks
         true
       end
 

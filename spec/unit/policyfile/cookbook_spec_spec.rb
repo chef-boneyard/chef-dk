@@ -20,4 +20,130 @@ require 'chef-dk/policyfile/cookbook_spec'
 
 describe ChefDK::Policyfile::CookbookSpec do
 
+  let(:policyfile_filename) { File.join(fixtures_path, "example_app/Policyfile.rb") }
+
+  let(:version_constraint) { ">= 0.0.0" }
+
+  let(:cookbook_name) { "my_cookbook" }
+
+  let(:source_options) { {} }
+
+  let(:cached_cookbook) { double("ChefDK::CookbookMetadata") }
+
+  let(:installer) { double("CookbookOmnifetch location", cached_cookbook: cached_cookbook) }
+
+  let(:cookbook_spec) { described_class.new(cookbook_name, version_constraint, source_options, policyfile_filename) }
+
+  it "has a name" do
+    expect(cookbook_spec.name).to eq(cookbook_name)
+  end
+
+  it "has a version constraint" do
+    expect(cookbook_spec.version_constraint).to eq(Semverse::Constraint.new(version_constraint))
+  end
+
+  it "has source options it was created with" do
+    expect(cookbook_spec.source_options).to eq(source_options)
+  end
+
+  it "is equal to another cookbook spec with the same name, constraint, and options" do
+    equal_spec = described_class.new(cookbook_name, version_constraint, source_options, policyfile_filename)
+    expect(cookbook_spec).to eq(equal_spec)
+  end
+
+  it "is not equal to another cookbook spec if the name, constraint or option differ" do
+    different_name = described_class.new("wut", version_constraint, source_options, policyfile_filename)
+    expect(cookbook_spec).to_not eq(different_name)
+
+    different_constraint = described_class.new(cookbook_name, ">= 1.0.0", source_options, policyfile_filename)
+    expect(cookbook_spec).to_not eq(different_constraint)
+
+    different_opts = described_class.new(cookbook_name, version_constraint, {git: "git://example.com/wat.git"}, policyfile_filename)
+    expect(cookbook_spec).to_not eq(different_opts)
+  end
+
+  it "gives the base directory from which relative paths will be expanded" do
+    expect(cookbook_spec.relative_paths_root).to eq(File.join(fixtures_path, "example_app"))
+  end
+
+  describe "fetching and querying a cookbook" do
+
+    before do
+      expect(CookbookOmnifetch).to receive(:init).with(cookbook_spec, source_options).and_return(installer)
+    end
+
+    it "initializes a CookbookOmnifetch location class to handle installation" do
+      expect(cookbook_spec.installer).to eq(installer)
+    end
+
+    it "delegates installation to the installer" do
+      expect(installer).to receive(:installed?).and_return(false)
+      expect(installer).to receive(:install)
+      cookbook_spec.ensure_cached
+    end
+
+    it "does not install the cookbook if it's already cached" do
+      expect(installer).to receive(:installed?).and_return(true)
+      expect(installer).to_not receive(:install)
+      cookbook_spec.ensure_cached
+    end
+
+    it "loads the cookbook metadata via the installer" do
+      expect(cookbook_spec.cached_cookbook).to eq(cached_cookbook)
+    end
+
+    it "gives the cookbook's version via the metadata" do
+      expect(cached_cookbook).to receive(:version).and_return("1.2.3")
+      expect(cookbook_spec.version).to eq("1.2.3")
+    end
+
+    it "gives the cookbook's dependencies via the metadata" do
+      expect(cached_cookbook).to receive(:dependencies).and_return("apt" => "~> 1.2.3")
+      expect(cookbook_spec.dependencies).to eq("apt" => "~> 1.2.3")
+    end
+
+  end
+
+  describe "when created with a git source" do
+
+    let(:source_options) { { git: "git@github.com:example/my_cookbook.git" } }
+
+    it "has a git installer" do
+      expect(cookbook_spec.installer).to be_a_kind_of(CookbookOmnifetch::GitLocation)
+    end
+
+    it "has a fixed version" do
+      expect(cookbook_spec.version_fixed?).to be true
+    end
+
+  end
+
+  describe "when created with a github source" do
+
+    let(:source_options) { { github: "my_org/my_cookbook" } }
+
+    it "has a github installer" do
+      expect(cookbook_spec.installer).to be_a_kind_of(CookbookOmnifetch::GithubLocation)
+    end
+
+    it "has a fixed version" do
+      expect(cookbook_spec.version_fixed?).to be true
+    end
+
+  end
+
+  describe "when created with a path source" do
+
+    let(:source_options) { { path: "../example_cookbook" } }
+
+    it "has a path installer" do
+      expect(cookbook_spec.installer).to be_a_kind_of(CookbookOmnifetch::PathLocation)
+    end
+
+    it "has a fixed version" do
+      expect(cookbook_spec.version_fixed?).to be true
+    end
+
+  end
+
 end
