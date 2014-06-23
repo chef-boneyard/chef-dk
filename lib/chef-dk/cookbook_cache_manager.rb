@@ -88,27 +88,22 @@ module ChefDK
       end
     end
 
-    # TODO: needs the tests
-    def http_connection_for(base_url)
-      @http_connections[base_url] ||= Chef::HTTP::Simple.new(base_url)
-    end
-
-    # TODO: test
-    def default_source
-      policyfile.default_source
-    end
-
-    # TODO: needs the tests
     def universe_graph
       @universe_graph ||= case default_source
       when Policyfile::CommunityCookbookSource
         community_universe_graph
+      when nil
+        {}
       else
-        raise "HANDLE OTHER SOURCE TYPES...."
+        raise UnsupportedFeature, 'ChefDK does not support alternative cookbook default sources at this time'
       end
     end
 
     private
+
+    def http_connection_for(base_url)
+      @http_connections[base_url] ||= Chef::HTTP::Simple.new(base_url)
+    end
 
     def community_universe_graph
       full_graph = fetch_community_universe
@@ -124,6 +119,10 @@ module ChefDK
     def fetch_community_universe
       graph_json = http_connection_for(default_source.uri).get("/universe")
       JSON.parse(graph_json)
+    end
+
+    def default_source
+      policyfile.default_source
     end
 
   end

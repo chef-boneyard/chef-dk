@@ -38,4 +38,7 @@ module ChefDK
     end
   end
 
+  class UnsupportedFeature < StandardError
+  end
+
 end

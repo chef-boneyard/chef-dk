@@ -57,9 +57,45 @@ describe ChefDK::CookbookCacheManager do
 
   context "when the community site is the default source" do
 
+    before do
+      policyfile.dsl.default_source(:community)
+    end
+
+    let(:default_community_uri) { "https://api.berkshelf.com" }
+
+    let(:http_connection) { double("Chef::HTTP::Simple") }
+
+    let(:universe_response_encoded) { IO.read(File.join(fixtures_path, "cookbooks_api/small_universe.json")) }
+
+    let(:pruned_universe) { JSON.parse(IO.read(File.join(fixtures_path, "cookbooks_api/pruned_small_universe.json"))) }
+
     it "fetches the universe graph" do
-      pending
-      expect(cache_manager.universe_graph).to eq(community_universe_graph)
+      expect(Chef::HTTP::Simple).to receive(:new).with(default_community_uri).and_return(http_connection)
+      expect(http_connection).to receive(:get).with("/universe").and_return(universe_response_encoded)
+      actual_universe = cache_manager.universe_graph
+      expect(actual_universe).to have_key("apt")
+      expect(actual_universe["apt"]).to eq(pruned_universe["apt"])
+      expect(cache_manager.universe_graph).to eq(pruned_universe)
+    end
+
+  end
+
+  context "when chef-server is the default source" do
+
+    before do
+      policyfile.dsl.default_source(:chef_server, "https://chef.example.com")
+    end
+
+    it "emits a not supported error" do
+      expect { cache_manager.universe_graph }.to raise_error(ChefDK::UnsupportedFeature)
+    end
+
+  end
+
+  context "when the default source is not specified" do
+
+    it "emits an empty graph" do
+      expect(cache_manager.universe_graph).to eq({})
     end
 
   end
