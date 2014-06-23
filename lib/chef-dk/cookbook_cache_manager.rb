@@ -15,45 +15,20 @@
 # limitations under the License.
 #
 
-require 'cookbook-omnifetch'
+require 'json'
 require 'fileutils'
+require 'chef-dk/cookbook_omnifetch'
 require 'chef-dk/exceptions'
-require 'chef-dk/cookbook_metadata'
+require 'chef-dk/shell_out'
 # TODO: chef bug. Chef::HTTP::Simple needs to require this itself.
 require 'chef/http/cookie_manager'
 require 'chef/http/validate_content_length'
 require 'chef/http/simple'
-require 'json'
 
 # TODO: fix hardcoding
 Chef::Config.ssl_verify_mode = :verify_peer
 
-# TODO: move elsewhere
 module ChefDK
-  class ShellOut < Mixlib::ShellOut
-    def self.shell_out(*command_args)
-      cmd = new(*command_args)
-      cmd.run_command
-      cmd
-    end
-
-    def success?
-      !error?
-    end
-  end
-
-end
-
-# TODO: best location for this?
-CookbookOmnifetch.configure do |c|
-  c.cache_path = File.expand_path('~/.chefdk/cache')
-  c.storage_path = Pathname.new(File.expand_path('~/.chefdk/cache/cookbooks'))
-  c.shell_out_class = ChefDK::ShellOut
-  c.cached_cookbook_class = ChefDK::CookbookMetadata
-end
-
-module ChefDK
-
 
   class CookbookCacheManager
 
