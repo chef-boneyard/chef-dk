@@ -216,7 +216,7 @@ E
 
         it "sets the source of the cookbook to the local path" do
           expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {path: "local_cookbooks/foo"}, "TestPolicyfile.rb")
-          expect(policyfile.cookbook_source_overrides).to eq("foo" => expected_cb_spec)
+          expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
         end
 
       end
@@ -231,7 +231,7 @@ E
 
         it "sets the source of the cookbook to the git URL" do
           expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {git: "git://example.com:me/foo-cookbook.git"}, "TestPolicyfile.rb")
-          expect(policyfile.cookbook_source_overrides).to eq("foo" => expected_cb_spec)
+          expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
         end
 
       end
@@ -246,7 +246,7 @@ E
 
         it "sets the source of the cookbook to the git URL" do
           expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {chef_server: "https://mychefserver.example.com"}, "TestPolicyfile.rb")
-          expect(policyfile.cookbook_source_overrides).to eq("foo" => expected_cb_spec)
+          expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
         end
 
       end

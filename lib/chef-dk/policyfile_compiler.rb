@@ -43,7 +43,7 @@ module ChefDK
     def_delegator :@dsl, :run_list
     def_delegator :@dsl, :errors
     def_delegator :@dsl, :default_source
-    def_delegator :@dsl, :cookbook_source_overrides
+    def_delegator :@dsl, :policyfile_cookbook_specs
 
     attr_reader :dsl
 
@@ -58,7 +58,7 @@ module ChefDK
     end
 
     def cookbook_spec_for(cookbook_name)
-      cookbook_source_overrides[cookbook_name]
+      policyfile_cookbook_specs[cookbook_name]
     end
 
     ##
@@ -86,7 +86,7 @@ module ChefDK
 
     def graph_demands
       cookbooks_for_demands.map do |cookbook_name|
-        spec = cookbook_source_overrides[cookbook_name]
+        spec = policyfile_cookbook_specs[cookbook_name]
         if spec.nil?
           [ cookbook_name, DEFAULT_DEMAND_CONSTRAINT ]
         elsif spec.version_fixed?
@@ -109,7 +109,7 @@ module ChefDK
     # version number. To accomodate this, the local_artifacts_graph should be
     # merged over the upstream's artifacts graph.
     def local_artifacts_graph
-      cookbook_source_overrides.inject({}) do |local_artifacts, (cookbook_name, cookbook_spec)|
+      policyfile_cookbook_specs.inject({}) do |local_artifacts, (cookbook_name, cookbook_spec)|
         if cookbook_spec.version_fixed?
           local_artifacts[cookbook_name] = { cookbook_spec.version => cookbook_spec.dependencies }
         end
@@ -122,7 +122,7 @@ module ChefDK
     end
 
     def version_constraint_for(cookbook_name)
-      if (cookbook_spec = cookbook_source_overrides[cookbook_name]) and cookbook_spec.version_fixed?
+      if (cookbook_spec = policyfile_cookbook_specs[cookbook_name]) and cookbook_spec.version_fixed?
         version = cookbook_spec.version
         "= #{version}"
       else
@@ -131,7 +131,7 @@ module ChefDK
     end
 
     def cookbook_version_fixed?(cookbook_name)
-      if cookbook_spec = cookbook_source_overrides[cookbook_name]
+      if cookbook_spec = policyfile_cookbook_specs[cookbook_name]
         cookbook_spec.version_fixed?
       else
         false
@@ -159,11 +159,11 @@ module ChefDK
     private
 
     def cookbooks_for_demands
-      (cookbooks_in_run_list + cookbook_source_overrides.keys).uniq
+      (cookbooks_in_run_list + policyfile_cookbook_specs.keys).uniq
     end
 
     def cache_fixed_version_cookbooks
-      cookbook_source_overrides.each do |_cookbook_name, cookbook_spec|
+      policyfile_cookbook_specs.each do |_cookbook_name, cookbook_spec|
         cookbook_spec.ensure_cached if cookbook_spec.version_fixed?
       end
     end

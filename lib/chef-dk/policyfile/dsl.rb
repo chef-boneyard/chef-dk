@@ -25,7 +25,7 @@ module ChefDK
       attr_reader :errors
       attr_reader :run_list
       attr_reader :default_source
-      attr_reader :cookbook_source_overrides
+      attr_reader :policyfile_cookbook_specs
 
       attr_accessor :policyfile_filename
 
@@ -33,7 +33,7 @@ module ChefDK
         @errors = []
         @run_list = []
         @default_source = nil
-        @cookbook_source_overrides = {}
+        @policyfile_cookbook_specs = {}
         @policyfile_filename = nil
       end
 
@@ -67,13 +67,13 @@ module ChefDK
         spec = CookbookSpec.new(name, constraint, source_options, policyfile_filename)
 
 
-        if existing_source = @cookbook_source_overrides[name]
+        if existing_source = @policyfile_cookbook_specs[name]
           err = "Cookbook '#{name}' assigned to conflicting sources\n\n"
           err << "Previous source: #{existing_source.source_options.inspect}\n"
           err << "Conflicts with: #{source_options.inspect}\n"
           @errors << err
         else
-          @cookbook_source_overrides[name] = spec
+          @policyfile_cookbook_specs[name] = spec
         end
       end
 
