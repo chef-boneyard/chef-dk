@@ -21,5 +21,5 @@ gemspec :name => "chef-dk"
 
 gem "chef", ">= 11.14.0.alpha.4"
 
-gem "cookbook-omnifetch", path: "../cookbook-omnifetch"
+gem "cookbook-omnifetch", git: "git://github.com/danielsdeleo/cookbook-omnifetch.git", branch: "master"
 
