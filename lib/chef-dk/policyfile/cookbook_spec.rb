@@ -53,8 +53,7 @@ module ChefDK
       end
 
       def version_fixed?
-        # NOTE: this won't be true for community site or chef-server sourced cookbooks
-        true
+        !@source_type.nil?
       end
 
       def version

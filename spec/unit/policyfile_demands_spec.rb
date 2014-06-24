@@ -70,6 +70,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         },
 
         "remote-cb" => {
+          "0.1.0" => [ ],
           "1.1.1" => [ ]
         },
 
@@ -409,6 +410,52 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       end
 
     end
+  end
+
+  context "given a cookbook with a version constraint in the policyfile" do
+
+    include_context "community default source"
+
+    let(:run_list) { ['remote-cb'] }
+
+    before do
+      policyfile.dsl.cookbook("remote-cb", "~> 0.1")
+    end
+
+    it "demands a solution that matches the version constraint in the policyfile" do
+      expect(demands).to eq([["remote-cb", "~> 0.1"]])
+    end
+
+    it "emits a solution that satisfies the policyfile constraint" do
+      expect(policyfile.graph_solution).to eq({"remote-cb" => "0.1.0"})
+    end
+
+  end
+
+  context "given a cookbook that isn't in the run list is specified with a version constraint in the policyfile" do
+
+    include_context "community default source"
+
+    let(:run_list) { ['local-cookbook'] }
+
+    before do
+      policyfile.dsl.cookbook("remote-cb", "~> 0.1")
+
+      policyfile.dsl.cookbook("local-cookbook", path: "foo/")
+
+      policyfile.cookbook_spec_for("local-cookbook").stub(:ensure_cached)
+      policyfile.cookbook_spec_for("local-cookbook").stub(:version).and_return("2.3.4")
+      policyfile.cookbook_spec_for("local-cookbook").stub(:dependencies).and_return([])
+    end
+
+    it "demands a solution that matches the version constraint in the policyfile" do
+      expect(demands).to eq([["local-cookbook", "= 2.3.4"], ["remote-cb", "~> 0.1"]])
+    end
+
+    it "emits a solution that satisfies the policyfile constraint" do
+      expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "remote-cb" => "0.1.0"})
+    end
+
   end
 
   ##

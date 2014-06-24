@@ -104,6 +104,18 @@ describe ChefDK::Policyfile::CookbookSpec do
 
   end
 
+  describe "when created with no source" do
+
+    it "has a nil installer" do
+      expect(cookbook_spec.installer).to be_nil
+    end
+
+    it "is not at a fixed version" do
+      expect(cookbook_spec.version_fixed?).to be false
+    end
+
+  end
+
   describe "when created with a git source" do
 
     let(:source_options) { { git: "git@github.com:example/my_cookbook.git" } }

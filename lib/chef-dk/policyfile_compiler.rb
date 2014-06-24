@@ -15,11 +15,13 @@
 # limitations under the License.
 #
 
-require 'solve'
 require 'forwardable'
+
+require 'solve'
+require 'chef/run_list/run_list_item'
+
 require 'chef-dk/policyfile/dsl'
 require 'chef-dk/cookbook_cache_manager'
-require 'chef/run_list/run_list_item'
 
 module ChefDK
 
@@ -83,8 +85,15 @@ module ChefDK
     end
 
     def graph_demands
-      cookbooks_in_run_list.map do |cookbook_name, version_constraint|
-        [ cookbook_name, version_constraint_for(cookbook_name) ]
+      cookbooks_for_demands.map do |cookbook_name|
+        spec = cookbook_source_overrides[cookbook_name]
+        if spec.nil?
+          [ cookbook_name, DEFAULT_DEMAND_CONSTRAINT ]
+        elsif spec.version_fixed?
+          [ cookbook_name, "= #{spec.version}" ]
+        else
+          [ cookbook_name, spec.version_constraint.to_s ]
+        end
       end
     end
 
@@ -92,6 +101,13 @@ module ChefDK
       remote_artifacts_graph.merge(local_artifacts_graph)
     end
 
+    # Gives a dependency graph for cookbooks that are source from an alternate
+    # location. These cookbooks could have a different set of dependencies
+    # compared to an unmodified copy upstream. For example, the community site
+    # may have a cookbook "apache2" at version "1.10.4", which the user has
+    # forked on github and modified the dependencies without changing the
+    # version number. To accomodate this, the local_artifacts_graph should be
+    # merged over the upstream's artifacts graph.
     def local_artifacts_graph
       cookbook_source_overrides.inject({}) do |local_artifacts, (cookbook_name, cookbook_spec)|
         if cookbook_spec.version_fixed?
@@ -106,7 +122,7 @@ module ChefDK
     end
 
     def version_constraint_for(cookbook_name)
-      if cookbook_spec = cookbook_source_overrides[cookbook_name]
+      if (cookbook_spec = cookbook_source_overrides[cookbook_name]) and cookbook_spec.version_fixed?
         version = cookbook_spec.version
         "= #{version}"
       else
@@ -126,10 +142,6 @@ module ChefDK
       @cache_manager ||= CookbookCacheManager.new(self)
     end
 
-    def run_list_graph_demands
-      cookbooks_in_run_list.map {|cookbook_name| [cookbook_name, DEFAULT_DEMAND_CONSTRAINT] }
-    end
-
     def cookbooks_in_run_list
       run_list.map {|item_spec| Chef::RunList::RunListItem.new(item_spec).name }
     end
@@ -146,9 +158,13 @@ module ChefDK
 
     private
 
+    def cookbooks_for_demands
+      (cookbooks_in_run_list + cookbook_source_overrides.keys).uniq
+    end
+
     def cache_fixed_version_cookbooks
       cookbook_source_overrides.each do |_cookbook_name, cookbook_spec|
-        cookbook_spec.ensure_cached
+        cookbook_spec.ensure_cached if cookbook_spec.version_fixed?
       end
     end
 
