@@ -143,6 +143,49 @@ initialization step to your shell's profile:
 Where `YOUR_SHELL_PROFILE` is `~/.bash_profile` for most bash users,
 `~/.zshrc` for zsh, and `~/.bashrc` on Ubuntu.
 
+## Uninstallation Instructions
+
+### Mac OS X
+
+You can uninstall Chef Development Kit on Mac using below commands:
+
+```
+# Remove the installed files
+sudo rm -rf /opt/chefdk
+
+# Remove the system installation entry
+sudo pkgutil --forget com.getchef.pkg.chefdk
+
+# Remove the symlinks under /usr/bin for Chef Development Kit
+ls -la /usr/bin | egrep '/opt/chefdk' | awk '{ print $9 }' | sudo xargs -I '{}' rm -f /usr/bin/'{}'
+
+```
+
+### Windows
+
+You can use `Add / Remove Programs` on Windows to remove the Chef Development
+Kit from your system.
+
+### RHEL
+
+You can use `rpm` to uninstall Chef Development Kit on RHEL based systems:
+
+```
+rpm -qa *chefdk*
+yum remove <package>
+```
+
+### Ubuntu
+
+You can use `dpkg` to uninstall Chef Development Kit on Ubuntu based systems:
+
+```
+dpkg --list | grep chefdk # or dpkg --status chefdk
+
+# Purge chefdk from the system.
+# see man dkpg for details
+dpkg -P chefdk
+```
 - - -
 
 [Berkshelf]: http://berkshelf.com "Berkshelf"
