@@ -23,11 +23,12 @@ module ChefDK
 
     class CookbookSpec
 
-      SOURCE_TYPES = [:git, :github, :path]
+      SOURCE_TYPES = [:git, :github, :path, :artifactserver]
 
       attr_reader :version_constraint
       attr_reader :name
       attr_reader :source_options
+      attr_reader :source_type
 
       def initialize(name, version_constraint, source_options, policyfile_filename)
         @name = name
@@ -44,16 +45,34 @@ module ChefDK
           other.source_options == source_options
       end
 
+      def mirrors_canonical_upstream?
+        [:git, :github, :artifactserver].include?(source_type)
+      end
+
       def ensure_cached
-        installer.install unless installer.installed?
+        unless installer.installed?
+          installer.install
+        end
       end
 
       def installer
         @installer ||= CookbookOmnifetch.init(self, source_options)
       end
 
+      def cache_key
+        installer.cache_key
+      end
+
+      def relative_path
+        installer.relative_path.to_s
+      end
+
+      def uri
+        installer.uri
+      end
+
       def version_fixed?
-        !@source_type.nil?
+        [:git, :github, :path].include?(@source_type)
       end
 
       def version

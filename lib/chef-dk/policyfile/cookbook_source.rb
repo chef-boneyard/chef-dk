@@ -23,7 +23,7 @@ module ChefDK
       attr_reader :uri
 
       def initialize(uri = nil)
-        @uri = uri || "https://api.berkshelf.com"
+        @uri = uri || "https://supermarket.getchef.com"
       end
 
       def ==(other)

@@ -147,6 +147,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     end
 
     it "has an empty solution" do
+      expect(cache_manager).to receive(:ensure_cache_dir_exists)
       expect(policyfile.graph_solution).to eq({})
     end
   end
@@ -168,6 +169,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       end
 
       it "uses the community cookbook in the solution" do
+        expect(cache_manager).to receive(:ensure_cache_dir_exists)
         expect(policyfile.graph_solution).to eq({"remote-cb" => "1.1.1"})
       end
 
@@ -186,6 +188,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       end
 
       it "uses the chef-server cookbook in the solution" do
+        expect(cache_manager).to receive(:ensure_cache_dir_exists)
         expect(policyfile.graph_solution).to eq({"remote-cb" => "1.1.1"})
       end
     end
@@ -242,6 +245,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       end
 
       it "uses the local cookbook in the solution and gets dependencies remotely" do
+        expect(cache_manager).to receive(:ensure_cache_dir_exists)
         expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "local-cookbook-dep-one" => "1.5.0"})
       end
 
@@ -273,6 +277,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       end
 
       it "uses the local cookbook in the solution and gets dependencies remotely" do
+        expect(cache_manager).to receive(:ensure_cache_dir_exists)
         expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "local-cookbook-dep-one" => "1.6.0"})
       end
 
@@ -302,6 +307,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     end
 
     it "uses the git sourced cookbook in the solution" do
+      expect(cache_manager).to receive(:ensure_cache_dir_exists)
       expect(policyfile.graph_solution).to eq({"git-sourced-cookbook" => "8.6.7"})
     end
   end
@@ -334,6 +340,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       end
 
       it "uses the git sourced cookbook with remote dependencies in the solution" do
+        expect(cache_manager).to receive(:ensure_cache_dir_exists)
         expect(policyfile.graph_solution).to eq({"git-sourced-cookbook" => "8.6.7", "git-sourced-cookbook-dep" => "2.8.0"})
       end
     end
@@ -355,6 +362,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       end
 
       it "uses the git sourced cookbook with remote dependencies in the solution" do
+        expect(cache_manager).to receive(:ensure_cache_dir_exists)
         expect(policyfile.graph_solution).to eq({"git-sourced-cookbook" => "8.6.7", "git-sourced-cookbook-dep" => "2.9.0"})
       end
     end
@@ -386,6 +394,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       end
 
       it "uses the locally specified cookbook and remote cookbooks in the solution" do
+        expect(cache_manager).to receive(:ensure_cache_dir_exists)
         expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "remote-cb" => "1.1.1"})
       end
 
@@ -406,6 +415,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       end
 
       it "uses the locally specified cookbook and remote cookbooks in the solution" do
+        expect(cache_manager).to receive(:ensure_cache_dir_exists)
         expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "remote-cb" => "1.1.1"})
       end
 
@@ -427,6 +437,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     end
 
     it "emits a solution that satisfies the policyfile constraint" do
+      expect(cache_manager).to receive(:ensure_cache_dir_exists)
       expect(policyfile.graph_solution).to eq({"remote-cb" => "0.1.0"})
     end
 
@@ -453,7 +464,14 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     end
 
     it "emits a solution that satisfies the policyfile constraint" do
+      expect(cache_manager).to receive(:ensure_cache_dir_exists)
       expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "remote-cb" => "0.1.0"})
+    end
+
+    it "builds a policyfile lock from the constraints" do
+      pending
+      expect(cache_manager).to receive(:cache_path).and_return(Pathname.new("~/.nopenope/cache"))
+      expect(policyfile.lock).to eq(:wat)
     end
 
   end

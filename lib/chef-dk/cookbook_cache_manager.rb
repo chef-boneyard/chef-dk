@@ -21,8 +21,12 @@ require 'chef-dk/cookbook_omnifetch'
 require 'chef-dk/exceptions'
 require 'chef-dk/shell_out'
 # TODO: chef bug. Chef::HTTP::Simple needs to require this itself.
-require 'chef/http/cookie_manager'
-require 'chef/http/validate_content_length'
+# Fixed in 2ed829e661f9a357fc9a8cdf316c84f077dad7f9 waiting for that to be
+# released...
+require 'tempfile'
+require 'chef/platform/query_helpers' # should be handled by http/simple
+require 'chef/http/cookie_manager' # should be handled by http/simple
+require 'chef/http/validate_content_length' # should be handled by http/simple
 require 'chef/http/simple'
 
 # TODO: fix hardcoding
@@ -33,21 +37,21 @@ module ChefDK
   class CookbookCacheManager
 
     attr_reader :policyfile
-    attr_reader :relative_root
-    attr_reader :cache_path
 
-    def initialize(policyfile, config={})
+    def initialize(policyfile)
       @policyfile = policyfile
-      @relative_root = config[:relative_root] || Dir.pwd
-      @cache_path = config[:cache_path]
       @local_cookbooks_metadata = {}
       @http_connections = {}
     end
 
     def ensure_cache_dir_exists
-      unless File.exist?(CookbookOmnifetch.storage_path)
-        FileUtils.mkdir_p(CookbookOmnifetch.storage_path)
+      unless File.exist?(cache_path)
+        FileUtils.mkdir_p(cache_path)
       end
+    end
+
+    def cache_path
+      CookbookOmnifetch.storage_path
     end
 
     def universe_graph
@@ -61,6 +65,11 @@ module ChefDK
       end
     end
 
+    def source_options_for(cookbook_name, cookbook_version)
+      base_uri = full_community_graph[cookbook_name][cookbook_version]["location_path"]
+      { artifactserver: base_uri, version: cookbook_version }
+    end
+
     private
 
     def http_connection_for(base_url)
@@ -68,8 +77,7 @@ module ChefDK
     end
 
     def community_universe_graph
-      full_graph = fetch_community_universe
-      full_graph.inject({}) do |normalized_graph, (cookbook_name, metadata_by_version)|
+      full_community_graph.inject({}) do |normalized_graph, (cookbook_name, metadata_by_version)|
         normalized_graph[cookbook_name] = metadata_by_version.inject({}) do |deps_by_version, (version, metadata)|
           deps_by_version[version] = metadata["dependencies"]
           deps_by_version
@@ -78,9 +86,13 @@ module ChefDK
       end
     end
 
-    def fetch_community_universe
-      graph_json = http_connection_for(default_source.uri).get("/universe")
-      JSON.parse(graph_json)
+
+    def full_community_graph
+      @full_community_graph ||=
+        begin
+          graph_json = http_connection_for(default_source.uri).get("/universe")
+          JSON.parse(graph_json)
+        end
     end
 
     def default_source

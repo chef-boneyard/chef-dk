@@ -25,13 +25,11 @@ describe ChefDK::CookbookCacheManager do
     ChefDK::CookbookCacheManager.new(policyfile, options)
   end
 
-  let(:relative_root) { File.join(fixtures_path, 'local_path_cookbooks') }
-
   let(:cache_path) { tempdir }
 
   let(:policyfile) { ChefDK::PolicyfileCompiler.new }
 
-  let(:cache_manager) { new_cache_manager( relative_root: relative_root ) }
+  let(:cache_manager) { ChefDK::CookbookCacheManager.new(policyfile) }
 
   before do
     reset_tempdir
@@ -39,18 +37,8 @@ describe ChefDK::CookbookCacheManager do
 
   describe "handling initialization options" do
 
-    it "uses the current working directory as the default relative root" do
-      cache_manager = new_cache_manager
-      expect(cache_manager.relative_root).to eq(Dir.pwd)
-    end
-
-    it "sets an explicit relative root" do
-      expect(cache_manager.relative_root).to eq(relative_root)
-    end
-
     it "sets a cache path" do
-      cache_manager = new_cache_manager(cache_path: "/tmp/foo")
-      expect(cache_manager.cache_path).to eq("/tmp/foo")
+      expect(cache_manager.cache_path).to eq(CookbookOmnifetch.storage_path)
     end
 
   end
@@ -61,7 +49,7 @@ describe ChefDK::CookbookCacheManager do
       policyfile.dsl.default_source(:community)
     end
 
-    let(:default_community_uri) { "https://api.berkshelf.com" }
+    let(:default_community_uri) { "https://supermarket.getchef.com" }
 
     let(:http_connection) { double("Chef::HTTP::Simple") }
 
@@ -69,13 +57,21 @@ describe ChefDK::CookbookCacheManager do
 
     let(:pruned_universe) { JSON.parse(IO.read(File.join(fixtures_path, "cookbooks_api/pruned_small_universe.json"))) }
 
-    it "fetches the universe graph" do
+    before do
       expect(Chef::HTTP::Simple).to receive(:new).with(default_community_uri).and_return(http_connection)
       expect(http_connection).to receive(:get).with("/universe").and_return(universe_response_encoded)
+    end
+
+    it "fetches the universe graph" do
       actual_universe = cache_manager.universe_graph
       expect(actual_universe).to have_key("apt")
       expect(actual_universe["apt"]).to eq(pruned_universe["apt"])
       expect(cache_manager.universe_graph).to eq(pruned_universe)
+    end
+
+    it "generates location options for a cookbook from the given graph" do
+      expected_opts = { artifactserver: "http://cookbooks.opscode.com/api/v1", version: "1.10.4" }
+      expect(cache_manager.source_options_for("apache2", "1.10.4")).to eq(expected_opts)
     end
 
   end

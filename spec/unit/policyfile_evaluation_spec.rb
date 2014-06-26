@@ -142,6 +142,10 @@ E
         expect(policyfile.run_list).to eq(%w[foo bar])
       end
 
+      it "gives the run_list as the expanded run_list" do
+        expect(policyfile.expanded_run_list).to eq(%w[foo bar])
+      end
+
       it "has no default cookbook source" do
         expect(policyfile.default_source).to be_nil
       end
@@ -157,7 +161,7 @@ E
 
         it "has a default source" do
           expect(policyfile.errors).to eq([])
-          expected = ChefDK::Policyfile::CommunityCookbookSource.new("https://api.berkshelf.com")
+          expected = ChefDK::Policyfile::CommunityCookbookSource.new("https://supermarket.getchef.com")
           expect(policyfile.default_source).to eq(expected)
         end
 

@@ -88,6 +88,16 @@ describe ChefDK::Policyfile::CookbookSpec do
       cookbook_spec.ensure_cached
     end
 
+    it "delegates cache_key to the installer" do
+      expect(installer).to receive(:cache_key).and_return("my_cookbook-1.2.3-supermarket.getchef.com")
+      expect(cookbook_spec.cache_key).to eq("my_cookbook-1.2.3-supermarket.getchef.com")
+    end
+
+    it "delegates relative_path to the installer" do
+      expect(installer).to receive(:relative_path).and_return(Pathname.new("../my_stuff/my_cookbook"))
+      expect(cookbook_spec.relative_path).to eq("../my_stuff/my_cookbook")
+    end
+
     it "loads the cookbook metadata via the installer" do
       expect(cookbook_spec.cached_cookbook).to eq(cached_cookbook)
     end
@@ -128,6 +138,10 @@ describe ChefDK::Policyfile::CookbookSpec do
       expect(cookbook_spec.version_fixed?).to be true
     end
 
+    it "mirrors a canonical upstream" do
+      expect(cookbook_spec.mirrors_canonical_upstream?).to be true
+    end
+
   end
 
   describe "when created with a github source" do
@@ -140,6 +154,10 @@ describe ChefDK::Policyfile::CookbookSpec do
 
     it "has a fixed version" do
       expect(cookbook_spec.version_fixed?).to be true
+    end
+
+    it "mirrors a canonical upstream" do
+      expect(cookbook_spec.mirrors_canonical_upstream?).to be true
     end
 
   end
@@ -156,6 +174,27 @@ describe ChefDK::Policyfile::CookbookSpec do
       expect(cookbook_spec.version_fixed?).to be true
     end
 
+    it "isnt a mirror of a canonical upstream" do
+      expect(cookbook_spec.mirrors_canonical_upstream?).to be false
+    end
+
   end
 
+  describe "when created with an artifactserver source" do
+
+    let(:source_options) { { artifactserver: "https://supermarket.getchef.com:/api/v1/cookbooks/my_cookbook/versions/2.0.0/download" } }
+
+    it "has a artifactserver installer" do
+      expect(cookbook_spec.installer).to be_a_kind_of(CookbookOmnifetch::ArtifactserverLocation)
+    end
+
+    it "does not have a fixed version" do
+      expect(cookbook_spec.version_fixed?).to be false
+    end
+
+    it "is a mirror of a canonical upstream" do
+      expect(cookbook_spec.mirrors_canonical_upstream?).to be true
+    end
+
+  end
 end
