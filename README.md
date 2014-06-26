@@ -157,7 +157,7 @@ sudo rm -rf /opt/chefdk
 sudo pkgutil --forget com.getchef.pkg.chefdk
 
 # Remove the symlinks under /usr/bin for Chef Development Kit
-ls -la /usr/bin | egrep '/opt/chefdk' | awk '{ print $9 }' | sudo xargs -I '{}' rm -f /usr/bin/'{}'
+ls -la /usr/bin | egrep '/opt/chefdk' | awk '{ print $9 }' | sudo xargs -I % rm -f /usr/bin/%
 
 ```
 
