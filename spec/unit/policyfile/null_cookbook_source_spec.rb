@@ -15,35 +15,21 @@
 # limitations under the License.
 #
 
+require 'spec_helper'
 
-module ChefDK
-  module Policyfile
-    class CommunityCookbookSource
+require 'chef-dk/policyfile/null_cookbook_source'
 
-      attr_reader :uri
+describe ChefDK::Policyfile::NullCookbookSource do
 
-      def initialize(uri = nil)
-        @uri = uri || "https://supermarket.getchef.com"
-      end
+  let(:cookbook_source) { ChefDK::Policyfile::NullCookbookSource.new }
 
-      def ==(other)
-        other.kind_of?(self.class) && other.uri == uri
-      end
-    end
-
-    class ChefServerCookbookSource
-
-      attr_reader :uri
-
-      def initialize(uri)
-        @uri = uri
-      end
-
-      def ==(other)
-        other.kind_of?(self.class) && other.uri == uri
-      end
-    end
-
+  it "emits an empty graph" do
+    expect(cookbook_source.universe_graph).to eq({})
   end
+
+  it "emits a not supported error when attempting to get source options for a cookbook" do
+    expect { cookbook_source.source_options_for("foo", "1.2.3") }.to raise_error(ChefDK::UnsupportedFeature)
+  end
+
 end
 

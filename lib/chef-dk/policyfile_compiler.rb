@@ -21,7 +21,6 @@ require 'solve'
 require 'chef/run_list/run_list_item'
 
 require 'chef-dk/policyfile/dsl'
-require 'chef-dk/cookbook_cache_manager'
 require 'chef-dk/policyfile_lock'
 
 module ChefDK
@@ -69,7 +68,7 @@ module ChefDK
 
     # TODO: testme
     def lock
-      @policyfile_lock ||= PolicyfileLock.build(cache_path: cache_manager.cache_path) do |policyfile_lock|
+      @policyfile_lock ||= PolicyfileLock.build(cache_path: cache_path) do |policyfile_lock|
 
         policyfile_lock.run_list = expanded_run_list
 
@@ -89,7 +88,7 @@ module ChefDK
     end
 
     def install
-      cache_manager.ensure_cache_dir_exists
+      ensure_cache_dir_exists
 
       graph_solution.each do |cookbook_name, version|
         spec = cookbook_spec_for(cookbook_name)
@@ -101,7 +100,7 @@ module ChefDK
     end
 
     def create_spec_for_cookbook(cookbook_name, version)
-      source_options = cache_manager.source_options_for(cookbook_name, version)
+      source_options = default_source.source_options_for(cookbook_name, version)
       spec = Policyfile::CookbookSpec.new(cookbook_name, "= #{version}", source_options, dsl)
       @artifact_server_cookbook_specs[cookbook_name] = spec
     end
@@ -172,7 +171,7 @@ module ChefDK
     end
 
     def remote_artifacts_graph
-      cache_manager.universe_graph
+      default_source.universe_graph
     end
 
     def version_constraint_for(cookbook_name)
@@ -190,10 +189,6 @@ module ChefDK
       else
         false
       end
-    end
-
-    def cache_manager
-      @cache_manager ||= CookbookCacheManager.new(self)
     end
 
     def cookbooks_in_run_list
@@ -217,11 +212,21 @@ module ChefDK
     end
 
     def cache_fixed_version_cookbooks
-      cache_manager.ensure_cache_dir_exists
+      ensure_cache_dir_exists
 
       policyfile_cookbook_specs.each do |_cookbook_name, cookbook_spec|
         cookbook_spec.ensure_cached if cookbook_spec.version_fixed?
       end
+    end
+
+    def ensure_cache_dir_exists
+      unless File.exist?(cache_path)
+        FileUtils.mkdir_p(cache_path)
+      end
+    end
+
+    def cache_path
+      CookbookOmnifetch.storage_path
     end
 
 

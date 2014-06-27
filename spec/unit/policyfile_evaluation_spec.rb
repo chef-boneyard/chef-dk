@@ -147,7 +147,7 @@ E
       end
 
       it "has no default cookbook source" do
-        expect(policyfile.default_source).to be_nil
+        expect(policyfile.default_source).to be_a(ChefDK::Policyfile::NullCookbookSource)
       end
 
       context "with the default source set to the community site" do
