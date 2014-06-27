@@ -5,7 +5,9 @@ template_dir = File.join(cookbook_dir, "templates/default")
 template_filename = context.new_file_basename
 
 unless File.extname(template_filename) == ".erb"
-  template_filename.concat(".erb")
+  # new_file_basename is a frozen string, so we have to create an entirely
+  # new string here instead of using concat.
+  template_filename = "#{template_filename}.erb"
 end
 
 template_path = File.join(cookbook_dir, "templates/default", template_filename)
