@@ -138,6 +138,8 @@ module ChefDK
           super
           generator_context.app_root = app_root
           generator_context.app_name = app_name
+          generator_context.cookbook_root ||= cookbook_root
+          generator_context.cookbook_name ||= cookbook_name
         end
 
         def recipe
@@ -150,6 +152,14 @@ module ChefDK
 
         def app_root
           File.dirname(app_full_path)
+        end
+
+        def cookbook_root
+          File.join(app_full_path, 'cookbooks')
+        end
+
+        def cookbook_name
+          app_name
         end
 
         def app_full_path
@@ -405,4 +415,3 @@ module ChefDK
 
   end
 end
-

@@ -65,6 +65,8 @@ describe ChefDK::Command::GeneratorCommands::App do
       cookbook_generator.setup_context
       expect(generator_context.app_root).to eq(Dir.pwd)
       expect(generator_context.app_name).to eq("new_app")
+      expect(generator_context.cookbook_root).to eq(File.join(Dir.pwd, "new_app", "cookbooks"))
+      expect(generator_context.cookbook_name).to eq("new_app")
     end
 
     it "creates a new cookbook" do

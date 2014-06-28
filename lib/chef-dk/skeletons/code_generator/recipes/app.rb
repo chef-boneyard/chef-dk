@@ -2,8 +2,8 @@
 
 context = ChefDK::Generator.context
 app_dir = File.join(context.app_root, context.app_name)
-
-cookbooks_dir = File.join(app_dir, "cookbooks")
+cookbooks_dir = context.cookbook_root
+cookbook_dir = File.join(cookbooks_dir, context.cookbook_name)
 
 cookbook_dir = File.join(cookbooks_dir, context.app_name)
 
@@ -63,6 +63,3 @@ if context.have_git
     source "gitignore"
   end
 end
-
-
-
