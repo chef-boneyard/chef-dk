@@ -66,25 +66,8 @@ module ChefDK
       run_list
     end
 
-    # TODO: testme
     def lock
-      @policyfile_lock ||= PolicyfileLock.build(cache_path: cache_path) do |policyfile_lock|
-
-        policyfile_lock.run_list = expanded_run_list
-
-        all_cookbook_specs.each do |cookbook_name, spec|
-          if spec.mirrors_canonical_upstream?
-            policyfile_lock.cached_cookbook(cookbook_name) do |cached_cb|
-              cached_cb.cache_key = spec.cache_key
-              cached_cb.origin = spec.uri
-            end
-          else
-            policyfile_lock.local_cookbook(cookbook_name) do |local_cb|
-              local_cb.source = spec.relative_path
-            end
-          end
-        end
-      end
+      @policyfile_lock ||= PolicyfileLock.build_from_compiler(self, cache_path: cache_path)
     end
 
     def install
