@@ -475,26 +475,6 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
   end
 
-  ##
-  # TODO: this needs to be in a different test
-  ##
-
-  # context "Given a local cookbook with a dependency and another local cookbook that satisfies the dependency" do
-  #   it "emits a solution using the local cookbooks"
-  # end
-
-  # context "Given a local cookbook with a dependency and a git cookbook that satisfies the dependency" do
-  #   it "emits a solution with the git and local cookbooks"
-  # end
-
-  # context "Given two local cookbooks with conflicting dependencies" do
-  #   it "raises an error explaining that no solution was found."
-  # end
-
-  # context "Given a local cookbook with dependencies with conflicting transitive dependencies" do
-  #   it "raises an error explaining that no solution was found."
-  # end
-
   context "Given a run_list with roles" do
     it "expands the roles from the given role source" do
       pending
