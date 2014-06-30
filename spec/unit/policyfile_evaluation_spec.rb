@@ -25,6 +25,16 @@ describe ChefDK::PolicyfileCompiler do
   describe "Evaluate a policyfile" do
 
     describe "when the policyfile is not valid" do
+
+      describe "when error! is called" do
+
+        let(:policyfile_rb) { "raise 'oops'" }
+
+        it "raises a PolicyfileError" do
+          expect { policyfile.error! }.to raise_error(ChefDK::PolicyfileError)
+        end
+      end
+
       context "Given an empty policyfile" do
 
         let(:policyfile_rb) { "" }
@@ -205,7 +215,8 @@ E
         end
 
         it "sets the source of the cookbook to the local path" do
-          expect(policyfile.cookbook_source_overrides).to eq("foo" => { path: "local_cookbooks/foo" })
+          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {path: "local_cookbooks/foo"}, "TestPolicyfile.rb")
+          expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
         end
 
       end
@@ -219,7 +230,8 @@ E
         end
 
         it "sets the source of the cookbook to the git URL" do
-          expect(policyfile.cookbook_source_overrides).to eq("foo" => { git: "git://example.com:me/foo-cookbook.git" })
+          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {git: "git://example.com:me/foo-cookbook.git"}, "TestPolicyfile.rb")
+          expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
         end
 
       end
@@ -233,7 +245,8 @@ E
         end
 
         it "sets the source of the cookbook to the git URL" do
-          expect(policyfile.cookbook_source_overrides).to eq("foo" => { chef_server: "https://mychefserver.example.com" })
+          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {chef_server: "https://mychefserver.example.com"}, "TestPolicyfile.rb")
+          expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
         end
 
       end

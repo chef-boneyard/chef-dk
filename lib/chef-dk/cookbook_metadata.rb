@@ -15,11 +15,22 @@
 # limitations under the License.
 #
 
-source 'https://rubygems.org'
+require 'chef/cookbook/metadata'
 
-gemspec :name => "chef-dk"
+module ChefDK
 
-gem "chef", ">= 11.14.0.alpha.4"
+  # Subclass of Chef's Cookbook::Metadata class that provides the API expected
+  # by CookbookOmnifetch
+  class CookbookMetadata < Chef::Cookbook::Metadata
 
-gem "cookbook-omnifetch", git: "git://github.com/danielsdeleo/cookbook-omnifetch.git", branch: "master"
+    def self.from_path(path)
+      metadata_rb_path = File.join(path, "metadata.rb")
+      new.tap { |m| m.from_file(metadata_rb_path) }
+    end
 
+    def cookbook_name
+      name
+    end
+
+  end
+end

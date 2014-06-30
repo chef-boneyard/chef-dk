@@ -15,11 +15,15 @@
 # limitations under the License.
 #
 
-source 'https://rubygems.org'
+require 'cookbook-omnifetch'
+require 'chef-dk/shell_out'
+require 'chef-dk/cookbook_metadata'
 
-gemspec :name => "chef-dk"
-
-gem "chef", ">= 11.14.0.alpha.4"
-
-gem "cookbook-omnifetch", git: "git://github.com/danielsdeleo/cookbook-omnifetch.git", branch: "master"
+# Configure CookbookOmnifetch's dependency injection settings to use our classes and config.
+CookbookOmnifetch.configure do |c|
+  c.cache_path = File.expand_path('~/.chefdk/cache')
+  c.storage_path = Pathname.new(File.expand_path('~/.chefdk/cache/cookbooks'))
+  c.shell_out_class = ChefDK::ShellOut
+  c.cached_cookbook_class = ChefDK::CookbookMetadata
+end
 

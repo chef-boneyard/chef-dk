@@ -20,6 +20,11 @@ module ChefDK
   class CachedCookbookNotFound < StandardError
   end
 
+  class LocalCookbookNotFound < StandardError
+  end
+
+  class MalformedCookbook < StandardError
+  end
 
   class MissingComponentError < RuntimeError
     def initialize(component_name)
@@ -33,4 +38,9 @@ module ChefDK
     end
   end
 
+  class UnsupportedFeature < StandardError
+  end
+
+  class PolicyfileError < StandardError
+  end
 end

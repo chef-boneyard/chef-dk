@@ -15,11 +15,20 @@
 # limitations under the License.
 #
 
-source 'https://rubygems.org'
+require 'spec_helper'
+require 'chef-dk/shell_out'
 
-gemspec :name => "chef-dk"
+describe ChefDK::ShellOut do
 
-gem "chef", ">= 11.14.0.alpha.4"
+  describe "providing the API expected by CookbookOmnifetch" do
 
-gem "cookbook-omnifetch", git: "git://github.com/danielsdeleo/cookbook-omnifetch.git", branch: "master"
+    it "provides a `shell_out` class method" do
+      expect(described_class).to respond_to(:shell_out)
+    end
 
+    it "responds to #success?" do
+      expect(described_class.new("echo 'foo'")).to respond_to(:success?)
+    end
+
+  end
+end

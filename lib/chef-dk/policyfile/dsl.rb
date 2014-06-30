@@ -16,6 +16,7 @@
 #
 
 require 'chef-dk/policyfile/cookbook_source'
+require 'chef-dk/policyfile/cookbook_spec'
 
 module ChefDK
   module Policyfile
@@ -24,13 +25,16 @@ module ChefDK
       attr_reader :errors
       attr_reader :run_list
       attr_reader :default_source
-      attr_reader :cookbook_source_overrides
+      attr_reader :policyfile_cookbook_specs
+
+      attr_accessor :policyfile_filename
 
       def initialize
         @errors = []
         @run_list = []
         @default_source = nil
-        @cookbook_source_overrides = {}
+        @policyfile_cookbook_specs = {}
+        @policyfile_filename = nil
       end
 
       def run_list(*run_list_items)
@@ -51,18 +55,30 @@ module ChefDK
         end
       end
 
-      def cookbook(name, source_opts={})
-        if existing_source = @cookbook_source_overrides[name]
+      def cookbook(name, *version_and_source_opts)
+        source_options =
+          if version_and_source_opts.last.is_a?(Hash)
+            version_and_source_opts.pop
+          else
+            {}
+          end
+
+        constraint = version_and_source_opts.first || ">= 0.0.0"
+        spec = CookbookSpec.new(name, constraint, source_options, policyfile_filename)
+
+
+        if existing_source = @policyfile_cookbook_specs[name]
           err = "Cookbook '#{name}' assigned to conflicting sources\n\n"
-          err << "Previous source: #{existing_source.inspect}\n"
-          err << "Conflicts with: #{source_opts.inspect}\n"
+          err << "Previous source: #{existing_source.source_options.inspect}\n"
+          err << "Conflicts with: #{source_options.inspect}\n"
           @errors << err
         else
-          @cookbook_source_overrides[name] = source_opts
+          @policyfile_cookbook_specs[name] = spec
         end
       end
 
       def eval_policyfile(policyfile_string, policyfile_filename)
+        @policyfile_filename = policyfile_filename
         instance_eval(policyfile_string, policyfile_filename)
         validate!
         self

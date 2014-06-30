@@ -15,11 +15,22 @@
 # limitations under the License.
 #
 
-source 'https://rubygems.org'
+require 'mixlib/shellout'
 
-gemspec :name => "chef-dk"
+module ChefDK
 
-gem "chef", ">= 11.14.0.alpha.4"
+  # A subclass of Mixlib::ShellOut that conforms to the API expected by
+  # CookbookOmnifetch
+  class ShellOut < Mixlib::ShellOut
+    def self.shell_out(*command_args)
+      cmd = new(*command_args)
+      cmd.run_command
+      cmd
+    end
 
-gem "cookbook-omnifetch", git: "git://github.com/danielsdeleo/cookbook-omnifetch.git", branch: "master"
+    def success?
+      !error?
+    end
+  end
 
+end
