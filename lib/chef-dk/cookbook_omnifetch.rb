@@ -19,6 +19,15 @@ require 'cookbook-omnifetch'
 require 'chef-dk/shell_out'
 require 'chef-dk/cookbook_metadata'
 
+# TODO: chef bug. Chef::HTTP::Simple needs to require this itself.
+# Fixed in 2ed829e661f9a357fc9a8cdf316c84f077dad7f9 waiting for that to be
+# released...
+require 'tempfile'
+require 'chef/platform/query_helpers' # should be handled by http/simple
+require 'chef/http/cookie_manager' # should be handled by http/simple
+require 'chef/http/validate_content_length' # should be handled by http/simple
+require 'chef/http/simple'
+
 # Configure CookbookOmnifetch's dependency injection settings to use our classes and config.
 CookbookOmnifetch.configure do |c|
   c.cache_path = File.expand_path('~/.chefdk/cache')

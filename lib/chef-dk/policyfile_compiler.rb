@@ -40,6 +40,7 @@ module ChefDK
       compiler
     end
 
+    def_delegator :@dsl, :name
     def_delegator :@dsl, :run_list
     def_delegator :@dsl, :errors
     def_delegator :@dsl, :default_source

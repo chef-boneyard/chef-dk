@@ -130,12 +130,18 @@ E
 
       let(:policyfile_rb) do
         <<-EOH
+          name "hello"
+
           run_list "foo", "bar"
         EOH
       end
 
       it "has no errors" do
         expect(policyfile.errors).to eq([])
+      end
+
+      it "has a name" do
+        expect(policyfile.name).to eq("hello")
       end
 
       it "has a run_list" do
