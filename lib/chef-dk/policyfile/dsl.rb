@@ -22,6 +22,8 @@ module ChefDK
   module Policyfile
     class DSL
 
+      attr_writer :name
+
       attr_reader :errors
       attr_reader :run_list
       attr_reader :default_source
@@ -30,11 +32,19 @@ module ChefDK
       attr_accessor :policyfile_filename
 
       def initialize
+        @name = nil
         @errors = []
         @run_list = []
         @default_source = NullCookbookSource.new
         @policyfile_cookbook_specs = {}
         @policyfile_filename = nil
+      end
+
+      def name(name = nil)
+        unless name.nil?
+          @name = name
+        end
+        @name
       end
 
       def run_list(*run_list_items)

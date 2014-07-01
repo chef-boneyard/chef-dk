@@ -66,6 +66,13 @@ describe ChefDK::Policyfile::CookbookSpec do
     expect(cookbook_spec.relative_paths_root).to eq(File.join(fixtures_path, "example_app"))
   end
 
+  it "gives source options for locking via the installer" do
+    lock_data = double("Installer lock data")
+    expect(installer).to receive(:lock_data).and_return(lock_data)
+    expect(cookbook_spec).to receive(:installer).and_return(installer)
+    expect(cookbook_spec.to_source_options).to eq(lock_data)
+  end
+
   describe "fetching and querying a cookbook" do
 
     before do

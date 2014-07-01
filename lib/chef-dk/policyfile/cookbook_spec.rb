@@ -91,6 +91,11 @@ module ChefDK
         File.dirname(@policyfile_filename)
       end
 
+      # TODO: rename as 'source_options_for_lock'
+      def to_source_options
+        installer.lock_data
+      end
+
     end
   end
 end
