@@ -12,4 +12,8 @@ policy.error!
 
 pp policy.graph_solution.sort
 
+policy.install
+
+pp policy.lock.to_lock
+
 

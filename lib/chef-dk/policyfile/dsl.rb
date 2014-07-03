@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef-dk/policyfile/cookbook_source'
+require 'chef-dk/policyfile/cookbook_sources'
 require 'chef-dk/policyfile/cookbook_spec'
 
 module ChefDK
@@ -32,7 +32,7 @@ module ChefDK
       def initialize
         @errors = []
         @run_list = []
-        @default_source = nil
+        @default_source = NullCookbookSource.new
         @policyfile_cookbook_specs = {}
         @policyfile_filename = nil
       end

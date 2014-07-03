@@ -21,7 +21,7 @@ require 'solve'
 require 'chef/run_list/run_list_item'
 
 require 'chef-dk/policyfile/dsl'
-require 'chef-dk/cookbook_cache_manager'
+require 'chef-dk/policyfile_lock'
 
 module ChefDK
 
@@ -49,6 +49,7 @@ module ChefDK
 
     def initialize
       @dsl = Policyfile::DSL.new
+      @artifact_server_cookbook_specs = {}
     end
 
     def error!
@@ -59,6 +60,41 @@ module ChefDK
 
     def cookbook_spec_for(cookbook_name)
       policyfile_cookbook_specs[cookbook_name]
+    end
+
+    def expanded_run_list
+      run_list
+    end
+
+    def lock
+      @policyfile_lock ||= PolicyfileLock.build_from_compiler(self, cache_path: cache_path)
+    end
+
+    def install
+      ensure_cache_dir_exists
+
+      graph_solution.each do |cookbook_name, version|
+        spec = cookbook_spec_for(cookbook_name)
+        if spec.nil? or !spec.version_fixed?
+          spec = create_spec_for_cookbook(cookbook_name, version)
+          spec.ensure_cached
+        end
+      end
+    end
+
+    def create_spec_for_cookbook(cookbook_name, version)
+      source_options = default_source.source_options_for(cookbook_name, version)
+      spec = Policyfile::CookbookSpec.new(cookbook_name, "= #{version}", source_options, dsl)
+      @artifact_server_cookbook_specs[cookbook_name] = spec
+    end
+
+    def all_cookbook_specs
+      # in the installation proces, we create "artifact_server_cookbook_specs"
+      # for any cookbook that isn't sourced from a single-version source (e.g.,
+      # path and git only support one version at a time), but we might have
+      # specs for them to track additional version constraint demands. Merging
+      # in this order ensures the artifact_server_cookbook_specs "win".
+      policyfile_cookbook_specs.merge(@artifact_server_cookbook_specs)
     end
 
     ##
@@ -86,7 +122,7 @@ module ChefDK
 
     def graph_demands
       cookbooks_for_demands.map do |cookbook_name|
-        spec = policyfile_cookbook_specs[cookbook_name]
+        spec = cookbook_spec_for(cookbook_name)
         if spec.nil?
           [ cookbook_name, DEFAULT_DEMAND_CONSTRAINT ]
         elsif spec.version_fixed?
@@ -118,11 +154,11 @@ module ChefDK
     end
 
     def remote_artifacts_graph
-      cache_manager.universe_graph
+      default_source.universe_graph
     end
 
     def version_constraint_for(cookbook_name)
-      if (cookbook_spec = policyfile_cookbook_specs[cookbook_name]) and cookbook_spec.version_fixed?
+      if (cookbook_spec = cookbook_spec_for(cookbook_name)) and cookbook_spec.version_fixed?
         version = cookbook_spec.version
         "= #{version}"
       else
@@ -131,15 +167,11 @@ module ChefDK
     end
 
     def cookbook_version_fixed?(cookbook_name)
-      if cookbook_spec = policyfile_cookbook_specs[cookbook_name]
+      if cookbook_spec = cookbook_spec_for(cookbook_name)
         cookbook_spec.version_fixed?
       else
         false
       end
-    end
-
-    def cache_manager
-      @cache_manager ||= CookbookCacheManager.new(self)
     end
 
     def cookbooks_in_run_list
@@ -163,9 +195,21 @@ module ChefDK
     end
 
     def cache_fixed_version_cookbooks
+      ensure_cache_dir_exists
+
       policyfile_cookbook_specs.each do |_cookbook_name, cookbook_spec|
         cookbook_spec.ensure_cached if cookbook_spec.version_fixed?
       end
+    end
+
+    def ensure_cache_dir_exists
+      unless File.exist?(cache_path)
+        FileUtils.mkdir_p(cache_path)
+      end
+    end
+
+    def cache_path
+      CookbookOmnifetch.storage_path
     end
 
 

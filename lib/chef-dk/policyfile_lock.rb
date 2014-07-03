@@ -100,7 +100,7 @@ module ChefDK
     class LocalCookbook
 
       # A relative or absolute path to the cookbook. If a relative path is
-      # given, it is resolved relative to #cookbook_search_root
+      # given, it is resolved relative to #relative_paths_root
       attr_accessor :source
 
       # A string that uniquely identifies the cookbook version. If not
@@ -114,16 +114,16 @@ module ChefDK
       attr_writer :dotted_decimal_identifier
 
       # The root path from which source is expanded.
-      attr_reader :cookbook_search_root
+      attr_accessor :relative_paths_root
 
-      def initialize(name, cookbook_search_root)
+      def initialize(name, relative_paths_root)
         @name = name
         @identifier = nil
-        @cookbook_search_root = cookbook_search_root
+        @relative_paths_root = relative_paths_root
       end
 
       def cookbook_path
-        File.expand_path(source, cookbook_search_root)
+        File.expand_path(source, relative_paths_root)
       end
 
       def scm_profiler
@@ -166,17 +166,24 @@ module ChefDK
       lock
     end
 
+    def self.build_from_compiler(compiler, options = {})
+      lock = new(options)
+      lock.build_from_compiler(compiler)
+      lock
+    end
+
     attr_accessor :name
     attr_accessor :run_list
 
     attr_reader :cookbook_locks
     attr_reader :cache_path
-    attr_reader :cookbook_search_root
+    attr_reader :relative_paths_root
 
     def initialize(options = {})
       @name = nil
       @run_list = []
       @cookbook_locks = {}
+      @relative_paths_root = Dir.pwd
       handle_options(options)
     end
 
@@ -187,7 +194,7 @@ module ChefDK
     end
 
     def local_cookbook(name)
-      local_cookbook = LocalCookbook.new(name, cookbook_search_root)
+      local_cookbook = LocalCookbook.new(name, relative_paths_root)
       yield local_cookbook
       @cookbook_locks[name] = local_cookbook
     end
@@ -207,11 +214,30 @@ module ChefDK
       end
     end
 
+    def build_from_compiler(compiler)
+      @run_list = compiler.expanded_run_list
+
+      compiler.all_cookbook_specs.each do |cookbook_name, spec|
+        if spec.mirrors_canonical_upstream?
+          cached_cookbook(cookbook_name) do |cached_cb|
+            cached_cb.cache_key = spec.cache_key
+            cached_cb.origin = spec.uri
+          end
+        else
+          local_cookbook(cookbook_name) do |local_cb|
+            local_cb.source = spec.relative_path
+            local_cb.relative_paths_root = spec.relative_paths_root
+          end
+        end
+      end
+      self
+    end
+
     private
 
     def handle_options(options)
       @cache_path = options[:cache_path]
-      @cookbook_search_root = options[:cookbook_search_root]
+      @relative_paths_root = options[:relative_paths_root] if options.key?(:relative_paths_root)
     end
   end
 end

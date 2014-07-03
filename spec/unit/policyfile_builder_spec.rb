@@ -46,12 +46,33 @@ describe ChefDK::PolicyfileLock do
     File.expand_path("spec/unit/fixtures/cookbook_cache", project_root)
   end
 
-  let(:cookbook_search_root) do
+  let(:relative_paths_root) do
     File.expand_path("spec/unit/fixtures/", project_root)
   end
 
   let(:policyfile_lock_options) do
-    { cache_path: cache_path, cookbook_search_root: cookbook_search_root }
+    { cache_path: cache_path, relative_paths_root: relative_paths_root }
+  end
+
+  describe "when first created" do
+
+    let(:policyfile_lock) do
+      described_class.new(policyfile_lock_options)
+    end
+
+    it "uses CWD for relative_paths_root if none is given" do
+      policyfile_lock = described_class.new
+      expect(policyfile_lock.relative_paths_root).to eq(Dir.pwd)
+    end
+
+    it "uses the provided option for relative_paths_root" do
+      expect(policyfile_lock.relative_paths_root).to eq(relative_paths_root)
+    end
+
+    it "uses the provided cache_path" do
+      expect(policyfile_lock.cache_path).to eq(cache_path)
+    end
+
   end
 
   context "when a cookbook is not in the cache" do
@@ -125,7 +146,7 @@ describe ChefDK::PolicyfileLock do
     include_context "setup git cookbooks"
     include_context "setup git cookbook remote"
 
-    let(:cookbook_search_root) do
+    let(:relative_paths_root) do
       tempdir
     end
 
@@ -181,7 +202,7 @@ describe ChefDK::PolicyfileLock do
 
     include_context "setup git cookbooks"
 
-    let(:cookbook_search_root) do
+    let(:relative_paths_root) do
       tempdir
     end
 
@@ -257,7 +278,7 @@ describe ChefDK::PolicyfileLock do
 
     include_context "setup git cookbooks"
 
-    let(:cookbook_search_root) do
+    let(:relative_paths_root) do
       tempdir
     end
 
@@ -370,6 +391,96 @@ describe ChefDK::PolicyfileLock do
       expect(generated_locks['baz']).to eq(expected_locks['baz'])
       expect(generated_locks['dep_of_bar']).to eq(expected_locks['dep_of_bar'])
 
+      expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
+    end
+
+  end
+
+  describe "building a policyfile lock from a policyfile compiler" do
+
+    include_context "setup git cookbooks"
+
+    let(:relative_paths_root) do
+      tempdir
+    end
+
+    let(:cached_cookbook_spec) do
+      double( "ChefDK::Policyfile::CookbookSpec",
+              mirrors_canonical_upstream?: true,
+              cache_key: "foo-1.0.0",
+              uri: "https://supermarket.getchef.com/api/v1/cookbooks/foo/versions/1.0.0/download")
+    end
+
+    let(:local_cookbook_spec) do
+      double( "ChefDK::Policyfile::CookbookSpec",
+              mirrors_canonical_upstream?: false,
+              relative_paths_root: relative_paths_root,
+              relative_path: "bar")
+    end
+
+
+    let(:policyfile_compiler) do
+      double( "ChefDK::PolicyfileCompiler",
+              expanded_run_list: %w[foo bar],
+              all_cookbook_specs: {"foo" => cached_cookbook_spec, "bar" => local_cookbook_spec})
+    end
+
+    let(:policyfile_lock) do
+      ChefDK::PolicyfileLock.build_from_compiler(policyfile_compiler, cache_path: cache_path)
+    end
+
+    let(:compiled_policyfile) do
+      {
+
+        "name" => nil,
+
+        "run_list" => ["foo", "bar"],
+
+        "cookbook_locks" => {
+
+          "foo" => {
+            "version" => "1.0.0",
+            "identifier" => "e4611e9b5ec0636a18979e7dd22537222a2eab47",
+            "dotted_decimal_identifier" => id_to_dotted("e4611e9b5ec0636a18979e7dd22537222a2eab47"),
+            "cache_key" => "foo-1.0.0",
+            "origin" => cached_cookbook_spec.uri
+          },
+
+          "bar" => {
+            "version" => "0.1.0",
+            "identifier" => "f7694dbebe4109dfc857af7e2e4475c322c65259",
+            "dotted_decimal_identifier" => id_to_dotted("f7694dbebe4109dfc857af7e2e4475c322c65259"),
+            "source" => "bar",
+            "cache_key" => nil,
+
+            "scm_info" => {
+              "scm" => "git",
+              "remote" => nil,
+              "revision" => current_rev,
+              "working_tree_clean" => true,
+              "published" => false,
+              "synchronized_remote_branches"=>[]
+            }
+          }
+        }
+      }
+    end
+
+
+    it "adds a cached cookbook lock generator for the compiler's cached cookbook" do
+      expect(policyfile_lock.cookbook_locks).to have_key("foo")
+      cb_lock = policyfile_lock.cookbook_locks["foo"]
+      expect(cb_lock.origin).to eq(cached_cookbook_spec.uri)
+      expect(cb_lock.cache_key).to eq(cached_cookbook_spec.cache_key)
+    end
+
+    it "adds a local cookbook lock generator for the compiler's local cookbook" do
+      expect(policyfile_lock.cookbook_locks).to have_key("bar")
+      cb_lock = policyfile_lock.cookbook_locks["bar"]
+      expect(cb_lock.source).to eq(local_cookbook_spec.relative_path)
+    end
+
+    it "generates a lockfile data structure" do
       expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
     end
 
