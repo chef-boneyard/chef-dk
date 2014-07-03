@@ -43,7 +43,7 @@ describe ChefDK::Policyfile::CommunityCookbookSource do
   end
 
   it "generates location options for a cookbook from the given graph" do
-    expected_opts = { artifactserver: "http://cookbooks.opscode.com/api/v1", version: "1.10.4" }
+    expected_opts = { artifactserver: "https://supermarket.getchef.com/api/v1/cookbooks/apache2/versions/1.10.4/download", version: "1.10.4" }
     expect(cookbook_source.source_options_for("apache2", "1.10.4")).to eq(expected_opts)
   end
 

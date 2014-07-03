@@ -59,7 +59,7 @@ module ChefDK
       end
 
       def source_options_for(cookbook_name, cookbook_version)
-        base_uri = full_community_graph[cookbook_name][cookbook_version]["location_path"]
+        base_uri = full_community_graph[cookbook_name][cookbook_version]["download_url"]
         { artifactserver: base_uri, version: cookbook_version }
       end
 
