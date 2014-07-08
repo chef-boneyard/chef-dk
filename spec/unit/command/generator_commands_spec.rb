@@ -69,14 +69,61 @@ describe ChefDK::Command::GeneratorCommands::App do
       expect(generator_context.cookbook_name).to eq("new_app")
     end
 
-    it "creates a new cookbook" do
-      Dir.chdir(tempdir) do
-        cookbook_generator.chef_runner.stub(:stdout).and_return(stdout_io)
-        cookbook_generator.run
+    describe "generated files" do
+      it "creates a new cookbook" do
+        Dir.chdir(tempdir) do
+          cookbook_generator.chef_runner.stub(:stdout).and_return(stdout_io)
+          cookbook_generator.run
+        end
+        generated_files = Dir.glob(File.join(tempdir, "new_app", "**", "*"), File::FNM_DOTMATCH)
+        expected_cookbook_files.each do |expected_file|
+          expect(generated_files).to include(expected_file)
+        end
       end
-      generated_files = Dir.glob("#{tempdir}/new_app/**/*", File::FNM_DOTMATCH)
-      expected_cookbook_files.each do |expected_file|
-        expect(generated_files).to include(expected_file)
+
+      shared_examples_for "a generated file" do |context_var|
+        before do
+          Dir.chdir(tempdir) do
+            cookbook_generator.chef_runner.stub(:stdout).and_return(stdout_io)
+            cookbook_generator.run
+          end
+        end
+
+        it "should contain #{context_var} from the generator context" do
+          file.should have_line(line)
+        end
+      end
+
+      describe "README.md" do
+        let(:file) { File.join(tempdir, "new_app", "README.md") }
+
+        include_examples "a generated file", :cookbook_name do
+          let(:line) { "# new_app" }
+        end
+      end
+
+      describe ".kitchen.yml" do
+        let(:file) { File.join(tempdir, "new_app", ".kitchen.yml") }
+
+        include_examples "a generated file", :cookbook_name do
+          let(:line) { /\s*- recipe\[new_app::default\]/ }
+        end
+      end
+
+      describe "cookbooks/new_app/metadata.rb" do
+        let(:file) { File.join(tempdir, "new_app", "cookbooks", "new_app", "metadata.rb") }
+
+        include_examples "a generated file", :cookbook_name do
+          let(:line) { /name\s+'new_app'/ }
+        end
+      end
+
+      describe "cookbooks/new_app/recipes/default.rb" do
+        let(:file) { File.join(tempdir, "new_app", "cookbooks", "new_app", "recipes", "default.rb") }
+
+        include_examples "a generated file", :cookbook_name do
+          let(:line) { "# Cookbook Name:: new_app" }
+        end
       end
     end
 
@@ -173,6 +220,51 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
       expected_cookbook_files.each do |expected_file|
         expect(generated_files).to include(expected_file)
+      end
+    end
+
+    shared_examples_for "a generated file" do |context_var|
+      before do
+        Dir.chdir(tempdir) do
+          cookbook_generator.chef_runner.stub(:stdout).and_return(stdout_io)
+          cookbook_generator.run
+        end
+      end
+
+      it "should contain #{context_var} from the generator context" do
+        file.should have_line(line)
+      end
+    end
+
+    describe "README.md" do
+      let(:file) { File.join(tempdir, "new_cookbook", "README.md") }
+
+      include_examples "a generated file", :cookbook_name do
+        let(:line) { "# new_cookbook" }
+      end
+    end
+
+    describe ".kitchen.yml" do
+      let(:file) { File.join(tempdir, "new_cookbook", ".kitchen.yml") }
+
+      include_examples "a generated file", :cookbook_name do
+        let(:line) { /\s*- recipe\[new_cookbook::default\]/ }
+      end
+    end
+
+    describe "metadata.rb" do
+      let(:file) { File.join(tempdir, "new_cookbook", "metadata.rb") }
+
+      include_examples "a generated file", :cookbook_name do
+        let(:line) { /name\s+'new_cookbook'/ }
+      end
+    end
+
+    describe "recipes/default.rb" do
+      let(:file) { File.join(tempdir, "new_cookbook", "recipes", "default.rb") }
+
+      include_examples "a generated file", :cookbook_name do
+        let(:line) { "# Cookbook Name:: new_cookbook" }
       end
     end
 

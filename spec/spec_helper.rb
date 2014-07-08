@@ -19,6 +19,7 @@ require 'rubygems'
 require 'rspec/mocks'
 require 'pry-debugger'
 require 'test_helpers'
+require 'support/generated_file_support'
 
 RSpec.configure do |c|
   c.include ChefDK
