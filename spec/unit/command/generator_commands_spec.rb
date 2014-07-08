@@ -90,7 +90,7 @@ describe ChefDK::Command::GeneratorCommands::App do
         end
 
         it "should contain #{context_var} from the generator context" do
-          file.should have_line(line)
+          File.read(file).should match line
         end
       end
 
@@ -232,7 +232,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       end
 
       it "should contain #{context_var} from the generator context" do
-        file.should have_line(line)
+        File.read(file).should match line
       end
     end
 
