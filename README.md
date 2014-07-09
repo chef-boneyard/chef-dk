@@ -28,7 +28,7 @@ system bin directory, ready to use.
 For help with [Berkshelf][], [Test Kitchen][], [ChefSpec][] or [Foodcritic][],
 visit those projects' homepages for documentation and guides. For help with
 `chef-client` and `knife`, visit the [Chef documentation][]
-and [LearnChef][].
+and [Learn Chef][].
 
 ### The `chef` Command
 
@@ -194,5 +194,5 @@ dpkg -P chefdk
 [Chef Documentation]: http://docs.opscode.com "Chef Documentation"
 [ChefSpec]: http://chefspec.org "ChefSpec"
 [Foodcritic]: http://foodcritic.io "Foodcritic"
-[LearnChef]: (https://learnchef.opscode.com). "#learnchef"
+[Learn Chef]: http://learn.getchef.com "Learn Chef"
 [Test Kitchen]: http://kitchen.ci "Test Kitchen"
