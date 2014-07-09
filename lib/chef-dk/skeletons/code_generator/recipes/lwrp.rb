@@ -21,4 +21,3 @@ template provider_path do
   source "provider.rb.erb"
   helpers(ChefDK::Generator::TemplateHelper)
 end
-

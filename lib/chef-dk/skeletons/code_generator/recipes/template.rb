@@ -1,7 +1,7 @@
 
 context = ChefDK::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
-template_dir = File.join(cookbook_dir, "templates/default")
+template_dir = File.join(cookbook_dir, "templates", "default")
 template_filename = context.new_file_basename
 
 unless File.extname(template_filename) == ".erb"
@@ -10,7 +10,7 @@ unless File.extname(template_filename) == ".erb"
   template_filename = "#{template_filename}.erb"
 end
 
-template_path = File.join(cookbook_dir, "templates/default", template_filename)
+template_path = File.join(cookbook_dir, "templates", "default", template_filename)
 
 directory template_dir do
   recursive true

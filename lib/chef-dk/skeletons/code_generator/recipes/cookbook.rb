@@ -1,5 +1,4 @@
 
-
 context = ChefDK::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
 
@@ -49,5 +48,3 @@ if context.have_git && !context.skip_git_init
     source "gitignore"
   end
 end
-
-
