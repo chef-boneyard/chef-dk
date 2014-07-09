@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## Last Release: 0.2.0
+
+### Chef Development Kit Windows Support
+
+Version 0.2.0 of Chef Development Kit is now available as an MSI package for Windows. Supported operating system versions are:
+
+* Windows Server 2008 R2 / Windows 7
+* Windows Server 2012 / Windows 8
+* Windows Server 2012 R2 / Windows 8.1
+
 ### Added option to generate subcommand
 
 The 'chef generate' subcommand now has the '--generator-cookbook' option to let you
@@ -19,7 +29,7 @@ of the chefdk omnibus environment (analogous to 'bundle exec').
 
 * [chef exec](https://github.com/opscode/chef-dk/pull/22)
 
-## Last Release: 0.1.0
+## Release: 0.1.0
 
 ### Berkshelf Updates
 
@@ -70,5 +80,3 @@ development tools.
 ### Added Tool
 
 `chef-vault` is now a part of the default package.
-
-
