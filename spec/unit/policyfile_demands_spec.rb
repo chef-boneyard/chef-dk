@@ -199,8 +199,8 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
     before do
       policyfile.dsl.cookbook('local-cookbook', path: "/foo")
-      policyfile.cookbook_spec_for("local-cookbook").stub(:version).and_return("2.3.4")
-      policyfile.cookbook_spec_for("local-cookbook").stub(:dependencies).and_return([])
+      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
+      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:dependencies).and_return([])
     end
 
     it "demands a solution using the local cookbook" do
@@ -226,9 +226,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
       before do
         policyfile.dsl.cookbook("local-cookbook", path: "foo/")
-        policyfile.cookbook_spec_for("local-cookbook").stub(:ensure_cached)
-        policyfile.cookbook_spec_for("local-cookbook").stub(:version).and_return("2.3.4")
-        policyfile.cookbook_spec_for("local-cookbook").stub(:dependencies).and_return([ [ "local-cookbook-dep-one", "~> 1.0"] ])
+        allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:ensure_cached)
+        allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
+        allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:dependencies).and_return([ [ "local-cookbook-dep-one", "~> 1.0"] ])
       end
 
       it "demands a solution using the local cookbook" do
@@ -255,9 +255,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
       before do
         policyfile.dsl.cookbook("local-cookbook", path: "foo/")
-        policyfile.cookbook_spec_for("local-cookbook").stub(:ensure_cached)
-        policyfile.cookbook_spec_for("local-cookbook").stub(:version).and_return("2.3.4")
-        policyfile.cookbook_spec_for("local-cookbook").stub(:dependencies).and_return([ [ "local-cookbook-dep-one", "~> 1.0"] ])
+        allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:ensure_cached)
+        allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
+        allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:dependencies).and_return([ [ "local-cookbook-dep-one", "~> 1.0"] ])
       end
 
       it "demands a solution using the local cookbook" do
@@ -289,9 +289,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
     before do
       policyfile.dsl.cookbook("git-sourced-cookbook", git: "git://git.example.org:user/a-cookbook.git")
-      policyfile.cookbook_spec_for("git-sourced-cookbook").stub(:ensure_cached)
-      policyfile.cookbook_spec_for("git-sourced-cookbook").stub(:version).and_return("8.6.7")
-      policyfile.cookbook_spec_for("git-sourced-cookbook").stub(:dependencies).and_return([ ])
+      allow(policyfile.cookbook_spec_for("git-sourced-cookbook")).to receive(:ensure_cached)
+      allow(policyfile.cookbook_spec_for("git-sourced-cookbook")).to receive(:version).and_return("8.6.7")
+      allow(policyfile.cookbook_spec_for("git-sourced-cookbook")).to receive(:dependencies).and_return([ ])
     end
 
     it "demands a solution using the git sourced cookbook" do
@@ -317,9 +317,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
     before do
       policyfile.dsl.cookbook("git-sourced-cookbook", git: "git://git.example.org:user/a-cookbook.git")
-      policyfile.cookbook_spec_for("git-sourced-cookbook").stub(:ensure_cached)
-      policyfile.cookbook_spec_for("git-sourced-cookbook").stub(:version).and_return("8.6.7")
-      policyfile.cookbook_spec_for("git-sourced-cookbook").stub(:dependencies).and_return([ ["git-sourced-cookbook-dep", "~> 2.2" ] ])
+      allow(policyfile.cookbook_spec_for("git-sourced-cookbook")).to receive(:ensure_cached)
+      allow(policyfile.cookbook_spec_for("git-sourced-cookbook")).to receive(:version).and_return("8.6.7")
+      allow(policyfile.cookbook_spec_for("git-sourced-cookbook")).to receive(:dependencies).and_return([ ["git-sourced-cookbook-dep", "~> 2.2" ] ])
     end
 
     context "And the default source is the community site" do
@@ -373,9 +373,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
     before do
       policyfile.dsl.cookbook("local-cookbook", path: "foo/")
-      policyfile.cookbook_spec_for("local-cookbook").stub(:ensure_cached)
-      policyfile.cookbook_spec_for("local-cookbook").stub(:version).and_return("2.3.4")
-      policyfile.cookbook_spec_for("local-cookbook").stub(:dependencies).and_return([])
+      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:ensure_cached)
+      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
+      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:dependencies).and_return([])
     end
 
     context "And the default source is the community site" do
@@ -453,9 +453,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
       policyfile.dsl.cookbook("local-cookbook", path: "foo/")
 
-      policyfile.cookbook_spec_for("local-cookbook").stub(:ensure_cached)
-      policyfile.cookbook_spec_for("local-cookbook").stub(:version).and_return("2.3.4")
-      policyfile.cookbook_spec_for("local-cookbook").stub(:dependencies).and_return([])
+      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:ensure_cached)
+      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
+      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:dependencies).and_return([])
     end
 
     it "demands a solution that matches the version constraint in the policyfile" do
@@ -468,7 +468,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     end
 
     it "builds a policyfile lock from the constraints" do
-      pending
+      skip
       expect(policyfile).to receive(:cache_path).and_return(Pathname.new("~/.nopenope/cache"))
       expect(policyfile.lock).to eq(:wat)
     end
@@ -477,7 +477,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
   context "Given a run_list with roles" do
     it "expands the roles from the given role source" do
-      pending
+      skip
     end
   end
 

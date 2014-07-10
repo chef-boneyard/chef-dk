@@ -44,8 +44,8 @@ describe ChefDK::Command::Generate do
 
   subject(:generate) do
     g = generator_class.new
-    g.stub(:stdout).and_return(stdout_io)
-    g.stub(:stderr).and_return(stderr_io)
+    allow(g).to receive(:stdout).and_return(stdout_io)
+    allow(g).to receive(:stderr).and_return(stderr_io)
     g
   end
 
@@ -68,7 +68,7 @@ E
     end
 
     it "includes the generator in the list" do
-      expect(generator_class).to have(1).generators
+      expect(generator_class.generators.size).to eq(1)
       generator_spec = generator_class.generators.first
       expect(generator_spec.name).to eq(:example)
       expect(generator_spec.class_name).to eq(:Example)

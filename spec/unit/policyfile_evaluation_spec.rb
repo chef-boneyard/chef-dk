@@ -60,7 +60,7 @@ TestPolicyfile.rb:1: syntax error, unexpected end-of-input, expecting tCONSTANT
 {{{{::::{{::
             ^
 E
-          expect(policyfile).to have(1).errors
+          expect(policyfile.errors.size).to eq(1)
           expect(policyfile.errors.first).to eq(expected_error.chomp)
         end
 
@@ -71,7 +71,7 @@ E
         let(:policyfile_rb) { "raise 'oops'" }
 
         it "has an error message with code context" do
-          expect(policyfile).to have(1).errors
+          expect(policyfile.errors.size).to eq(1)
           expected_message = <<-E
 Evaluation of policyfile 'TestPolicyfile.rb' raised an exception
   Exception: RuntimeError "oops"
@@ -105,7 +105,7 @@ E
         end
 
         it "has an invalid source error" do
-          expect(policyfile).to have(1).errors
+          expect(policyfile.errors.size).to eq(1)
           expect(policyfile.errors.first).to eq("Invalid default_source type ':herp'")
         end
       end
@@ -119,7 +119,7 @@ E
         end
 
         it "has an invalid source error" do
-          expect(policyfile).to have(1).errors
+          expect(policyfile.errors.size).to eq(1)
           expect(policyfile.errors.first).to eq("You must specify the server's URI when using a default_source :chef_server")
         end
 
@@ -273,7 +273,7 @@ Cookbook 'foo' assigned to conflicting sources
 Previous source: {:path=>"local_cookbooks/foo"}
 Conflicts with: {:chef_server=>"https://mychefserver.example.com"}
 EOH
-        expect(policyfile).to have(1).errors
+        expect(policyfile.errors.size).to eq(1)
         expect(policyfile.errors.first).to eq(expected)
       end
 

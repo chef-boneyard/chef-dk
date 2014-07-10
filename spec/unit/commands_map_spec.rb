@@ -31,7 +31,7 @@ describe ChefDK::CommandsMap do
   end
 
   it "defines a subcommand mapping" do
-    expect(mapping.have_command?("example")).to be_true
+    expect(mapping.have_command?("example")).to be true
   end
 
   it "infers a non-hypenated command's require path" do

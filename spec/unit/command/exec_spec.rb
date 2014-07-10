@@ -33,22 +33,22 @@ describe ChefDK::Command::Exec do
 
   describe "when locating omnibus directory" do
     it "should find omnibus bin directory from ruby path" do
-      Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
+      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
       expect(command_instance.omnibus_bin_dir).to include("eg_omnibus_dir/valid/bin")
     end
 
     it "should find omnibus embedded bin directory from ruby path" do
-      Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
+      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
       expect(command_instance.omnibus_embedded_bin_dir).to include("eg_omnibus_dir/valid/embedded/bin")
     end
 
     it "should raise OmnibusInstallNotFound if directory is not looking like omnibus" do
-      Gem.stub(:ruby).and_return(File.join(fixtures_path,".rbenv/versions/2.1.1/bin/ruby"))
+      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path,".rbenv/versions/2.1.1/bin/ruby"))
       expect{command_instance.omnibus_bin_dir}.to raise_error(ChefDK::OmnibusInstallNotFound)
     end
 
     it "should raise OmnibusInstallNotFound if directory is not looking like omnibus" do
-      Gem.stub(:ruby).and_return(File.join(fixtures_path,".rbenv/versions/2.1.1/bin/ruby"))
+      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path,".rbenv/versions/2.1.1/bin/ruby"))
       expect{command_instance.omnibus_embedded_bin_dir}.to raise_error(ChefDK::OmnibusInstallNotFound)
     end
   end
@@ -57,7 +57,7 @@ describe ChefDK::Command::Exec do
     let(:ruby_path) { File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby") }
 
     before do
-      Gem.stub(:ruby).and_return(ruby_path)
+      allow(Gem).to receive(:ruby).and_return(ruby_path)
     end
 
     context "when running exec env" do
@@ -79,8 +79,8 @@ describe ChefDK::Command::Exec do
       end
 
       before do
-        command_instance.stub(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
-        command_instance.stub(:omnibus_bin_dir).and_return(omnibus_bin_dir)
+        allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
+        allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
       end
 
       it "should call exec to fire off the command with the correct environment" do
@@ -108,8 +108,8 @@ describe ChefDK::Command::Exec do
       end
 
       before do
-        command_instance.stub(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
-        command_instance.stub(:omnibus_bin_dir).and_return(omnibus_bin_dir)
+        allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
+        allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
       end
 
       it "should raise Errno::ENOENT" do
