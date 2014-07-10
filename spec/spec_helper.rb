@@ -17,7 +17,6 @@
 
 require 'rubygems'
 require 'rspec/mocks'
-require 'pry-debugger'
 require 'test_helpers'
 
 RSpec.configure do |c|

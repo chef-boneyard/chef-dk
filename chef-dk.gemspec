@@ -49,5 +49,4 @@ Gem::Specification.new do |gem|
   %w(rspec-core rspec-expectations rspec-mocks).each do |dev_gem|
     gem.add_development_dependency dev_gem, "~> 2.14.0"
   end
-  gem.add_development_dependency "pry-debugger"
 end
