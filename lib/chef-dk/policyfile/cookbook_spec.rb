@@ -24,12 +24,23 @@ module ChefDK
 
     class CookbookSpec
 
+      #--
+      # Provides #relative_paths_root, which is required by CookbookOmnifetch
+      # API contract
       include StorageConfigDelegation
 
       SOURCE_TYPES = [:git, :github, :path, :artifactserver]
 
+      #--
+      # Required by CookbookOmnifetch API contract
       attr_reader :version_constraint
+
+      #--
+      # Required by CookbookOmnifetch API contract
       attr_reader :name
+
+      #--
+      # Required by CookbookOmnifetch API contract
       attr_reader :source_options
       attr_reader :source_type
       attr_reader :storage_config
