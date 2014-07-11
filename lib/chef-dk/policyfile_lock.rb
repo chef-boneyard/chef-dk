@@ -112,7 +112,6 @@ module ChefDK
         @dotted_decimal_identifier = lock_data["dotted_decimal_identifier"]
         @cache_key = lock_data["cache_key"]
         @origin = lock_data["origin"]
-        # TODO: test
         @source_options = symbolize_source_options_keys(lock_data["source_options"])
       end
 
