@@ -91,8 +91,7 @@ module ChefDK
         installer.cached_cookbook
       end
 
-      # TODO: rename as 'source_options_for_lock'
-      def to_source_options
+      def source_options_for_lock
         installer.lock_data
       end
 

@@ -458,7 +458,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
               mirrors_canonical_upstream?: true,
               cache_key: "foo-1.0.0",
               uri: cached_cookbook_uri,
-              to_source_options: { "artifactserver" => cached_cookbook_uri, "version" => "1.0.0" })
+              source_options_for_lock: { "artifactserver" => cached_cookbook_uri, "version" => "1.0.0" })
     end
 
     let(:local_cookbook_spec) do
@@ -466,7 +466,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
               mirrors_canonical_upstream?: false,
               relative_paths_root: relative_paths_root,
               relative_path: "bar",
-              to_source_options: { "path" => "bar" })
+              source_options_for_lock: { "path" => "bar" })
     end
 
 

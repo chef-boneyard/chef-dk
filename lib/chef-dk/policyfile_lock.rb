@@ -349,12 +349,12 @@ module ChefDK
           cached_cookbook(cookbook_name) do |cached_cb|
             cached_cb.cache_key = spec.cache_key
             cached_cb.origin = spec.uri
-            cached_cb.source_options = spec.to_source_options
+            cached_cb.source_options = spec.source_options_for_lock
           end
         else
           local_cookbook(cookbook_name) do |local_cb|
             local_cb.source = spec.relative_path
-            local_cb.source_options = spec.to_source_options
+            local_cb.source_options = spec.source_options_for_lock
           end
         end
       end
