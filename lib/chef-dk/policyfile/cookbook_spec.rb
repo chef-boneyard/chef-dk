@@ -16,12 +16,15 @@
 #
 
 require 'semverse'
-require 'cookbook-omnifetch'
+require 'chef-dk/cookbook_omnifetch'
+require 'chef-dk/policyfile/storage_config'
 
 module ChefDK
   module Policyfile
 
     class CookbookSpec
+
+      include StorageConfigDelegation
 
       SOURCE_TYPES = [:git, :github, :path, :artifactserver]
 
@@ -29,13 +32,14 @@ module ChefDK
       attr_reader :name
       attr_reader :source_options
       attr_reader :source_type
+      attr_reader :storage_config
 
-      def initialize(name, version_constraint, source_options, policyfile_filename)
+      def initialize(name, version_constraint, source_options, storage_config)
         @name = name
         @version_constraint = Semverse::Constraint.new(version_constraint)
         @source_options = source_options
-        @policyfile_filename = policyfile_filename
         @source_type = SOURCE_TYPES.find { |type| source_options.key?(type) }
+        @storage_config = storage_config
       end
 
       def ==(other)
@@ -85,10 +89,6 @@ module ChefDK
 
       def cached_cookbook
         installer.cached_cookbook
-      end
-
-      def relative_paths_root
-        File.dirname(@policyfile_filename)
       end
 
       # TODO: rename as 'source_options_for_lock'

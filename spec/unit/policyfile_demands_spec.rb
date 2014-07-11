@@ -29,8 +29,6 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
   let(:policyfile) do
     policyfile = ChefDK::PolicyfileCompiler.new.build do |p|
 
-      p.policyfile_filename = "/no-such-place/Policyfile.rb"
-
       p.default_source(*default_source) if default_source
       p.run_list(*run_list)
 

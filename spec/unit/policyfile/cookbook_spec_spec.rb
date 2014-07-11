@@ -32,7 +32,11 @@ describe ChefDK::Policyfile::CookbookSpec do
 
   let(:installer) { double("CookbookOmnifetch location", cached_cookbook: cached_cookbook) }
 
-  let(:cookbook_spec) { described_class.new(cookbook_name, version_constraint, source_options, policyfile_filename) }
+  let(:storage_config) do
+    ChefDK::Policyfile::StorageConfig.new.use_policyfile(policyfile_filename)
+  end
+
+  let(:cookbook_spec) { described_class.new(cookbook_name, version_constraint, source_options, storage_config) }
 
   it "has a name" do
     expect(cookbook_spec.name).to eq(cookbook_name)
@@ -47,18 +51,18 @@ describe ChefDK::Policyfile::CookbookSpec do
   end
 
   it "is equal to another cookbook spec with the same name, constraint, and options" do
-    equal_spec = described_class.new(cookbook_name, version_constraint, source_options, policyfile_filename)
+    equal_spec = described_class.new(cookbook_name, version_constraint, source_options, storage_config)
     expect(cookbook_spec).to eq(equal_spec)
   end
 
   it "is not equal to another cookbook spec if the name, constraint or option differ" do
-    different_name = described_class.new("wut", version_constraint, source_options, policyfile_filename)
+    different_name = described_class.new("wut", version_constraint, source_options, storage_config)
     expect(cookbook_spec).to_not eq(different_name)
 
-    different_constraint = described_class.new(cookbook_name, ">= 1.0.0", source_options, policyfile_filename)
+    different_constraint = described_class.new(cookbook_name, ">= 1.0.0", source_options, storage_config)
     expect(cookbook_spec).to_not eq(different_constraint)
 
-    different_opts = described_class.new(cookbook_name, version_constraint, {git: "git://example.com/wat.git"}, policyfile_filename)
+    different_opts = described_class.new(cookbook_name, version_constraint, {git: "git://example.com/wat.git"}, storage_config)
     expect(cookbook_spec).to_not eq(different_opts)
   end
 
