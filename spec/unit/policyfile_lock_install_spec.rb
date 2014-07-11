@@ -32,8 +32,12 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
 
   let(:run_list) { [ 'recipe[erlang::default]', 'recipe[erchef::prereqs]', 'recipe[erchef::app]' ] }
 
+  let(:storage_config) do
+    ChefDK::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: local_cookbooks_root )
+  end
+
   let(:lock_generator) do
-    ChefDK::PolicyfileLock.build({cache_path: cache_path, relative_paths_root: local_cookbooks_root}) do |policy|
+    ChefDK::PolicyfileLock.build(storage_config) do |policy|
 
       policy.name = name
 
@@ -58,7 +62,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
   end
 
   let(:policyfile_lock) do
-    ChefDK::PolicyfileLock.new.build_from_lock_data(lock_data, policyfile_lock_path)
+    ChefDK::PolicyfileLock.new(storage_config).build_from_lock_data(lock_data)
   end
 
   describe "Populating a PolicyfileLock from a lockfile data structure" do

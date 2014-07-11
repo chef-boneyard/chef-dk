@@ -20,6 +20,8 @@ require 'chef-dk/policyfile_compiler'
 
 describe ChefDK::PolicyfileCompiler do
 
+  let(:storage_config) { ChefDK::Policyfile::StorageConfig.new.use_policyfile("TestPolicyfile.rb") }
+
   let(:policyfile) { ChefDK::PolicyfileCompiler.evaluate(policyfile_rb, "TestPolicyfile.rb") }
 
   describe "Evaluate a policyfile" do
@@ -225,7 +227,7 @@ E
         end
 
         it "sets the source of the cookbook to the local path" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {path: "local_cookbooks/foo"}, "TestPolicyfile.rb")
+          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {path: "local_cookbooks/foo"}, storage_config)
           expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
         end
 
@@ -240,7 +242,7 @@ E
         end
 
         it "sets the source of the cookbook to the git URL" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {git: "git://example.com:me/foo-cookbook.git"}, "TestPolicyfile.rb")
+          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {git: "git://example.com:me/foo-cookbook.git"}, storage_config)
           expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
         end
 
@@ -255,7 +257,7 @@ E
         end
 
         it "sets the source of the cookbook to the git URL" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {chef_server: "https://mychefserver.example.com"}, "TestPolicyfile.rb")
+          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {chef_server: "https://mychefserver.example.com"}, storage_config)
           expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
         end
 

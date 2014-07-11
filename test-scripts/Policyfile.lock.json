@@ -35,8 +35,7 @@
         ]
       },
       "source_options": {
-        "path": "../../cookbooks/homebrew",
-        "metadata": false
+        "path": "../../cookbooks/homebrew"
       }
     },
     "build-essential": {

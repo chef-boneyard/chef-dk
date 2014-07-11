@@ -47,9 +47,11 @@ module ChefDK
     def_delegator :@dsl, :policyfile_cookbook_specs
 
     attr_reader :dsl
+    attr_reader :storage_config
 
     def initialize
-      @dsl = Policyfile::DSL.new
+      @storage_config = Policyfile::StorageConfig.new
+      @dsl = Policyfile::DSL.new(storage_config)
       @artifact_server_cookbook_specs = {}
     end
 
@@ -68,7 +70,7 @@ module ChefDK
     end
 
     def lock
-      @policyfile_lock ||= PolicyfileLock.build_from_compiler(self, cache_path: cache_path)
+      @policyfile_lock ||= PolicyfileLock.build_from_compiler(self, storage_config)
     end
 
     def install
@@ -85,7 +87,7 @@ module ChefDK
 
     def create_spec_for_cookbook(cookbook_name, version)
       source_options = default_source.source_options_for(cookbook_name, version)
-      spec = Policyfile::CookbookSpec.new(cookbook_name, "= #{version}", source_options, dsl)
+      spec = Policyfile::CookbookSpec.new(cookbook_name, "= #{version}", source_options, storage_config)
       @artifact_server_cookbook_specs[cookbook_name] = spec
     end
 
@@ -185,7 +187,8 @@ module ChefDK
     end
 
     def evaluate_policyfile(policyfile_string, policyfile_filename)
-      @dsl.eval_policyfile(policyfile_string, policyfile_filename)
+      storage_config.use_policyfile(policyfile_filename)
+      @dsl.eval_policyfile(policyfile_string)
       self
     end
 

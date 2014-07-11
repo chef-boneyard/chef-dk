@@ -18,6 +18,7 @@
 require 'chef-dk/cookbook_profiler/identifiers'
 require 'chef-dk/cookbook_profiler/null_scm'
 require 'chef-dk/cookbook_profiler/git'
+require 'chef-dk/policyfile/storage_config'
 
 # TODO: reconsider how this dependency is used here.
 require 'chef-dk/cookbook_omnifetch'
@@ -32,6 +33,8 @@ module ChefDK
     # --
     # TODO: lots of duplication between these classes and CookbookSpec.
     class CachedCookbook
+
+      include Policyfile::StorageConfigDelegation
 
       # The cookbook name (without any version or other info suffixed)
       attr_reader :name
@@ -60,18 +63,17 @@ module ChefDK
       # where cookbooks are stored by x.y.z version numbers.
       attr_writer :dotted_decimal_identifier
 
-      # The root of the cookbook cache.
-      attr_reader :cache_path
+      attr_reader :storage_config
 
-      def initialize(name, cache_path)
+      def initialize(name, storage_config)
         @name = name
-        @cache_path = cache_path
         @version = nil
         @origin = nil
         @source_options = nil
         @cache_key = nil
         @identifier = nil
         @dotted_decimal_identifier = nil
+        @storage_config = storage_config
       end
 
       def cookbook_path
@@ -161,6 +163,8 @@ module ChefDK
     # filesystem and are assumed to be under active development.
     class LocalCookbook
 
+      include Policyfile::StorageConfigDelegation
+
       # The cookbook name (without any version or other info suffixed)
       attr_reader :name
 
@@ -183,13 +187,12 @@ module ChefDK
       # where cookbooks are stored by x.y.z version numbers.
       attr_writer :dotted_decimal_identifier
 
-      # The root path from which source is expanded.
-      attr_accessor :relative_paths_root
+      attr_reader :storage_config
 
-      def initialize(name, relative_paths_root)
+      def initialize(name, storage_config)
         @name = name
         @identifier = nil
-        @relative_paths_root = relative_paths_root
+        @storage_config = storage_config
       end
 
       def cookbook_path
@@ -282,46 +285,42 @@ module ChefDK
 
     end
 
-    def self.build(options = {})
-      lock = new(options)
+    def self.build(storage_config)
+      lock = new(storage_config)
       yield lock
       lock
     end
 
-    def self.build_from_compiler(compiler, options = {})
-      lock = new(options)
+    def self.build_from_compiler(compiler, storage_config)
+      lock = new(storage_config)
       lock.build_from_compiler(compiler)
       lock
     end
 
+    include Policyfile::StorageConfigDelegation
+
     attr_accessor :name
     attr_accessor :run_list
+    attr_reader :storage_config
 
     attr_reader :cookbook_locks
-    attr_reader :cache_path
-    attr_reader :relative_paths_root
 
-    def initialize(options = {})
+    def initialize(storage_config)
       @name = nil
       @run_list = []
       @cookbook_locks = {}
       @relative_paths_root = Dir.pwd
-
-      # TODO: factor out a policyfile context/config object.
-      # TODO: also make types consistent everywhere (Pathname vs. String)
-      @cache_path = CookbookOmnifetch.storage_path
-
-      handle_options(options)
+      @storage_config = storage_config
     end
 
     def cached_cookbook(name)
-      cached_cookbook = CachedCookbook.new(name, cache_path)
+      cached_cookbook = CachedCookbook.new(name, storage_config)
       yield cached_cookbook if block_given?
       @cookbook_locks[name] = cached_cookbook
     end
 
     def local_cookbook(name)
-      local_cookbook = LocalCookbook.new(name, relative_paths_root)
+      local_cookbook = LocalCookbook.new(name, storage_config)
       yield local_cookbook if block_given?
       @cookbook_locks[name] = local_cookbook
     end
@@ -355,7 +354,6 @@ module ChefDK
         else
           local_cookbook(cookbook_name) do |local_cb|
             local_cb.source = spec.relative_path
-            local_cb.relative_paths_root = spec.relative_paths_root
             local_cb.source_options = spec.to_source_options
           end
         end
@@ -363,8 +361,7 @@ module ChefDK
       self
     end
 
-    def build_from_lock_data(lock_data, lockfile_path)
-      @relative_paths_root = File.expand_path(File.dirname(lockfile_path))
+    def build_from_lock_data(lock_data)
       self.name = lock_data["name"]
       self.run_list = lock_data["run_list"]
       lock_data["cookbook_locks"].each do |name, lock_info|
@@ -399,9 +396,5 @@ module ChefDK
       end
     end
 
-    def handle_options(options)
-      @cache_path = options[:cache_path] if options[:cache_path]
-      @relative_paths_root = options[:relative_paths_root] if options.key?(:relative_paths_root)
-    end
   end
 end

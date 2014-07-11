@@ -17,6 +17,7 @@
 
 require 'spec_helper'
 require 'shared/setup_git_cookbooks'
+require 'chef-dk/policyfile/storage_config'
 require 'chef-dk/policyfile_lock.rb'
 
 describe ChefDK::PolicyfileLock, "building a lockfile" do
@@ -50,43 +51,14 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     File.expand_path("spec/unit/fixtures/", project_root)
   end
 
-  let(:policyfile_lock_options) do
-    { cache_path: cache_path, relative_paths_root: relative_paths_root }
-  end
-
-  describe "when first created" do
-
-    let(:policyfile_lock) do
-      described_class.new(policyfile_lock_options)
-    end
-
-    it "uses the provided option for relative_paths_root" do
-      expect(policyfile_lock.relative_paths_root).to eq(relative_paths_root)
-    end
-
-    it "uses the provided cache_path" do
-      expect(policyfile_lock.cache_path).to eq(cache_path)
-    end
-
-    context "with default options" do
-
-      let(:policyfile_lock_options) { {} }
-
-      it "defaults to the CookbookOmnifetch configured cache path" do
-        expect(policyfile_lock.cache_path).to eq(CookbookOmnifetch.storage_path)
-      end
-
-      it "defaults to the current working directory for relative_paths_root" do
-        expect(policyfile_lock.relative_paths_root).to eq(Dir.pwd)
-      end
-    end
-
+  let(:storage_config) do
+    ChefDK::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: relative_paths_root )
   end
 
   context "when a cached cookbook omits the cache key" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "invalid_cache_key_policyfile"
 
@@ -106,7 +78,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
   context "when a local cookbook omits the path" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "invalid_local_cookbook"
 
@@ -125,7 +97,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
   context "when a local cookbook has an incorrect path" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "invalid_local_cookbook"
 
@@ -145,7 +117,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
   context "when a cookbook is not in the cache" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "invalid_cache_key_policyfile"
 
@@ -166,7 +138,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
   context "with a minimal policyfile" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "minimal_policyfile"
 
@@ -219,7 +191,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "dev_cookbook"
 
@@ -276,7 +248,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "custom_identifier"
 
@@ -355,7 +327,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
     let(:policyfile_lock) do
 
-      ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
 
         # Required
         p.name = "basic_example"
@@ -506,7 +478,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build_from_compiler(policyfile_compiler, cache_path: cache_path)
+      ChefDK::PolicyfileLock.build_from_compiler(policyfile_compiler, storage_config)
     end
 
     let(:compiled_policyfile) do
