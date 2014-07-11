@@ -25,8 +25,8 @@ describe ChefDK::Command::ShellInit do
 
   let(:command_instance) do
     ChefDK::Command::ShellInit.new.tap do |c|
-      c.stub(:stdout).and_return(stdout_io)
-      c.stub(:stderr).and_return(stderr_io)
+      allow(c).to receive(:stdout).and_return(stdout_io)
+      allow(c).to receive(:stderr).and_return(stderr_io)
     end
   end
 
@@ -57,8 +57,8 @@ EOH
     let(:omnibus_embedded_bin_dir) { "/foo/embedded/bin" }
 
     before do
-      command_instance.stub(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
-      command_instance.stub(:omnibus_bin_dir).and_return(omnibus_bin_dir)
+      allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
+      allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
     end
 
     it "emits a script to add ChefDK's ruby to the shell environment" do

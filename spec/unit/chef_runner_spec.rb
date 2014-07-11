@@ -33,17 +33,17 @@ describe ChefDK::ChefRunner do
 
   subject(:chef_runner) do
     r = ChefDK::ChefRunner.new(default_cookbook_path, run_list)
-    r.stub(:stdout).and_return(stdout_io)
-    r.stub(:stderr).and_return(stderr_io)
+    allow(r).to receive(:stdout).and_return(stdout_io)
+    allow(r).to receive(:stderr).and_return(stderr_io)
     r
   end
 
   it "sets up Chef::Config" do
     chef_runner.configure
-    expect(Chef::Config.solo).to be_true
+    expect(Chef::Config.solo).to be true
     expect(Chef::Config.cookbook_path).to eq(default_cookbook_path)
-    expect(Chef::Config.color).to be_true
-    expect(Chef::Config.diff_disabled).to be_true
+    expect(Chef::Config.color).to be true
+    expect(Chef::Config.diff_disabled).to be true
   end
 
   it "configures a formatter for the chef run" do

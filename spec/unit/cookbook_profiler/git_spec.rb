@@ -46,11 +46,11 @@ describe ChefDK::CookbookProfiler::Git do
     end
 
     it "reports that the repo is clean" do
-      expect(git_profiler.clean?).to be_true
+      expect(git_profiler.clean?).to be true
     end
 
     it "reports that the commits are unpublished" do
-      expect(git_profiler.unpublished_commits?).to be_true
+      expect(git_profiler.unpublished_commits?).to be true
     end
 
     it "reports that no remotes have the commits" do
@@ -74,11 +74,11 @@ describe ChefDK::CookbookProfiler::Git do
       end
 
       it "reports that the repo is clean" do
-        expect(git_profiler.clean?).to be_true
+        expect(git_profiler.clean?).to be true
       end
 
       it "reports that all commits are published to the upstream" do
-        expect(git_profiler.unpublished_commits?).to be_false
+        expect(git_profiler.unpublished_commits?).to be false
       end
 
       it "lists the remotes that commits are published to" do
@@ -97,11 +97,11 @@ describe ChefDK::CookbookProfiler::Git do
       end
 
       it "reports that the repo is clean" do
-        expect(git_profiler.clean?).to be_true
+        expect(git_profiler.clean?).to be true
       end
 
       it "reports that there are unpublished changes" do
-        expect(git_profiler.unpublished_commits?).to be_true
+        expect(git_profiler.unpublished_commits?).to be true
       end
 
       it "reports that no remotes have the commits" do
@@ -118,7 +118,7 @@ describe ChefDK::CookbookProfiler::Git do
     end
 
     it "reports that the repo is dirty" do
-      expect(git_profiler.clean?).to be_false
+      expect(git_profiler.clean?).to be false
     end
 
   end

@@ -49,22 +49,22 @@ describe ChefDK::Command::Verify do
 
   describe "when locating omnibus directory" do
     it "should find omnibus app directory from ruby path" do
-      Gem.stub(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
+      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby"))
       expect(command_instance.omnibus_apps_dir).to include("eg_omnibus_dir/valid/embedded")
     end
 
     it "should raise OmnibusInstallNotFound if directory is not looking like omnibus" do
-      Gem.stub(:ruby).and_return(File.join(fixtures_path,".rbenv/versions/2.1.1/bin/ruby"))
+      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path,".rbenv/versions/2.1.1/bin/ruby"))
       expect{command_instance.omnibus_apps_dir}.to raise_error(ChefDK::OmnibusInstallNotFound)
     end
 
     it "raises OmnibusInstallNotFound if omnibus directory doesn't exist" do
-      Gem.stub(:ruby).and_return(File.join(fixtures_path,"eg_omnibus_dir/missing_apps/embedded/bin/ruby"))
+      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path,"eg_omnibus_dir/missing_apps/embedded/bin/ruby"))
       expect{command_instance.omnibus_apps_dir}.to raise_error(ChefDK::OmnibusInstallNotFound)
     end
 
     it "raises MissingComponentError when a component doesn't exist" do
-      Gem.stub(:ruby).and_return(File.join(fixtures_path,"eg_omnibus_dir/missing_component/embedded/bin/ruby"))
+      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path,"eg_omnibus_dir/missing_component/embedded/bin/ruby"))
       expect{command_instance.validate_components!}.to raise_error(ChefDK::MissingComponentError)
     end
   end
@@ -133,9 +133,9 @@ describe ChefDK::Command::Verify do
     end
 
     before do
-      Gem.stub(:ruby).and_return(ruby_path)
-      command_instance.stub(:stdout).and_return(stdout_io)
-      command_instance.stub(:components).and_return(components)
+      allow(Gem).to receive(:ruby).and_return(ruby_path)
+      allow(command_instance).to receive(:stdout).and_return(stdout_io)
+      allow(command_instance).to receive(:components).and_return(components)
     end
 
     context "when running smoke tests only" do
@@ -268,7 +268,7 @@ describe ChefDK::Command::Verify do
         it "should report the output of the first verification first" do
           index_first = stdout.index("you are good to go...")
           index_second = stdout.index("my friend everything is good...")
-          expect(index_second > index_first).to be_true
+          expect(index_second > index_first).to be true
         end
 
         context "and components are filtered by CLI args" do

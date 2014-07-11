@@ -58,15 +58,15 @@ E
   let(:version_message) { "Chef Development Kit Version: #{ChefDK::VERSION}\n" }
 
   def run_cli(expected_exit_code)
-    cli.should_receive(:exit).with(expected_exit_code)
+    expect(cli).to receive(:exit).with(expected_exit_code)
     cli.run
   end
 
   subject(:cli) do
     ChefDK::CLI.new(argv).tap do |c|
-      c.stub(:commands_map).and_return(commands_map)
-      c.stub(:stdout).and_return(stdout_io)
-      c.stub(:stderr).and_return(stderr_io)
+      allow(c).to receive(:commands_map).and_return(commands_map)
+      allow(c).to receive(:stdout).and_return(stdout_io)
+      allow(c).to receive(:stderr).and_return(stderr_io)
     end
   end
 

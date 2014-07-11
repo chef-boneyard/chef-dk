@@ -69,17 +69,17 @@ describe ChefDK::ComponentTest do
 
     it "defines a unit test block" do
       component.run_unit_test
-      expect(result[:unit_test]).to be_true
+      expect(result[:unit_test]).to be true
     end
 
     it "defines an integration test block" do
       component.run_integration_test
-      expect(result[:integration_test]).to be_true
+      expect(result[:integration_test]).to be true
     end
 
     it "defines a smoke test block" do
       component.run_smoke_test
-      expect(result[:smoke_test]).to be_true
+      expect(result[:smoke_test]).to be true
     end
 
   end

@@ -72,7 +72,7 @@ describe ChefDK::Command::GeneratorCommands::App do
     describe "generated files" do
       it "creates a new cookbook" do
         Dir.chdir(tempdir) do
-          cookbook_generator.chef_runner.stub(:stdout).and_return(stdout_io)
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
           cookbook_generator.run
         end
         generated_files = Dir.glob(File.join(tempdir, "new_app", "**", "*"), File::FNM_DOTMATCH)
@@ -84,13 +84,13 @@ describe ChefDK::Command::GeneratorCommands::App do
       shared_examples_for "a generated file" do |context_var|
         before do
           Dir.chdir(tempdir) do
-            cookbook_generator.chef_runner.stub(:stdout).and_return(stdout_io)
+            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
             cookbook_generator.run
           end
         end
 
         it "should contain #{context_var} from the generator context" do
-          File.read(file).should match line
+          expect(File.read(file)).to match line
         end
       end
 
@@ -159,7 +159,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
   subject(:cookbook_generator) do
     g = described_class.new(argv)
-    g.stub(:cookbook_path_in_git_repo?).and_return(false)
+    allow(g).to receive(:cookbook_path_in_git_repo?).and_return(false)
     g
   end
 
@@ -185,8 +185,8 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
     def with_argv(argv)
       generator = described_class.new(argv)
-      generator.stub(:stdout).and_return(stdout_io)
-      generator.stub(:stderr).and_return(stderr_io)
+      allow(generator).to receive(:stdout).and_return(stdout_io)
+      allow(generator).to receive(:stderr).and_return(stderr_io)
       generator
     end
 
@@ -214,7 +214,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
     it "creates a new cookbook" do
       Dir.chdir(tempdir) do
-        cookbook_generator.chef_runner.stub(:stdout).and_return(stdout_io)
+        allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
         cookbook_generator.run
       end
       generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
@@ -226,13 +226,13 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
     shared_examples_for "a generated file" do |context_var|
       before do
         Dir.chdir(tempdir) do
-          cookbook_generator.chef_runner.stub(:stdout).and_return(stdout_io)
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
           cookbook_generator.run
         end
       end
 
       it "should contain #{context_var} from the generator context" do
-        File.read(file).should match line
+        expect(File.read(file)).to match line
       end
     end
 
@@ -304,7 +304,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
     it "creates a new cookbook" do
       Dir.chdir(tempdir) do
-        cookbook_generator.chef_runner.stub(:stdout).and_return(stdout_io)
+        allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
         cookbook_generator.run
       end
       generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
@@ -336,8 +336,8 @@ shared_examples_for "a file generator" do
 
   subject(:recipe_generator) do
     generator = described_class.new(argv)
-    generator.stub(:stdout).and_return(stdout_io)
-    generator.stub(:stderr).and_return(stderr_io)
+    allow(generator).to receive(:stdout).and_return(stdout_io)
+    allow(generator).to receive(:stderr).and_return(stderr_io)
     generator
   end
 
@@ -382,7 +382,7 @@ shared_examples_for "a file generator" do
 
     it "creates a new recipe" do
       Dir.chdir(cookbook_path) do
-        recipe_generator.chef_runner.stub(:stdout).and_return(stdout_io)
+        allow(recipe_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
         recipe_generator.run
       end
 
@@ -424,7 +424,7 @@ shared_examples_for "a file generator" do
       end
 
       it "creates a new recipe" do
-        recipe_generator.chef_runner.stub(:stdout).and_return(stdout_io)
+        allow(recipe_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
         recipe_generator.run
 
         generated_files.each do |expected_file|

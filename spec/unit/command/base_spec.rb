@@ -42,7 +42,7 @@ describe ChefDK::Command::Base do
   end
 
   before do
-    command_instance.stub(:stdout).and_return(stdout_io)
+    allow(command_instance).to receive(:stdout).and_return(stdout_io)
   end
 
 
