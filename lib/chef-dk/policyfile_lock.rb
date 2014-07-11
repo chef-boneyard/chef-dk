@@ -56,14 +56,16 @@ module ChefDK
       # A string that uniquely identifies the cookbook version. If not
       # explicitly set, an identifier is generated based on the cookbook's
       # content.
-      attr_writer :identifier
+      attr_accessor :identifier
 
       # A string in "X.Y.Z" version number format that uniquely identifies the
       # cookbook version. This is for compatibility with Chef Server 11.x,
       # where cookbooks are stored by x.y.z version numbers.
-      attr_writer :dotted_decimal_identifier
+      attr_accessor :dotted_decimal_identifier
 
       attr_reader :storage_config
+
+      attr_accessor :version
 
       def initialize(name, storage_config)
         @name = name
@@ -80,25 +82,11 @@ module ChefDK
         File.join(cache_path, cache_key)
       end
 
-      # TODO: get rid of lazy here. This class should be a value object with an
-      # explicit opertion to load data from the profiled cookbook
-      # ditto for #identifier and #dotted_decimal_identifier
-      def version
-        @version || identifiers.semver_version
-      end
-
       # TODO: duplicates CookbookSpec#initialize
       def version_constraint
         Semverse::Constraint.new("= #{version}")
       end
 
-      def identifier
-        @identifier || identifiers.content_identifier
-      end
-
-      def dotted_decimal_identifier
-        @dotted_decimal_identifier || identifiers.dotted_decimal_identifier
-      end
 
       # TODO: duplicates CookbookSpec#ensure_cached
       def install_locked
@@ -110,6 +98,12 @@ module ChefDK
       # TODO: validate source options
       def installer
         @installer ||= CookbookOmnifetch.init(self, source_options)
+      end
+
+      def gather_profile_data
+        @identifier ||= identifiers.content_identifier
+        @dotted_decimal_identifier ||= identifiers.dotted_decimal_identifier
+        @version ||= identifiers.semver_version
       end
 
       def build_from_lock_data(lock_data)
@@ -180,12 +174,14 @@ module ChefDK
       # A string that uniquely identifies the cookbook version. If not
       # explicitly set, an identifier is generated based on the cookbook's
       # content.
-      attr_writer :identifier
+      attr_accessor :identifier
 
       # A string in "X.Y.Z" version number format that uniquely identifies the
       # cookbook version. This is for compatibility with Chef Server 11.x,
       # where cookbooks are stored by x.y.z version numbers.
-      attr_writer :dotted_decimal_identifier
+      attr_accessor :dotted_decimal_identifier
+
+      attr_accessor :version
 
       attr_reader :storage_config
 
@@ -207,23 +203,9 @@ module ChefDK
         end
       end
 
-      # TODO: get rid of lazy here. This class should be a value object with an
-      # explicit opertion to load data from the profiled cookbook
-      def version
-        @version || identifiers.semver_version
-      end
-
       # TODO: duplicates CookbookSpec#initialize
       def version_constraint
         Semverse::Constraint.new("= #{version}")
-      end
-
-      def identifier
-        @identifier || identifiers.content_identifier
-      end
-
-      def dotted_decimal_identifier
-        @dotted_decimal_identifier || identifiers.dotted_decimal_identifier
       end
 
       # TODO: duplicates CookbookSpec#ensure_cached
@@ -236,6 +218,12 @@ module ChefDK
       # TODO: validate source options
       def installer
         @installer ||= CookbookOmnifetch.init(self, source_options)
+      end
+
+      def gather_profile_data
+        @identifier ||= identifiers.content_identifier
+        @dotted_decimal_identifier ||= identifiers.dotted_decimal_identifier
+        @version ||= identifiers.semver_version
       end
 
       def to_lock
@@ -335,6 +323,8 @@ module ChefDK
 
     def cookbook_locks_for_lockfile
       cookbook_locks.inject({}) do |locks_map, (name, cookbook_spec)|
+        cookbook_spec.validate!
+        cookbook_spec.gather_profile_data
         locks_map[name] = cookbook_spec.to_lock
         locks_map
       end
