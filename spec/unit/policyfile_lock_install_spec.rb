@@ -85,7 +85,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
       expect(cookbook_lock.dotted_decimal_identifier).to eq("64283078773620835.29863387009503781.60619876117319")
       expect(cookbook_lock.origin).to eq("https://artifact-server.example/foo/1.0.0")
       expect(cookbook_lock.source_options).to eq({ artifactserver: "https://artifact-server.example/foo/1.0.0", version: "1.0.0" })
-      expect(cookbook_lock.version_constraint).to eq(Semverse::Constraint.new("= 1.0.0"))
+      expect(cookbook_lock.cookbook_location_spec.version_constraint).to eq(Semverse::Constraint.new("= 1.0.0"))
     end
 
     it "imports local cookbook lock data" do
@@ -97,7 +97,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
       expect(cookbook_lock.dotted_decimal_identifier).to eq("56055785335566581.64210429328099467.134380166763990")
       expect(cookbook_lock.source).to eq("local-cookbook")
       expect(cookbook_lock.source_options).to eq({ path: "local-cookbook" })
-      expect(cookbook_lock.version_constraint).to eq(Semverse::Constraint.new("= 2.3.4"))
+      expect(cookbook_lock.cookbook_location_spec.version_constraint).to eq(Semverse::Constraint.new("= 2.3.4"))
     end
 
   end
@@ -108,52 +108,28 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
 
     let(:local_cookbook_lock) { policyfile_lock.cookbook_locks["local-cookbook"] }
 
-    it "configures the installer for a remote cookbook" do
-      installer = remote_cookbook_lock.installer
-      expect(installer).to be_an_instance_of(CookbookOmnifetch::ArtifactserverLocation)
-      expect(installer.uri).to eq("https://artifact-server.example/foo/1.0.0")
-      expect(installer.cookbook_version).to eq("1.0.0")
+    it "configures the cookbook location spec for a remote cookbook" do
+      location_spec = remote_cookbook_lock.cookbook_location_spec
+      expect(location_spec).to be_an_instance_of(ChefDK::Policyfile::CookbookLocationSpecification)
+      expect(location_spec.uri).to eq("https://artifact-server.example/foo/1.0.0")
+      expect(location_spec.source_options[:version]).to eq("1.0.0")
     end
 
     it "configures the installer for a local cookbook" do
-      installer = local_cookbook_lock.installer
-      expect(installer).to be_an_instance_of(CookbookOmnifetch::PathLocation)
+      location_spec = local_cookbook_lock.cookbook_location_spec
+      expect(location_spec).to be_an_instance_of(ChefDK::Policyfile::CookbookLocationSpecification)
 
-      # Would like to verify that the correct path option was passed to
-      # PathLocation.new() but there is no accessor for it.
-      #expect(installer.path).to eq("local-cookbook")
+      expect(location_spec.relative_path).to eq('local-cookbook')
     end
 
-    context "when the cookbooks are not installed" do
 
-      before do
-        expect(remote_cookbook_lock.installer).to receive(:installed?).and_return(false)
-        expect(local_cookbook_lock.installer).to receive(:installed?).and_return(false)
-      end
+    it "ensures the cookbooks are installed" do
+      expect(remote_cookbook_lock.cookbook_location_spec).to receive(:ensure_cached)
+      expect(local_cookbook_lock.cookbook_location_spec).to receive(:ensure_cached)
 
-      it "installs them" do
-        expect(remote_cookbook_lock.installer).to receive(:install)
-        expect(local_cookbook_lock.installer).to receive(:install)
-
-        policyfile_lock.install_cookbooks
-      end
-
+      policyfile_lock.install_cookbooks
     end
 
-    context "when the cookbooks are installed" do
-
-      before do
-        expect(remote_cookbook_lock.installer).to receive(:installed?).and_return(true)
-        expect(local_cookbook_lock.installer).to receive(:installed?).and_return(true)
-      end
-
-      it "verifies they are installed" do
-        expect(remote_cookbook_lock.installer).to_not receive(:install)
-        expect(local_cookbook_lock.installer).to_not receive(:install)
-
-        policyfile_lock.install_cookbooks
-      end
-    end
   end
 
 end
