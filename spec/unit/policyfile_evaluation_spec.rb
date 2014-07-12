@@ -227,8 +227,8 @@ E
         end
 
         it "sets the source of the cookbook to the local path" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {path: "local_cookbooks/foo"}, storage_config)
-          expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
+          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", {path: "local_cookbooks/foo"}, storage_config)
+          expect(policyfile.cookbook_location_specs).to eq("foo" => expected_cb_spec)
         end
 
       end
@@ -242,8 +242,8 @@ E
         end
 
         it "sets the source of the cookbook to the git URL" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {git: "git://example.com:me/foo-cookbook.git"}, storage_config)
-          expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
+          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", {git: "git://example.com:me/foo-cookbook.git"}, storage_config)
+          expect(policyfile.cookbook_location_specs).to eq("foo" => expected_cb_spec)
         end
 
       end
@@ -257,8 +257,8 @@ E
         end
 
         it "sets the source of the cookbook to the git URL" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {chef_server: "https://mychefserver.example.com"}, storage_config)
-          expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
+          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", {chef_server: "https://mychefserver.example.com"}, storage_config)
+          expect(policyfile.cookbook_location_specs).to eq("foo" => expected_cb_spec)
         end
 
       end

@@ -16,7 +16,7 @@
 #
 
 require 'chef-dk/policyfile/cookbook_sources'
-require 'chef-dk/policyfile/cookbook_spec'
+require 'chef-dk/policyfile/cookbook_location_specification'
 require 'chef-dk/policyfile/storage_config'
 
 module ChefDK
@@ -30,7 +30,7 @@ module ChefDK
       attr_reader :errors
       attr_reader :run_list
       attr_reader :default_source
-      attr_reader :policyfile_cookbook_specs
+      attr_reader :cookbook_location_specs
 
       attr_reader :storage_config
 
@@ -39,7 +39,7 @@ module ChefDK
         @errors = []
         @run_list = []
         @default_source = NullCookbookSource.new
-        @policyfile_cookbook_specs = {}
+        @cookbook_location_specs = {}
         @storage_config = storage_config
       end
 
@@ -77,16 +77,16 @@ module ChefDK
           end
 
         constraint = version_and_source_opts.first || ">= 0.0.0"
-        spec = CookbookSpec.new(name, constraint, source_options, storage_config)
+        spec = CookbookLocationSpecification.new(name, constraint, source_options, storage_config)
 
 
-        if existing_source = @policyfile_cookbook_specs[name]
+        if existing_source = @cookbook_location_specs[name]
           err = "Cookbook '#{name}' assigned to conflicting sources\n\n"
           err << "Previous source: #{existing_source.source_options.inspect}\n"
           err << "Conflicts with: #{source_options.inspect}\n"
           @errors << err
         else
-          @policyfile_cookbook_specs[name] = spec
+          @cookbook_location_specs[name] = spec
         end
       end
 

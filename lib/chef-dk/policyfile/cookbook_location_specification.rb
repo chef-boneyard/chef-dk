@@ -22,7 +22,7 @@ require 'chef-dk/policyfile/storage_config'
 module ChefDK
   module Policyfile
 
-    class CookbookSpec
+    class CookbookLocationSpecification
 
       #--
       # Provides #relative_paths_root, which is required by CookbookOmnifetch

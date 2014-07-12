@@ -453,16 +453,16 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
     let(:cached_cookbook_uri) { "https://supermarket.getchef.com/api/v1/cookbooks/foo/versions/1.0.0/download" }
 
-    let(:cached_cookbook_spec) do
-      double( "ChefDK::Policyfile::CookbookSpec",
+    let(:cached_location_spec) do
+      double( "ChefDK::Policyfile::CookbookLocationSpecification",
               mirrors_canonical_upstream?: true,
               cache_key: "foo-1.0.0",
               uri: cached_cookbook_uri,
               source_options_for_lock: { "artifactserver" => cached_cookbook_uri, "version" => "1.0.0" })
     end
 
-    let(:local_cookbook_spec) do
-      double( "ChefDK::Policyfile::CookbookSpec",
+    let(:local_location_spec) do
+      double( "ChefDK::Policyfile::CookbookLocationSpecification",
               mirrors_canonical_upstream?: false,
               relative_paths_root: relative_paths_root,
               relative_path: "bar",
@@ -474,7 +474,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       double( "ChefDK::PolicyfileCompiler",
               name: "my-policyfile",
               expanded_run_list: %w[foo bar],
-              all_cookbook_specs: {"foo" => cached_cookbook_spec, "bar" => local_cookbook_spec})
+              all_location_specs: {"foo" => cached_location_spec, "bar" => local_location_spec})
     end
 
     let(:policyfile_lock) do
@@ -523,14 +523,14 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     it "adds a cached cookbook lock generator for the compiler's cached cookbook" do
       expect(policyfile_lock.cookbook_locks).to have_key("foo")
       cb_lock = policyfile_lock.cookbook_locks["foo"]
-      expect(cb_lock.origin).to eq(cached_cookbook_spec.uri)
-      expect(cb_lock.cache_key).to eq(cached_cookbook_spec.cache_key)
+      expect(cb_lock.origin).to eq(cached_location_spec.uri)
+      expect(cb_lock.cache_key).to eq(cached_location_spec.cache_key)
     end
 
     it "adds a local cookbook lock generator for the compiler's local cookbook" do
       expect(policyfile_lock.cookbook_locks).to have_key("bar")
       cb_lock = policyfile_lock.cookbook_locks["bar"]
-      expect(cb_lock.source).to eq(local_cookbook_spec.relative_path)
+      expect(cb_lock.source).to eq(local_location_spec.relative_path)
     end
 
     it "generates a lockfile data structure" do
