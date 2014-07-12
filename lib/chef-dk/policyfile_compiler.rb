@@ -44,7 +44,7 @@ module ChefDK
     def_delegator :@dsl, :run_list
     def_delegator :@dsl, :errors
     def_delegator :@dsl, :default_source
-    def_delegator :@dsl, :policyfile_cookbook_specs
+    def_delegator :@dsl, :cookbook_location_specs
 
     attr_reader :dsl
     attr_reader :storage_config
@@ -52,7 +52,7 @@ module ChefDK
     def initialize
       @storage_config = Policyfile::StorageConfig.new
       @dsl = Policyfile::DSL.new(storage_config)
-      @artifact_server_cookbook_specs = {}
+      @artifact_server_cookbook_location_specs = {}
     end
 
     def error!
@@ -61,8 +61,8 @@ module ChefDK
       end
     end
 
-    def cookbook_spec_for(cookbook_name)
-      policyfile_cookbook_specs[cookbook_name]
+    def cookbook_location_spec_for(cookbook_name)
+      cookbook_location_specs[cookbook_name]
     end
 
     def expanded_run_list
@@ -77,7 +77,7 @@ module ChefDK
       ensure_cache_dir_exists
 
       graph_solution.each do |cookbook_name, version|
-        spec = cookbook_spec_for(cookbook_name)
+        spec = cookbook_location_spec_for(cookbook_name)
         if spec.nil? or !spec.version_fixed?
           spec = create_spec_for_cookbook(cookbook_name, version)
           spec.ensure_cached
@@ -87,17 +87,17 @@ module ChefDK
 
     def create_spec_for_cookbook(cookbook_name, version)
       source_options = default_source.source_options_for(cookbook_name, version)
-      spec = Policyfile::CookbookSpec.new(cookbook_name, "= #{version}", source_options, storage_config)
-      @artifact_server_cookbook_specs[cookbook_name] = spec
+      spec = Policyfile::CookbookLocationSpecification.new(cookbook_name, "= #{version}", source_options, storage_config)
+      @artifact_server_cookbook_location_specs[cookbook_name] = spec
     end
 
-    def all_cookbook_specs
-      # in the installation proces, we create "artifact_server_cookbook_specs"
+    def all_cookbook_location_specs
+      # in the installation proces, we create "artifact_server_cookbook_location_specs"
       # for any cookbook that isn't sourced from a single-version source (e.g.,
       # path and git only support one version at a time), but we might have
       # specs for them to track additional version constraint demands. Merging
-      # in this order ensures the artifact_server_cookbook_specs "win".
-      policyfile_cookbook_specs.merge(@artifact_server_cookbook_specs)
+      # in this order ensures the artifact_server_cookbook_location_specs "win".
+      cookbook_location_specs.merge(@artifact_server_cookbook_location_specs)
     end
 
     ##
@@ -125,7 +125,7 @@ module ChefDK
 
     def graph_demands
       cookbooks_for_demands.map do |cookbook_name|
-        spec = cookbook_spec_for(cookbook_name)
+        spec = cookbook_location_spec_for(cookbook_name)
         if spec.nil?
           [ cookbook_name, DEFAULT_DEMAND_CONSTRAINT ]
         elsif spec.version_fixed?
@@ -148,9 +148,9 @@ module ChefDK
     # version number. To accomodate this, the local_artifacts_graph should be
     # merged over the upstream's artifacts graph.
     def local_artifacts_graph
-      policyfile_cookbook_specs.inject({}) do |local_artifacts, (cookbook_name, cookbook_spec)|
-        if cookbook_spec.version_fixed?
-          local_artifacts[cookbook_name] = { cookbook_spec.version => cookbook_spec.dependencies }
+      cookbook_location_specs.inject({}) do |local_artifacts, (cookbook_name, cookbook_location_spec)|
+        if cookbook_location_spec.version_fixed?
+          local_artifacts[cookbook_name] = { cookbook_location_spec.version => cookbook_location_spec.dependencies }
         end
         local_artifacts
       end
@@ -161,8 +161,8 @@ module ChefDK
     end
 
     def version_constraint_for(cookbook_name)
-      if (cookbook_spec = cookbook_spec_for(cookbook_name)) and cookbook_spec.version_fixed?
-        version = cookbook_spec.version
+      if (cookbook_location_spec = cookbook_location_spec_for(cookbook_name)) and cookbook_location_spec.version_fixed?
+        version = cookbook_location_spec.version
         "= #{version}"
       else
         DEFAULT_DEMAND_CONSTRAINT
@@ -170,8 +170,8 @@ module ChefDK
     end
 
     def cookbook_version_fixed?(cookbook_name)
-      if cookbook_spec = cookbook_spec_for(cookbook_name)
-        cookbook_spec.version_fixed?
+      if cookbook_location_spec = cookbook_location_spec_for(cookbook_name)
+        cookbook_location_spec.version_fixed?
       else
         false
       end
@@ -195,14 +195,14 @@ module ChefDK
     private
 
     def cookbooks_for_demands
-      (cookbooks_in_run_list + policyfile_cookbook_specs.keys).uniq
+      (cookbooks_in_run_list + cookbook_location_specs.keys).uniq
     end
 
     def cache_fixed_version_cookbooks
       ensure_cache_dir_exists
 
-      policyfile_cookbook_specs.each do |_cookbook_name, cookbook_spec|
-        cookbook_spec.ensure_cached if cookbook_spec.version_fixed?
+      cookbook_location_specs.each do |_cookbook_name, cookbook_location_spec|
+        cookbook_location_spec.ensure_cached if cookbook_location_spec.version_fixed?
       end
     end
 
