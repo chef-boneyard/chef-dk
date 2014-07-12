@@ -5,18 +5,12 @@ require 'chef-dk/cookbook_profiler/git'
 require 'chef-dk/cookbook_profiler/identifiers'
 require 'chef-dk/policyfile/storage_config'
 
-# TODO: reconsider how this dependency is used here.
-require 'chef-dk/cookbook_omnifetch'
-
-# TODO: fix this dependency via refactor
-require 'semverse'
+require 'chef-dk/policyfile/cookbook_location_specification'
 
 module ChefDK
   module Policyfile
     # CachedCookbook objects represent a cookbook that has been fetched from an
     # upstream canonical source and stored (presumed unmodified).
-    # --
-    # TODO: lots of duplication between these classes and CookbookLocationSpecification.
     class CachedCookbook
 
       include Policyfile::StorageConfigDelegation
@@ -67,22 +61,12 @@ module ChefDK
         File.join(cache_path, cache_key)
       end
 
-      # TODO: duplicates CookbookLocationSpecification#initialize
-      def version_constraint
-        Semverse::Constraint.new("= #{version}")
-      end
-
-
-      # TODO: duplicates CookbookLocationSpecification#ensure_cached
       def install_locked
-        unless installer.installed?
-          installer.install
-        end
+        cookbook_location_spec.ensure_cached
       end
 
-      # TODO: validate source options
-      def installer
-        @installer ||= CookbookOmnifetch.init(self, source_options)
+      def cookbook_location_spec
+        @location_spec ||= CookbookLocationSpecification.new(name, "= #{version}", source_options, storage_config)
       end
 
       def gather_profile_data
@@ -187,21 +171,12 @@ module ChefDK
         end
       end
 
-      # TODO: duplicates CookbookLocationSpecification#initialize
-      def version_constraint
-        Semverse::Constraint.new("= #{version}")
-      end
-
-      # TODO: duplicates CookbookLocationSpecification#ensure_cached
       def install_locked
-        unless installer.installed?
-          installer.install
-        end
+        cookbook_location_spec.ensure_cached
       end
 
-      # TODO: validate source options
-      def installer
-        @installer ||= CookbookOmnifetch.init(self, source_options)
+      def cookbook_location_spec
+        @location_spec ||= CookbookLocationSpecification.new(name, "= #{version}", source_options, storage_config)
       end
 
       def gather_profile_data
