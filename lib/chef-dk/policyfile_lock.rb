@@ -109,8 +109,8 @@ module ChefDK
       self
     end
 
-    # TODO: duplicates PolicyfileCompiler#install
     def install_cookbooks
+      # note: duplicates PolicyfileCompiler#ensure_cache_dir_exists
       ensure_cache_dir_exists
 
       cookbook_locks.each do |cookbook_name, cookbook_lock|
@@ -118,8 +118,8 @@ module ChefDK
       end
     end
 
-    # TODO: duplicates PolicyfileCompiler#ensure_cache_dir_exists
     def ensure_cache_dir_exists
+      # note: duplicates PolicyfileCompiler#ensure_cache_dir_exists
       unless File.exist?(cache_path)
         FileUtils.mkdir_p(cache_path)
       end
