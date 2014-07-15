@@ -1,4 +1,6 @@
 
+require 'chef-dk/exceptions'
+
 require 'chef-dk/cookbook_profiler/null_scm'
 require 'chef-dk/cookbook_profiler/git'
 
@@ -9,6 +11,7 @@ require 'chef-dk/policyfile/cookbook_location_specification'
 
 module ChefDK
   module Policyfile
+
     # CachedCookbook objects represent a cookbook that has been fetched from an
     # upstream canonical source and stored (presumed unmodified).
     class CachedCookbook
@@ -58,6 +61,9 @@ module ChefDK
       end
 
       def cookbook_path
+        if cache_key.nil?
+          raise MissingCookbookLockData, "Cannot locate cached cookbook `#{name}' because the `cache_key' attribute is not set"
+        end
         File.join(cache_path, cache_key)
       end
 
@@ -171,6 +177,10 @@ module ChefDK
         end
       end
 
+      def scm_info
+        scm_profiler.profile_data
+      end
+
       def install_locked
         cookbook_location_spec.ensure_cached
       end
@@ -193,7 +203,7 @@ module ChefDK
           "dotted_decimal_identifier" => dotted_decimal_identifier,
           "source" => source,
           "cache_key" => nil,
-          "scm_info" => scm_profiler.profile_data,
+          "scm_info" => scm_info,
           "source_options" => source_options
         }
       end

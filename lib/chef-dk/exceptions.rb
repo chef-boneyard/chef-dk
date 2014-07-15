@@ -43,4 +43,7 @@ module ChefDK
 
   class PolicyfileError < StandardError
   end
+
+  class MissingCookbookLockData < StandardError
+  end
 end
