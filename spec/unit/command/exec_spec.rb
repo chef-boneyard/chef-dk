@@ -69,14 +69,13 @@ describe ChefDK::Command::Exec do
 
       let(:omnibus_bin_dir) { "/foo/bin" }
 
-      let(:expected_env) do
-        {
-          'PATH' => "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}",
-          'GEM_ROOT' => Gem.default_dir.inspect,
-          'GEM_HOME' => ENV['GEM_HOME'],
-          'GEM_PATH' => Gem.path.join(':'),
-        }
-      end
+      let(:expected_PATH) { "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}" }
+
+      let(:expected_GEM_ROOT) { Gem.default_dir.inspect }
+
+      let(:expected_GEM_HOME) { ENV['GEM_HOME'] }
+
+      let(:expected_GEM_PATH) { Gem.path.join(':') }
 
       before do
         allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
@@ -84,9 +83,15 @@ describe ChefDK::Command::Exec do
       end
 
       it "should call exec to fire off the command with the correct environment" do
-        expect(command_instance).to receive(:exec).with(expected_env, *command_options)
+        expect(ENV).to receive(:[]=).with("PATH", expected_PATH)
+        expect(ENV).to receive(:[]=).with("GEM_ROOT", expected_GEM_ROOT)
+        expect(ENV).to receive(:[]=).with("GEM_HOME", expected_GEM_HOME)
+        expect(ENV).to receive(:[]=).with("GEM_PATH", expected_GEM_PATH)
+
+        expect(command_instance).to receive(:exec).with(*command_options)
         expect{ run_command }.to raise_error # XXX: this isn't a test we just need to swallow the exception
       end
+
     end
 
     context "when running command that does not exist" do
@@ -98,14 +103,14 @@ describe ChefDK::Command::Exec do
 
       let(:omnibus_embedded_bin_dir) { "/foo/embedded/bin" }
 
-      let(:expected_env) do
-        {
-          'PATH' => "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}",
-          'GEM_ROOT' => Gem.default_dir.inspect,
-          'GEM_HOME' => Gem.paths.home,
-          'GEM_PATH' => Gem.path.join(':'),
-        }
-      end
+      let(:expected_PATH) { "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}" }
+
+      let(:expected_GEM_ROOT) { Gem.default_dir.inspect }
+
+      let(:expected_GEM_HOME) { ENV['GEM_HOME'] }
+
+      let(:expected_GEM_PATH) { Gem.path.join(':') }
+
 
       before do
         allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
@@ -113,8 +118,13 @@ describe ChefDK::Command::Exec do
       end
 
       it "should raise Errno::ENOENT" do
+        expect(ENV).to receive(:[]=).with("PATH", expected_PATH)
+        expect(ENV).to receive(:[]=).with("GEM_ROOT", expected_GEM_ROOT)
+        expect(ENV).to receive(:[]=).with("GEM_HOME", expected_GEM_HOME)
+        expect(ENV).to receive(:[]=).with("GEM_PATH", expected_GEM_PATH)
+
         # XXX: this doesn't really test much, but really calling exec will never return to rspec
-        expect(command_instance).to receive(:exec).with(expected_env, *command_options).and_raise(Errno::ENOENT)
+        expect(command_instance).to receive(:exec).with(*command_options).and_raise(Errno::ENOENT)
         expect{ run_command }.to raise_error(Errno::ENOENT)
       end
     end
