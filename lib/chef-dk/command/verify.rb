@@ -114,6 +114,34 @@ module ChefDK
         c.smoke_test { run_in_tmpdir("chef generate cookbook example") }
       end
 
+      add_component "chefspec" do |c|
+        c.gem_base_dir = "chefspec"
+        c.unit_test { sh("rake unit") }
+        c.smoke_test do
+          tmpdir do |cwd|
+            FileUtils.mkdir(File.join(cwd, "spec"))
+            File.open(File.join(cwd, "spec", "spec_helper.rb"), "w+") do |f|
+              f.write <<-EOF
+require 'chefspec'
+require 'chefspec/berkshelf'
+require 'chefspec/cacher'
+
+RSpec.configure do |config|
+    config.expect_with(:rspec) { |c| c.syntax = :expect }
+end
+              EOF
+            end
+            FileUtils.touch(File.join(cwd, "Berksfile"))
+            File.open(File.join(cwd, "spec", "foo_spec.rb"), "w+") do |f|
+              f.write <<-EOF
+require 'spec_helper'
+              EOF
+            end
+            sh("rspec", cwd: cwd)
+          end
+        end
+      end
+
       attr_reader :verification_threads
       attr_reader :verification_results
       attr_reader :verification_status
