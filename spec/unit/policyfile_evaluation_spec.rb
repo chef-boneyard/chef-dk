@@ -20,6 +20,8 @@ require 'chef-dk/policyfile_compiler'
 
 describe ChefDK::PolicyfileCompiler do
 
+  let(:storage_config) { ChefDK::Policyfile::StorageConfig.new.use_policyfile("TestPolicyfile.rb") }
+
   let(:policyfile) { ChefDK::PolicyfileCompiler.evaluate(policyfile_rb, "TestPolicyfile.rb") }
 
   describe "Evaluate a policyfile" do
@@ -130,12 +132,18 @@ E
 
       let(:policyfile_rb) do
         <<-EOH
+          name "hello"
+
           run_list "foo", "bar"
         EOH
       end
 
       it "has no errors" do
         expect(policyfile.errors).to eq([])
+      end
+
+      it "has a name" do
+        expect(policyfile.name).to eq("hello")
       end
 
       it "has a run_list" do
@@ -219,8 +227,8 @@ E
         end
 
         it "sets the source of the cookbook to the local path" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {path: "local_cookbooks/foo"}, "TestPolicyfile.rb")
-          expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
+          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", {path: "local_cookbooks/foo"}, storage_config)
+          expect(policyfile.cookbook_location_specs).to eq("foo" => expected_cb_spec)
         end
 
       end
@@ -234,8 +242,8 @@ E
         end
 
         it "sets the source of the cookbook to the git URL" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {git: "git://example.com:me/foo-cookbook.git"}, "TestPolicyfile.rb")
-          expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
+          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", {git: "git://example.com:me/foo-cookbook.git"}, storage_config)
+          expect(policyfile.cookbook_location_specs).to eq("foo" => expected_cb_spec)
         end
 
       end
@@ -249,8 +257,8 @@ E
         end
 
         it "sets the source of the cookbook to the git URL" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookSpec.new("foo", ">= 0.0.0", {chef_server: "https://mychefserver.example.com"}, "TestPolicyfile.rb")
-          expect(policyfile.policyfile_cookbook_specs).to eq("foo" => expected_cb_spec)
+          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", {chef_server: "https://mychefserver.example.com"}, storage_config)
+          expect(policyfile.cookbook_location_specs).to eq("foo" => expected_cb_spec)
         end
 
       end

@@ -17,9 +17,10 @@
 
 require 'spec_helper'
 require 'shared/setup_git_cookbooks'
+require 'chef-dk/policyfile/storage_config'
 require 'chef-dk/policyfile_lock.rb'
 
-describe ChefDK::PolicyfileLock do
+describe ChefDK::PolicyfileLock, "building a lockfile" do
 
   def id_to_dotted(sha1_id)
     major = sha1_id[0...14]
@@ -50,35 +51,73 @@ describe ChefDK::PolicyfileLock do
     File.expand_path("spec/unit/fixtures/", project_root)
   end
 
-  let(:policyfile_lock_options) do
-    { cache_path: cache_path, relative_paths_root: relative_paths_root }
+  let(:storage_config) do
+    ChefDK::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: relative_paths_root )
   end
 
-  describe "when first created" do
+  context "when a cached cookbook omits the cache key" do
 
     let(:policyfile_lock) do
-      described_class.new(policyfile_lock_options)
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
+
+        p.name = "invalid_cache_key_policyfile"
+
+        p.run_list = [ "recipe[foo]" ]
+
+        p.cached_cookbook("nosuchthing") do |cb|
+        end
+      end
     end
 
-    it "uses CWD for relative_paths_root if none is given" do
-      policyfile_lock = described_class.new
-      expect(policyfile_lock.relative_paths_root).to eq(Dir.pwd)
+    it "raises a descriptive error" do
+      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::CachedCookbookNotFound)
     end
 
-    it "uses the provided option for relative_paths_root" do
-      expect(policyfile_lock.relative_paths_root).to eq(relative_paths_root)
+  end
+
+  context "when a local cookbook omits the path" do
+
+    let(:policyfile_lock) do
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
+
+        p.name = "invalid_local_cookbook"
+
+        p.run_list = [ "recipe[foo]" ]
+
+        p.local_cookbook("nosuchthing") do |cb|
+        end
+      end
     end
 
-    it "uses the provided cache_path" do
-      expect(policyfile_lock.cache_path).to eq(cache_path)
+    it "raises a descriptive error" do
+      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::CachedCookbookNotFound)
+    end
+  end
+
+  context "when a local cookbook has an incorrect path" do
+
+    let(:policyfile_lock) do
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
+
+        p.name = "invalid_local_cookbook"
+
+        p.run_list = [ "recipe[foo]" ]
+
+        p.local_cookbook("nosuchthing") do |cb|
+          cb.source = "nopenopenope"
+        end
+      end
     end
 
+    it "raises a descriptive error" do
+      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::CachedCookbookNotFound)
+    end
   end
 
   context "when a cookbook is not in the cache" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "invalid_cache_key_policyfile"
 
@@ -99,7 +138,7 @@ describe ChefDK::PolicyfileLock do
   context "with a minimal policyfile" do
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "minimal_policyfile"
 
@@ -125,7 +164,8 @@ describe ChefDK::PolicyfileLock do
             "identifier" => "e4611e9b5ec0636a18979e7dd22537222a2eab47",
             "dotted_decimal_identifier" => id_to_dotted("e4611e9b5ec0636a18979e7dd22537222a2eab47"),
             "cache_key" => "foo-1.0.0",
-            "origin" => nil
+            "origin" => nil,
+            "source_options" => nil
           },
         }
       }
@@ -151,7 +191,7 @@ describe ChefDK::PolicyfileLock do
     end
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "dev_cookbook"
 
@@ -187,6 +227,7 @@ describe ChefDK::PolicyfileLock do
               "published" => true,
               "synchronized_remote_branches"=>["origin/master"]
             },
+            "source_options" => nil
           },
         }
       }
@@ -207,7 +248,7 @@ describe ChefDK::PolicyfileLock do
     end
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
 
         p.name = "custom_identifier"
 
@@ -245,7 +286,8 @@ describe ChefDK::PolicyfileLock do
             "identifier" => "1.0.0",
             "dotted_decimal_identifier" => "1.0.0",
             "cache_key" => "foo-1.0.0",
-            "origin" => nil
+            "origin" => nil,
+            "source_options" => nil
           },
 
           "bar" => {
@@ -263,6 +305,7 @@ describe ChefDK::PolicyfileLock do
               "published" => false,
               "synchronized_remote_branches"=>[]
             },
+            "source_options" => nil
           },
         }
       }
@@ -284,7 +327,7 @@ describe ChefDK::PolicyfileLock do
 
     let(:policyfile_lock) do
 
-      ChefDK::PolicyfileLock.build(policyfile_lock_options) do |p|
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
 
         # Required
         p.name = "basic_example"
@@ -335,7 +378,8 @@ describe ChefDK::PolicyfileLock do
             "identifier" => "e4611e9b5ec0636a18979e7dd22537222a2eab47",
             "dotted_decimal_identifier" => id_to_dotted("e4611e9b5ec0636a18979e7dd22537222a2eab47"),
             "origin" => "https://community.getchef.com/api/cookbooks/foo/1.0.0",
-            "cache_key" => "foo-1.0.0"
+            "cache_key" => "foo-1.0.0",
+            "source_options" => nil
           },
 
           "bar" => {
@@ -353,6 +397,7 @@ describe ChefDK::PolicyfileLock do
               "published" => false,
               "synchronized_remote_branches"=>[]
             },
+            "source_options" => nil
           },
 
           "baz" => {
@@ -360,7 +405,8 @@ describe ChefDK::PolicyfileLock do
             "identifier"=>"08c6ac1d202f4d59ad67953559084886f6ba710a",
             "dotted_decimal_identifier" => id_to_dotted("08c6ac1d202f4d59ad67953559084886f6ba710a"),
             "cache_key" => "baz-f59ee7a5bca6a4e606b67f7f856b768d847c39bb",
-            "origin" => "git://github.com/opscode-cookbooks/bar.git"
+            "origin" => "git://github.com/opscode-cookbooks/bar.git",
+            "source_options" => nil
           },
 
           "dep_of_bar" => {
@@ -369,6 +415,7 @@ describe ChefDK::PolicyfileLock do
             "dotted_decimal_identifier" => id_to_dotted("e6c08ea35bce8009386710d8c9bcd6caa036e8bc"),
             "origin" => "https://chef-server.example.com/cookbooks/dep_of_bar/1.2.3",
             "cache_key" => "dep_of_bar-1.2.3",
+            "source_options" => nil
 
           },
 
@@ -404,35 +451,40 @@ describe ChefDK::PolicyfileLock do
       tempdir
     end
 
-    let(:cached_cookbook_spec) do
-      double( "ChefDK::Policyfile::CookbookSpec",
+    let(:cached_cookbook_uri) { "https://supermarket.getchef.com/api/v1/cookbooks/foo/versions/1.0.0/download" }
+
+    let(:cached_location_spec) do
+      double( "ChefDK::Policyfile::CookbookLocationSpecification",
               mirrors_canonical_upstream?: true,
               cache_key: "foo-1.0.0",
-              uri: "https://supermarket.getchef.com/api/v1/cookbooks/foo/versions/1.0.0/download")
+              uri: cached_cookbook_uri,
+              source_options_for_lock: { "artifactserver" => cached_cookbook_uri, "version" => "1.0.0" })
     end
 
-    let(:local_cookbook_spec) do
-      double( "ChefDK::Policyfile::CookbookSpec",
+    let(:local_location_spec) do
+      double( "ChefDK::Policyfile::CookbookLocationSpecification",
               mirrors_canonical_upstream?: false,
               relative_paths_root: relative_paths_root,
-              relative_path: "bar")
+              relative_path: "bar",
+              source_options_for_lock: { "path" => "bar" })
     end
 
 
     let(:policyfile_compiler) do
       double( "ChefDK::PolicyfileCompiler",
+              name: "my-policyfile",
               expanded_run_list: %w[foo bar],
-              all_cookbook_specs: {"foo" => cached_cookbook_spec, "bar" => local_cookbook_spec})
+              all_cookbook_location_specs: {"foo" => cached_location_spec, "bar" => local_location_spec})
     end
 
     let(:policyfile_lock) do
-      ChefDK::PolicyfileLock.build_from_compiler(policyfile_compiler, cache_path: cache_path)
+      ChefDK::PolicyfileLock.build_from_compiler(policyfile_compiler, storage_config)
     end
 
     let(:compiled_policyfile) do
       {
 
-        "name" => nil,
+        "name" => "my-policyfile",
 
         "run_list" => ["foo", "bar"],
 
@@ -443,7 +495,8 @@ describe ChefDK::PolicyfileLock do
             "identifier" => "e4611e9b5ec0636a18979e7dd22537222a2eab47",
             "dotted_decimal_identifier" => id_to_dotted("e4611e9b5ec0636a18979e7dd22537222a2eab47"),
             "cache_key" => "foo-1.0.0",
-            "origin" => cached_cookbook_spec.uri
+            "origin" => cached_cookbook_uri,
+            "source_options" => { "artifactserver" => cached_cookbook_uri, "version" => "1.0.0" }
           },
 
           "bar" => {
@@ -460,24 +513,24 @@ describe ChefDK::PolicyfileLock do
               "working_tree_clean" => true,
               "published" => false,
               "synchronized_remote_branches"=>[]
-            }
+            },
+            "source_options" => { "path" => "bar" }
           }
         }
       }
     end
 
-
     it "adds a cached cookbook lock generator for the compiler's cached cookbook" do
       expect(policyfile_lock.cookbook_locks).to have_key("foo")
       cb_lock = policyfile_lock.cookbook_locks["foo"]
-      expect(cb_lock.origin).to eq(cached_cookbook_spec.uri)
-      expect(cb_lock.cache_key).to eq(cached_cookbook_spec.cache_key)
+      expect(cb_lock.origin).to eq(cached_location_spec.uri)
+      expect(cb_lock.cache_key).to eq(cached_location_spec.cache_key)
     end
 
     it "adds a local cookbook lock generator for the compiler's local cookbook" do
       expect(policyfile_lock.cookbook_locks).to have_key("bar")
       cb_lock = policyfile_lock.cookbook_locks["bar"]
-      expect(cb_lock.source).to eq(local_cookbook_spec.relative_path)
+      expect(cb_lock.source).to eq(local_location_spec.relative_path)
     end
 
     it "generates a lockfile data structure" do

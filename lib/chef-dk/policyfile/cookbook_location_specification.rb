@@ -16,26 +16,41 @@
 #
 
 require 'semverse'
-require 'cookbook-omnifetch'
+require 'chef-dk/cookbook_omnifetch'
+require 'chef-dk/policyfile/storage_config'
 
 module ChefDK
   module Policyfile
 
-    class CookbookSpec
+    class CookbookLocationSpecification
+
+      #--
+      # Provides #relative_paths_root, which is required by CookbookOmnifetch
+      # API contract
+      include StorageConfigDelegation
 
       SOURCE_TYPES = [:git, :github, :path, :artifactserver]
 
+      #--
+      # Required by CookbookOmnifetch API contract
       attr_reader :version_constraint
+
+      #--
+      # Required by CookbookOmnifetch API contract
       attr_reader :name
+
+      #--
+      # Required by CookbookOmnifetch API contract
       attr_reader :source_options
       attr_reader :source_type
+      attr_reader :storage_config
 
-      def initialize(name, version_constraint, source_options, policyfile_filename)
+      def initialize(name, version_constraint, source_options, storage_config)
         @name = name
         @version_constraint = Semverse::Constraint.new(version_constraint)
         @source_options = source_options
-        @policyfile_filename = policyfile_filename
         @source_type = SOURCE_TYPES.find { |type| source_options.key?(type) }
+        @storage_config = storage_config
       end
 
       def ==(other)
@@ -87,8 +102,8 @@ module ChefDK
         installer.cached_cookbook
       end
 
-      def relative_paths_root
-        File.dirname(@policyfile_filename)
+      def source_options_for_lock
+        installer.lock_data
       end
 
     end

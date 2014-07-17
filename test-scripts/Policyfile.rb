@@ -1,5 +1,7 @@
 # Policyfile.rb #
 
+name "demo"
+
 default_source :community
 
 run_list "apache2", "omnibus"

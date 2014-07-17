@@ -1,0 +1,152 @@
+{
+  "name": "demo",
+  "run_list": [
+    "apache2",
+    "omnibus"
+  ],
+  "cookbook_locks": {
+    "omnibus": {
+      "version": "2.2.0",
+      "identifier": "64b3e64306cff223206348e46af545b19032b170",
+      "dotted_decimal_identifier": "28345299219435506.9887234981653237.76628930769264",
+      "cache_key": "omnibus-2cf98f9797cacce9c8688fc4e74858b858e2bc14",
+      "origin": "git@github.com:opscode-cookbooks/omnibus.git",
+      "source_options": {
+        "git": "git@github.com:opscode-cookbooks/omnibus.git",
+        "revision": "2cf98f9797cacce9c8688fc4e74858b858e2bc14",
+        "branch": "master"
+      }
+    },
+    "homebrew": {
+      "version": "1.6.7",
+      "identifier": "ab4ad2481e08cbb2c4874fd36a44e76f36ec91f7",
+      "dotted_decimal_identifier": "48214488031037643.50318631293381188.254464848859639",
+      "source": "../../cookbooks/homebrew",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": "git@github.com:opscode-cookbooks/homebrew.git",
+        "revision": "5dd60680eac8de6c85a4de917db6956b8160c931",
+        "working_tree_clean": true,
+        "published": true,
+        "synchronized_remote_branches": [
+          "origin/HEAD -> origin/master",
+          "origin/master"
+        ]
+      },
+      "source_options": {
+        "path": "../../cookbooks/homebrew"
+      }
+    },
+    "build-essential": {
+      "version": "2.0.0",
+      "identifier": "ab1479ed31ec8bedacf961e2e61e735534074f8d",
+      "dotted_decimal_identifier": "48154734920592523.66899756569519646.126809782308749",
+      "cache_key": "build-essential-2.0.0-supermarket.getchef.com",
+      "origin": "https://supermarket.getchef.com/api/v1/cookbooks/build-essential/versions/2.0.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.getchef.com/api/v1/cookbooks/build-essential/versions/2.0.0/download",
+        "version": "2.0.0"
+      }
+    },
+    "apache2": {
+      "version": "1.10.4",
+      "identifier": "886757f9ae3cf2520c82b791195c27ecafd93656",
+      "dotted_decimal_identifier": "38394224381410546.23094703655295324.43897516013142",
+      "cache_key": "apache2-1.10.4-supermarket.getchef.com",
+      "origin": "https://supermarket.getchef.com/api/v1/cookbooks/apache2/versions/1.10.4/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.getchef.com/api/v1/cookbooks/apache2/versions/1.10.4/download",
+        "version": "1.10.4"
+      }
+    },
+    "iptables": {
+      "version": "0.13.2",
+      "identifier": "7a26011479eaf685854ad226738f6ee59de8c37d",
+      "dotted_decimal_identifier": "34381733239057142.37582728302326671.121932475843453",
+      "cache_key": "iptables-0.13.2-supermarket.getchef.com",
+      "origin": "https://supermarket.getchef.com/api/v1/cookbooks/iptables/versions/0.13.2/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.getchef.com/api/v1/cookbooks/iptables/versions/0.13.2/download",
+        "version": "0.13.2"
+      }
+    },
+    "logrotate": {
+      "version": "1.6.0",
+      "identifier": "0fa573100166b9f9244115004b163f71bb2571d4",
+      "dotted_decimal_identifier": "4404038259009209.70127131144768278.69757703647700",
+      "cache_key": "logrotate-1.6.0-supermarket.getchef.com",
+      "origin": "https://supermarket.getchef.com/api/v1/cookbooks/logrotate/versions/1.6.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.getchef.com/api/v1/cookbooks/logrotate/versions/1.6.0/download",
+        "version": "1.6.0"
+      }
+    },
+    "pacman": {
+      "version": "1.1.1",
+      "identifier": "f5a78402828a7b38ac87e0c95772b5527987282b",
+      "dotted_decimal_identifier": "69145554713741947.15952298287650674.199365830846507",
+      "cache_key": "pacman-1.1.1-supermarket.getchef.com",
+      "origin": "https://supermarket.getchef.com/api/v1/cookbooks/pacman/versions/1.1.1/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.getchef.com/api/v1/cookbooks/pacman/versions/1.1.1/download",
+        "version": "1.1.1"
+      }
+    },
+    "7-zip": {
+      "version": "1.0.2",
+      "identifier": "dec0b1942996ee75b06097ba3f5e65d60e53a135",
+      "dotted_decimal_identifier": "62699313757263598.33126501184061278.111970037768501",
+      "cache_key": "7-zip-1.0.2-supermarket.getchef.com",
+      "origin": "https://supermarket.getchef.com/api/v1/cookbooks/7-zip/versions/1.0.2/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.getchef.com/api/v1/cookbooks/7-zip/versions/1.0.2/download",
+        "version": "1.0.2"
+      }
+    },
+    "windows": {
+      "version": "1.31.0",
+      "identifier": "470716489fe62c78a644bb06de2cba0d5424687b",
+      "dotted_decimal_identifier": "19992515635570220.33959811331055148.204566409013371",
+      "cache_key": "windows-1.31.0-supermarket.getchef.com",
+      "origin": "https://supermarket.getchef.com/api/v1/cookbooks/windows/versions/1.31.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.getchef.com/api/v1/cookbooks/windows/versions/1.31.0/download",
+        "version": "1.31.0"
+      }
+    },
+    "chef_handler": {
+      "version": "1.1.6",
+      "identifier": "0da8b2591b4ad42a2099eb149bba5e2374392dbc",
+      "dotted_decimal_identifier": "3844658649844436.11857794467929018.103506366770620",
+      "cache_key": "chef_handler-1.1.6-supermarket.getchef.com",
+      "origin": "https://supermarket.getchef.com/api/v1/cookbooks/chef_handler/versions/1.1.6/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.getchef.com/api/v1/cookbooks/chef_handler/versions/1.1.6/download",
+        "version": "1.1.6"
+      }
+    },
+    "chef-sugar": {
+      "version": "2.0.0",
+      "identifier": "398cc21b32269688311731a16dd2b5a601930eef",
+      "dotted_decimal_identifier": "16198838980322966.38334572519321042.199724595613423",
+      "cache_key": "chef-sugar-2.0.0-supermarket.getchef.com",
+      "origin": "https://supermarket.getchef.com/api/v1/cookbooks/chef-sugar/versions/2.0.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.getchef.com/api/v1/cookbooks/chef-sugar/versions/2.0.0/download",
+        "version": "2.0.0"
+      }
+    },
+    "wix": {
+      "version": "1.1.0",
+      "identifier": "5e3f8f3ad94ba48b576a6c739d6bf31bcd1e97d5",
+      "dotted_decimal_identifier": "26528532210994084.39221136360447339.267300731000789",
+      "cache_key": "wix-1.1.0-supermarket.getchef.com",
+      "origin": "https://supermarket.getchef.com/api/v1/cookbooks/wix/versions/1.1.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.getchef.com/api/v1/cookbooks/wix/versions/1.1.0/download",
+        "version": "1.1.0"
+      }
+    }
+  }
+}

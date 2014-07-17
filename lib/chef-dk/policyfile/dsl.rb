@@ -16,25 +16,38 @@
 #
 
 require 'chef-dk/policyfile/cookbook_sources'
-require 'chef-dk/policyfile/cookbook_spec'
+require 'chef-dk/policyfile/cookbook_location_specification'
+require 'chef-dk/policyfile/storage_config'
 
 module ChefDK
   module Policyfile
     class DSL
 
+      include StorageConfigDelegation
+
+      attr_writer :name
+
       attr_reader :errors
       attr_reader :run_list
       attr_reader :default_source
-      attr_reader :policyfile_cookbook_specs
+      attr_reader :cookbook_location_specs
 
-      attr_accessor :policyfile_filename
+      attr_reader :storage_config
 
-      def initialize
+      def initialize(storage_config)
+        @name = nil
         @errors = []
         @run_list = []
         @default_source = NullCookbookSource.new
-        @policyfile_cookbook_specs = {}
-        @policyfile_filename = nil
+        @cookbook_location_specs = {}
+        @storage_config = storage_config
+      end
+
+      def name(name = nil)
+        unless name.nil?
+          @name = name
+        end
+        @name
       end
 
       def run_list(*run_list_items)
@@ -64,20 +77,20 @@ module ChefDK
           end
 
         constraint = version_and_source_opts.first || ">= 0.0.0"
-        spec = CookbookSpec.new(name, constraint, source_options, policyfile_filename)
+        spec = CookbookLocationSpecification.new(name, constraint, source_options, storage_config)
 
 
-        if existing_source = @policyfile_cookbook_specs[name]
+        if existing_source = @cookbook_location_specs[name]
           err = "Cookbook '#{name}' assigned to conflicting sources\n\n"
           err << "Previous source: #{existing_source.source_options.inspect}\n"
           err << "Conflicts with: #{source_options.inspect}\n"
           @errors << err
         else
-          @policyfile_cookbook_specs[name] = spec
+          @cookbook_location_specs[name] = spec
         end
       end
 
-      def eval_policyfile(policyfile_string, policyfile_filename)
+      def eval_policyfile(policyfile_string)
         @policyfile_filename = policyfile_filename
         instance_eval(policyfile_string, policyfile_filename)
         validate!
@@ -95,8 +108,8 @@ module ChefDK
         error_message << "    #{error_context(policyfile_string, policyfile_filename, e)}\n\n"
         unless trace.empty?
           error_message << "  Backtrace:\n"
-          error_message << filtered_bt(policyfile_filename, e).inject("") { |formatted_trace, line| formatted_trace << "    #{line}" }
-          error_message << "\n"
+          # TODO: need a way to disable filtering
+          error_message << filtered_bt(policyfile_filename, e).inject("") { |formatted_trace, line| formatted_trace << "    #{line}\n" }
         end
         @errors << error_message
       end

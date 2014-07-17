@@ -29,8 +29,6 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
   let(:policyfile) do
     policyfile = ChefDK::PolicyfileCompiler.new.build do |p|
 
-      p.policyfile_filename = "/no-such-place/Policyfile.rb"
-
       p.default_source(*default_source) if default_source
       p.run_list(*run_list)
 
@@ -199,8 +197,8 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
     before do
       policyfile.dsl.cookbook('local-cookbook', path: "/foo")
-      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
-      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:dependencies).and_return([])
+      allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
+      allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:dependencies).and_return([])
     end
 
     it "demands a solution using the local cookbook" do
@@ -226,9 +224,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
       before do
         policyfile.dsl.cookbook("local-cookbook", path: "foo/")
-        allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:ensure_cached)
-        allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
-        allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:dependencies).and_return([ [ "local-cookbook-dep-one", "~> 1.0"] ])
+        allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:ensure_cached)
+        allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
+        allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:dependencies).and_return([ [ "local-cookbook-dep-one", "~> 1.0"] ])
       end
 
       it "demands a solution using the local cookbook" do
@@ -255,9 +253,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
       before do
         policyfile.dsl.cookbook("local-cookbook", path: "foo/")
-        allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:ensure_cached)
-        allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
-        allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:dependencies).and_return([ [ "local-cookbook-dep-one", "~> 1.0"] ])
+        allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:ensure_cached)
+        allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
+        allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:dependencies).and_return([ [ "local-cookbook-dep-one", "~> 1.0"] ])
       end
 
       it "demands a solution using the local cookbook" do
@@ -289,9 +287,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
     before do
       policyfile.dsl.cookbook("git-sourced-cookbook", git: "git://git.example.org:user/a-cookbook.git")
-      allow(policyfile.cookbook_spec_for("git-sourced-cookbook")).to receive(:ensure_cached)
-      allow(policyfile.cookbook_spec_for("git-sourced-cookbook")).to receive(:version).and_return("8.6.7")
-      allow(policyfile.cookbook_spec_for("git-sourced-cookbook")).to receive(:dependencies).and_return([ ])
+      allow(policyfile.cookbook_location_spec_for("git-sourced-cookbook")).to receive(:ensure_cached)
+      allow(policyfile.cookbook_location_spec_for("git-sourced-cookbook")).to receive(:version).and_return("8.6.7")
+      allow(policyfile.cookbook_location_spec_for("git-sourced-cookbook")).to receive(:dependencies).and_return([ ])
     end
 
     it "demands a solution using the git sourced cookbook" do
@@ -317,9 +315,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
     before do
       policyfile.dsl.cookbook("git-sourced-cookbook", git: "git://git.example.org:user/a-cookbook.git")
-      allow(policyfile.cookbook_spec_for("git-sourced-cookbook")).to receive(:ensure_cached)
-      allow(policyfile.cookbook_spec_for("git-sourced-cookbook")).to receive(:version).and_return("8.6.7")
-      allow(policyfile.cookbook_spec_for("git-sourced-cookbook")).to receive(:dependencies).and_return([ ["git-sourced-cookbook-dep", "~> 2.2" ] ])
+      allow(policyfile.cookbook_location_spec_for("git-sourced-cookbook")).to receive(:ensure_cached)
+      allow(policyfile.cookbook_location_spec_for("git-sourced-cookbook")).to receive(:version).and_return("8.6.7")
+      allow(policyfile.cookbook_location_spec_for("git-sourced-cookbook")).to receive(:dependencies).and_return([ ["git-sourced-cookbook-dep", "~> 2.2" ] ])
     end
 
     context "And the default source is the community site" do
@@ -373,9 +371,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
     before do
       policyfile.dsl.cookbook("local-cookbook", path: "foo/")
-      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:ensure_cached)
-      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
-      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:dependencies).and_return([])
+      allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:ensure_cached)
+      allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
+      allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:dependencies).and_return([])
     end
 
     context "And the default source is the community site" do
@@ -453,9 +451,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
       policyfile.dsl.cookbook("local-cookbook", path: "foo/")
 
-      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:ensure_cached)
-      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
-      allow(policyfile.cookbook_spec_for("local-cookbook")).to receive(:dependencies).and_return([])
+      allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:ensure_cached)
+      allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
+      allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:dependencies).and_return([])
     end
 
     it "demands a solution that matches the version constraint in the policyfile" do
