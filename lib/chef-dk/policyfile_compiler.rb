@@ -18,7 +18,7 @@
 require 'forwardable'
 
 require 'solve'
-require 'chef/run_list/run_list_item'
+require 'chef/run_list'
 
 require 'chef-dk/policyfile/dsl'
 require 'chef-dk/policyfile_lock'
@@ -66,7 +66,9 @@ module ChefDK
     end
 
     def expanded_run_list
-      run_list
+      raise "TODO: TEST ME" unless $hax_mode
+      normalized_items = run_list.map { |i| normalize_run_list_item(i) }
+      Chef::RunList.new(*normalized_items)
     end
 
     def lock
@@ -178,7 +180,9 @@ module ChefDK
     end
 
     def cookbooks_in_run_list
-      run_list.map {|item_spec| Chef::RunList::RunListItem.new(item_spec).name }
+      raise "TODO: TEST ME" unless $hax_mode
+      recipes = expanded_run_list.map {|recipe| recipe.name }
+      recipes.map { |r| r[/^([^:]+)/, 1] }
     end
 
     def build
@@ -193,6 +197,20 @@ module ChefDK
     end
 
     private
+
+    def normalize_run_list_item(item)
+      bare_name = Chef::RunList::RunListItem.new(item).name
+      normalize_recipe_name(bare_name)
+    end
+
+    def normalize_recipe_name(name)
+      raise "TODO: TEST ME" unless $hax_mode
+      if name.include?("::")
+        name
+      else
+        "#{name}::default"
+      end
+    end
 
     def cookbooks_for_demands
       (cookbooks_in_run_list + cookbook_location_specs.keys).uniq
@@ -215,7 +233,6 @@ module ChefDK
     def cache_path
       CookbookOmnifetch.storage_path
     end
-
 
   end
 end

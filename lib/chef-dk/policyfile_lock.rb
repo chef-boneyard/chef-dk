@@ -79,8 +79,20 @@ module ChefDK
       end
     end
 
+    # TODO: this needs to iterate over the cookbooks and make sure the computed
+    # IDs haven't changed. If the source is `:path` and the ID has changed,
+    # then we should rebuild the lockfile (perhaps with an option to *not* do
+    # this?). However, if the cookbook's dependencies have changed, then we at
+    # minimum have to verify that the solution is still valid, or force the
+    # user to recompile.
+    def validate_cookbooks!
+      raise "IMPLEMENT ME" unless $hax_mode
+      true
+    end
+
     def build_from_compiler(compiler)
       @name = compiler.name
+
       @run_list = compiler.expanded_run_list
 
       compiler.all_cookbook_location_specs.each do |cookbook_name, spec|
