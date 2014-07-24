@@ -27,4 +27,8 @@ RSpec.configure do |c|
 
   c.filter_run :focus => true
   c.run_all_when_everything_filtered = true
+
+  c.mock_with(:rspec) do |mocks|
+    mocks.verify_partial_doubles = true
+  end
 end
