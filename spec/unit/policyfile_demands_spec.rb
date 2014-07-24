@@ -126,6 +126,29 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     end
   end
 
+  describe "when normalizing run_list items" do
+
+    it "normalizes a bare cookbook name" do
+      policyfile.run_list("local-cookbook")
+      expect(policyfile.normalized_run_list).to eq(["recipe[local-cookbook::default]"])
+    end
+
+    it "normalizes a bare cookbook::recipe item" do
+      policyfile.run_list("local-cookbook::server")
+      expect(policyfile.normalized_run_list).to eq(["recipe[local-cookbook::server]"])
+    end
+
+    it "normalizes a recipe[] item with implicit default" do
+      policyfile.run_list("recipe[local-cookbook]")
+      expect(policyfile.normalized_run_list).to eq(["recipe[local-cookbook::default]"])
+    end
+
+    it "does not modify a fully qualified recipe" do
+      policyfile.run_list("recipe[local-cookbook::jazz_hands]")
+      expect(policyfile.normalized_run_list).to eq(["recipe[local-cookbook::jazz_hands]"])
+    end
+
+  end
 
   before do
     expect(policyfile.errors).to eq([])

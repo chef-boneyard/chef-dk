@@ -473,7 +473,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     let(:policyfile_compiler) do
       double( "ChefDK::PolicyfileCompiler",
               name: "my-policyfile",
-              expanded_run_list: %w[foo bar],
+              normalized_run_list: %w[recipe[foo::default] recipe[bar::default]],
               all_cookbook_location_specs: {"foo" => cached_location_spec, "bar" => local_location_spec})
     end
 
@@ -486,7 +486,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
         "name" => "my-policyfile",
 
-        "run_list" => ["foo", "bar"],
+        "run_list" => ["recipe[foo::default]", "recipe[bar::default]"],
 
         "cookbook_locks" => {
 

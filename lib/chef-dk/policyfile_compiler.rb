@@ -66,9 +66,13 @@ module ChefDK
     end
 
     def expanded_run_list
-      raise "TODO: TEST ME" unless $hax_mode
-      normalized_items = run_list.map { |i| normalize_run_list_item(i) }
-      Chef::RunList.new(*normalized_items)
+      # doesn't support roles yet...
+      Chef::RunList.new(*run_list)
+    end
+
+    # copy of the expanded_run_list, properly formatted for use in a lockfile
+    def normalized_run_list
+      expanded_run_list.map { |i| normalize_recipe(i) }
     end
 
     def lock
@@ -180,7 +184,6 @@ module ChefDK
     end
 
     def cookbooks_in_run_list
-      raise "TODO: TEST ME" unless $hax_mode
       recipes = expanded_run_list.map {|recipe| recipe.name }
       recipes.map { |r| r[/^([^:]+)/, 1] }
     end
@@ -198,18 +201,10 @@ module ChefDK
 
     private
 
-    def normalize_run_list_item(item)
-      bare_name = Chef::RunList::RunListItem.new(item).name
-      normalize_recipe_name(bare_name)
-    end
-
-    def normalize_recipe_name(name)
-      raise "TODO: TEST ME" unless $hax_mode
-      if name.include?("::")
-        name
-      else
-        "#{name}::default"
-      end
+    def normalize_recipe(run_list_item)
+      name = run_list_item.name
+      name = "#{name}::default" unless name.include?("::")
+      "recipe[#{name}]"
     end
 
     def cookbooks_for_demands
