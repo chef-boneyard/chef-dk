@@ -86,7 +86,7 @@ module ChefDK
     # minimum have to verify that the solution is still valid, or force the
     # user to recompile.
     def validate_cookbooks!
-      raise "IMPLEMENT ME" unless $hax_mode
+      raise "TODO: IMPLEMENT ME" unless $hax_mode
       true
     end
 
