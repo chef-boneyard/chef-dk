@@ -17,6 +17,15 @@
 
 require 'chef-dk/command/base'
 require 'chef-dk/command/generator_commands'
+require 'chef-dk/command/generator_commands/base'
+require 'chef-dk/command/generator_commands/cookbook_code_file'
+require 'chef-dk/command/generator_commands/cookbook'
+require 'chef-dk/command/generator_commands/app'
+require 'chef-dk/command/generator_commands/attribute'
+require 'chef-dk/command/generator_commands/cookbook_file'
+require 'chef-dk/command/generator_commands/lwrp'
+require 'chef-dk/command/generator_commands/recipe'
+require 'chef-dk/command/generator_commands/template'
 
 module ChefDK
   module Command

@@ -15,14 +15,18 @@
 # limitations under the License.
 #
 
-source 'https://rubygems.org'
+require 'spec_helper'
+require 'shared/a_file_generator'
+require 'chef-dk/command/generator_commands/attribute'
 
-gemspec :name => "chef-dk"
+describe ChefDK::Command::GeneratorCommands::Attribute do
 
-gem "chef", ">= 11.14.0.rc.2"
+  include_examples "a file generator" do
 
-group(:dev) do
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'ruby_gntp'
+    let(:generator_name) { "attribute" }
+    let(:generated_files) { [ "attributes/new_attribute_file.rb" ] }
+    let(:new_file_name) { "new_attribute_file" }
+
+  end
 end
+

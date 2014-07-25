@@ -15,14 +15,18 @@
 # limitations under the License.
 #
 
-source 'https://rubygems.org'
+require 'spec_helper'
+require 'shared/a_file_generator'
+require 'chef-dk/command/generator_commands/recipe'
 
-gemspec :name => "chef-dk"
+describe ChefDK::Command::GeneratorCommands::Recipe do
 
-gem "chef", ">= 11.14.0.rc.2"
+  include_examples "a file generator" do
 
-group(:dev) do
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'ruby_gntp'
+    let(:generator_name) { "recipe" }
+    let(:generated_files) { [ "recipes/new_recipe.rb" ] }
+    let(:new_file_name) { "new_recipe" }
+
+  end
 end
+
