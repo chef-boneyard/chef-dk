@@ -16,9 +16,12 @@
 #
 
 require 'spec_helper'
+require 'shared/fixture_cookbook_checksums'
 require 'chef-dk/policyfile_lock.rb'
 
 describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
+
+  include_context "fixture cookbooks checksums"
 
   let(:cache_path) do
     File.expand_path("spec/unit/fixtures/cookbook_cache", project_root)
@@ -81,8 +84,8 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
       expect(cookbook_lock.name).to eq("foo")
       expect(cookbook_lock.cache_key).to eq("foo-1.0.0")
       expect(cookbook_lock.version).to eq("1.0.0")
-      expect(cookbook_lock.identifier).to eq("e4611e9b5ec0636a18979e7dd22537222a2eab47")
-      expect(cookbook_lock.dotted_decimal_identifier).to eq("64283078773620835.29863387009503781.60619876117319")
+      expect(cookbook_lock.identifier).to eq(cookbook_foo_cksum)
+      expect(cookbook_lock.dotted_decimal_identifier).to eq(cookbook_foo_cksum_dotted)
       expect(cookbook_lock.origin).to eq("https://artifact-server.example/foo/1.0.0")
       expect(cookbook_lock.source_options).to eq({ artifactserver: "https://artifact-server.example/foo/1.0.0", version: "1.0.0" })
       expect(cookbook_lock.cookbook_location_spec.version_constraint).to eq(Semverse::Constraint.new("= 1.0.0"))
@@ -93,8 +96,8 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
       cookbook_lock = policyfile_lock.cookbook_locks["local-cookbook"]
       expect(cookbook_lock.name).to eq("local-cookbook")
       expect(cookbook_lock.version).to eq("2.3.4")
-      expect(cookbook_lock.identifier).to eq("c72670948830f5e41f0b96fa088b7a37d21ad5d6")
-      expect(cookbook_lock.dotted_decimal_identifier).to eq("56055785335566581.64210429328099467.134380166763990")
+      expect(cookbook_lock.identifier).to eq("fab501cfaf747901bd82c1bc706beae7dc3a350c")
+      expect(cookbook_lock.dotted_decimal_identifier).to eq("70567763561641081.489844270461035.258281553147148")
       expect(cookbook_lock.source).to eq("local-cookbook")
       expect(cookbook_lock.source_options).to eq({ path: "local-cookbook" })
       expect(cookbook_lock.cookbook_location_spec.version_constraint).to eq(Semverse::Constraint.new("= 2.3.4"))
