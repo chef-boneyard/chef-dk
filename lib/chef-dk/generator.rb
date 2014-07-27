@@ -20,9 +20,7 @@ module ChefDK
   module Generator
 
     class Context
-
       attr_accessor :have_git
-
       attr_accessor :app_root
       attr_accessor :cookbook_root
       attr_accessor :app_name
@@ -31,10 +29,16 @@ module ChefDK
       attr_accessor :content_source
       attr_accessor :author_name
       attr_accessor :author_email
+      attr_accessor :license
       attr_accessor :license_description
       attr_accessor :license_text
-
+      attr_accessor :repo_root
+      attr_accessor :repo_name
+      attr_accessor :cli_config
       attr_accessor :skip_git_init
+      attr_accessor :copyright_holder
+      attr_accessor :email
+      attr_accessor :policy_only
     end
 
     def self.reset
@@ -53,6 +57,10 @@ module ChefDK
         end
       end
 
+      def year
+        Time.now.year
+      end
+
       # delegate all the attributes of app_config
       delegate_to_app_context :app_root
       delegate_to_app_context :cookbook_root
@@ -61,9 +69,15 @@ module ChefDK
       delegate_to_app_context :content_source
       delegate_to_app_context :author_name
       delegate_to_app_context :author_email
+      delegate_to_app_context :email
+      delegate_to_app_context :license
       delegate_to_app_context :license_description
       delegate_to_app_context :license_text
-
+      delegate_to_app_context :repo_root
+      delegate_to_app_context :repo_name
+      delegate_to_app_context :copyright_holder
+      delegate_to_app_context :cli_config
+      delegate_to_app_context :policy_only
     end
 
   end

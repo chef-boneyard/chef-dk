@@ -33,6 +33,7 @@ module ChefDK
 
         attr_reader :params
 
+
         options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
@@ -57,6 +58,9 @@ module ChefDK
         def setup_context
           Generator.context.have_git = have_git?
           Generator.context.skip_git_init = false
+          Generator.context.license = config[:license]
+          Generator.context.copyright_holder = config[:copyright_holder]
+          Generator.context.email = config[:email]
         end
 
         # Delegates to `Generator.context`, the singleton instance of

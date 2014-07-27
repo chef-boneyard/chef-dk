@@ -26,6 +26,7 @@ require 'chef-dk/command/generator_commands/cookbook_file'
 require 'chef-dk/command/generator_commands/lwrp'
 require 'chef-dk/command/generator_commands/recipe'
 require 'chef-dk/command/generator_commands/template'
+require 'chef-dk/command/generator_commands/repo'
 
 module ChefDK
   module Command
@@ -48,6 +49,7 @@ module ChefDK
       generator(:template, :Template, "Generate a file template")
       generator(:file, :CookbookFile, "Generate a cookbook file")
       generator(:lwrp, :LWRP, "Generate a lightweight resource/provider")
+      generator(:repo, :Repo, "Generate a Chef policy repository")
 
       def self.banner_headline
         <<-E
