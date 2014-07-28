@@ -40,6 +40,7 @@ module ChefDK
     include Helpers
 
     attr_accessor :base_dir
+    attr_accessor :gem_base_dir
 
     attr_writer :omnibus_root
 
@@ -118,11 +119,17 @@ module ChefDK
     end
 
     def component_path
-      File.join(omnibus_apps_dir, base_dir)
+      if base_dir
+        File.join(omnibus_apps_dir, base_dir)
+      elsif gem_base_dir
+        gem_base_dir
+      else
+        raise "`base_dir` or `gem_base_dir` must be defined for component `#{name}`"
+      end
     end
 
-    def base_dir
-      @base_dir or raise "`base_dir` must be defined for component `#{name}`"
+    def gem_base_dir=(gem_name)
+      @gem_base_dir ||= Gem::Specification::find_by_name(gem_name).gem_dir
     end
 
     def omnibus_root
