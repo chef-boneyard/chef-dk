@@ -15,14 +15,18 @@
 # limitations under the License.
 #
 
-source 'https://rubygems.org'
+require 'spec_helper'
+require 'shared/a_file_generator'
+require 'chef-dk/command/generator_commands/template'
 
-gemspec :name => "chef-dk"
+describe ChefDK::Command::GeneratorCommands::Template do
 
-gem "chef", ">= 11.14.0.rc.2"
+  include_examples "a file generator" do
 
-group(:dev) do
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'ruby_gntp'
+    let(:generator_name) { "template" }
+    let(:generated_files) { [ "templates/default/new_template.txt.erb" ] }
+    let(:new_file_name) { "new_template.txt" }
+
+  end
 end
+

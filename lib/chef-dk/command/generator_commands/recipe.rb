@@ -15,14 +15,22 @@
 # limitations under the License.
 #
 
-source 'https://rubygems.org'
+require 'chef-dk/command/generator_commands/cookbook_code_file'
 
-gemspec :name => "chef-dk"
+module ChefDK
+  module Command
+    module GeneratorCommands
+      # chef generate recipe [path/to/cookbook/root] name
+      class Recipe < CookbookCodeFile
 
-gem "chef", ">= 11.14.0.rc.2"
+        banner "Usage: chef generate recipe [path/to/cookbook] NAME [options]"
 
-group(:dev) do
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'ruby_gntp'
+        options.merge!(SharedGeneratorOptions.options)
+
+        def recipe
+          'recipe'
+        end
+      end
+    end
+  end
 end

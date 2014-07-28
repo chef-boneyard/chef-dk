@@ -15,14 +15,18 @@
 # limitations under the License.
 #
 
-source 'https://rubygems.org'
+require 'spec_helper'
+require 'shared/a_file_generator'
+require 'chef-dk/command/generator_commands/lwrp'
 
-gemspec :name => "chef-dk"
+describe ChefDK::Command::GeneratorCommands::LWRP do
 
-gem "chef", ">= 11.14.0.rc.2"
+  include_examples "a file generator" do
 
-group(:dev) do
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'ruby_gntp'
+    let(:generator_name) { "lwrp" }
+    let(:generated_files) { [ "resources/new_lwrp.rb", "providers/new_lwrp.rb" ] }
+    let(:new_file_name) { "new_lwrp" }
+
+  end
 end
+
