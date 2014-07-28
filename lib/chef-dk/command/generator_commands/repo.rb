@@ -59,10 +59,8 @@ module ChefDK
 
         def setup_context
           super
-          generator_context.repo_root = repo_root
-          generator_context.repo_name = repo_name
-          generator_context.cli_config = config
-          generator_context.policy_only = config[:policy_only]
+          Generator.add_attr_to_context(:repo_root, repo_root)
+          Generator.add_attr_to_context(:repo_name, repo_name)
         end
 
         def recipe

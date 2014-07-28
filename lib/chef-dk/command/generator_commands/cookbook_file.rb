@@ -37,7 +37,7 @@ module ChefDK
 
         def setup_context
           super
-          generator_context.content_source = config[:source]
+          Generator.add_attr_to_context(:content_source, config[:source])
         end
       end
     end

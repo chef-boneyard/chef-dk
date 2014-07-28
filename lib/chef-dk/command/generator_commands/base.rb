@@ -33,7 +33,6 @@ module ChefDK
 
         attr_reader :params
 
-
         options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
@@ -56,17 +55,11 @@ module ChefDK
 
         # Sets git related generator_context values.
         def setup_context
-          Generator.context.have_git = have_git?
-          Generator.context.skip_git_init = false
-          Generator.context.license = config[:license]
-          Generator.context.copyright_holder = config[:copyright_holder]
-          Generator.context.email = config[:email]
-        end
-
-        # Delegates to `Generator.context`, the singleton instance of
-        # Generator::Context
-        def generator_context
-          Generator.context
+          Generator.add_attr_to_context(:have_git, have_git?)
+          Generator.add_attr_to_context(:skip_git_init, false)
+          config.each do |k,v|
+            Generator.add_attr_to_context(k, v)
+          end
         end
 
         # Checks the `PATH` for the presence of a `git` (or `git.exe`, on

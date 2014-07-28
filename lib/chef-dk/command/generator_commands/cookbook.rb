@@ -56,9 +56,9 @@ module ChefDK
 
         def setup_context
           super
-          generator_context.skip_git_init = cookbook_path_in_git_repo?
-          generator_context.cookbook_root = cookbook_root
-          generator_context.cookbook_name = cookbook_name
+          Generator.add_attr_to_context(:skip_git_init, cookbook_path_in_git_repo?)
+          Generator.add_attr_to_context(:cookbook_root, cookbook_root)
+          Generator.add_attr_to_context(:cookbook_name, cookbook_name)
         end
 
         def recipe

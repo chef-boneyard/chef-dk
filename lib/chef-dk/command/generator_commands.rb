@@ -31,6 +31,8 @@ module ChefDK
     module SharedGeneratorOptions
       include Mixlib::CLI
 
+      # You really want these to have default values, as
+      # they will likely be used all over the place.
       option :license,
         :short => "-I LICENSE",
         :long => "--license LICENSE",
@@ -46,7 +48,8 @@ module ChefDK
       option :email,
         :short => "-m EMAIL",
         :long => "--email EMAIL",
-        :description => "Email address of the author"
+        :description => "Email address of the author - defaults to 'you@example.com'",
+        :default => 'you@example.com'
 
       option :generator_cookbook,
         :short => "-g GENERATOR_COOKBOOK_PATH",
