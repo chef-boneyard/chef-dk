@@ -53,10 +53,10 @@ module ChefDK
 
         def setup_context
           super
-          generator_context.app_root = app_root
-          generator_context.app_name = app_name
-          generator_context.cookbook_root ||= cookbook_root
-          generator_context.cookbook_name ||= cookbook_name
+          Generator.add_attr_to_context(:app_root, app_root)
+          Generator.add_attr_to_context(:app_name, app_name)
+          Generator.add_attr_to_context(:cookbook_root, cookbook_root)
+          Generator.add_attr_to_context(:cookbook_name, cookbook_name)
         end
 
         def recipe
