@@ -31,6 +31,23 @@ module ChefDK
     module SharedGeneratorOptions
       include Mixlib::CLI
 
+      option :license,
+        :short => "-I LICENSE",
+        :long => "--license LICENSE",
+        :description => "all_rights, apache2, mit, gplv2, gplv3 - defaults to all_rights",
+        :default => "all_rights"
+
+      option :copyright_holder,
+        :short => "-C COPYRIGHT",
+        :long => "--copyright COPYRIGHT",
+        :description => "Name of the copyright holder - defaults to 'The Authors'",
+        :default => "The Authors"
+
+      option :email,
+        :short => "-m EMAIL",
+        :long => "--email EMAIL",
+        :description => "Email address of the author"
+
       option :generator_cookbook,
         :short => "-g GENERATOR_COOKBOOK_PATH",
         :long  => "--generator-cookbook GENERATOR_COOKBOOK_PATH",
