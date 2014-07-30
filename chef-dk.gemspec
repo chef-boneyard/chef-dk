@@ -50,5 +50,4 @@ Gem::Specification.new do |gem|
     gem.add_development_dependency dev_gem, "~> 3.0"
   end
 
-  gem.add_development_dependency "chefspec", ">= 4.0.1"
 end

@@ -40,7 +40,6 @@ module ChefDK
     include Helpers
 
     attr_accessor :base_dir
-    attr_accessor :gem_base_dir
 
     attr_writer :omnibus_root
 
@@ -51,6 +50,8 @@ module ChefDK
       @unit_test = DEFAULT_TEST
       @integration_test = DEFAULT_TEST
       @smoke_test = DEFAULT_TEST
+      @base_dir = nil
+      @gem_name_for_base_dir = nil
     end
 
     def unit_test(&test_block)
@@ -128,8 +129,13 @@ module ChefDK
       end
     end
 
+    def gem_base_dir
+      return nil if @gem_name_for_base_dir.nil?
+      Gem::Specification::find_by_name(@gem_name_for_base_dir).gem_dir
+    end
+
     def gem_base_dir=(gem_name)
-      @gem_base_dir ||= Gem::Specification::find_by_name(gem_name).gem_dir
+      @gem_name_for_base_dir = gem_name
     end
 
     def omnibus_root
