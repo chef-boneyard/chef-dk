@@ -15,11 +15,6 @@
 # limitations under the License.
 #
 
-# TODO: Not used here, remove require.
-require 'chef-dk/authenticated_http'
-
-# TODO: missing require in chef/cookbook_version
-require 'chef/digester'
 require 'chef/cookbook/cookbook_version_loader'
 
 require 'chef/cookbook/chefignore'

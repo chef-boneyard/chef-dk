@@ -22,9 +22,6 @@ module ChefDK
   module Policyfile
     class Uploader
 
-      # TODO: Fix API of CookbookUploader
-      UNUSED_ARGUMENT = nil # :(
-
       COMPAT_MODE_DATA_BAG_NAME = "policyfiles".freeze
 
       attr_reader :policyfile_lock
@@ -69,11 +66,8 @@ module ChefDK
       end
 
       def uploader
-        # TODO:
-        # * uploader calls the _rest methods on http_client;
-        # * uploader runs cookbook validation; we want to do this at a different time.
-        # * fix uploader constructor.
-        @uploader ||= Chef::CookbookUploader.new(cookbook_versions_to_upload, UNUSED_ARGUMENT, :rest => http_client)
+        # TODO: uploader runs cookbook validation; we want to do this at a different time.
+        @uploader ||= Chef::CookbookUploader.new(cookbook_versions_to_upload, :rest => http_client)
       end
 
       def cookbook_versions_to_upload

@@ -18,6 +18,10 @@
 require 'spec_helper'
 require 'chef-dk/policyfile/uploader'
 
+# We load this here to ensure we get the "verifying doubles" behavior from
+# RSpec. It's not used by Policyfile::Uploader, but it's a collaborator.
+require 'chef-dk/authenticated_http'
+
 describe ChefDK::Policyfile::Uploader do
 
   let(:policyfile_lock_data) do
@@ -224,7 +228,7 @@ describe ChefDK::Policyfile::Uploader do
 
         cookbook_uploader = instance_double("Chef::CookbookUploader")
         expect(Chef::CookbookUploader).to receive(:new).
-          with(cookbook_versions.values, nil, :rest => http_client).
+          with(cookbook_versions.values, :rest => http_client).
           and_return(cookbook_uploader)
         expect(cookbook_uploader).to receive(:upload_cookbooks)
 
@@ -269,7 +273,7 @@ describe ChefDK::Policyfile::Uploader do
 
         cookbook_uploader = instance_double("Chef::CookbookUploader")
         expect(Chef::CookbookUploader).to receive(:new).
-          with(expected_cookbooks_for_upload, nil, :rest => http_client).
+          with(expected_cookbooks_for_upload, :rest => http_client).
           and_return(cookbook_uploader)
         expect(cookbook_uploader).to receive(:upload_cookbooks)
 

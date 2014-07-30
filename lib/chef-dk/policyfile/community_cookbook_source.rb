@@ -18,13 +18,6 @@
 require 'json'
 require 'chef-dk/cookbook_omnifetch'
 require 'chef-dk/exceptions'
-# TODO: chef bug. Chef::HTTP::Simple needs to require this itself.
-# Fixed in 2ed829e661f9a357fc9a8cdf316c84f077dad7f9 waiting for that to be
-# released...
-require 'tempfile'
-require 'chef/platform/query_helpers' # should be handled by http/simple
-require 'chef/http/cookie_manager' # should be handled by http/simple
-require 'chef/http/validate_content_length' # should be handled by http/simple
 require 'chef/http/simple'
 
 # TODO: fix hardcoding
