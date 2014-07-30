@@ -19,10 +19,9 @@ source 'https://rubygems.org'
 
 gemspec :name => "chef-dk"
 
-gem "chef", ">= 11.14.0.rc.2"
-
 group(:dev) do
   gem 'guard'
   gem 'guard-rspec'
   gem 'ruby_gntp'
 end
+
