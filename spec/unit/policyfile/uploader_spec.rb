@@ -53,11 +53,13 @@ describe ChefDK::Policyfile::Uploader do
   let(:policyfile_as_data_bag_item) do
 
     policyfile_as_data_bag_item = {
-      "name" => "example-unit-test",
+      "id" => "example-unit-test",
+      "name" => "data_bag_item_policyfiles_example-unit-test",
       "data_bag" => "policyfiles"
     }
     policyfile_as_data_bag_item["raw_data"] = policyfile_lock_data.dup
     policyfile_as_data_bag_item["raw_data"]["id"] = "example-unit-test"
+    policyfile_as_data_bag_item["json_class"] = "Chef::DataBagItem"
     policyfile_as_data_bag_item
   end
 

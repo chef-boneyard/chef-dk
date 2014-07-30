@@ -56,9 +56,13 @@ module ChefDK
         lock_data["id"] = policy_id
 
         data_item = {
-          "name" => policy_id,
+          "id" => policy_id,
+          "name" => "data_bag_item_#{COMPAT_MODE_DATA_BAG_NAME}_#{policy_id}",
           "data_bag" => COMPAT_MODE_DATA_BAG_NAME,
-          "raw_data" => lock_data
+          "raw_data" => lock_data,
+          # we'd prefer to leave this out, but the "compatibility mode"
+          # implementation in chef-client relies on magical class inflation
+          "json_class" => "Chef::DataBagItem"
         }
 
         upload_lockfile_as_data_bag_item(policy_id, data_item)
