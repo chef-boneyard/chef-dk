@@ -40,7 +40,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "mixlib-cli", "~> 1.5"
   gem.add_dependency "mixlib-shellout", "~> 1.4"
 
-  gem.add_dependency "chef", "~> 11.12"
+  gem.add_dependency "chef", "~> 12.0.0.alpha"
 
   gem.add_dependency "solve", "~> 1.2"
 
@@ -50,5 +50,4 @@ Gem::Specification.new do |gem|
     gem.add_development_dependency dev_gem, "~> 3.0"
   end
 
-  gem.add_development_dependency "chefspec", ">= 4.0.1"
 end

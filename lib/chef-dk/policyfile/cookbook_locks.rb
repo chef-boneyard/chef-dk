@@ -66,6 +66,10 @@ module ChefDK
         @identifiers ||= CookbookProfiler::Identifiers.new(cookbook_path)
       end
 
+      def cookbook_path
+        raise NotImplementedError, "#{self.class} must override #to_lock with a specific implementation"
+      end
+
       def to_lock
         raise NotImplementedError, "#{self.class} must override #to_lock with a specific implementation"
       end

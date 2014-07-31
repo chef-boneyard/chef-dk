@@ -54,7 +54,6 @@ shared_examples_for "Cookbook Lock" do
 
     before do
       allow(cookbook_lock).to receive(:validate!)
-      allow(cookbook_lock).to receive(:scm_info).and_return({})
 
       cookbook_lock.identifier = "my-opaque-id"
       cookbook_lock.dotted_decimal_identifier = "123.456.789"
@@ -155,10 +154,6 @@ describe ChefDK::Policyfile::CachedCookbook do
     let(:cache_path) { File.join(fixtures_path, "cached_cookbooks") }
 
     before do
-      # cookbook_lock.identifier = "my-opaque-id"
-      # cookbook_lock.dotted_decimal_identifier = "123.456.789"
-      # cookbook_lock.version = "1.0.0"
-      # cookbook_lock.source_options = { :sourcekey => "location info" }
       cookbook_lock.cache_key = "foo-1.0.0"
 
       storage_config.cache_path = cache_path
@@ -179,7 +174,9 @@ describe ChefDK::Policyfile::LocalCookbook do
   let(:storage_config) { ChefDK::Policyfile::StorageConfig.new }
 
   let(:cookbook_lock) do
-    described_class.new(cookbook_name, storage_config)
+    lock = described_class.new(cookbook_name, storage_config)
+    allow(lock).to receive(:scm_info).and_return({})
+    lock
   end
 
   include_examples "Cookbook Lock"

@@ -15,20 +15,26 @@
 # limitations under the License.
 #
 
-require 'rubygems'
-require 'rspec/mocks'
-require 'test_helpers'
+require 'chef/http'
+require 'chef/http/authenticator'
+require 'chef/http/json_input'
+require 'chef/http/json_output'
+require 'chef/http/decompressor'
+require 'chef/http/validate_content_length'
 
-RSpec.configure do |c|
-  c.include ChefDK
-  c.include TestHelpers
+module ChefDK
+  class AuthenticatedHTTP < Chef::HTTP
 
-  c.after(:all) { clear_tempdir }
+    use JSONInput
+    use JSONOutput
+    use Decompressor
+    use Authenticator
 
-  c.filter_run :focus => true
-  c.run_all_when_everything_filtered = true
+    # ValidateContentLength should come after Decompressor
+    # because the order of middlewares is reversed when handling
+    # responses.
+    use ValidateContentLength
 
-  c.mock_with(:rspec) do |mocks|
-    mocks.verify_partial_doubles = true
   end
 end
+

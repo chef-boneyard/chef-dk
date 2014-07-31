@@ -69,10 +69,14 @@ module ChefDK
       def cookbook_loader
         @cookbook_loader ||=
           begin
-            loader = Chef::Cookbook::CookbookVersionLoader.new(cookbook_path)
+            loader = Chef::Cookbook::CookbookVersionLoader.new(cookbook_path, chefignore)
             loader.load_cookbooks
             loader
           end
+      end
+
+      def chefignore
+        @chefignore ||= Chef::Cookbook::Chefignore.new(File.join(cookbook_path, "chefignore"))
       end
     end
   end
