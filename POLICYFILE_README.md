@@ -108,6 +108,19 @@ and then proceeds as normal.
 
 ## Motivation and FAQ
 
+### Focus Workflow on Configuring Machines to do Useful Work
+
+Chef's current tooling (`knife` in particular) maps very closely to Chef
+Server's REST API and therefore is centered around manipulating
+individual objects and uploading them to the Chef Server. `chef-client`
+assembles these pieces at run time (more on that below) to configure a
+host to do some useful work for you organization. With the Policyfile
+feature, we want to focus the workflow on creating and configuring
+entire systems, rather than individual components. For example,
+Policfiles describe whole systems and individual revisions of
+`Policyfile.lock` documents are uploaded with all required components as
+a unit to the Chef Server.
+
 ### Code Visibility
 
 In Chef currently, the exact set of cookbooks that a node will apply is
@@ -240,6 +253,99 @@ workflow, but it will be supported. In particular we have to study the
 tradeoffs of versioning your Policyfile.rb files (we'll support other
 names) with your chef-repo vs. outside of it. We plan to do some dogfood
 testing to inform the design here.
+
+Users who use the "megarepo" workflow may see some benefit to using
+single repos for third-party cookbooks, but this will be optional and
+users can convert from vendor branches piecemeal if they decide to do
+so.
+
+### Do I Have to Change My Workflow to Use This?
+
+The answer to this depends on how you define "workflow." As noted above,
+you can choose to have a chef-repo or not, and you can fetch third party
+cookbooks using the Policyfile or an out of band mechanism (vendor
+branches). You and your team can decide to publish only completely
+integrated "release" cookbooks to the server if that works for you, but
+you can also safely publish development versions of cookbooks to the
+server without risk of mutating the production versions and without
+needing a versioning scheme (devodd and friends) to workaround cookbook
+mutability issues.
+
+That said, the mechanics of how you get configuration code from your
+workstation to production will be different. In particular, when using
+the Policyfile feature in the recommended way, you cannot publish an
+updated cookbook or role and have it applied immediately to all
+machines. Tools that use the old APIs will need to be updated.
+
+### Are Policyfiles Versioned?
+
+There currently isn't any detailed design for the Chef Server policy API
+(which will store the `Policyfile.lock.json` documents). One design
+decision we have made is that the documents will be namespaced (by
+`policy group`). This means that at minimum it will be possible to
+independently update the policy for different stages of your release
+process independently. For example, if you have policy groups for "dev,"
+"stage," and "prod," you can iterate on new feature work in "dev" and
+release a critical hot fix to "prod" independently of each other.
+
+If this is all that's implemented, then you will be able to version your
+policies by committing your `Policyfile.rb` and `Policyfile.lock.json`
+documents to revision control and using a branching policy that fits
+your release requirements. That said, features to support operations
+such as reverting or undo and/or tracking changes over time will be
+considered.
+
+### What About Environments?
+
+We have not made a final decision about how environments will work with
+Policyfiles. In compatibility mode, you cannot use environments and
+Policyfiles together, but this choice could be reversed. Policyfiles
+**do** completely replace the cookbook version constraint portion of the
+environments feature. However, environments do offer a useful way to set
+environment-wide attributes, which some users rely on heavily. The main
+sticking point is that environments provide the same double edged sword
+as many other Chef features where updates to environments are propagated
+immediately to all nodes in an environment. When done correctly, this is
+very convenient, but it also allows mistakes to propagate to all nodes
+immediately. Contrarily, if environment attributes are rolled into the
+Policyfile, you can more easily test the effects of changes and control
+the way these updates are applied, but it's more difficult to apply
+changes globally.
+
+## Compatibility Mode
+
+The Policyfile feature depends on new APIs in Chef Server that don't yet
+exist (these are listed in the "Known Limitation" sections below). In
+order to provide a preview of the feature, the current implementation
+operates in a compatibility mode that uses existing Chef Server APIs to
+demonstrate the Policyfile behavior.
+
+### Cookbook Artifact Storage
+
+In compatibility mode, ChefDK must implement content-hash-based storage
+of cookbooks using the existing `/cookbooks` endpoint. To do so, it maps
+hash IDs to `X.Y.Z` version numbers. While this works to demonstrate the
+Policyfile behavior, it is certainly a kludge. If you are trying the
+Policyfile feature in compatibility mode, beware:
+
+* Cookbooks uploaded by the policyfile commands will have very large
+version numbers with no sort order. Any `chef-client` that is not
+operating in policyfile mode will prefer these cookbooks to ones
+uploaded normally unless you are dilligent about using environment
+version constraints.
+* The `/cookbooks` endpoint is not designed to be used this way, so it
+doesn't show you the "real" version numbers or additional metadata about
+these cookbooks. While we have plans to make arbitrary cookbook IDs
+easier to manage in the final implementation, there's little we can do
+about it in the exiting API.
+
+### Policyfile Storage
+
+In compatibility mode, ChefDK uses data bag items to store
+`Policyfile.lock.json` documents. To minimize the chance of conflict
+with other data bag items, ChefDK stores all of these documents in the
+"policyfiles" data bag; individual `Policyfile.lock.json` revisions are
+given IDs of the form `$policyname-policygroup`.
 
 ## Known Limitations
 
