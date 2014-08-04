@@ -388,6 +388,13 @@ this will be added.
 Roles currently cannot be used in the `Policyfile.rb` run list, but will
 be supported in the future.
 
+### Policyfile Attributes
+
+The `Policyfile.rb` run_list will be able to have roles, which have
+attributes. The `Policyfile.rb` will also allow setting attributes
+directly. These will replace the role-level attributes in the precedence
+hierarchy.
+
 ### Multiple Run List Support
 
 This is intended to (at minimum) replace the functionality of override
