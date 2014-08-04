@@ -225,6 +225,24 @@ cookbooks, and then run an expensive (NP expensive) computation to
 determine the correct set. Moving this computation to the workstation
 and running it less frequently makes Chef Server more efficient.
 
+### Where Does the Policyfile Live?
+
+At the moment, we see three main ways to organize your Policyfiles:
+
+* Store the Policyfile and related cookbooks in the same repository as
+the application you're deploying. If you're deploying custom
+applications written in-house and your software developers are
+comfortable working with Chef, you can put the Policyfile in the same
+repo as the application's source code and version everything together.
+* Store the Policyfile with a cookbook. If you're following the single
+cookbook per repo workflow, you can include the Policyfile in the
+highest-level cookbook's (i.e., the cookbook ultimately responsible for
+deploying a server's primary application) repository.
+* Store all of your Policyfiles in a single directory. This is likely to
+be the most common way to use Policyfiles with the monolithic cookbook
+repo workflow. There are still some details to be worked out for this
+case.
+
 ### Am I Going to be Forced to Use This?
 
 This change will be rolled out by adding new functionality to Chef
