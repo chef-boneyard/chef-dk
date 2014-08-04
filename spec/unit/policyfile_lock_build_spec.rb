@@ -85,7 +85,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     it "raises a descriptive error" do
-      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::CachedCookbookNotFound)
+      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::LocalCookbookNotFound)
     end
   end
 
@@ -105,7 +105,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     it "raises a descriptive error" do
-      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::CachedCookbookNotFound)
+      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::LocalCookbookNotFound)
     end
   end
 

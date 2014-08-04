@@ -210,10 +210,10 @@ module ChefDK
 
       def validate!
         if source.nil?
-          raise CachedCookbookNotFound, "Cookbook `#{name}' does not have a `source` set, cannot locate cookbook"
+          raise LocalCookbookNotFound, "Cookbook `#{name}' does not have a `source` set, cannot locate cookbook"
         end
         unless File.exist?(cookbook_path)
-          raise CachedCookbookNotFound, "Cookbook `#{name}' not found at path source `#{source}` (full path: `#{cookbook_path}')"
+          raise LocalCookbookNotFound, "Cookbook `#{name}' not found at path source `#{source}` (full path: `#{cookbook_path}')"
         end
       end
 
