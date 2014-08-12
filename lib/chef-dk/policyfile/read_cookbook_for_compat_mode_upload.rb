@@ -56,7 +56,7 @@ module ChefDK
         @loader ||=
           begin
             cbvl = Chef::Cookbook::CookbookVersionLoader.new(directory_path, chefignore)
-            cbvl.load_cookbooks
+            cbvl.load!
             cbvl
           end
       end
