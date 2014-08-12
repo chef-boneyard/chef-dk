@@ -23,10 +23,10 @@ module ChefDK
   module CookbookProfiler
     class Identifiers
 
-      attr_reader :cookbook_path
+      attr_reader :cookbook_version
 
-      def initialize(cookbook_path)
-        @cookbook_path = cookbook_path
+      def initialize(cookbook_version)
+        @cookbook_version = cookbook_version
       end
 
       def semver_version
@@ -62,22 +62,6 @@ module ChefDK
         @files ||= cookbook_version.manifest_records_by_path
       end
 
-      def cookbook_version
-        @cookbook_version ||= cookbook_loader.cookbook_version
-      end
-
-      def cookbook_loader
-        @cookbook_loader ||=
-          begin
-            loader = Chef::Cookbook::CookbookVersionLoader.new(cookbook_path, chefignore)
-            loader.load_cookbooks
-            loader
-          end
-      end
-
-      def chefignore
-        @chefignore ||= Chef::Cookbook::Chefignore.new(File.join(cookbook_path, "chefignore"))
-      end
     end
   end
 end

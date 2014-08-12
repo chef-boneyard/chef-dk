@@ -63,7 +63,7 @@ module ChefDK
       end
 
       def identifiers
-        @identifiers ||= CookbookProfiler::Identifiers.new(cookbook_path)
+        @identifiers ||= CookbookProfiler::Identifiers.new(cookbook_version)
       end
 
       def cookbook_path
@@ -92,6 +92,22 @@ module ChefDK
         end
       end
 
+      def cookbook_version
+        @cookbook_version ||= cookbook_loader.cookbook_version
+      end
+
+      def cookbook_loader
+        @cookbook_loader ||=
+          begin
+            loader = Chef::Cookbook::CookbookVersionLoader.new(cookbook_path, chefignore)
+            loader.load_cookbooks
+            loader
+          end
+      end
+
+      def chefignore
+        @chefignore ||= Chef::Cookbook::Chefignore.new(File.join(cookbook_path, "chefignore"))
+      end
     end
 
     # CachedCookbook objects represent a cookbook that has been fetched from an
