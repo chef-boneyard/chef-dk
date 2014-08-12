@@ -71,9 +71,18 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
     lock_generator.to_lock
   end
 
-  let(:policyfile_lock) do
+  # Eagerly evaluate #policyfile_lock. This is necessary because many of
+  # the tests follow this general process:
+  # 1. setup valid state, generate a lockfile in-memory
+  # 2. make the state invalid
+  # 3. ensure validation detected the invalid state
+  #
+  # With lazy evaluation, #1 may happen after #2.
+  let!(:policyfile_lock) do
     ChefDK::PolicyfileLock.new(storage_config).build_from_lock_data(lock_data)
   end
+
+  let(:local_cookbook_path) { File.join(local_cookbooks_root, "local-cookbook") }
 
   context "when no cookbooks have changed" do
 
@@ -85,23 +94,61 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
 
   context "when a :path sourced cookbook is missing" do
 
-    let(:local_cookbook_path) { File.join(local_cookbooks_root, "local-cookbook") }
-
     before do
       FileUtils.rm_rf(local_cookbook_path)
     end
 
     it "reports the missing cookbook and fails validation" do
-      skip # code below isn't working at the moment
-      message = "lockfile `Policyfile.lock.json' contains cookbook `local-cookbook' at path `#{local_cookbook_path}', but nothing is there"
-      expect(policyfile_lock.validate_cookbooks!).to raise_error(ChefDK::MissingLockedCookbook, message)
+      full_path = File.expand_path(local_cookbook_path)
+      message = "Cookbook `local-cookbook' not found at path source `local-cookbook` (full path: `#{full_path}')"
+
+      expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::LocalCookbookNotFound, message)
     end
 
   end
 
   context "when a :path sourced cookbook has an incorrect name" do
+    let(:metadata_path) { File.join(local_cookbook_path, "metadata.rb") }
 
-    it "reports the unexpected cookbook and fails validation"
+    let(:new_metadata) do
+      <<-E
+name             'WRONG'
+maintainer       ''
+maintainer_email ''
+license          ''
+description      'Installs/Configures local-cookbook'
+long_description 'Installs/Configures local-cookbook'
+version          '2.3.4'
+
+E
+    end
+
+
+    def ensure_metadata_as_expected!
+      expected_metadata_rb=<<-E
+name             'local-cookbook'
+maintainer       ''
+maintainer_email ''
+license          ''
+description      'Installs/Configures local-cookbook'
+long_description 'Installs/Configures local-cookbook'
+version          '2.3.4'
+
+E
+      expect(IO.read(metadata_path)).to eq(expected_metadata_rb)
+    end
+
+    before do
+      ensure_metadata_as_expected!
+      File.open(metadata_path, "w+") { |f| f.print(new_metadata) }
+    end
+
+    it "reports the unexpected cookbook and fails validation" do
+      policyfile_lock
+
+      message = "The cookbook at path source `local-cookbook' is expected to be named `local-cookbook', but is now named `WRONG' (full path: #{local_cookbook_path})"
+      expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::MalformedCookbook, message)
+    end
 
   end
 

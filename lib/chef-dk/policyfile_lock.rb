@@ -86,6 +86,9 @@ module ChefDK
     # minimum have to verify that the solution is still valid, or force the
     # user to recompile.
     def validate_cookbooks!
+      cookbook_locks.each do |name, location_spec|
+        location_spec.validate!
+      end
       true
     end
 

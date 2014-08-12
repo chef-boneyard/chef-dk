@@ -231,6 +231,10 @@ module ChefDK
         unless File.exist?(cookbook_path)
           raise LocalCookbookNotFound, "Cookbook `#{name}' not found at path source `#{source}` (full path: `#{cookbook_path}')"
         end
+        unless cookbook_version.name.to_s == name
+          msg = "The cookbook at path source `#{source}' is expected to be named `#{name}', but is now named `#{cookbook_version.name}' (full path: #{cookbook_path})"
+          raise MalformedCookbook, msg
+        end
       end
 
     end
