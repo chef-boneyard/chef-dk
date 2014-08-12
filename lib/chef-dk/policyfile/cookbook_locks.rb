@@ -100,7 +100,7 @@ module ChefDK
         @cookbook_loader ||=
           begin
             loader = Chef::Cookbook::CookbookVersionLoader.new(cookbook_path, chefignore)
-            loader.load_cookbooks
+            loader.load!
             loader
           end
       end
