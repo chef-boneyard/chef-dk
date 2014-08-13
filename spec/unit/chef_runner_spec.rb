@@ -46,6 +46,12 @@ describe ChefDK::ChefRunner do
     expect(Chef::Config.diff_disabled).to be true
   end
 
+  it "disables atomic file updates on Windows" do
+    allow(Chef::Platform).to receive(:windows?) { true }
+    chef_runner.configure
+    expect(Chef::Config.file_atomic_update).to be false
+  end
+
   it "configures a formatter for the chef run" do
     expect(chef_runner.formatter).to be_a(Chef::Formatters::Doc)
   end
