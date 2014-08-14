@@ -82,7 +82,21 @@ module ChefDK
         raise NotImplementedError, "#{self.class} must override #validate! with a specific implementation"
       end
 
-      private
+      def refresh!
+        raise NotImplementedError, "#{self.class} must override #refresh! with a specific implementation"
+      end
+
+      def updated?
+        false
+      end
+
+      def identifier_updated?
+        false
+      end
+
+      def version_updated?
+        false
+      end
 
       def symbolize_source_options_keys(source_options_from_json)
         source_options_from_json ||= {}
@@ -171,6 +185,12 @@ module ChefDK
         end
       end
 
+      # Ignored. We do not expect the cookbook to get mutated
+      # out-of-band, so refreshing the data should have no affect.
+      # Mutating the cookbook is a validation error.
+      def refresh!
+      end
+
     end
 
     # LocalCookbook objects represent cookbooks that are sourced from the local
@@ -185,6 +205,9 @@ module ChefDK
         @name = name
         @identifier = nil
         @storage_config = storage_config
+
+        @identifier_updated = false
+        @version_updated = false
       end
 
       def cookbook_path
@@ -235,6 +258,31 @@ module ChefDK
           msg = "The cookbook at path source `#{source}' is expected to be named `#{name}', but is now named `#{cookbook_version.name}' (full path: #{cookbook_path})"
           raise MalformedCookbook, msg
         end
+      end
+
+      def refresh!
+        old_identifier, old_version = @identifier, @version
+        @identifier, @dotted_decimal_identifier, @version = nil, nil, nil
+        gather_profile_data
+        if @identifier != old_identifier
+          @identifier_updated = true
+        end
+        if @version != old_version
+          @version_updated = true
+        end
+        self
+      end
+
+      def updated?
+        @identifier_updated || @version_updated
+      end
+
+      def version_updated?
+        @version_updated
+      end
+
+      def identifier_updated?
+        @identifier_updated
       end
 
     end

@@ -50,6 +50,10 @@ module ChefDK
       @storage_config = storage_config
     end
 
+    def lock_data_for(cookbook_name)
+      @cookbook_locks[cookbook_name]
+    end
+
     def cached_cookbook(name)
       cached_cookbook = Policyfile::CachedCookbook.new(name, storage_config)
       yield cached_cookbook if block_given?
@@ -79,15 +83,10 @@ module ChefDK
       end
     end
 
-    # TODO: this needs to iterate over the cookbooks and make sure the computed
-    # IDs haven't changed. If the source is `:path` and the ID has changed,
-    # then we should rebuild the lockfile (perhaps with an option to *not* do
-    # this?). However, if the cookbook's dependencies have changed, then we at
-    # minimum have to verify that the solution is still valid, or force the
-    # user to recompile.
     def validate_cookbooks!
       cookbook_locks.each do |name, location_spec|
         location_spec.validate!
+        location_spec.refresh!
       end
       true
     end
