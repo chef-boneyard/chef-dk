@@ -60,6 +60,11 @@ module ChefDK
       Chef::Config.cookbook_path = cookbook_path
       Chef::Config.color = true
       Chef::Config.diff_disabled = true
+
+      # atomic file operations on Windows require Administrator privileges to be able to read the SACL from a file
+      # Using file_staging_uses_destdir(true) will get us inherited permissions indirectly on tempfile creation
+      Chef::Config.file_atomic_update = false if Chef::Platform.windows?
+      Chef::Config.file_staging_uses_destdir = true # Default in Chef 12+
     end
 
     def ohai
