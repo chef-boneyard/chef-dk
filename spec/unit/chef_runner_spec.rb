@@ -44,6 +44,7 @@ describe ChefDK::ChefRunner do
     expect(Chef::Config.cookbook_path).to eq(default_cookbook_path)
     expect(Chef::Config.color).to be true
     expect(Chef::Config.diff_disabled).to be true
+    expect(Chef::Config.file_staging_uses_destdir).to be true
   end
 
   it "disables atomic file updates on Windows" do
