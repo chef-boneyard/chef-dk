@@ -237,7 +237,6 @@ E
 
     end
 
-
     context "when a :path sourced cookbook has updated content" do
 
       let(:recipe_path) { File.join(local_cookbook_path, "recipes/default.rb") }
@@ -328,6 +327,21 @@ E
     context "when a :path source cookbook has modified a dep constraint and the new constraint is not satisfied" do
 
       it "reports the not-satisfied dependency and validation fails"
+
+    end
+
+    context "when a :path source cookbook has updated it's version and another path source cookbook has updated its constraint" do
+
+      # The situation we want to test here is when the user modifies a
+      # cookbook's version, and also the dependency constraint on that cookbook
+      # in a different cookbook. For example, cookbook A depends on B ~> 1.0,
+      # then the user updates A to depend on B ~> 2.0, and bumps the version of B to 2.0.
+
+      context "and the new constraint is satisfied by they new version" do
+
+        it "updates the version and constraint in the lockfile (validation succeeds)"
+
+      end
 
     end
 
