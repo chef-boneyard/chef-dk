@@ -26,6 +26,9 @@ module ChefDK
   class MalformedCookbook < StandardError
   end
 
+  class DependencyConflict < StandardError
+  end
+
   class MissingComponentError < RuntimeError
     def initialize(component_name)
       super("Component #{component_name} is missing.")

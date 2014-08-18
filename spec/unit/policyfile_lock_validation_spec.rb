@@ -46,6 +46,8 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
     ChefDK::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: local_cookbooks_root )
   end
 
+  let(:solution_dependencies) { {} }
+
   let(:lock_generator) do
     ChefDK::PolicyfileLock.build(storage_config) do |policy|
 
@@ -64,6 +66,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
         c.source_options = { path: "local-cookbook" }
       end
 
+      policy.solution_dependencies = solution_dependencies
     end
   end
 
@@ -200,7 +203,37 @@ E
 
     context "when the cookbook has an updated version that violates other dependency constraints" do
 
-      it "reports the dependency conflict and fails validation"
+      let(:solution_dependencies) do
+        {
+          "Policyfile" => [],
+          "dependencies" => {
+            "foo (1.0.0)" => [ [ "local-cookbook", "~> 2.0" ] ]
+          }
+        }
+      end
+
+      let(:new_metadata) do
+        <<-E
+name             'local-cookbook'
+maintainer       ''
+maintainer_email ''
+license          ''
+description      'Installs/Configures local-cookbook'
+long_description 'Installs/Configures local-cookbook'
+version          '3.0.0' # changed from 2.3.4, violates `~> 2.0` constraint
+
+E
+      end
+
+      before do
+        ensure_metadata_as_expected!
+        File.open(metadata_path, "w+") { |f| f.print(new_metadata) }
+      end
+
+      it "reports the dependency conflict and fails validation" do
+        expected_message = "Cookbook local-cookbook (3.0.0) conflicts with other dependencies:\nfoo (1.0.0) depends on local-cookbook ~> 2.0"
+        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::DependencyConflict, expected_message)
+      end
 
     end
 

@@ -129,6 +129,12 @@ module ChefDK
       end
     end
 
+    # TODO: tests
+    # TODO: implement actual behavior
+    def solution_dependencies
+      { "run_list" => [], "Policyfile" => [], "dependencies" => [] }
+    end
+
     def graph_demands
       cookbooks_for_demands.map do |cookbook_name|
         spec = cookbook_location_spec_for(cookbook_name)

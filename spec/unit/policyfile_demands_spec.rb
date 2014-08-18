@@ -170,6 +170,15 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       expect(policyfile).to receive(:ensure_cache_dir_exists)
       expect(policyfile.graph_solution).to eq({})
     end
+
+    it "has an empty set of solution_dependencies" do
+      expected_solution_deps = {
+        "run_list" => [],
+        "Policyfile" => [],
+        "dependencies" => []
+      }
+      expect(policyfile.solution_dependencies).to eq(expected_solution_deps)
+    end
   end
 
   context "Given a run list and no local or git cookbooks" do
@@ -191,6 +200,16 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       it "uses the community cookbook in the solution" do
         expect(policyfile).to receive(:ensure_cache_dir_exists)
         expect(policyfile.graph_solution).to eq({"remote-cb" => "1.1.1"})
+      end
+
+      it "includes the cookbook in the solution dependencies" do
+        skip "TODO: determine graph format"
+        expected_solution_deps = {
+          "run_list" => [ ["remote-cb", ">= 0.0.0"] ],
+          "Policyfile" => [],
+          "dependencies" => []
+        }
+        expect(policyfile.solution_dependencies).to eq(expected_solution_deps)
       end
 
     end

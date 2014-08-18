@@ -162,7 +162,8 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
             "origin" => nil,
             "source_options" => nil
           },
-        }
+        },
+        "solution_dependencies" => {}
       }
     end
 
@@ -224,7 +225,8 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
             },
             "source_options" => nil
           },
-        }
+        },
+        "solution_dependencies" => {}
       }
     end
 
@@ -302,7 +304,8 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
             },
             "source_options" => nil
           },
-        }
+        },
+        "solution_dependencies" => {}
       }
     end
 
@@ -416,6 +419,8 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
         },
 
+        "solution_dependencies" => {}
+
       }
     end
 
@@ -464,12 +469,17 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
               source_options_for_lock: { "path" => "bar" })
     end
 
+    let(:policyfile_solution_dependencies) do
+      # TODO: make sure this format is realistic
+      {}
+    end
 
     let(:policyfile_compiler) do
       double( "ChefDK::PolicyfileCompiler",
               name: "my-policyfile",
               normalized_run_list: %w[recipe[foo::default] recipe[bar::default]],
-              all_cookbook_location_specs: {"foo" => cached_location_spec, "bar" => local_location_spec})
+              all_cookbook_location_specs: {"foo" => cached_location_spec, "bar" => local_location_spec},
+              solution_dependencies: policyfile_solution_dependencies )
     end
 
     let(:policyfile_lock) do
@@ -511,7 +521,9 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
             },
             "source_options" => { "path" => "bar" }
           }
-        }
+        },
+
+        "solution_dependencies" => {}
       }
     end
 

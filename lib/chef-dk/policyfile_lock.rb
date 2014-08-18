@@ -17,6 +17,7 @@
 
 require 'chef-dk/policyfile/storage_config'
 require 'chef-dk/policyfile/cookbook_locks'
+require 'chef-dk/policyfile/solution_dependencies'
 
 module ChefDK
   class PolicyfileLock
@@ -38,6 +39,9 @@ module ChefDK
 
     attr_accessor :name
     attr_accessor :run_list
+    # TODO: unit test
+    attr_accessor :solution_dependencies
+
     attr_reader :storage_config
 
     attr_reader :cookbook_locks
@@ -48,6 +52,9 @@ module ChefDK
       @cookbook_locks = {}
       @relative_paths_root = Dir.pwd
       @storage_config = storage_config
+
+      # TODO: this should be an instance of the SolutionDependencies class
+      @solution_dependencies = {}
     end
 
     def lock_data_for(cookbook_name)
@@ -71,6 +78,8 @@ module ChefDK
         lock["name"] = name
         lock["run_list"] = run_list
         lock["cookbook_locks"] = cookbook_locks_for_lockfile
+        # TODO: unit test
+        lock["solution_dependencies"] = solution_dependencies
       end
     end
 
@@ -88,6 +97,18 @@ module ChefDK
         location_spec.validate!
         location_spec.refresh!
       end
+
+      cookbook_locks.each do |name, spec|
+        if spec.version_updated?
+          # TODO: the lockfile should own a single instance of this object,
+          # which you build up as you add cookbooks. This class should own the
+          # format of the dependencies in the lockfile.
+          deps = Policyfile::SolutionDependencies.new
+          deps.consume_lock_data(solution_dependencies)
+          deps.test_conflict!(spec.name, spec.version)
+        end
+      end
+
       true
     end
 
@@ -110,6 +131,9 @@ module ChefDK
           end
         end
       end
+
+      @solution_dependencies = compiler.solution_dependencies
+
       self
     end
 
@@ -119,6 +143,7 @@ module ChefDK
       lock_data["cookbook_locks"].each do |name, lock_info|
         build_cookbook_lock_from_lock_data(name, lock_info)
       end
+      self.solution_dependencies = lock_data["solution_dependencies"]
       self
     end
 
