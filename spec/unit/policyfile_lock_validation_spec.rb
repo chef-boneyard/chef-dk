@@ -16,15 +16,9 @@
 #
 
 require 'spec_helper'
-# TODO: remove if we don't end up using these:
-#require 'shared/setup_git_cookbooks'
-#require 'shared/fixture_cookbook_checksums'
-#require 'chef-dk/policyfile/storage_config'
 require 'chef-dk/policyfile_lock.rb'
 
 describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
-
-  # TODO: most setup here is duplicated from policyfile_lock_install_spec
 
   let(:cache_path) do
     File.expand_path("spec/unit/fixtures/cookbook_cache", project_root)
@@ -46,7 +40,15 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
     ChefDK::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: local_cookbooks_root )
   end
 
-  let(:solution_dependencies) { {} }
+  let(:solution_dependencies) do
+    {
+      "Policyfile" => [],
+      "dependencies" => {
+        "foo (1.0.0)" => [],
+        "local-cookbook (2.3.4)" => []
+      }
+    }
+  end
 
   let(:lock_generator) do
     ChefDK::PolicyfileLock.build(storage_config) do |policy|
@@ -307,26 +309,118 @@ E
       end
 
       it "has an updated dependency set" do
-        skip "TODO: NEED DEPENDENCY GRAPH INFO"
+        actual = policyfile_lock.solution_dependencies.to_lock["dependencies"]
+        expected = {
+          "local-cookbook (2.3.4)" => [ ["foo", "= 1.0.0"] ],
+          "foo (1.0.0)" => []
+        }
+        expect(actual).to eq(expected)
       end
 
     end
 
     context "when a :path source cookbook has added a dependency not satisfied by the current cookbook set" do
 
-      it "reports the not-satisfied dependency and validation fails"
+      let(:new_metadata) do
+        <<-E
+name             'local-cookbook'
+maintainer       ''
+maintainer_email ''
+license          ''
+description      'Installs/Configures local-cookbook'
+long_description 'Installs/Configures local-cookbook'
+version          '2.3.4'
+
+depends "not-a-thing"
+
+E
+      end
+
+      before do
+        ensure_metadata_as_expected!
+        File.open(metadata_path, "w+") { |f| f.print(new_metadata) }
+      end
+
+      it "reports the not-satisfied dependency and validation fails" do
+        error_message = "Cookbook local-cookbook (2.3.4) has dependency constraints that cannot be met by the existing cookbook set:\n" +
+          "Cookbook not-a-thing isn't included in the existing cookbook set."
+        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::DependencyConflict, error_message)
+      end
 
     end
 
     context "when a :path source cookbook has modified a dep constraint and the new constraint is satisfied" do
 
-      it "updates the lockfile with the new checksum and validation succeeds"
+      let(:solution_dependencies) do
+        {
+          "Policyfile" => [],
+          "dependencies" => {
+            "foo (1.0.0)" => [],
+            "local-cookbook (2.3.4)" => [ ["foo", ">= 0.0.0"] ]
+          }
+        }
+      end
+
+      let(:new_metadata) do
+        <<-E
+name             'local-cookbook'
+maintainer       ''
+maintainer_email ''
+license          ''
+description      'Installs/Configures local-cookbook'
+long_description 'Installs/Configures local-cookbook'
+version          '2.3.4'
+
+depends "foo", ">= 1.0.0"
+
+E
+      end
+
+      before do
+        ensure_metadata_as_expected!
+        File.open(metadata_path, "w+") { |f| f.print(new_metadata) }
+        policyfile_lock.validate_cookbooks! # no error
+      end
+
+      it "updates the lockfile with the new checksum and validation succeeds" do
+        actual = policyfile_lock.solution_dependencies.to_lock["dependencies"]
+        expected = {
+          "local-cookbook (2.3.4)" => [ ["foo", ">= 1.0.0"] ],
+          "foo (1.0.0)" => []
+        }
+        expect(actual).to eq(expected)
+      end
 
     end
 
     context "when a :path source cookbook has modified a dep constraint and the new constraint is not satisfied" do
 
-      it "reports the not-satisfied dependency and validation fails"
+      let(:new_metadata) do
+        <<-E
+name             'local-cookbook'
+maintainer       ''
+maintainer_email ''
+license          ''
+description      'Installs/Configures local-cookbook'
+long_description 'Installs/Configures local-cookbook'
+version          '2.3.4'
+
+depends "foo", "~> 2.0"
+
+E
+      end
+
+      before do
+        ensure_metadata_as_expected!
+        File.open(metadata_path, "w+") { |f| f.print(new_metadata) }
+      end
+
+      it "reports the not-satisfied dependency and validation fails" do
+        error_message = "Cookbook local-cookbook (2.3.4) has dependency constraints that cannot be met by the existing cookbook set:\n" +
+          "Dependency on foo ~> 2.0 conflicts with existing version foo (1.0.0)"
+        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::DependencyConflict, error_message)
+      end
+
 
     end
 
@@ -337,9 +431,94 @@ E
       # in a different cookbook. For example, cookbook A depends on B ~> 1.0,
       # then the user updates A to depend on B ~> 2.0, and bumps the version of B to 2.0.
 
+      let(:lock_generator) do
+        ChefDK::PolicyfileLock.build(storage_config) do |policy|
+
+          policy.name = name
+
+          policy.run_list = run_list
+
+          policy.cached_cookbook("foo") do |c|
+            c.origin = "https://artifact-server.example/foo/1.0.0"
+            c.cache_key = "foo-1.0.0"
+            c.source_options = { artifactserver: "https://artifact-server.example/foo/1.0.0", version: "1.0.0" }
+          end
+
+          policy.local_cookbook("local-cookbook") do |c|
+            c.source = "local-cookbook"
+            c.source_options = { path: "local-cookbook" }
+          end
+
+          policy.local_cookbook("another-local-cookbook") do |c|
+            c.source = "another-local-cookbook"
+            c.source_options = { path: "another-local-cookbook" }
+          end
+          policy.solution_dependencies.consume_lock_data(solution_dependencies)
+        end
+      end
+
+      # Represents dependencies before modification
+      let(:solution_dependencies) do
+        {
+          "Policyfile" => [],
+          "dependencies" => {
+            "foo (1.0.0)" => [],
+            "local-cookbook (2.3.4)" => [ ],
+            "another-local-cookbook (0.1.0)" => [ ["local-cookbook", "= 2.3.4"] ]
+          }
+        }
+      end
+
+      let(:new_metadata_local_cookbook) do
+        <<-E
+name             'local-cookbook'
+maintainer       ''
+maintainer_email ''
+license          ''
+description      'Installs/Configures local-cookbook'
+long_description 'Installs/Configures local-cookbook'
+version          '3.0.0' # changed from 2.3.4
+
+E
+      end
+
+      let(:new_metadata_another_local_cookbook) do
+        <<-E
+name             'another-local-cookbook'
+maintainer       ''
+maintainer_email ''
+license          ''
+description      'Installs/Configures another-local-cookbook'
+long_description 'Installs/Configures another-local-cookbook'
+version          '0.1.0'
+
+# This dep now requires the updated version of 'local-cookbook'
+depends 'local-cookbook', '= 3.0.0'
+E
+      end
+
+      let(:metadata_path_another_local_cookbook) do
+        File.join(local_cookbooks_root, 'another-local-cookbook', 'metadata.rb')
+      end
+
+      before do
+        ensure_metadata_as_expected!
+        File.open(metadata_path, "w+") { |f| f.print(new_metadata_local_cookbook) }
+        File.open(metadata_path_another_local_cookbook, "w+") { |f| f.print(new_metadata_another_local_cookbook) }
+        policyfile_lock.validate_cookbooks! # no error
+      end
+
       context "and the new constraint is satisfied by they new version" do
 
-        it "updates the version and constraint in the lockfile (validation succeeds)"
+        it "updates the version and constraint in the lockfile (validation succeeds)" do
+          actual = policyfile_lock.solution_dependencies.to_lock["dependencies"]
+          expected = {
+            "local-cookbook (3.0.0)" => [ ],
+            "another-local-cookbook (0.1.0)" => [ [ "local-cookbook", "= 3.0.0" ] ],
+            "foo (1.0.0)" => []
+          }
+          expect(actual).to eq(expected)
+        end
 
       end
 

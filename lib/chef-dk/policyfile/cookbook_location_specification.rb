@@ -71,6 +71,7 @@ module ChefDK
       end
 
       def installer
+        # TODO: handle 'bad' return values here (invalid source_options, etc.)
         @installer ||= CookbookOmnifetch.init(self, source_options)
       end
 
@@ -99,6 +100,7 @@ module ChefDK
       end
 
       def cached_cookbook
+        # TODO: handle 'bad' return values here (cookbook not installed yet)
         installer.cached_cookbook
       end
 

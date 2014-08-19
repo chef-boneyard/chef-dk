@@ -100,6 +100,12 @@ shared_examples_for "Cookbook Lock" do
       expect(location_spec.source_options).to eq({ sourcekey: "location info" })
     end
 
+    it "delegates #dependencies to cookbook_location_spec" do
+      deps = [ [ "foo", ">= 0.0.0"], [ "bar", "~> 2.1" ] ]
+      expect(cookbook_lock.cookbook_location_spec).to receive(:dependencies).and_return(deps)
+      expect(cookbook_lock.dependencies).to eq(deps)
+    end
+
   end
 
   context "when created from lock data" do

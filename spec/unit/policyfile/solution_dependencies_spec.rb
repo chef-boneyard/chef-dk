@@ -108,23 +108,37 @@ describe ChefDK::Policyfile::SolutionDependencies do
 
     describe "checking for dependency conflicts" do
 
-      it "does not raise if a cookbook does not conflict" do
-        expect(solution_dependencies.test_conflict!('foo', '1.0.0')).to be(false)
-      end
-
       it "does not raise if a cookbook that's in the dependency set with a different version doesn't conflict" do
+        solution_dependencies.update_cookbook_dep("yum", "3.5.0", [ ])
         expect(solution_dependencies.test_conflict!('yum', '3.5.0')).to be(false)
       end
 
+      it "raises if a cookbook is not in the current solution set" do
+        expected_message = "Cookbook foo (1.0.0) not in the working set, cannot test for conflicts"
+        expect { solution_dependencies.test_conflict!('foo', '1.0.0') }.to raise_error(ChefDK::CookbookNotInWorkingSet, expected_message)
+      end
+
       it "raises when a cookbook conflicts with a Policyfile constraint" do
+        solution_dependencies.update_cookbook_dep("nginx", "2.0.0", [])
+
         expected_message = "Cookbook nginx (2.0.0) conflicts with other dependencies:\nPolicyfile depends on nginx ~> 1.0"
         expect { solution_dependencies.test_conflict!('nginx', '2.0.0') }.to raise_error(ChefDK::DependencyConflict, expected_message)
       end
 
       it "raises when a cookbook conflicts with another cookbook's dependency constraint" do
+        solution_dependencies.update_cookbook_dep("apt", "3.0.0", [])
+
         expected_message = "Cookbook apt (3.0.0) conflicts with other dependencies:\nnginx (1.2.3) depends on apt ~> 2.3"
         expect { solution_dependencies.test_conflict!('apt', '3.0.0') }.to raise_error(ChefDK::DependencyConflict, expected_message)
       end
+
+      it "raises when a cookbook's dependencies are no longer satisfiable" do
+        solution_dependencies.update_cookbook_dep("nginx", "1.2.3", [ [ "apt", "~> 3.0" ] ])
+        expected_message = "Cookbook nginx (1.2.3) has dependency constraints that cannot be met by the existing cookbook set:\n" +
+          "Dependency on apt ~> 3.0 conflicts with existing version apt (2.5.6)"
+        expect { solution_dependencies.test_conflict!('nginx', '1.2.3') }.to raise_error(ChefDK::DependencyConflict, expected_message)
+      end
+
     end
   end
 

@@ -95,14 +95,25 @@ module ChefDK
     end
 
     def validate_cookbooks!
-      cookbook_locks.each do |name, location_spec|
-        location_spec.validate!
-        location_spec.refresh!
+      cookbook_locks.each do |name, cookbook_lock|
+        cookbook_lock.validate!
+        cookbook_lock.refresh!
       end
 
-      cookbook_locks.each do |name, spec|
-        if spec.version_updated?
-          solution_dependencies.test_conflict!(spec.name, spec.version)
+      # Check that versions and dependencies are still valid. First we need to
+      # refresh the dependency info for everything that has changed, then we
+      # check that the new versions and dependencies are valid for the working
+      # set of cookbooks. We can't do this in a single loop because the user
+      # may have modified two cookbooks such that the versions and constraints
+      # are only valid when both changes are considered together.
+      cookbook_locks.each do |name, cookbook_lock|
+        if cookbook_lock.updated?
+          solution_dependencies.update_cookbook_dep(name, cookbook_lock.version, cookbook_lock.dependencies)
+        end
+      end
+      cookbook_locks.each do |name, cookbook_lock|
+        if cookbook_lock.updated?
+          solution_dependencies.test_conflict!(cookbook_lock.name, cookbook_lock.version)
         end
       end
 

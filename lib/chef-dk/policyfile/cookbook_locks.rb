@@ -10,6 +10,7 @@ require 'chef-dk/policyfile/storage_config'
 require 'chef-dk/policyfile/cookbook_location_specification'
 
 module ChefDK
+
   module Policyfile
 
     # Base class for CookbookLock implementations
@@ -53,7 +54,13 @@ module ChefDK
       end
 
       def cookbook_location_spec
+        raise InvalidCookbookLockData, "Cannot create CookbookLocationSpecification for #{name} without version" if version.nil?
+        raise InvalidCookbookLockData, "Cannot create CookbookLocationSpecification for #{name} without source options" if source_options.nil?
         @location_spec ||= CookbookLocationSpecification.new(name, "= #{version}", source_options, storage_config)
+      end
+
+      def dependencies
+        cookbook_location_spec.dependencies
       end
 
       def gather_profile_data

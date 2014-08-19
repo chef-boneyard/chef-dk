@@ -29,6 +29,12 @@ module ChefDK
   class DependencyConflict < StandardError
   end
 
+  class CookbookNotInWorkingSet < DependencyConflict
+  end
+
+  class InvalidCookbookLockData < StandardError
+  end
+
   class MissingComponentError < RuntimeError
     def initialize(component_name)
       super("Component #{component_name} is missing.")
