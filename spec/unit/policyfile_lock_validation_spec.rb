@@ -66,7 +66,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
         c.source_options = { path: "local-cookbook" }
       end
 
-      policy.solution_dependencies = solution_dependencies
+      policy.solution_dependencies.consume_lock_data(solution_dependencies)
     end
   end
 

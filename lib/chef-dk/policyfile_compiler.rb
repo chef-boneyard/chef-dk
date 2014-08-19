@@ -140,7 +140,7 @@ module ChefDK
         transitive_deps = artifacts_graph[name][version]
         solution_deps.add_cookbook_dep(name, version, transitive_deps)
       end
-      solution_deps.to_lock
+      solution_deps
     end
 
     def graph_demands

@@ -39,8 +39,8 @@ module ChefDK
 
     attr_accessor :name
     attr_accessor :run_list
-    # TODO: unit test
-    attr_accessor :solution_dependencies
+
+    attr_reader :solution_dependencies
 
     attr_reader :storage_config
 
@@ -53,8 +53,7 @@ module ChefDK
       @relative_paths_root = Dir.pwd
       @storage_config = storage_config
 
-      # TODO: this should be an instance of the SolutionDependencies class
-      @solution_dependencies = {}
+      @solution_dependencies = Policyfile::SolutionDependencies.new
     end
 
     def lock_data_for(cookbook_name)
@@ -73,13 +72,16 @@ module ChefDK
       @cookbook_locks[name] = local_cookbook
     end
 
+    def dependencies
+      yield solution_dependencies
+    end
+
     def to_lock
       {}.tap do |lock|
         lock["name"] = name
         lock["run_list"] = run_list
         lock["cookbook_locks"] = cookbook_locks_for_lockfile
-        # TODO: unit test
-        lock["solution_dependencies"] = solution_dependencies
+        lock["solution_dependencies"] = solution_dependencies.to_lock
       end
     end
 
@@ -100,12 +102,7 @@ module ChefDK
 
       cookbook_locks.each do |name, spec|
         if spec.version_updated?
-          # TODO: the lockfile should own a single instance of this object,
-          # which you build up as you add cookbooks. This class should own the
-          # format of the dependencies in the lockfile.
-          deps = Policyfile::SolutionDependencies.new
-          deps.consume_lock_data(solution_dependencies)
-          deps.test_conflict!(spec.name, spec.version)
+          solution_dependencies.test_conflict!(spec.name, spec.version)
         end
       end
 
@@ -138,12 +135,14 @@ module ChefDK
     end
 
     def build_from_lock_data(lock_data)
-      self.name = lock_data["name"]
-      self.run_list = lock_data["run_list"]
+      @name = lock_data["name"]
+      @run_list = lock_data["run_list"]
       lock_data["cookbook_locks"].each do |name, lock_info|
         build_cookbook_lock_from_lock_data(name, lock_info)
       end
-      self.solution_dependencies = lock_data["solution_dependencies"]
+
+      s = Policyfile::SolutionDependencies.from_lock(lock_data["solution_dependencies"])
+      @solution_dependencies = s
       self
     end
 

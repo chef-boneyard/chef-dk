@@ -50,6 +50,10 @@ module ChefDK
 
       end
 
+      def self.from_lock(lock_data)
+        new.tap {|e| e.consume_lock_data(lock_data) }
+      end
+
       attr_reader :policyfile_dependencies
 
       attr_reader :cookbook_dependencies

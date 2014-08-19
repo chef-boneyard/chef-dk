@@ -176,7 +176,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         "Policyfile" => [],
         "dependencies" => {}
       }
-      expect(policyfile.solution_dependencies).to eq(expected_solution_deps)
+      expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
     end
   end
 
@@ -206,7 +206,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
           "Policyfile" => [],
           "dependencies" => { "remote-cb (1.1.1)" => [] }
         }
-        expect(policyfile.solution_dependencies).to eq(expected_solution_deps)
+        expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
       end
 
     end
@@ -257,7 +257,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         "Policyfile" => [ [ "local-cookbook", ">= 0.0.0" ] ],
         "dependencies" => { "local-cookbook (2.3.4)" => [] }
       }
-      expect(policyfile.solution_dependencies).to eq(expected_solution_deps)
+      expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
     end
 
   end
@@ -303,7 +303,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
           }
 
         }
-        expect(policyfile.solution_dependencies).to eq(expected_solution_deps)
+        expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
       end
 
     end
@@ -347,7 +347,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
           }
 
         }
-        expect(policyfile.solution_dependencies).to eq(expected_solution_deps)
+        expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
       end
 
     end
@@ -388,7 +388,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         }
 
       }
-      expect(policyfile.solution_dependencies).to eq(expected_solution_deps)
+      expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
     end
 
   end
@@ -434,7 +434,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
           }
 
         }
-        expect(policyfile.solution_dependencies).to eq(expected_solution_deps)
+        expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
       end
 
     end
@@ -469,7 +469,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
           }
 
         }
-        expect(policyfile.solution_dependencies).to eq(expected_solution_deps)
+        expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
       end
 
     end
@@ -514,7 +514,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
           }
 
         }
-        expect(policyfile.solution_dependencies).to eq(expected_solution_deps)
+        expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
       end
 
     end
@@ -547,7 +547,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
           }
 
         }
-        expect(policyfile.solution_dependencies).to eq(expected_solution_deps)
+        expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
       end
 
     end
@@ -580,7 +580,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         }
 
       }
-      expect(policyfile.solution_dependencies).to eq(expected_solution_deps)
+      expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
     end
   end
 
@@ -624,7 +624,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         }
 
       }
-      expect(policyfile.solution_dependencies).to eq(expected_solution_deps)
+      expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
     end
   end
 
