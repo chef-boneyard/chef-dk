@@ -20,10 +20,6 @@ require 'chef-dk/policyfile/solution_dependencies'
 
 describe ChefDK::Policyfile::SolutionDependencies do
 
-  def c(constraint_str)
-    Semverse::Constraint.new(constraint_str)
-  end
-
   let(:dependency_data) { {} }
 
   let(:solution_dependencies) do
@@ -57,13 +53,13 @@ describe ChefDK::Policyfile::SolutionDependencies do
     end
 
     it "has a list of dependencies from the policyfile" do
-      expected = [ "nginx", c("~> 1.0")], ["postgresql", c(">= 0.0.0") ]
-      expect(solution_dependencies.policyfile_dependencies).to eq(expected)
+      expected = [ "nginx", "~> 1.0"], ["postgresql", ">= 0.0.0" ]
+      expect(solution_dependencies.policyfile_dependencies_for_lock).to eq(expected)
     end
 
     it "has a list of dependencies from cookbooks" do
       expected = {
-        "nginx (1.2.3)" => [ ["apt", c( "~> 2.3" )], ["yum", c( "~>3.4" )] ],
+        "nginx (1.2.3)" => [ ["apt", "~> 2.3"], ["yum", "~> 3.4"] ],
         "apt (2.5.6)" => [],
         "yum (3.4.1)" => [],
         "postgresql (5.0.0)" => []
@@ -75,6 +71,19 @@ describe ChefDK::Policyfile::SolutionDependencies do
 
   context "when populated with dependency data" do
 
+    let(:expected_deps_for_lock) do
+      {
+        "nginx (1.2.3)" => [ ["apt", "~> 2.3"], ["yum", "~> 3.4"] ],
+        "apt (2.5.6)" => [],
+        "yum (3.4.1)" => [],
+        "postgresql (5.0.0)" => []
+      }
+    end
+
+    let(:expected_policyfile_deps_for_lock) do
+      [ [ "nginx", "~> 1.0"], ["postgresql", ">= 0.0.0" ] ]
+    end
+
     before do
       solution_dependencies.add_policyfile_dep("nginx", "~> 1.0")
       solution_dependencies.add_policyfile_dep("postgresql", ">= 0.0.0")
@@ -85,18 +94,16 @@ describe ChefDK::Policyfile::SolutionDependencies do
     end
 
     it "has a list of dependencies from the Policyfile" do
-      expected = [ "nginx", c("~> 1.0")], ["postgresql", c(">= 0.0.0") ]
-      expect(solution_dependencies.policyfile_dependencies).to eq(expected)
+      expect(solution_dependencies.policyfile_dependencies_for_lock).to eq(expected_policyfile_deps_for_lock)
     end
 
     it "has a list of dependencies from cookbooks" do
-      expected = {
-        "nginx (1.2.3)" => [ ["apt", c( "~> 2.3" )], ["yum", c( "~>3.4" )] ],
-        "apt (2.5.6)" => [],
-        "yum (3.4.1)" => [],
-        "postgresql (5.0.0)" => []
-      }
-      expect(solution_dependencies.cookbook_deps_for_lock).to eq(expected)
+      expect(solution_dependencies.cookbook_deps_for_lock).to eq(expected_deps_for_lock)
+    end
+
+    it "generates lock info containing both policyfile and cookbook dependencies" do
+      expected = {"Policyfile" => expected_policyfile_deps_for_lock, "dependencies" => expected_deps_for_lock}
+      expect(solution_dependencies.to_lock).to eq(expected)
     end
 
     describe "checking for dependency conflicts" do

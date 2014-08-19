@@ -59,9 +59,21 @@ module ChefDK
         @cookbook_dependencies = {}
       end
 
+      def to_lock
+        { "Policyfile" => policyfile_dependencies_for_lock, "dependencies" => cookbook_deps_for_lock }
+      end
+
+      def policyfile_dependencies_for_lock
+        policyfile_dependencies.map do |name, constraint|
+          [ name, constraint.to_s ]
+        end
+      end
+
       def cookbook_deps_for_lock
         cookbook_dependencies.inject({}) do |map, (cookbook, deps)|
-          map[cookbook.to_s] = deps
+          map[cookbook.to_s] = deps.map do |name, constraint|
+            [ name, constraint.to_s ]
+          end
           map
         end
       end
