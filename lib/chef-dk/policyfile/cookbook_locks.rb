@@ -192,10 +192,18 @@ module ChefDK
         end
       end
 
-      # Ignored. We do not expect the cookbook to get mutated
-      # out-of-band, so refreshing the data should have no affect.
-      # Mutating the cookbook is a validation error.
+      # We do not expect the cookbook to get mutated out-of-band, so refreshing
+      # the data generally should have no affect. If the cookbook has been
+      # mutated, though, then a CachedCookbookModified exception is raised.
       def refresh!
+        # This behavior fits better with the intent of the #validate! method,
+        # but we cannot check for modifications there because the user may be
+        # setting custom identifiers.
+        if @identifier and identifiers.content_identifier != @identifier
+          message = "Cached cookbook `#{name}' (#{version}) has been modified since the lockfile was generated. " +
+            "Cached cookbooks cannot be modified. (full path: `#{cookbook_path}')"
+          raise CachedCookbookModified, message
+        end
       end
 
     end

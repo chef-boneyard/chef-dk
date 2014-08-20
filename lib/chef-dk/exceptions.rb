@@ -35,6 +35,9 @@ module ChefDK
   class InvalidCookbookLockData < StandardError
   end
 
+  class CachedCookbookModified < StandardError
+  end
+
   class MissingComponentError < RuntimeError
     def initialize(component_name)
       super("Component #{component_name} is missing.")

@@ -20,8 +20,14 @@ require 'chef-dk/policyfile_lock.rb'
 
 describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
 
-  let(:cache_path) do
+  let(:pristine_cache_path) do
     File.expand_path("spec/unit/fixtures/cookbook_cache", project_root)
+  end
+
+  let(:cache_path) do
+    temp_cache_path = File.join(tempdir, "local_cache")
+    FileUtils.cp_r(pristine_cache_path, temp_cache_path)
+    temp_cache_path
   end
 
   let(:policyfile_lock_path) { "/fakepath/Policyfile.lock.json" }
@@ -529,13 +535,42 @@ E
   # Cached cookbook is both supermarket and git
   context "when a cached cookbook is modified" do
 
+    let(:cached_cookbook_path) { File.join(cache_path, "foo-1.0.0") }
+
+    let(:metadata_path) { File.join(cached_cookbook_path, "metadata.rb") }
+
+    # Validate the metadata is correct, so we know the test setup code
+    # hasn't done something wrong.
+    def ensure_metadata_as_expected!
+      expected_metadata_rb=<<-E
+name             'foo'
+maintainer       ''
+maintainer_email ''
+license          ''
+description      'Installs/Configures foo'
+long_description 'Installs/Configures foo'
+version          '1.0.0'
+
+E
+      expect(IO.read(metadata_path)).to eq(expected_metadata_rb)
+    end
+
     context "when the cookbook missing" do
 
-      it "reports the missing cookbook and fails validation"
+      before do
+        ensure_metadata_as_expected!
+        FileUtils.rm_rf(cached_cookbook_path)
+      end
+
+      it "reports the missing cookbook and fails validation" do
+        message = "Cookbook `foo' not found at expected cache location `foo-1.0.0' (full path: `#{cached_cookbook_path}')"
+        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::CachedCookbookNotFound, message)
+      end
 
     end
 
     context "when the content has changed" do
+
       # This basically means the user modified the cached cookbook. There's no
       # technical reason we need to be whiny about this, but if we treat it like
       # we would a path cookbook, you could end up with two cookbooks that look
@@ -544,7 +579,31 @@ E
       #
       # We'll treat it like an error, but we need to provide a "pristine"
       # function to let the user recover.
-      it "reports the modified cached cookbook and validation fails"
+
+      let(:new_metadata) do
+        <<-E
+# This is a cached copy of an upstream cookbook, I should not be editing it but
+# YOLO
+name             'foo'
+maintainer       ''
+maintainer_email ''
+license          ''
+description      'Installs/Configures foo'
+long_description 'Installs/Configures foo'
+version          '1.0.0'
+E
+      end
+
+      before do
+        ensure_metadata_as_expected!
+        policyfile_lock
+        File.open(metadata_path, "w+") { |f| f.print(new_metadata) }
+      end
+
+      it "reports the modified cached cookbook and validation fails" do
+        message = "Cached cookbook `foo' (1.0.0) has been modified since the lockfile was generated. Cached cookbooks cannot be modified. (full path: `#{cached_cookbook_path}')"
+        expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::CachedCookbookModified, message)
+      end
     end
   end
 end
