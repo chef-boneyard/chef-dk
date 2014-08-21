@@ -87,6 +87,7 @@ module ChefDK
           @errors << err
         else
           @cookbook_location_specs[name] = spec
+          @errors += spec.errors
         end
       end
 

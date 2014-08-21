@@ -70,6 +70,18 @@ module ChefDK
         end
       end
 
+      def valid?
+        errors.empty?
+      end
+
+      def errors
+        error_messages = []
+        if installer.nil?
+          error_messages << "Cookbook `#{name}' has invalid source options `#{source_options.inspect}'"
+        end
+        error_messages
+      end
+
       def installer
         # TODO: handle 'bad' return values here (invalid source_options, etc.)
         @installer ||= CookbookOmnifetch.init(self, source_options)

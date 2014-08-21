@@ -126,6 +126,22 @@ E
         end
 
       end
+
+      context "when a per-cookbook source is specified with invalid options" do
+        let(:policyfile_rb) do
+          <<-EOH
+            run_list "foo"
+
+            cookbook "foo", herp: "derp"
+          EOH
+        end
+
+        it "has an invalid source error" do
+          expect(policyfile.errors.size).to eq(1)
+          message = "Cookbook `foo' has invalid source options `{:herp=>\"derp\"}'"
+          expect(policyfile.errors.first).to eq(message)
+        end
+      end
     end
 
     context "Given a minimal valid policyfile" do
@@ -202,6 +218,8 @@ E
         end
 
         it "has a default source" do
+          skip "Chef server isn't yet supported in cookbook-omnifetch (pending /universe endpoint in Chef Server)"
+
           expect(policyfile.errors).to eq([])
           expected = ChefDK::Policyfile::ChefServerCookbookSource.new("https://mychef.example.com")
           expect(policyfile.default_source).to eq(expected)
@@ -256,7 +274,9 @@ E
           EOH
         end
 
-        it "sets the source of the cookbook to the git URL" do
+        # Chef server isn't yet supported in cookbook-omnifetch (pending /universe endpoint in Chef Server)
+        # We have to skip at the example definition level or else we fail in the before block
+        skip "sets the source of the cookbook to the git URL" do
           expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", {chef_server: "https://mychefserver.example.com"}, storage_config)
           expect(policyfile.cookbook_location_specs).to eq("foo" => expected_cb_spec)
         end

@@ -137,6 +137,19 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
 
   end
 
+  describe "when created with invalid source options" do
+
+    let(:source_options) { { herp: "derp" } }
+
+    it "is invalid" do
+      expect(cookbook_location_spec).to_not be_valid
+      expect(cookbook_location_spec.errors.size).to eq(1)
+      error = cookbook_location_spec.errors.first
+      expect(error).to eq("Cookbook `my_cookbook' has invalid source options `{:herp=>\"derp\"}'")
+    end
+
+  end
+
   describe "when created with a git source" do
 
     let(:source_options) { { git: "git@github.com:example/my_cookbook.git" } }
@@ -151,6 +164,11 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
 
     it "mirrors a canonical upstream" do
       expect(cookbook_location_spec.mirrors_canonical_upstream?).to be true
+    end
+
+    it "is valid" do
+      expect(cookbook_location_spec.errors.size).to eq(0)
+      expect(cookbook_location_spec).to be_valid
     end
 
   end
@@ -171,6 +189,11 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
       expect(cookbook_location_spec.mirrors_canonical_upstream?).to be true
     end
 
+    it "is valid" do
+      expect(cookbook_location_spec.errors.size).to eq(0)
+      expect(cookbook_location_spec).to be_valid
+    end
+
   end
 
   describe "when created with a path source" do
@@ -187,6 +210,11 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
 
     it "isnt a mirror of a canonical upstream" do
       expect(cookbook_location_spec.mirrors_canonical_upstream?).to be false
+    end
+
+    it "is valid" do
+      expect(cookbook_location_spec.errors.size).to eq(0)
+      expect(cookbook_location_spec).to be_valid
     end
 
   end
@@ -206,6 +234,12 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
     it "is a mirror of a canonical upstream" do
       expect(cookbook_location_spec.mirrors_canonical_upstream?).to be true
     end
+
+    it "is valid" do
+      expect(cookbook_location_spec.errors.size).to eq(0)
+      expect(cookbook_location_spec).to be_valid
+    end
+
 
   end
 end
