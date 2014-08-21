@@ -129,6 +129,20 @@ module ChefDK
       end
     end
 
+    def solution_dependencies
+      solution_deps = Policyfile::SolutionDependencies.new
+
+      all_cookbook_location_specs.each do |name, spec|
+        solution_deps.add_policyfile_dep(name, spec.version_constraint)
+      end
+
+      graph_solution.each do |name, version|
+        transitive_deps = artifacts_graph[name][version]
+        solution_deps.add_cookbook_dep(name, version, transitive_deps)
+      end
+      solution_deps
+    end
+
     def graph_demands
       cookbooks_for_demands.map do |cookbook_name|
         spec = cookbook_location_spec_for(cookbook_name)

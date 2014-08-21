@@ -170,6 +170,14 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       expect(policyfile).to receive(:ensure_cache_dir_exists)
       expect(policyfile.graph_solution).to eq({})
     end
+
+    it "has an empty set of solution_dependencies" do
+      expected_solution_deps = {
+        "Policyfile" => [],
+        "dependencies" => {}
+      }
+      expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
+    end
   end
 
   context "Given a run list and no local or git cookbooks" do
@@ -191,6 +199,14 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       it "uses the community cookbook in the solution" do
         expect(policyfile).to receive(:ensure_cache_dir_exists)
         expect(policyfile.graph_solution).to eq({"remote-cb" => "1.1.1"})
+      end
+
+      it "includes the cookbook in the solution dependencies" do
+        expected_solution_deps = {
+          "Policyfile" => [],
+          "dependencies" => { "remote-cb (1.1.1)" => [] }
+        }
+        expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
       end
 
     end
@@ -222,6 +238,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       policyfile.dsl.cookbook('local-cookbook', path: "/foo")
       allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
       allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:dependencies).and_return([])
+      allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:ensure_cached).and_return(true)
     end
 
     it "demands a solution using the local cookbook" do
@@ -233,6 +250,14 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         "local-cookbook" => { "2.3.4" => [] }
       }
       expect(policyfile.artifacts_graph).to eq(expected_artifacts_graph)
+    end
+
+    it "includes the cookbook in the solution dependencies" do
+      expected_solution_deps = {
+        "Policyfile" => [ [ "local-cookbook", ">= 0.0.0" ] ],
+        "dependencies" => { "local-cookbook (2.3.4)" => [] }
+      }
+      expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
     end
 
   end
@@ -269,6 +294,18 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "local-cookbook-dep-one" => "1.5.0"})
       end
 
+      it "includes the cookbook and dependencies in the solution dependencies" do
+        expected_solution_deps = {
+          "Policyfile" => [ [ "local-cookbook", ">= 0.0.0" ] ],
+          "dependencies" => {
+            "local-cookbook (2.3.4)" => [[ "local-cookbook-dep-one", "~> 1.0"]],
+            "local-cookbook-dep-one (1.5.0)" => []
+          }
+
+        }
+        expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
+      end
+
     end
     context "And the default source is the chef server" do
 
@@ -301,6 +338,18 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "local-cookbook-dep-one" => "1.6.0"})
       end
 
+      it "includes the cookbook and dependencies in the solution dependencies" do
+        expected_solution_deps = {
+          "Policyfile" => [ [ "local-cookbook", ">= 0.0.0" ] ],
+          "dependencies" => {
+            "local-cookbook (2.3.4)" => [[ "local-cookbook-dep-one", "~> 1.0"]],
+            "local-cookbook-dep-one (1.6.0)" => []
+          }
+
+        }
+        expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
+      end
+
     end
   end
 
@@ -330,6 +379,18 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       expect(policyfile).to receive(:ensure_cache_dir_exists)
       expect(policyfile.graph_solution).to eq({"git-sourced-cookbook" => "8.6.7"})
     end
+
+    it "includes the cookbook and dependencies in the solution dependencies" do
+      expected_solution_deps = {
+        "Policyfile" => [ [ "git-sourced-cookbook", ">= 0.0.0" ] ],
+        "dependencies" => {
+          "git-sourced-cookbook (8.6.7)" => []
+        }
+
+      }
+      expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
+    end
+
   end
 
   context "Given a git-sourced cookbook with a dependency and only the git cookbook in the run list" do
@@ -363,6 +424,19 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         expect(policyfile).to receive(:ensure_cache_dir_exists)
         expect(policyfile.graph_solution).to eq({"git-sourced-cookbook" => "8.6.7", "git-sourced-cookbook-dep" => "2.8.0"})
       end
+
+      it "includes the cookbook and dependencies in the solution dependencies" do
+        expected_solution_deps = {
+          "Policyfile" => [ [ "git-sourced-cookbook", ">= 0.0.0" ] ],
+          "dependencies" => {
+            "git-sourced-cookbook (8.6.7)" => [ [ "git-sourced-cookbook-dep", "~> 2.2" ] ],
+            "git-sourced-cookbook-dep (2.8.0)" => []
+          }
+
+        }
+        expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
+      end
+
     end
 
     context "And the default source is the chef server" do
@@ -385,6 +459,19 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         expect(policyfile).to receive(:ensure_cache_dir_exists)
         expect(policyfile.graph_solution).to eq({"git-sourced-cookbook" => "8.6.7", "git-sourced-cookbook-dep" => "2.9.0"})
       end
+
+      it "includes the cookbook and dependencies in the solution dependencies" do
+        expected_solution_deps = {
+          "Policyfile" => [ [ "git-sourced-cookbook", ">= 0.0.0" ] ],
+          "dependencies" => {
+            "git-sourced-cookbook (8.6.7)" => [ [ "git-sourced-cookbook-dep", "~> 2.2" ] ],
+            "git-sourced-cookbook-dep (2.9.0)" => []
+          }
+
+        }
+        expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
+      end
+
     end
   end
 
@@ -418,6 +505,18 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "remote-cb" => "1.1.1"})
       end
 
+      it "includes the cookbook and dependencies in the solution dependencies" do
+        expected_solution_deps = {
+          "Policyfile" => [ [ "local-cookbook", ">= 0.0.0" ] ],
+          "dependencies" => {
+            "local-cookbook (2.3.4)" => [],
+            "remote-cb (1.1.1)" => []
+          }
+
+        }
+        expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
+      end
+
     end
 
     context "And the default source is the chef server" do
@@ -437,6 +536,18 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       it "uses the locally specified cookbook and remote cookbooks in the solution" do
         expect(policyfile).to receive(:ensure_cache_dir_exists)
         expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "remote-cb" => "1.1.1"})
+      end
+
+      it "includes the cookbook and dependencies in the solution dependencies" do
+        expected_solution_deps = {
+          "Policyfile" => [ [ "local-cookbook", ">= 0.0.0" ] ],
+          "dependencies" => {
+            "local-cookbook (2.3.4)" => [],
+            "remote-cb (1.1.1)" => []
+          }
+
+        }
+        expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
       end
 
     end
@@ -461,6 +572,16 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       expect(policyfile.graph_solution).to eq({"remote-cb" => "0.1.0"})
     end
 
+    it "includes the policyfile constraint in the solution dependencies" do
+      expected_solution_deps = {
+        "Policyfile" => [ [ "remote-cb", "~> 0.1" ] ],
+        "dependencies" => {
+          "remote-cb (0.1.0)" => []
+        }
+
+      }
+      expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
+    end
   end
 
   context "given a cookbook that isn't in the run list is specified with a version constraint in the policyfile" do
@@ -494,6 +615,17 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       expect(policyfile.lock).to eq(:wat)
     end
 
+    it "includes the policyfile constraint in the solution dependencies" do
+      expected_solution_deps = {
+        "Policyfile" => [ [ "remote-cb", "~> 0.1" ], [ "local-cookbook", ">= 0.0.0"] ],
+        "dependencies" => {
+          "local-cookbook (2.3.4)" => [],
+          "remote-cb (0.1.0)" => []
+        }
+
+      }
+      expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
+    end
   end
 
   context "Given a run_list with roles" do

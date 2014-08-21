@@ -50,6 +50,22 @@ shared_examples_for "Cookbook Lock" do
     expect(cookbook_lock.storage_config).to eq(storage_config)
   end
 
+  context "when the underlying cookbook has not been mutated, or #refresh! has not been called" do
+
+    it "is not updated" do
+      expect(cookbook_lock).to_not be_updated
+    end
+
+    it "does not have an updated identifier" do
+      expect(cookbook_lock.identifier_updated?).to be false
+    end
+
+    it "does not have an updated version" do
+      expect(cookbook_lock.version_updated?).to be false
+    end
+
+  end
+
   context "when version and identifier attributes are populated" do
 
     before do
@@ -82,6 +98,12 @@ shared_examples_for "Cookbook Lock" do
       expect(location_spec.name).to eq(cookbook_name)
       expect(location_spec.version_constraint).to eq(Semverse::Constraint.new("= 1.2.3"))
       expect(location_spec.source_options).to eq({ sourcekey: "location info" })
+    end
+
+    it "delegates #dependencies to cookbook_location_spec" do
+      deps = [ [ "foo", ">= 0.0.0"], [ "bar", "~> 2.1" ] ]
+      expect(cookbook_lock.cookbook_location_spec).to receive(:dependencies).and_return(deps)
+      expect(cookbook_lock.dependencies).to eq(deps)
     end
 
   end
@@ -147,6 +169,10 @@ describe ChefDK::Policyfile::CachedCookbook do
     expect { cookbook_lock.cookbook_path }.to raise_error(ChefDK::MissingCookbookLockData)
   end
 
+  it "ignores calls to #refresh!" do
+    expect { cookbook_lock.refresh! }.to_not raise_error
+  end
+
   context "when populated with valid data" do
 
     let(:cookbook_name) { "foo" }
@@ -180,5 +206,149 @@ describe ChefDK::Policyfile::LocalCookbook do
   end
 
   include_examples "Cookbook Lock"
+
+  describe "gathering identifier info" do
+    let(:identifiers) do
+      instance_double("ChefDK::CookbookProfiler::Identifiers",
+                     content_identifier: "abc123",
+                     dotted_decimal_identifier: "111.222.333",
+                     semver_version: "1.2.3")
+    end
+
+    before do
+      allow(cookbook_lock).to receive(:identifiers).and_return(identifiers)
+      cookbook_lock.gather_profile_data
+    end
+
+    it "sets the content identifier" do
+      expect(cookbook_lock.identifier).to eq("abc123")
+    end
+
+    it "sets the backwards compatible dotted decimal identifer equivalent" do
+      expect(cookbook_lock.dotted_decimal_identifier).to eq("111.222.333")
+    end
+
+    it "collects the 'real' SemVer version of the cookbook" do
+      expect(cookbook_lock.version).to eq("1.2.3")
+    end
+
+  end
+
+  context "when loading data from a serialized form" do
+
+    let(:previous_lock_data) do
+      {
+        "identifier" => "abc123",
+        "dotted_decimal_identifier" => "111.222.333",
+        "version" => "1.2.3",
+        "source" => "../my_repo/nginx",
+        "source_options" => {
+          "path" => "../my_repo/nginx"
+        }
+      }
+    end
+
+    before do
+      cookbook_lock.build_from_lock_data(previous_lock_data)
+    end
+
+    it "sets the identifier" do
+      expect(cookbook_lock.identifier).to eq("abc123")
+    end
+
+    it "sets the dotted_decimal_identifier" do
+      expect(cookbook_lock.dotted_decimal_identifier).to eq("111.222.333")
+    end
+
+    it "sets the version" do
+      expect(cookbook_lock.version).to eq("1.2.3")
+    end
+
+    it "sets the source attribute" do
+      expect(cookbook_lock.source).to eq("../my_repo/nginx")
+    end
+
+    it "sets the source options, symbolizing keys so the data is compatible with CookbookLocationSpecification" do
+      expected = { path: "../my_repo/nginx" }
+      expect(cookbook_lock.source_options).to eq(expected)
+    end
+
+    context "after the data has been refreshed" do
+
+      before do
+        allow(cookbook_lock).to receive(:identifiers).and_return(identifiers)
+        cookbook_lock.refresh!
+      end
+
+      context "and the underlying hasn't been mutated" do
+
+        let(:identifiers) do
+          instance_double("ChefDK::CookbookProfiler::Identifiers",
+                         content_identifier: "abc123",
+                         dotted_decimal_identifier: "111.222.333",
+                         semver_version: "1.2.3")
+        end
+
+        it "has the correct identifier" do
+          expect(cookbook_lock.identifier).to eq("abc123")
+        end
+
+        it "has the correct dotted_decimal_identifier" do
+          expect(cookbook_lock.dotted_decimal_identifier).to eq("111.222.333")
+        end
+
+        it "has the correct version" do
+          expect(cookbook_lock.version).to eq("1.2.3")
+        end
+
+        it "sets the updated flag to false" do
+          expect(cookbook_lock).to_not be_updated
+        end
+
+        it "sets the version_updated flag to false" do
+          expect(cookbook_lock.version_updated?).to be(false)
+        end
+
+        it "sets the identifier_updated flag to false" do
+          expect(cookbook_lock.identifier_updated?).to be(false)
+        end
+
+      end
+
+      context "and the underlying data has been mutated" do
+        # represents the updated state of the cookbook
+        let(:identifiers) do
+          instance_double("ChefDK::CookbookProfiler::Identifiers",
+                         content_identifier: "def456",
+                         dotted_decimal_identifier: "777.888.999",
+                         semver_version: "7.8.9")
+        end
+
+        it "sets the content identifier to the new identifier" do
+          expect(cookbook_lock.identifier).to eq("def456")
+        end
+
+        it "sets the dotted_decimal_identifier to the new identifier" do
+          expect(cookbook_lock.dotted_decimal_identifier).to eq("777.888.999")
+        end
+
+        it "sets the SemVer version to the new version" do
+          expect(cookbook_lock.version).to eq("7.8.9")
+        end
+
+        it "sets the updated flag to true" do
+          expect(cookbook_lock).to be_updated
+        end
+
+        it "sets the version_updated flag to true" do
+          expect(cookbook_lock.version_updated?).to be(true)
+        end
+
+        it "sets the identifier_updated flag to true" do
+          expect(cookbook_lock.identifier_updated?).to be(true)
+        end
+      end
+    end
+  end
 
 end

@@ -19,21 +19,6 @@ require 'chef/cookbook/cookbook_version_loader'
 
 require 'chef/cookbook/chefignore'
 
-# TODO: FIX MONKEY PATCHING
-class Chef
-  class Cookbook
-    class CookbookVersionLoader
-
-      # CookbookVersionLoader is hardcoded to use the directory path as the
-      # name, but we have oddly named directories. This problem could also be
-      # solved by making chef require that metadata specify the cookbook name
-      # (which should be happening eventually).
-      attr_accessor :cookbook_name
-
-    end
-  end
-end
-
 module ChefDK
   module Policyfile
     class ReadCookbookForCompatModeUpload
@@ -71,8 +56,7 @@ module ChefDK
         @loader ||=
           begin
             cbvl = Chef::Cookbook::CookbookVersionLoader.new(directory_path, chefignore)
-            cbvl.cookbook_name = cookbook_name
-            cbvl.load_cookbooks
+            cbvl.load!
             cbvl
           end
       end

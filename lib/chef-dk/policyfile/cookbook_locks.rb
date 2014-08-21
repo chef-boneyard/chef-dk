@@ -10,6 +10,7 @@ require 'chef-dk/policyfile/storage_config'
 require 'chef-dk/policyfile/cookbook_location_specification'
 
 module ChefDK
+
   module Policyfile
 
     # Base class for CookbookLock implementations
@@ -53,7 +54,13 @@ module ChefDK
       end
 
       def cookbook_location_spec
+        raise InvalidCookbookLockData, "Cannot create CookbookLocationSpecification for #{name} without version" if version.nil?
+        raise InvalidCookbookLockData, "Cannot create CookbookLocationSpecification for #{name} without source options" if source_options.nil?
         @location_spec ||= CookbookLocationSpecification.new(name, "= #{version}", source_options, storage_config)
+      end
+
+      def dependencies
+        cookbook_location_spec.dependencies
       end
 
       def gather_profile_data
@@ -63,7 +70,7 @@ module ChefDK
       end
 
       def identifiers
-        @identifiers ||= CookbookProfiler::Identifiers.new(cookbook_path)
+        @identifiers ||= CookbookProfiler::Identifiers.new(cookbook_version)
       end
 
       def cookbook_path
@@ -82,7 +89,21 @@ module ChefDK
         raise NotImplementedError, "#{self.class} must override #validate! with a specific implementation"
       end
 
-      private
+      def refresh!
+        raise NotImplementedError, "#{self.class} must override #refresh! with a specific implementation"
+      end
+
+      def updated?
+        false
+      end
+
+      def identifier_updated?
+        false
+      end
+
+      def version_updated?
+        false
+      end
 
       def symbolize_source_options_keys(source_options_from_json)
         source_options_from_json ||= {}
@@ -92,6 +113,22 @@ module ChefDK
         end
       end
 
+      def cookbook_version
+        @cookbook_version ||= cookbook_loader.cookbook_version
+      end
+
+      def cookbook_loader
+        @cookbook_loader ||=
+          begin
+            loader = Chef::Cookbook::CookbookVersionLoader.new(cookbook_path, chefignore)
+            loader.load!
+            loader
+          end
+      end
+
+      def chefignore
+        @chefignore ||= Chef::Cookbook::Chefignore.new(File.join(cookbook_path, "chefignore"))
+      end
     end
 
     # CachedCookbook objects represent a cookbook that has been fetched from an
@@ -155,6 +192,20 @@ module ChefDK
         end
       end
 
+      # We do not expect the cookbook to get mutated out-of-band, so refreshing
+      # the data generally should have no affect. If the cookbook has been
+      # mutated, though, then a CachedCookbookModified exception is raised.
+      def refresh!
+        # This behavior fits better with the intent of the #validate! method,
+        # but we cannot check for modifications there because the user may be
+        # setting custom identifiers.
+        if @identifier and identifiers.content_identifier != @identifier
+          message = "Cached cookbook `#{name}' (#{version}) has been modified since the lockfile was generated. " +
+            "Cached cookbooks cannot be modified. (full path: `#{cookbook_path}')"
+          raise CachedCookbookModified, message
+        end
+      end
+
     end
 
     # LocalCookbook objects represent cookbooks that are sourced from the local
@@ -169,6 +220,9 @@ module ChefDK
         @name = name
         @identifier = nil
         @storage_config = storage_config
+
+        @identifier_updated = false
+        @version_updated = false
       end
 
       def cookbook_path
@@ -210,11 +264,40 @@ module ChefDK
 
       def validate!
         if source.nil?
-          raise CachedCookbookNotFound, "Cookbook `#{name}' does not have a `source` set, cannot locate cookbook"
+          raise LocalCookbookNotFound, "Cookbook `#{name}' does not have a `source` set, cannot locate cookbook"
         end
         unless File.exist?(cookbook_path)
-          raise CachedCookbookNotFound, "Cookbook `#{name}' not found at path source `#{source}` (full path: `#{cookbook_path}')"
+          raise LocalCookbookNotFound, "Cookbook `#{name}' not found at path source `#{source}` (full path: `#{cookbook_path}')"
         end
+        unless cookbook_version.name.to_s == name
+          msg = "The cookbook at path source `#{source}' is expected to be named `#{name}', but is now named `#{cookbook_version.name}' (full path: #{cookbook_path})"
+          raise MalformedCookbook, msg
+        end
+      end
+
+      def refresh!
+        old_identifier, old_version = @identifier, @version
+        @identifier, @dotted_decimal_identifier, @version = nil, nil, nil
+        gather_profile_data
+        if @identifier != old_identifier
+          @identifier_updated = true
+        end
+        if @version != old_version
+          @version_updated = true
+        end
+        self
+      end
+
+      def updated?
+        @identifier_updated || @version_updated
+      end
+
+      def version_updated?
+        @version_updated
+      end
+
+      def identifier_updated?
+        @identifier_updated
       end
 
     end

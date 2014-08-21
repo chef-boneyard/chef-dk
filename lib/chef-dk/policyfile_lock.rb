@@ -17,6 +17,7 @@
 
 require 'chef-dk/policyfile/storage_config'
 require 'chef-dk/policyfile/cookbook_locks'
+require 'chef-dk/policyfile/solution_dependencies'
 
 module ChefDK
   class PolicyfileLock
@@ -38,6 +39,9 @@ module ChefDK
 
     attr_accessor :name
     attr_accessor :run_list
+
+    attr_reader :solution_dependencies
+
     attr_reader :storage_config
 
     attr_reader :cookbook_locks
@@ -48,6 +52,12 @@ module ChefDK
       @cookbook_locks = {}
       @relative_paths_root = Dir.pwd
       @storage_config = storage_config
+
+      @solution_dependencies = Policyfile::SolutionDependencies.new
+    end
+
+    def lock_data_for(cookbook_name)
+      @cookbook_locks[cookbook_name]
     end
 
     def cached_cookbook(name)
@@ -62,11 +72,16 @@ module ChefDK
       @cookbook_locks[name] = local_cookbook
     end
 
+    def dependencies
+      yield solution_dependencies
+    end
+
     def to_lock
       {}.tap do |lock|
         lock["name"] = name
         lock["run_list"] = run_list
         lock["cookbook_locks"] = cookbook_locks_for_lockfile
+        lock["solution_dependencies"] = solution_dependencies.to_lock
       end
     end
 
@@ -79,13 +94,29 @@ module ChefDK
       end
     end
 
-    # TODO: this needs to iterate over the cookbooks and make sure the computed
-    # IDs haven't changed. If the source is `:path` and the ID has changed,
-    # then we should rebuild the lockfile (perhaps with an option to *not* do
-    # this?). However, if the cookbook's dependencies have changed, then we at
-    # minimum have to verify that the solution is still valid, or force the
-    # user to recompile.
     def validate_cookbooks!
+      cookbook_locks.each do |name, cookbook_lock|
+        cookbook_lock.validate!
+        cookbook_lock.refresh!
+      end
+
+      # Check that versions and dependencies are still valid. First we need to
+      # refresh the dependency info for everything that has changed, then we
+      # check that the new versions and dependencies are valid for the working
+      # set of cookbooks. We can't do this in a single loop because the user
+      # may have modified two cookbooks such that the versions and constraints
+      # are only valid when both changes are considered together.
+      cookbook_locks.each do |name, cookbook_lock|
+        if cookbook_lock.updated?
+          solution_dependencies.update_cookbook_dep(name, cookbook_lock.version, cookbook_lock.dependencies)
+        end
+      end
+      cookbook_locks.each do |name, cookbook_lock|
+        if cookbook_lock.updated?
+          solution_dependencies.test_conflict!(cookbook_lock.name, cookbook_lock.version)
+        end
+      end
+
       true
     end
 
@@ -108,15 +139,21 @@ module ChefDK
           end
         end
       end
+
+      @solution_dependencies = compiler.solution_dependencies
+
       self
     end
 
     def build_from_lock_data(lock_data)
-      self.name = lock_data["name"]
-      self.run_list = lock_data["run_list"]
+      @name = lock_data["name"]
+      @run_list = lock_data["run_list"]
       lock_data["cookbook_locks"].each do |name, lock_info|
         build_cookbook_lock_from_lock_data(name, lock_info)
       end
+
+      s = Policyfile::SolutionDependencies.from_lock(lock_data["solution_dependencies"])
+      @solution_dependencies = s
       self
     end
 

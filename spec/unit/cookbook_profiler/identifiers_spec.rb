@@ -17,6 +17,7 @@
 
 require 'spec_helper'
 require 'chef-dk/cookbook_profiler/identifiers'
+require 'chef-dk/policyfile/read_cookbook_for_compat_mode_upload'
 
 describe ChefDK::CookbookProfiler::Identifiers do
 
@@ -28,8 +29,16 @@ describe ChefDK::CookbookProfiler::Identifiers do
     File.join(cache_path, "foo-1.0.0")
   end
 
+  let(:cookbook_version) do
+    chefignore = Chef::Cookbook::Chefignore.new(File.join(foo_cookbook_path, "chefignore"))
+    cbvl = Chef::Cookbook::CookbookVersionLoader.new(foo_cookbook_path, chefignore)
+    cbvl.load!
+    cbvl.cookbook_version
+  end
+
+
   let(:identifiers) do
-    ChefDK::CookbookProfiler::Identifiers.new(foo_cookbook_path)
+    ChefDK::CookbookProfiler::Identifiers.new(cookbook_version)
   end
 
   let(:cookbook_files_with_cksums) do
@@ -41,10 +50,6 @@ describe ChefDK::CookbookProfiler::Identifiers do
       "metadata.rb" => "4879d0004b177546cfbcfb2fd26df7c8",
       "recipes/default.rb" => "9a0f27d741deaca21461073f7452474f"
     }
-  end
-
-  it "has the cookbook's path" do
-    expect(identifiers.cookbook_path).to eq(foo_cookbook_path)
   end
 
   it "has the cookbook's semver version" do
@@ -72,33 +77,6 @@ describe ChefDK::CookbookProfiler::Identifiers do
 
   it "generates a dotted decimal representation of the content hash" do
     expect(identifiers.dotted_decimal_identifier).to eq("19841547746970856.51597439762547453.126060145843040")
-  end
-
-  # The "foo" cookbook has an ignored file, but we test it explicitly to be
-  # more resilient to changes in fixture data.
-  context "when the cookbook has ignored files" do
-
-    let(:copied_cookbook_path) { File.join(tempdir, "foo-1.0.0") }
-
-    let(:chefignored_file) { File.join(copied_cookbook_path, "Guardfile") }
-
-    let(:cp_cookbook_identifiers) do
-      ChefDK::CookbookProfiler::Identifiers.new(copied_cookbook_path)
-    end
-
-    before do
-      FileUtils.cp_r(foo_cookbook_path, copied_cookbook_path)
-      File.open(chefignored_file, "w+") { |f| f.puts "This file should not affect the cookbooks checksum" }
-    end
-
-    after do
-      clear_tempdir
-    end
-
-
-    it "ignores ignored files in the checksum calculation" do
-      expect(cp_cookbook_identifiers.content_identifier).to eq(identifiers.content_identifier)
-    end
   end
 
 end

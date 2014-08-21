@@ -85,7 +85,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     it "raises a descriptive error" do
-      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::CachedCookbookNotFound)
+      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::LocalCookbookNotFound)
     end
   end
 
@@ -105,7 +105,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     it "raises a descriptive error" do
-      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::CachedCookbookNotFound)
+      expect { policyfile_lock.to_lock }.to raise_error(ChefDK::LocalCookbookNotFound)
     end
   end
 
@@ -162,7 +162,8 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
             "origin" => nil,
             "source_options" => nil
           },
-        }
+        },
+        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
       }
     end
 
@@ -224,7 +225,8 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
             },
             "source_options" => nil
           },
-        }
+        },
+        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
       }
     end
 
@@ -302,7 +304,8 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
             },
             "source_options" => nil
           },
-        }
+        },
+        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
       }
     end
 
@@ -416,6 +419,8 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
         },
 
+        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
+
       }
     end
 
@@ -438,6 +443,55 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
   end
 
+  context "with solution dependencies specified" do
+
+    let(:policyfile_lock) do
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
+
+        p.name = "minimal_policyfile"
+
+        p.run_list = [ "recipe[foo]" ]
+        p.cached_cookbook("foo") do |cb|
+          cb.cache_key = "foo-1.0.0"
+        end
+
+        p.dependencies do |deps|
+          deps.add_cookbook_dep("foo", "1.0.0", [])
+        end
+
+      end
+    end
+
+    let(:compiled_policyfile) do
+      {
+
+        "name" => "minimal_policyfile",
+
+        "run_list" => ["recipe[foo]"],
+
+        "cookbook_locks" => {
+
+          "foo" => {
+            "version" => "1.0.0",
+            "identifier" => cookbook_foo_cksum,
+            "dotted_decimal_identifier" => cookbook_foo_cksum_dotted,
+            "cache_key" => "foo-1.0.0",
+            "origin" => nil,
+            "source_options" => nil
+          },
+        },
+        "solution_dependencies" => {
+          "Policyfile" => [],
+          "dependencies" => {"foo (1.0.0)" => []}
+        }
+      }
+    end
+
+    it "computes a minimal policyfile" do
+      expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
+    end
+
+  end
   describe "building a policyfile lock from a policyfile compiler" do
 
     include_context "setup git cookbooks"
@@ -464,12 +518,20 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
               source_options_for_lock: { "path" => "bar" })
     end
 
+    let(:policyfile_solution_dependencies) do
+      ChefDK::Policyfile::SolutionDependencies.new.tap do |s|
+        s.add_policyfile_dep("foo", "~> 1.0")
+        s.add_cookbook_dep("foo", "1.0.0", [])
+        s.add_cookbook_dep("bar", "0.1.0", [])
+      end
+    end
 
     let(:policyfile_compiler) do
       double( "ChefDK::PolicyfileCompiler",
               name: "my-policyfile",
               normalized_run_list: %w[recipe[foo::default] recipe[bar::default]],
-              all_cookbook_location_specs: {"foo" => cached_location_spec, "bar" => local_location_spec})
+              all_cookbook_location_specs: {"foo" => cached_location_spec, "bar" => local_location_spec},
+              solution_dependencies: policyfile_solution_dependencies )
     end
 
     let(:policyfile_lock) do
@@ -511,6 +573,11 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
             },
             "source_options" => { "path" => "bar" }
           }
+        },
+
+        "solution_dependencies" => {
+          "Policyfile" => [ [ "foo", "~> 1.0" ] ],
+          "dependencies" => { "foo (1.0.0)" => [], "bar (0.1.0)" => [] }
         }
       }
     end
