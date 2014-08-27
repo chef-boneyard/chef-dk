@@ -1,8 +1,21 @@
 # Chef Development Kit Changelog
 
-## Unreleased
+# Unreleased
 
-## Last Release: 0.2.0
+## Last Release: 0.2.1
+
+Other than some minor bug fixes, here is a list of included changes:
+
+* Chef DK is now supported on Mac 10.8.
+* Fixed a bug in `chef exec` to set the ENV correctly. This resolves errors like
+  [this](https://github.com/opscode/chef-dk/issues/103) when running commands
+  with `chef exec`.
+* Make supermarket the default source in generated Gemfiles.
+* `chef generate repo` command is now available. This command generates a chef
+  repository which is equivalent to [chef-repo](https://github.com/opscode/chef-repo).
+* Generators do not require Administrator privileges on Windows anymore.
+
+## 0.2.0
 
 ### Chef Development Kit Windows Support
 
