@@ -20,7 +20,7 @@ require 'chef-dk/policyfile/solution_dependencies'
 
 describe ChefDK::Policyfile::SolutionDependencies do
 
-  let(:dependency_data) { {} }
+  let(:dependency_data) { {"Policyfile" => [], "dependencies" => {}} }
 
   let(:solution_dependencies) do
     s = described_class.new

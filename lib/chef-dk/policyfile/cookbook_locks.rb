@@ -16,6 +16,10 @@ module ChefDK
     # Base class for CookbookLock implementations
     class CookbookLock
 
+      REQUIRED_LOCK_DATA_KEYS = %w{version identifier dotted_decimal_identifier cache_key source_options}
+      REQUIRED_LOCK_DATA_KEYS.each(&:freeze)
+      REQUIRED_LOCK_DATA_KEYS.freeze
+
       include Policyfile::StorageConfigDelegation
 
       # The cookbook name (without any version or other info suffixed)
@@ -129,6 +133,36 @@ module ChefDK
       def chefignore
         @chefignore ||= Chef::Cookbook::Chefignore.new(File.join(cookbook_path, "chefignore"))
       end
+
+      private
+
+      def assert_required_keys_valid!(lock_data)
+        missing_keys = REQUIRED_LOCK_DATA_KEYS.reject {|key| lock_data.key?(key) }
+        unless missing_keys.empty?
+          raise InvalidLockfile, "Lockfile cookbook_lock for #{name} missing required attributes `#{missing_keys.join("', `")}'"
+        end
+
+        version = lock_data["version"]
+        unless version.kind_of?(String)
+          raise InvalidLockfile, "Lockfile cookbook_lock for #{name} `version' attribute must be a string (got: #{version})"
+        end
+
+        identifier = lock_data["identifier"]
+        unless identifier.kind_of?(String)
+          raise InvalidLockfile, "Lockfile cookbook_lock for #{name} `identifier' attribute must be a string (got: #{identifier})"
+        end
+
+        cache_key = lock_data["cache_key"]
+        unless cache_key.kind_of?(String) || cache_key.nil?
+          raise InvalidLockfile, "Lockfile cookbook_lock for #{name} `cache_key' attribute must be a string (got: #{cache_key})"
+        end
+
+        source_options = lock_data["source_options"]
+        unless source_options.kind_of?(Hash)
+          raise InvalidLockfile, "Lockfile cookbook_lock for #{name} `source_options' attribute must be a Hash (JSON object) (got: #{source_options})"
+        end
+      end
+
     end
 
     # CachedCookbook objects represent a cookbook that has been fetched from an
@@ -163,6 +197,8 @@ module ChefDK
       end
 
       def build_from_lock_data(lock_data)
+        assert_required_keys_valid!(lock_data)
+
         @version = lock_data["version"]
         @identifier = lock_data["identifier"]
         @dotted_decimal_identifier = lock_data["dotted_decimal_identifier"]
@@ -255,6 +291,8 @@ module ChefDK
       end
 
       def build_from_lock_data(lock_data)
+        assert_required_keys_valid!(lock_data)
+
         @version = lock_data["version"]
         @identifier = lock_data["identifier"]
         @dotted_decimal_identifier = lock_data["dotted_decimal_identifier"]
@@ -298,6 +336,21 @@ module ChefDK
 
       def identifier_updated?
         @identifier_updated
+      end
+
+      private
+
+      def assert_required_keys_valid!(lock_data)
+        super
+
+        source = lock_data["source"]
+        if source.nil?
+          raise InvalidLockfile, "Lockfile cookbook_lock for #{name} is invalid. Lock data for a local cookbook must have a `source' attribute"
+        end
+
+        unless source.kind_of?(String)
+          raise InvalidLockfile, "Lockfile cookbook_lock for #{name} is invalid: `source' attribute must be a String (got: #{source.inspect})"
+        end
       end
 
     end
