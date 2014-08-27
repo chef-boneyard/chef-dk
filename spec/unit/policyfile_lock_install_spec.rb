@@ -136,5 +136,3 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
   end
 
 end
-
-
