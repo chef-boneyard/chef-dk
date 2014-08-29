@@ -43,11 +43,13 @@ template "#{cookbook_dir}/recipes/default.rb" do
 end
 
 # git
-if context.have_git && !context.skip_git_init
+if context.have_git
+  if !context.skip_git_init
 
-  execute("initialize-git") do
-    command("git init .")
-    cwd cookbook_dir
+    execute("initialize-git") do
+      command("git init .")
+      cwd cookbook_dir
+    end
   end
 
   cookbook_file "#{cookbook_dir}/.gitignore" do
