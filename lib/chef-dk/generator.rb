@@ -22,7 +22,22 @@ module ChefDK
     # This is here to hold attr_accessor data for Generator context variables
     class Context
       def self.add_attr(name)
-        attr_accessor(name)
+        @attributes ||= [ ]
+
+        if !@attributes.include?(name)
+          @attributes << name
+          attr_accessor(name)
+        end
+      end
+
+      def self.reset
+        return if @attributes.nil?
+
+        @attributes.each do |attr|
+          remove_method(attr)
+        end
+
+        @attributes = nil
       end
     end
 

@@ -23,7 +23,7 @@ module ChefDK
       # chef generate template [path/to/cookbook_root] name --source=source_file
       class Template < CookbookCodeFile
 
-        option :content_source,
+        option :source,
           :short => "-s SOURCE_FILE",
           :long  => "--source SOURCE_FILE",
           :description => "Copy content from SOURCE_FILE"
@@ -38,6 +38,7 @@ module ChefDK
 
         def setup_context
           super
+          Generator.add_attr_to_context(:content_source, config[:source])
         end
       end
     end

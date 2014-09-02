@@ -32,6 +32,10 @@ shared_examples_for "a file generator" do
     reset_tempdir
   end
 
+  after(:each) do
+    ChefDK::Generator::Context.reset
+  end
+
   context "when argv is empty" do
     let(:argv) { [] }
 
@@ -118,4 +122,3 @@ shared_examples_for "a file generator" do
   end
 
 end
-
