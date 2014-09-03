@@ -210,7 +210,7 @@ describe ChefDK::Command::GeneratorCommands::Repo do
           let(:file) { "cookbooks/example/attributes/default.rb" }
 
           it "has the right contents" do
-            expect(file_contents).to match(/default\["example_name"\] = "Sam Doe"/)
+            expect(file_contents).to match(/default\["example"\]\["name"\] = "Sam Doe"/)
           end
         end
 
@@ -218,7 +218,7 @@ describe ChefDK::Command::GeneratorCommands::Repo do
           let(:file) { "cookbooks/example/recipes/default.rb" }
 
           it "has the right contents" do
-            expect(file_contents).to match(/log "Welcome to Chef, \#\{node\["example_name"\]\}!" do/)
+            expect(file_contents).to match(/log "Welcome to Chef, \#\{node\["example"\]\["name"\]\}!" do/)
           end
         end
       end
