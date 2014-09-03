@@ -4,7 +4,7 @@
 
 * Fix a regression where `chef generate template` fails with
   `undefined method `content_source' for #<chefdk::generator::context:0x00000003e37af8>`
-  in 2.1.1
+  in 0.2.1
 
 ## Last Release: 0.2.1
 
