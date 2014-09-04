@@ -23,8 +23,8 @@ Chef is built to last. We strive to ensure high quality throughout the Chef expe
   this, we require a couple of things for all pull requests to Chef:
 
 1. **Tests:** To ensure high quality code and protect against future regressions, we require all the
-  code in Chef to have at least unit test coverage. See the [spec/unit](https://github.com/opscode/chef/tree/master/spec/unit)
-  directory for the existing tests and use ```bundle exec rake spec``` to run them.
+  code in Chef to have at least unit test coverage. Run ```bundle exec rspec``` from the project root
+  to execute the tests.
 2. **Green Travis Run:** We use [Travis CI](https://travis-ci.org/) in order to run our tests
   continuously on all the pull requests. We require the Travis runs to succeed on every pull
   request before being merged.
