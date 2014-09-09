@@ -15,9 +15,14 @@
 # limitations under the License.
 #
 
+# TODO: Chef should require its dependency correctly.
+require 'singleton'
 require 'chef/cookbook/cookbook_version_loader'
 require 'digest/sha1'
+
 require 'chef/digester'
+
+require 'chef-dk/exceptions'
 
 module ChefDK
   module CookbookProfiler

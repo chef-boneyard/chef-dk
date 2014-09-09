@@ -115,7 +115,9 @@ shared_examples_for "Cookbook Lock" do
         "identifier" => "my-opaque-id",
         "dotted_decimal_identifier" => "123.456.789",
         "version" => "1.2.3",
-        "source_options" => { "sourcekey" => "location info" }
+        "source_options" => { "sourcekey" => "location info" },
+        "cache_key" => nil,
+        "source" => "cookbooks_local_path"
       }
     end
 
@@ -244,7 +246,8 @@ describe ChefDK::Policyfile::LocalCookbook do
         "source" => "../my_repo/nginx",
         "source_options" => {
           "path" => "../my_repo/nginx"
-        }
+        },
+        "cache_key" => nil
       }
     end
 

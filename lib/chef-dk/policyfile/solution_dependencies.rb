@@ -28,6 +28,12 @@ module ChefDK
 
       class Cookbook
 
+        VALID_STRING_FORMAT = /\A[^\s]+ \([^\s]+\)\Z/
+
+        def self.valid_str?(str)
+          !!(str =~ VALID_STRING_FORMAT)
+        end
+
         def self.parse(str)
           name, version_w_parens = str.split(' ')
           version = version_w_parens[/\(([^)]+)\)/, 1]
@@ -78,15 +84,13 @@ module ChefDK
       end
 
       def consume_lock_data(lock_data)
-        policyfile_dependencies_data = lock_data["Policyfile"] || []
-        policyfile_dependencies_data.each do |cookbook_name, constraint|
-          add_policyfile_dep(cookbook_name, constraint)
+        unless lock_data.key?("Policyfile") and lock_data.key?("dependencies")
+          msg = %Q|lockfile solution_dependencies must be a Hash of the form `{"Policyfile": [], "dependencies": {} }' (got: #{lock_data.inspect})|
+          raise InvalidLockfile, msg
         end
-        cookbook_dependencies_data = lock_data["dependencies"] || {}
-        cookbook_dependencies_data.each do |name_and_version, deps_list|
-          cookbook = Cookbook.parse(name_and_version)
-          add_cookbook_obj_dep(cookbook, deps_list)
-        end
+
+        set_policyfile_deps_from_lock_data(lock_data)
+        set_cookbook_deps_from_lock_data(lock_data)
       end
 
       def test_conflict!(cookbook_name, version)
@@ -196,6 +200,96 @@ module ChefDK
 
       def find_cookbook_dep_by_name_and_version(name, version)
         @cookbook_dependencies[Cookbook.new(name, version)]
+      end
+
+      def set_policyfile_deps_from_lock_data(lock_data)
+        policyfile_deps_data = lock_data["Policyfile"]
+
+        unless policyfile_deps_data.kind_of?(Array)
+          msg = "lockfile solution_dependencies Policyfile dependencies must be an array of cookbooks and constraints (got: #{policyfile_deps_data.inspect})"
+          raise InvalidLockfile, msg
+        end
+
+        policyfile_deps_data.each do |entry|
+          add_policyfile_dep_from_lock_data(entry)
+        end
+      end
+
+      def add_policyfile_dep_from_lock_data(entry)
+        unless entry.kind_of?(Array) and entry.size == 2
+          msg = %Q(lockfile solution_dependencies Policyfile dependencies entry must be like [ "$COOKBOOK_NAME", "$CONSTRAINT" ] (got: #{entry.inspect}))
+          raise InvalidLockfile, msg
+        end
+
+        cookbook_name, constraint = entry
+
+        unless cookbook_name.kind_of?(String) and !cookbook_name.empty?
+          msg = "lockfile solution_dependencies Policyfile dependencies entry. Cookbook name portion must be a string (got: #{entry.inspect})"
+          raise InvalidLockfile, msg
+        end
+
+        unless constraint.kind_of?(String) and !constraint.empty?
+          msg = "malformed lockfile solution_dependencies Policyfile dependencies entry. Version constraint portion must be a string (got: #{entry.inspect})"
+          raise InvalidLockfile, msg
+        end
+        add_policyfile_dep(cookbook_name, constraint)
+      rescue Semverse::InvalidConstraintFormat
+        msg = "malformed lockfile solution_dependencies Policyfile dependencies entry. Version constraint portion must be a valid version constraint (got: #{entry.inspect})"
+        raise InvalidLockfile, msg
+      end
+
+      def set_cookbook_deps_from_lock_data(lock_data)
+        cookbook_dependencies_data = lock_data["dependencies"]
+
+        unless cookbook_dependencies_data.kind_of?(Hash)
+          msg = "lockfile solution_dependencies dependencies entry must be a Hash (JSON object) of dependencies (got: #{cookbook_dependencies_data.inspect})"
+          raise InvalidLockfile, msg
+        end
+
+        cookbook_dependencies_data.each do |name_and_version, deps_list|
+          add_cookbook_dep_from_lock_data(name_and_version, deps_list)
+        end
+      end
+
+      def add_cookbook_dep_from_lock_data(name_and_version, deps_list)
+        unless name_and_version.kind_of?(String)
+          show = "#{name_and_version.inspect} => #{deps_list.inspect}"
+          msg = %Q(lockfile cookbook_dependencies entries must be of the form "$COOKBOOK_NAME ($VERSION)" => [ $dependency, ...] (got: #{show}) )
+          raise InvalidLockfile, msg
+        end
+
+        unless Cookbook.valid_str?(name_and_version)
+          msg = %Q(lockfile cookbook_dependencies entry keys must be of the form "$COOKBOOK_NAME ($VERSION)" (got: #{name_and_version.inspect}) )
+          raise InvalidLockfile, msg
+        end
+
+        unless deps_list.kind_of?(Array)
+          msg = %Q(lockfile cookbook_dependencies entry values must be an Array like [ [ "$COOKBOOK_NAME", "$CONSTRAINT" ], ... ] (got: #{deps_list.inspect}) )
+          raise InvalidLockfile, msg
+        end
+
+        deps_list.each do |entry|
+
+          unless entry.kind_of?(Array) and entry.size == 2
+            msg = %Q(lockfile solution_dependencies dependencies entry must be like [ "$COOKBOOK_NAME", "$CONSTRAINT" ] (got: #{entry.inspect}))
+            raise InvalidLockfile, msg
+          end
+
+          dep_name, constraint = entry
+
+          unless dep_name.kind_of?(String) and !dep_name.empty?
+            msg = "malformed lockfile solution_dependencies dependencies entry. Cookbook name portion must be a string (got: #{entry.inspect})"
+            raise InvalidLockfile, msg
+          end
+
+          unless constraint.kind_of?(String) and !constraint.empty?
+            msg = "malformed lockfile solution_dependencies dependencies entry. Version constraint portion must be a string (got: #{entry.inspect})"
+            raise InvalidLockfile, msg
+          end
+        end
+
+        cookbook = Cookbook.parse(name_and_version)
+        add_cookbook_obj_dep(cookbook, deps_list)
       end
 
     end

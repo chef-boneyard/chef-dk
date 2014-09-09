@@ -58,4 +58,8 @@ module ChefDK
 
   class MissingCookbookLockData < StandardError
   end
+
+  class InvalidLockfile < StandardError
+  end
+
 end

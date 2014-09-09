@@ -20,8 +20,10 @@ require 'chef-dk/policyfile/cookbook_locks'
 require 'chef-dk/policyfile/solution_dependencies'
 
 module ChefDK
+
   class PolicyfileLock
 
+    RUN_LIST_ITEM_FORMAT = /\Arecipe\[[^\s]+::[^\s]+\]\Z/.freeze
 
     def self.build(storage_config)
       lock = new(storage_config)
@@ -146,14 +148,10 @@ module ChefDK
     end
 
     def build_from_lock_data(lock_data)
-      @name = lock_data["name"]
-      @run_list = lock_data["run_list"]
-      lock_data["cookbook_locks"].each do |name, lock_info|
-        build_cookbook_lock_from_lock_data(name, lock_info)
-      end
-
-      s = Policyfile::SolutionDependencies.from_lock(lock_data["solution_dependencies"])
-      @solution_dependencies = s
+      set_name_from_lock_data(lock_data)
+      set_run_list_from_lock_data(lock_data)
+      set_cookbook_locks_from_lock_data(lock_data)
+      set_solution_dependencies_from_lock_data(lock_data)
       self
     end
 
@@ -175,7 +173,78 @@ module ChefDK
 
     private
 
+    def set_name_from_lock_data(lock_data)
+      name_attribute = lock_data["name"]
+
+      raise InvalidLockfile, "lockfile does not have a `name' attribute" if name_attribute.nil?
+
+      unless name_attribute.kind_of?(String)
+        raise InvalidLockfile, "lockfile's name attribute must be a String (got: #{name_attribute.inspect})"
+      end
+
+      if name_attribute.empty?
+        raise InvalidLockfile, "lockfile's name attribute cannot be an empty string"
+      end
+
+      @name = name_attribute
+
+    end
+
+    def set_run_list_from_lock_data(lock_data)
+      run_list_attribute = lock_data["run_list"]
+
+      raise InvalidLockfile, "lockfile does not have a run_list attribute" if run_list_attribute.nil?
+
+      unless run_list_attribute.kind_of?(Array)
+        raise InvalidLockfile, "lockfile's run_list must be an array of run list items (got: #{run_list_attribute.inspect})"
+      end
+
+      bad_run_list_items = run_list_attribute.select { |e| e !~ RUN_LIST_ITEM_FORMAT }
+
+      unless bad_run_list_items.empty?
+        msg = "lockfile's run_list items must be formatted like `recipe[$COOKBOOK_NAME::$RECIPE_NAME]'. Invalid items: `#{bad_run_list_items.join("' `")}'"
+        raise InvalidLockfile, msg
+      end
+
+      @run_list = run_list_attribute
+    end
+
+    def set_cookbook_locks_from_lock_data(lock_data)
+      cookbook_lock_data = lock_data["cookbook_locks"]
+
+      if cookbook_lock_data.nil?
+        raise InvalidLockfile, "lockfile does not have a cookbook_locks attribute"
+      end
+
+      unless cookbook_lock_data.kind_of?(Hash)
+        raise InvalidLockfile, "lockfile's cookbook_locks attribute must be a Hash (JSON object). (got: #{cookbook_lock_data.inspect})"
+      end
+
+      lock_data["cookbook_locks"].each do |name, lock_info|
+        build_cookbook_lock_from_lock_data(name, lock_info)
+      end
+    end
+
+    def set_solution_dependencies_from_lock_data(lock_data)
+      soln_deps = lock_data["solution_dependencies"]
+
+      if soln_deps.nil?
+        raise InvalidLockfile, "lockfile does not have a solution_dependencies attribute"
+      end
+
+      unless soln_deps.kind_of?(Hash)
+        raise InvalidLockfile, "lockfile's solution_dependencies attribute must be a Hash (JSON object). (got: #{soln_deps.inspect})"
+      end
+
+      s = Policyfile::SolutionDependencies.from_lock(lock_data["solution_dependencies"])
+      @solution_dependencies = s
+    end
+
     def build_cookbook_lock_from_lock_data(name, lock_info)
+      unless lock_info.kind_of?(Hash)
+        raise InvalidLockfile, "lockfile cookbook_locks entries must be a Hash (JSON object). (got: #{lock_info.inspect})"
+      end
+
       if lock_info["cache_key"].nil?
         local_cookbook(name).build_from_lock_data(lock_info)
       else
