@@ -1,0 +1,74 @@
+#
+# Copyright:: Copyright (c) 2014 Chef Software Inc.
+# License:: Apache License, Version 2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+require 'chef-dk/command/base'
+require 'chef-dk/command/ui'
+require 'chef-dk/policyfile_services/install'
+
+module ChefDK
+  module Command
+
+    class Install < Base
+
+      attr_reader :policyfile_relative_path
+
+      attr_writer :ui
+
+      def initialize(*args)
+        super
+        @policyfile_relative_path = nil
+        @installer = nil
+        @ui = nil
+      end
+
+      def ui
+        @ui ||= UI.new
+      end
+
+      def run(params = [])
+        remaining_args = parse_options(params)
+        if remaining_args.size > 1
+          err(banner)
+          return 1
+        else
+          @policyfile_relative_path = remaining_args.first
+        end
+        installer.run
+        0
+      rescue PolicyfileServiceError => e
+        handle_error(e)
+        1
+      end
+
+      def installer
+        @installer ||= PolicyfileServices::Install.new(policyfile: policyfile_relative_path, ui: ui, root_dir: Dir.pwd)
+      end
+
+      def handle_error(error)
+        err("Error: #{error.message}")
+        if error.respond_to?(:cause) && error.cause
+          cause = error.cause
+          err("Reason: #{cause.class.name}")
+          err("")
+          err(cause.message)
+        end
+      end
+
+    end
+  end
+end
+

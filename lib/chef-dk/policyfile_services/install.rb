@@ -122,10 +122,6 @@ module ChefDK
 
       def install_from_lock
         ui.msg "Installing cookbooks from lock"
-        # TODO: handle Policyfile.rb updates.
-        ui.msg "NOTE: Changes to Policyfile are NOT applied by `install` at this time"
-        ui.msg "NOTE: This will be implemented in a future release."
-        ui.msg "NOTE: For now you must remove your Policyfile.lock.json and re-run install to update cookbooks."
 
         policyfile_lock.cookbook_locks.each do |name, lock_info|
           ui.msg "Using #{name} #{lock_info.version}"
