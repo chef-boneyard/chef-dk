@@ -26,7 +26,21 @@ module ChefDK
   class PolicyfileNotFound < PolicyfileServiceError
   end
 
+  class LockfileNotFound < PolicyfileServiceError
+  end
+
   class PolicyfileInstallError < PolicyfileServiceError
+
+    attr_reader :cause
+
+    def initialize(message, cause)
+      super(message)
+      @cause = cause
+    end
+
+  end
+
+  class PolicyfilePushError < PolicyfileServiceError
 
     attr_reader :cause
 
