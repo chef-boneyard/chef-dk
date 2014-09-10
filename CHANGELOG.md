@@ -1,12 +1,12 @@
 # Chef Development Kit Changelog
 
-# Unreleased
+# Last Release: 0.2.2
 
 * Fix a regression where `chef generate template` fails with
   `undefined method `content_source' for #<chefdk::generator::context:0x00000003e37af8>`
   in 0.2.1
 
-## Last Release: 0.2.1
+## 0.2.1
 
 Other than some minor bug fixes, here is a list of included changes:
 
