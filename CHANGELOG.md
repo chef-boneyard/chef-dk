@@ -1,5 +1,7 @@
 # Chef Development Kit Changelog
 
+# Unreleased
+
 # Last Release: 0.2.2
 
 * Fix a regression where `chef generate template` fails with
