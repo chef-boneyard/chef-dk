@@ -71,7 +71,7 @@ module ChefDK
       end
 
       def policyfile_compiler
-        @policyfile_compiler ||= ChefDK::PolicyfileCompiler.evaluate(policyfile_content, policyfile_path)
+        @policyfile_compiler ||= ChefDK::PolicyfileCompiler.evaluate(policyfile_content, policyfile_path, ui: ui)
       end
 
       def expanded_run_list
@@ -98,13 +98,11 @@ module ChefDK
       def generate_lock_and_install
         policyfile_compiler.error!
 
+        ui.msg "Building policy #{policyfile_compiler.name}"
         ui.msg "Expanded run list: " + expanded_run_list + "\n"
 
-        policyfile_compiler.graph_solution.sort.each do |name, version|
-          ui.msg "Using #{name} #{version}"
-        end
+        ui.msg "Caching Cookbooks..."
 
-        ui.msg "Caching Cookbooks"
         policyfile_compiler.install
 
         lock_data = policyfile_compiler.lock.to_lock
