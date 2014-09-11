@@ -29,5 +29,7 @@ ChefDK.commands do |c|
 
   c.builtin "install", :Install, desc: "Install cookbooks from a Policyfile and generate a locked cookbook set"
 
+  c.builtin "push", :Push, desc: "Push a local policy lock to a policy group on the server"
+
   c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications"
 end
