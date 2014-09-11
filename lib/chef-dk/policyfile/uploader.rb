@@ -18,24 +18,82 @@
 require 'chef/cookbook_uploader'
 require 'chef-dk/policyfile/read_cookbook_for_compat_mode_upload'
 
+# TODO: move this out of command?
+require 'chef-dk/command/ui'
+
 module ChefDK
   module Policyfile
     class Uploader
+
+      LockedCookbookForUpload = Struct.new(:cookbook, :lock)
+
+      class UploadReport
+
+        attr_reader :reused_cbs
+        attr_reader :uploaded_cbs
+        attr_reader :ui
+
+        def initialize(reused_cbs: [], uploaded_cbs: [], ui: nil)
+          @reused_cbs = reused_cbs
+          @uploaded_cbs = uploaded_cbs
+          @ui = ui
+
+          @justify_name_width = nil
+          @justify_version_width = nil
+        end
+
+        def show
+          reused_cbs.each do |cb_with_lock|
+            ui.msg("Using    #{describe_lock(cb_with_lock.lock, justify_name_width, justify_version_width)}")
+          end
+
+          uploaded_cbs.each do |cb_with_lock|
+            ui.msg("Uploaded #{describe_lock(cb_with_lock.lock, justify_name_width, justify_version_width)}")
+          end
+        end
+
+        def justify_name_width
+          @justify_name_width ||= cookbook_names.map {|e| e.size }.max
+        end
+
+        def justify_version_width
+          @justify_version_width ||= cookbook_version_numbers.map {|e| e.size }.max
+        end
+
+        def cookbook_names
+          (reused_cbs + uploaded_cbs).map { |e| e.lock.name }
+        end
+
+        def cookbook_version_numbers
+          (reused_cbs + uploaded_cbs).map { |e| e.lock.version }
+        end
+
+        def describe_lock(lock, justify_name_width, justify_version_width)
+          "#{lock.name.ljust(justify_name_width)} #{lock.version.ljust(justify_version_width)} (#{lock.identifier[0,8]})"
+        end
+
+      end
 
       COMPAT_MODE_DATA_BAG_NAME = "policyfiles".freeze
 
       attr_reader :policyfile_lock
       attr_reader :policy_group
       attr_reader :http_client
+      attr_reader :ui
 
-      def initialize(policyfile_lock, policy_group, http_client: nil)
+      def initialize(policyfile_lock, policy_group, ui: nil, http_client: nil)
         @policyfile_lock = policyfile_lock
         @policy_group = policy_group
         @http_client = http_client
+        @ui = ui || Command::UI.null
+
+        @cookbook_versions_for_policy = nil
       end
 
       def upload
-        uploader.upload_cookbooks
+        ui.msg("WARN: Uploading policy to policy group #{policy_group} in compatibility mode")
+
+        upload_cookbooks
         data_bag_create
         data_bag_item_create
       end
@@ -63,6 +121,8 @@ module ChefDK
         }
 
         upload_lockfile_as_data_bag_item(policy_id, data_item)
+        ui.msg("Policy uploaded as data bag item #{COMPAT_MODE_DATA_BAG_NAME}/#{policy_id}")
+        true
       end
 
       def uploader
@@ -71,8 +131,10 @@ module ChefDK
       end
 
       def cookbook_versions_to_upload
-        cookbook_versions_for_policy.reject do |cookbook|
-          remote_already_has_cookbook?(cookbook)
+        cookbook_versions_for_policy.inject([]) do |versions_to_upload, cookbook_with_lock|
+          cb = cookbook_with_lock.cookbook
+          versions_to_upload << cb unless remote_already_has_cookbook?(cb)
+          versions_to_upload
         end
       end
 
@@ -91,13 +153,29 @@ module ChefDK
       # An Array of Chef::CookbookVersion objects representing the full set that
       # the policyfile lock requires.
       def cookbook_versions_for_policy
+        return @cookbook_versions_for_policy if @cookbook_versions_for_policy
         policyfile_lock.validate_cookbooks!
-        policyfile_lock.cookbook_locks.map do |name, lock|
-          ReadCookbookForCompatModeUpload.load(name, lock.dotted_decimal_identifier, lock.cookbook_path)
+        @cookbook_versions_for_policy = policyfile_lock.cookbook_locks.map do |name, lock|
+          cb = ReadCookbookForCompatModeUpload.load(name, lock.dotted_decimal_identifier, lock.cookbook_path)
+          LockedCookbookForUpload.new(cb, lock)
         end
       end
 
       private
+
+      def upload_cookbooks
+        ui.msg("WARN: Uploading cookbooks using semver compat mode")
+
+        uploader.upload_cookbooks
+
+        reused_cbs, uploaded_cbs = cookbook_versions_for_policy.partition do |cb_with_lock|
+          remote_already_has_cookbook?(cb_with_lock.cookbook)
+        end
+
+        UploadReport.new(reused_cbs: reused_cbs, uploaded_cbs: uploaded_cbs, ui: ui).show
+
+        true
+      end
 
       def upload_lockfile_as_data_bag_item(policy_id, data_item)
         http_client.put("data/#{COMPAT_MODE_DATA_BAG_NAME}/#{policy_id}", data_item)
