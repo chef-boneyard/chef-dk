@@ -24,6 +24,31 @@ module ChefDK
 
     class Install < Base
 
+      banner(<<-E)
+Usage: chef install [ POLICY_FILE ] [options]
+
+`chef install` evaluates a `Policyfile.rb` to find a compatible set of
+cookbooks for the policy's run_list and caches them locally. It emits a
+Policyfile.lock.json describing the locked cookbook set. You can use the
+lockfile to install the locked cookbooks on another machine. You can also push
+the lockfile to a "policy group" on a Chef Server and apply that exact set of
+cookbooks to nodes in your infrastructure.
+
+The Policyfile feature is incomplete and beta quality. See our detailed README
+for more information.
+
+https://github.com/opscode/chef-dk/blob/master/POLICYFILE_README.md
+
+Options:
+
+E
+
+      option :debug,
+        short:       "-D",
+        long:        "--debug",
+        description: "Enable stacktraces and other debug output",
+        default:     false
+
       attr_reader :policyfile_relative_path
 
       attr_writer :ui
@@ -65,6 +90,7 @@ module ChefDK
           err("Reason: #{cause.class.name}")
           err("")
           err(cause.message)
+          err(cause.backtrace.join("\n")) if config[:debug]
         end
       end
 
