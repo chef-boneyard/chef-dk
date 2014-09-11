@@ -86,7 +86,7 @@ module ChefDK
         return nil if policyfile_lock_content.nil?
         @policyfile_lock ||= begin
           lock_data = FFI_Yajl::Parser.new.parse(policyfile_lock_content)
-          PolicyfileLock.new(storage_config).build_from_lock_data(lock_data)
+          PolicyfileLock.new(storage_config, ui: ui).build_from_lock_data(lock_data)
         end
       end
 
@@ -120,10 +120,6 @@ module ChefDK
 
       def install_from_lock
         ui.msg "Installing cookbooks from lock"
-
-        policyfile_lock.cookbook_locks.each do |name, lock_info|
-          ui.msg "Using #{name} #{lock_info.version}"
-        end
 
         policyfile_lock.install_cookbooks
       rescue => error

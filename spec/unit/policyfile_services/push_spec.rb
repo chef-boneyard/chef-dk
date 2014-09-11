@@ -165,7 +165,7 @@ E
         expect(push_service).to receive(:http_client).and_return(http_client)
 
         expect(ChefDK::Policyfile::Uploader).to receive(:new).
-               with(push_service.policyfile_lock, policy_group, http_client: http_client).
+               with(push_service.policyfile_lock, policy_group, http_client: http_client, ui: ui).
                and_return(uploader)
       end
 

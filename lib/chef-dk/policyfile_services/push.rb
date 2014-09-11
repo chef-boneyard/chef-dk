@@ -26,10 +26,12 @@ module ChefDK
       attr_reader :root_dir
       attr_reader :config
       attr_reader :policy_group
+      attr_reader :ui
 
       def initialize(policyfile: nil, ui: nil, policy_group: nil, config: nil, root_dir: nil)
         @root_dir = root_dir
         @policyfile_relative_path = policyfile
+        @ui = ui
         @config = config
         @policy_group = policy_group
 
@@ -72,7 +74,7 @@ module ChefDK
       end
 
       def uploader
-        ChefDK::Policyfile::Uploader.new(policyfile_lock, policy_group, http_client: http_client)
+        ChefDK::Policyfile::Uploader.new(policyfile_lock, policy_group, ui: ui, http_client: http_client)
       end
 
       def run
@@ -107,6 +109,7 @@ module ChefDK
       def validate_lockfile
         return @policyfile_lock if @policyfile_lock
         @policyfile_lock = ChefDK::PolicyfileLock.new(storage_config).build_from_lock_data(policy_data)
+        # TODO: enumerate any cookbook that have been updated
         @policyfile_lock.validate_cookbooks!
         @policyfile_lock
       rescue => error
