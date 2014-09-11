@@ -87,6 +87,13 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
       expect(cookbook_location_spec.installer).to eq(installer)
     end
 
+    it "delegates #installed? to the installer" do
+      expect(installer).to receive(:installed?).and_return(false)
+      expect(cookbook_location_spec).to_not be_installed
+      expect(installer).to receive(:installed?).and_return(true)
+      expect(cookbook_location_spec).to be_installed
+    end
+
     it "delegates installation to the installer" do
       expect(installer).to receive(:installed?).and_return(false)
       expect(installer).to receive(:install)
