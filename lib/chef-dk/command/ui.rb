@@ -20,6 +20,18 @@ module ChefDK
 
     class UI
 
+      class NullStream
+
+        def puts(*anything)
+          nil
+        end
+
+      end
+
+      def self.null
+        new(out: NullStream.new, err: NullStream.new)
+      end
+
       def initialize(out: nil, err: nil)
         @out = out || $stdout
         @err = err || $stderr
