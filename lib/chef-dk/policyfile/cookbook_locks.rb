@@ -69,6 +69,10 @@ module ChefDK
         @storage_config = storage_config
       end
 
+      def installed?
+        cookbook_location_spec.installed?
+      end
+
       def install_locked
         cookbook_location_spec.ensure_cached
       end

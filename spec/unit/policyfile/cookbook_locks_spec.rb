@@ -106,6 +106,14 @@ shared_examples_for "Cookbook Lock" do
       expect(cookbook_lock.dependencies).to eq(deps)
     end
 
+    it "delegates #installed? to the CookbookLocationSpecification" do
+      location_spec = cookbook_lock.cookbook_location_spec
+      expect(location_spec).to receive(:installed?).and_return(true)
+      expect(cookbook_lock).to be_installed
+      expect(location_spec).to receive(:installed?).and_return(false)
+      expect(cookbook_lock).to_not be_installed
+    end
+
   end
 
   context "when created from lock data" do
