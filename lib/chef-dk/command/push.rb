@@ -71,19 +71,16 @@ E
       end
 
       def run(params = [])
-        remaining_args = parse_options(params)
-        if remaining_args.size < 1 or remaining_args.size > 2
-          err(banner)
-          return 1
-        else
-          @policy_group = remaining_args[0]
-          @policyfile_relative_path = remaining_args[1]
-        end
+        return 1 unless apply_params!(params)
         push.run
         0
       rescue PolicyfileServiceError => e
         handle_error(e)
         1
+      end
+
+      def debug?
+        !!config[:debug]
       end
 
       def chef_config
@@ -101,14 +98,26 @@ E
       end
 
       def handle_error(error)
-        err("Error: #{error.message}")
+        ui.err("Error: #{error.message}")
         if error.respond_to?(:cause) && error.cause
           cause = error.cause
-          err("Reason: #{cause.class.name}")
-          err("")
-          err(cause.message)
-          err(cause.backtrace.join("\n")) if config[:debug]
+          ui.err("Reason: #{cause.class.name}")
+          ui.err("")
+          ui.err(cause.message)
+          ui.err(cause.backtrace.join("\n")) if debug?
         end
+      end
+
+      def apply_params!(params)
+        remaining_args = parse_options(params)
+        if remaining_args.size < 1 or remaining_args.size > 2
+          ui.err(banner)
+          return false
+        else
+          @policy_group = remaining_args[0]
+          @policyfile_relative_path = remaining_args[1]
+        end
+        true
       end
 
     end
