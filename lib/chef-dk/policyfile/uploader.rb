@@ -18,8 +18,7 @@
 require 'chef/cookbook_uploader'
 require 'chef-dk/policyfile/read_cookbook_for_compat_mode_upload'
 
-# TODO: move this out of command?
-require 'chef-dk/command/ui'
+require 'chef-dk/ui'
 
 module ChefDK
   module Policyfile
@@ -85,7 +84,7 @@ module ChefDK
         @policyfile_lock = policyfile_lock
         @policy_group = policy_group
         @http_client = http_client
-        @ui = ui || Command::UI.null
+        @ui = ui || UI.null
 
         @cookbook_versions_for_policy = nil
       end

@@ -16,7 +16,7 @@
 #
 
 require 'chef-dk/command/base'
-require 'chef-dk/command/ui'
+require 'chef-dk/ui'
 require 'chef-dk/policyfile_services/push'
 
 module ChefDK

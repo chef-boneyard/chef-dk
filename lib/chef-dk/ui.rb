@@ -16,34 +16,31 @@
 #
 
 module ChefDK
-  module Command
+  class UI
 
-    class UI
+    class NullStream
 
-      class NullStream
-
-        def puts(*anything)
-          nil
-        end
-
+      def puts(*anything)
+        nil
       end
 
-      def self.null
-        new(out: NullStream.new, err: NullStream.new)
-      end
+    end
 
-      def initialize(out: nil, err: nil)
-        @out = out || $stdout
-        @err = err || $stderr
-      end
+    def self.null
+      new(out: NullStream.new, err: NullStream.new)
+    end
 
-      def err(message)
-        @err.puts(message)
-      end
+    def initialize(out: nil, err: nil)
+      @out = out || $stdout
+      @err = err || $stderr
+    end
 
-      def msg(message)
-        @out.puts(message)
-      end
+    def err(message)
+      @err.puts(message)
+    end
+
+    def msg(message)
+      @out.puts(message)
     end
   end
 end

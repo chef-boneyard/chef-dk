@@ -18,7 +18,7 @@
 require 'chef-dk/policyfile/storage_config'
 require 'chef-dk/policyfile/cookbook_locks'
 require 'chef-dk/policyfile/solution_dependencies'
-require 'chef-dk/command/ui'
+require 'chef-dk/ui'
 
 module ChefDK
 
@@ -95,7 +95,7 @@ module ChefDK
       @cookbook_locks = {}
       @relative_paths_root = Dir.pwd
       @storage_config = storage_config
-      @ui = ui || Command::UI.null
+      @ui = ui || UI.null
 
       @solution_dependencies = Policyfile::SolutionDependencies.new
       @install_report = InstallReport.new(ui: @ui, policyfile_lock: self)

@@ -22,7 +22,7 @@ require 'chef/run_list'
 
 require 'chef-dk/policyfile/dsl'
 require 'chef-dk/policyfile_lock'
-require 'chef-dk/command/ui'
+require 'chef-dk/ui'
 
 module ChefDK
 
@@ -104,7 +104,7 @@ module ChefDK
       @dsl = Policyfile::DSL.new(storage_config)
       @artifact_server_cookbook_location_specs = {}
 
-      @ui = ui || Command::UI.null
+      @ui = ui || UI.null
       @install_report = InstallReport.new(ui: @ui, policyfile_compiler: self)
     end
 
