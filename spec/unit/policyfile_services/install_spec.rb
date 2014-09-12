@@ -50,7 +50,6 @@ cookbook 'local-cookbook', path: '#{local_cookbooks_root}/local-cookbook'
 E
   end
 
-  # TODO: Real UI class doesn't exist yet
   let(:ui) { TestHelpers::TestUI.new }
 
   let(:install_service) { described_class.new(policyfile: policyfile_rb_name, ui: ui, root_dir: working_dir) }

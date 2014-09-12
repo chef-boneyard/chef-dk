@@ -40,6 +40,7 @@ module ChefDK
       def run
         unless File.exist?(policyfile_path)
           # TODO: suggest next step. Add a generator/init command? Specify path to Policyfile.rb?
+          # See card CC-232
           raise PolicyfileNotFound, "Policyfile not found at path #{policyfile_path}"
         end
 

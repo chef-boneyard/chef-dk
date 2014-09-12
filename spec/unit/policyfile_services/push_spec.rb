@@ -46,7 +46,6 @@ describe ChefDK::PolicyfileServices::Push do
     double("Chef::Config", chef_server_url: "https://localhost:10443", client_key: "/path/to/client/key.pem", node_name: "deuce")
   end
 
-  # TODO: Real UI class doesn't exist yet
   let(:ui) { TestHelpers::TestUI.new }
 
   let(:push_service) { described_class.new(policyfile: policyfile_rb_name, policy_group: policy_group, ui: ui, config: config, root_dir: working_dir) }
