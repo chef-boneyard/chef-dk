@@ -108,6 +108,29 @@ environment to make ChefDK your primary ruby. For more information to
 help you decide if this is desirable and instructions, see "Using ChefDK
 as Your Primary Development Environment" below.
 
+### `chef install`
+`chef install` reads a Policyfile.rb document, which contains a
+`run_list` and optional cookbook version constraints, finds a set of
+cookbooks that provide the desired recipes and meet dependency
+constraints, and emits a Policyfile.lock.json describing the expanded
+run list and locked cookbook set. The Policyfile.lock.json can be used
+to install the cookbooks on another machine. The policy lock can be
+uploaded to a Chef Server (via the `chef push` command) to apply the
+expanded run list and locked cookbook set to nodes in your
+infrastructure. The Policyfile feature is currently incomplete and of
+beta quality; changes to the Chef Server APIs will need to be
+implemented before the feature is production-ready. The feature
+currently operates in a compatibility mode. See the POLICYFILE_README.md
+for further details.
+
+### `chef push`
+`chef push POLICY_GROUP` uploads a Policyfile.lock.json along with the cookbooks it
+references to a Chef Server. The policy lock is applied to a
+`POLICY_GROUP`, which is a set of nodes that share the same run list and
+cookbook set. This command operates in compatibility mode and has the
+same caveats as `chef install`. See the POLICYFILE_README.md for further
+details.
+
 ### Using ChefDK as Your Primary Development Environment
 
 By default, ChefDK only adds a few select applications to your `PATH`

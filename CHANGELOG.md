@@ -2,6 +2,13 @@
 
 # Unreleased
 
+* Initial Release of the Policyfile feature. This feature relies on
+updates to the server API before it is production-ready, though it
+provides a compatibility mode for testing purposes. The Policyfile
+feature is accessed via the `chef install` and `chef push` commands. See
+POLICYFILE_README.md in this repo for further information about the
+feature and its current limitations.
+
 # Last Release: 0.2.2
 
 * Fix a regression where `chef generate template` fails with
