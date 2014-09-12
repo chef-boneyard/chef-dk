@@ -30,17 +30,20 @@ module ChefDK
       new(out: NullStream.new, err: NullStream.new)
     end
 
+    attr_reader :out_stream
+    attr_reader :err_stream
+
     def initialize(out: nil, err: nil)
-      @out = out || $stdout
-      @err = err || $stderr
+      @out_stream = out || $stdout
+      @err_stream = err || $stderr
     end
 
     def err(message)
-      @err.puts(message)
+      @err_stream.puts(message)
     end
 
     def msg(message)
-      @out.puts(message)
+      @out_stream.puts(message)
     end
   end
 end

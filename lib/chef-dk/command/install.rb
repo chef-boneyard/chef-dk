@@ -65,13 +65,7 @@ E
       end
 
       def run(params = [])
-        remaining_args = parse_options(params)
-        if remaining_args.size > 1
-          err(banner)
-          return 1
-        else
-          @policyfile_relative_path = remaining_args.first
-        end
+        apply_params!(params)
         installer.run
         0
       rescue PolicyfileServiceError => e
@@ -83,14 +77,28 @@ E
         @installer ||= PolicyfileServices::Install.new(policyfile: policyfile_relative_path, ui: ui, root_dir: Dir.pwd)
       end
 
+      def debug?
+        !!config[:debug]
+      end
+
       def handle_error(error)
-        err("Error: #{error.message}")
+        ui.err("Error: #{error.message}")
         if error.respond_to?(:cause) && error.cause
           cause = error.cause
-          err("Reason: #{cause.class.name}")
-          err("")
-          err(cause.message)
-          err(cause.backtrace.join("\n")) if config[:debug]
+          ui.err("Reason: #{cause.class.name}")
+          ui.err("")
+          ui.err(cause.message)
+          ui.err(cause.backtrace.join("\n")) if debug?
+        end
+      end
+
+      def apply_params!(params)
+        remaining_args = parse_options(params)
+        if remaining_args.size > 1
+          ui.err(banner)
+          return 1
+        else
+          @policyfile_relative_path = remaining_args.first
         end
       end
 
