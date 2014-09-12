@@ -92,7 +92,6 @@ module ChefDK
       end
 
       def storage_config
-        # TODO: prefer to use #use_policyfile_lock method?
         @storage_config ||= Policyfile::StorageConfig.new(relative_paths_root: root_dir)
       end
 

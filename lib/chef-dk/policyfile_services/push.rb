@@ -69,7 +69,6 @@ module ChefDK
       end
 
       def storage_config
-        # TODO: this duplicates the path logic above. Storage config needs to be updated to expand relative paths?
         @storage_config ||= ChefDK::Policyfile::StorageConfig.new.use_policyfile_lock(lockfile_path)
       end
 
