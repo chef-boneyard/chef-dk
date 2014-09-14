@@ -55,7 +55,7 @@ E
       attr_reader :policyfile_relative_path
       attr_reader :policy_group
 
-      attr_writer :ui
+      attr_accessor :ui
 
       def initialize(*args)
         super
@@ -64,10 +64,7 @@ E
         @policy_group = nil
         @policyfile_relative_path = nil
         @chef_config = nil
-      end
-
-      def ui
-        @ui ||= UI.new
+        @ui = UI.new
       end
 
       def run(params = [])

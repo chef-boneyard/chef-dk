@@ -51,17 +51,14 @@ E
 
       attr_reader :policyfile_relative_path
 
-      attr_writer :ui
+      attr_accessor :ui
 
       def initialize(*args)
         super
+        @ui = UI.new
+
         @policyfile_relative_path = nil
         @installer = nil
-        @ui = nil
-      end
-
-      def ui
-        @ui ||= UI.new
       end
 
       def run(params = [])
