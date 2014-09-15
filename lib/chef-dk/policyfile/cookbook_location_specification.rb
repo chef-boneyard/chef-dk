@@ -64,6 +64,10 @@ module ChefDK
         [:git, :github, :artifactserver].include?(source_type)
       end
 
+      def installed?
+        installer.installed?
+      end
+
       def ensure_cached
         unless installer.installed?
           installer.install

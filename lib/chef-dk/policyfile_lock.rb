@@ -18,10 +18,49 @@
 require 'chef-dk/policyfile/storage_config'
 require 'chef-dk/policyfile/cookbook_locks'
 require 'chef-dk/policyfile/solution_dependencies'
+require 'chef-dk/ui'
 
 module ChefDK
 
   class PolicyfileLock
+
+    class InstallReport
+
+      attr_reader :ui
+      attr_reader :policyfile_lock
+
+      def initialize(ui: ui, policyfile_lock: nil)
+        @ui = ui
+        @policyfile_lock = policyfile_lock
+
+        @cookbook_name_width = nil
+        @cookbook_version_width = nil
+      end
+
+      def installing_fixed_version_cookbook(cookbook_spec)
+        verb = cookbook_spec.installed? ? "Using     " : "Installing"
+        ui.msg("#{verb} #{format_fixed_version_cookbook(cookbook_spec)}")
+      end
+
+      def installing_cookbook(cookbook_lock)
+        verb = cookbook_lock.installed? ? "Using     " : "Installing"
+        ui.msg("#{verb} #{format_cookbook(cookbook_lock)}")
+      end
+
+      private
+
+      def format_cookbook(cookbook_lock)
+        "#{cookbook_lock.name.ljust(cookbook_name_width)} #{cookbook_lock.version.to_s.ljust(cookbook_version_width)}"
+      end
+
+      def cookbook_name_width
+        policyfile_lock.cookbook_locks.map { |name, _| name.size }.max
+      end
+
+      def cookbook_version_width
+        policyfile_lock.cookbook_locks.map { |_, lock| lock.version.size }.max
+      end
+    end
 
     RUN_LIST_ITEM_FORMAT = /\Arecipe\[[^\s]+::[^\s]+\]\Z/.freeze
 
@@ -48,14 +87,18 @@ module ChefDK
 
     attr_reader :cookbook_locks
 
-    def initialize(storage_config)
+    attr_reader :install_report
+
+    def initialize(storage_config, ui: nil)
       @name = nil
       @run_list = []
       @cookbook_locks = {}
       @relative_paths_root = Dir.pwd
       @storage_config = storage_config
+      @ui = ui || UI.null
 
       @solution_dependencies = Policyfile::SolutionDependencies.new
+      @install_report = InstallReport.new(ui: @ui, policyfile_lock: self)
     end
 
     def lock_data_for(cookbook_name)
@@ -160,6 +203,7 @@ module ChefDK
       ensure_cache_dir_exists
 
       cookbook_locks.each do |cookbook_name, cookbook_lock|
+        install_report.installing_cookbook(cookbook_lock)
         cookbook_lock.install_locked
       end
     end

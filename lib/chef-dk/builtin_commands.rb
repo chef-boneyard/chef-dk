@@ -27,5 +27,9 @@ ChefDK.commands do |c|
 
   c.builtin "shell-init", :ShellInit, desc: "Initialize your shell to use ChefDK as your primary ruby"
 
+  c.builtin "install", :Install, desc: "Install cookbooks from a Policyfile and generate a locked cookbook set"
+
+  c.builtin "push", :Push, desc: "Push a local policy lock to a policy group on the server"
+
   c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications"
 end

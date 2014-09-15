@@ -79,17 +79,6 @@ describe ChefDK::Policyfile::Uploader do
     expect(uploader.http_client).to eq(http_client)
   end
 
-  context "when created without an HTTP client" do
-
-    let(:http_client) { nil }
-
-    it "creates an HTTP client with default config" do
-      skip "TODO: determine correct behavior"
-    end
-
-  end
-
-
   describe "creating uploading documents in compat mode" do
 
     let(:cookbook_locks) { {} }
@@ -132,6 +121,8 @@ describe ChefDK::Policyfile::Uploader do
 
       lock = instance_double("ChefDK::Policyfile::CookbookLock",
                              name: name,
+                             version: "1.0.0",
+                             identifier: "64b3e64306cff223206348e46af545b19032b170",
                              dotted_decimal_identifier: dotted_decimal_id,
                              cookbook_path: cache_path)
 
@@ -212,7 +203,13 @@ describe ChefDK::Policyfile::Uploader do
       it "lists the cookbooks in the lock as possibly needing to be uploaded" do
         expect(policyfile_lock).to receive(:validate_cookbooks!)
 
-        expect(uploader.cookbook_versions_for_policy).to eq(cookbook_versions.values)
+        expected_versions_for_policy = cookbook_versions.keys.map do |cb_name|
+          cb = cookbook_versions[cb_name]
+          lock = cookbook_locks[cb_name]
+          ChefDK::Policyfile::Uploader::LockedCookbookForUpload.new(cb, lock)
+        end
+
+        expect(uploader.cookbook_versions_for_policy).to eq(expected_versions_for_policy)
       end
 
       it "lists all cookbooks in the lock as needing to be uploaded" do

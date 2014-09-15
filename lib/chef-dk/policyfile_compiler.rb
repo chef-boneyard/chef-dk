@@ -22,10 +22,59 @@ require 'chef/run_list'
 
 require 'chef-dk/policyfile/dsl'
 require 'chef-dk/policyfile_lock'
+require 'chef-dk/ui'
 
 module ChefDK
 
   class PolicyfileCompiler
+
+    class InstallReport
+
+      attr_reader :ui
+      attr_reader :policyfile_compiler
+
+      def initialize(ui: ui, policyfile_compiler: nil)
+        @ui = ui
+        @policyfile_compiler = policyfile_compiler
+
+        @fixed_version_cookbooks_name_width = nil
+        @cookbook_name_width = nil
+        @cookbook_version_width = nil
+      end
+
+      def installing_fixed_version_cookbook(cookbook_spec)
+        verb = cookbook_spec.installed? ? "Using     " : "Installing"
+        ui.msg("#{verb} #{format_fixed_version_cookbook(cookbook_spec)}")
+      end
+
+      def installing_cookbook(cookbook_spec)
+        verb = cookbook_spec.installed? ? "Using     " : "Installing"
+        ui.msg("#{verb} #{format_cookbook(cookbook_spec)}")
+      end
+
+      private
+
+      def format_cookbook(cookbook_spec)
+        "#{cookbook_spec.name.ljust(cookbook_name_width)} #{cookbook_spec.version_constraint.version.to_s.ljust(cookbook_version_width)}"
+      end
+
+      def cookbook_name_width
+        @cookbook_name_width ||= policyfile_compiler.graph_solution.map { |name, _| name.size }.max
+      end
+
+      def cookbook_version_width
+        @cookbook_version_width ||= policyfile_compiler.graph_solution.map { |_, version| version.size }.max
+      end
+
+      def format_fixed_version_cookbook(spec)
+        "#{spec.name.ljust(fixed_version_cookbooks_name_width)} #{spec.version_constraint} from #{spec.source_type}"
+      end
+
+      def fixed_version_cookbooks_name_width
+        @fixed_version_cookbooks_name_width ||= policyfile_compiler.fixed_version_cookbooks_specs.map { |name, _| name.size }.max
+      end
+
+    end
 
     extend Forwardable
 
@@ -34,8 +83,8 @@ module ChefDK
     # Cookbooks from these sources lock that cookbook to exactly one version
     SOURCE_TYPES_WITH_FIXED_VERSIONS = [:git, :path].freeze
 
-    def self.evaluate(policyfile_string, policyfile_filename)
-      compiler = new
+    def self.evaluate(policyfile_string, policyfile_filename, ui: nil)
+      compiler = new(ui: ui)
       compiler.evaluate_policyfile(policyfile_string, policyfile_filename)
       compiler
     end
@@ -48,11 +97,15 @@ module ChefDK
 
     attr_reader :dsl
     attr_reader :storage_config
+    attr_reader :install_report
 
-    def initialize
+    def initialize(ui: nil)
       @storage_config = Policyfile::StorageConfig.new
       @dsl = Policyfile::DSL.new(storage_config)
       @artifact_server_cookbook_location_specs = {}
+
+      @ui = ui || UI.null
+      @install_report = InstallReport.new(ui: @ui, policyfile_compiler: self)
     end
 
     def error!
@@ -86,6 +139,7 @@ module ChefDK
         spec = cookbook_location_spec_for(cookbook_name)
         if spec.nil? or !spec.version_fixed?
           spec = create_spec_for_cookbook(cookbook_name, version)
+          install_report.installing_cookbook(spec)
           spec.ensure_cached
         end
       end
@@ -213,6 +267,12 @@ module ChefDK
       self
     end
 
+    def fixed_version_cookbooks_specs
+      @fixed_version_cookbooks_specs ||= cookbook_location_specs.select do |_cookbook_name, cookbook_location_spec|
+        cookbook_location_spec.version_fixed?
+      end
+    end
+
     private
 
     def normalize_recipe(run_list_item)
@@ -228,8 +288,9 @@ module ChefDK
     def cache_fixed_version_cookbooks
       ensure_cache_dir_exists
 
-      cookbook_location_specs.each do |_cookbook_name, cookbook_location_spec|
-        cookbook_location_spec.ensure_cached if cookbook_location_spec.version_fixed?
+      fixed_version_cookbooks_specs.each do |name, cookbook_location_spec|
+        install_report.installing_fixed_version_cookbook(cookbook_location_spec)
+        cookbook_location_spec.ensure_cached
       end
     end
 

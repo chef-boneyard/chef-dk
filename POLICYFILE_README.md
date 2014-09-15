@@ -48,11 +48,10 @@ run_list "java", "jenkins::master", "recipe[policyfile_demo]"
 cookbook "policyfile_demo", path: "cookbooks/policyfile_demo"
 ```
 
-When you run a compilation step, ChefDK caches any necessary cookbooks
-and emits a `Policyfile.lock.json` that describes the versions of
-cookbooks in use, a hash of the cookbooks' content, the cookbooks'
-sources, and other relevant data. It looks like this (content snipped
-for brevity):
+When you run a `chef install`, ChefDK caches any necessary cookbooks and
+emits a `Policyfile.lock.json` that describes the versions of cookbooks
+in use, a hash of the cookbooks' content, the cookbooks' sources, and
+other relevant data. It looks like this (content snipped for brevity):
 
 ```json
 {
@@ -88,14 +87,15 @@ for brevity):
 
 You can then test this set of cookbooks in a VM or cloud instance. When
 you're ready to run this policy on a set of nodes attached to your
-server, you run a `push` command to push this revision of the policy to
-a specific `policy group`. We've not yet designed any specifics of how
-`policy groups` will be implemented, but the basic idea is that you will
-configure your `chef-client` to use a policy like "webapp" or "database"
-and belong to a `policy group` like "staging" or "prod-cluster-1". Each
-policy group may have a different revision of each policy, so that the
-"webapp" policy may have a different set of cookbooks and different run
-list between the "staging" and "prod-cluster-1" policy groups.
+server, you run the `chef push` command to push this revision of the
+policy to a specific `policy group`. We've not yet designed any
+specifics of how `policy groups` will be implemented, but the basic idea
+is that you will configure your `chef-client` to use a policy like
+"webapp" or "database" and belong to a `policy group` like "staging" or
+"prod-cluster-1". Each policy group may have a different revision of
+each policy, so that the "webapp" policy may have a different set of
+cookbooks and different run list between the "staging" and
+"prod-cluster-1" policy groups.
 
 The `push` command will also upload cookbooks to a new cookbooks storage
 API which stores them according to their identifiers, which in this
@@ -156,14 +156,14 @@ that many users advocate abandoning them entirely.
 
 The Policyfile feature improves the situation in two ways. Firstly,
 roles are expanded at the time that the cookbook set is computed (i.e.,
-the "compile" step). Roles never appear in the `Policyfile.lock.json`
-document. As a result, roles are "baked in" to a particular revision of
-a policy, so that changes to a role can be tested and rolled out
-gradually. Secondly, Policyfiles offer an alternative means of managing
-the `run_list` for many nodes at once, since there is a one-to-many
-relationship between policies and nodes. Therefore users can, if
-desired, stop using roles without needing to use role cookbooks as a
-workaround for managing the `run_list` of their nodes.
+the `chef install` step). Roles never appear in the
+`Policyfile.lock.json` document. As a result, roles are "baked in" to a
+particular revision of a policy, so that changes to a role can be tested
+and rolled out gradually. Secondly, Policyfiles offer an alternative
+means of managing the `run_list` for many nodes at once, since there is
+a one-to-many relationship between policies and nodes. Therefore users
+can, if desired, stop using roles without needing to use role cookbooks
+as a workaround for managing the `run_list` of their nodes.
 
 ### Cookbook Mutability
 
@@ -370,12 +370,6 @@ given IDs of the form `$policyname-policygroup`.
 The implementation of the Policyfile feature is still **very**
 incomplete. This is a (possibly not complete) list of planned features
 and use cases that currently aren't implemented/supported.
-
-### No CLI
-
-Obviously, the feature is difficult to use if there's no command(s) to
-use it. We're going to implement some CLI commands for the feature as
-soon as we take care of some input validation issues.
 
 ### Conservative Updating
 

@@ -56,4 +56,25 @@ module TestHelpers
     @tmpdir ||= Dir.mktmpdir("chef-dk")
     File.realpath(@tmpdir)
   end
+
+  class TestUI
+
+    attr_reader :output_stream
+
+    def initialize
+      @output_stream = StringIO.new
+    end
+
+    def err(message)
+      @output_stream.puts(message)
+    end
+
+    def msg(message)
+      @output_stream.puts(message)
+    end
+
+    def output
+      @output_stream.string
+    end
+  end
 end
