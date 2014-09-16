@@ -73,7 +73,7 @@ describe ChefDK::Command::Exec do
 
       let(:expected_GEM_ROOT) { Gem.default_dir.inspect }
 
-      let(:expected_GEM_HOME) { ENV['GEM_HOME'] }
+      let(:expected_GEM_HOME) { Gem.user_dir }
 
       let(:expected_GEM_PATH) { Gem.path.join(':') }
 
@@ -107,7 +107,7 @@ describe ChefDK::Command::Exec do
 
       let(:expected_GEM_ROOT) { Gem.default_dir.inspect }
 
-      let(:expected_GEM_HOME) { ENV['GEM_HOME'] }
+      let(:expected_GEM_HOME) { Gem.user_dir }
 
       let(:expected_GEM_PATH) { Gem.path.join(':') }
 
