@@ -23,58 +23,11 @@ require 'chef/run_list'
 require 'chef-dk/policyfile/dsl'
 require 'chef-dk/policyfile_lock'
 require 'chef-dk/ui'
+require 'chef-dk/policyfile/reports/install'
 
 module ChefDK
 
   class PolicyfileCompiler
-
-    class InstallReport
-
-      attr_reader :ui
-      attr_reader :policyfile_compiler
-
-      def initialize(ui: ui, policyfile_compiler: nil)
-        @ui = ui
-        @policyfile_compiler = policyfile_compiler
-
-        @fixed_version_cookbooks_name_width = nil
-        @cookbook_name_width = nil
-        @cookbook_version_width = nil
-      end
-
-      def installing_fixed_version_cookbook(cookbook_spec)
-        verb = cookbook_spec.installed? ? "Using     " : "Installing"
-        ui.msg("#{verb} #{format_fixed_version_cookbook(cookbook_spec)}")
-      end
-
-      def installing_cookbook(cookbook_spec)
-        verb = cookbook_spec.installed? ? "Using     " : "Installing"
-        ui.msg("#{verb} #{format_cookbook(cookbook_spec)}")
-      end
-
-      private
-
-      def format_cookbook(cookbook_spec)
-        "#{cookbook_spec.name.ljust(cookbook_name_width)} #{cookbook_spec.version_constraint.version.to_s.ljust(cookbook_version_width)}"
-      end
-
-      def cookbook_name_width
-        @cookbook_name_width ||= policyfile_compiler.graph_solution.map { |name, _| name.size }.max
-      end
-
-      def cookbook_version_width
-        @cookbook_version_width ||= policyfile_compiler.graph_solution.map { |_, version| version.size }.max
-      end
-
-      def format_fixed_version_cookbook(spec)
-        "#{spec.name.ljust(fixed_version_cookbooks_name_width)} #{spec.version_constraint} from #{spec.source_type}"
-      end
-
-      def fixed_version_cookbooks_name_width
-        @fixed_version_cookbooks_name_width ||= policyfile_compiler.fixed_version_cookbooks_specs.map { |name, _| name.size }.max
-      end
-
-    end
 
     extend Forwardable
 
@@ -105,7 +58,7 @@ module ChefDK
       @artifact_server_cookbook_location_specs = {}
 
       @ui = ui || UI.null
-      @install_report = InstallReport.new(ui: @ui, policyfile_compiler: self)
+      @install_report = Policyfile::Reports::Install.new(ui: @ui, policyfile_compiler: self)
     end
 
     def error!

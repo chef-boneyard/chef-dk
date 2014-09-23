@@ -19,59 +19,13 @@ require 'chef/cookbook_uploader'
 require 'chef-dk/policyfile/read_cookbook_for_compat_mode_upload'
 
 require 'chef-dk/ui'
+require 'chef-dk/policyfile/reports/upload'
 
 module ChefDK
   module Policyfile
     class Uploader
 
       LockedCookbookForUpload = Struct.new(:cookbook, :lock)
-
-      class UploadReport
-
-        attr_reader :reused_cbs
-        attr_reader :uploaded_cbs
-        attr_reader :ui
-
-        def initialize(reused_cbs: [], uploaded_cbs: [], ui: nil)
-          @reused_cbs = reused_cbs
-          @uploaded_cbs = uploaded_cbs
-          @ui = ui
-
-          @justify_name_width = nil
-          @justify_version_width = nil
-        end
-
-        def show
-          reused_cbs.each do |cb_with_lock|
-            ui.msg("Using    #{describe_lock(cb_with_lock.lock, justify_name_width, justify_version_width)}")
-          end
-
-          uploaded_cbs.each do |cb_with_lock|
-            ui.msg("Uploaded #{describe_lock(cb_with_lock.lock, justify_name_width, justify_version_width)}")
-          end
-        end
-
-        def justify_name_width
-          @justify_name_width ||= cookbook_names.map {|e| e.size }.max
-        end
-
-        def justify_version_width
-          @justify_version_width ||= cookbook_version_numbers.map {|e| e.size }.max
-        end
-
-        def cookbook_names
-          (reused_cbs + uploaded_cbs).map { |e| e.lock.name }
-        end
-
-        def cookbook_version_numbers
-          (reused_cbs + uploaded_cbs).map { |e| e.lock.version }
-        end
-
-        def describe_lock(lock, justify_name_width, justify_version_width)
-          "#{lock.name.ljust(justify_name_width)} #{lock.version.ljust(justify_version_width)} (#{lock.identifier[0,8]})"
-        end
-
-      end
 
       COMPAT_MODE_DATA_BAG_NAME = "policyfiles".freeze
 
@@ -171,7 +125,7 @@ module ChefDK
           remote_already_has_cookbook?(cb_with_lock.cookbook)
         end
 
-        UploadReport.new(reused_cbs: reused_cbs, uploaded_cbs: uploaded_cbs, ui: ui).show
+        Reports::Upload.new(reused_cbs: reused_cbs, uploaded_cbs: uploaded_cbs, ui: ui).show
 
         true
       end
