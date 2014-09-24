@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 
+require 'chef-dk/policyfile/reports/table_printer'
 
 module ChefDK
   module Policyfile
@@ -29,41 +30,37 @@ module ChefDK
           @ui = ui
           @policyfile_compiler = policyfile_compiler
 
-          @fixed_version_cookbooks_name_width = nil
-          @cookbook_name_width = nil
-          @cookbook_version_width = nil
+          @fixed_version_install_table = nil
+          @install_table = nil
         end
 
         def installing_fixed_version_cookbook(cookbook_spec)
           verb = cookbook_spec.installed? ? "Using     " : "Installing"
-          ui.msg("#{verb} #{format_fixed_version_cookbook(cookbook_spec)}")
+          fixed_version_install_table.print_row(verb, cookbook_spec.name, cookbook_spec.version_constraint.to_s, "from #{cookbook_spec.source_type}")
         end
 
         def installing_cookbook(cookbook_spec)
           verb = cookbook_spec.installed? ? "Using     " : "Installing"
-          ui.msg("#{verb} #{format_cookbook(cookbook_spec)}")
+          install_table.print_row(verb, cookbook_spec.name, cookbook_spec.version_constraint.version)
         end
 
         private
 
-        def format_cookbook(cookbook_spec)
-          "#{cookbook_spec.name.ljust(cookbook_name_width)} #{cookbook_spec.version_constraint.version.to_s.ljust(cookbook_version_width)}"
+        def fixed_version_install_table
+          @fixed_version_install_table ||= TablePrinter.new(ui) do |t|
+            t.column(["Using", "Installing"])
+            t.column(policyfile_compiler.fixed_version_cookbooks_specs.keys)
+            t.column
+            t.column
+          end
         end
 
-        def cookbook_name_width
-          @cookbook_name_width ||= policyfile_compiler.graph_solution.map { |name, _| name.size }.max
-        end
-
-        def cookbook_version_width
-          @cookbook_version_width ||= policyfile_compiler.graph_solution.map { |_, version| version.size }.max
-        end
-
-        def format_fixed_version_cookbook(spec)
-          "#{spec.name.ljust(fixed_version_cookbooks_name_width)} #{spec.version_constraint} from #{spec.source_type}"
-        end
-
-        def fixed_version_cookbooks_name_width
-          @fixed_version_cookbooks_name_width ||= policyfile_compiler.fixed_version_cookbooks_specs.map { |name, _| name.size }.max
+        def install_table
+          @install_table ||= TablePrinter.new(ui) do |t|
+            t.column(["Using", "Installing"])
+            t.column(policyfile_compiler.graph_solution.keys)
+            t.column(policyfile_compiler.graph_solution.values)
+          end
         end
 
       end

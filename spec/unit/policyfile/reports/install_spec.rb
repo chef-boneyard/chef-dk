@@ -107,7 +107,7 @@ describe ChefDK::Policyfile::Reports::Install do
 
     it "prints a table-ized message for cookbooks in the cache that are reused" do
       install_report.installing_cookbook(cookbook_two)
-      expect(ui.output).to eq("Using      this-name-is-longer 1.2.3 \n")
+      expect(ui.output).to eq("Using      this-name-is-longer 1.2.3\n")
     end
 
   end
