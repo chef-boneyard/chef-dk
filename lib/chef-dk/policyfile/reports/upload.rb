@@ -15,6 +15,8 @@
 # limitations under the License.
 #
 
+require 'chef-dk/policyfile/reports/table_printer'
+
 module ChefDK
   module Policyfile
     module Reports
@@ -35,20 +37,23 @@ module ChefDK
 
         def show
           reused_cbs.each do |cb_with_lock|
-            ui.msg("Using    #{describe_lock(cb_with_lock.lock, justify_name_width, justify_version_width)}")
+            lock = cb_with_lock.lock
+            table.print_row("Using", lock.name, lock.version, "(#{lock.identifier[0,8]})")
           end
 
           uploaded_cbs.each do |cb_with_lock|
-            ui.msg("Uploaded #{describe_lock(cb_with_lock.lock, justify_name_width, justify_version_width)}")
+            lock = cb_with_lock.lock
+            table.print_row("Uploaded", lock.name, lock.version, "(#{lock.identifier[0,8]})")
           end
         end
 
-        def justify_name_width
-          @justify_name_width ||= cookbook_names.map {|e| e.size }.max
-        end
-
-        def justify_version_width
-          @justify_version_width ||= cookbook_version_numbers.map {|e| e.size }.max
+        def table
+          @table ||= TablePrinter.new(ui) do |t|
+            t.column(%w[ Using Uploaded ])
+            t.column(cookbook_names)
+            t.column(cookbook_version_numbers)
+            t.column
+          end
         end
 
         def cookbook_names
@@ -57,10 +62,6 @@ module ChefDK
 
         def cookbook_version_numbers
           (reused_cbs + uploaded_cbs).map { |e| e.lock.version }
-        end
-
-        def describe_lock(lock, justify_name_width, justify_version_width)
-          "#{lock.name.ljust(justify_name_width)} #{lock.version.ljust(justify_version_width)} (#{lock.identifier[0,8]})"
         end
 
       end
