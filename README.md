@@ -196,6 +196,8 @@ You can use `rpm` to uninstall Chef Development Kit on RHEL based systems:
 ```
 rpm -qa *chefdk*
 yum remove <package>
+rm -rf /opt/chefdk
+rm -rf ~/.chefdk
 ```
 
 ### Ubuntu
