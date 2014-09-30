@@ -70,6 +70,10 @@ BANNER
         show_help
         exit 1
       end
+    rescue OptionParser::InvalidOption => e
+      err(e.message)
+      show_help
+      exit 1
     end
 
     # If no subcommand is given, then this class is handling the CLI request.
