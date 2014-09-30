@@ -8,6 +8,7 @@ provides a compatibility mode for testing purposes. The Policyfile
 feature is accessed via the `chef install` and `chef push` commands. See
 POLICYFILE_README.md in this repo for further information about the
 feature and its current limitations.
+* CLI no longer dumps stack trace when given invalid options
 
 # Last Release: 0.2.2
 

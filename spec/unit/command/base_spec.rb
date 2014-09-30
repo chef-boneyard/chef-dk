@@ -34,6 +34,7 @@ describe ChefDK::Command::Base do
     end
   end
 
+  let(:stderr_io) { StringIO.new }
   let(:stdout_io) { StringIO.new }
   let(:command_instance) { TestCommand.new() }
 
@@ -41,8 +42,13 @@ describe ChefDK::Command::Base do
     stdout_io.string
   end
 
+  def stderr
+    stderr_io.string
+  end
+
   before do
     allow(command_instance).to receive(:stdout).and_return(stdout_io)
+    allow(command_instance).to receive(:stderr).and_return(stderr_io)
   end
 
 
@@ -83,6 +89,23 @@ describe ChefDK::Command::Base do
   it "should run the command passing in the custom options for short custom options" do
     run_command(["-u"])
     expect(stdout).to eq("thanks for passing me true\n")
+  end
+
+  describe "when given invalid options" do
+
+    it "prints the help banner and exits gracefully" do
+      expect(run_command(%w[-foo])).to eq(1)
+
+      expect(stderr).to eq("invalid option: -foo\n")
+
+      expected = <<-E
+use me please
+    -u, --user                       If the user exists
+
+E
+      expect(stdout).to eq(expected)
+    end
+
   end
 
 end

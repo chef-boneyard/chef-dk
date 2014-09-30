@@ -107,6 +107,18 @@ E
     end
   end
 
+  context "given an invalid option" do
+
+    let(:argv) { %w[-nope] }
+
+    it "prints an 'invalid option message and the help output, then exits non-zero" do
+      run_cli(1)
+      expect(stdout).to eq(base_help_message)
+      expect(stderr).to eq("invalid option: -nope\n")
+    end
+
+  end
+
   context "given an invalid/unknown subcommand" do
     let(:argv) { %w[ancient-aliens] }
 

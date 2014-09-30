@@ -56,6 +56,10 @@ module ChefDK
         else
           run(params)
         end
+      rescue OptionParser::InvalidOption => e
+        err(e.message)
+        msg(opt_parser)
+        1
       end
 
       def needs_help?(params)
