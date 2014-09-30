@@ -38,7 +38,7 @@ describe ChefDK::Command::ShellInit do
 
   let(:expected_gem_root) { Gem.default_dir.to_s }
 
-  let(:expected_gem_home) { ENV['GEM_HOME'] }
+  let(:expected_gem_home) { Gem.user_dir }
 
   let(:expected_gem_path) { Gem.path.join(':') }
 

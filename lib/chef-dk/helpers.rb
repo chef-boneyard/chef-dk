@@ -85,7 +85,7 @@ module ChefDK
           {
             'PATH' => "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}",
             'GEM_ROOT' => Gem.default_dir.inspect,
-            'GEM_HOME' => Gem.paths.home,
+            'GEM_HOME' => Gem.user_dir,
             'GEM_PATH' => Gem.path.join(':'),
           }
         end
