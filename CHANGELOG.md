@@ -9,6 +9,8 @@ feature is accessed via the `chef install` and `chef push` commands. See
 POLICYFILE_README.md in this repo for further information about the
 feature and its current limitations.
 * CLI no longer dumps stack trace when given invalid options
+* Update Unix ruby to 2.1.3 from 2.1.2
+* Update Windows ruby to 2.1.3 from 2.0.0, plus rubygems to 2.4.2
 
 # Last Release: 0.2.2
 
