@@ -1,6 +1,11 @@
 # Chef Development Kit Changelog
 
-# Unreleased
+# Unreleased: 0.3.0
+
+* [**Robert J. Berger**](https://github.com/rberger):
+  Use Gem.user_dir instead of Gem.paths.home for GEM_HOME in chef exec.
+* [**the Bunny Man**](https://github.com/tbunnyman):
+  Treat existence of git and skip_git flag correctly in the generators.
 
 * Initial Release of the Policyfile feature. This feature relies on
 updates to the server API before it is production-ready, though it
