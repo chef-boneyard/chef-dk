@@ -48,17 +48,15 @@ BANNER
       :boolean      => true
 
     attr_reader :argv
-    attr_reader :ui
 
     def initialize(argv)
       @argv = argv
-      @ui = UI.new
       super() # mixlib-cli #initialize doesn't allow arguments
-
-      sanity_check!
     end
 
     def run
+      sanity_check!
+
       subcommand_name, *subcommand_params = argv
 
       #
@@ -149,29 +147,33 @@ BANNER
     # upcase drive letters for comparison since ruby has a String#capitalize function
     def drive_upcase(path)
       if Chef::Platform.windows? && path[0] =~ /^[A-Za-z]$/ && path[1,2] == ":\\"
-        capitalize path
+        path.capitalize
       else
         path
       end
+    end
+
+    def env
+      ENV
     end
 
     # catch the cases where users setup only the embedded_bin_dir in their path, or
     # when they have the embedded_bin_dir before the omnibus_bin_dir -- both of which will
     # defeat appbundler and interact very badly with our intent.
     def sanity_check!
-      paths = ENV[path_key].split(File::PATH_SEPARATOR)
+      paths = env[path_key].split(File::PATH_SEPARATOR)
       paths.map! { |p| drive_upcase(Chef::Util::PathHelper.cleanpath(p)) }
       embed_index = paths.index(drive_upcase(Chef::Util::PathHelper.cleanpath(omnibus_embedded_bin_dir)))
       bin_index = paths.index(drive_upcase(Chef::Util::PathHelper.cleanpath(omnibus_bin_dir)))
       if embed_index
         if bin_index
           if embed_index < bin_index
-            ui.msg("WARN: #{omnibus_embedded_bin_dir} is before #{omnibus_bin_dir} in your #{path_key}, please reverse that order.")
-            ui.msg("WARN: consider using the correct `chef shell-init <shell>` command to setup your environment correctly.")
+            msg("WARN: #{omnibus_embedded_bin_dir} is before #{omnibus_bin_dir} in your #{path_key}, please reverse that order.")
+            msg("WARN: consider using the correct `chef shell-init <shell>` command to setup your environment correctly.")
           end
         else
-          ui.msg("WARN: only #{omnibus_embedded_bin_dir} is present in your path, you must add #{omnibus_bin_dir} before that directory.")
-          ui.msg("WARN: consider using the correct `chef shell-init <shell>` command to setup your environment correctly.")
+          msg("WARN: only #{omnibus_embedded_bin_dir} is present in your path, you must add #{omnibus_bin_dir} before that directory.")
+          msg("WARN: consider using the correct `chef shell-init <shell>` command to setup your environment correctly.")
         end
       end
     end
