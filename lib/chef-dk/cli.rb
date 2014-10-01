@@ -20,6 +20,8 @@ require 'chef-dk/version'
 require 'chef-dk/commands_map'
 require 'chef-dk/builtin_commands'
 require 'chef-dk/helpers'
+require 'chef-dk/ui'
+require 'chef/util/path_helper'
 
 module ChefDK
   class CLI
@@ -53,6 +55,8 @@ BANNER
     end
 
     def run
+      sanity_check!
+
       subcommand_name, *subcommand_params = argv
 
       #
@@ -135,5 +139,43 @@ BANNER
       end
     end
 
+    # Find PATH or Path correctly if we are on Windows
+    def path_key
+      ENV.keys.grep(/\Apath\Z/i).first
+    end
+
+    # upcase drive letters for comparison since ruby has a String#capitalize function
+    def drive_upcase(path)
+      if Chef::Platform.windows? && path[0] =~ /^[A-Za-z]$/ && path[1,2] == ":\\"
+        path.capitalize
+      else
+        path
+      end
+    end
+
+    def env
+      ENV
+    end
+
+    # catch the cases where users setup only the embedded_bin_dir in their path, or
+    # when they have the embedded_bin_dir before the omnibus_bin_dir -- both of which will
+    # defeat appbundler and interact very badly with our intent.
+    def sanity_check!
+      paths = env[path_key].split(File::PATH_SEPARATOR)
+      paths.map! { |p| drive_upcase(Chef::Util::PathHelper.cleanpath(p)) }
+      embed_index = paths.index(drive_upcase(Chef::Util::PathHelper.cleanpath(omnibus_embedded_bin_dir)))
+      bin_index = paths.index(drive_upcase(Chef::Util::PathHelper.cleanpath(omnibus_bin_dir)))
+      if embed_index
+        if bin_index
+          if embed_index < bin_index
+            msg("WARN: #{omnibus_embedded_bin_dir} is before #{omnibus_bin_dir} in your #{path_key}, please reverse that order.")
+            msg("WARN: consider using the correct `chef shell-init <shell>` command to setup your environment correctly.")
+          end
+        else
+          msg("WARN: only #{omnibus_embedded_bin_dir} is present in your path, you must add #{omnibus_bin_dir} before that directory.")
+          msg("WARN: consider using the correct `chef shell-init <shell>` command to setup your environment correctly.")
+        end
+      end
+    end
   end
 end
