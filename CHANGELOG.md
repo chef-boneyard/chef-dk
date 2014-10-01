@@ -1,6 +1,8 @@
 # Chef Development Kit Changelog
 
-# Unreleased: 0.3.0
+# Unreleased:
+
+# Last Release: 0.3.0
 
 * [**Robert J. Berger**](https://github.com/rberger):
   Use Gem.user_dir instead of Gem.paths.home for GEM_HOME in chef exec.
@@ -15,9 +17,9 @@ POLICYFILE_README.md in this repo for further information about the
 feature and its current limitations.
 * CLI no longer dumps stack trace when given invalid options
 * Update Unix ruby to 2.1.3 from 2.1.2
-* Update Windows ruby to 2.1.3 from 2.0.0, plus rubygems to 2.4.2
+* Warn when embedded/bin directory exists before bin directory in ENV['PATH']
 
-# Last Release: 0.2.2
+# 0.2.2
 
 * Fix a regression where `chef generate template` fails with
   `undefined method `content_source' for #<chefdk::generator::context:0x00000003e37af8>`
