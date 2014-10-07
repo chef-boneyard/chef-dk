@@ -16,6 +16,7 @@
 #
 
 require 'chef-dk/cookbook_omnifetch'
+require 'chef-dk/exceptions'
 
 module ChefDK
   module Policyfile
@@ -37,15 +38,28 @@ module ChefDK
       end
 
       def use_policyfile(policyfile_filename)
+        unless policyfile_filename.end_with?(".rb")
+          raise InvalidPolicyfileFilename, "Policyfile filenames must end with `.rb' extension (you gave: `#{policyfile_filename}')"
+        end
         @policyfile_filename = policyfile_filename
+        @policyfile_lock_filename = policyfile_filename.sub(/\.rb\Z/, '.lock.json')
         @relative_paths_root = File.dirname(policyfile_filename)
         self
       end
 
       def use_policyfile_lock(policyfile_lock_filename)
         @policyfile_lock_filename = policyfile_lock_filename
+        @policyfile_filename = policyfile_lock_filename.sub(/\.lock\.json\Z/, '.rb')
         @relative_paths_root = File.dirname(policyfile_lock_filename)
         self
+      end
+
+      def policyfile_expanded_path
+        File.expand_path(policyfile_filename, relative_paths_root)
+      end
+
+      def policyfile_lock_expanded_path
+        File.expand_path(policyfile_lock_filename, relative_paths_root)
       end
 
       private
@@ -54,6 +68,7 @@ module ChefDK
         @cache_path = options[:cache_path] if options[:cache_path]
         @relative_paths_root = options[:relative_paths_root] if options.key?(:relative_paths_root)
       end
+
     end
 
     module StorageConfigDelegation
@@ -68,6 +83,14 @@ module ChefDK
 
       def policyfile_filename
         storage_config.policyfile_filename
+      end
+
+      def policyfile_expanded_path
+        storage_config.policyfile_expanded_path
+      end
+
+      def policyfile_lock_expanded_path
+        storage_config.policyfile_lock_expanded_path
       end
 
     end

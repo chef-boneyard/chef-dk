@@ -74,6 +74,47 @@ describe ChefDK::Policyfile::StorageConfig do
       expect(storage_config.policyfile_filename).to eq("/path/to/Policyfile.rb")
     end
 
+    it "generates the location of the policyfile lock" do
+      expect(storage_config.policyfile_lock_filename).to eq("/path/to/Policyfile.lock.json")
+    end
+
+    it "gives the expanded path to the policyfile" do
+      expect(storage_config.policyfile_expanded_path).to eq('/path/to/Policyfile.rb')
+    end
+
+    context "when the policyfile is given as a relative path" do
+
+      before do
+        storage_config.use_policyfile("Policyfile.rb")
+      end
+
+      it "updates the relative_paths_root to be relative to a policyfile" do
+        expect(storage_config.relative_paths_root).to eq(".")
+      end
+
+      it "stores the location of the policyfile" do
+        expect(storage_config.policyfile_filename).to eq("Policyfile.rb")
+      end
+
+      it "generates the location of the policyfile lock" do
+        expect(storage_config.policyfile_lock_filename).to eq("Policyfile.lock.json")
+      end
+
+      it "gives the expanded path to the policyfile" do
+        expect(storage_config.policyfile_expanded_path).to eq(File.expand_path("Policyfile.rb", "."))
+      end
+
+    end
+
+    context "when the policyfile file name doesn't have a .rb extension" do
+
+      it "raises an error" do
+        err_string = %q{Policyfile filenames must end with `.rb' extension (you gave: `Policyfile')}
+        expect { storage_config.use_policyfile("Policyfile") }.to raise_error(ChefDK::InvalidPolicyfileFilename, err_string)
+      end
+
+    end
+
   end
 
 
@@ -87,8 +128,41 @@ describe ChefDK::Policyfile::StorageConfig do
       expect(storage_config.relative_paths_root).to eq("/path/to")
     end
 
-    it "stores the location of the policyfile" do
+    it "stores the location of the policyfile lock" do
       expect(storage_config.policyfile_lock_filename).to eq("/path/to/Policyfile.lock.json")
+    end
+
+    it "stores the location of the policyfile" do
+      expect(storage_config.policyfile_filename).to eq("/path/to/Policyfile.rb")
+    end
+
+    it "gives the expanded path to the policyfile lock" do
+      expect(storage_config.policyfile_lock_expanded_path).to eq("/path/to/Policyfile.lock.json")
+    end
+
+    context "when given a relative path to the policyfile lock" do
+
+      before do
+        storage_config.use_policyfile_lock("Policyfile.lock.json")
+      end
+
+      it "updates the relative_paths_root to be relative to a policyfile" do
+        expect(storage_config.relative_paths_root).to eq(".")
+      end
+
+      it "stores the location of the policyfile" do
+        expect(storage_config.policyfile_filename).to eq("Policyfile.rb")
+      end
+
+      it "generates the location of the policyfile lock" do
+        expect(storage_config.policyfile_lock_filename).to eq("Policyfile.lock.json")
+      end
+
+      it "gives the expanded path to the policyfile" do
+        expect(storage_config.policyfile_lock_expanded_path).to eq(File.expand_path("Policyfile.lock.json", "."))
+      end
+
+
     end
 
   end
