@@ -166,85 +166,135 @@ E
   end
 
   context "sanity_check!" do
-    context "on unix" do
-      it "complains if embedded is first" do
-        expect(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/embedded/bin:/opt/chefdk/bin' })
-        allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("/opt/chefdk/embedded/bin")
-        allow(cli).to receive(:omnibus_bin_dir).and_return("/opt/chefdk/bin")
-        run_cli_with_sanity_check(0)
-        expect(stdout).not_to eq(base_help_message)
-        expect(stdout).to include("please reverse that order")
-        expect(stdout).to include("chef shell-init")
+
+    before do
+      allow(Gem).to receive(:ruby).and_return(ruby_path)
+      allow(File).to receive(:exist?).with(chefdk_embedded_path).and_return(true)
+    end
+
+    context "when installed via omnibus" do
+
+      context "on unix" do
+
+        let(:ruby_path) { '/opt/chefdk/embedded/bin/ruby' }
+        let(:chefdk_embedded_path) { '/opt/chefdk/embedded/apps/chef-dk' }
+
+        it "complains if embedded is first" do
+          expect(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/embedded/bin:/opt/chefdk/bin' })
+          allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("/opt/chefdk/embedded/bin")
+          allow(cli).to receive(:omnibus_bin_dir).and_return("/opt/chefdk/bin")
+          run_cli_with_sanity_check(0)
+          expect(stdout).not_to eq(base_help_message)
+          expect(stdout).to include("please reverse that order")
+          expect(stdout).to include("chef shell-init")
+        end
+
+        it "complains if only embedded is present" do
+          expect(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/embedded/bin' })
+          allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("/opt/chefdk/embedded/bin")
+          allow(cli).to receive(:omnibus_bin_dir).and_return("/opt/chefdk/bin")
+          run_cli_with_sanity_check(0)
+          expect(stdout).not_to eq(base_help_message)
+          expect(stdout).to include("you must add")
+          expect(stdout).to include("chef shell-init")
+        end
+
+        it "passes when both are present in the correct order" do
+          expect(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/bin:/opt/chefdk/embedded/bin' })
+          allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("/opt/chefdk/embedded/bin")
+          allow(cli).to receive(:omnibus_bin_dir).and_return("/opt/chefdk/bin")
+          run_cli_with_sanity_check(0)
+          expect(stdout).to eq(base_help_message)
+        end
+
+        it "passes when only the omnibus bin dir is present" do
+          expect(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/bin' })
+          allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("/opt/chefdk/embedded/bin")
+          allow(cli).to receive(:omnibus_bin_dir).and_return("/opt/chefdk/bin")
+          run_cli_with_sanity_check(0)
+          expect(stdout).to eq(base_help_message)
+        end
       end
 
-      it "complains if only embedded is present" do
-        expect(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/embedded/bin' })
-        allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("/opt/chefdk/embedded/bin")
-        allow(cli).to receive(:omnibus_bin_dir).and_return("/opt/chefdk/bin")
-        run_cli_with_sanity_check(0)
-        expect(stdout).not_to eq(base_help_message)
-        expect(stdout).to include("you must add")
-        expect(stdout).to include("chef shell-init")
-      end
+      context "on windows" do
 
-      it "passes when both are present in the correct order" do
-        expect(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/bin:/opt/chefdk/embedded/bin' })
-        allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("/opt/chefdk/embedded/bin")
-        allow(cli).to receive(:omnibus_bin_dir).and_return("/opt/chefdk/bin")
-        run_cli_with_sanity_check(0)
-        expect(stdout).to eq(base_help_message)
-      end
+        let(:ruby_path) { "c:/opscode/chefdk/embedded/bin/ruby.exe" }
+        let(:chefdk_embedded_path) { "c:/opscode/chefdk/embedded/apps/chef-dk" }
 
-      it "passes when only the omnibus bin dir is present" do
-        expect(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/bin' })
-        allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("/opt/chefdk/embedded/bin")
-        allow(cli).to receive(:omnibus_bin_dir).and_return("/opt/chefdk/bin")
-        run_cli_with_sanity_check(0)
-        expect(stdout).to eq(base_help_message)
+        before do
+          # Would be preferable not to stub this, but `File.expand_path` does
+          # weird things with windows paths on unix machines.
+          #
+          # I manually verified the behavior:
+          #
+          #   $ /c/opscode/chefdk/embedded/bin/ruby -e 'p File.expand_path(File.join(Gem.ruby, "..", "..", ".."))'
+          #   "c:/opscode/chefdk"
+          allow(cli).to receive(:omnibus_chefdk_location).and_return(chefdk_embedded_path)
+
+          allow(Chef::Platform).to receive(:windows?).and_return(true)
+          stub_const("File::PATH_SEPARATOR", ';')
+        end
+
+        it "complains if embedded is first" do
+          expect(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\embedded\bin;C:\opscode\chefdk\bin' })
+          allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("c:/opscode/chefdk/embedded/bin")
+          allow(cli).to receive(:omnibus_bin_dir).and_return("c:/opscode/chefdk/bin")
+          run_cli_with_sanity_check(0)
+          expect(stdout).not_to eq(base_help_message)
+          expect(stdout).to include("please reverse that order")
+          expect(stdout).to include("chef shell-init")
+        end
+
+        it "complains if only embedded is present" do
+          expect(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\embedded\bin' })
+          allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("c:/opscode/chefdk/embedded/bin")
+          allow(cli).to receive(:omnibus_bin_dir).and_return("c:/opscode/chefdk/bin")
+          run_cli_with_sanity_check(0)
+          expect(stdout).not_to eq(base_help_message)
+          expect(stdout).to include("you must add")
+          expect(stdout).to include("chef shell-init")
+        end
+
+        it "passes when both are present in the correct order" do
+          expect(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\bin;C:\opscode\chefdk\embedded\bin' })
+          allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("c:/opscode/chefdk/embedded/bin")
+          allow(cli).to receive(:omnibus_bin_dir).and_return("c:/opscode/chefdk/bin")
+          run_cli_with_sanity_check(0)
+          expect(stdout).to eq(base_help_message)
+        end
+
+        it "passes when only the omnibus bin dir is present" do
+          expect(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\bin' })
+          allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("c:/opscode/chefdk/embedded/bin")
+          allow(cli).to receive(:omnibus_bin_dir).and_return("c:/opscode/chefdk/bin")
+          run_cli_with_sanity_check(0)
+          expect(stdout).to eq(base_help_message)
+        end
       end
     end
 
-    context "on windows" do
+    context "when not installed via omnibus" do
+
+      let(:ruby_path) { '/Users/bog/.lots_o_rubies/2.1.2/bin/ruby' }
+      let(:chefdk_embedded_path) { '/Users/bog/.lots_o_rubies/embedded/apps/chef-dk' }
+
       before do
-        allow(Chef::Platform).to receive(:windows?).and_return(true)
-        stub_const("File::PATH_SEPARATOR", ';')
+        allow(File).to receive(:exist?).with(chefdk_embedded_path).and_return(false)
+
+        [
+          :omnibus_root,
+          :omnibus_apps_dir,
+          :omnibus_bin_dir,
+          :omnibus_embedded_bin_dir
+        ].each do |method_name|
+          allow(cli).to receive(method_name).and_raise(ChefDK::OmnibusInstallNotFound.new)
+        end
       end
 
-      it "complains if embedded is first" do
-        expect(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\embedded\bin;C:\opscode\chefdk\bin' })
-        allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("c:/opscode/chefdk/embedded/bin")
-        allow(cli).to receive(:omnibus_bin_dir).and_return("c:/opscode/chefdk/bin")
+      it "skips the sanity check without error" do
         run_cli_with_sanity_check(0)
-        expect(stdout).not_to eq(base_help_message)
-        expect(stdout).to include("please reverse that order")
-        expect(stdout).to include("chef shell-init")
       end
 
-      it "complains if only embedded is present" do
-        expect(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\embedded\bin' })
-        allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("c:/opscode/chefdk/embedded/bin")
-        allow(cli).to receive(:omnibus_bin_dir).and_return("c:/opscode/chefdk/bin")
-        run_cli_with_sanity_check(0)
-        expect(stdout).not_to eq(base_help_message)
-        expect(stdout).to include("you must add")
-        expect(stdout).to include("chef shell-init")
-      end
-
-      it "passes when both are present in the correct order" do
-        expect(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\bin;C:\opscode\chefdk\embedded\bin' })
-        allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("c:/opscode/chefdk/embedded/bin")
-        allow(cli).to receive(:omnibus_bin_dir).and_return("c:/opscode/chefdk/bin")
-        run_cli_with_sanity_check(0)
-        expect(stdout).to eq(base_help_message)
-      end
-
-      it "passes when only the omnibus bin dir is present" do
-        expect(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\bin' })
-        allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("c:/opscode/chefdk/embedded/bin")
-        allow(cli).to receive(:omnibus_bin_dir).and_return("c:/opscode/chefdk/bin")
-        run_cli_with_sanity_check(0)
-        expect(stdout).to eq(base_help_message)
-      end
     end
   end
 end
