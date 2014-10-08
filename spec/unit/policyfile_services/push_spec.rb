@@ -58,7 +58,7 @@ describe ChefDK::PolicyfileServices::Push do
   end
 
   it "infers the path to Policyfile.lock.json" do
-    expect(push_service.lockfile_path).to eq(policyfile_lock_path)
+    expect(push_service.policyfile_lock_expanded_path).to eq(policyfile_lock_path)
   end
 
   it "has a storage configuration" do
@@ -74,7 +74,7 @@ describe ChefDK::PolicyfileServices::Push do
     let(:policyfile_lock_name) { "MyPolicy.lock.json" }
 
     it "infers the path to the lockfile from the policyfile location" do
-      expect(push_service.lockfile_path).to eq(policyfile_lock_path)
+      expect(push_service.policyfile_lock_expanded_path).to eq(policyfile_lock_path)
     end
 
   end
