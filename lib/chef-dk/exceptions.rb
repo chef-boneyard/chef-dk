@@ -96,4 +96,7 @@ module ChefDK
   class InvalidLockfile < StandardError
   end
 
+  class InvalidPolicyfileFilename < StandardError
+  end
+
 end

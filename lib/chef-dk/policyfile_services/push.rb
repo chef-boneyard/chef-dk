@@ -18,42 +18,32 @@
 require 'chef-dk/authenticated_http'
 require 'chef-dk/policyfile_compiler'
 require 'chef-dk/policyfile/uploader'
+require 'chef-dk/policyfile/storage_config'
 
 module ChefDK
   module PolicyfileServices
     class Push
 
+      include Policyfile::StorageConfigDelegation
+
       attr_reader :root_dir
       attr_reader :config
       attr_reader :policy_group
       attr_reader :ui
+      attr_reader :storage_config
 
       def initialize(policyfile: nil, ui: nil, policy_group: nil, config: nil, root_dir: nil)
         @root_dir = root_dir
-        @policyfile_relative_path = policyfile
         @ui = ui
         @config = config
         @policy_group = policy_group
 
+        policyfile_rel_path = policyfile || "Policyfile.rb"
+        policyfile_full_path = File.expand_path(policyfile_rel_path, root_dir)
+        @storage_config = Policyfile::StorageConfig.new.use_policyfile(policyfile_full_path)
+
         @http_client = nil
-        @storage_config = nil
         @policy_data = nil
-      end
-
-      def policyfile_relative_path
-        @policyfile_relative_path || "Policyfile.rb"
-      end
-
-      def policyfile_path
-        File.expand_path(policyfile_relative_path, root_dir)
-      end
-
-      def lockfile_relative_path
-        policyfile_relative_path.gsub(/\.rb\Z/, '') + ".lock.json"
-      end
-
-      def lockfile_path
-        File.expand_path(lockfile_relative_path, root_dir)
       end
 
       def http_client
@@ -63,13 +53,9 @@ module ChefDK
       end
 
       def policy_data
-        @policy_data ||= FFI_Yajl::Parser.parse(IO.read(lockfile_path))
+        @policy_data ||= FFI_Yajl::Parser.parse(IO.read(policyfile_lock_expanded_path))
       rescue => error
-        raise PolicyfilePushError.new("Error reading lockfile #{lockfile_path}", error)
-      end
-
-      def storage_config
-        @storage_config ||= ChefDK::Policyfile::StorageConfig.new.use_policyfile_lock(lockfile_path)
+        raise PolicyfilePushError.new("Error reading lockfile #{policyfile_lock_expanded_path}", error)
       end
 
       def uploader
@@ -77,8 +63,8 @@ module ChefDK
       end
 
       def run
-        unless File.exist?(lockfile_path)
-          raise LockfileNotFound, "No lockfile at #{lockfile_path} - you need to run `install` before `push`"
+        unless File.exist?(policyfile_lock_expanded_path)
+          raise LockfileNotFound, "No lockfile at #{policyfile_lock_expanded_path} - you need to run `install` before `push`"
         end
 
         validate_lockfile
@@ -100,7 +86,7 @@ module ChefDK
       end
 
       def write_updated_lockfile
-        File.open(lockfile_path, "w+") do |f|
+        File.open(policyfile_lock_expanded_path, "w+") do |f|
           f.print(FFI_Yajl::Encoder.encode(policyfile_lock.to_lock, pretty: true ))
         end
       end
