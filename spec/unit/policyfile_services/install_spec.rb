@@ -80,7 +80,7 @@ E
     end
 
     it "infers that the Policyfile.rb is located at $CWD/Policyfile.rb" do
-      expect(install_service.policyfile_path).to eq(policyfile_rb_path)
+      expect(install_service.policyfile_expanded_path).to eq(policyfile_rb_path)
     end
 
     it "reads the policyfile from disk" do
@@ -156,7 +156,7 @@ E
       let(:policyfile_lock_name) { "MyPolicy.lock.json" }
 
       it "infers that the Policyfile.rb is located at $CWD/$POLICYFILE_NAME" do
-        expect(install_service.policyfile_path).to eq(policyfile_rb_path)
+        expect(install_service.policyfile_expanded_path).to eq(policyfile_rb_path)
       end
 
       it "reads the policyfile from disk" do
