@@ -50,8 +50,12 @@ module ChefDK
     # Locates the omnibus directories
     #
 
+    def omnibus_install?
+      File.exist?(omnibus_chefdk_location)
+    end
+
     def omnibus_root
-      @omnibus_root ||= omnibus_expand_path(Gem.ruby, "..", "..", "..")
+      @omnibus_root ||= omnibus_expand_path(expected_omnibus_root)
     end
 
     def omnibus_apps_dir
@@ -66,12 +70,20 @@ module ChefDK
       @omnibus_embedded_bin_dir ||= omnibus_expand_path(omnibus_root, "embedded", "bin")
     end
 
+    def omnibus_chefdk_location
+      @omnibus_chefdk_location ||= File.expand_path('embedded/apps/chef-dk', expected_omnibus_root)
+    end
+
     private
 
     def omnibus_expand_path(*paths)
       dir = File.expand_path(File.join(paths))
       raise OmnibusInstallNotFound.new() unless ( dir and File.directory?(dir) )
       dir
+    end
+
+    def expected_omnibus_root
+      File.expand_path(File.join(Gem.ruby, "..", "..", ".."))
     end
 
     #
