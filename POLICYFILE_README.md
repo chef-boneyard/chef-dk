@@ -106,6 +106,81 @@ configuration, and requests the current policy for its name and group
 from the server. It then fetches the cookbooks from the new storage API,
 and then proceeds as normal.
 
+## Policyfile Syntax
+
+_Note:_ skip to the next section if you're only interested in learning
+the "big picture" design of this feature and the motivation for creating
+it.
+
+A `Policyfile.rb` is the file where you name your policy, define a
+`run_list` for `chef-client` to use to converge your systems, and tell
+ChefDK where to find the cookbooks needed for your run list. It has four
+methods:
+
+### `name "NAME"` (required)
+
+This names your policy. Generally you should use a name that reflects
+the function that machines using this policy will perform in your
+infrastructure, like "jenkins-master" or "chatserver".
+
+### `run_list "ITEM1", "ITEM2", ...` (required)
+
+This is the `run_list` that `chef-client` will use when it applies this
+policy to a node (the `run_list` on the node object is ignored when
+using policyfiles). At this time, ChefDK does not support roles in the
+`run_list`, but support will be added in the future.
+
+### `default_source :SOURCE_TYPE, *args`
+
+This tells ChefDK where to find any cookbooks required by your
+`run_list` that do not have specific locations configured by the
+`cookbook` method (see below). If you specify a specific source for
+every cookbook, then you do not need to configure this.
+
+### `cookbook "NAME" [, "VERSION_CONSTRAINT"] [, SOURCE_OPTIONS]
+
+The `cookbook` method serves several purposes:
+
+#### Add an Additional Cookbook
+
+It can add a cookbook to the set of cookbooks ChefDK will compile,
+when that cookbook isn't needed by the `run_list`.
+
+Example:
+
+```ruby
+cookbook "apache2"
+```
+
+#### Specify a Version Constraint
+
+It can specify an additional version constraint for the cookbook. You
+can use this feature to constrain the versions of the cookbooks at the
+top level of your `run_list`.
+
+Example:
+
+```ruby
+run_list "jenkins::master"
+
+# Restrict the jenkins cookbook to version 2.x, greater than 2.1
+cookbook "jenkins", "~> 2.1"
+```
+
+### Specify an Alternative Source
+
+ChefDK can fetch cookbooks from Supermarket, git, and local disk (other
+sources will be added in the future). This allows you to combine
+cookbooks from multiple sources into a set of cookbooks that builds your
+application.
+
+Examples:
+
+```ruby
+cookbook 'my_app', path: 'cookbooks/my_app'
+cookbook 'mysql', github: 'opscode-cookbooks/mysql', branch: 'master'
+```
+
 ## Motivation and FAQ
 
 ### Focus Workflow on Configuring Machines to do Useful Work
