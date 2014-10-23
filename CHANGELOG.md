@@ -1,8 +1,13 @@
 # Chef Development Kit Changelog
 
-# Unreleased:
+# Last Release: 0.3.1
 
-# Last Release: 0.3.0
+* Add a generator for Policyfiles
+* Fix a regression in Windows packaging; the build step to upgrade the
+OpenSSL version within the package was inadvertently removed, causing
+certificate validation to fail in some contexts.
+
+# 0.3.0
 
 * [**Robert J. Berger**](https://github.com/rberger):
   Use Gem.user_dir instead of Gem.paths.home for GEM_HOME in chef exec.
