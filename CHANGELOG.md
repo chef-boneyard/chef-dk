@@ -1,6 +1,16 @@
 # Chef Development Kit Changelog
 
-# Last Release: 0.3.1
+# Last Release: 0.3.2
+
+* Revert the packaged certificate bundle to the '2014.08.20' version.
+This works around an issue where SSL connections to AWS would fail with
+certificate validation errors. More information can be found in
+[#199](https://github.com/opscode/chef-dk/issues/199).
+* Enforce mode 0644 for the CA cert bundle in omnibus packaging; A
+change to omnibus resulted in this file being mode 0600, preventing
+non-root users from verifying SSL certificates.
+
+# 0.3.1
 
 * Add a generator for Policyfiles
 * Fix a regression in Windows packaging; the build step to upgrade the
