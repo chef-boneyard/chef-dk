@@ -56,7 +56,7 @@ module ChefDK
         :short => "-j JSON_ATTRIBS",
         :long => "--json-attributes JSON_ATTRIBS",
         :description => "Load attributes from a JSON file or URL",
-        :default => nil,
+        :default => {},
         :proc => Proc.new { |s| Chef::ConfigFetcher.new(File.expand_path(s)).fetch_json }
 
       option :generator_cookbook,
