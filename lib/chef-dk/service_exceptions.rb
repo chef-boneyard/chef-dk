@@ -36,24 +36,13 @@ module ChefDK
   class LockfileNotFound < PolicyfileServiceError
   end
 
-  class PolicyfileInstallError < PolicyfileServiceError
-
-    attr_reader :cause
-
-    def initialize(message, cause)
-      super(message)
-      @cause = cause
-    end
-
-  end
-
-  class PolicyfilePushError < PolicyfileServiceError
+  class PolicyfileNestedException < PolicyfileServiceError
 
     attr_reader :cause
     attr_reader :inspector
 
     def initialize(message, cause)
-      super('Failed to push policy to the server')
+      super(message)
       @inspector = inspector_for(cause)
       @cause = cause
     end
@@ -76,6 +65,12 @@ module ChefDK
       end
     end
 
+  end
+
+  class PolicyfileInstallError < PolicyfileNestedException
+  end
+
+  class PolicyfilePushError < PolicyfileNestedException
   end
 
 end

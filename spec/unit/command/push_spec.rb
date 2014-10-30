@@ -147,7 +147,7 @@ describe ChefDK::Command::Push do
         end
 
         let(:exception) do
-          ChefDK::PolicyfilePushError.new("install failed", cause)
+          ChefDK::PolicyfilePushError.new("push failed", cause)
         end
 
         before do
@@ -162,7 +162,7 @@ describe ChefDK::Command::Push do
           command.run(params)
 
           expected_output=<<-E
-Error: Failed to push policy to the server
+Error: push failed
 Reason: (StandardError) some operation failed
 
 E
@@ -181,7 +181,7 @@ E
             command.run(params)
 
             expected_output=<<-E
-Error: Failed to push policy to the server
+Error: push failed
 Reason: (StandardError) some operation failed
 
 
