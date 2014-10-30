@@ -21,6 +21,7 @@ require 'pathname'
 require 'chef-dk/command/base'
 require 'chef-dk/chef_runner'
 require 'chef-dk/generator'
+require 'chef/config_fetcher'
 
 module ChefDK
   module Command
@@ -50,6 +51,13 @@ module ChefDK
         :long => "--email EMAIL",
         :description => "Email address of the author - defaults to 'you@example.com'",
         :default => 'you@example.com'
+
+      option :json_attribs,
+        :short => "-j JSON_ATTRIBS",
+        :long => "--json-attributes JSON_ATTRIBS",
+        :description => "Load attributes from a JSON file or URL",
+        :default => {},
+        :proc => Proc.new { |s| Chef::ConfigFetcher.new(File.expand_path(s)).fetch_json }
 
       option :generator_cookbook,
         :short => "-g GENERATOR_COOKBOOK_PATH",
