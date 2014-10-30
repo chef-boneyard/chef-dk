@@ -125,9 +125,8 @@ describe ChefDK::Command::Install do
       it "displays the exception and cause" do
         expected_error_text=<<-E
 Error: install failed
-Reason: StandardError
+Reason: (StandardError) some operation failed
 
-some operation failed
 E
 
         command.run
@@ -141,9 +140,9 @@ E
         it "displays the exception and cause with backtrace" do
           expected_error_text=<<-E
 Error: install failed
-Reason: StandardError
+Reason: (StandardError) some operation failed
 
-some operation failed
+
 E
 
           expected_error_text << backtrace.join("\n") << "\n"
