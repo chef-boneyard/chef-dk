@@ -59,9 +59,9 @@ module ChefDK
 
     def inspector_for(exception)
       if exception.respond_to?(:response)
-        HTTPExceptionInspector.new(exception)
+        ServiceExceptionInspectors::HTTP.new(exception)
       else
-        BasicExceptionInspector.new(exception)
+        ServiceExceptionInspectors::Base.new(exception)
       end
     end
 

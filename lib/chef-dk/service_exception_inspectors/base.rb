@@ -15,11 +15,26 @@
 # limitations under the License.
 #
 
-require 'chef-dk/service_exception_inspectors/base'
-require 'chef-dk/service_exception_inspectors/http'
-
 module ChefDK
   module ServiceExceptionInspectors
+
+    class Base
+
+      attr_reader :exception
+
+      def initialize(exception)
+        @exception = exception
+      end
+
+      def message
+        exception.message
+      end
+
+      def extended_error_info
+        ""
+      end
+
+    end
   end
 end
 

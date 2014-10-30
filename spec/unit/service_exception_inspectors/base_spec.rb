@@ -15,11 +15,29 @@
 # limitations under the License.
 #
 
+require 'spec_helper'
 require 'chef-dk/service_exception_inspectors/base'
-require 'chef-dk/service_exception_inspectors/http'
 
-module ChefDK
-  module ServiceExceptionInspectors
+
+describe ChefDK::ServiceExceptionInspectors::Base do
+
+  let(:message) { "something went wrong, oops" }
+
+  let(:exception) { StandardError.new(message) }
+
+  subject(:inspector) { described_class.new(exception) }
+
+  it "has an exception" do
+    expect(inspector.exception).to eq(exception)
   end
+
+  it "gives the exception's message" do
+    expect(inspector.message).to eq(message)
+  end
+
+  it "has no extended error information" do
+    expect(inspector.extended_error_info).to eq("")
+  end
+
 end
 
