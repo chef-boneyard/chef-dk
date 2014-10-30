@@ -17,40 +17,6 @@
 
 module ChefDK
 
-  # Base class for errors raised by ChefDK::PolicyfileServices objects. Don't
-  # raise this directly, create a descriptively-named subclass. You can rescue
-  # this to catch all errors from PolicyfileServices objects though.
-  class PolicyfileServiceError < StandardError
-  end
-
-  class PolicyfileNotFound < PolicyfileServiceError
-  end
-
-  class LockfileNotFound < PolicyfileServiceError
-  end
-
-  class PolicyfileInstallError < PolicyfileServiceError
-
-    attr_reader :cause
-
-    def initialize(message, cause)
-      super(message)
-      @cause = cause
-    end
-
-  end
-
-  class PolicyfilePushError < PolicyfileServiceError
-
-    attr_reader :cause
-
-    def initialize(message, cause)
-      super(message)
-      @cause = cause
-    end
-
-  end
-
   class CachedCookbookNotFound < StandardError
   end
 

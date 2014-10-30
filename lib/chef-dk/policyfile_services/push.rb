@@ -15,6 +15,9 @@
 # limitations under the License.
 #
 
+require 'ffi_yajl'
+
+require 'chef-dk/service_exceptions'
 require 'chef-dk/authenticated_http'
 require 'chef-dk/policyfile_compiler'
 require 'chef-dk/policyfile/uploader'

@@ -162,10 +162,9 @@ describe ChefDK::Command::Push do
           command.run(params)
 
           expected_output=<<-E
-Error: install failed
-Reason: StandardError
+Error: Failed to push policy to the server
+Reason: (StandardError) some operation failed
 
-some operation failed
 E
 
           expect(ui.output).to eq(expected_output)
@@ -182,10 +181,10 @@ E
             command.run(params)
 
             expected_output=<<-E
-Error: install failed
-Reason: StandardError
+Error: Failed to push policy to the server
+Reason: (StandardError) some operation failed
 
-some operation failed
+
 E
             expected_output << backtrace.join("\n") << "\n"
 

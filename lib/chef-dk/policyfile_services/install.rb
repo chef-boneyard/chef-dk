@@ -15,7 +15,9 @@
 # limitations under the License.
 #
 
-require 'chef-dk/exceptions'
+require 'ffi_yajl'
+
+require 'chef-dk/service_exceptions'
 require 'chef-dk/policyfile_compiler'
 require 'chef-dk/policyfile/storage_config'
 require 'chef-dk/policyfile_lock'
