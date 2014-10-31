@@ -119,7 +119,7 @@ module ChefDK
       def upload_cookbooks
         ui.msg("WARN: Uploading cookbooks using semver compat mode")
 
-        uploader.upload_cookbooks
+        uploader.upload_cookbooks unless cookbook_versions_to_upload.empty?
 
         reused_cbs, uploaded_cbs = cookbook_versions_for_policy.partition do |cb_with_lock|
           remote_already_has_cookbook?(cb_with_lock.cookbook)
