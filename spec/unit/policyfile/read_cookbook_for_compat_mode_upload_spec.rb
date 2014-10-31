@@ -56,6 +56,10 @@ describe ChefDK::Policyfile::ReadCookbookForCompatModeUpload do
     expect(reader.cookbook_version.frozen_version?).to be true
   end
 
+  it "fixes up the cookbook manifest name" do
+    expect(reader.cookbook_version.manifest["name"]).to eq("noignore-#{version_override}")
+  end
+
   context "when a cookbook has a chefignore file" do
 
     let(:directory_path) { File.join(fixtures_path, "cookbook_cache/baz-f59ee7a5bca6a4e606b67f7f856b768d847c39bb") }

@@ -15,8 +15,9 @@
 # limitations under the License.
 #
 
+# This fixes a missing require in chef/digester:
+require 'singleton'
 require 'chef/cookbook/cookbook_version_loader'
-
 require 'chef/cookbook/chefignore'
 
 module ChefDK
@@ -47,6 +48,15 @@ module ChefDK
           begin
             cookbook_version = loader.cookbook_version
             cookbook_version.version = version_override
+
+            # Fixup manifest.
+            # What happens is, the 'manifest' representation of cookbook
+            # version is created, it has a "name" field like foo-1.0.0, then we
+            # change the version to 1234.5678.9876 but the manifest is not
+            # regenerated so erchef rejects our upload b/c the name field
+            # doesn't match the expected `$cookbook_name-$version` based on the
+            # other fields.
+            cookbook_version.manifest[:name] = "#{cookbook_version.name}-#{version_override}"
             cookbook_version.freeze_version
             cookbook_version
           end
