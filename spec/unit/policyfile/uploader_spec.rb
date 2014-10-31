@@ -283,6 +283,37 @@ describe ChefDK::Policyfile::Uploader do
 
     end
 
+    context "with a set of cookbooks that all exist on the server" do
+
+      before do
+        # Have this one:
+        lock_double("build-essential", "67369247788170534.26353953100055918.55660493423796")
+      end
+
+      let(:expected_cookbooks_for_upload) do
+        []
+      end
+
+      it "lists no cookbooks as needing to be uploaded" do
+        expect(policyfile_lock).to receive(:validate_cookbooks!)
+        expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
+
+        expect(uploader.cookbook_versions_to_upload).to eq(expected_cookbooks_for_upload)
+      end
+
+      it "skips cookbooks uploads, then uploads the policy" do
+        expect(policyfile_lock).to receive(:validate_cookbooks!)
+        expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
+
+        expect(uploader.uploader).to_not receive(:upload_cookbooks)
+
+        # behavior for these tested above
+        expect(uploader).to receive(:data_bag_create)
+        expect(uploader).to receive(:data_bag_item_create)
+
+        uploader.upload
+      end
+    end
   end
 
 end
