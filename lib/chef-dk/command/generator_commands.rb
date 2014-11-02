@@ -58,6 +58,14 @@ module ChefDK
         :default => File.expand_path("../../skeletons", __FILE__),
         :proc => Proc.new { |s| File.expand_path(s) },
         :on => :tail
+
+      generator_args = [] # accumulator variable
+      option :generator_arg,
+        :short => "-a KEY=VALUE",
+        :long  => "--generator-arg KEY=VALUE",
+        :description => "Use to set arbitrary attribute KEY to VALUE in the code_generator cookbook",
+        :default => [],
+        :proc => Proc.new { |s| generator_args <<  s.split("=")}
     end
 
     # ## GeneratorCommands
