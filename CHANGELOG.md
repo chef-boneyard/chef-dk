@@ -1,5 +1,16 @@
 # Chef Development Kit Changelog
 
+# Unreleased
+
+* [**Martin Smith**](https://github.com/martinb3): Add the ability to
+specify arbitrary context attributes in generators from the command
+line. Attributes are specified by passing the `--generator-arg` option
+to a `chef generate` command with arguments of the form `key=value`. For
+example, if you pass the option `--generator-arg database=mysql`, you
+can access this in generator recipes with
+`ChefDK::Generator.context.database` (which will return `"mysql"` in
+this example).
+
 # Last Release: 0.3.2
 
 * Revert the packaged certificate bundle to the '2014.08.20' version.
