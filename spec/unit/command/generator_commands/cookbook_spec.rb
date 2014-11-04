@@ -201,5 +201,31 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
     end
   end
 
-end
+  context "when given generic arguments to populate the generator context" do
+    let(:argv) { [ "new_cookbook", "--generator-arg", "key1=value1", "-a", "key2=value2", "-a", " key3 = value3 " ] }
 
+    before do
+      reset_tempdir
+    end
+
+    it "configures the generator context for long form option key1" do
+      cookbook_generator.read_and_validate_params
+      cookbook_generator.setup_context
+      expect(generator_context.key1).to eq('value1')
+    end
+
+    it "configures the generator context for short form option key2" do
+      cookbook_generator.read_and_validate_params
+      cookbook_generator.setup_context
+      expect(generator_context.key2).to eq('value2')
+    end
+
+    it "configures the generator context for key3 containing additional spaces" do
+      cookbook_generator.read_and_validate_params
+      cookbook_generator.setup_context
+      expect(generator_context.key3).to eq('value3')
+    end
+
+  end
+
+end

@@ -65,7 +65,7 @@ module ChefDK
         :long  => "--generator-arg KEY=VALUE",
         :description => "Use to set arbitrary attribute KEY to VALUE in the code_generator cookbook",
         :default => [],
-        :proc => Proc.new { |s| generator_args <<  s.split("=")}
+        :proc => Proc.new { |s| generator_args <<  s.split("=").map(&:strip) }
     end
 
     # ## GeneratorCommands
