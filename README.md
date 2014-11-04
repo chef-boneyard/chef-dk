@@ -70,6 +70,11 @@ cookbook. Supports the `-s SOURCE` option similar to template.
 * `chef generate lwrp` Creates a new LWRP resource and provider in an
 existing cookbook.
 
+The `chef generate` command also accepts additional `--generator-arg key=value`
+pairs that can be used to supply ad-hoc data to a generator cookbook.
+For example, you might specify `--generator-arg database=mysql` and then only
+write a template for `recipes/mysql.rb` if `context.database == 'mysql'`.
+
 #### `chef gem`
 `chef gem` is a wrapper command that manages installation and updating
 of rubygems for the Ruby installation embedded in the ChefDK package.
