@@ -60,6 +60,10 @@ module ChefDK
           config.each do |k,v|
             Generator.add_attr_to_context(k, v)
           end
+          # inject the arbitrary args supplied on cmdline, default = []
+          config[:generator_arg].each do |k,v|
+            Generator.add_attr_to_context(k, v)
+          end
         end
 
         # Checks the `PATH` for the presence of a `git` (or `git.exe`, on
@@ -73,4 +77,3 @@ module ChefDK
     end
   end
 end
-
