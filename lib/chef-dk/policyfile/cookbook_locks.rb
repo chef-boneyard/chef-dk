@@ -279,6 +279,7 @@ module ChefDK
 
         @identifier_updated = false
         @version_updated = false
+        @cookbook_in_git_repo = nil
       end
 
       def cookbook_path
@@ -286,7 +287,7 @@ module ChefDK
       end
 
       def scm_profiler
-        if File.exist?(File.join(cookbook_path, ".git"))
+        if cookbook_in_git_repo?
           CookbookProfiler::Git.new(cookbook_path)
         else
           CookbookProfiler::NullSCM.new(cookbook_path)
@@ -371,6 +372,23 @@ module ChefDK
         unless source.kind_of?(String)
           raise InvalidLockfile, "Lockfile cookbook_lock for #{name} is invalid: `source' attribute must be a String (got: #{source.inspect})"
         end
+      end
+
+      def cookbook_in_git_repo?
+        return @cookbook_in_git_repo unless @cookbook_in_git_repo.nil?
+
+        @cookbook_in_git_repo = false
+
+        dot_git = Pathname.new(".git")
+        Pathname.new(cookbook_path).ascend do |parent_dir|
+          possbile_git_dir = parent_dir + dot_git
+          if possbile_git_dir.exist?
+            @cookbook_in_git_repo = true
+            break
+          end
+        end
+
+        @cookbook_in_git_repo
       end
 
     end
