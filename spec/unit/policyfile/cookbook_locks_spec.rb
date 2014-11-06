@@ -285,7 +285,6 @@ describe ChefDK::Policyfile::LocalCookbook do
         let(:git_dir_path) { File.join(tempdir, "cookbook_repo/.git") }
 
         it "selects the git profiler" do
-          pending
           expect(cookbook_lock.scm_profiler).to be_an_instance_of(ChefDK::CookbookProfiler::Git)
         end
 
