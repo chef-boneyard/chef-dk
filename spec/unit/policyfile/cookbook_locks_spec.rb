@@ -244,6 +244,65 @@ describe ChefDK::Policyfile::LocalCookbook do
 
   end
 
+  describe "selecting an SCM profiler" do
+
+    let(:cookbook_source_relpath) { "nginx" }
+
+    let(:cookbook_source_path) do
+      path = File.join(tempdir, cookbook_source_relpath)
+      FileUtils.mkdir_p(path)
+      path
+    end
+
+    before do
+      cookbook_lock.source = cookbook_source_path
+    end
+
+    after do
+      clear_tempdir
+    end
+
+    context "when the cookbook is in a git-repo" do
+
+      before do
+        FileUtils.mkdir_p(git_dir_path)
+      end
+
+      context "when the cookbook is a self-contained git repo" do
+
+        let(:git_dir_path) { File.join(cookbook_source_path, ".git") }
+
+        it "selects the git profiler" do
+          expect(cookbook_lock.scm_profiler).to be_an_instance_of(ChefDK::CookbookProfiler::Git)
+        end
+
+      end
+
+      context "when the cookbook is a subdirectory of a git repo" do
+
+        let(:cookbook_source_relpath) { "cookbook_repo/nginx" }
+
+        let(:git_dir_path) { File.join(tempdir, "cookbook_repo/.git") }
+
+        it "selects the git profiler" do
+          pending
+          expect(cookbook_lock.scm_profiler).to be_an_instance_of(ChefDK::CookbookProfiler::Git)
+        end
+
+      end
+
+    end
+
+    context "when the cookbook is not in a git repo" do
+
+      it "selects the null profiler" do
+        expect(cookbook_lock.scm_profiler).to be_an_instance_of(ChefDK::CookbookProfiler::NullSCM)
+      end
+
+    end
+
+  end
+
   context "when loading data from a serialized form" do
 
     let(:previous_lock_data) do
