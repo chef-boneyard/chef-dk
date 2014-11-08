@@ -151,7 +151,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 EOH
         end
         if comment
-          result.gsub(/^/m, "#{comment} ")
+          result.gsub(/^(.+)$/, "#{comment} \\1").gsub(/^$/, "#{comment}")
         else
           result
         end
