@@ -22,7 +22,7 @@ module ChefDK
   module Command
     class ShellInit < ChefDK::Command::Base
 
-      SUPPORTED_SHELLS = %w[ bash zsh sh powershell cmd].map(&:freeze).freeze
+      SUPPORTED_SHELLS = %w[ bash zsh sh powershell posh cmd ].map(&:freeze).freeze
 
       banner(<<-HELP)
 Usage: chef shell-init
@@ -58,6 +58,38 @@ HELP
         config[:omnibus_dir] || super
       end
 
+      # some of these environment variables have quotes around them as written
+      # if that is not the case, add them for powershell set-item invocation
+      def singlequote(value)
+          quotechars = %w[ ' " ]
+          if (!quotechars.include?(value[0]))
+            return "'#{value}'"
+          end
+          value
+      end
+
+      # Powershell symbol export
+      # note that this requires the fix for #180
+      # https://github.com/opscode/chef-dk/issues/180
+      def powershell(name, value)
+        value = singlequote value
+        msg("Set-Item Env:\\#{name} #{value}")
+      end
+      alias :posh :powershell
+
+      # Windows cmd symbol export
+      # note that this requires the fix for #180
+      # https://github.com/opscode/chef-dk/issues/180
+      def cmd(name, value)
+        msg("SET #{name}=#{value}")
+      end
+
+      def sh(name, value)
+        msg("export #{name}=#{value}")
+      end
+      alias :bash :sh
+      alias :zsh :sh
+
       def run(argv)
         remaining_args = parse_options(argv)
         shell_name = remaining_args.first
@@ -73,36 +105,9 @@ HELP
 
         env = omnibus_env.dup
         path = env.delete("PATH")
-        if shell_name == "powershell"
-          # some of these environment variables have quotes around them as written
-          # if that is not the case, add them for powershell set-item invocation
-          quotechars = %w[ ' " ]
-          if (!quotechars.include?(path[0]))
-            path = "'#{path}'"
-          end
-          # note that this requires the fix for #180
-          # https://github.com/opscode/chef-dk/issues/180
-          msg("Set-Item Env:\\PATH #{path}")
-          env.each do |var_name, value|
-            # some of these environment variables have quotes around them as written
-            # if that is not the case, add them for powershell set-item invocation
-            if (!quotechars.include?(value[0]))
-              value = "'#{value}'"
-            end
-            msg("Set-Item Env:\\#{var_name} #{value}")
-          end
-        elsif shell_name == "cmd"
-          # note that this requires the fix for #180
-          # https://github.com/opscode/chef-dk/issues/180
-          msg("SET PATH=#{path}")
-          env.each do |var_name, value|
-            msg("SET #{var_name}=#{value}")
-          end
-        else
-          msg("export PATH=#{path}")
-          env.each do |var_name, value|
-            msg("export #{var_name}=#{value}")
-          end
+        self.send shell_name, "PATH", path
+        env.each do |var_name, value|
+          self.send shell_name, var_name, value
         end
         0
       end
