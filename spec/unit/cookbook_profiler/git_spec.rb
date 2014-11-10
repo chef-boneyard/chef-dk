@@ -59,6 +59,18 @@ describe ChefDK::CookbookProfiler::Git do
 
   end
 
+  context "when the remote is a local branch" do
+
+    before do
+      allow(git_profiler).to receive(:remote_name).and_return(".")
+    end
+
+    it "reports that the repo doesn't have a remote" do
+      expect(git_profiler.have_remote?).to be(false)
+    end
+
+  end
+
   context "with a remote configured" do
 
     include_context "setup git cookbook remote"

@@ -74,7 +74,7 @@ module ChefDK
       end
 
       def have_remote?
-        !remote_name.empty?
+        !remote_name.empty? && remote_name != '.'
       end
 
       def current_branch
