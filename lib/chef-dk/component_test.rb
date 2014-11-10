@@ -131,7 +131,13 @@ module ChefDK
 
     def gem_base_dir
       return nil if @gem_name_for_base_dir.nil?
-      Gem::Specification::find_by_name(@gem_name_for_base_dir).gem_dir
+      # There is no way to say "give me the latest prerelease OR normal version of this gem.
+      # So we first ask if there is a normal version, and if there is not, we ask if there
+      # is a prerelease version.  ">= 0.a" is how we ask for a prerelease version, because a
+      # prerelease version is defined as "any version with a letter in it."
+      gem = Gem::Specification::find_by_name(@gem_name_for_base_dir)
+      gem ||= Gem::Specification::find_by_name(@gem_name_for_base_dir, '>= 0.a')
+      gem.gem_dir
     end
 
     def gem_base_dir=(gem_name)
@@ -152,4 +158,3 @@ module ChefDK
 
   end
 end
-
