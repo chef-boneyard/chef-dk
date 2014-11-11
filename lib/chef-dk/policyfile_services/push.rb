@@ -89,7 +89,7 @@ module ChefDK
       end
 
       def write_updated_lockfile
-        File.open(policyfile_lock_expanded_path, "w+") do |f|
+        File.open(policyfile_lock_expanded_path, "wb+") do |f|
           f.print(FFI_Yajl::Encoder.encode(policyfile_lock.to_lock, pretty: true ))
         end
       end

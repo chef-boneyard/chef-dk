@@ -158,7 +158,7 @@ E
 
       before do
         ensure_metadata_as_expected!
-        File.open(metadata_path, "w+") { |f| f.print(new_metadata) }
+        File.open(metadata_path, "wb+") { |f| f.print(new_metadata) }
       end
 
       it "reports the unexpected cookbook and fails validation" do
@@ -187,7 +187,7 @@ E
 
       before do
         ensure_metadata_as_expected!
-        File.open(metadata_path, "w+") { |f| f.print(new_metadata) }
+        File.open(metadata_path, "wb+") { |f| f.print(new_metadata) }
         policyfile_lock.validate_cookbooks! # no error
       end
 
@@ -197,7 +197,6 @@ E
 
       it "updates the content identifier" do
         old_id = lock_generator.lock_data_for("local-cookbook").identifier
-
         expect(cookbook_lock_data.identifier).to_not eq(old_id)
         expect(cookbook_lock_data.identifier).to eq("d71622904ed89b1e0066bb4ae823b2a7b49a615a")
       end
@@ -259,7 +258,7 @@ E
 
       before do
         ensure_metadata_as_expected!
-        File.open(recipe_path, "w+") { |f| f.print(new_recipe) }
+        File.open(recipe_path, "wb+") { |f| f.print(new_recipe) }
         policyfile_lock.validate_cookbooks! # no error
       end
 
@@ -297,7 +296,7 @@ E
 
       before do
         ensure_metadata_as_expected!
-        File.open(metadata_path, "w+") { |f| f.print(new_metadata) }
+        File.open(metadata_path, "wb+") { |f| f.print(new_metadata) }
         policyfile_lock.validate_cookbooks! # no error
       end
 
@@ -344,7 +343,7 @@ E
 
       before do
         ensure_metadata_as_expected!
-        File.open(metadata_path, "w+") { |f| f.print(new_metadata) }
+        File.open(metadata_path, "wb+") { |f| f.print(new_metadata) }
       end
 
       it "reports the not-satisfied dependency and validation fails" do
@@ -384,7 +383,7 @@ E
 
       before do
         ensure_metadata_as_expected!
-        File.open(metadata_path, "w+") { |f| f.print(new_metadata) }
+        File.open(metadata_path, "wb+") { |f| f.print(new_metadata) }
         policyfile_lock.validate_cookbooks! # no error
       end
 
@@ -418,7 +417,7 @@ E
 
       before do
         ensure_metadata_as_expected!
-        File.open(metadata_path, "w+") { |f| f.print(new_metadata) }
+        File.open(metadata_path, "wb+") { |f| f.print(new_metadata) }
       end
 
       it "reports the not-satisfied dependency and validation fails" do
@@ -509,8 +508,8 @@ E
 
       before do
         ensure_metadata_as_expected!
-        File.open(metadata_path, "w+") { |f| f.print(new_metadata_local_cookbook) }
-        File.open(metadata_path_another_local_cookbook, "w+") { |f| f.print(new_metadata_another_local_cookbook) }
+        File.open(metadata_path, "wb+") { |f| f.print(new_metadata_local_cookbook) }
+        File.open(metadata_path_another_local_cookbook, "wb+") { |f| f.print(new_metadata_another_local_cookbook) }
         policyfile_lock.validate_cookbooks! # no error
       end
 
@@ -597,7 +596,7 @@ E
       before do
         ensure_metadata_as_expected!
         policyfile_lock
-        File.open(metadata_path, "w+") { |f| f.print(new_metadata) }
+        File.open(metadata_path, "wb+") { |f| f.print(new_metadata) }
       end
 
       it "reports the modified cached cookbook and validation fails" do

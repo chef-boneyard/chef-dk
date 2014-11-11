@@ -93,7 +93,7 @@ module ChefDK
 
         lock_data = policyfile_compiler.lock.to_lock
 
-        File.open(policyfile_lock_expanded_path, "w+") do |f|
+        File.open(policyfile_lock_expanded_path, "wb+") do |f|
           f.print(FFI_Yajl::Encoder.encode(lock_data, pretty: true ))
         end
 
