@@ -170,6 +170,7 @@ E
     before do
       allow(Gem).to receive(:ruby).and_return(ruby_path)
       allow(File).to receive(:exist?).with(chefdk_embedded_path).and_return(true)
+      allow(cli).to receive(:omnibus_chefdk_location).and_return(chefdk_embedded_path)
     end
 
     context "when installed via omnibus" do
@@ -178,9 +179,16 @@ E
 
         let(:ruby_path) { '/opt/chefdk/embedded/bin/ruby' }
         let(:chefdk_embedded_path) { '/opt/chefdk/embedded/apps/chef-dk' }
+        
+        before do
+          stub_const("File::PATH_SEPARATOR", ':')
+          allow(Chef::Util::PathHelper).to receive(:cleanpath) do |path|
+            path
+          end
+        end
 
         it "complains if embedded is first" do
-          expect(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/embedded/bin:/opt/chefdk/bin' })
+          allow(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/embedded/bin:/opt/chefdk/bin' })
           allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("/opt/chefdk/embedded/bin")
           allow(cli).to receive(:omnibus_bin_dir).and_return("/opt/chefdk/bin")
           run_cli_with_sanity_check(0)
@@ -190,7 +198,7 @@ E
         end
 
         it "complains if only embedded is present" do
-          expect(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/embedded/bin' })
+          allow(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/embedded/bin' })
           allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("/opt/chefdk/embedded/bin")
           allow(cli).to receive(:omnibus_bin_dir).and_return("/opt/chefdk/bin")
           run_cli_with_sanity_check(0)
@@ -200,7 +208,7 @@ E
         end
 
         it "passes when both are present in the correct order" do
-          expect(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/bin:/opt/chefdk/embedded/bin' })
+          allow(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/bin:/opt/chefdk/embedded/bin' })
           allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("/opt/chefdk/embedded/bin")
           allow(cli).to receive(:omnibus_bin_dir).and_return("/opt/chefdk/bin")
           run_cli_with_sanity_check(0)
@@ -208,7 +216,7 @@ E
         end
 
         it "passes when only the omnibus bin dir is present" do
-          expect(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/bin' })
+          allow(cli).to receive(:env).and_return({'PATH' => '/opt/chefdk/bin' })
           allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("/opt/chefdk/embedded/bin")
           allow(cli).to receive(:omnibus_bin_dir).and_return("/opt/chefdk/bin")
           run_cli_with_sanity_check(0)
@@ -233,10 +241,13 @@ E
 
           allow(Chef::Platform).to receive(:windows?).and_return(true)
           stub_const("File::PATH_SEPARATOR", ';')
+          allow(Chef::Util::PathHelper).to receive(:cleanpath) do |path|
+            path.gsub "/", "\\"
+          end
         end
 
         it "complains if embedded is first" do
-          expect(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\embedded\bin;C:\opscode\chefdk\bin' })
+          allow(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\embedded\bin;C:\opscode\chefdk\bin' })
           allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("c:/opscode/chefdk/embedded/bin")
           allow(cli).to receive(:omnibus_bin_dir).and_return("c:/opscode/chefdk/bin")
           run_cli_with_sanity_check(0)
@@ -246,7 +257,7 @@ E
         end
 
         it "complains if only embedded is present" do
-          expect(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\embedded\bin' })
+          allow(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\embedded\bin' })
           allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("c:/opscode/chefdk/embedded/bin")
           allow(cli).to receive(:omnibus_bin_dir).and_return("c:/opscode/chefdk/bin")
           run_cli_with_sanity_check(0)
@@ -256,7 +267,7 @@ E
         end
 
         it "passes when both are present in the correct order" do
-          expect(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\bin;C:\opscode\chefdk\embedded\bin' })
+          allow(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\bin;C:\opscode\chefdk\embedded\bin' })
           allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("c:/opscode/chefdk/embedded/bin")
           allow(cli).to receive(:omnibus_bin_dir).and_return("c:/opscode/chefdk/bin")
           run_cli_with_sanity_check(0)
@@ -264,7 +275,7 @@ E
         end
 
         it "passes when only the omnibus bin dir is present" do
-          expect(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\bin' })
+          allow(cli).to receive(:env).and_return({'PATH' => 'C:\opscode\chefdk\bin' })
           allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("c:/opscode/chefdk/embedded/bin")
           allow(cli).to receive(:omnibus_bin_dir).and_return("c:/opscode/chefdk/bin")
           run_cli_with_sanity_check(0)
