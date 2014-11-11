@@ -30,79 +30,161 @@ describe ChefDK::Command::ShellInit do
     end
   end
 
-  let(:argv) { ['bash'] }
-
   let(:user_bin_dir) { File.expand_path(File.join(Gem.user_dir, 'bin')) }
-
-  let(:expected_path) { "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}" }
 
   let(:expected_gem_root) { Gem.default_dir.to_s }
 
   let(:expected_gem_home) { Gem.user_dir }
 
-  let(:expected_gem_path) { Gem.path.join(':') }
+  context "running on *nix" do
 
-  let(:expected_environment_commands) do
-    <<-EOH
-export PATH=#{expected_path}
-export GEM_ROOT="#{expected_gem_root}"
-export GEM_HOME=#{expected_gem_home}
-export GEM_PATH=#{expected_gem_path}
-EOH
-  end
-
-  context "with no explicit omnibus directory" do
+    # I have no idea how to actually tell Ruby that we are running on *nix
+    # in particular, it needs to override the File::PATH_SEPARATOR constant
 
     let(:omnibus_bin_dir) { "/foo/bin" }
     let(:omnibus_embedded_bin_dir) { "/foo/embedded/bin" }
+    let(:expected_path) { "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}" }
+    let(:expected_gem_path) { Gem.path.join(':') }
+
+    let(:expected_environment_commands) do
+      <<-EOH.gsub(/^\s+/, '')
+        export PATH=#{expected_path}
+        export GEM_ROOT="#{expected_gem_root}"
+        export GEM_HOME=#{expected_gem_home}
+        export GEM_PATH=#{expected_gem_path}
+      EOH
+    end
 
     before do
       allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
       allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
     end
 
-    it "emits a script to add ChefDK's ruby to the shell environment" do
-      command_instance.run(argv)
-      expect(stdout_io.string).to eq(expected_environment_commands)
+    # bash, sh, zsh all share the same syntax for environment variables
+    # test them each, but the test is identical
+    ['bash', 'sh', 'zsh'].each do |shell|
+      context "specifying #{shell}" do
+        let(:argv) { [shell] }
+
+        context "with no explicit omnibus directory" do
+
+          it "emits a script to add ChefDK's ruby to the shell environment" do
+            command_instance.run(argv)
+            expect(stdout_io.string).to eq(expected_environment_commands)
+          end
+
+        end
+
+        context "with an explicit omnibus directory as an argument" do
+
+          let(:omnibus_root) { File.join(fixtures_path, "eg_omnibus_dir/valid/") }
+          let(:omnibus_bin_dir) { File.join(omnibus_root, "bin") }
+          let(:omnibus_embedded_bin_dir) { File.join(omnibus_root, "embedded/bin") }
+
+          let(:argv) { [shell, "--omnibus-dir", omnibus_root] }
+
+          it "emits a script to add ChefDK's ruby to the shell environment" do
+            command_instance.run(argv)
+            expect(stdout_io.string).to eq(expected_environment_commands)
+          end
+        end
+
+      end
+    end
+  end
+
+  context "running on Windows" do
+
+    # I have no idea how to actually tell Ruby that we are running on Windows
+    # in particular, it needs to override the File::PATH_SEPARATOR constant
+
+    let(:omnibus_bin_dir) { 'C:\foo\bin' }
+    let(:omnibus_embedded_bin_dir) { 'C:\foo\embedded\bin' }
+
+    # These should use ';' instead of ':' for Windows, but I can't seem to force that
+    # in the rspec context.  It works in the deployed app if the fix for #180
+    # (https://github.com/opscode/chef-dk/issues/180) is included
+    # Net result - this is not testing the correct result.
+    let(:expected_path) { "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}" }
+    let(:expected_gem_path) { Gem.path.join(':') }
+
+    before do
+      allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
+      allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
     end
 
-    context "when no shell is specified" do
+    context "specifying cmd" do
 
-      let(:argv) { [] }
+      let(:argv) { ['cmd'] }
 
-      it "exits with an error message" do
-        expect(command_instance.run(argv)).to eq(1)
-        expect(stderr_io.string).to include("Please specify what shell you are using")
+      let(:expected_environment_commands) do
+        <<-EOH.gsub(/^\s+/, '')
+          SET PATH=#{expected_path}
+          SET GEM_ROOT="#{expected_gem_root}"
+          SET GEM_HOME=#{expected_gem_home}
+          SET GEM_PATH=#{expected_gem_path}
+        EOH
+      end
+
+      it "emits a script to add ChefDK's ruby to the shell environment" do
+        command_instance.run(argv)
+        expect(stdout_io.string).to eq(expected_environment_commands)
       end
 
     end
 
-    context "when an unsupported shell is specified" do
+    context "specifying powershell" do
 
-      let(:argv) { ['nosuchsh'] }
+      let(:argv) { ['powershell'] }
 
-      it "exits with an error message" do
-        expect(command_instance.run(argv)).to eq(1)
-        expect(stderr_io.string).to include("Shell `nosuchsh' is not currently supported")
-        expect(stderr_io.string).to include("Supported shells are: bash zsh sh")
+      let(:expected_environment_commands) do
+        <<-EOH.gsub(/^\s+/, '')
+          Set-Item Env:\\PATH '#{expected_path}'
+          Set-Item Env:\\GEM_ROOT "#{expected_gem_root}"
+          Set-Item Env:\\GEM_HOME '#{expected_gem_home}'
+          Set-Item Env:\\GEM_PATH '#{expected_gem_path}'
+        EOH
       end
 
+      it "emits a script to add ChefDK's ruby to the shell environment" do
+        command_instance.run(argv)
+        expect(stdout_io.string).to eq(expected_environment_commands)
+      end
+
+    end
+  end
+
+  context "when no shell is specified" do
+
+    let(:argv) { [] }
+
+    it "exits with an error message" do
+      expect(command_instance.run(argv)).to eq(1)
+      expect(stderr_io.string).to include("Please specify what shell you are using")
+    end
+
+    it "provides help for *sh" do
+      expect(command_instance.run(argv)).to eq(1)
+      expect(stderr_io.string).to include("\$(chef shell-init SHELL_NAME)")
+    end
+
+    it "provides help for powershell" do
+      expect(command_instance.run(argv)).to eq(1)
+      expect(stderr_io.string).to include("chef shell-init powershell | Invoke-Expression")
     end
 
   end
 
-  context "with an explicit omnibus directory as an argument" do
+  context "when an unsupported shell is specified" do
 
-    let(:omnibus_root) { File.join(fixtures_path, "eg_omnibus_dir/valid/") }
-    let(:omnibus_bin_dir) { File.join(omnibus_root, "bin") }
-    let(:omnibus_embedded_bin_dir) { File.join(omnibus_root, "embedded/bin") }
+    let(:argv) { ['nosuchsh'] }
 
-    let(:argv) { ["bash", "--omnibus-dir", omnibus_root] }
-
-    it "emits a script to add ChefDK's ruby to the shell environment" do
-      command_instance.run(argv)
-      expect(stdout_io.string).to eq(expected_environment_commands)
+    it "exits with an error message" do
+      expect(command_instance.run(argv)).to eq(1)
+      expect(stderr_io.string).to include("Shell `nosuchsh' is not currently supported")
+      expect(stderr_io.string).to include("Supported shells are: bash zsh sh powershell posh cmd")
     end
+
   end
 
 end
