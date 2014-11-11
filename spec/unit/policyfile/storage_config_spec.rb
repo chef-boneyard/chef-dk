@@ -79,7 +79,7 @@ describe ChefDK::Policyfile::StorageConfig do
     end
 
     it "gives the expanded path to the policyfile" do
-      expect(storage_config.policyfile_expanded_path).to eq('/path/to/Policyfile.rb')
+      expect(storage_config.policyfile_expanded_path).to eq(File.expand_path('/path/to/Policyfile.rb'))
     end
 
     context "when the policyfile is given as a relative path" do
@@ -137,7 +137,7 @@ describe ChefDK::Policyfile::StorageConfig do
     end
 
     it "gives the expanded path to the policyfile lock" do
-      expect(storage_config.policyfile_lock_expanded_path).to eq("/path/to/Policyfile.lock.json")
+      expect(storage_config.policyfile_lock_expanded_path).to eq(File.expand_path("/path/to/Policyfile.lock.json"))
     end
 
     context "when given a relative path to the policyfile lock" do
