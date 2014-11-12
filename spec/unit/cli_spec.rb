@@ -184,9 +184,9 @@ E
           allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("/opt/chefdk/embedded/bin")
           allow(cli).to receive(:omnibus_bin_dir).and_return("/opt/chefdk/bin")
           run_cli_with_sanity_check(0)
-          expect(stdout).not_to eq(base_help_message)
-          expect(stdout).to include("please reverse that order")
-          expect(stdout).to include("chef shell-init")
+          expect(stdout).to eq(base_help_message)
+          expect(stderr).to include("please reverse that order")
+          expect(stderr).to include("chef shell-init")
         end
 
         it "complains if only embedded is present" do
@@ -194,9 +194,9 @@ E
           allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("/opt/chefdk/embedded/bin")
           allow(cli).to receive(:omnibus_bin_dir).and_return("/opt/chefdk/bin")
           run_cli_with_sanity_check(0)
-          expect(stdout).not_to eq(base_help_message)
-          expect(stdout).to include("you must add")
-          expect(stdout).to include("chef shell-init")
+          expect(stdout).to eq(base_help_message)
+          expect(stderr).to include("you must add")
+          expect(stderr).to include("chef shell-init")
         end
 
         it "passes when both are present in the correct order" do
@@ -240,9 +240,9 @@ E
           allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("c:/opscode/chefdk/embedded/bin")
           allow(cli).to receive(:omnibus_bin_dir).and_return("c:/opscode/chefdk/bin")
           run_cli_with_sanity_check(0)
-          expect(stdout).not_to eq(base_help_message)
-          expect(stdout).to include("please reverse that order")
-          expect(stdout).to include("chef shell-init")
+          expect(stdout).to eq(base_help_message)
+          expect(stderr).to include("please reverse that order")
+          expect(stderr).to include("chef shell-init")
         end
 
         it "complains if only embedded is present" do
@@ -250,9 +250,9 @@ E
           allow(cli).to receive(:omnibus_embedded_bin_dir).and_return("c:/opscode/chefdk/embedded/bin")
           allow(cli).to receive(:omnibus_bin_dir).and_return("c:/opscode/chefdk/bin")
           run_cli_with_sanity_check(0)
-          expect(stdout).not_to eq(base_help_message)
-          expect(stdout).to include("you must add")
-          expect(stdout).to include("chef shell-init")
+          expect(stdout).to eq(base_help_message)
+          expect(stderr).to include("you must add")
+          expect(stderr).to include("chef shell-init")
         end
 
         it "passes when both are present in the correct order" do

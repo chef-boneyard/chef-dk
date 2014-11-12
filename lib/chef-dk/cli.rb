@@ -170,12 +170,12 @@ BANNER
       if embed_index
         if bin_index
           if embed_index < bin_index
-            msg("WARN: #{omnibus_embedded_bin_dir} is before #{omnibus_bin_dir} in your #{path_key}, please reverse that order.")
-            msg("WARN: consider using the correct `chef shell-init <shell>` command to setup your environment correctly.")
+            err("WARN: #{omnibus_embedded_bin_dir} is before #{omnibus_bin_dir} in your #{path_key}, please reverse that order.")
+            err("WARN: consider using the correct `chef shell-init <shell>` command to setup your environment correctly.")
           end
         else
-          msg("WARN: only #{omnibus_embedded_bin_dir} is present in your path, you must add #{omnibus_bin_dir} before that directory.")
-          msg("WARN: consider using the correct `chef shell-init <shell>` command to setup your environment correctly.")
+          err("WARN: only #{omnibus_embedded_bin_dir} is present in your path, you must add #{omnibus_bin_dir} before that directory.")
+          err("WARN: consider using the correct `chef shell-init <shell>` command to setup your environment correctly.")
         end
       end
     end
