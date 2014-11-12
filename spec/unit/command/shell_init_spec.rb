@@ -61,7 +61,7 @@ describe ChefDK::Command::ShellInit do
       stub_const("File::PATH_SEPARATOR", separator)
     end
 
-    RSpec.shared_examples "a unix shell" do
+    shared_examples "a unix shell" do
       context "with no explicit omnibus directory" do
         let(:argv) { [shell] }
 
