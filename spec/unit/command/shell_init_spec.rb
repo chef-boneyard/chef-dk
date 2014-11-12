@@ -35,24 +35,16 @@ describe ChefDK::Command::ShellInit do
   end
 
   let(:argv) { ['bash'] }
-
+  let(:separator) { ':' }
   let(:user_bin_dir) { File.expand_path(File.join(Gem.user_dir, 'bin')) }
-
-  let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(File::PATH_SEPARATOR) }
-
   let(:expected_gem_root) { Gem.default_dir.to_s }
-
   let(:expected_gem_home) { Gem.user_dir }
+  let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(File::PATH_SEPARATOR) }
+  let(:expected_gem_path) { Gem.path.join(separator) }
 
   context "running on *nix" do
-
-    # I have no idea how to actually tell Ruby that we are running on *nix
-    # in particular, it needs to override the File::PATH_SEPARATOR constant
-
     let(:omnibus_bin_dir) { "/foo/bin" }
     let(:omnibus_embedded_bin_dir) { "/foo/embedded/bin" }
-    let(:expected_path) { "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}" }
-    let(:expected_gem_path) { Gem.path.join(':') }
 
     let(:expected_environment_commands) do
       <<-EOH.gsub(/^\s+/, '')
@@ -66,59 +58,66 @@ describe ChefDK::Command::ShellInit do
     before do
       allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
       allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
+      stub_const("File::PATH_SEPARATOR", separator)
+    end
+
+    RSpec.shared_examples "a unix shell" do
+      context "with no explicit omnibus directory" do
+        let(:argv) { [shell] }
+
+        it "emits a script to add ChefDK's ruby to the shell environment" do
+          command_instance.run([shell])
+          expect(stdout_io.string).to eq(expected_environment_commands)
+        end
+      end
+
+      context "with an explicit omnibus directory as an argument" do
+        let(:omnibus_root) { File.join(fixtures_path, "eg_omnibus_dir/valid/") }
+        let(:omnibus_bin_dir) { File.join(omnibus_root, "bin") }
+        let(:omnibus_embedded_bin_dir) { File.join(omnibus_root, "embedded/bin") }
+
+        let(:argv) { [shell, "--omnibus-dir", omnibus_root] }
+
+        it "emits a script to add ChefDK's ruby to the shell environment" do
+          command_instance.run(argv)
+          expect(stdout_io.string).to eq(expected_environment_commands)
+        end
+      end
     end
 
     # bash, sh, zsh all share the same syntax for environment variables
     # test them each, but the test is identical
-    ['bash', 'sh', 'zsh'].each do |shell|
-      context "specifying #{shell}" do
-        let(:argv) { [shell] }
 
-        context "with no explicit omnibus directory" do
-
-          it "emits a script to add ChefDK's ruby to the shell environment" do
-            command_instance.run(argv)
-            expect(stdout_io.string).to eq(expected_environment_commands)
-          end
-
-        end
-
-        context "with an explicit omnibus directory as an argument" do
-
-          let(:omnibus_root) { File.join(fixtures_path, "eg_omnibus_dir/valid/") }
-          let(:omnibus_bin_dir) { File.join(omnibus_root, "bin") }
-          let(:omnibus_embedded_bin_dir) { File.join(omnibus_root, "embedded/bin") }
-
-          let(:argv) { [shell, "--omnibus-dir", omnibus_root] }
-
-          it "emits a script to add ChefDK's ruby to the shell environment" do
-            command_instance.run(argv)
-            expect(stdout_io.string).to eq(expected_environment_commands)
-          end
-        end
-
+    describe 'specifying bash' do
+      it_behaves_like 'a unix shell' do
+        let(:shell) { 'bash' }
       end
     end
+
+    describe 'specifying zsh' do
+      it_behaves_like 'a unix shell' do
+        let(:shell) { 'zsh' }
+      end
+    end
+
+    describe 'specifying sh' do
+      it_behaves_like 'a unix shell' do
+        let(:shell) { 'sh' }
+      end
+    end
+
   end
 
   context "running on Windows" do
-
-    # I have no idea how to actually tell Ruby that we are running on Windows
-    # in particular, it needs to override the File::PATH_SEPARATOR constant
-
+    #FIXME: When the fix for issue #180 goes in, the following line must be uncommented
+    #let(:separator) { ';' }
     let(:omnibus_bin_dir) { 'C:\foo\bin' }
     let(:omnibus_embedded_bin_dir) { 'C:\foo\embedded\bin' }
-
-    # These should use ';' instead of ':' for Windows, but I can't seem to force that
-    # in the rspec context.  It works in the deployed app if the fix for #180
-    # (https://github.com/opscode/chef-dk/issues/180) is included
-    # Net result - this is not testing the correct result.
-    let(:expected_path) { "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}" }
-    let(:expected_gem_path) { Gem.path.join(':') }
 
     before do
       allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
       allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
+      stub_const("File::PATH_SEPARATOR", separator)
     end
 
     context "specifying cmd" do
