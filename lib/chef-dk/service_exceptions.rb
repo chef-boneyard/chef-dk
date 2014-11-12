@@ -73,5 +73,8 @@ module ChefDK
   class PolicyfilePushError < PolicyfileNestedException
   end
 
+  class PolicyfileExportRepoError < PolicyfileNestedException
+  end
+
 end
 
