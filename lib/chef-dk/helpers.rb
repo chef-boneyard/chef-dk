@@ -103,6 +103,9 @@ module ChefDK
         end
     end
 
+    # Open a file. By default, the mode is for read+write,
+    # and binary so that windows writes out what we tell it,
+    # as this is the most common case we have.
     def with_file(path, mode='wb+', &block)
       File.open(path, mode, &block)
     end
