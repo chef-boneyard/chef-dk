@@ -103,5 +103,8 @@ module ChefDK
         end
     end
 
+    def with_file(path, mode='wb+', &block)
+      File.open(path, mode, &block)
+    end
   end
 end

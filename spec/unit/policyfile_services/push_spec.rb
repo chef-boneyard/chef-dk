@@ -20,6 +20,8 @@ require 'chef-dk/policyfile_services/push'
 
 describe ChefDK::PolicyfileServices::Push do
 
+  include ChefDK::Helpers
+
   let(:working_dir) do
     path = File.join(tempdir, "policyfile_services_test_working_dir")
     Dir.mkdir(path)
@@ -90,7 +92,7 @@ describe ChefDK::PolicyfileServices::Push do
   context "when a lockfile is present" do
 
     before do
-      File.open(policyfile_lock_path, "wb+") { |f| f.print(lockfile_content) }
+      with_file(policyfile_lock_path) { |f| f.print(lockfile_content) }
     end
 
     context "and the lockfile has invalid JSON" do
