@@ -1,6 +1,11 @@
 # Chef Development Kit Changelog
 
-# Last Release: 0.3.3
+# Last Release: 0.3.4
+* Rollback appbundler to 0.2.0, resolves
+  https://github.com/opscode/chef-dk/issues/228
+* Update components: Berks 3.2.0, Chef 11.16.4, Bundler 1.7.5
+
+# 0.3.3
 
 * [**Martin Smith**](https://github.com/martinb3): Add the ability to
 specify arbitrary context attributes in generators from the command
@@ -11,7 +16,10 @@ can access this in generator recipes with
 `ChefDK::Generator.context.database` (which will return `"mysql"` in
 this example).
 * Fix bug in `chef verify` when prerelease ChefSpec is installed
-* Include chef-provisioning and AWS, Azure, Vagrant and Fog drivers 
+* Include chef-provisioning and AWS, Azure, Vagrant and Fog drivers
+* Fix erchef incompatibility in `chef push`
+* Search upwards for `.git` dir when generating metadata for Policyfile
+  locks.
 
 # 0.3.2
 
