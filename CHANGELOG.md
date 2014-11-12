@@ -1,6 +1,6 @@
 # Chef Development Kit Changelog
 
-# Unreleased
+# Last Release: 0.3.3
 
 * [**Martin Smith**](https://github.com/martinb3): Add the ability to
 specify arbitrary context attributes in generators from the command
@@ -10,8 +10,10 @@ example, if you pass the option `--generator-arg database=mysql`, you
 can access this in generator recipes with
 `ChefDK::Generator.context.database` (which will return `"mysql"` in
 this example).
+* Fix bug in `chef verify` when prerelease ChefSpec is installed
+* Include chef-provisioning and AWS, Azure, Vagrant and Fog drivers 
 
-# Last Release: 0.3.2
+# 0.3.2
 
 * Revert the packaged certificate bundle to the '2014.08.20' version.
 This works around an issue where SSL connections to AWS would fail with
