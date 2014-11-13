@@ -27,8 +27,11 @@ describe ChefDK::Command::ShellInit do
     ChefDK::Command::ShellInit.new.tap do |c|
       allow(c).to receive(:stdout).and_return(stdout_io)
       allow(c).to receive(:stderr).and_return(stderr_io)
-      stub_const("File::PATH_SEPARATOR", ':')
     end
+  end
+
+  before do
+    stub_const("File::PATH_SEPARATOR", ':')
   end
 
   let(:argv) { ['bash'] }
