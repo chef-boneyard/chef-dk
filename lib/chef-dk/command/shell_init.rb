@@ -22,7 +22,7 @@ module ChefDK
   module Command
     class ShellInit < ChefDK::Command::Base
 
-      SUPPORTED_SHELLS = %w[ bash zsh sh ].map(&:freeze).freeze
+      SUPPORTED_SHELLS = %w[ bash zsh sh powershell posh cmd ].map(&:freeze).freeze
 
       banner(<<-HELP)
 Usage: chef shell-init
@@ -32,11 +32,19 @@ ruby.
 
   To enable for just the current shell session:
 
+  For sh, zsh, and bash:
     eval "$(chef shell-init SHELL_NAME)"
+  For powershell:
+    chef shell-init powershell | Invoke-Expression
 
   To permanently enable:
 
+  For sh, zsh, and bash:
     echo 'eval "$(chef shell-init SHELL_NAME)"' >> ~/.YOUR_SHELL_RC_FILE
+  For powershell:
+    "chef shell-init powershell | Invoke-Expression" >> $PROFILE
+
+Supported shells: #{SUPPORTED_SHELLS.join(' ')}
 
 OPTIONS:
 
@@ -50,9 +58,39 @@ HELP
         config[:omnibus_dir] || super
       end
 
+      # some of these environment variables have quotes around them as written
+      # if that is not the case, add them for powershell set-item invocation
+      def singlequote(value)
+          quotechars = %w[ ' " ]
+          if (!quotechars.include?(value[0]))
+            return "'#{value}'"
+          end
+          value
+      end
+
+      # Powershell symbol export
+      # note that this requires the fix for #180
+      # https://github.com/opscode/chef-dk/issues/180
+      def powershell(name, value)
+        value = singlequote value
+        msg("Set-Item Env:\\#{name} #{value}")
+      end
+      alias :posh :powershell
+
+      # Windows cmd symbol export
+      # note that this requires the fix for #180
+      # https://github.com/opscode/chef-dk/issues/180
+      def cmd(name, value)
+        msg("SET #{name}=#{value}")
+      end
+
+      def sh(name, value)
+        msg("export #{name}=#{value}")
+      end
+      alias :bash :sh
+      alias :zsh :sh
+
       def run(argv)
-        # Currently we don't have any shell-specific features, so we ignore the
-        # shell name. We'll need it if we add completion.
         remaining_args = parse_options(argv)
         shell_name = remaining_args.first
         if shell_name.nil?
@@ -67,9 +105,9 @@ HELP
 
         env = omnibus_env.dup
         path = env.delete("PATH")
-        msg("export PATH=#{path}")
+        self.send shell_name, "PATH", path
         env.each do |var_name, value|
-          msg("export #{var_name}=#{value}")
+          self.send shell_name, var_name, value
         end
         0
       end
