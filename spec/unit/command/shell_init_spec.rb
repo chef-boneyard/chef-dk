@@ -27,6 +27,7 @@ describe ChefDK::Command::ShellInit do
     ChefDK::Command::ShellInit.new.tap do |c|
       allow(c).to receive(:stdout).and_return(stdout_io)
       allow(c).to receive(:stderr).and_return(stderr_io)
+      stub_const("File::PATH_SEPARATOR", ':')
     end
   end
 
@@ -34,7 +35,7 @@ describe ChefDK::Command::ShellInit do
 
   let(:user_bin_dir) { File.expand_path(File.join(Gem.user_dir, 'bin')) }
 
-  let(:expected_path) { "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}" }
+  let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(File::PATH_SEPARATOR) }
 
   let(:expected_gem_root) { Gem.default_dir.to_s }
 

@@ -58,6 +58,7 @@ describe ChefDK::Command::Exec do
 
     before do
       allow(Gem).to receive(:ruby).and_return(ruby_path)
+      stub_const("File::PATH_SEPARATOR", ':')
     end
 
     context "when running exec env" do
@@ -69,7 +70,7 @@ describe ChefDK::Command::Exec do
 
       let(:omnibus_bin_dir) { "/foo/bin" }
 
-      let(:expected_PATH) { "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}" }
+      let(:expected_PATH) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(File::PATH_SEPARATOR) }
 
       let(:expected_GEM_ROOT) { Gem.default_dir.inspect }
 
@@ -103,7 +104,7 @@ describe ChefDK::Command::Exec do
 
       let(:omnibus_embedded_bin_dir) { "/foo/embedded/bin" }
 
-      let(:expected_PATH) { "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}" }
+      let(:expected_PATH) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(File::PATH_SEPARATOR) }
 
       let(:expected_GEM_ROOT) { Gem.default_dir.inspect }
 
