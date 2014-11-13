@@ -4,6 +4,8 @@
 * Update Chef to 11.18.0 RC0, resolves issue with knife loading commands
   from incompatible versions installed as gems. See:
   https://github.com/opscode/chef-dk/issues/227
+* Use the correct separator when joining paths on windows:
+  https://github.com/opscode/chef-dk/pull/232 fixes #180
 
 # 0.3.4
 * Rollback appbundler to 0.2.0, resolves
