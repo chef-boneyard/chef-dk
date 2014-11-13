@@ -28,6 +28,7 @@ module ChefDK
     class Install
 
       include Policyfile::StorageConfigDelegation
+      include ChefDK::Helpers
 
       attr_reader :ui
       attr_reader :storage_config
@@ -93,7 +94,7 @@ module ChefDK
 
         lock_data = policyfile_compiler.lock.to_lock
 
-        File.open(policyfile_lock_expanded_path, "w+") do |f|
+        with_file(policyfile_lock_expanded_path) do |f|
           f.print(FFI_Yajl::Encoder.encode(lock_data, pretty: true ))
         end
 

@@ -23,6 +23,7 @@ module ChefDK
   module Command
     class Verify < ChefDK::Command::Base
 
+      include ChefDK::Helpers
 
       banner "Usage: chef verify [component, ...] [options]"
 
@@ -120,7 +121,7 @@ module ChefDK
         c.smoke_test do
           tmpdir do |cwd|
             FileUtils.mkdir(File.join(cwd, "spec"))
-            File.open(File.join(cwd, "spec", "spec_helper.rb"), "w+") do |f|
+            with_file(File.join(cwd, "spec", "spec_helper.rb")) do |f|
               f.write <<-EOF
 require 'chefspec'
 require 'chefspec/berkshelf'
@@ -132,7 +133,7 @@ end
               EOF
             end
             FileUtils.touch(File.join(cwd, "Berksfile"))
-            File.open(File.join(cwd, "spec", "foo_spec.rb"), "w+") do |f|
+            with_file(File.join(cwd, "spec", "foo_spec.rb")) do |f|
               f.write <<-EOF
 require 'spec_helper'
               EOF

@@ -32,7 +32,7 @@ describe ChefDK::CookbookProfiler::Git do
   end
 
   def edit_repo
-    File.open(File.join(cookbook_path, "README.md"), "a+") { |f| f.puts "some unpublished changes" }
+    with_file(File.join(cookbook_path, "README.md"), "ab+") { |f| f.puts "some unpublished changes" }
   end
 
   context "given a clean repo with no remotes" do
@@ -93,7 +93,7 @@ describe ChefDK::CookbookProfiler::Git do
         edit_repo
         system_command('git config --local user.name "Alice"', cwd: cookbook_path).error!
         system_command('git config --local user.email "alice@example.com"', cwd: cookbook_path).error!
-        system_command("git commit -a -m 'update readme' --author 'Alice <alice@example.com>'", cwd: cookbook_path).error!
+        system_command('git commit -a -m "update readme" --author "Alice <alice@example.com>"', cwd: cookbook_path).error!
       end
 
       it "reports that the repo is clean" do

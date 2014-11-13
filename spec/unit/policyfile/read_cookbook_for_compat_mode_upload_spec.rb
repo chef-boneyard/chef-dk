@@ -17,8 +17,11 @@
 
 require 'spec_helper'
 require 'chef-dk/policyfile/read_cookbook_for_compat_mode_upload'
+require 'chef-dk/helpers'
 
 describe ChefDK::Policyfile::ReadCookbookForCompatModeUpload do
+
+  include ChefDK::Helpers
 
   let(:cookbook_name) { "noignore" }
 
@@ -74,7 +77,7 @@ describe ChefDK::Policyfile::ReadCookbookForCompatModeUpload do
 
     before do
       FileUtils.cp_r(directory_path, copied_cookbook_path)
-      File.open(chefignored_file, "w+") { |f| f.puts "This file should not affect the cookbooks checksum" }
+      with_file(chefignored_file) { |f| f.puts "This file should not affect the cookbooks checksum" }
     end
 
     after do

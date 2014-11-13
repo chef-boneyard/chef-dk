@@ -141,7 +141,7 @@ BANNER
 
     # Find PATH or Path correctly if we are on Windows
     def path_key
-      ENV.keys.grep(/\Apath\Z/i).first
+      env.keys.grep(/\Apath\Z/i).first
     end
 
     # upcase drive letters for comparison since ruby has a String#capitalize function

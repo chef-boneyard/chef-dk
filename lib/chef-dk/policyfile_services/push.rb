@@ -28,6 +28,7 @@ module ChefDK
     class Push
 
       include Policyfile::StorageConfigDelegation
+      include ChefDK::Helpers
 
       attr_reader :root_dir
       attr_reader :config
@@ -89,7 +90,7 @@ module ChefDK
       end
 
       def write_updated_lockfile
-        File.open(policyfile_lock_expanded_path, "w+") do |f|
+        with_file(policyfile_lock_expanded_path) do |f|
           f.print(FFI_Yajl::Encoder.encode(policyfile_lock.to_lock, pretty: true ))
         end
       end

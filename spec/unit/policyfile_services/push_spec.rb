@@ -20,6 +20,8 @@ require 'chef-dk/policyfile_services/push'
 
 describe ChefDK::PolicyfileServices::Push do
 
+  include ChefDK::Helpers
+
   let(:working_dir) do
     path = File.join(tempdir, "policyfile_services_test_working_dir")
     Dir.mkdir(path)
@@ -90,7 +92,7 @@ describe ChefDK::PolicyfileServices::Push do
   context "when a lockfile is present" do
 
     before do
-      File.open(policyfile_lock_path, "w+") { |f| f.print(lockfile_content) }
+      with_file(policyfile_lock_path) { |f| f.print(lockfile_content) }
     end
 
     context "and the lockfile has invalid JSON" do
@@ -175,7 +177,7 @@ E
 
       it "validates the lockfile, writes any updates, and uploads the cookbooks" do
         allow(File).to receive(:open).and_call_original
-        expect(File).to receive(:open).with(policyfile_lock_path, "w+").and_yield(updated_lockfile_io)
+        expect(File).to receive(:open).with(policyfile_lock_path, "wb+").and_yield(updated_lockfile_io)
         expect(uploader).to receive(:upload)
 
         push_service.run
@@ -185,7 +187,7 @@ E
 
         before do
           allow(File).to receive(:open).and_call_original
-          expect(File).to receive(:open).with(policyfile_lock_path, "w+").and_yield(updated_lockfile_io)
+          expect(File).to receive(:open).with(policyfile_lock_path, "wb+").and_yield(updated_lockfile_io)
           expect(uploader).to receive(:upload).and_raise("an error")
         end
 

@@ -20,6 +20,8 @@ require 'chef-dk/policyfile_services/install'
 
 describe ChefDK::PolicyfileServices::Install do
 
+  include ChefDK::Helpers
+
   let(:working_dir) do
     path = File.join(tempdir, "policyfile_services_test_working_dir")
     Dir.mkdir(path)
@@ -76,7 +78,7 @@ E
   context "when a Policyfile exists" do
 
     before do
-      File.open(policyfile_rb_path, "w+") { |f| f.print(policyfile_content) }
+      with_file(policyfile_rb_path) { |f| f.print(policyfile_content) }
     end
 
     it "infers that the Policyfile.rb is located at $CWD/Policyfile.rb" do
