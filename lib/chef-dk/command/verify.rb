@@ -143,6 +143,26 @@ require 'spec_helper'
         end
       end
 
+      add_component "rubocop" do |c|
+        c.gem_base_dir = "rubocop"
+        c.smoke_test { sh("rubocop --version") }
+      end
+
+      add_component "fauxhai" do |c|
+        c.gem_base_dir = "fauxhai"
+        c.smoke_test { sh("fauxhai --version") }
+      end
+
+      add_component "knife-spork" do |c|
+        c.gem_base_dir = "knife-spork"
+        c.unit_test { sh('rake test') }
+      end
+
+      add_component "kitchen-vagrant" do |c|
+        c.gem_base_dir = "kitchen-vagrant"
+        # The build is not passing in travis, so no tests
+      end
+
       add_component "package installation" do |c|
 
         c.base_dir = "chef-dk"
@@ -181,7 +201,6 @@ require 'spec_helper'
           # object:
           ComponentTest::NullTestResult.new
         end
-
       end
 
       attr_reader :verification_threads
