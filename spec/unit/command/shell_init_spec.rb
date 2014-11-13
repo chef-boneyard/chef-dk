@@ -30,11 +30,15 @@ describe ChefDK::Command::ShellInit do
     end
   end
 
+  before do
+    stub_const("File::PATH_SEPARATOR", ':')
+  end
+
   let(:argv) { ['bash'] }
 
   let(:user_bin_dir) { File.expand_path(File.join(Gem.user_dir, 'bin')) }
 
-  let(:expected_path) { "#{omnibus_bin_dir}:#{user_bin_dir}:#{omnibus_embedded_bin_dir}:#{ENV['PATH']}" }
+  let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(File::PATH_SEPARATOR) }
 
   let(:expected_gem_root) { Gem.default_dir.to_s }
 
