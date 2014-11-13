@@ -58,7 +58,7 @@ describe ChefDK::Command::Exec do
 
     before do
       allow(Gem).to receive(:ruby).and_return(ruby_path)
-      stub_const("File::PATH_SEPARATOR", ':')
+      stub_const("File::PATH_SEPARATOR", '<>')
     end
 
     context "when running exec env" do
