@@ -1,6 +1,11 @@
 # Chef Development Kit Changelog
 
-# Last Release: 0.3.4
+# Last Release: 0.3.5
+* Update Chef to 11.18.0 RC0, resolves issue with knife loading commands
+  from incompatible versions installed as gems. See:
+  https://github.com/opscode/chef-dk/issues/227
+
+# 0.3.4
 * Rollback appbundler to 0.2.0, resolves
   https://github.com/opscode/chef-dk/issues/228
 * Update components: Berks 3.2.0, Chef 11.16.4, Bundler 1.7.5
