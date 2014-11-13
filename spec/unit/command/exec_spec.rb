@@ -58,6 +58,10 @@ describe ChefDK::Command::Exec do
 
     before do
       allow(Gem).to receive(:ruby).and_return(ruby_path)
+
+      # Using a fake path separator to keep to prevent people from accidently
+      # getting things correct on their system. This enforces that, in general,
+      # you should use the path separator ruby is telling you to use.
       stub_const("File::PATH_SEPARATOR", '<>')
     end
 
