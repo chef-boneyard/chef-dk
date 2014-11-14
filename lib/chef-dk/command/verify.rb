@@ -162,7 +162,7 @@ end
 
       add_component "fauxhai" do |c|
         c.gem_base_dir = "fauxhai"
-        c.smoke_test { sh("fauxhai --version") }
+        c.smoke_test { sh("fauxhai") }
       end
 
       add_component "knife-spork" do |c|
