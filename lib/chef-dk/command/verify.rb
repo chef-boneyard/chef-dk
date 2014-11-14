@@ -174,24 +174,7 @@ end
       add_component "kitchen-vagrant" do |c|
         c.gem_base_dir = "kitchen-vagrant"
         # The build is not passing in travis, so no tests
-        c.smoke_test do
-          tmpdir do |cwd|
-            with_file(File.join(cwd, '.kitchen.yml')) do |f|
-              f.write <<-EOF
----
-driver:
-  name: vagrant
-
-platforms:
-  - name: ubuntu-12.04
-
-suites:
-  - name: default
-              EOF
-            end
-            sh("kitchen list", cwd: cwd)
-          end
-        end
+        c.smoke_test { sh("gem list kitchen-vagrant") }
       end
 
       add_component "package installation" do |c|
