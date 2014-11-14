@@ -168,6 +168,7 @@ end
       add_component "knife-spork" do |c|
         c.gem_base_dir = "knife-spork"
         c.unit_test { sh('rake test') }
+        c.smoke_test { sh('knife spork info')}
       end
 
       add_component "kitchen-vagrant" do |c|
