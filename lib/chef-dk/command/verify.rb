@@ -143,6 +143,47 @@ require 'spec_helper'
         end
       end
 
+      add_component "package installation" do |c|
+
+        c.base_dir = "chef-dk"
+
+        c.smoke_test do
+
+          if File.directory?("/usr/bin")
+            sh!("/usr/bin/berks -v")
+
+            sh!("/usr/bin/chef -v")
+
+            sh!("/usr/bin/chef-client -v")
+            sh!("/usr/bin/chef-solo -v")
+
+            # In `knife`, `knife -v` follows a different code path that skips
+            # command/plugin loading; `knife -h` loads commands and plugins, but
+            # it exits with code 1, which is the same as a load error. Running
+            # `knife exec` forces command loading to happen and this command
+            # exits 0, which runs most of the code.
+            #
+            # See also: https://github.com/opscode/chef-dk/issues/227
+            sh!("/usr/bin/knife exec -E true")
+
+            tmpdir do |dir|
+              # Kitchen tries to create a .kitchen dir even when just running
+              # `kitchen -v`:
+              sh!("/usr/bin/kitchen -v", cwd: dir)
+            end
+
+            sh!("/usr/bin/ohai -v")
+
+            sh!("/usr/bin/foodcritic -V")
+          end
+
+          # Test blocks are expected to return a Mixlib::ShellOut compatible
+          # object:
+          ComponentTest::NullTestResult.new
+        end
+
+      end
+
       attr_reader :verification_threads
       attr_reader :verification_results
       attr_reader :verification_status

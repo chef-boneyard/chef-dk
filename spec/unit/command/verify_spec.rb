@@ -34,13 +34,24 @@ describe ChefDK::Command::Verify do
 
   let(:components) { {} }
 
+  let(:default_components) do
+    [
+      "berkshelf",
+      "test-kitchen",
+      "chef-client",
+      "chef-dk",
+      "chefspec",
+      "package installation"
+    ]
+  end
+
   def run_command(expected_exit_code)
     expect(command_instance.run(command_options)).to eq(expected_exit_code)
   end
 
   it "defines berks, tk, chef and chef-dk components by default" do
     expect(command_instance.components).not_to be_empty
-    expect(command_instance.components.map(&:name)).to match_array(%w{berkshelf test-kitchen chef-client chef-dk chefspec})
+    expect(command_instance.components.map(&:name)).to match_array(default_components)
   end
 
   it "has a usage banner" do

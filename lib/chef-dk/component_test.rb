@@ -88,6 +88,17 @@ module ChefDK
       system_command(command, combined_opts)
     end
 
+    # Just like #sh but raises an error if the the command returns an
+    # unexpected exit code.
+    #
+    # Most verification steps just run a single command, then
+    # ChefDK::Command::Verify#invoke_tests handles the results by inspecting
+    # the return value of the test block. For tests that run a lot of commands,
+    # this is inconvenient so you can use #sh! instead.
+    def sh!(*args)
+      sh(*args).tap { |result| result.error! }
+    end
+
     def run_in_tmpdir(command, options={})
       tmpdir do |dir|
         options[:cwd] = dir
