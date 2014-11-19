@@ -103,7 +103,7 @@ module ChefDK
 
     def assert_present!
       unless File.exists?( component_path )
-        raise MissingComponentError.new(name)
+        raise MissingComponentError.new(name, component_path)
       end
     end
 
