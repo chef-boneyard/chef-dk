@@ -145,7 +145,6 @@ require 'spec_helper'
 
       add_component "rubocop" do |c|
         c.gem_base_dir = "rubocop"
-        c.smoke_test { sh("rubocop --version") }
         c.smoke_test do
           tmpdir do |cwd|
             with_file(File.join(cwd, 'foo.rb')) do |f|
