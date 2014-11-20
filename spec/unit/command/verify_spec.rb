@@ -99,7 +99,7 @@ describe ChefDK::Command::Verify do
         c.base_dir = "berkshelf"
         c.unit_test(&run_unit_test)
         c.integration_test(&run_integration_test)
-        c.smoke_test { sh("true") }
+        c.smoke_test { sh("exit 0") }
       end
     end
 
@@ -107,7 +107,7 @@ describe ChefDK::Command::Verify do
       ChefDK::ComponentTest.new("successful_comp_2").tap do |c|
         c.base_dir = "test-kitchen"
         c.unit_test(&run_unit_test)
-        c.smoke_test { sh("true") }
+        c.smoke_test { sh("exit 0") }
       end
     end
 
@@ -115,19 +115,19 @@ describe ChefDK::Command::Verify do
       ChefDK::ComponentTest.new("failing_comp").tap do |c|
         c.base_dir = "chef"
         c.unit_test(&run_unit_test)
-        c.smoke_test { sh("true") }
+        c.smoke_test { sh("exit 0") }
       end
     end
 
     let(:passing_smoke_test_only) do
       component = failing_unit_test.dup
-      component.smoke_test { sh("true") }
+      component.smoke_test { sh("exit 0") }
       component
     end
 
     let(:failing_smoke_test_only) do
       component = all_tests_ok.dup
-      component.smoke_test { sh("false") }
+      component.smoke_test { sh("exit 1") }
       component
     end
 
@@ -135,7 +135,7 @@ describe ChefDK::Command::Verify do
       ChefDK::ComponentTest.new("successful_comp").tap do |c|
         c.base_dir = "berkshelf"
         c.unit_test { sh("./verify_me") }
-        c.smoke_test { sh("true") }
+        c.smoke_test { sh("exit 0") }
       end
     end
 
