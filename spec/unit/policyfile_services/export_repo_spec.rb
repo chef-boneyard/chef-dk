@@ -38,9 +38,14 @@ describe ChefDK::PolicyfileServices::ExportRepo do
 
   let(:policyfile_lock_path) { File.join(working_dir, policyfile_lock_name) }
 
-  subject(:export_service) { described_class.new(policyfile: policyfile_rb_explicit_name,
-                                                 root_dir: working_dir,
-                                                 export_dir: export_dir) }
+  let(:force_export) { false }
+
+  subject(:export_service) do
+    described_class.new(policyfile: policyfile_rb_explicit_name,
+                        root_dir: working_dir,
+                        export_dir: export_dir,
+                        force: force_export)
+  end
 
   it "uses Policyfile.rb as the default Policyfile name" do
     expect(export_service.policyfile_filename).to eq(expanded_policyfile_path)
@@ -158,54 +163,57 @@ E
 
       context "copying the cookbooks to the export dir" do
 
-        before do
-          allow(export_service.policyfile_lock).to receive(:validate_cookbooks!).and_return(true)
-          export_service.run
-        end
-
-        let(:cookbook_files) do
-          base_pathname = Pathname.new(local_cookbook_path)
-          Dir.glob("#{local_cookbook_path}/**/*").map do |full_path|
-            Pathname.new(full_path).relative_path_from(base_pathname)
+        context "when the export dir is empty" do
+          before do
+            allow(export_service.policyfile_lock).to receive(:validate_cookbooks!).and_return(true)
+            export_service.run
           end
-        end
 
-        let(:expected_files_relative) do
-          metadata_rb = Pathname.new("metadata.rb")
-          expected = cookbook_files.delete_if { |p| p == metadata_rb }
-          expected << Pathname.new("metadata.json")
-        end
-
-        let(:cookbook_with_version) { "local-cookbook-70567763561641081.489844270461035.258281553147148" }
-
-        let(:exported_cookbook_root) { Pathname.new(File.join(export_dir, "cookbooks", cookbook_with_version)) }
-
-        let(:expected_files) do
-          expected_files_relative.map do |file_rel_path|
-            exported_cookbook_root + file_rel_path
+          let(:cookbook_files) do
+            base_pathname = Pathname.new(local_cookbook_path)
+            Dir.glob("#{local_cookbook_path}/**/*").map do |full_path|
+              Pathname.new(full_path).relative_path_from(base_pathname)
+            end
           end
-        end
 
-        it "copies cookbooks to the target dir in versioned_cookbooks format" do
-          expected_files.each do |expected_file|
-            expect(expected_file).to exist
+          let(:expected_files_relative) do
+            metadata_rb = Pathname.new("metadata.rb")
+            expected = cookbook_files.delete_if { |p| p == metadata_rb }
+            expected << Pathname.new("metadata.json")
           end
-        end
 
-        # This behavior does two things:
-        # * ensures that Chef Zero uses our hacked version number
-        # * works around external dependencies (e.g., using `git` in backticks)
-        #   in metadata.rb issue
-        it "writes metadata.json in the exported cookbook, removing metadata.rb" do
-          metadata_json_path = File.join(exported_cookbook_root, "metadata.json")
-          metadata_json = FFI_Yajl::Parser.parse(IO.read(metadata_json_path))
-          expect(metadata_json["version"]).to eq("70567763561641081.489844270461035.258281553147148")
-        end
+          let(:cookbook_with_version) { "local-cookbook-70567763561641081.489844270461035.258281553147148" }
 
-        it "copies the policyfile lock in data item format to data_bags/policyfiles" do
-          data_bag_item_path = File.join(export_dir, "data_bags", "policyfiles", "install-example-local.json")
-          data_item_json = FFI_Yajl::Parser.parse(IO.read(data_bag_item_path))
-          expect(data_item_json["id"]).to eq("install-example-local")
+          let(:exported_cookbook_root) { Pathname.new(File.join(export_dir, "cookbooks", cookbook_with_version)) }
+
+          let(:expected_files) do
+            expected_files_relative.map do |file_rel_path|
+              exported_cookbook_root + file_rel_path
+            end
+          end
+
+          it "copies cookbooks to the target dir in versioned_cookbooks format" do
+            expected_files.each do |expected_file|
+              expect(expected_file).to exist
+            end
+          end
+
+          # This behavior does two things:
+          # * ensures that Chef Zero uses our hacked version number
+          # * works around external dependencies (e.g., using `git` in backticks)
+          #   in metadata.rb issue
+          it "writes metadata.json in the exported cookbook, removing metadata.rb" do
+            metadata_json_path = File.join(exported_cookbook_root, "metadata.json")
+            metadata_json = FFI_Yajl::Parser.parse(IO.read(metadata_json_path))
+            expect(metadata_json["version"]).to eq("70567763561641081.489844270461035.258281553147148")
+          end
+
+          it "copies the policyfile lock in data item format to data_bags/policyfiles" do
+            data_bag_item_path = File.join(export_dir, "data_bags", "policyfiles", "install-example-local.json")
+            data_item_json = FFI_Yajl::Parser.parse(IO.read(data_bag_item_path))
+            expect(data_item_json["id"]).to eq("install-example-local")
+          end
+
         end
 
         context "When an error occurs creating the export" do
@@ -220,6 +228,40 @@ E
             message = "Failed to export policy (in #{expanded_policyfile_path}) to #{export_dir}"
             expect { export_service.run }.to raise_error(ChefDK::PolicyfileExportRepoError, message)
           end
+
+        end
+
+        context "When the export dir is already populated" do
+
+          let(:file_in_export_dir) { File.join(export_dir, "some_random_cruft") }
+
+          before do
+            FileUtils.mkdir_p(export_dir)
+            File.open(file_in_export_dir, "wb+") { |f| f.print "some random cruft" }
+          end
+
+          it "raises a PolicyfileExportRepoError" do
+            message = "Export dir (#{export_dir}) not empty. Refusing to export."
+            expect { export_service.run }.to raise_error(ChefDK::ExportDirNotEmpty, message)
+            expect(File).to be_file(file_in_export_dir)
+            expect(File).to_not exist(File.join(export_dir, "cookbooks"))
+            expect(File).to_not exist(File.join(export_dir, "data_bags"))
+          end
+
+          context "and the force option is set" do
+
+            let(:force_export) { true }
+
+            it "clears the export dir and exports" do
+              export_service.run
+
+              expect(File).to_not exist(file_in_export_dir)
+              expect(File).to be_directory(File.join(export_dir, "cookbooks"))
+              expect(File).to be_directory(File.join(export_dir, "data_bags"))
+            end
+
+          end
+
         end
 
       end

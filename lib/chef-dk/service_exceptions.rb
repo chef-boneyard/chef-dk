@@ -36,6 +36,9 @@ module ChefDK
   class LockfileNotFound < PolicyfileServiceError
   end
 
+  class ExportDirNotEmpty < PolicyfileServiceError
+  end
+
   class PolicyfileNestedException < PolicyfileServiceError
 
     attr_reader :cause

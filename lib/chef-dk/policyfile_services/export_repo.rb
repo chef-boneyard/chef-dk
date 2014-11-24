@@ -38,9 +38,10 @@ module ChefDK
       attr_reader :root_dir
       attr_reader :export_dir
 
-      def initialize(policyfile: nil, export_dir: nil, root_dir: nil)
+      def initialize(policyfile: nil, export_dir: nil, root_dir: nil, force: false)
         @root_dir = root_dir
         @export_dir = File.expand_path(export_dir)
+        @force_export = force
 
         @policy_data = nil
         @policyfile_lock = nil
@@ -51,9 +52,8 @@ module ChefDK
       end
 
       def run
-        unless File.exist?(policyfile_lock_expanded_path)
-          raise LockfileNotFound, "No lockfile at #{policyfile_lock_expanded_path} - you need to run `install` before `push`"
-        end
+        assert_lockfile_exists!
+        assert_export_dir_empty!
 
         validate_lockfile
         write_updated_lockfile
@@ -82,6 +82,7 @@ module ChefDK
       private
 
       def create_repo_structure
+        FileUtils.rm_rf(export_dir)
         FileUtils.mkdir_p(export_dir)
         FileUtils.mkdir_p(File.join(export_dir, "cookbooks"))
         FileUtils.mkdir_p(File.join(export_dir, "data_bags", "policyfiles"))
@@ -150,6 +151,23 @@ module ChefDK
         File.open(policyfile_lock_expanded_path, "wb+") do |f|
           f.print(FFI_Yajl::Encoder.encode(policyfile_lock.to_lock, pretty: true ))
         end
+      end
+
+      def assert_lockfile_exists!
+        unless File.exist?(policyfile_lock_expanded_path)
+          raise LockfileNotFound, "No lockfile at #{policyfile_lock_expanded_path} - you need to run `install` before `push`"
+        end
+      end
+
+      def assert_export_dir_empty!
+        entries = Dir.glob(File.join(export_dir, "*"))
+        if !force_export? && !entries.empty?
+          raise ExportDirNotEmpty, "Export dir (#{export_dir}) not empty. Refusing to export."
+        end
+      end
+
+      def force_export?
+        @force_export
       end
 
     end
