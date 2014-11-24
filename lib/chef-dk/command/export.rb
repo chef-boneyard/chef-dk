@@ -45,7 +45,11 @@ Options:
 
 E
 
-      # TODO: --force option; overwrite existing data.
+      option :force,
+        short:       "-f",
+        long:        "--force",
+        description: "If the DESTINATION_DIRECTORY is not empty, remove its content.",
+        default:     false
 
       option :debug,
         short:       "-D",
@@ -73,6 +77,10 @@ E
         export.run
         ui.msg("Exported policy '#{export.policyfile_lock.name}' to #{export_dir}")
         0
+      rescue ExportDirNotEmpty => e
+        ui.err("ERROR: " + e.message)
+        ui.err("Use --force to force export")
+        1
       rescue PolicyfileServiceError => e
         handle_error(e)
         1
@@ -91,7 +99,8 @@ E
       def export
         @export ||= PolicyfileServices::ExportRepo.new(policyfile: policyfile_relative_path,
                                                        export_dir: export_dir,
-                                                       root_dir: Dir.pwd)
+                                                       root_dir: Dir.pwd,
+                                                       force: config[:force])
       end
 
       def handle_error(error)
