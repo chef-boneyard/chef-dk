@@ -41,6 +41,10 @@ describe ChefDK::Command::Verify do
       "chef-client",
       "chef-dk",
       "chefspec",
+      "rubocop",
+      "fauxhai",
+      "knife-spork",
+      "kitchen-vagrant",
       "package installation"
     ]
   end
