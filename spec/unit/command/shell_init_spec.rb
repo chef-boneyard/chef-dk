@@ -88,7 +88,7 @@ EOH
       it "exits with an error message" do
         expect(command_instance.run(argv)).to eq(1)
         expect(stderr_io.string).to include("Shell `nosuchsh' is not currently supported")
-        expect(stderr_io.string).to include("Supported shells are: bash zsh sh")
+        expect(stderr_io.string).to include("Supported shells are: bash zsh sh powershell")
       end
 
     end
