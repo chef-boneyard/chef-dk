@@ -22,7 +22,7 @@ module ChefDK
   module Command
     class ShellInit < ChefDK::Command::Base
 
-      SUPPORTED_SHELLS = %w[ bash zsh sh ].map(&:freeze).freeze
+      SUPPORTED_SHELLS = %w[ bash zsh sh powershell ].map(&:freeze).freeze
 
       banner(<<-HELP)
 Usage: chef shell-init
@@ -32,11 +32,17 @@ ruby.
 
   To enable for just the current shell session:
 
-    eval "$(chef shell-init SHELL_NAME)"
+    In sh, bash, and zsh:
+      eval "$(chef shell-init SHELL_NAME)"
+    In Powershell:
+      chef shell-init powershell | Invoke-Expression
 
   To permanently enable:
 
-    echo 'eval "$(chef shell-init SHELL_NAME)"' >> ~/.YOUR_SHELL_RC_FILE
+    In sh, bash, and zsh:
+      echo 'eval "$(chef shell-init SHELL_NAME)"' >> ~/.YOUR_SHELL_RC_FILE
+    In Powershell
+      "chef shell-init powershell | Invoke-Expression" >> $PROFILE
 
 OPTIONS:
 
@@ -78,11 +84,17 @@ HELP
         case shell
         when 'sh', 'bash', 'zsh'
           posix_shell_export(var, val)
+        when 'powershell'
+          powershell_export(var, val)
         end
       end
 
       def posix_shell_export(var, val)
         msg("export #{var}=\"#{val}\"")
+      end
+
+      def powershell_export(var, val)
+        msg("$env:#{var}=\"#{val}\"")
       end
     end
   end
