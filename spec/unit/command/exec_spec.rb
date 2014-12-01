@@ -76,7 +76,7 @@ describe ChefDK::Command::Exec do
 
       let(:expected_PATH) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(File::PATH_SEPARATOR) }
 
-      let(:expected_GEM_ROOT) { Gem.default_dir.inspect }
+      let(:expected_GEM_ROOT) { Gem.default_dir }
 
       let(:expected_GEM_HOME) { Gem.user_dir }
 
@@ -110,7 +110,7 @@ describe ChefDK::Command::Exec do
 
       let(:expected_PATH) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(File::PATH_SEPARATOR) }
 
-      let(:expected_GEM_ROOT) { Gem.default_dir.inspect }
+      let(:expected_GEM_ROOT) { Gem.default_dir }
 
       let(:expected_GEM_HOME) { Gem.user_dir }
 

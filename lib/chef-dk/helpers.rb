@@ -96,7 +96,7 @@ module ChefDK
           user_bin_dir = File.expand_path(File.join(Gem.user_dir, 'bin'))
           {
             'PATH' => [ omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH'] ].join(File::PATH_SEPARATOR),
-            'GEM_ROOT' => Gem.default_dir.inspect,
+            'GEM_ROOT' => Gem.default_dir,
             'GEM_HOME' => Gem.user_dir,
             'GEM_PATH' => Gem.path.join(':'),
           }

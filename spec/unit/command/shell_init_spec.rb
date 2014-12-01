@@ -48,10 +48,10 @@ describe ChefDK::Command::ShellInit do
 
   let(:expected_environment_commands) do
     <<-EOH
-export PATH=#{expected_path}
+export PATH="#{expected_path}"
 export GEM_ROOT="#{expected_gem_root}"
-export GEM_HOME=#{expected_gem_home}
-export GEM_PATH=#{expected_gem_path}
+export GEM_HOME="#{expected_gem_home}"
+export GEM_PATH="#{expected_gem_path}"
 EOH
   end
 
