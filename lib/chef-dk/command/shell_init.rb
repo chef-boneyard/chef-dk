@@ -67,11 +67,22 @@ HELP
 
         env = omnibus_env.dup
         path = env.delete("PATH")
-        msg("export PATH=\"#{path}\"")
+        export(shell_name, "PATH", path)
         env.each do |var_name, value|
-          msg("export #{var_name}=\"#{value}\"")
+          export(shell_name, var_name, value)
         end
         0
+      end
+
+      def export(shell, var, val)
+        case shell
+        when 'sh', 'bash', 'zsh'
+          posix_shell_export(var, val)
+        end
+      end
+
+      def posix_shell_export(var, val)
+        msg("export #{var}=\"#{val}\"")
       end
     end
   end
