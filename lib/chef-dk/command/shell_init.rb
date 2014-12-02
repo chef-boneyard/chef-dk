@@ -22,7 +22,7 @@ module ChefDK
   module Command
     class ShellInit < ChefDK::Command::Base
 
-      SUPPORTED_SHELLS = %w[ bash zsh sh powershell ].map(&:freeze).freeze
+      SUPPORTED_SHELLS = %w[ bash zsh sh powershell posh].map(&:freeze).freeze
 
       banner(<<-HELP)
 Usage: chef shell-init
@@ -84,7 +84,7 @@ HELP
         case shell
         when 'sh', 'bash', 'zsh'
           posix_shell_export(var, val)
-        when 'powershell'
+        when 'powershell', 'posh'
           powershell_export(var, val)
         end
       end
