@@ -85,9 +85,31 @@ EOH
     include_context "shell init script", shell
   end
 
+  shared_examples "a powershell script" do |shell|
+    before do
+      stub_const("File::PATH_SEPARATOR", ';')
+    end
+
+    let(:expected_environment_commands) do
+      <<-EOH
+$env:PATH="#{expected_path}"
+$env:GEM_ROOT="#{expected_gem_root}"
+$env:GEM_HOME="#{expected_gem_home}"
+$env:GEM_PATH="#{expected_gem_path}"
+EOH
+    end
+    include_context "shell init script", shell
+  end
+
   ['bash', 'sh', 'zsh'].each do |shell|
     context "for #{shell}" do
       it_behaves_like "a posix shell script", shell
+    end
+  end
+
+  ['powershell', 'posh'].each do |shell|
+    context "for #{shell}" do
+      it_behaves_like "a powershell script", shell
     end
   end
 
