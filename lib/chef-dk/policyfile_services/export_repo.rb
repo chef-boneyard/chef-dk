@@ -111,8 +111,6 @@ module ChefDK
       end
 
       def create_policyfile_data_item
-        # TODO: duplicates c/policyfile/uploader, move logic to PolicyfileLock
-
         policy_id = "#{policyfile_lock.name}-#{POLICY_GROUP}"
         item_path = File.join(export_dir, "data_bags", "policyfiles", "#{policy_id}.json")
 
