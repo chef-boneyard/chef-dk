@@ -67,9 +67,9 @@ HELP
 
         env = omnibus_env.dup
         path = env.delete("PATH")
-        msg("export PATH=#{path}")
+        msg("export PATH=\"#{path}\"")
         env.each do |var_name, value|
-          msg("export #{var_name}=#{value}")
+          msg("export #{var_name}=\"#{value}\"")
         end
         0
       end
