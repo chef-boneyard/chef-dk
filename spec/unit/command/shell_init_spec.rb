@@ -44,7 +44,7 @@ describe ChefDK::Command::ShellInit do
 
   let(:expected_gem_home) { Gem.user_dir }
 
-  let(:expected_gem_path) { Gem.path.join(':') }
+  let(:expected_gem_path) { Gem.path.join(File::PATH_SEPARATOR) }
 
   let(:expected_environment_commands) do
     <<-EOH
