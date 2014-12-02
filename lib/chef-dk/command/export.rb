@@ -49,7 +49,8 @@ E
         short:       "-f",
         long:        "--force",
         description: "If the DESTINATION_DIRECTORY is not empty, remove its content.",
-        default:     false
+        default:     false,
+        boolean:     true
 
       option :debug,
         short:       "-D",
