@@ -80,7 +80,7 @@ describe ChefDK::Command::Exec do
 
       let(:expected_GEM_HOME) { Gem.user_dir }
 
-      let(:expected_GEM_PATH) { Gem.path.join(':') }
+      let(:expected_GEM_PATH) { Gem.path.join(File::PATH_SEPARATOR) }
 
       before do
         allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
@@ -114,7 +114,7 @@ describe ChefDK::Command::Exec do
 
       let(:expected_GEM_HOME) { Gem.user_dir }
 
-      let(:expected_GEM_PATH) { Gem.path.join(':') }
+      let(:expected_GEM_PATH) { Gem.path.join(File::PATH_SEPARATOR) }
 
 
       before do
