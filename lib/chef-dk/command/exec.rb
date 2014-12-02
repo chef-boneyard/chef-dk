@@ -30,6 +30,11 @@ module ChefDK
         exec(*params)
         raise "Exec failed without an exception, your ruby is buggy"  # should never get here
       end
+
+      def needs_version?(params)
+        # Force version to get passed down to command
+        false
+      end
     end
   end
 end
