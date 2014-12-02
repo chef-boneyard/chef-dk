@@ -74,8 +74,8 @@ E
 
       def run(params = [])
         return 1 unless apply_params!(params)
-        export.run
-        ui.msg("Exported policy '#{export.policyfile_lock.name}' to #{export_dir}")
+        export_service.run
+        ui.msg("Exported policy '#{export_service.policyfile_lock.name}' to #{export_dir}")
         0
       rescue ExportDirNotEmpty => e
         ui.err("ERROR: " + e.message)
@@ -96,8 +96,8 @@ E
         @chef_config = Chef::Config
       end
 
-      def export
-        @export ||= PolicyfileServices::ExportRepo.new(policyfile: policyfile_relative_path,
+      def export_service
+        @export_service ||= PolicyfileServices::ExportRepo.new(policyfile: policyfile_relative_path,
                                                        export_dir: export_dir,
                                                        root_dir: Dir.pwd,
                                                        force: config[:force])
