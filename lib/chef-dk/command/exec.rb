@@ -37,13 +37,7 @@ module ChefDK
       end
 
       def needs_help?(params)
-        cmd_idx = params.find_index {|x| !x.start_with? '-'}
-        switch_idx = params.find_index {|x| ['-h', '--help'].include? x}
-        if cmd_idx && switch_idx && cmd_idx < switch_idx
-          false
-        else
-          super
-        end
+        ['-h', '--help'].include? params[0]
       end
     end
   end
