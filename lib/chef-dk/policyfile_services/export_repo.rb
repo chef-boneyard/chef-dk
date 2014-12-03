@@ -51,6 +51,10 @@ module ChefDK
         @storage_config = Policyfile::StorageConfig.new.use_policyfile(policyfile_full_path)
       end
 
+      def policy_name
+        policyfile_lock.name
+      end
+
       def run
         assert_lockfile_exists!
         assert_export_dir_empty!

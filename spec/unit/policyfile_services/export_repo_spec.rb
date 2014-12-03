@@ -148,6 +148,10 @@ E
         expect(lock.cookbook_locks).to have_key("local-cookbook")
       end
 
+      it "delegates #policy_name to the lockfile" do
+        expect(export_service.policy_name).to eq("install-example")
+      end
+
       describe "writing updates to the policyfile lock" do
 
         let(:updated_lockfile_io) { StringIO.new }
