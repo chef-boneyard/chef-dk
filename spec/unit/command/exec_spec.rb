@@ -124,9 +124,7 @@ describe ChefDK::Command::Exec do
             run_command
           end
         end
-      end
 
-      ['-h', '--help'].each do |switch|
         context "when running a exec with #{switch}" do
           let(:command_options) { ["#{switch}"] }
 
