@@ -235,21 +235,59 @@ E
 
         end
 
-        context "When the export dir is already populated" do
+        context "When the export dir has non-conflicting content" do
 
           let(:file_in_export_dir) { File.join(export_dir, "some_random_cruft") }
+
+          let(:extra_data_bag_dir) { File.join(export_dir, "data_bags", "extraneous") }
+
+          let(:extra_data_bag_item) { File.join(extra_data_bag_dir, "an_item.json") }
 
           before do
             FileUtils.mkdir_p(export_dir)
             File.open(file_in_export_dir, "wb+") { |f| f.print "some random cruft" }
+            FileUtils.mkdir_p(extra_data_bag_dir)
+            File.open(extra_data_bag_item, "wb+") { |f| f.print "some random cruft" }
+          end
+
+          it "ignores the non-conflicting content and exports" do
+            export_service.run
+
+            expect(File).to exist(file_in_export_dir)
+            expect(File).to exist(extra_data_bag_item)
+
+            expect(File).to be_directory(File.join(export_dir, "cookbooks"))
+            expect(File).to be_directory(File.join(export_dir, "data_bags"))
+          end
+        end
+
+        context "When the export dir has conflicting content" do
+
+          let(:non_conflicting_file_in_export_dir) { File.join(export_dir, "some_random_cruft") }
+
+          let(:cookbooks_dir) { File.join(export_dir, "cookbooks") }
+
+          let(:file_in_cookbooks_dir) { File.join(cookbooks_dir, "some_random_cruft") }
+
+          let(:policyfiles_data_bag_dir) { File.join(export_dir, "data_bags", "policyfiles") }
+
+          let(:extra_policyfile_data_item) { File.join(policyfiles_data_bag_dir, "leftover-policy.json") }
+
+          before do
+            FileUtils.mkdir_p(export_dir)
+            FileUtils.mkdir_p(cookbooks_dir)
+            FileUtils.mkdir_p(policyfiles_data_bag_dir)
+            File.open(non_conflicting_file_in_export_dir, "wb+") { |f| f.print "some random cruft" }
+            File.open(file_in_cookbooks_dir, "wb+") { |f| f.print "some random cruft" }
+            File.open(extra_policyfile_data_item, "wb+") { |f| f.print "some random cruft" }
           end
 
           it "raises a PolicyfileExportRepoError" do
-            message = "Export dir (#{export_dir}) not empty. Refusing to export."
+            message = "Export dir (#{export_dir}) not clean. Refusing to export. (Conflicting files: #{file_in_cookbooks_dir}, #{extra_policyfile_data_item})"
             expect { export_service.run }.to raise_error(ChefDK::ExportDirNotEmpty, message)
-            expect(File).to be_file(file_in_export_dir)
-            expect(File).to_not exist(File.join(export_dir, "cookbooks"))
-            expect(File).to_not exist(File.join(export_dir, "data_bags"))
+            expect(File).to exist(non_conflicting_file_in_export_dir)
+            expect(File).to exist(file_in_cookbooks_dir)
+            expect(File).to exist(extra_policyfile_data_item)
           end
 
           context "and the force option is set" do
@@ -259,7 +297,11 @@ E
             it "clears the export dir and exports" do
               export_service.run
 
-              expect(File).to_not exist(file_in_export_dir)
+              expect(File).to_not exist(file_in_cookbooks_dir)
+              expect(File).to_not exist(extra_policyfile_data_item)
+
+              expect(File).to exist(non_conflicting_file_in_export_dir)
+
               expect(File).to be_directory(File.join(export_dir, "cookbooks"))
               expect(File).to be_directory(File.join(export_dir, "data_bags"))
             end

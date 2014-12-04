@@ -119,8 +119,7 @@ module Kitchen
       #
       # @api private
       def policy_exporter
-        return @policy_exporter if @policy_exporter
-        @policy_exporter = ChefDK::PolicyfileServices::ExportRepo.new(export_dir: sandbox_path)
+        @policy_exporter ||= ChefDK::PolicyfileServices::ExportRepo.new(export_dir: sandbox_path)
       end
 
       # Writes a fake (but valid) validation.pem into the sandbox directory.

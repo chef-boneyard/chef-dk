@@ -57,7 +57,7 @@ module ChefDK
 
       def run
         assert_lockfile_exists!
-        assert_export_dir_empty!
+        assert_export_dir_clean!
 
         validate_lockfile
         write_updated_lockfile
@@ -86,10 +86,12 @@ module ChefDK
       private
 
       def create_repo_structure
-        FileUtils.rm_rf(export_dir)
+        FileUtils.rm_rf(cookbooks_dir)
+        FileUtils.rm_rf(policyfiles_data_bag_dir)
+
         FileUtils.mkdir_p(export_dir)
-        FileUtils.mkdir_p(File.join(export_dir, "cookbooks"))
-        FileUtils.mkdir_p(File.join(export_dir, "data_bags", "policyfiles"))
+        FileUtils.mkdir_p(cookbooks_dir)
+        FileUtils.mkdir_p(policyfiles_data_bag_dir)
       end
 
       def copy_cookbooks
@@ -161,15 +163,28 @@ module ChefDK
         end
       end
 
-      def assert_export_dir_empty!
-        entries = Dir.glob(File.join(export_dir, "*"))
-        if !force_export? && !entries.empty?
-          raise ExportDirNotEmpty, "Export dir (#{export_dir}) not empty. Refusing to export."
+      def assert_export_dir_clean!
+        if !force_export? && !conflicting_fs_entries.empty?
+          msg = "Export dir (#{export_dir}) not clean. Refusing to export. (Conflicting files: #{conflicting_fs_entries.join(', ')})"
+          raise ExportDirNotEmpty, msg
         end
       end
 
       def force_export?
         @force_export
+      end
+
+      def conflicting_fs_entries
+        Dir.glob(File.join(cookbooks_dir, "*")) +
+          Dir.glob(File.join(policyfiles_data_bag_dir, "*"))
+      end
+
+      def cookbooks_dir
+        File.join(export_dir, "cookbooks")
+      end
+
+      def policyfiles_data_bag_dir
+        File.join(export_dir, "data_bags", "policyfiles")
       end
 
     end
