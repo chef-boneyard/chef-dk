@@ -118,6 +118,7 @@ describe ChefDK::Command::Exec do
           let(:command_options) { %W[#{switch} gem] }
 
           it "should call not call exec, but it should print the banner" do
+            allow(command_instance).to receive(:msg)
             expect(ENV).not_to receive(:[]=)
             expect(command_instance).to receive(:banner)
             expect(command_instance).not_to receive(:exec)
@@ -129,6 +130,7 @@ describe ChefDK::Command::Exec do
           let(:command_options) { ["#{switch}"] }
 
           it "should call not call exec, but it should print the banner" do
+            allow(command_instance).to receive(:msg)
             expect(ENV).not_to receive(:[]=)
             expect(command_instance).to receive(:banner)
             expect(command_instance).not_to receive(:exec)
