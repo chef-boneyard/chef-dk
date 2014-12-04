@@ -90,13 +90,6 @@ module Kitchen
 
       private
 
-      # TODO: here we override prepare_cache to do nothing so ChefDK will not
-      # be grumpy about having entries in the directory. Probably need to make
-      # ChefDK more selective about what files/dirs it cares about in the
-      # export dir.
-      def prepare_cache
-      end
-
       # Overrides behavior of parent class so that dna.json isn't created; we
       # don't need it.
       #
