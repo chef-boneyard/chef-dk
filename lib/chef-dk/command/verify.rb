@@ -161,7 +161,7 @@ end
 
       add_component "fauxhai" do |c|
         c.gem_base_dir = "fauxhai"
-        c.smoke_test { sh("fauxhai") }
+        c.smoke_test { sh("gem list fauxhai") }
       end
 
       add_component "knife-spork" do |c|
