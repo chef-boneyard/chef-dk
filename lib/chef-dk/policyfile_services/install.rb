@@ -32,9 +32,11 @@ module ChefDK
 
       attr_reader :ui
       attr_reader :storage_config
+      attr_reader :overwrite
 
-      def initialize(policyfile: nil, ui: nil, root_dir: nil)
+      def initialize(policyfile: nil, ui: nil, root_dir: nil, overwrite: false)
         @ui = ui
+        @overwrite = overwrite
 
         policyfile_rel_path = policyfile || "Policyfile.rb"
         policyfile_full_path = File.expand_path(policyfile_rel_path, root_dir)
@@ -51,7 +53,7 @@ module ChefDK
           raise PolicyfileNotFound, "Policyfile not found at path #{policyfile_expanded_path}"
         end
 
-        if File.exist?(policyfile_lock_expanded_path)
+        if installing_from_lock?
           install_from_lock
         else
           generate_lock_and_install
@@ -111,6 +113,10 @@ module ChefDK
         policyfile_lock.install_cookbooks
       rescue => error
         raise PolicyfileInstallError.new("Failed to install cookbooks from lockfile", error)
+      end
+
+      def installing_from_lock?
+        !@overwrite && File.exist?(policyfile_lock_expanded_path)
       end
 
     end
