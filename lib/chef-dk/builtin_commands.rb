@@ -29,6 +29,8 @@ ChefDK.commands do |c|
 
   c.builtin "install", :Install, desc: "Install cookbooks from a Policyfile and generate a locked cookbook set"
 
+  c.builtin "update", :Update, desc: "Updates a Policyfile.lock.json with latest run_list and cookbooks"
+
   c.builtin "push", :Push, desc: "Push a local policy lock to a policy group on the server"
 
   c.builtin "export", :Export, desc: "Export a policy lock as a Chef Zero code repo"

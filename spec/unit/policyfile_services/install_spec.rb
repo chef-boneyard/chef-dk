@@ -118,7 +118,7 @@ E
       let(:overwrite) { true }
 
       before do
-        File.open(policyfile_lock_path, "wb+") { |f| f.puts("This is the old lockfile content") }
+        File.binwrite(policyfile_lock_path, "This is the old lockfile content")
       end
 
       it "solves the Policyfile demands, installs cookbooks, emits a lockfile" do
