@@ -24,7 +24,7 @@ describe ChefDK::Command::Exec do
   let(:command_options) { [] }
 
   def run_command
-    command_instance.run(command_options)
+    command_instance.run_with_default_options(command_options)
   end
 
   it "has a usage banner" do
@@ -97,6 +97,47 @@ describe ChefDK::Command::Exec do
         expect{ run_command }.to raise_error # XXX: this isn't a test we just need to swallow the exception
       end
 
+      ['-v', '--version', '-h', '--help'].each do |switch|
+        context "when running a command with #{switch}" do
+          let(:command_options) { %W[gem list #{switch}] }
+
+          it "should call exec to fire off the command with the correct environment" do
+            expect(ENV).to receive(:[]=).with("PATH", expected_PATH)
+            expect(ENV).to receive(:[]=).with("GEM_ROOT", expected_GEM_ROOT)
+            expect(ENV).to receive(:[]=).with("GEM_HOME", expected_GEM_HOME)
+            expect(ENV).to receive(:[]=).with("GEM_PATH", expected_GEM_PATH)
+
+            expect(command_instance).to receive(:exec).with(*command_options)
+            expect{ run_command }.to raise_error # XXX: this isn't a test we just need to swallow the exception
+          end
+        end
+      end
+
+      ['-h', '--help'].each do |switch|
+        context "when running a exec with #{switch} and things after it" do
+          let(:command_options) { %W[#{switch} gem] }
+
+          it "should call not call exec, but it should print the banner" do
+            allow(command_instance).to receive(:msg)
+            expect(ENV).not_to receive(:[]=)
+            expect(command_instance).to receive(:banner)
+            expect(command_instance).not_to receive(:exec)
+            run_command
+          end
+        end
+
+        context "when running a exec with #{switch}" do
+          let(:command_options) { ["#{switch}"] }
+
+          it "should call not call exec, but it should print the banner" do
+            allow(command_instance).to receive(:msg)
+            expect(ENV).not_to receive(:[]=)
+            expect(command_instance).to receive(:banner)
+            expect(command_instance).not_to receive(:exec)
+            run_command
+          end
+        end
+      end
     end
 
     context "when running command that does not exist" do
