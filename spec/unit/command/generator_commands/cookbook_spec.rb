@@ -173,30 +173,54 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
   end
 
-  context "when given a generator-cookbook path" do
+  context "when given a generator-cookbook path", :focus do
+
+    let(:default_generator_cookbook_path) { File.expand_path('lib/chef-dk/skeletons/code_generator', project_root) }
+
     let(:generator_cookbook_path) { File.join(tempdir, 'a_generator_cookbook') }
     let(:argv) { ["new_cookbook", "--generator-cookbook", generator_cookbook_path] }
 
     before do
       reset_tempdir
+
+      cookbook_generator.read_and_validate_params
     end
 
     it "configures the generator context" do
-      cookbook_generator.read_and_validate_params
       cookbook_generator.setup_context
       expect(generator_context.cookbook_root).to eq(Dir.pwd)
       expect(generator_context.cookbook_name).to eq("new_cookbook")
       expect(cookbook_generator.chef_runner.cookbook_path).to eq(generator_cookbook_path)
     end
 
-    it "creates a new cookbook" do
-      Dir.chdir(tempdir) do
-        allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-        cookbook_generator.run
+    context "with an invalid generator-cookbook path" do
+
+      it "fails to create the cookbook cookbook" do
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          # TODO: improve messaging for this error
+          expect { cookbook_generator.run }.to raise_error(Chef::Exceptions::CookbookNotFound)
+        end
       end
-      generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
-      expected_cookbook_files.each do |expected_file|
-        expect(generated_files).to include(expected_file)
+
+    end
+
+    context "with a generator-cookbook path to a directory containing a 'code_generator' cookbook" do
+
+      before do
+        FileUtils.mkdir_p(generator_cookbook_path)
+        FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path)
+      end
+
+      it "creates a new cookbook" do
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          cookbook_generator.run
+        end
+        generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
+        expected_cookbook_files.each do |expected_file|
+          expect(generated_files).to include(expected_file)
+        end
       end
     end
   end
