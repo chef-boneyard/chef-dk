@@ -16,9 +16,12 @@
 #
 
 require 'spec_helper'
+require 'shared/command_with_ui_object'
 require 'chef-dk/command/push'
 
 describe ChefDK::Command::Push do
+
+  it_behaves_like "a command with a UI object"
 
   let(:policy_group) { "dev" }
 
@@ -49,12 +52,6 @@ describe ChefDK::Command::Push do
 
     it "disables debug by default" do
       expect(command.debug?).to be(false)
-    end
-
-    it "configures a default UI component" do
-      ui = command.ui
-      expect(ui.out_stream).to eq($stdout)
-      expect(ui.err_stream).to eq($stderr)
     end
 
     describe "when configuring components that depend on chef config" do

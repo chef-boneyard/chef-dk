@@ -16,9 +16,12 @@
 #
 
 require 'spec_helper'
+require 'shared/command_with_ui_object'
 require 'chef-dk/command/install'
 
 describe ChefDK::Command::Install do
+
+  it_behaves_like "a command with a UI object"
 
   let(:params) { [] }
 
@@ -32,12 +35,6 @@ describe ChefDK::Command::Install do
 
   it "disables debug by default" do
     expect(command.debug?).to be(false)
-  end
-
-  it "configures a default UI component" do
-    ui = command.ui
-    expect(ui.out_stream).to eq($stdout)
-    expect(ui.err_stream).to eq($stderr)
   end
 
   context "when debug mode is set" do
