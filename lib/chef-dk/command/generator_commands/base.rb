@@ -47,8 +47,6 @@ module ChefDK
         end
 
         # Path to the directory where the code_generator cookbook is located.
-        # For now, this is hard coded to the 'skeletons' directory in this
-        # repo.
         def generator_cookbook_path
           config[:generator_cookbook]
         end
