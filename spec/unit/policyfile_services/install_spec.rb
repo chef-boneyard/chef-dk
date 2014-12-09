@@ -52,9 +52,11 @@ cookbook 'local-cookbook', path: '#{local_cookbooks_root}/local-cookbook'
 E
   end
 
+  let(:overwrite) { false }
+
   let(:ui) { TestHelpers::TestUI.new }
 
-  let(:install_service) { described_class.new(policyfile: policyfile_rb_name, ui: ui, root_dir: working_dir) }
+  let(:install_service) { described_class.new(policyfile: policyfile_rb_name, ui: ui, root_dir: working_dir, overwrite: overwrite) }
 
   let(:storage_config) do
     ChefDK::Policyfile::StorageConfig.new( cache_path: nil, relative_paths_root: local_cookbooks_root )
@@ -101,6 +103,23 @@ E
     end
 
     context "and no lockfile exists" do
+
+      it "solves the Policyfile demands, installs cookbooks, emits a lockfile" do
+        install_service.run
+        generated_lock = result_policyfile_lock
+        expect(generated_lock.name).to eq('install-example')
+        expect(generated_lock.cookbook_locks).to have_key("local-cookbook")
+      end
+
+    end
+
+    context "and a lockfile exists and `overwrite` is specified" do
+
+      let(:overwrite) { true }
+
+      before do
+        File.binwrite(policyfile_lock_path, "This is the old lockfile content")
+      end
 
       it "solves the Policyfile demands, installs cookbooks, emits a lockfile" do
         install_service.run

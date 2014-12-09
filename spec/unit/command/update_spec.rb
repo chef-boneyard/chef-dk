@@ -17,9 +17,9 @@
 
 require 'spec_helper'
 require 'shared/command_with_ui_object'
-require 'chef-dk/command/install'
+require 'chef-dk/command/update'
 
-describe ChefDK::Command::Install do
+describe ChefDK::Command::Update do
 
   it_behaves_like "a command with a UI object"
 
@@ -54,7 +54,7 @@ describe ChefDK::Command::Install do
 
     it "creates the installer service with a `nil` policyfile path" do
       expect(ChefDK::PolicyfileServices::Install).to receive(:new).
-        with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd).
+        with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, overwrite: true).
         and_return(install_service)
       expect(command.installer).to eq(install_service)
     end
@@ -71,7 +71,7 @@ describe ChefDK::Command::Install do
 
     it "creates the installer service with the specified policyfile path" do
       expect(ChefDK::PolicyfileServices::Install).to receive(:new).
-        with(policyfile: "MyPolicy.rb", ui: command.ui, root_dir: Dir.pwd).
+        with(policyfile: "MyPolicy.rb", ui: command.ui, root_dir: Dir.pwd, overwrite: true).
         and_return(install_service)
       expect(command.installer).to eq(install_service)
     end
