@@ -29,6 +29,12 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
     %w[
       .gitignore
       .kitchen.yml
+      test
+      test/integration
+      test/integration/default
+      test/integration/default/serverspec
+      test/integration/default/serverspec/default_spec.rb
+      test/integration/default/serverspec/spec_helper.rb
       Berksfile
       chefignore
       metadata.rb
@@ -136,6 +142,14 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
       include_examples "a generated file", :cookbook_name do
         let(:line) { /\s*- recipe\[new_cookbook::default\]/ }
+      end
+    end
+
+    describe "test/integration/default/serverspec/default_spec.rb" do
+      let(:file) { File.join(tempdir, "new_cookbook", "test", "integration", "default", "serverspec", "default_spec.rb") }
+
+      include_examples "a generated file", :cookbook_name do
+        let(:line) { "describe 'new_cookbook::default' do" }
       end
     end
 
