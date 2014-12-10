@@ -19,6 +19,7 @@ template spec_path do
   helpers(ChefDK::Generator::TemplateHelper)
   variables(
     :recipe_name => context.new_file_basename)
+  action :create_if_missing
 end
 
 # Recipe
