@@ -199,9 +199,14 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       it "fails to create the cookbook cookbook" do
         Dir.chdir(tempdir) do
           allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          # TODO: improve messaging for this error
-          expect { cookbook_generator.run }.to raise_error(Chef::Exceptions::CookbookNotFound)
+          allow(cookbook_generator).to receive(:stderr).and_return(stderr_io)
+          expect(cookbook_generator.run).to eq(1)
         end
+
+        cookbook_path = File.dirname(generator_cookbook_path)
+        expected_msg = %Q(ERROR: Could not find cookbook(s) to satisfy run list ["recipe[a_generator_cookbook::cookbook]"] in #{cookbook_path})
+
+        expect(stderr_io.string).to include(expected_msg)
       end
 
     end

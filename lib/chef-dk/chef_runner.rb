@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 
+require 'chef-dk/exceptions'
 require 'chef'
 
 module ChefDK
@@ -34,6 +35,11 @@ module ChefDK
     def converge
       configure
       Chef::Runner.new(run_context).converge
+    rescue Chef::Exceptions::CookbookNotFound => e
+      message = "Could not find cookbook(s) to satisfy run list #{run_list.inspect} in #{cookbook_path}"
+      raise CookbookNotFound.new(message, e)
+    rescue => e
+      raise ChefConvergeError("Chef failed to converge: #{e}", e)
     end
 
     def run_context
