@@ -47,8 +47,10 @@ cookbook_file "#{cookbook_dir}/Berksfile"
 directory "#{cookbook_dir}/recipes"
 
 template "#{cookbook_dir}/recipes/default.rb" do
-  source "default_recipe.rb.erb"
+  source "recipe.rb.erb"
   helpers(ChefDK::Generator::TemplateHelper)
+  variables(
+    :recipe_name => 'default')
 end
 
 # Chefspec
