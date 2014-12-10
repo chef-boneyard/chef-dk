@@ -17,8 +17,6 @@ end
 template spec_path do
   source "recipe_spec.rb.erb"
   helpers(ChefDK::Generator::TemplateHelper)
-  variables(
-    :recipe_name => context.new_file_basename)
   action :create_if_missing
 end
 
@@ -26,6 +24,4 @@ end
 template recipe_path do
   source "recipe.rb.erb"
   helpers(ChefDK::Generator::TemplateHelper)
-  variables(
-    :recipe_name => context.new_file_basename)
 end

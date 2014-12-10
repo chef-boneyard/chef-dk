@@ -72,6 +72,7 @@ describe ChefDK::Command::GeneratorCommands::App do
       expect(generator_context.app_name).to eq("new_app")
       expect(generator_context.cookbook_root).to eq(File.join(Dir.pwd, "new_app", "cookbooks"))
       expect(generator_context.cookbook_name).to eq("new_app")
+      expect(generator_context.recipe_name).to eq("default")
     end
 
     describe "generated files" do

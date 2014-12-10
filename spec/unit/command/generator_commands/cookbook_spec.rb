@@ -102,6 +102,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       cookbook_generator.setup_context
       expect(generator_context.cookbook_root).to eq(Dir.pwd)
       expect(generator_context.cookbook_name).to eq("new_cookbook")
+      expect(generator_context.recipe_name).to eq("default")
     end
 
     it "creates a new cookbook" do

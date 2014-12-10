@@ -57,10 +57,15 @@ module ChefDK
           Generator.add_attr_to_context(:app_name, app_name)
           Generator.add_attr_to_context(:cookbook_root, cookbook_root)
           Generator.add_attr_to_context(:cookbook_name, cookbook_name)
+          Generator.add_attr_to_context(:recipe_name, recipe_name)
         end
 
         def recipe
           "app"
+        end
+
+        def recipe_name
+          "default"
         end
 
         def app_name

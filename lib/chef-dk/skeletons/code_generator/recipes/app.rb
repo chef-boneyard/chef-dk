@@ -49,8 +49,6 @@ directory "#{cookbook_dir}/recipes"
 template "#{cookbook_dir}/recipes/default.rb" do
   source "recipe.rb.erb"
   helpers(ChefDK::Generator::TemplateHelper)
-  variables(
-    :recipe_name => 'default')
 end
 
 # Chefspec
@@ -66,8 +64,6 @@ template "#{cookbook_dir}/spec/unit/recipes/default_spec.rb" do
   source "recipe_spec.rb.erb"
   helpers(ChefDK::Generator::TemplateHelper)
   action :create_if_missing
-  variables(
-  :recipe_name => 'default')
 end
 
 # git
