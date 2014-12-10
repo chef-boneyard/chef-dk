@@ -25,15 +25,29 @@ cookbook_file "#{cookbook_dir}/Berksfile" do
   action :create_if_missing
 end
 
-# TK
+# TK and Serverspec
 template "#{cookbook_dir}/.kitchen.yml" do
   source 'kitchen.yml.erb'
   helpers(ChefDK::Generator::TemplateHelper)
   action :create_if_missing
 end
 
-# Chefspec
+directory "#{app_dir}/test/integration/default/serverspec" do
+  recursive true
+end
 
+cookbook_file "#{app_dir}/test/integration/default/serverspec/spec_helper.rb" do
+  source 'serverspec_spec_helper.rb'
+  action :create_if_missing
+end
+
+template "#{app_dir}/test/integration/default/serverspec/default_spec.rb" do
+  source 'serverspec_default_spec.rb.erb'
+  helpers(ChefDK::Generator::TemplateHelper)
+  action :create_if_missing
+end
+
+# Chefspec
 directory "#{cookbook_dir}/spec/unit/recipes" do
   recursive true
 end
@@ -46,20 +60,15 @@ template "#{cookbook_dir}/spec/unit/recipes/default_spec.rb" do
   source "recipe_spec.rb.erb"
   helpers(ChefDK::Generator::TemplateHelper)
   action :create_if_missing
-  variables(
-  :recipe_name => 'default')
 end
 
 # Recipes
-
 directory "#{cookbook_dir}/recipes"
 
 template "#{cookbook_dir}/recipes/default.rb" do
   source "recipe.rb.erb"
   helpers(ChefDK::Generator::TemplateHelper)
   action :create_if_missing
-  variables(
-  :recipe_name => 'default')
 end
 
 # git
