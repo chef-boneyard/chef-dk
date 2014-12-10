@@ -173,7 +173,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
   end
 
-  context "when given a generator-cookbook path", :focus do
+  context "when given a generator-cookbook path" do
 
     let(:default_generator_cookbook_path) { File.expand_path('lib/chef-dk/skeletons/code_generator', project_root) }
 
@@ -190,7 +190,8 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       cookbook_generator.setup_context
       expect(generator_context.cookbook_root).to eq(Dir.pwd)
       expect(generator_context.cookbook_name).to eq("new_cookbook")
-      expect(cookbook_generator.chef_runner.cookbook_path).to eq(generator_cookbook_path)
+      expect(cookbook_generator.chef_runner.cookbook_path).to eq(tempdir)
+      expect(cookbook_generator.chef_runner.run_list).to eq(["recipe[a_generator_cookbook::cookbook]"])
     end
 
     context "with an invalid generator-cookbook path" do
@@ -205,22 +206,53 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
     end
 
+    context "with a generator-cookbook path to a specific cookbook" do
+
+      let(:metadata_file) { File.join(generator_cookbook_path, "metadata.rb") }
+
+      before do
+        FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path)
+
+        # have to update metadata with the correct name
+        IO.binwrite(metadata_file, "name 'a_generator_cookbook'")
+      end
+
+      it "creates the cookbook" do
+        expect(cookbook_generator.chef_runner.cookbook_path).to eq(tempdir)
+        expect(cookbook_generator.chef_runner.run_list).to eq(["recipe[a_generator_cookbook::cookbook]"])
+
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          cookbook_generator.run
+        end
+      end
+
+    end
+
     context "with a generator-cookbook path to a directory containing a 'code_generator' cookbook" do
 
       before do
         FileUtils.mkdir_p(generator_cookbook_path)
         FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path)
+
+        allow(cookbook_generator).to receive(:stderr).and_return(stderr_io)
       end
 
-      it "creates a new cookbook" do
+      it "creates a new cookbook (and warns about deprecated usage)" do
+        allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+
         Dir.chdir(tempdir) do
-          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
           cookbook_generator.run
         end
         generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
         expected_cookbook_files.each do |expected_file|
           expect(generated_files).to include(expected_file)
         end
+
+        code_generator_path = File.join(generator_cookbook_path, "code_generator")
+        warning_message = "WARN: Please configure the generator cookbook by giving the full path to the desired cookbook (like '#{code_generator_path}')"
+
+        expect(stderr_io.string).to include(warning_message)
       end
     end
   end

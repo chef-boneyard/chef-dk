@@ -38,17 +38,26 @@ module ChefDK
         def initialize(params)
           super()
           @params = params
+
+          @generator_cookbook_path = nil
+          @generator_cookbook_name = nil
         end
 
         # An instance of ChefRunner. Calling ChefRunner#converge will trigger
         # convergence and generate the desired code.
         def chef_runner
-          @chef_runner ||= ChefRunner.new(generator_cookbook_path, ["code_generator::#{recipe}"])
+          @chef_runner ||= ChefRunner.new(generator_cookbook_path, ["recipe[#{generator_cookbook_name}::#{recipe}]"])
         end
 
         # Path to the directory where the code_generator cookbook is located.
         def generator_cookbook_path
-          config[:generator_cookbook]
+          detect_generator_cookbook_name_and_path! unless @generator_cookbook_path
+          @generator_cookbook_path
+        end
+
+        def generator_cookbook_name
+          detect_generator_cookbook_name_and_path! unless @generator_cookbook_name
+          @generator_cookbook_name
         end
 
         # Sets git related generator_context values.
@@ -71,6 +80,34 @@ module ChefDK
           paths = path.split(File::PATH_SEPARATOR)
           paths.any? {|bin_path| File.exist?(File.join(bin_path, "git#{RbConfig::CONFIG['EXEEXT']}"))}
         end
+
+        private
+
+        # Inspects the `config[:generator_cookbook]` option to determine the
+        # generator_cookbook_name and generator_cookbook_path. There are two
+        # supported ways this can work:
+        #
+        # * `config[:generator_cookbook]` is the full path to the generator
+        # cookbook. In this case, the last path component is the cookbook name,
+        # and the parent directory is the cookbook path
+        # * `config[:generator_cookbook]` is the path to a directory that
+        # contains a cookbook named "code_generator" (DEPRECATED). This is how
+        # the `--generator-cookbook` feature was originally written, so we
+        # support this for backwards compatibility. This way has poor UX and
+        # we'd like to get rid of it, so a warning is printed in this case.
+        def detect_generator_cookbook_name_and_path!
+          given_path = config[:generator_cookbook]
+          code_generator_subdir = File.join(given_path, "code_generator")
+          if File.directory?(code_generator_subdir)
+            @generator_cookbook_name = "code_generator"
+            @generator_cookbook_path = given_path
+            err("WARN: Please configure the generator cookbook by giving the full path to the desired cookbook (like '#{code_generator_subdir}')")
+          else
+            @generator_cookbook_name = File.basename(given_path)
+            @generator_cookbook_path = File.dirname(given_path)
+          end
+        end
+
       end
     end
   end
