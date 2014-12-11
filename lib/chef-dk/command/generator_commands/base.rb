@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 
+require 'chef-dk/configurable'
 require 'chef-dk/command/generator_commands'
 
 module ChefDK
@@ -30,6 +31,8 @@ module ChefDK
       # The default implementation is the `code_generator` cookbook in
       # chef-dk/skeletons/code_generator.
       class Base < Command::Base
+
+        include Configurable
 
         attr_reader :params
 
@@ -96,7 +99,7 @@ module ChefDK
         # support this for backwards compatibility. This way has poor UX and
         # we'd like to get rid of it, so a warning is printed in this case.
         def detect_generator_cookbook_name_and_path!
-          given_path = config[:generator_cookbook]
+          given_path = generator_cookbook_option
           code_generator_subdir = File.join(given_path, "code_generator")
           if File.directory?(code_generator_subdir)
             @generator_cookbook_name = "code_generator"
@@ -106,6 +109,10 @@ module ChefDK
             @generator_cookbook_name = File.basename(given_path)
             @generator_cookbook_path = File.dirname(given_path)
           end
+        end
+
+        def generator_cookbook_option
+          config[:generator_cookbook] || chefdk_config.generator_cookbook
         end
 
       end

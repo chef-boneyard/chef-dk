@@ -17,8 +17,8 @@ shared_examples_for "custom generator cookbook" do
 
     before do
       reset_tempdir
-
       code_generator.read_and_validate_params
+      allow(code_generator.config_loader).to receive(:load)
     end
 
     it "configures the generator context" do
@@ -26,6 +26,24 @@ shared_examples_for "custom generator cookbook" do
       expect(generator_context.cookbook_name).to eq(generator_arg)
       expect(code_generator.chef_runner.cookbook_path).to eq(tempdir)
       expect(code_generator.chef_runner.run_list).to eq(["recipe[a_generator_cookbook::#{generator_name}]"])
+    end
+
+    context "when the generator cookbook is configured in a configuration file" do
+
+      let(:argv) { [generator_arg] }
+
+      let(:chefdk_config) { double("Mixlib::Config context for ChefDK", generator_cookbook: generator_cookbook_path) }
+
+      before do
+        allow(code_generator).to receive(:chefdk_config).and_return(chefdk_config)
+      end
+
+      it "configures the generator context" do
+        code_generator.setup_context
+        expect(generator_context.cookbook_name).to eq(generator_arg)
+        expect(code_generator.chef_runner.cookbook_path).to eq(tempdir)
+        expect(code_generator.chef_runner.run_list).to eq(["recipe[a_generator_cookbook::#{generator_name}]"])
+      end
     end
 
     context "with an invalid generator-cookbook path" do
