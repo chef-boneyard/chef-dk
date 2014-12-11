@@ -55,7 +55,7 @@ module ChefDK
         :short => "-g GENERATOR_COOKBOOK_PATH",
         :long  => "--generator-cookbook GENERATOR_COOKBOOK_PATH",
         :description => "Use GENERATOR_COOKBOOK_PATH for the code_generator cookbook",
-        :default => File.expand_path("../../skeletons", __FILE__),
+        :default => File.expand_path("../../skeletons/code_generator", __FILE__),
         :proc => Proc.new { |s| File.expand_path(s) },
         :on => :tail
 

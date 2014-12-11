@@ -52,6 +52,9 @@ module ChefDK
             msg(banner)
             1
           end
+        rescue ChefDK::ChefRunnerError => e
+          err("ERROR: #{e}")
+          1
         end
 
         def setup_context
