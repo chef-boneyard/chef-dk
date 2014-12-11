@@ -19,6 +19,8 @@ require 'chef-dk/command/base'
 require 'chef-dk/ui'
 require 'chef-dk/policyfile_services/export_repo'
 
+require 'chef/workstation_config_loader'
+
 module ChefDK
   module Command
 
