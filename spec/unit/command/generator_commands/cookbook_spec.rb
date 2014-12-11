@@ -16,6 +16,7 @@
 #
 
 require 'spec_helper'
+require 'shared/custom_generator_cookbook'
 require 'chef-dk/command/generator_commands/cookbook'
 
 describe ChefDK::Command::GeneratorCommands::Cookbook do
@@ -56,6 +57,14 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
   before do
     ChefDK::Generator.reset
+  end
+
+  include_examples "custom generator cookbook" do
+
+    let(:generator_arg) { "new_cookbook" }
+
+    let(:generator_name) { "cookbook" }
+
   end
 
   it "configures the chef runner" do
@@ -171,95 +180,6 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       expect(generator_context.cookbook_name).to eq("a_new_cookbook")
     end
 
-  end
-
-  context "when given a generator-cookbook path" do
-
-    let(:default_generator_cookbook_path) { File.expand_path('lib/chef-dk/skeletons/code_generator', project_root) }
-
-    let(:generator_cookbook_path) { File.join(tempdir, 'a_generator_cookbook') }
-    let(:argv) { ["new_cookbook", "--generator-cookbook", generator_cookbook_path] }
-
-    before do
-      reset_tempdir
-
-      cookbook_generator.read_and_validate_params
-    end
-
-    it "configures the generator context" do
-      cookbook_generator.setup_context
-      expect(generator_context.cookbook_root).to eq(Dir.pwd)
-      expect(generator_context.cookbook_name).to eq("new_cookbook")
-      expect(cookbook_generator.chef_runner.cookbook_path).to eq(tempdir)
-      expect(cookbook_generator.chef_runner.run_list).to eq(["recipe[a_generator_cookbook::cookbook]"])
-    end
-
-    context "with an invalid generator-cookbook path" do
-
-      it "fails to create the cookbook cookbook" do
-        Dir.chdir(tempdir) do
-          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          allow(cookbook_generator).to receive(:stderr).and_return(stderr_io)
-          expect(cookbook_generator.run).to eq(1)
-        end
-
-        cookbook_path = File.dirname(generator_cookbook_path)
-        expected_msg = %Q(ERROR: Could not find cookbook(s) to satisfy run list ["recipe[a_generator_cookbook::cookbook]"] in #{cookbook_path})
-
-        expect(stderr_io.string).to include(expected_msg)
-      end
-
-    end
-
-    context "with a generator-cookbook path to a specific cookbook" do
-
-      let(:metadata_file) { File.join(generator_cookbook_path, "metadata.rb") }
-
-      before do
-        FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path)
-
-        # have to update metadata with the correct name
-        IO.binwrite(metadata_file, "name 'a_generator_cookbook'")
-      end
-
-      it "creates the cookbook" do
-        expect(cookbook_generator.chef_runner.cookbook_path).to eq(tempdir)
-        expect(cookbook_generator.chef_runner.run_list).to eq(["recipe[a_generator_cookbook::cookbook]"])
-
-        Dir.chdir(tempdir) do
-          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          cookbook_generator.run
-        end
-      end
-
-    end
-
-    context "with a generator-cookbook path to a directory containing a 'code_generator' cookbook" do
-
-      before do
-        FileUtils.mkdir_p(generator_cookbook_path)
-        FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path)
-
-        allow(cookbook_generator).to receive(:stderr).and_return(stderr_io)
-      end
-
-      it "creates a new cookbook (and warns about deprecated usage)" do
-        allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-
-        Dir.chdir(tempdir) do
-          cookbook_generator.run
-        end
-        generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
-        expected_cookbook_files.each do |expected_file|
-          expect(generated_files).to include(expected_file)
-        end
-
-        code_generator_path = File.join(generator_cookbook_path, "code_generator")
-        warning_message = "WARN: Please configure the generator cookbook by giving the full path to the desired cookbook (like '#{code_generator_path}')"
-
-        expect(stderr_io.string).to include(warning_message)
-      end
-    end
   end
 
   context "when given generic arguments to populate the generator context" do

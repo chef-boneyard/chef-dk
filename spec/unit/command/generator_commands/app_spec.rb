@@ -16,6 +16,7 @@
 #
 
 require 'spec_helper'
+require 'shared/custom_generator_cookbook'
 require 'chef-dk/command/generator_commands/app'
 
 describe ChefDK::Command::GeneratorCommands::App do
@@ -52,6 +53,14 @@ describe ChefDK::Command::GeneratorCommands::App do
 
   before do
     ChefDK::Generator.reset
+  end
+
+  include_examples "custom generator cookbook" do
+
+    let(:generator_arg) { "new_app" }
+
+    let(:generator_name) { "app" }
+
   end
 
   context "when given the name of the cookbook to generate" do
