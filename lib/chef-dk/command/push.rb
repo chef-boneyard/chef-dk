@@ -18,11 +18,14 @@
 require 'chef-dk/command/base'
 require 'chef-dk/ui'
 require 'chef-dk/policyfile_services/push'
+require 'chef-dk/configurable'
 
 module ChefDK
   module Command
 
     class Push < Base
+
+      include Configurable
 
       banner(<<-E)
 Usage: chef push POLICY_GROUP [ POLICY_FILE ] [options]
@@ -78,12 +81,6 @@ E
 
       def debug?
         !!config[:debug]
-      end
-
-      def chef_config
-        return @chef_config if @chef_config
-        Chef::WorkstationConfigLoader.new(config[:config_file]).load
-        @chef_config = Chef::Config
       end
 
       def push

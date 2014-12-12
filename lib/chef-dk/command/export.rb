@@ -18,11 +18,14 @@
 require 'chef-dk/command/base'
 require 'chef-dk/ui'
 require 'chef-dk/policyfile_services/export_repo'
+require 'chef-dk/configurable'
 
 module ChefDK
   module Command
 
     class Export < Base
+
+      include Configurable
 
       banner(<<-E)
 Usage: chef export [ POLICY_FILE ] DESTINATION_DIRECTORY [options]
@@ -89,12 +92,6 @@ E
 
       def debug?
         !!config[:debug]
-      end
-
-      def chef_config
-        return @chef_config if @chef_config
-        Chef::WorkstationConfigLoader.new(config[:config_file]).load
-        @chef_config = Chef::Config
       end
 
       def export_service
