@@ -1,5 +1,26 @@
 # Chef Development Kit Changelog
 
+# Unreleased:
+
+* Allow generator cookbooks to have arbitrary names. The
+  argument to `--generator-cookbook` should be the path to the cookbook,
+  rather than the path to the directory containing the generator
+  cookbook.
+* Custom Generator cookbooks can now be configured in
+  `~/.chef/config.rb` (or `knife.rb`) by setting
+  `chefdk.generator_cookbook`.
+* Added `chef update` command, which rebuilds `Policyfile.lock.json`
+  to reflect any changes in the `Policyfile.rb` and updates cookbooks to
+  the latest versions that match the dependency constraints.
+* Added `chef export` command. This command creates a directory
+  containing all cookbooks referenced by the `Policyfile.lock.json` and
+  a copy of the lock file as a data bag item. This directory can be
+  served by Chef Zero to apply your policy to a node.
+* Added `policyfile_zero` Test Kitchen provisioner. This provisioner
+  converges chef-client in policyfile mode using Chef Zero. This
+  currently requires TK to be modified to use mixlib-shellout 2.x, which
+  will be addressed in the next TK release.
+
 # Last Release: 0.3.5
 * Update Chef to 11.18.0 RC0, resolves issue with knife loading commands
   from incompatible versions installed as gems. See:
