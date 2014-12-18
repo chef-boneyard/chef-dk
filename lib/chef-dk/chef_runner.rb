@@ -26,7 +26,7 @@ module ChefDK
     attr_reader :run_list
 
     def initialize(cookbook_path, run_list)
-      @cookbook_path = cookbook_path
+      @cookbook_path = File.expand_path(cookbook_path)
       @run_list = run_list
       @formatter = nil
       @ohai = nil
@@ -39,7 +39,7 @@ module ChefDK
       message = "Could not find cookbook(s) to satisfy run list #{run_list.inspect} in #{cookbook_path}"
       raise CookbookNotFound.new(message, e)
     rescue => e
-      raise ChefConvergeError("Chef failed to converge: #{e}", e)
+      raise ChefConvergeError.new("Chef failed to converge: #{e}", e)
     end
 
     def run_context

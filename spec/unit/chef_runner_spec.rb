@@ -72,6 +72,32 @@ describe ChefDK::ChefRunner do
     expect(test_state[:loaded_recipes]).to eq([ "recipe_one", "recipe_two" ])
     expect(test_state[:converged_recipes]).to eq([ "recipe_one", "recipe_two" ])
   end
+
+  context "when the embedded chef run fails" do
+
+    let(:embedded_runner) { instance_double("Chef::Runner") }
+
+    before do
+      allow(Chef::Runner).to receive(:new).and_return(embedded_runner)
+      allow(embedded_runner).to receive(:converge).and_raise("oops")
+    end
+
+    it "wraps the exception in a ChefConvergeError" do
+      expect { chef_runner.converge }.to raise_error(ChefDK::ChefConvergeError)
+    end
+
+  end
+
+  context "when cookbook_path is relative" do
+
+    let(:default_cookbook_path) { "~/heres_some_cookbooks" }
+
+    it "expands the path" do
+      expect(chef_runner.cookbook_path).to eq(File.expand_path(default_cookbook_path))
+    end
+
+  end
+
 end
 
 
