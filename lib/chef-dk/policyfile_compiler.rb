@@ -44,6 +44,8 @@ module ChefDK
 
     def_delegator :@dsl, :name
     def_delegator :@dsl, :run_list
+    def_delegator :@dsl, :named_run_list
+    def_delegator :@dsl, :named_run_lists
     def_delegator :@dsl, :errors
     def_delegator :@dsl, :default_source
     def_delegator :@dsl, :cookbook_location_specs
@@ -79,6 +81,20 @@ module ChefDK
     # copy of the expanded_run_list, properly formatted for use in a lockfile
     def normalized_run_list
       expanded_run_list.map { |i| normalize_recipe(i) }
+    end
+
+    def expanded_named_run_lists
+      named_run_lists.inject({}) do |expanded, (name, run_list_items)|
+        expanded[name] = Chef::RunList.new(*run_list_items)
+        expanded
+      end
+    end
+
+    def normalized_named_run_lists
+      expanded_named_run_lists.inject({}) do |normalized,(name, run_list)|
+        normalized[name] = run_list.map { |i| normalize_recipe(i) }
+        normalized
+      end
     end
 
     def lock
@@ -205,7 +221,11 @@ module ChefDK
     end
 
     def cookbooks_in_run_list
-      recipes = expanded_run_list.map {|recipe| recipe.name }
+      combined_run_lists = expanded_named_run_lists.values.inject(expanded_run_list.to_a) do |accum_run_lists, run_list|
+        accum_run_lists |= run_list.to_a
+      end
+
+      recipes = combined_run_lists.map {|recipe| recipe.name }
       recipes.map { |r| r[/^([^:]+)/, 1] }
     end
 

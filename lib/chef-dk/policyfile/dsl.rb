@@ -32,12 +32,15 @@ module ChefDK
       attr_reader :default_source
       attr_reader :cookbook_location_specs
 
+      attr_reader :named_run_lists
+
       attr_reader :storage_config
 
       def initialize(storage_config)
         @name = nil
         @errors = []
         @run_list = []
+        @named_run_lists = {}
         @default_source = NullCookbookSource.new
         @cookbook_location_specs = {}
         @storage_config = storage_config
@@ -54,6 +57,10 @@ module ChefDK
         run_list_items = run_list_items.flatten
         @run_list = run_list_items unless run_list_items.empty?
         @run_list
+      end
+
+      def named_run_list(name, *run_list_items)
+        @named_run_lists[name] = run_list_items.flatten
       end
 
       def default_source(source_type = nil, source_uri = nil)
