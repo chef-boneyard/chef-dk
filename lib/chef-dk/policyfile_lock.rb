@@ -80,6 +80,7 @@ module ChefDK
 
     attr_accessor :name
     attr_accessor :run_list
+    attr_accessor :named_run_lists
 
     attr_reader :solution_dependencies
 
@@ -92,6 +93,7 @@ module ChefDK
     def initialize(storage_config, ui: nil)
       @name = nil
       @run_list = []
+      @named_run_lists = {}
       @cookbook_locks = {}
       @relative_paths_root = Dir.pwd
       @storage_config = storage_config
@@ -125,6 +127,7 @@ module ChefDK
       {}.tap do |lock|
         lock["name"] = name
         lock["run_list"] = run_list
+        lock["named_run_lists"] = named_run_lists unless named_run_lists.empty?
         lock["cookbook_locks"] = cookbook_locks_for_lockfile
         lock["solution_dependencies"] = solution_dependencies.to_lock
       end
@@ -169,6 +172,8 @@ module ChefDK
       @name = compiler.name
 
       @run_list = compiler.normalized_run_list
+
+      @named_run_lists = compiler.normalized_named_run_lists
 
       compiler.all_cookbook_location_specs.each do |cookbook_name, spec|
         if spec.mirrors_canonical_upstream?
