@@ -167,7 +167,7 @@ run_list "jenkins::master"
 cookbook "jenkins", "~> 2.1"
 ```
 
-### Specify an Alternative Source
+#### Specify an Alternative Source
 
 ChefDK can fetch cookbooks from Supermarket, git, and local disk (other
 sources will be added in the future). This allows you to combine
@@ -181,7 +181,41 @@ cookbook 'my_app', path: 'cookbooks/my_app'
 cookbook 'mysql', github: 'opscode-cookbooks/mysql', branch: 'master'
 ```
 
+### `named_run_list "NAME", "ITEM1", "ITEM2", ...`
+
+Policyfiles provide named run lists as an alternative/replacement for
+the override run list feature in Chef Client. There are a variety of use
+cases for named run lists, such as running a smaller set of recipes in
+order to quickly converge configuration for a single application on a
+host, or doing one-time setup tasks. Though useful, so-called "partial
+convergence" can lead to configuration drift and other problems, so use
+this feature carefully.
+
+In the policyfile DSL, a named run list looks like this:
+
+```ruby
+named_run_list :update_app, "my_app_cookbook::default"
+```
+
+### Testing With Test Kitchen
+
+ChefDK now includes a Test Kitchen provisioner, which allows you to
+converge VMs using Chef Client in policyfile mode, using Chef Zero to
+serve cookbook data. Add the following to your `.kitchen.yml`:
+
+```yaml
+provisioner:
+  name: policyfile_zero
+  require_chef_omnibus: 12.0.0-rc.2
+```
+
 ## Motivation and FAQ
+
+We believe Policyfiles will greatly improve the experience of using Chef
+to configure your infrastructure by allowing you to test and promote
+your configuration code safely and with a more humane interface.
+Policyfiles resolve many real-world problems that users experience with
+the Chef workflows that are possible today.
 
 ### Focus Workflow on Configuring Machines to do Useful Work
 
@@ -466,9 +500,11 @@ hierarchy.
 
 ### Multiple Run List Support
 
-This is intended to (at minimum) replace the functionality of override
-run lists, which are not compatible with Policyfiles. The feature is
-included in some design documentation, but not implemented.
+ChefDK now provides a named run list feature which will provide roughly
+the same functionality as Chef Client's override run list option,
+however Chef Client's policyfile mode does not yet support the feature.
+A future update to Chef Client will allow users to specify a named run
+list to run instead of the primary run list.
 
 ### Private Cookbook Hosting
 

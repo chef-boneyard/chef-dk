@@ -2,6 +2,8 @@
 
 # Unreleased:
 
+* Add named run lists to the Policyfile DSL. The feature however, is not
+  usable until support is added to Chef Client.
 * Allow generator cookbooks to have arbitrary names. The
   argument to `--generator-cookbook` should be the path to the cookbook,
   rather than the path to the directory containing the generator

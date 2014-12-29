@@ -492,6 +492,56 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
   end
+
+  context "with named run_lists specified" do
+
+    let(:policyfile_lock) do
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
+
+        p.name = "minimal_policyfile"
+
+        p.run_list = [ "recipe[foo]" ]
+
+        p.named_run_lists = { "rl2" => [ "recipe[foo::bar]" ] }
+
+        p.cached_cookbook("foo") do |cb|
+          cb.cache_key = "foo-1.0.0"
+        end
+
+      end
+    end
+
+    let(:compiled_policyfile) do
+      {
+
+        "name" => "minimal_policyfile",
+
+        "run_list" => ["recipe[foo]"],
+
+        "named_run_lists" => { "rl2" => [ "recipe[foo::bar]" ] },
+
+        "cookbook_locks" => {
+
+          "foo" => {
+            "version" => "1.0.0",
+            "identifier" => cookbook_foo_cksum,
+            "dotted_decimal_identifier" => cookbook_foo_cksum_dotted,
+            "cache_key" => "foo-1.0.0",
+            "origin" => nil,
+            "source_options" => nil
+          },
+        },
+
+        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
+      }
+    end
+
+    it "includes the named run lists in the compiled policyfile" do
+      expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
+    end
+
+  end
+
   describe "building a policyfile lock from a policyfile compiler" do
 
     include_context "setup git cookbooks"
@@ -530,6 +580,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       double( "ChefDK::PolicyfileCompiler",
               name: "my-policyfile",
               normalized_run_list: %w[recipe[foo::default] recipe[bar::default]],
+              normalized_named_run_lists: { "rl2" => %w[recipe[bar::default]] },
               all_cookbook_location_specs: {"foo" => cached_location_spec, "bar" => local_location_spec},
               solution_dependencies: policyfile_solution_dependencies )
     end
@@ -544,6 +595,8 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
         "name" => "my-policyfile",
 
         "run_list" => ["recipe[foo::default]", "recipe[bar::default]"],
+
+        "named_run_lists" => { "rl2" => ["recipe[bar::default]"] },
 
         "cookbook_locks" => {
 
@@ -593,6 +646,10 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       expect(policyfile_lock.cookbook_locks).to have_key("bar")
       cb_lock = policyfile_lock.cookbook_locks["bar"]
       expect(cb_lock.source).to eq(local_location_spec.relative_path)
+    end
+
+    it "sets named run lists on the policyfile lock" do
+      expect(policyfile_lock.named_run_lists).to eq("rl2" => %w[recipe[bar::default]])
     end
 
     it "generates a lockfile data structure" do

@@ -148,6 +148,29 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       expect(policyfile.normalized_run_list).to eq(["recipe[local-cookbook::jazz_hands]"])
     end
 
+    describe "in an alternate run list" do
+
+      it "normalizes a bare cookbook name" do
+        policyfile.named_run_list(:foo, "local-cookbook")
+        expect(policyfile.normalized_named_run_lists[:foo]).to eq(["recipe[local-cookbook::default]"])
+      end
+
+      it "normalizes a bare cookbook::recipe item" do
+        policyfile.named_run_list(:foo, "local-cookbook::server")
+        expect(policyfile.normalized_named_run_lists[:foo]).to eq(["recipe[local-cookbook::server]"])
+      end
+
+      it "normalizes a recipe[] item with implicit default" do
+        policyfile.named_run_list(:foo, "recipe[local-cookbook]")
+        expect(policyfile.normalized_named_run_lists[:foo]).to eq(["recipe[local-cookbook::default]"])
+      end
+
+      it "does not modify a fully qualified recipe" do
+        policyfile.named_run_list(:foo, "recipe[local-cookbook::jazz_hands]")
+        expect(policyfile.normalized_named_run_lists[:foo]).to eq(["recipe[local-cookbook::jazz_hands]"])
+      end
+
+    end
   end
 
   before do
@@ -626,6 +649,30 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       }
       expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
     end
+  end
+
+  context "Given a run_list and named run_lists" do
+
+    before do
+      policyfile.dsl.named_run_list(:foo, 'local-cookbook', 'nginx')
+      policyfile.dsl.named_run_list(:bar, 'remote-cb', 'nginx')
+      policyfile.dsl.run_list('private-cookbook', 'nginx')
+    end
+
+    it "demands a solution that satisfies all of the run lists, with no duplicates" do
+      expect(policyfile.graph_demands).to include(["private-cookbook", ">= 0.0.0"])
+      expect(policyfile.graph_demands).to include(["nginx", ">= 0.0.0"])
+      expect(policyfile.graph_demands).to include(["remote-cb", ">= 0.0.0"])
+      expect(policyfile.graph_demands).to include(["local-cookbook", ">= 0.0.0"])
+
+      # ensure there are no duplicates:
+      expected_demands = [["private-cookbook", ">= 0.0.0"],
+                          ["nginx", ">= 0.0.0"],
+                          ["local-cookbook", ">= 0.0.0"],
+                          ["remote-cb", ">= 0.0.0"]]
+      expect(policyfile.graph_demands).to eq(expected_demands)
+    end
+
   end
 
   context "Given a run_list with roles" do
