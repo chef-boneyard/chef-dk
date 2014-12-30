@@ -22,6 +22,9 @@
   converges chef-client in policyfile mode using Chef Zero. This
   currently requires TK to be modified to use mixlib-shellout 2.x, which
   will be addressed in the next TK release.
+* [Omnibus-Chef #318](https://github.com/opscode/omnibus-chef/pull/318):
+  Will no longer install gem documentation when using `chef gem`.
+  This speeds up gem installs.
 
 # Last Release: 0.3.5
 * Update Chef to 11.18.0 RC0, resolves issue with knife loading commands
