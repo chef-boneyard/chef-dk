@@ -185,7 +185,7 @@ E
 
         it "has a default source" do
           expect(policyfile.errors).to eq([])
-          expected = ChefDK::Policyfile::CommunityCookbookSource.new("https://supermarket.getchef.com")
+          expected = ChefDK::Policyfile::CommunityCookbookSource.new("https://supermarket.chef.io")
           expect(policyfile.default_source).to eq(expected)
         end
 

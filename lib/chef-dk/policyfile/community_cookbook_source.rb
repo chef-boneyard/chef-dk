@@ -31,7 +31,7 @@ module ChefDK
       attr_reader :uri
 
       def initialize(uri = nil)
-        @uri = uri || "https://supermarket.getchef.com"
+        @uri = uri || "https://supermarket.chef.io"
         @http_connections = {}
       end
 

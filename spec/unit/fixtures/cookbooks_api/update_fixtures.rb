@@ -12,7 +12,7 @@ PRUNED_UNIVERSE_PATH = File.join(THIS_DIR, 'pruned_small_universe.json')
 
 COOKBOOKS_IN_SMALL_UNIVERSE = ["apache2", "application", "apt", "database", "mysql", "nginx", "postgresql", "yum"].freeze
 
-universe = URI("https://supermarket.getchef.com/universe")
+universe = URI("https://supermarket.chef.io/universe")
 
 universe_serialized = Net::HTTP.get(universe)
 

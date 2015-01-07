@@ -341,7 +341,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
           # Optional attribute that humans can use to understand where a cookbook
           # came from.
-          cb.origin = "https://community.getchef.com/api/cookbooks/foo/1.0.0"
+          cb.origin = "https://community.chef.io/api/cookbooks/foo/1.0.0"
         end
 
         p.local_cookbook("bar") do |cb|
@@ -375,7 +375,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
             "version" => "1.0.0",
             "identifier" => cookbook_foo_cksum,
             "dotted_decimal_identifier" => cookbook_foo_cksum_dotted,
-            "origin" => "https://community.getchef.com/api/cookbooks/foo/1.0.0",
+            "origin" => "https://community.chef.io/api/cookbooks/foo/1.0.0",
             "cache_key" => "foo-1.0.0",
             "source_options" => nil
           },
@@ -550,7 +550,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       tempdir
     end
 
-    let(:cached_cookbook_uri) { "https://supermarket.getchef.com/api/v1/cookbooks/foo/versions/1.0.0/download" }
+    let(:cached_cookbook_uri) { "https://supermarket.chef.io/api/v1/cookbooks/foo/versions/1.0.0/download" }
 
     let(:cached_location_spec) do
       double( "ChefDK::Policyfile::CookbookLocationSpecification",

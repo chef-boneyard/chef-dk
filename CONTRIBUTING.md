@@ -174,7 +174,7 @@ We frequently make `alpha` and `beta` releases with version numbers that look li
 We do a `Minor` release approximately every 3 months and `Patch` releases on a when-needed
   basis for regressions, significant bugs, and security issues.
 
-Announcements of releases are available on [Chef Blog](http://www.getchef.com/blog) when they are
+Announcements of releases are available on [Chef Blog](http://www.chef.io/blog) when they are
   available.
 
 ## Chef Community
@@ -189,4 +189,4 @@ Also here are some additional pointers to some awesome Chef content:
 
 * [Chef Docs](http://docs.opscode.com/)
 * [Learn Chef](https://learnchef.opscode.com/)
-* [Chef Inc](http://www.getchef.com/)
+* [Chef Inc](http://www.chef.io/)
