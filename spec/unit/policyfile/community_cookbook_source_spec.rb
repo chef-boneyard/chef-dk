@@ -22,7 +22,7 @@ describe ChefDK::Policyfile::CommunityCookbookSource do
 
   let(:cookbook_source) { ChefDK::Policyfile::CommunityCookbookSource.new }
 
-  let(:default_community_uri) { "https://supermarket.getchef.com" }
+  let(:default_community_uri) { "https://supermarket.chef.io" }
 
   let(:http_connection) { double("Chef::HTTP::Simple") }
 
@@ -43,7 +43,7 @@ describe ChefDK::Policyfile::CommunityCookbookSource do
   end
 
   it "generates location options for a cookbook from the given graph" do
-    expected_opts = { artifactserver: "https://supermarket.getchef.com/api/v1/cookbooks/apache2/versions/1.10.4/download", version: "1.10.4" }
+    expected_opts = { artifactserver: "https://supermarket.chef.io/api/v1/cookbooks/apache2/versions/1.10.4/download", version: "1.10.4" }
     expect(cookbook_source.source_options_for("apache2", "1.10.4")).to eq(expected_opts)
   end
 

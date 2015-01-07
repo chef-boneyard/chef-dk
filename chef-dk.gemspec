@@ -23,10 +23,10 @@ Gem::Specification.new do |gem|
   gem.name          = "chef-dk"
   gem.version       = ChefDK::VERSION
   gem.authors       = [ "Daniel DeLeo", "Lamont Granquist", "Serdar Sutay" ]
-  gem.email         = [ "dan@getchef.com", "lamont@getchef.com", "serdar@getchef.com"]
+  gem.email         = [ "dan@chef.io", "lamont@chef.io", "serdar@chef.io"]
   gem.description   = "A streamlined development and deployment workflow for Chef platform."
   gem.summary       = gem.description
-  gem.homepage      = "http://www.getchef.com/"
+  gem.homepage      = "http://www.chef.io/"
 
   gem.required_ruby_version = '>= 2.0'
 
