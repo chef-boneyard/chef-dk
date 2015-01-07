@@ -221,7 +221,7 @@ dpkg -P chefdk
 [Berkshelf]: http://berkshelf.com "Berkshelf"
 [Chef]: https://www.chef.io "Chef"
 [ChefDK]: https://www.chef.io/downloads/chef-dk "Chef Development Kit"
-[Chef Documentation]: http://docs.opscode.com "Chef Documentation"
+[Chef Documentation]: http://docs.chef.io "Chef Documentation"
 [ChefSpec]: http://chefspec.org "ChefSpec"
 [Foodcritic]: http://foodcritic.io "Foodcritic"
 [Learn Chef]: http://learn.chef.io "Learn Chef"

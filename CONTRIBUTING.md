@@ -187,6 +187,6 @@ Chef is made possible by a strong community of developers and system administrat
 
 Also here are some additional pointers to some awesome Chef content:
 
-* [Chef Docs](http://docs.opscode.com/)
-* [Learn Chef](https://learnchef.opscode.com/)
+* [Chef Docs](https://docs.chef.io/)
+* [Learn Chef](https://learn.chef.io/)
 * [Chef Inc](https://www.chef.io/)
