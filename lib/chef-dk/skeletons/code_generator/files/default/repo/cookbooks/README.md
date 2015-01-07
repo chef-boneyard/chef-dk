@@ -33,7 +33,7 @@ The first and recommended method is to use a vendor branch if you're using Git. 
 
 This will:
 
-* Download the cookbook tarball from cookbooks.opscode.com.
+* Download the cookbook tarball from the Chef Supermarket.
 * Ensure its on the git master branch.
 * Checks for an existing vendor branch, and creates if it doesn't.
 * Checks out the vendor branch (chef-vendor-COOKBOOK).
