@@ -26,7 +26,7 @@ Gem::Specification.new do |gem|
   gem.email         = [ "dan@chef.io", "lamont@chef.io", "serdar@chef.io"]
   gem.description   = "A streamlined development and deployment workflow for Chef platform."
   gem.summary       = gem.description
-  gem.homepage      = "http://www.chef.io/"
+  gem.homepage      = "https://www.chef.io/"
 
   gem.required_ruby_version = '>= 2.0'
 
