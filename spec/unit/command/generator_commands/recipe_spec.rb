@@ -24,9 +24,11 @@ describe ChefDK::Command::GeneratorCommands::Recipe do
   include_examples "a file generator" do
 
     let(:generator_name) { "recipe" }
-    let(:generated_files) { [ "recipes/new_recipe.rb" ] }
+    let(:generated_files) { [ "recipes/new_recipe.rb",
+                              "spec/spec_helper.rb",
+                              "spec/unit/recipes/new_recipe_spec.rb" ] }
     let(:new_file_name) { "new_recipe" }
 
   end
-end
 
+end

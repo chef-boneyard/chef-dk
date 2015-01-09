@@ -62,10 +62,15 @@ module ChefDK
           Generator.add_attr_to_context(:skip_git_init, cookbook_path_in_git_repo?)
           Generator.add_attr_to_context(:cookbook_root, cookbook_root)
           Generator.add_attr_to_context(:cookbook_name, cookbook_name)
+          Generator.add_attr_to_context(:recipe_name, recipe_name)
         end
 
         def recipe
           "cookbook"
+        end
+
+        def recipe_name
+          "default"
         end
 
         def cookbook_name

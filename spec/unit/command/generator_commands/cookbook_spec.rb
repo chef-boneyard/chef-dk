@@ -36,6 +36,11 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       README.md
       recipes
       recipes/default.rb
+      spec
+      spec/spec_helper.rb
+      spec/unit
+      spec/unit/recipes
+      spec/unit/recipes/default_spec.rb
     ]
   end
 
@@ -106,6 +111,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       cookbook_generator.setup_context
       expect(generator_context.cookbook_root).to eq(Dir.pwd)
       expect(generator_context.cookbook_name).to eq("new_cookbook")
+      expect(generator_context.recipe_name).to eq("default")
     end
 
     it "creates a new cookbook" do
@@ -161,6 +167,14 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
       include_examples "a generated file", :cookbook_name do
         let(:line) { "# Cookbook Name:: new_cookbook" }
+      end
+    end
+
+    describe "spec/unit/recipes/default_spec.rb" do
+      let(:file) { File.join(tempdir, "new_cookbook", "spec", "unit", "recipes", "default_spec.rb") }
+
+      include_examples "a generated file", :cookbook_name do
+        let(:line) { "describe \'new_cookbook::default\' do" }
       end
     end
 

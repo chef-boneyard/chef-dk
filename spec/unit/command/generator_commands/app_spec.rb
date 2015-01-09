@@ -36,6 +36,11 @@ describe ChefDK::Command::GeneratorCommands::App do
       cookbooks/new_app/metadata.rb
       cookbooks/new_app/recipes
       cookbooks/new_app/recipes/default.rb
+      cookbooks/new_app/spec
+      cookbooks/new_app/spec/spec_helper.rb
+      cookbooks/new_app/spec/unit
+      cookbooks/new_app/spec/unit/recipes
+      cookbooks/new_app/spec/unit/recipes/default_spec.rb
     ]
   end
 
@@ -76,6 +81,7 @@ describe ChefDK::Command::GeneratorCommands::App do
       expect(generator_context.app_name).to eq("new_app")
       expect(generator_context.cookbook_root).to eq(File.join(Dir.pwd, "new_app", "cookbooks"))
       expect(generator_context.cookbook_name).to eq("new_app")
+      expect(generator_context.recipe_name).to eq("default")
     end
 
     describe "generated files" do
@@ -134,6 +140,15 @@ describe ChefDK::Command::GeneratorCommands::App do
           let(:line) { "# Cookbook Name:: new_app" }
         end
       end
+
+      describe "cookbooks/new_app/spec/unit/recipes/default_spec.rb" do
+        let(:file) { File.join(tempdir, "new_app", "cookbooks", "new_app", "spec", "unit", "recipes", "default_spec.rb") }
+
+        include_examples "a generated file", :cookbook_name do
+          let(:line) { "describe \'new_app::default\' do" }
+        end
+      end
+
     end
   end
 end

@@ -58,6 +58,7 @@ module ChefDK
           Generator.add_attr_to_context(:cookbook_root, cookbook_root)
           Generator.add_attr_to_context(:cookbook_name, cookbook_name)
           Generator.add_attr_to_context(:new_file_basename, new_file_basename)
+          Generator.add_attr_to_context(:recipe_name, new_file_basename)
         end
 
         def cookbook_root

@@ -63,6 +63,7 @@ shared_examples_for "a file generator" do
         expect(generator_context.cookbook_root).to eq(expected_cookbook_root)
         expect(generator_context.cookbook_name).to eq(cookbook_name)
         expect(generator_context.new_file_basename).to eq(new_file_name)
+        expect(generator_context.recipe_name).to eq(new_file_name)
       end
     end
 
