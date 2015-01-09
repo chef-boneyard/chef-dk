@@ -2,6 +2,7 @@
 
 # Unreleased:
 
+* Support cookbooks that contain only `metadata.json` with Policyfiles.
 * Add named run lists to the Policyfile DSL. The feature however, is not
   usable until support is added to Chef Client.
 * Allow generator cookbooks to have arbitrary names. The
