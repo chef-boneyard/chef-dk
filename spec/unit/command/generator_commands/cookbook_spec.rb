@@ -36,6 +36,10 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       README.md
       recipes
       recipes/default.rb
+      spec
+      spec/recipes
+      spec/recipes/default_spec.rb
+      spec/spec_helper.rb
     ]
   end
 
@@ -158,6 +162,14 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
     describe "recipes/default.rb" do
       let(:file) { File.join(tempdir, "new_cookbook", "recipes", "default.rb") }
+
+      include_examples "a generated file", :cookbook_name do
+        let(:line) { "# Cookbook Name:: new_cookbook" }
+      end
+    end
+
+    describe "spec/recipes/default_spec.rb" do
+      let(:file) { File.join(tempdir, "new_cookbook", "spec", "recipes", "default_spec.rb") }
 
       include_examples "a generated file", :cookbook_name do
         let(:line) { "# Cookbook Name:: new_cookbook" }

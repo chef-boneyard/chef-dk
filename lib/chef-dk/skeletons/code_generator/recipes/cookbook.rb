@@ -42,6 +42,24 @@ template "#{cookbook_dir}/recipes/default.rb" do
   action :create_if_missing
 end
 
+# Spec Tests
+
+directory "#{cookbook_dir}/spec/recipes" do
+  recursive true
+end
+
+template "#{cookbook_dir}/spec/recipes/default_spec.rb" do
+  source "default_recipe_spec.rb.erb"
+  helpers(ChefDK::Generator::TemplateHelper)
+  action :create_if_missing
+end
+
+template "#{cookbook_dir}/spec/spec_helper.rb" do
+  source "default_recipe_spec.rb.erb"
+  helpers(ChefDK::Generator::TemplateHelper)
+  action :create_if_missing
+end
+
 # git
 if context.have_git
   if !context.skip_git_init
