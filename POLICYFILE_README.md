@@ -77,10 +77,10 @@ other relevant data. It looks like this (content snipped for brevity):
       "version": "1.24.0",
       "identifier": "4c24ae46a6633e424925c24e683e0f43786236a3",
       "dotted_decimal_identifier": "21432429158228798.18657774985439294.16782456927907",
-      "cache_key": "java-1.24.0-supermarket.getchef.com",
-      "origin": "https://supermarket.getchef.com/api/v1/cookbooks/java/versions/1.24.0/download",
+      "cache_key": "java-1.24.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io/api/v1/cookbooks/java/versions/1.24.0/download",
       "source_options": {
-        "artifactserver": "https://supermarket.getchef.com/api/v1/cookbooks/java/versions/1.24.0/download",
+        "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/java/versions/1.24.0/download",
         "version": "1.24.0"
       }
 ```

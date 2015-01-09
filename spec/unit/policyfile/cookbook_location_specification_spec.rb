@@ -107,8 +107,8 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
     end
 
     it "delegates cache_key to the installer" do
-      expect(installer).to receive(:cache_key).and_return("my_cookbook-1.2.3-supermarket.getchef.com")
-      expect(cookbook_location_spec.cache_key).to eq("my_cookbook-1.2.3-supermarket.getchef.com")
+      expect(installer).to receive(:cache_key).and_return("my_cookbook-1.2.3-supermarket.chef.io")
+      expect(cookbook_location_spec.cache_key).to eq("my_cookbook-1.2.3-supermarket.chef.io")
     end
 
     it "delegates relative_path to the installer" do
@@ -228,7 +228,7 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
 
   describe "when created with an artifactserver source" do
 
-    let(:source_options) { { artifactserver: "https://supermarket.getchef.com:/api/v1/cookbooks/my_cookbook/versions/2.0.0/download" } }
+    let(:source_options) { { artifactserver: "https://supermarket.chef.io:/api/v1/cookbooks/my_cookbook/versions/2.0.0/download" } }
 
     it "has a artifactserver installer" do
       expect(cookbook_location_spec.installer).to be_a_kind_of(CookbookOmnifetch::ArtifactserverLocation)
