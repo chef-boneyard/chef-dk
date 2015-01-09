@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 
+require 'chef-dk/exceptions'
 require 'chef/cookbook/metadata'
 
 module ChefDK
@@ -24,8 +25,16 @@ module ChefDK
   class CookbookMetadata < Chef::Cookbook::Metadata
 
     def self.from_path(path)
+      metadata_json_path = File.join(path, "metadata.json")
       metadata_rb_path = File.join(path, "metadata.rb")
-      new.tap { |m| m.from_file(metadata_rb_path) }
+
+      if File.exist?(metadata_json_path)
+        new.tap { |m| m.from_json(File.read(metadata_json_path)) }
+      elsif File.exist?(metadata_rb_path)
+        new.tap { |m| m.from_file(metadata_rb_path) }
+      else
+        raise MalformedCookbook, "Cookbook at #{path} has neither metadata.json or metadata.rb"
+      end
     end
 
     def cookbook_name
