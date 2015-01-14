@@ -2,6 +2,7 @@
 
 # Unreleased:
 
+# Last Release: 0.3.6
 * Support cookbooks that contain only `metadata.json` with Policyfiles.
 * Add named run lists to the Policyfile DSL. The feature however, is not
   usable until support is added to Chef Client.
@@ -28,7 +29,7 @@
   This speeds up gem installs.
 * Powershell support for `chef shell-init`
 
-# Last Release: 0.3.5
+# 0.3.5
 * Update Chef to 11.18.0 RC0, resolves issue with knife loading commands
   from incompatible versions installed as gems. See:
   https://github.com/opscode/chef-dk/issues/227
