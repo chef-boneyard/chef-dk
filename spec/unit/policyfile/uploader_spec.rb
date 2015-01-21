@@ -193,11 +193,17 @@ describe ChefDK::Policyfile::Uploader do
 
     context "when configured for policy document native mode" do
 
-      pending "uploads the policyfile to the native API" do
+      let(:policy_document_native_api) { true }
+
+      it "enables native document mode for policyfiles" do
+        expect(uploader.using_policy_document_native_api?).to be(true)
+      end
+
+      it "uploads the policyfile to the native API" do
         expect(http_client).to receive(:put).
           with('/policies/unit-test/example', policyfile_lock_data)
 
-        uploader.data_bag_item_create
+        uploader.upload_policy
       end
 
     end
