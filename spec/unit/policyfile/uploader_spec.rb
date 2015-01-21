@@ -52,7 +52,14 @@ describe ChefDK::Policyfile::Uploader do
 
   let(:http_client) { instance_double("ChefDK::AuthenticatedHTTP") }
 
-  let(:uploader) { described_class.new(policyfile_lock, policy_group, http_client: http_client) }
+  let(:policy_document_native_api) { false }
+
+  let(:uploader) do
+    described_class.new(policyfile_lock,
+                        policy_group,
+                        http_client: http_client,
+                        policy_document_native_api: policy_document_native_api)
+  end
 
   let(:policyfile_as_data_bag_item) do
 
@@ -79,7 +86,7 @@ describe ChefDK::Policyfile::Uploader do
     expect(uploader.http_client).to eq(http_client)
   end
 
-  describe "creating uploading documents in compat mode" do
+  describe "uploading documents in compat mode" do
 
     let(:cookbook_locks) { {} }
     let(:cookbook_versions) { {} }
@@ -141,35 +148,58 @@ describe ChefDK::Policyfile::Uploader do
       lock
     end
 
-    it "ensures a data bag named 'policyfiles' exists" do
-      expect(http_client).to receive(:post).with('data', {"name" => "policyfiles"})
-      uploader.data_bag_create
+    context "when configured for policy document compat mode" do
+
+      let(:policyfiles_data_bag) { {"name" => "policyfiles" } }
+
+      it "ensures a data bag named 'policyfiles' exists" do
+        expect(http_client).to receive(:post).with('data', policyfiles_data_bag)
+        uploader.data_bag_create
+      end
+
+      it "does not error when the 'policyfiles' data bag exists" do
+        response = double("Net::HTTP response", code: "409")
+        error = Net::HTTPServerException.new("conflict", response)
+        expect(http_client).to receive(:post).with('data', {"name" => "policyfiles"}).and_raise(error)
+        expect { uploader.data_bag_create }.to_not raise_error
+      end
+
+      it "uploads the policyfile as a data bag item" do
+        response = double("Net::HTTP response", code: "404")
+        error = Net::HTTPServerException.new("Not Found", response)
+        expect(http_client).to receive(:put).
+          with('data/policyfiles/example-unit-test', policyfile_as_data_bag_item).
+          and_raise(error)
+        expect(http_client).to receive(:post).
+          with('data/policyfiles', policyfile_as_data_bag_item)
+
+        uploader.data_bag_item_create
+      end
+
+      it "replaces an existing policyfile on the server if it exists" do
+        expect(http_client).to receive(:put).
+          with('data/policyfiles/example-unit-test', policyfile_as_data_bag_item)
+        uploader.data_bag_item_create
+      end
+
+      it "creates the data bag and item to upload the policy" do
+        expect(http_client).to receive(:post).with('data', policyfiles_data_bag)
+        expect(http_client).to receive(:put).
+          with('data/policyfiles/example-unit-test', policyfile_as_data_bag_item)
+        uploader.upload_policy
+      end
+
     end
 
-    it "does not error when the 'policyfiles' data bag exists" do
-      response = double("Net::HTTP response", code: "409")
-      error = Net::HTTPServerException.new("conflict", response)
-      expect(http_client).to receive(:post).with('data', {"name" => "policyfiles"}).and_raise(error)
-      expect { uploader.data_bag_create }.to_not raise_error
-    end
+    context "when configured for policy document native mode" do
 
-    it "uploads the policyfile as a data bag item" do
-      response = double("Net::HTTP response", code: "404")
-      error = Net::HTTPServerException.new("Not Found", response)
-      expect(http_client).to receive(:put).
-        with('data/policyfiles/example-unit-test', policyfile_as_data_bag_item).
-        and_raise(error)
-      expect(http_client).to receive(:post).
-        with('data/policyfiles', policyfile_as_data_bag_item)
+      pending "uploads the policyfile to the native API" do
+        expect(http_client).to receive(:put).
+          with('/policies/unit-test/example', policyfile_lock_data)
 
-      uploader.data_bag_item_create
-    end
+        uploader.data_bag_item_create
+      end
 
-    it "replaces an existing policyfile on the server if it exists" do
-      expect(http_client).to receive(:put).
-        with('data/policyfiles/example-unit-test', policyfile_as_data_bag_item)
-
-      uploader.data_bag_item_create
     end
 
     it "enumerates the cookbooks already on the server" do
