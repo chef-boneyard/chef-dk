@@ -44,8 +44,14 @@ describe ChefDK::PolicyfileServices::Push do
     File.join(fixtures_path, "local_path_cookbooks")
   end
 
+  let(:policy_document_native_api) { false }
+
   let(:config) do
-    double("Chef::Config", chef_server_url: "https://localhost:10443", client_key: "/path/to/client/key.pem", node_name: "deuce")
+    double("Chef::Config",
+           chef_server_url: "https://localhost:10443",
+           client_key: "/path/to/client/key.pem",
+           node_name: "deuce",
+           policy_document_native_api: policy_document_native_api)
   end
 
   let(:ui) { TestHelpers::TestUI.new }
@@ -166,21 +172,42 @@ E
         expect(push_service).to receive(:http_client).and_return(http_client)
 
         expect(ChefDK::Policyfile::Uploader).to receive(:new).
-               with(push_service.policyfile_lock, policy_group, http_client: http_client, ui: ui).
+               with(push_service.policyfile_lock, policy_group, http_client: http_client, ui: ui, policy_document_native_api: policy_document_native_api).
                and_return(uploader)
       end
 
+      context "when the policy document native API is disabled" do
 
-      it "configures a Policyfile Uploader" do
-        push_service.uploader
+        it "configures a Policyfile Uploader" do
+          push_service.uploader
+        end
+
+        it "validates the lockfile, writes any updates, and uploads the cookbooks" do
+          allow(File).to receive(:open).and_call_original
+          expect(File).to receive(:open).with(policyfile_lock_path, "wb+").and_yield(updated_lockfile_io)
+          expect(uploader).to receive(:upload)
+
+          push_service.run
+        end
+
       end
 
-      it "validates the lockfile, writes any updates, and uploads the cookbooks" do
-        allow(File).to receive(:open).and_call_original
-        expect(File).to receive(:open).with(policyfile_lock_path, "wb+").and_yield(updated_lockfile_io)
-        expect(uploader).to receive(:upload)
+      context "when the policy document native API is enabled" do
 
-        push_service.run
+        let(:policy_document_native_api) { true }
+
+        it "configures a Policyfile Uploader with the policy document native API option" do
+          push_service.uploader
+        end
+
+        it "validates the lockfile, writes any updates, and uploads the cookbooks" do
+          allow(File).to receive(:open).and_call_original
+          expect(File).to receive(:open).with(policyfile_lock_path, "wb+").and_yield(updated_lockfile_io)
+          expect(uploader).to receive(:upload)
+
+          push_service.run
+        end
+
       end
 
       describe "when an error occurs in upload" do

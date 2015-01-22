@@ -20,6 +20,9 @@ require 'chef/workstation_config_loader'
 
 # Define a config context for ChefDK
 class Chef::Config
+
+  default(:policy_document_native_api, false)
+
   config_context(:chefdk) do
 
     default(:generator_cookbook, File.expand_path("../skeletons/code_generator", __FILE__))
