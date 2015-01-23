@@ -29,7 +29,7 @@ module ChefDK
       attr_reader :ui
       attr_reader :policyfile_lock
 
-      def initialize(ui: ui, policyfile_lock: nil)
+      def initialize(ui: nil, policyfile_lock: nil)
         @ui = ui
         @policyfile_lock = policyfile_lock
 
