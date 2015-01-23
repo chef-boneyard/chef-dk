@@ -34,21 +34,38 @@ module ChefDK
       attr_reader :http_client
       attr_reader :ui
 
-      def initialize(policyfile_lock, policy_group, ui: nil, http_client: nil)
+      def initialize(policyfile_lock, policy_group, ui: nil, http_client: nil, policy_document_native_api: false)
         @policyfile_lock = policyfile_lock
         @policy_group = policy_group
         @http_client = http_client
         @ui = ui || UI.null
+        @policy_document_native_api = policy_document_native_api
 
         @cookbook_versions_for_policy = nil
+      end
+
+      def policy_name
+        policyfile_lock.name
       end
 
       def upload
         ui.msg("WARN: Uploading policy to policy group #{policy_group} in compatibility mode")
 
         upload_cookbooks
-        data_bag_create
-        data_bag_item_create
+        upload_policy
+      end
+
+      def upload_policy
+        if using_policy_document_native_api?
+          upload_policy_native
+        else
+          data_bag_create
+          data_bag_item_create
+        end
+      end
+
+      def upload_policy_native
+        http_client.put("/policies/#{policy_group}/#{policy_name}", policyfile_lock.to_lock)
       end
 
       def data_bag_create
@@ -58,7 +75,7 @@ module ChefDK
       end
 
       def data_bag_item_create
-        policy_id = "#{policyfile_lock.name}-#{policy_group}"
+        policy_id = "#{policy_name}-#{policy_group}"
         lock_data = policyfile_lock.to_lock.dup
 
         lock_data["id"] = policy_id
@@ -112,6 +129,10 @@ module ChefDK
           cb = ReadCookbookForCompatModeUpload.load(name, lock.dotted_decimal_identifier, lock.cookbook_path)
           LockedCookbookForUpload.new(cb, lock)
         end
+      end
+
+      def using_policy_document_native_api?
+        @policy_document_native_api
       end
 
       private

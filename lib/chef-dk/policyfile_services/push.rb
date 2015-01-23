@@ -63,7 +63,10 @@ module ChefDK
       end
 
       def uploader
-        ChefDK::Policyfile::Uploader.new(policyfile_lock, policy_group, ui: ui, http_client: http_client)
+        ChefDK::Policyfile::Uploader.new(policyfile_lock, policy_group,
+                                         ui: ui,
+                                         http_client: http_client,
+                                         policy_document_native_api: config.policy_document_native_api)
       end
 
       def run
