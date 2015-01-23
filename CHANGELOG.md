@@ -2,6 +2,11 @@
 
 # Unreleased:
 
+* Add support for uploading Policyfiles via native API rather than as a
+  data bag item. This requires an unreleased version of the Chef Server
+  and Chef Client to work, so it is disabled by default. Configure
+  `policy_document_native_api true` to enable.
+
 # Last Release: 0.3.6
 * Support cookbooks that contain only `metadata.json` with Policyfiles.
 * Add named run lists to the Policyfile DSL. The feature however, is not
