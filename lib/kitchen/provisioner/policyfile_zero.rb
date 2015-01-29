@@ -46,7 +46,7 @@ module Kitchen
       default_config :chef_zero_port, 8889
 
       default_config :chef_client_path do |provisioner|
-        File.join(provisioner[:chef_omnibus_root], %w[bin chef-client])
+        File.join(provisioner[:chef_omnibus_root], provisioner.shell.chef_client_file)
       end
 
       # Emit a warning that Policyfile stuff is still experimental.
@@ -69,7 +69,7 @@ module Kitchen
       # (see Base#run_command)
       def run_command
         level = config[:log_level] == :info ? :auto : config[:log_level]
-        chef_client_bin = sudo(config[:chef_client_path])
+        chef_client_bin = shell.sudo(config[:chef_client_path])
 
         cmd = "#{chef_client_bin} --local-mode"
         args = [
@@ -85,7 +85,7 @@ module Kitchen
           args << "--logfile #{config[:log_file]}"
         end
 
-        Util.wrap_command([cmd, *args].join(" "))
+        shell.wrap_command([cmd, *args].join(" "))
       end
 
       private
