@@ -1,6 +1,9 @@
 # Chef Development Kit Changelog
 
 # Unreleased:
+* [Omnibus-Chef #337](https://github.com/chef/omnibus-chef/pull/337):
+  Fix a ruby warning for redefined method in rubygems customization that
+  interacted poorly with certain Ruby plugins for text editors.
 
 # Last Release: 0.4.0
 * Add support for uploading Policyfiles via native API rather than as a
