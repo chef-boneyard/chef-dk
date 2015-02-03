@@ -36,7 +36,11 @@ directory "#{cookbook_dir}/test/integration/default/serverspec" do
   recursive true
 end
 
-cookbook_file "#{cookbook_dir}/test/integration/default/serverspec/spec_helper.rb" do
+directory "#{cookbook_dir}/test/integration/helpers/serverspec" do
+  recursive true
+end
+
+cookbook_file "#{cookbook_dir}/test/integration/helpers/serverspec/spec_helper.rb" do
   source 'serverspec_spec_helper.rb'
   action :create_if_missing
 end

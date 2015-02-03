@@ -35,7 +35,7 @@ describe ChefDK::Command::GeneratorCommands::App do
       test/integration/default
       test/integration/default/serverspec
       test/integration/default/serverspec/default_spec.rb
-      test/integration/default/serverspec/spec_helper.rb
+      test/integration/helpers/serverspec/spec_helper.rb
       README.md
       cookbooks/new_app/Berksfile
       cookbooks/new_app/chefignore
