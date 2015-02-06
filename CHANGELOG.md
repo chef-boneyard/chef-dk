@@ -37,6 +37,7 @@
   Will no longer install gem documentation when using `chef gem`.
   This speeds up gem installs.
 * Powershell support for `chef shell-init`
+* `chef generate` will now generate ChefSpec tests for new recipes, and ServerSpec tests when a kitchen.yml is generated
 
 # 0.3.5
 * Update Chef to 11.18.0 RC0, resolves issue with knife loading commands
