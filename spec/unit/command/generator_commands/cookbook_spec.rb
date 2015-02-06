@@ -35,7 +35,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       test/integration/default
       test/integration/default/serverspec
       test/integration/default/serverspec/default_spec.rb
-      test/integration/default/serverspec/spec_helper.rb
+      test/integration/helpers/serverspec/spec_helper.rb
       Berksfile
       chefignore
       metadata.rb
