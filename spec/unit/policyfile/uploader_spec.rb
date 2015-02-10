@@ -148,6 +148,155 @@ describe ChefDK::Policyfile::Uploader do
       lock
     end
 
+    shared_examples_for "uploading cookbooks" do
+
+      describe "uploading cookbooks" do
+
+        it "enumerates the cookbooks already on the server" do
+          expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
+          expect(uploader.existing_cookbook_on_remote).to eq(existing_cookbook_on_remote)
+        end
+
+        context "with an empty policyfile lock" do
+
+          it "has an empty list of cookbooks for possible upload" do
+            expect(policyfile_lock).to receive(:validate_cookbooks!)
+
+            expect(uploader.cookbook_versions_for_policy).to eq([])
+          end
+
+          it "has an empty list of cookbooks that need to be uploaded" do
+            expect(policyfile_lock).to receive(:validate_cookbooks!)
+
+            expect(uploader.cookbook_versions_to_upload).to eq([])
+          end
+
+        end
+
+        context "with a set of cookbooks that don't exist on the server" do
+
+          before do
+            lock_double("my_apache2", "123.456.789")
+            lock_double("my_jenkins", "321.654.987")
+          end
+
+          it "lists the cookbooks in the lock as possibly needing to be uploaded" do
+            expect(policyfile_lock).to receive(:validate_cookbooks!)
+
+            expected_versions_for_policy = cookbook_versions.keys.map do |cb_name|
+              cb = cookbook_versions[cb_name]
+              lock = cookbook_locks[cb_name]
+              ChefDK::Policyfile::Uploader::LockedCookbookForUpload.new(cb, lock)
+            end
+
+            expect(uploader.cookbook_versions_for_policy).to eq(expected_versions_for_policy)
+          end
+
+          it "lists all cookbooks in the lock as needing to be uploaded" do
+            expect(policyfile_lock).to receive(:validate_cookbooks!)
+            expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
+
+            expect(uploader.cookbook_versions_to_upload).to eq(cookbook_versions.values)
+          end
+
+          it "uploads the cookbooks and then the policy" do
+            expect(policyfile_lock).to receive(:validate_cookbooks!)
+            expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
+
+            cookbook_uploader = instance_double("Chef::CookbookUploader")
+            expect(Chef::CookbookUploader).to receive(:new).
+              with(cookbook_versions.values, rest: http_client, policy_mode: false).
+              and_return(cookbook_uploader)
+            expect(cookbook_uploader).to receive(:upload_cookbooks)
+
+            # behavior for these tested above
+            expect(uploader).to receive(:data_bag_create)
+            expect(uploader).to receive(:data_bag_item_create)
+
+            uploader.upload
+          end
+
+        end
+
+        context "with a set of cookbooks where some already exist on the server" do
+
+          before do
+            # These are new:
+            lock_double("my_apache2", "123.456.789")
+            lock_double("my_jenkins", "321.654.987")
+
+            # Have this one:
+            lock_double("build-essential", "67369247788170534.26353953100055918.55660493423796")
+          end
+
+          let(:expected_cookbooks_for_upload) do
+            [
+              cookbook_versions["my_apache2"],
+              cookbook_versions["my_jenkins"]
+            ]
+          end
+
+          it "lists only cookbooks not on the server as needing to be uploaded" do
+            expect(policyfile_lock).to receive(:validate_cookbooks!)
+            expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
+
+
+            expect(uploader.cookbook_versions_to_upload).to eq(expected_cookbooks_for_upload)
+          end
+
+          it "uploads the cookbooks and then the policy" do
+            expect(policyfile_lock).to receive(:validate_cookbooks!)
+            expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
+
+            cookbook_uploader = instance_double("Chef::CookbookUploader")
+            expect(Chef::CookbookUploader).to receive(:new).
+              with(expected_cookbooks_for_upload, rest: http_client, policy_mode: false).
+              and_return(cookbook_uploader)
+            expect(cookbook_uploader).to receive(:upload_cookbooks)
+
+            # behavior for these tested above
+            expect(uploader).to receive(:data_bag_create)
+            expect(uploader).to receive(:data_bag_item_create)
+
+            uploader.upload
+          end
+
+        end
+
+        context "with a set of cookbooks that all exist on the server" do
+
+          before do
+            # Have this one:
+            lock_double("build-essential", "67369247788170534.26353953100055918.55660493423796")
+          end
+
+          let(:expected_cookbooks_for_upload) do
+            []
+          end
+
+          it "lists no cookbooks as needing to be uploaded" do
+            expect(policyfile_lock).to receive(:validate_cookbooks!)
+            expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
+
+            expect(uploader.cookbook_versions_to_upload).to eq(expected_cookbooks_for_upload)
+          end
+
+          it "skips cookbooks uploads, then uploads the policy" do
+            expect(policyfile_lock).to receive(:validate_cookbooks!)
+            expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
+
+            expect(uploader.uploader).to_not receive(:upload_cookbooks)
+
+            # behavior for these tested above
+            expect(uploader).to receive(:data_bag_create)
+            expect(uploader).to receive(:data_bag_item_create)
+
+            uploader.upload
+          end
+        end
+      end
+    end # uploading cookbooks shared examples
+
     context "when configured for policy document compat mode" do
 
       let(:policyfiles_data_bag) { {"name" => "policyfiles" } }
@@ -189,6 +338,9 @@ describe ChefDK::Policyfile::Uploader do
         uploader.upload_policy
       end
 
+
+      include_examples "uploading cookbooks"
+
     end
 
     context "when configured for policy document native mode" do
@@ -208,148 +360,6 @@ describe ChefDK::Policyfile::Uploader do
 
     end
 
-    it "enumerates the cookbooks already on the server" do
-      expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
-      expect(uploader.existing_cookbook_on_remote).to eq(existing_cookbook_on_remote)
-    end
-
-    context "with an empty policyfile lock" do
-
-      it "has an empty list of cookbooks for possible upload" do
-        expect(policyfile_lock).to receive(:validate_cookbooks!)
-
-        expect(uploader.cookbook_versions_for_policy).to eq([])
-      end
-
-      it "has an empty list of cookbooks that need to be uploaded" do
-        expect(policyfile_lock).to receive(:validate_cookbooks!)
-
-        expect(uploader.cookbook_versions_to_upload).to eq([])
-      end
-
-    end
-
-    context "with a set of cookbooks that don't exist on the server" do
-
-      before do
-        lock_double("my_apache2", "123.456.789")
-        lock_double("my_jenkins", "321.654.987")
-      end
-
-      it "lists the cookbooks in the lock as possibly needing to be uploaded" do
-        expect(policyfile_lock).to receive(:validate_cookbooks!)
-
-        expected_versions_for_policy = cookbook_versions.keys.map do |cb_name|
-          cb = cookbook_versions[cb_name]
-          lock = cookbook_locks[cb_name]
-          ChefDK::Policyfile::Uploader::LockedCookbookForUpload.new(cb, lock)
-        end
-
-        expect(uploader.cookbook_versions_for_policy).to eq(expected_versions_for_policy)
-      end
-
-      it "lists all cookbooks in the lock as needing to be uploaded" do
-        expect(policyfile_lock).to receive(:validate_cookbooks!)
-        expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
-
-        expect(uploader.cookbook_versions_to_upload).to eq(cookbook_versions.values)
-      end
-
-      it "uploads the cookbooks and then the policy" do
-        expect(policyfile_lock).to receive(:validate_cookbooks!)
-        expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
-
-        cookbook_uploader = instance_double("Chef::CookbookUploader")
-        expect(Chef::CookbookUploader).to receive(:new).
-          with(cookbook_versions.values, rest: http_client, policy_mode: false).
-          and_return(cookbook_uploader)
-        expect(cookbook_uploader).to receive(:upload_cookbooks)
-
-        # behavior for these tested above
-        expect(uploader).to receive(:data_bag_create)
-        expect(uploader).to receive(:data_bag_item_create)
-
-        uploader.upload
-      end
-
-    end
-
-    context "with a set of cookbooks where some already exist on the server" do
-
-      before do
-        # These are new:
-        lock_double("my_apache2", "123.456.789")
-        lock_double("my_jenkins", "321.654.987")
-
-        # Have this one:
-        lock_double("build-essential", "67369247788170534.26353953100055918.55660493423796")
-      end
-
-      let(:expected_cookbooks_for_upload) do
-        [
-          cookbook_versions["my_apache2"],
-          cookbook_versions["my_jenkins"]
-        ]
-      end
-
-      it "lists only cookbooks not on the server as needing to be uploaded" do
-        expect(policyfile_lock).to receive(:validate_cookbooks!)
-        expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
-
-
-        expect(uploader.cookbook_versions_to_upload).to eq(expected_cookbooks_for_upload)
-      end
-
-      it "uploads the cookbooks and then the policy" do
-        expect(policyfile_lock).to receive(:validate_cookbooks!)
-        expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
-
-        cookbook_uploader = instance_double("Chef::CookbookUploader")
-        expect(Chef::CookbookUploader).to receive(:new).
-          with(expected_cookbooks_for_upload, rest: http_client, policy_mode: false).
-          and_return(cookbook_uploader)
-        expect(cookbook_uploader).to receive(:upload_cookbooks)
-
-        # behavior for these tested above
-        expect(uploader).to receive(:data_bag_create)
-        expect(uploader).to receive(:data_bag_item_create)
-
-        uploader.upload
-      end
-
-    end
-
-    context "with a set of cookbooks that all exist on the server" do
-
-      before do
-        # Have this one:
-        lock_double("build-essential", "67369247788170534.26353953100055918.55660493423796")
-      end
-
-      let(:expected_cookbooks_for_upload) do
-        []
-      end
-
-      it "lists no cookbooks as needing to be uploaded" do
-        expect(policyfile_lock).to receive(:validate_cookbooks!)
-        expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
-
-        expect(uploader.cookbook_versions_to_upload).to eq(expected_cookbooks_for_upload)
-      end
-
-      it "skips cookbooks uploads, then uploads the policy" do
-        expect(policyfile_lock).to receive(:validate_cookbooks!)
-        expect(http_client).to receive(:get).with('cookbooks?num_versions=all').and_return(existing_cookbook_on_remote)
-
-        expect(uploader.uploader).to_not receive(:upload_cookbooks)
-
-        # behavior for these tested above
-        expect(uploader).to receive(:data_bag_create)
-        expect(uploader).to receive(:data_bag_item_create)
-
-        uploader.upload
-      end
-    end
   end
 
 end
