@@ -106,7 +106,7 @@ DRAGONS
 
       def uploader
         # TODO: uploader runs cookbook validation; we want to do this at a different time.
-        @uploader ||= Chef::CookbookUploader.new(cookbook_versions_to_upload, :rest => http_client)
+        @uploader ||= Chef::CookbookUploader.new(cookbook_versions_to_upload, rest: http_client, policy_mode: using_policy_document_native_api?)
       end
 
       def cookbook_versions_to_upload

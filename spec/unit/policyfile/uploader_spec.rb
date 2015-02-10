@@ -86,7 +86,7 @@ describe ChefDK::Policyfile::Uploader do
     expect(uploader.http_client).to eq(http_client)
   end
 
-  describe "uploading documents in compat mode" do
+  describe "uploading policies and cookbooks" do
 
     let(:cookbook_locks) { {} }
     let(:cookbook_versions) { {} }
@@ -261,7 +261,7 @@ describe ChefDK::Policyfile::Uploader do
 
         cookbook_uploader = instance_double("Chef::CookbookUploader")
         expect(Chef::CookbookUploader).to receive(:new).
-          with(cookbook_versions.values, :rest => http_client).
+          with(cookbook_versions.values, rest: http_client, policy_mode: false).
           and_return(cookbook_uploader)
         expect(cookbook_uploader).to receive(:upload_cookbooks)
 
@@ -306,7 +306,7 @@ describe ChefDK::Policyfile::Uploader do
 
         cookbook_uploader = instance_double("Chef::CookbookUploader")
         expect(Chef::CookbookUploader).to receive(:new).
-          with(expected_cookbooks_for_upload, :rest => http_client).
+          with(expected_cookbooks_for_upload, rest: http_client, policy_mode: false).
           and_return(cookbook_uploader)
         expect(cookbook_uploader).to receive(:upload_cookbooks)
 
