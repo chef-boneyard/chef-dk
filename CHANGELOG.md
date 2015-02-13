@@ -4,6 +4,10 @@
 * [Omnibus-Chef #337](https://github.com/chef/omnibus-chef/pull/337):
   Fix a ruby warning for redefined method in rubygems customization that
   interacted poorly with certain Ruby plugins for text editors.
+* Add support for uploading cookbooks to the cookbook artifacts API when
+  `policy_document_native_api true` is set. This new API is currently
+  unreleased and unstable. It is recommended for testing and
+  demonstration use only.
 
 # Last Release: 0.4.0
 * Add support for uploading Policyfiles via native API rather than as a
