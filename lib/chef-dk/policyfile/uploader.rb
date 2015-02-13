@@ -106,7 +106,7 @@ DRAGONS
 
       def uploader
         # TODO: uploader runs cookbook validation; we want to do this at a different time.
-        @uploader ||= Chef::CookbookUploader.new(cookbook_versions_to_upload, :rest => http_client)
+        @uploader ||= Chef::CookbookUploader.new(cookbook_versions_to_upload, rest: http_client, policy_mode: using_policy_document_native_api?)
       end
 
       def cookbook_versions_to_upload
@@ -126,7 +126,7 @@ DRAGONS
       end
 
       def existing_cookbook_on_remote
-        @existing_cookbook_on_remote ||= http_client.get('cookbooks?num_versions=all')
+        @existing_cookbook_on_remote ||= http_client.get(list_cookbooks_url)
       end
 
       # An Array of Chef::CookbookVersion objects representing the full set that
@@ -145,6 +145,14 @@ DRAGONS
       end
 
       private
+
+      def list_cookbooks_url
+        if using_policy_document_native_api?
+          'cookbook_artifacts?num_versions=all'
+        else
+          'cookbooks?num_versions=all'
+        end
+      end
 
       def upload_cookbooks
         ui.msg("WARN: Uploading cookbooks using semver compat mode")
