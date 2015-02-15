@@ -53,6 +53,8 @@ test/*
 features/*
 Guardfile
 Procfile
+.kitchen.yml
+.rubocop.yml
 
 # SCM #
 #######

@@ -58,6 +58,11 @@ end
 # chefignore
 cookbook_file "#{cookbook_dir}/chefignore"
 
+# .rubocop.yml
+cookbook_file "#{app_dir}/.rubocop.yml" do
+  source 'rubocop.yml'
+end
+
 # Berks
 cookbook_file "#{cookbook_dir}/Berksfile"
 
