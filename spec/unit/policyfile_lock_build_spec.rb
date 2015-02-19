@@ -159,6 +159,7 @@ REVISION_STRING
 
     let(:compiled_policyfile) do
       {
+        "revision_id" => expected_revision_id,
 
         "name" => "minimal_policyfile",
 
@@ -233,6 +234,8 @@ REVISION_STRING
 
     let(:compiled_policyfile) do
       {
+
+        "revision_id" => expected_revision_id,
 
         "name" => "dev_cookbook",
 
@@ -325,6 +328,8 @@ REVISION_STRING
 
     let(:compiled_policyfile) do
       {
+
+        "revision_id" => expected_revision_id,
 
         "name" => "custom_identifier",
 
@@ -443,6 +448,8 @@ REVISION_STRING
     let(:compiled_policyfile) do
       {
 
+        "revision_id" => expected_revision_id,
+
         "name" => "basic_example",
 
         "run_list" => ["recipe[foo]", "recipe[bar]", "recipe[baz::non_default]"],
@@ -548,8 +555,22 @@ REVISION_STRING
       end
     end
 
+    let(:expected_canonical_revision_string) do
+      <<-REVISION_STRING
+name:minimal_policyfile
+run-list-item:recipe[foo]
+cookbook:foo;id:#{cookbook_foo_cksum}
+REVISION_STRING
+    end
+
+    let(:expected_revision_id) do
+      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+    end
+
     let(:compiled_policyfile) do
       {
+
+        "revision_id" => expected_revision_id,
 
         "name" => "minimal_policyfile",
 
@@ -612,6 +633,8 @@ REVISION_STRING
 
     let(:compiled_policyfile) do
       {
+
+        "revision_id" => expected_revision_id,
 
         "name" => "minimal_policyfile",
 
@@ -714,6 +737,8 @@ REVISION_STRING
 
     let(:compiled_policyfile) do
       {
+
+        "revision_id" => expected_revision_id,
 
         "name" => "my-policyfile",
 

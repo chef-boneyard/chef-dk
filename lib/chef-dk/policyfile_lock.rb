@@ -127,6 +127,7 @@ module ChefDK
 
     def to_lock
       {}.tap do |lock|
+        lock["revision_id"] = revision_id
         lock["name"] = name
         lock["run_list"] = run_list
         lock["named_run_lists"] = named_run_lists unless named_run_lists.empty?
