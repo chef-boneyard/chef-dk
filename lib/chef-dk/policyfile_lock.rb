@@ -15,6 +15,8 @@
 # limitations under the License.
 #
 
+require 'digest/sha1'
+
 require 'chef-dk/policyfile/storage_config'
 require 'chef-dk/policyfile/cookbook_locks'
 require 'chef-dk/policyfile/solution_dependencies'
@@ -131,6 +133,45 @@ module ChefDK
         lock["cookbook_locks"] = cookbook_locks_for_lockfile
         lock["solution_dependencies"] = solution_dependencies.to_lock
       end
+    end
+
+    # Returns a fingerprint of the PolicyfileLock by computing the SHA1 hash of
+    # #canonical_revision_string
+    def revision_id
+      Digest::SHA1.new.hexdigest(canonical_revision_string)
+    end
+
+    # Generates a string representation of the lock data in a specialized
+    # format suitable for generating a checksum of the lock itself. Only data
+    # that modifies the behavior of a chef-client using the lockfile is
+    # included in this format; for example, a modification to the source
+    # options in a `Policyfile.rb` that yields identical code (such as
+    # switching to a github fork at the same revision) will not cause a change
+    # in the PolicyfileLock's canonical_revision_string.
+    #
+    # This format is intended to be used only for generating an identifier for
+    # a particular revision of a PolicyfileLock. It should not be used as a
+    # serialization format, and is not guaranteed to be a stable interface.
+    def canonical_revision_string
+      canonical_rev_text = ""
+
+      canonical_rev_text << "name:#{name}\n"
+
+      run_list.each do |item|
+        canonical_rev_text << "run-list-item:#{item}\n"
+      end
+
+      named_run_lists.each do |name, run_list|
+        run_list.each do |item|
+          canonical_rev_text << "named-run-list:#{name};run-list-item:#{item}\n"
+        end
+      end
+
+      cookbook_locks_for_lockfile.each do |name, lock|
+        canonical_rev_text << "cookbook:#{name};id:#{lock["identifier"]}\n"
+      end
+
+      canonical_rev_text
     end
 
     def cookbook_locks_for_lockfile

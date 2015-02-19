@@ -145,6 +145,18 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       end
     end
 
+    let(:expected_canonical_revision_string) do
+      <<-REVISION_STRING
+name:minimal_policyfile
+run-list-item:recipe[foo]
+cookbook:foo;id:467dc855408ce8b74f991c5dc2fd72a6aa369b60
+REVISION_STRING
+    end
+
+    let(:expected_revision_id) do
+      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+    end
+
     let(:compiled_policyfile) do
       {
 
@@ -175,6 +187,14 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
     end
 
+    it "generates a canonical revision string" do
+      expect(policyfile_lock.canonical_revision_string).to eq(expected_canonical_revision_string)
+    end
+
+    it "generates a revision id" do
+      expect(policyfile_lock.revision_id).to eq(expected_revision_id)
+    end
+
   end
 
   context "with a policyfile containing a local cookbook" do
@@ -197,6 +217,18 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
         end
 
       end
+    end
+
+    let(:expected_canonical_revision_string) do
+      <<-REVISION_STRING
+name:dev_cookbook
+run-list-item:recipe[bar]
+cookbook:bar;id:#{cookbook_bar_cksum}
+REVISION_STRING
+    end
+
+    let(:expected_revision_id) do
+      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -234,6 +266,15 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       actual_lock = policyfile_lock.to_lock
       expect(actual_lock).to eq(compiled_policyfile)
     end
+
+    it "generates a canonical revision string" do
+      expect(policyfile_lock.canonical_revision_string).to eq(expected_canonical_revision_string)
+    end
+
+    it "generates a revision id" do
+      expect(policyfile_lock.revision_id).to eq(expected_revision_id)
+    end
+
   end
 
   context "with a policyfile using custom identifiers" do
@@ -267,6 +308,19 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
         end
       end
 
+    end
+
+    let(:expected_canonical_revision_string) do
+      <<-REVISION_STRING
+name:custom_identifier
+run-list-item:recipe[foo]
+cookbook:foo;id:1.0.0
+cookbook:bar;id:0.1.0
+REVISION_STRING
+    end
+
+    let(:expected_revision_id) do
+      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -311,6 +365,14 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
     it "generates a lockfile with custom identifiers" do
       expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
+    end
+
+    it "generates a canonical revision string" do
+      expect(policyfile_lock.canonical_revision_string).to eq(expected_canonical_revision_string)
+    end
+
+    it "generates a revision id" do
+      expect(policyfile_lock.revision_id).to eq(expected_revision_id)
     end
 
   end
@@ -361,6 +423,22 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
     end
 
+    let(:expected_canonical_revision_string) do
+      <<-REVISION_STRING
+name:basic_example
+run-list-item:recipe[foo]
+run-list-item:recipe[bar]
+run-list-item:recipe[baz::non_default]
+cookbook:foo;id:#{cookbook_foo_cksum}
+cookbook:bar;id:#{cookbook_bar_cksum}
+cookbook:baz;id:#{cookbook_baz_cksum}
+cookbook:dep_of_bar;id:#{cookbook_dep_of_bar_cksum}
+REVISION_STRING
+    end
+
+    let(:expected_revision_id) do
+      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+    end
 
     let(:compiled_policyfile) do
       {
@@ -441,6 +519,14 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
     end
 
+    it "generates a canonical revision string" do
+      expect(policyfile_lock.canonical_revision_string).to eq(expected_canonical_revision_string)
+    end
+
+    it "generates a revision id" do
+      expect(policyfile_lock.revision_id).to eq(expected_revision_id)
+    end
+
   end
 
   context "with solution dependencies specified" do
@@ -511,6 +597,19 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       end
     end
 
+    let(:expected_canonical_revision_string) do
+      <<-REVISION_STRING
+name:minimal_policyfile
+run-list-item:recipe[foo]
+named-run-list:rl2;run-list-item:recipe[foo::bar]
+cookbook:foo;id:#{cookbook_foo_cksum}
+REVISION_STRING
+    end
+
+    let(:expected_revision_id) do
+      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+    end
+
     let(:compiled_policyfile) do
       {
 
@@ -538,6 +637,14 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
     it "includes the named run lists in the compiled policyfile" do
       expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
+    end
+
+    it "generates a canonical revision string" do
+      expect(policyfile_lock.canonical_revision_string).to eq(expected_canonical_revision_string)
+    end
+
+    it "generates a revision id" do
+      expect(policyfile_lock.revision_id).to eq(expected_revision_id)
     end
 
   end
@@ -587,6 +694,22 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
     let(:policyfile_lock) do
       ChefDK::PolicyfileLock.build_from_compiler(policyfile_compiler, storage_config)
+    end
+
+
+    let(:expected_canonical_revision_string) do
+      <<-REVISION_STRING
+name:my-policyfile
+run-list-item:recipe[foo::default]
+run-list-item:recipe[bar::default]
+named-run-list:rl2;run-list-item:recipe[bar::default]
+cookbook:foo;id:#{cookbook_foo_cksum}
+cookbook:bar;id:#{cookbook_bar_cksum}
+REVISION_STRING
+    end
+
+    let(:expected_revision_id) do
+      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -654,6 +777,14 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
     it "generates a lockfile data structure" do
       expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
+    end
+
+    it "generates a canonical revision string" do
+      expect(policyfile_lock.canonical_revision_string).to eq(expected_canonical_revision_string)
+    end
+
+    it "generates a revision id" do
+      expect(policyfile_lock.revision_id).to eq(expected_revision_id)
     end
 
   end
