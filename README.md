@@ -104,8 +104,8 @@ in our build cluster to verify each build).
 
 ### `chef exec`
 `chef exec <command>` runs any arbitrary shell command with the PATH
-environment variable and the ruby environment variables (GEM_HOME,
-GEM_PATH, etc) setup to point at the embedded ChefDK omnibus environment.
+environment variable and the ruby environment variables (`GEM_HOME`,
+`GEM_PATH`, etc.) setup to point at the embedded ChefDK omnibus environment.
 
 ### `chef shell-init`
 `chef shell-init SHELL_NAME` emits shell commands that modify your
@@ -114,11 +114,11 @@ help you decide if this is desirable and instructions, see "Using ChefDK
 as Your Primary Development Environment" below.
 
 ### `chef install`
-`chef install` reads a Policyfile.rb document, which contains a
+`chef install` reads a `Policyfile.rb` document, which contains a
 `run_list` and optional cookbook version constraints, finds a set of
 cookbooks that provide the desired recipes and meet dependency
-constraints, and emits a Policyfile.lock.json describing the expanded
-run list and locked cookbook set. The Policyfile.lock.json can be used
+constraints, and emits a `Policyfile.lock.json` describing the expanded
+run list and locked cookbook set. The `Policyfile.lock.json` can be used
 to install the cookbooks on another machine. The policy lock can be
 uploaded to a Chef Server (via the `chef push` command) to apply the
 expanded run list and locked cookbook set to nodes in your
@@ -152,21 +152,27 @@ ChefDK's environment.
 
 To try it temporarily, in a new terminal session, run:
 
-    eval "$(chef shell-init SHELL_NAME)"
+```sh
+eval "$(chef shell-init SHELL_NAME)"
+```
 
-where `SHELL_NAME` is the name of your shell, (usually bash, but zsh is
+where `SHELL_NAME` is the name of your shell (usually bash, but zsh is
 also common). This modifies your `PATH` and `GEM_*` environment
 variables to include ChefDK's paths (run without the `eval` to see the
 generated code). Now your default `ruby` and associated tools will be
 the ones from ChefDK:
 
-    which ruby
-    # => /opt/chefdk/embedded/bin/ruby
+```sh
+which ruby
+# => /opt/chefdk/embedded/bin/ruby
+```
 
 To add ChefDK to your shell's environment permanently, add the
 initialization step to your shell's profile:
 
-    echo 'eval "$(chef shell-init SHELL_NAME)"' >> ~/.YOUR_SHELL_PROFILE
+```sh
+echo 'eval "$(chef shell-init SHELL_NAME)"' >> ~/.YOUR_SHELL_PROFILE
+```
 
 Where `YOUR_SHELL_PROFILE` is `~/.bash_profile` for most bash users,
 `~/.zshrc` for zsh, and `~/.bashrc` on Ubuntu.
@@ -177,7 +183,7 @@ Where `YOUR_SHELL_PROFILE` is `~/.bash_profile` for most bash users,
 
 You can uninstall Chef Development Kit on Mac using below commands:
 
-```
+```sh
 # Remove the installed files
 sudo rm -rf /opt/chefdk
 
@@ -186,7 +192,6 @@ sudo pkgutil --forget com.getchef.pkg.chefdk
 
 # Remove the symlinks under /usr/bin for Chef Development Kit
 ls -la /usr/bin | egrep '/opt/chefdk' | awk '{ print $9 }' | sudo xargs -I % rm -f /usr/bin/%
-
 ```
 
 ### Windows
@@ -198,7 +203,7 @@ Kit from your system.
 
 You can use `rpm` to uninstall Chef Development Kit on RHEL based systems:
 
-```
+```sh
 rpm -qa *chefdk*
 yum remove <package>
 rm -rf /opt/chefdk
@@ -209,7 +214,7 @@ rm -rf ~/.chefdk
 
 You can use `dpkg` to uninstall Chef Development Kit on Ubuntu based systems:
 
-```
+```sh
 dpkg --list | grep chefdk # or dpkg --status chefdk
 
 # Purge chefdk from the system.
