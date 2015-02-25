@@ -84,7 +84,7 @@ BANNER
     def handle_options
       parse_options(argv)
       if config[:version]
-        msg("Chef Development Kit Version: #{ChefDK::VERSION}")
+        msg("Chef Development SUPER AWESOME KIT Version: #{ChefDK::VERSION}")
       else
         show_help
       end
