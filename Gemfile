@@ -24,4 +24,3 @@ group(:dev) do
   gem 'guard-rspec'
   gem 'ruby_gntp'
 end
-

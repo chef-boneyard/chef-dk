@@ -22,11 +22,13 @@ require 'chef-dk/builtin_commands'
 require 'chef-dk/helpers'
 require 'chef-dk/ui'
 require 'chef/util/path_helper'
+require 'chef/mixin/shell_out'
 
 module ChefDK
   class CLI
     include Mixlib::CLI
     include ChefDK::Helpers
+    include Chef::Mixin::ShellOut
 
     banner(<<-BANNER)
 Usage:
@@ -84,11 +86,27 @@ BANNER
     def handle_options
       parse_options(argv)
       if config[:version]
-        msg("Chef Development Kit Version: #{ChefDK::VERSION}")
+        show_version
       else
         show_help
       end
       exit 0
+    end
+
+    def show_version
+      msg("Chef Development Kit Version: #{ChefDK::VERSION}")
+
+      ["chef-client", "knife", "berks", "kitchen"].each do |component|
+        result = nil
+        Bundler.with_clean_env do
+        result = shell_out("#{component} --version")
+      end
+        if result.exitstatus != 0
+          next
+        end
+        version = result.stdout.scan(/[\d+\.]+\S+/).join
+        msg("#{component} version: #{version}")
+      end
     end
 
     def show_help
