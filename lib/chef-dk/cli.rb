@@ -96,16 +96,14 @@ BANNER
     def show_version
       msg("Chef Development Kit Version: #{ChefDK::VERSION}")
 
-      ["chef-client", "knife", "berks", "kitchen"].each do |component|
-        result = nil
-        Bundler.with_clean_env do
-        result = shell_out("#{component} --version")
-      end
+      ["chef-client", "berks", "kitchen"].each do |component|
+        result = Bundler.with_clean_env { shell_out("#{component} --version") }
         if result.exitstatus != 0
-          next
+          msg("#{component} version: ERROR")
+        else
+          version = result.stdout.scan(/[\d+\.]+\S+/).join
+          msg("#{component} version: #{version}")
         end
-        version = result.stdout.scan(/[\d+\.]+\S+/).join
-        msg("#{component} version: #{version}")
       end
     end
 

@@ -120,10 +120,6 @@ E
           "version_output" => "Chef: 12.0.3",
           "expected_version" => "12.0.3"
         },
-        "knife" => {
-          "version_output" => "Chef: 12.0.3.alpha",
-          "expected_version" => "12.0.3.alpha"
-        },
         "berks" => {
           "version_output" => "3.2.3",
           "expected_version" => "3.2.3"
@@ -140,6 +136,7 @@ E
       tools.each do |name, version|
         if name == "berks"
           expect(cli).to receive(:shell_out).with("#{name} --version").and_return(mock_shell_out(1, "#{version["version_output"]}", ''))
+          full_version_message += "#{name} version: ERROR\n"
         else
           expect(cli).to receive(:shell_out).with("#{name} --version").and_return(mock_shell_out(0, "#{version["version_output"]}", ''))
           full_version_message += "#{name} version: #{version["expected_version"]}\n"
