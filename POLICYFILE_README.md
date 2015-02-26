@@ -55,6 +55,7 @@ other relevant data. It looks like this (content snipped for brevity):
 
 ```json
 {
+  "revision_id": "288ed244f8db8bff3caf58147e840bbe079f76e0",
   "name": "jenkins",
   "run_list": [
     "recipe[java::default]",
@@ -375,11 +376,13 @@ how things turn out.
 
 ### Does this Force Me to Use the Single Cookbook per Repo Thing?
 
-No. We're still figuring out the optimal way to support the "megarepo"
-workflow, but it will be supported. In particular we have to study the
-tradeoffs of versioning your Policyfile.rb files (we'll support other
-names) with your chef-repo vs. outside of it. We plan to do some dogfood
-testing to inform the design here.
+No. The "megarepo"/"monolithic repo" workflow will be supported. All of
+the policyfile based commands in ChefDK already support an optional
+policyfile name as an argument, so you can add a `policies/` directory
+to your Chef Repo (see also "Am I Going to be Forced to Use This?"
+above). In the future, ChefDK will support a local path option as your
+default cookbook source, which will allow you to generate policies using
+cookbooks from your Chef Repo's `cookbooks/` directory.
 
 Users who use the "megarepo" workflow may see some benefit to using
 single repos for third-party cookbooks, but this will be optional and
@@ -406,21 +409,28 @@ machines. Tools that use the old APIs will need to be updated.
 
 ### Are Policyfiles Versioned?
 
-There currently isn't any detailed design for the Chef Server policy API
-(which will store the `Policyfile.lock.json` documents). One design
-decision we have made is that the documents will be namespaced (by
-`policy group`). This means that at minimum it will be possible to
-independently update the policy for different stages of your release
-process independently. For example, if you have policy groups for "dev,"
-"stage," and "prod," you can iterate on new feature work in "dev" and
-release a critical hot fix to "prod" independently of each other.
+Policyfiles are versioned, but the versioning mechanism is different
+than SemVer depedency resolution--it's more like git branching.
 
-If this is all that's implemented, then you will be able to version your
-policies by committing your `Policyfile.rb` and `Policyfile.lock.json`
-documents to revision control and using a branching policy that fits
-your release requirements. That said, features to support operations
-such as reverting or undo and/or tracking changes over time will be
-considered.
+Each time you create or update a Policyfile lock document, ChefDK
+generates a `revision_id` based on the lock content (again this is a
+SHA1 hash) and inserts this into the resulting JSON.
+
+Additionally, the Chef Server has a new concept called a _policy group_,
+which is a collection of nodes. In practice, it will probably be common
+to name each policy group after a deployment phase in your workflow,
+e.g., "dev", "stage", "prod", though in more complex environments, users
+may have "canary" groups for testing code changes or segment production
+into clusters to control the pace of code roll-out.
+
+Each policy group can have one active revision of a given policy name.
+Thus, a user may generate revision "123abc" of the "webapp" policy, and
+apply it to the "dev" policy group. When everyone is satisfied that this
+revision works correctly, it may be applied to "stage" and then "prod".
+Development then continues, and a user generates "456def" of the
+"webapp" policy. When this is applied to "dev", "stage" and "prod" will
+still use revision "123abc" of the "webapp" policy until someone updates
+those.
 
 ### What About Environments?
 
@@ -527,8 +537,11 @@ be added to the Chef Server:
 * "cookbook artifact" endpoint: This would allow users to store and
 retrieve cookbooks with arbitrary IDs. The compatibility mode
 implementation works around this limitation by mapping arbitrary IDs to
-version numbers, which is a kludge.
+version numbers, which is a kludge. This API is described by
+[Chef RFC022](https://github.com/chef/chef-rfc/blob/master/rfc022-arbitrary-cookbook-identifiers.md)
+and is partially implemented in the most recent Chef Server releases.
 * Policyfile endpoint: This would store Policyfile.lock documents and
-associate them with a policy group.
+associate them with a policy group. This is described [in a draft RFC](https://github.com/chef/chef-rfc/pull/91)
+and is partially implmented in the most recent Chef Server releases.
 
 
