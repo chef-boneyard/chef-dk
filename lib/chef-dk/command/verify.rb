@@ -98,7 +98,7 @@ module ChefDK
 
       add_component "chef-client" do |c|
         c.base_dir = "chef"
-        c.unit_test { sh("bundle exec rspec -fp spec/unit") }
+        c.unit_test { sh("bundle exec rspec -fp spec/unit -t ~volatile_from_verify") }
         c.integration_test { sh("bundle exec rspec -fp spec/integration spec/functional") }
 
         c.smoke_test do
