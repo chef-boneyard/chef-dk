@@ -8,6 +8,7 @@
   `policy_document_native_api true` is set. This new API is currently
   unreleased and unstable. It is recommended for testing and
   demonstration use only.
+* Update Chef to version 12.1.0
 
 # Last Release: 0.4.0
 * Add support for uploading Policyfiles via native API rather than as a
