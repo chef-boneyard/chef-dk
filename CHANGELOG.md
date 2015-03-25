@@ -1,13 +1,19 @@
 # Chef Development Kit Changelog
 
 # Unreleased:
+* Updated Policyfile uploads to use the URLs specified in Chef RFC 042.
+  Chef Zero has not yet been updated; Chef Zero users should continue to
+  use compatibility mode (`policy_document_native_api false`) for
+  Policyfiles.
 * [Omnibus-Chef #337](https://github.com/chef/omnibus-chef/pull/337):
   Fix a ruby warning for redefined method in rubygems customization that
   interacted poorly with certain Ruby plugins for text editors.
 * Add support for uploading cookbooks to the cookbook artifacts API when
-  `policy_document_native_api true` is set. This new API is currently
-  unreleased and unstable. It is recommended for testing and
-  demonstration use only.
+  `policy_document_native_api true` is set. This new API will be
+  available in the next version of Chef Server if enabled with a server
+  configuration option. Chef Zero support for this new API is
+  incomplete, so this setting cannot be used with Chef Zero until a
+  future update to Chef Zero enables this functionality.
 
 # Last Release: 0.4.0
 * Add support for uploading Policyfiles via native API rather than as a
