@@ -117,6 +117,11 @@ describe ChefDK::Policyfile::Uploader do
         with(name, dotted_decimal_id, cache_path).
         and_return(cookbook_version)
 
+      allow(ChefDK::Policyfile::CookbookLoaderWithChefignore).
+        to receive(:load).
+        with(name, cache_path).
+        and_return(cookbook_version)
+
       cookbook_versions[name] = cookbook_version
       cookbook_locks[name] = lock
 

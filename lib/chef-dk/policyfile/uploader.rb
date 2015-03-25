@@ -153,7 +153,23 @@ DRAGONS
       def cookbook_versions_for_policy
         return @cookbook_versions_for_policy if @cookbook_versions_for_policy
         policyfile_lock.validate_cookbooks!
-        @cookbook_versions_for_policy = policyfile_lock.cookbook_locks.map do |name, lock|
+        @cookbook_versions_for_policy =
+          if using_policy_document_native_api?
+            load_cookbooks_in_native_mode
+          else
+            load_cookbooks_in_compat_mode
+          end
+      end
+
+      def load_cookbooks_in_native_mode
+        policyfile_lock.cookbook_locks.map do |name, lock|
+          cb = CookbookLoaderWithChefignore.load(name, lock.cookbook_path)
+          LockedCookbookForUpload.new(cb, lock)
+        end
+      end
+
+      def load_cookbooks_in_compat_mode
+        policyfile_lock.cookbook_locks.map do |name, lock|
           cb = ReadCookbookForCompatModeUpload.load(name, lock.dotted_decimal_identifier, lock.cookbook_path)
           LockedCookbookForUpload.new(cb, lock)
         end
