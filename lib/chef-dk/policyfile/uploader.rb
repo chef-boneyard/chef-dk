@@ -74,7 +74,7 @@ DRAGONS
       end
 
       def upload_policy_native
-        http_client.put("/policies/#{policy_group}/#{policy_name}", policyfile_lock.to_lock)
+        http_client.put("/policy_groups/#{policy_group}/policies/#{policy_name}", policyfile_lock.to_lock)
       end
 
       def data_bag_create
@@ -112,6 +112,11 @@ DRAGONS
       def cookbook_versions_to_upload
         cookbook_versions_for_policy.inject([]) do |versions_to_upload, cookbook_with_lock|
           cb = cookbook_with_lock.cookbook
+          # When we abandon custom identifier support in favor of the one true
+          # hash, identifier generation code can be moved into chef proper and
+          # this can be removed.
+          cb.identifier = cookbook_with_lock.lock.identifier
+
           versions_to_upload << cb unless remote_already_has_cookbook?(cb)
           versions_to_upload
         end
@@ -120,6 +125,20 @@ DRAGONS
       def remote_already_has_cookbook?(cookbook)
         return false unless existing_cookbook_on_remote.key?(cookbook.name.to_s)
 
+        if using_policy_document_native_api?
+          native_mode_cookbook_exists_on_remote?(cookbook)
+        else
+          compat_mode_cookbook_exists_on_remote?(cookbook)
+        end
+      end
+
+      def native_mode_cookbook_exists_on_remote?(cookbook)
+        existing_cookbook_on_remote[cookbook.name.to_s]["versions"].any? do |cookbook_info|
+          cookbook_info["identifier"] == cookbook.identifier
+        end
+      end
+
+      def compat_mode_cookbook_exists_on_remote?(cookbook)
         existing_cookbook_on_remote[cookbook.name.to_s]["versions"].any? do |cookbook_info|
           cookbook_info["version"] == cookbook.version
         end
@@ -155,7 +174,7 @@ DRAGONS
       end
 
       def upload_cookbooks
-        ui.msg("WARN: Uploading cookbooks using semver compat mode")
+        ui.msg("WARN: Uploading cookbooks using semver compat mode") unless using_policy_document_native_api?
 
         uploader.upload_cookbooks unless cookbook_versions_to_upload.empty?
 

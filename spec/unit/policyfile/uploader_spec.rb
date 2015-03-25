@@ -91,51 +91,26 @@ describe ChefDK::Policyfile::Uploader do
     let(:cookbook_locks) { {} }
     let(:cookbook_versions) { {} }
 
-    let(:existing_cookbook_on_remote) do
-      {"apt"=>
-        {"url"=>"http://localhost:8889/cookbooks/apt",
-         "versions"=>
-          [{"url"=>
-             "http://localhost:8889/cookbooks/apt/46097674477573307.43471642740453733.243606720748315",
-            "version"=>"46097674477573307.43471642740453733.243606720748315"}]},
-       "build-essential"=>
-        {"url"=>"http://localhost:8889/cookbooks/build-essential",
-         "versions"=>
-          [{"url"=>
-             "http://localhost:8889/cookbooks/build-essential/67369247788170534.26353953100055918.55660493423796",
-            "version"=>"67369247788170534.26353953100055918.55660493423796"}]},
-       "java"=>
-        {"url"=>"http://localhost:8889/cookbooks/java",
-         "versions"=>
-          [{"url"=>
-             "http://localhost:8889/cookbooks/java/5664982062912610.52588194571203830.6215746262253",
-            "version"=>"5664982062912610.52588194571203830.6215746262253"}]},
-       "jenkins"=>
-        {"url"=>"http://localhost:8889/cookbooks/jenkins",
-         "versions"=>
-          [{"url"=>
-             "http://localhost:8889/cookbooks/jenkins/69194928762630300.30177357398946006.269829039948647",
-            "version"=>"69194928762630300.30177357398946006.269829039948647"}]}
-      }
-    end
-
     before do
       allow(policyfile_lock).to receive(:cookbook_locks).and_return(cookbook_locks)
     end
 
-    def lock_double(name, dotted_decimal_id)
+    def lock_double(name, identifier, dotted_decimal_id)
       cache_path = "/home/user/cache_path/#{name}"
 
       lock = instance_double("ChefDK::Policyfile::CookbookLock",
                              name: name,
                              version: "1.0.0",
-                             identifier: "64b3e64306cff223206348e46af545b19032b170",
+                             identifier: identifier,
                              dotted_decimal_identifier: dotted_decimal_id,
                              cookbook_path: cache_path)
 
       cookbook_version = instance_double("Chef::CookbookVersion",
                                          name: name,
+                                         identifier: lock.identifier,
                                          version: dotted_decimal_id)
+
+      allow(cookbook_version).to receive(:identifier=).with(lock.identifier)
 
       allow(ChefDK::Policyfile::ReadCookbookForCompatModeUpload).
         to receive(:load).
@@ -176,8 +151,8 @@ describe ChefDK::Policyfile::Uploader do
         context "with a set of cookbooks that don't exist on the server" do
 
           before do
-            lock_double("my_apache2", "123.456.789")
-            lock_double("my_jenkins", "321.654.987")
+            lock_double("my_apache2", "1111111111111111111111111111111111111111", "123.456.789")
+            lock_double("my_jenkins", "2222222222222222222222222222222222222222", "321.654.987")
           end
 
           it "lists the cookbooks in the lock as possibly needing to be uploaded" do
@@ -220,11 +195,11 @@ describe ChefDK::Policyfile::Uploader do
 
           before do
             # These are new:
-            lock_double("my_apache2", "123.456.789")
-            lock_double("my_jenkins", "321.654.987")
+            lock_double("my_apache2", "1111111111111111111111111111111111111111", "123.456.789")
+            lock_double("my_jenkins", "2222222222222222222222222222222222222222", "321.654.987")
 
             # Have this one:
-            lock_double("build-essential", "67369247788170534.26353953100055918.55660493423796")
+            lock_double("build-essential", "571d8ebd02b296fe90b2e4d68754af7e8e185f28", "67369247788170534.26353953100055918.55660493423796")
           end
 
           let(:expected_cookbooks_for_upload) do
@@ -263,7 +238,7 @@ describe ChefDK::Policyfile::Uploader do
 
           before do
             # Have this one:
-            lock_double("build-essential", "67369247788170534.26353953100055918.55660493423796")
+            lock_double("build-essential", "571d8ebd02b296fe90b2e4d68754af7e8e185f28", "67369247788170534.26353953100055918.55660493423796")
           end
 
           let(:expected_cookbooks_for_upload) do
@@ -296,6 +271,34 @@ describe ChefDK::Policyfile::Uploader do
       let(:policyfiles_data_bag) { {"name" => "policyfiles" } }
 
       let(:list_cookbooks_url) { 'cookbooks?num_versions=all' }
+
+      let(:existing_cookbook_on_remote) do
+        {"apt"=>
+          {"url"=>"http://localhost:8889/cookbooks/apt",
+           "versions"=>
+            [{"url"=>
+               "http://localhost:8889/cookbooks/apt/46097674477573307.43471642740453733.243606720748315",
+              "version"=>"46097674477573307.43471642740453733.243606720748315"}]},
+         "build-essential"=>
+          {"url"=>"http://localhost:8889/cookbooks/build-essential",
+           "versions"=>
+            [{"url"=>
+               "http://localhost:8889/cookbooks/build-essential/67369247788170534.26353953100055918.55660493423796",
+              "version"=>"67369247788170534.26353953100055918.55660493423796"}]},
+         "java"=>
+          {"url"=>"http://localhost:8889/cookbooks/java",
+           "versions"=>
+            [{"url"=>
+               "http://localhost:8889/cookbooks/java/5664982062912610.52588194571203830.6215746262253",
+              "version"=>"5664982062912610.52588194571203830.6215746262253"}]},
+         "jenkins"=>
+          {"url"=>"http://localhost:8889/cookbooks/jenkins",
+           "versions"=>
+            [{"url"=>
+               "http://localhost:8889/cookbooks/jenkins/69194928762630300.30177357398946006.269829039948647",
+              "version"=>"69194928762630300.30177357398946006.269829039948647"}]}
+        }
+      end
 
       def expect_policyfile_upload
         expect(uploader).to receive(:data_bag_create)
@@ -349,9 +352,36 @@ describe ChefDK::Policyfile::Uploader do
 
       let(:list_cookbooks_url) { 'cookbook_artifacts?num_versions=all' }
 
+      let(:existing_cookbook_on_remote) do
+        {"apt"=>
+          {"url"=>"http://localhost:8889/cookbook_artifacts/apt",
+           "versions"=>
+            [{"url"=>
+               "http://localhost:8889/cookbook_artifacts/apt/5f7045a8aeaf6ccda3b3594258df9ee982b3a023",
+              "identifier"=>"5f7045a8aeaf6ccda3b3594258df9ee982b3a023"}]},
+         "build-essential"=>
+          {"url"=>"http://localhost:8889/cookbook_artifacts/build-essential",
+           "versions"=>
+            [{"url"=>
+               "http://localhost:8889/cookbook_artifacts/build-essential/571d8ebd02b296fe90b2e4d68754af7e8e185f28",
+              "identifier"=>"571d8ebd02b296fe90b2e4d68754af7e8e185f28"}]},
+         "java"=>
+          {"url"=>"http://localhost:8889/cookbook_artifacts/java",
+           "versions"=>
+            [{"url"=>
+               "http://localhost:8889/cookbook_artifacts/java/9178a38ad3e3baa55b49c1b8d9f4bf6a43dbc358",
+              "identifier"=>"9178a38ad3e3baa55b49c1b8d9f4bf6a43dbc358"}]},
+         "jenkins"=>
+          {"url"=>"http://localhost:8889/cookbook_artifacts/jenkins",
+           "versions"=>
+            [{"url"=>
+               "http://localhost:8889/cookbook_artifacts/jenkins/0be380429add00d189b4431059ac967a60052323",
+              "identifier"=>"0be380429add00d189b4431059ac967a60052323"}]}
+        }
+      end
       def expect_policyfile_upload
         expect(http_client).to receive(:put).
-          with('/policies/unit-test/example', policyfile_lock_data)
+          with('/policy_groups/unit-test/policies/example', policyfile_lock_data)
       end
 
       it "enables native document mode for policyfiles" do
@@ -360,7 +390,7 @@ describe ChefDK::Policyfile::Uploader do
 
       it "uploads the policyfile to the native API" do
         expect(http_client).to receive(:put).
-          with('/policies/unit-test/example', policyfile_lock_data)
+          with('/policy_groups/unit-test/policies/example', policyfile_lock_data)
 
         uploader.upload_policy
       end
