@@ -19,6 +19,9 @@ require 'rubygems'
 require 'rspec/mocks'
 require 'test_helpers'
 
+# needed since we stub it for every test
+require 'chef/workstation_config_loader'
+
 RSpec.configure do |c|
   c.include ChefDK
   c.include TestHelpers
