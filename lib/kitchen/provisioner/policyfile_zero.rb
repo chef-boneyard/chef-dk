@@ -19,7 +19,7 @@
 require "kitchen/provisioner/chef_base"
 
 # TODO: chef-dk and kitchen can only co-exist if kitchen and chef-dk agree on
-# the version of mixlib-shellout to use. Kitchen currently locked at 1.x,
+# the version of mixlib-shellout to use. Kitchen currently locked at 1.4,
 # chef-dk is on 2.x
 require 'chef-dk/policyfile_services/export_repo'
 
@@ -38,15 +38,19 @@ module Kitchen
       # * `deployment_group`: `POLICY_NAME-local`
       # Since it makes no sense to modify these, they are hardcoded elsewhere.
       default_config :client_rb, {}
-      default_config :ruby_bindir, "/opt/chef/embedded/bin"
-
-      # Policyfile mode does not support the `-j dna.json` option to
-      # `chef-client`.
-      default_config :json_attributes, false
+      default_config :json_attributes, true
+      default_config :chef_zero_host, nil
       default_config :chef_zero_port, 8889
 
       default_config :chef_client_path do |provisioner|
-        File.join(provisioner[:chef_omnibus_root], %w[bin chef-client])
+        provisioner.
+          remote_path_join(%W[#{provisioner[:chef_omnibus_root]} bin chef-client]).
+          tap { |path| path.concat(".bat") if provisioner.windows_os? }
+      end
+
+      default_config :ruby_bindir do |provisioner|
+        provisioner.
+          remote_path_join(%W[#{provisioner[:chef_omnibus_root]} embedded bin])
       end
 
       # Emit a warning that Policyfile stuff is still experimental.
@@ -62,6 +66,7 @@ module Kitchen
       # (see Base#create_sandbox)
       def create_sandbox
         super
+        prepare_cookbooks
         prepare_validation_pem
         prepare_client_rb
       end
@@ -85,7 +90,10 @@ module Kitchen
           args << "--logfile #{config[:log_file]}"
         end
 
-        Util.wrap_command([cmd, *args].join(" "))
+        wrap_shell_code(
+          [cmd, *args].join(" ").
+          tap { |str| str.insert(0, reload_ps1_path) if windows_os? }
+        )
       end
 
       private
@@ -112,7 +120,9 @@ module Kitchen
       #
       # @api private
       def policy_exporter
-        @policy_exporter ||= ChefDK::PolicyfileServices::ExportRepo.new(export_dir: sandbox_path)
+        # Must force this because TK by default copies the current cookbook to the sandbox
+        # See ChefDK::PolicyfileServices::ExportRepo#assert_export_dir_clean!
+        @policy_exporter ||= ChefDK::PolicyfileServices::ExportRepo.new(export_dir: sandbox_path, force: true)
       end
 
       # Writes a fake (but valid) validation.pem into the sandbox directory.
@@ -132,6 +142,7 @@ module Kitchen
       def prepare_client_rb
         data = default_config_rb.merge(config[:client_rb])
 
+        # TODO this will need to be updated when chef-zero supports erchef paths (policy_group vs policies)
         data["use_policyfile"] = true
         data["versioned_cookbooks"] = true
         data["deployment_group"] = "#{policy_exporter.policy_name}-local"
