@@ -67,6 +67,14 @@ E
     cli.run
   end
 
+  def mock_shell_out(exitstatus, stdout, stderr)
+    shell_out = double("mixlib_shell_out")
+    allow(shell_out).to receive(:exitstatus).and_return(exitstatus)
+    allow(shell_out).to receive(:stdout).and_return(stdout)
+    allow(shell_out).to receive(:stderr).and_return(stderr)
+    shell_out
+  end
+
   subject(:cli) do
     ChefDK::CLI.new(argv).tap do |c|
       allow(c).to receive(:commands_map).and_return(commands_map)
@@ -106,11 +114,49 @@ E
   context "given -v" do
     let(:argv) { %w[-v] }
 
-    it "prints the version" do
+    let(:tools) {
+      {
+        "chef-client" => {
+          "version_output" => "Chef: 12.0.3",
+          "expected_version" => "12.0.3"
+        },
+        "berks" => {
+          "version_output" => "3.2.3",
+          "expected_version" => "3.2.3"
+        },
+        "kitchen" => {
+          "version_output" => "Test Kitchen version 1.3.1",
+          "expected_version" => "1.3.1"
+        }
+      }
+    }
+
+    it "does not print versions of tools with missing or errored tools" do
+      full_version_message = version_message
+      tools.each do |name, version|
+        if name == "berks"
+          expect(cli).to receive(:shell_out).with("#{name} --version").and_return(mock_shell_out(1, "#{version["version_output"]}", ''))
+          full_version_message += "#{name} version: ERROR\n"
+        else
+          expect(cli).to receive(:shell_out).with("#{name} --version").and_return(mock_shell_out(0, "#{version["version_output"]}", ''))
+          full_version_message += "#{name} version: #{version["expected_version"]}\n"
+        end
+      end
       run_cli(0)
-      expect(stdout).to eq(version_message)
+      expect(stdout).to eq(full_version_message)
+    end
+
+    it "prints the version and versions of chef-dk tools" do
+      full_version_message = version_message
+      tools.each do |name, version|
+        expect(cli).to receive(:shell_out).with("#{name} --version").and_return(mock_shell_out(0, "#{version["version_output"]}", ''))
+        full_version_message += "#{name} version: #{version["expected_version"]}\n"
+      end
+      run_cli(0)
+      expect(stdout).to eq(full_version_message)
     end
   end
+
 
   context "given an invalid option" do
 
@@ -179,7 +225,7 @@ E
 
         let(:ruby_path) { '/opt/chefdk/embedded/bin/ruby' }
         let(:chefdk_embedded_path) { '/opt/chefdk/embedded/apps/chef-dk' }
-        
+
         before do
           stub_const("File::PATH_SEPARATOR", ':')
           allow(Chef::Util::PathHelper).to receive(:cleanpath) do |path|
