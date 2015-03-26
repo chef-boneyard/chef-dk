@@ -23,6 +23,7 @@ require 'chef-dk/helpers'
 require 'chef-dk/ui'
 require 'chef/util/path_helper'
 require 'chef/mixin/shell_out'
+require 'bundler'
 
 module ChefDK
   class CLI
