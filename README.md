@@ -17,7 +17,7 @@ package is built via the 'chefdk' project in
 You can get the [latest release of ChefDK from the downloads page][ChefDK].
 
 On Mac OS X, you can also use [homebrew-cask](http://caskroom.io)
-to install ChefDK.
+to `brew cask install chefdk`.
 
 Once you install the package, the `chef-client` suite, `berks`,
 `kitchen`, and this application (`chef`) will be symlinked into your
