@@ -1,6 +1,8 @@
 # Chef Development Kit Changelog
 
 # Unreleased:
+* Fixed bug where a cookbook with no source options couldn't be added to
+  the Policyfile.rb
 * Updated Policyfile uploads to use the URLs specified in Chef RFC 042.
   Chef Zero has not yet been updated; Chef Zero users should continue to
   use compatibility mode (`policy_document_native_api false`) for
