@@ -80,7 +80,7 @@ module ChefDK
 
       def errors
         error_messages = []
-        if installer.nil?
+        if source_options_invalid?
           error_messages << "Cookbook `#{name}' has invalid source options `#{source_options.inspect}'"
         end
         error_messages
@@ -122,6 +122,10 @@ module ChefDK
 
       def source_options_for_lock
         installer.lock_data
+      end
+
+      def source_options_invalid?
+        !source_options.empty? && installer.nil?
       end
 
     end

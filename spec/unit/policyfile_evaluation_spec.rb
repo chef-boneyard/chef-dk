@@ -206,6 +206,22 @@ E
 
         end
 
+        context "with an added cookbook with no options" do
+
+          let(:policyfile_rb) do
+            <<-EOH
+              run_list "foo", "bar"
+              cookbook "baz"
+            EOH
+          end
+
+          it "adds the cookbook to the list of location specs" do
+            expect(policyfile.errors).to eq([])
+            expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("baz", ">= 0.0.0", {}, storage_config)
+            expect(policyfile.cookbook_location_specs).to eq("baz" => expected_cb_spec)
+          end
+        end
+
       end
 
       context "with the default source set to a chef server" do
