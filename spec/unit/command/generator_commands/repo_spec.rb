@@ -153,14 +153,6 @@ describe ChefDK::Command::GeneratorCommands::Repo do
         end
       end
 
-      describe "Rakefile" do
-        let(:file) { "Rakefile" }
-
-        it "loads the common tasks" do
-          expect(file_contents).to match(/load 'chef\/tasks\/chef_repo\.rake'/)
-        end
-      end
-
       describe "chefignore" do
         let(:file) { "chefignore" }
 
@@ -189,16 +181,6 @@ describe ChefDK::Command::GeneratorCommands::Repo do
         end
       end
 
-      describe "certificates" do
-        describe "README.md" do
-          let(:file) { "certificates/README.md" }
-
-          it "has the right contents" do
-            expect(file_contents).to match(/rake ssl_cert FQDN=monitoring.example.com/)
-          end
-        end
-      end
-
       describe "cookbooks" do
         describe "README.md" do
           let(:file) { "cookbooks/README.md" }
@@ -215,6 +197,30 @@ describe ChefDK::Command::GeneratorCommands::Repo do
             end
           end
         end
+
+        describe "example/metadata.rb" do
+          let(:file) { "cookbooks/example/metadata.rb" }
+
+          it "has the right contents" do
+            expect(file_contents).to match(/name 'example'/)
+          end
+        end
+
+        describe "example/attributes/default.rb" do
+          let(:file) { "cookbooks/example/attributes/default.rb" }
+
+          it "has the right contents" do
+            expect(file_contents).to match(/default\["example"\]\["name"\] = "Sam Doe"/)
+          end
+        end
+
+        describe "example/recipes/default.rb" do
+          let(:file) { "cookbooks/example/recipes/default.rb" }
+
+          it "has the right contents" do
+            expect(file_contents).to match(/log "Welcome to Chef, \#\{node\["example"\]\["name"\]\}!" do/)
+          end
+        end
       end
 
       describe "data_bags" do
@@ -225,6 +231,14 @@ describe ChefDK::Command::GeneratorCommands::Repo do
             expect(file_contents).to match(/This directory contains directories of the various data bags/)
           end
         end
+
+        describe "example_item.json" do
+          let(:file) { "data_bags/example/example_item.json" }
+
+          it "has the right contents" do
+            expect(file_contents).to match(/"id": "example_item"/)
+          end
+        end
       end
 
       describe "environments" do
@@ -232,7 +246,15 @@ describe ChefDK::Command::GeneratorCommands::Repo do
           let(:file) { "environments/README.md" }
 
           it "has the right contents" do
-            expect(file_contents).to match(/This directory is for Ruby DSL and JSON files for environments\./)
+            expect(file_contents).to match(/Create environments here, in either the Role Ruby DSL \(\.rb\) or JSON \(\.json\) files\./)
+          end
+        end
+
+        describe "example.json" do
+          let(:file) { "environments/example.json" }
+
+          it "has the right contents" do
+            expect(file_contents).to match(/"description": "This is an example environment defined as JSON"/)
           end
         end
       end
@@ -242,41 +264,15 @@ describe ChefDK::Command::GeneratorCommands::Repo do
           let(:file) { "roles/README.md" }
 
           it "has the right contents" do
-            expect(file_contents).to match(/Create roles here/)
+            expect(file_contents).to match(/Create roles here, in either the Role Ruby DSL \(\.rb\) or JSON \(\.json\) files\./)
           end
         end
-      end
 
-      describe "config" do
-        describe "rake.rb" do
-          let(:file) { "config/rake.rb" }
+        describe "example.json" do
+          let(:file) { "roles/example.json" }
 
-          it "has the preamble" do
-            expect(file_contents).to match(/Configure the Rakefile's tasks\./)
-          end
-
-          it "defaults the copyright to The Authors" do
-            expect(file_contents).to match(/COMPANY_NAME = "The Authors"/)
-          end
-
-          it "defaults the license to all_rights" do
-            expect(file_contents).to match(/NEW_COOKBOOK_LICENSE = :all_rights/)
-          end
-
-          context "with a license" do
-            let(:argv) { ["new_repo", "-I", "gplv3" ] }
-
-            it "uses the license" do
-              expect(file_contents).to match(/NEW_COOKBOOK_LICENSE = :gplv3/)
-            end
-          end
-
-          context "with a copyright holder" do
-            let(:argv) { ["new_repo", "-C", "GiantCo, Inc." ] }
-
-            it "uses the copyright holder" do
-              expect(file_contents).to match(/COMPANY_NAME = "GiantCo, Inc\."/)
-            end
+          it "has the right contents" do
+            expect(file_contents).to match(/"description": "This is an example role defined as JSON"/)
           end
         end
       end
