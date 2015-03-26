@@ -138,7 +138,7 @@ This tells ChefDK where to find any cookbooks required by your
 `cookbook` method (see below). If you specify a specific source for
 every cookbook, then you do not need to configure this.
 
-### `cookbook "NAME" [, "VERSION_CONSTRAINT"] [, SOURCE_OPTIONS]
+### `cookbook "NAME" [, "VERSION_CONSTRAINT"] [, SOURCE_OPTIONS]`
 
 The `cookbook` method serves several purposes:
 
