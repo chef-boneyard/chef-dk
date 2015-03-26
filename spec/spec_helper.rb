@@ -23,6 +23,11 @@ RSpec.configure do |c|
   c.include ChefDK
   c.include TestHelpers
 
+  # Avoid loading config.rb/knife.rb unintentionally
+  c.before(:each) do
+    allow_any_instance_of(Chef::WorkstationConfigLoader).to receive(:load)
+  end
+
   c.after(:all) { clear_tempdir }
 
   c.filter_run :focus => true

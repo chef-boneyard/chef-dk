@@ -74,7 +74,7 @@ DRAGONS
       end
 
       def upload_policy_native
-        http_client.put("/policies/#{policy_group}/#{policy_name}", policyfile_lock.to_lock)
+        http_client.put("/policy_groups/#{policy_group}/policies/#{policy_name}", policyfile_lock.to_lock)
       end
 
       def data_bag_create
@@ -112,6 +112,11 @@ DRAGONS
       def cookbook_versions_to_upload
         cookbook_versions_for_policy.inject([]) do |versions_to_upload, cookbook_with_lock|
           cb = cookbook_with_lock.cookbook
+          # When we abandon custom identifier support in favor of the one true
+          # hash, identifier generation code can be moved into chef proper and
+          # this can be removed.
+          cb.identifier = cookbook_with_lock.lock.identifier
+
           versions_to_upload << cb unless remote_already_has_cookbook?(cb)
           versions_to_upload
         end
@@ -120,6 +125,20 @@ DRAGONS
       def remote_already_has_cookbook?(cookbook)
         return false unless existing_cookbook_on_remote.key?(cookbook.name.to_s)
 
+        if using_policy_document_native_api?
+          native_mode_cookbook_exists_on_remote?(cookbook)
+        else
+          compat_mode_cookbook_exists_on_remote?(cookbook)
+        end
+      end
+
+      def native_mode_cookbook_exists_on_remote?(cookbook)
+        existing_cookbook_on_remote[cookbook.name.to_s]["versions"].any? do |cookbook_info|
+          cookbook_info["identifier"] == cookbook.identifier
+        end
+      end
+
+      def compat_mode_cookbook_exists_on_remote?(cookbook)
         existing_cookbook_on_remote[cookbook.name.to_s]["versions"].any? do |cookbook_info|
           cookbook_info["version"] == cookbook.version
         end
@@ -134,7 +153,23 @@ DRAGONS
       def cookbook_versions_for_policy
         return @cookbook_versions_for_policy if @cookbook_versions_for_policy
         policyfile_lock.validate_cookbooks!
-        @cookbook_versions_for_policy = policyfile_lock.cookbook_locks.map do |name, lock|
+        @cookbook_versions_for_policy =
+          if using_policy_document_native_api?
+            load_cookbooks_in_native_mode
+          else
+            load_cookbooks_in_compat_mode
+          end
+      end
+
+      def load_cookbooks_in_native_mode
+        policyfile_lock.cookbook_locks.map do |name, lock|
+          cb = CookbookLoaderWithChefignore.load(name, lock.cookbook_path)
+          LockedCookbookForUpload.new(cb, lock)
+        end
+      end
+
+      def load_cookbooks_in_compat_mode
+        policyfile_lock.cookbook_locks.map do |name, lock|
           cb = ReadCookbookForCompatModeUpload.load(name, lock.dotted_decimal_identifier, lock.cookbook_path)
           LockedCookbookForUpload.new(cb, lock)
         end
@@ -155,7 +190,7 @@ DRAGONS
       end
 
       def upload_cookbooks
-        ui.msg("WARN: Uploading cookbooks using semver compat mode")
+        ui.msg("WARN: Uploading cookbooks using semver compat mode") unless using_policy_document_native_api?
 
         uploader.upload_cookbooks unless cookbook_versions_to_upload.empty?
 
