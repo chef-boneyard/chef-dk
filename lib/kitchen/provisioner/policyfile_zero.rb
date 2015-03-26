@@ -142,10 +142,11 @@ module Kitchen
       def prepare_client_rb
         data = default_config_rb.merge(config[:client_rb])
 
-        # TODO this will need to be updated when chef-zero supports erchef paths (policy_group vs policies)
         data["use_policyfile"] = true
         data["versioned_cookbooks"] = true
         data["deployment_group"] = "#{policy_exporter.policy_name}-local"
+        # TODO this will need to be updated when chef-zero supports erchef paths (policy_group vs policies)
+        data["policy_document_native_api"] = false
 
         info("Preparing client.rb")
         debug("Creating client.rb from #{data.inspect}")

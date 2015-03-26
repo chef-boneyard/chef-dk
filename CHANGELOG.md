@@ -16,6 +16,18 @@
   configuration option. Chef Zero support for this new API is
   incomplete, so this setting cannot be used with Chef Zero until a
   future update to Chef Zero enables this functionality.
+* `chef -v` now displays the version of the ChefDK, Chef, Berkshelf
+  and Test Kitchen.
+* [#150](https://github.com/chef/chef-dk/pull/150) Update `generate repo`
+  command to no longer use monolithic repo.
+* Updated dependencies (some bundled with the omnibus build)
+  * Chef - 12.2.0
+  * chef-provisioning - 0.19
+  * chef-provisioning-fog - 0.13.1
+  * chef-provisioning-azure - 0.2.1
+  * chef-provisioning-aws - 0.5.0
+  * test-kitchen - 1.4.0
+  * kitchen-vagrant - 0.17.0
 
 # Last Release: 0.4.0
 * Add support for uploading Policyfiles via native API rather than as a
