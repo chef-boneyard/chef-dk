@@ -22,7 +22,7 @@
   command to no longer use monolithic repo.
 * Updated dependencies (some bundled with the omnibus build)
   * Chef - 12.2.0
-  * chef-provisioning - 0.19
+  * chef-provisioning - 0.20
   * chef-provisioning-fog - 0.13.1
   * chef-provisioning-azure - 0.2.1
   * chef-provisioning-aws - 0.5.0
