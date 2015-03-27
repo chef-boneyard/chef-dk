@@ -2,17 +2,16 @@
 
 ## What's this Policyfile Stuff?
 
-First of all, it's alpha-quality software. Though one of our goals is to
+First of all, it's beta-quality software. Though one of our goals is to
 make Chef a lot easier to get started with, it's definitely not a good
 idea to start using it if you're new to Chef. If you're an experienced
-user, we'd love for you to use it and provide feedback, but BEWARE: you
-are strongly advised to use this only with a separate Chef Server or
-Enterprise Chef organization. To be compatible with the currrent Chef
-Server feature set, policyfile commands will do things like upload
-cookbooks with very large, non-sequential, version numbers (more detail
-on this below). Unless you've taken a specific precautions, you can
-easily hurt yourself by running Policyfile commands against a production
-Chef Server (or organization).
+user, we'd love for you to use it and provide feedback, but BEWARE: by
+default, the Policyfile tooling currently works in a "compatibility
+mode" which is generally unsafe to use in an existing Chef Server
+organization. As of Chef Server 12.0.7, users can enable "native mode"
+with configuration options for Chef Server, Chef Client and ChefDK;
+however, native mode can only be enabled after a fresh install of Chef
+Server 12.0.7. Support for upgrading existing servers is forthcoming.
 
 If you try it out and have any feedback, first check out whether it's
 listed in the "Known Limitations" section below. If your idea/need isn't
@@ -89,18 +88,18 @@ other relevant data. It looks like this (content snipped for brevity):
 You can then test this set of cookbooks in a VM or cloud instance. When
 you're ready to run this policy on a set of nodes attached to your
 server, you run the `chef push` command to push this revision of the
-policy to a specific `policy group`. We've not yet designed any
-specifics of how `policy groups` will be implemented, but the basic idea
-is that you will configure your `chef-client` to use a policy like
-"webapp" or "database" and belong to a `policy group` like "staging" or
-"prod-cluster-1". Each policy group may have a different revision of
-each policy, so that the "webapp" policy may have a different set of
-cookbooks and different run list between the "staging" and
-"prod-cluster-1" policy groups.
+policy to a specific `policy group`. Policy groups are containers for
+nodes that all use the same revision of a given policy. For example a
+node may be configured to use the policy name "webapp" or "database" and
+belong to a `policy group` like "staging" or "prod-cluster-1". Each
+policy group may have a different revision of each policy, so that the
+"webapp" policy may have a different set of cookbooks and different run
+list between the "staging" and "prod-cluster-1" policy groups.
 
-The `push` command will also upload cookbooks to a new cookbooks storage
-API which stores them according to their identifiers, which in this
-case are SHA-1 hashes of the cookbooks' content.
+The `chef push` command will also upload cookbooks to a new cookbooks
+storage API which stores them according to their identifiers, which in
+this case are SHA-1 hashes of the cookbooks' content (these are the
+`identifier` fields in the above example.
 
 When `chef-client` runs, it reads its policy name and policy group from
 configuration, and requests the current policy for its name and group
@@ -350,20 +349,18 @@ highest-level cookbook's (i.e., the cookbook ultimately responsible for
 deploying a server's primary application) repository.
 * Store all of your Policyfiles in a single directory. This is likely to
 be the most common way to use Policyfiles with the monolithic cookbook
-repo workflow. There are still some details to be worked out for this
-case.
+repo workflow.
 
 ### Am I Going to be Forced to Use This?
 
-This change will be rolled out by adding new functionality to Chef
-Client, ChefDK, and Chef Server **alongside** the existing
-functionality. There are no plans to remove or even deprecate the
-existing APIs. The plan is to get people to switch by offering an
-alternative with both more safety and more freedom than the current
-situation.
+This is being rolled out by adding new functionality to Chef Client,
+ChefDK, and Chef Server **alongside** the existing functionality. There
+are no plans to remove or even deprecate the existing APIs. The plan is
+to get people to switch by offering an alternative with both more safety
+and more freedom than the current situation.
 
-That said, if adoption is large enough then eventually removing some
-functionality may be considered if it is no longer worth maintaining.
+That said, if adoption is large enough then eventually removing the
+server-side dependency solver will be considered.
 
 ### Does this Replace Berkshelf?
 
@@ -451,11 +448,17 @@ changes globally.
 
 ## Compatibility Mode
 
-The Policyfile feature depends on new APIs in Chef Server that don't yet
-exist (these are listed in the "Known Limitation" sections below). In
-order to provide a preview of the feature, the current implementation
-operates in a compatibility mode that uses existing Chef Server APIs to
-demonstrate the Policyfile behavior.
+As of Chef Server 12.0.7, you can enable the new Policyfile APIs on a
+freshly installed Chef Server. This release doesn't contain the
+necessary code to upgrade an existing installation, however, as the
+necessary data migration code is not yet fully tested. Therefore,
+users with existing installs must wait for a subsequent release before
+they can enable the Policyfile APIs.
+
+If you are unable to use a freshly installed Chef Server, ChefDK and
+Chef Client provide a compatibility mode that uses existing Chef
+Server APIs to demonstrate the Policyfile behavior (but again, the way
+it works is dangerous--don't do this in prod!).
 
 ### Cookbook Artifact Storage
 
@@ -486,9 +489,9 @@ given IDs of the form `$policyname-policygroup`.
 
 ## Known Limitations
 
-The implementation of the Policyfile feature is still **very**
-incomplete. This is a (possibly not complete) list of planned features
-and use cases that currently aren't implemented/supported.
+The implementation of the Policyfile feature is still incomplete. This
+is a (possibly not complete) list of planned features and use cases that
+currently aren't implemented/supported.
 
 ### Conservative Updating
 
@@ -503,7 +506,7 @@ be supported in the future.
 
 ### Policyfile Attributes
 
-The `Policyfile.rb` run_list will be able to have roles, which have
+The `Policyfile.rb` run\_list will be able to have roles, which have
 attributes. The `Policyfile.rb` will also allow setting attributes
 directly. These will replace the role-level attributes in the precedence
 hierarchy.
@@ -529,19 +532,4 @@ The first option requires implementation of a `/universe` endpoint on
 the Chef Server, as described here: https://github.com/opscode/chef-rfc/blob/master/rfc014-universe-endpoint.md
 
 The second option might be possible currently but has not been tested.
-### Server API Support
-
-In order to be completely usable in production, two new endpoints must
-be added to the Chef Server:
-
-* "cookbook artifact" endpoint: This would allow users to store and
-retrieve cookbooks with arbitrary IDs. The compatibility mode
-implementation works around this limitation by mapping arbitrary IDs to
-version numbers, which is a kludge. This API is described by
-[Chef RFC022](https://github.com/chef/chef-rfc/blob/master/rfc022-arbitrary-cookbook-identifiers.md)
-and is partially implemented in the most recent Chef Server releases.
-* Policyfile endpoint: This would store Policyfile.lock documents and
-associate them with a policy group. This is described [in a draft RFC](https://github.com/chef/chef-rfc/pull/91)
-and is partially implmented in the most recent Chef Server releases.
-
 
