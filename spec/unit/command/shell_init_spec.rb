@@ -20,6 +20,7 @@ require 'chef-dk/command/shell_init'
 
 describe ChefDK::Command::ShellInit do
 
+  let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(File::PATH_SEPARATOR) }
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
 
@@ -32,7 +33,6 @@ describe ChefDK::Command::ShellInit do
 
   shared_context "shell init script" do |shell|
     let(:user_bin_dir) { File.expand_path(File.join(Gem.user_dir, 'bin')) }
-    let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(File::PATH_SEPARATOR) }
     let(:expected_gem_root) { Gem.default_dir.to_s }
     let(:expected_gem_home) { Gem.user_dir }
     let(:expected_gem_path) { Gem.path.join(File::PATH_SEPARATOR) }
@@ -107,6 +107,23 @@ EOH
     end
   end
 
+  context 'for fish' do
+    before do
+      stub_const('File::PATH_SEPARATOR', ':')
+    end
+    let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(':').split(':').join('" "') }
+    let(:expected_environment_commands) do
+      <<-EOH
+set -gx PATH "#{expected_path}" 2>/dev/null;
+set -gx GEM_ROOT "#{expected_gem_root}";
+set -gx GEM_HOME "#{expected_gem_home}";
+set -gx GEM_PATH "#{expected_gem_path}";
+EOH
+    end
+
+    include_context 'shell init script', 'fish'
+  end
+
   ['powershell', 'posh'].each do |shell|
     context "for #{shell}" do
       it_behaves_like "a powershell script", shell
@@ -131,7 +148,7 @@ EOH
     it "exits with an error message" do
       expect(command_instance.run(argv)).to eq(1)
       expect(stderr_io.string).to include("Shell `nosuchsh' is not currently supported")
-      expect(stderr_io.string).to include("Supported shells are: bash zsh sh powershell posh")
+      expect(stderr_io.string).to include("Supported shells are: bash fish zsh sh powershell posh")
     end
 
   end

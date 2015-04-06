@@ -22,7 +22,7 @@ module ChefDK
   module Command
     class ShellInit < ChefDK::Command::Base
 
-      SUPPORTED_SHELLS = %w[ bash zsh sh powershell posh].map(&:freeze).freeze
+      SUPPORTED_SHELLS = %w[ bash fish zsh sh powershell posh].map(&:freeze).freeze
 
       banner(<<-HELP)
 Usage: chef shell-init
@@ -34,6 +34,8 @@ ruby.
 
     In sh, bash, and zsh:
       eval "$(chef shell-init SHELL_NAME)"
+    In fish:
+      eval (chef shell-init fish)
     In Powershell:
       chef shell-init powershell | Invoke-Expression
 
@@ -41,6 +43,8 @@ ruby.
 
     In sh, bash, and zsh:
       echo 'eval "$(chef shell-init SHELL_NAME)"' >> ~/.YOUR_SHELL_RC_FILE
+    In fish:
+      echo 'eval (chef shell-init SHELL_NAME)' >> ~/.config/fish/config.fish
     In Powershell
       "chef shell-init powershell | Invoke-Expression" >> $PROFILE
 
@@ -84,17 +88,31 @@ HELP
         case shell
         when 'sh', 'bash', 'zsh'
           posix_shell_export(var, val)
+        when 'fish'
+          fish_shell_export(var, val)
         when 'powershell', 'posh'
           powershell_export(var, val)
         end
       end
 
       def posix_shell_export(var, val)
-        msg("export #{var}=\"#{val}\"")
+        msg(%Q(export #{var}="#{val}"))
+      end
+
+      def fish_shell_export(var, val)
+        # Fish's syntax for setting PATH is special. Path elements are
+        # divided by spaces (instead of colons). We also send STDERR to
+        # /dev/null to avoid Fish's helpful warnings about nonexistent
+        # PATH elements.
+        if var == 'PATH'
+          msg(%Q(set -gx #{var} "#{val.split(':').join('" "')}" 2>/dev/null;))
+        else
+          msg(%Q(set -gx #{var} "#{val}";))
+        end
       end
 
       def powershell_export(var, val)
-        msg("$env:#{var}=\"#{val}\"")
+        msg(%Q($env:#{var}="#{val}"))
       end
     end
   end
