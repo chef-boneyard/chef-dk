@@ -27,3 +27,6 @@ vendor/
 _site/*
 .yardoc/
 doc/
+
+# Test Kitchen
+.kitchen/
