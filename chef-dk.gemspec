@@ -41,7 +41,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "mixlib-shellout", ">= 2.0.0.rc.0", "< 3.0.0"
   gem.add_dependency "ffi-yajl", "~> 1.0"
 
-  gem.add_dependency "chef", "~> 12.0", ">= 12.2.0.rc.2"
+  gem.add_dependency "chef", "~> 12.0", ">= 12.2.1"
 
   gem.add_dependency "solve", "~> 1.2"
 
