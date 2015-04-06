@@ -1,6 +1,8 @@
 # Chef Development Kit Changelog
 
 # Unreleased:
+* [PR #345](https://github.com/chef/chef-dk/pull/345): Support fish
+  shell in `chef shell-init`
 * Fixed bug where a cookbook with no source options couldn't be added to
   the Policyfile.rb
 * Updated Policyfile uploads to use the URLs specified in Chef RFC 042.
