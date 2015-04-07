@@ -280,10 +280,10 @@ describe ChefDK::Command::Verify do
           expect(stdout).to include("my friend everything is good...")
         end
 
-        it "should report the output of the first verification first" do
+        it "should report the output of the first verification first", :volatile => true do
           index_first = stdout.index("you are good to go...")
           index_second = stdout.index("my friend everything is good...")
-          expect(index_second > index_first).to be true
+          expect(index_second).to be > index_first
         end
 
         context "and components are filtered by CLI args" do

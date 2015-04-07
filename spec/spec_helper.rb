@@ -35,6 +35,8 @@ RSpec.configure do |c|
 
   c.filter_run :focus => true
   c.run_all_when_everything_filtered = true
+  # Tests that randomly fail, but may have value.
+  c.filter_run_excluding :volatile => true
 
   c.mock_with(:rspec) do |mocks|
     mocks.verify_partial_doubles = true
