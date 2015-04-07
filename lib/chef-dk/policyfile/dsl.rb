@@ -19,6 +19,8 @@ require 'chef-dk/policyfile/cookbook_sources'
 require 'chef-dk/policyfile/cookbook_location_specification'
 require 'chef-dk/policyfile/storage_config'
 
+require 'chef/node/attribute'
+
 module ChefDK
   module Policyfile
     class DSL
@@ -33,6 +35,7 @@ module ChefDK
       attr_reader :cookbook_location_specs
 
       attr_reader :named_run_lists
+      attr_reader :node_attributes
 
       attr_reader :storage_config
 
@@ -44,6 +47,8 @@ module ChefDK
         @default_source = NullCookbookSource.new
         @cookbook_location_specs = {}
         @storage_config = storage_config
+
+        @node_attributes = Chef::Node::Attribute.new({}, {}, {}, {})
       end
 
       def name(name = nil)
@@ -96,6 +101,14 @@ module ChefDK
           @cookbook_location_specs[name] = spec
           @errors += spec.errors
         end
+      end
+
+      def default
+        @node_attributes.default
+      end
+
+      def override
+        @node_attributes.override
       end
 
       def eval_policyfile(policyfile_string)

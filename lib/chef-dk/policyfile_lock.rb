@@ -83,6 +83,8 @@ module ChefDK
     attr_accessor :name
     attr_accessor :run_list
     attr_accessor :named_run_lists
+    attr_accessor :default_attributes
+    attr_accessor :override_attributes
 
     attr_reader :solution_dependencies
 
@@ -100,6 +102,9 @@ module ChefDK
       @relative_paths_root = Dir.pwd
       @storage_config = storage_config
       @ui = ui || UI.null
+
+      @default_attributes = {}
+      @override_attributes = {}
 
       @solution_dependencies = Policyfile::SolutionDependencies.new
       @install_report = InstallReport.new(ui: @ui, policyfile_lock: self)
@@ -132,6 +137,8 @@ module ChefDK
         lock["run_list"] = run_list
         lock["named_run_lists"] = named_run_lists unless named_run_lists.empty?
         lock["cookbook_locks"] = cookbook_locks_for_lockfile
+        lock["default_attributes"] = default_attributes
+        lock["override_attributes"] = override_attributes
         lock["solution_dependencies"] = solution_dependencies.to_lock
       end
     end
@@ -231,6 +238,9 @@ module ChefDK
           end
         end
       end
+
+      @default_attributes = compiler.default_attributes
+      @override_attributes = compiler.override_attributes
 
       @solution_dependencies = compiler.solution_dependencies
 

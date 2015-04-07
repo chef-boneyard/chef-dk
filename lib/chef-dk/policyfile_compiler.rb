@@ -97,6 +97,14 @@ module ChefDK
       end
     end
 
+    def default_attributes
+      dsl.node_attributes.combined_default.to_hash
+    end
+
+    def override_attributes
+      dsl.node_attributes.combined_default.to_hash
+    end
+
     def lock
       @policyfile_lock ||= PolicyfileLock.build_from_compiler(self, storage_config)
     end

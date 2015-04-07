@@ -176,6 +176,83 @@ REVISION_STRING
             "source_options" => nil
           },
         },
+        "default_attributes" => {},
+        "override_attributes" => {},
+
+        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
+      }
+    end
+
+    it "has a cache path" do
+      expect(policyfile_lock.cache_path).to eq(cache_path)
+    end
+
+    it "computes a minimal policyfile" do
+      expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
+    end
+
+    it "generates a canonical revision string" do
+      expect(policyfile_lock.canonical_revision_string).to eq(expected_canonical_revision_string)
+    end
+
+    it "generates a revision id" do
+      expect(policyfile_lock.revision_id).to eq(expected_revision_id)
+    end
+
+  end
+
+  context "with a policyfile containing attributes" do
+
+    let(:policyfile_lock) do
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
+
+        p.name = "minimal_policyfile"
+
+        p.run_list = [ "recipe[foo]" ]
+        p.cached_cookbook("foo") do |cb|
+          cb.cache_key = "foo-1.0.0"
+        end
+
+        p.default_attributes = { "foo" => "bar", "aaa" => "aaa" }
+        p.override_attributes = { "foo2" => "baz" }
+
+      end
+    end
+
+    let(:expected_canonical_revision_string) do
+      <<-REVISION_STRING
+name:minimal_policyfile
+run-list-item:recipe[foo]
+cookbook:foo;id:467dc855408ce8b74f991c5dc2fd72a6aa369b60
+REVISION_STRING
+    end
+
+    let(:expected_revision_id) do
+      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+    end
+
+    let(:compiled_policyfile) do
+      {
+        "revision_id" => expected_revision_id,
+
+        "name" => "minimal_policyfile",
+
+        "run_list" => ["recipe[foo]"],
+
+        "cookbook_locks" => {
+
+          "foo" => {
+            "version" => "1.0.0",
+            "identifier" => cookbook_foo_cksum,
+            "dotted_decimal_identifier" => cookbook_foo_cksum_dotted,
+            "cache_key" => "foo-1.0.0",
+            "origin" => nil,
+            "source_options" => nil
+          },
+        },
+        "default_attributes" => { "foo" => "bar", "aaa" => "aaa"},
+        "override_attributes" => { "foo2" => "baz" },
+
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
       }
     end
@@ -261,6 +338,10 @@ REVISION_STRING
             "source_options" => nil
           },
         },
+
+        "default_attributes" => {},
+        "override_attributes" => {},
+
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
       }
     end
@@ -364,6 +445,10 @@ REVISION_STRING
             "source_options" => nil
           },
         },
+
+        "default_attributes" => {},
+        "override_attributes" => {},
+
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
       }
     end
@@ -504,6 +589,9 @@ REVISION_STRING
 
         },
 
+        "default_attributes" => {},
+        "override_attributes" => {},
+
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
 
       }
@@ -587,6 +675,10 @@ REVISION_STRING
             "source_options" => nil
           },
         },
+
+        "default_attributes" => {},
+        "override_attributes" => {},
+
         "solution_dependencies" => {
           "Policyfile" => [],
           "dependencies" => {"foo (1.0.0)" => []}
@@ -654,6 +746,9 @@ REVISION_STRING
           },
         },
 
+        "default_attributes" => {},
+        "override_attributes" => {},
+
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
       }
     end
@@ -706,13 +801,37 @@ REVISION_STRING
       end
     end
 
+    let(:policyfile_default_attrs) do
+      {
+        "foo" => "bar",
+        "abc" => { "def" => { "ghi" => "xyz" } },
+        "baz" => {
+          "more_nested_stuff" => "yup",
+          "an_array" => ["a", "b", "c"]
+        }
+      }
+    end
+
+    let(:policyfile_override_attrs) do
+      {
+        "foo" => "bar",
+        "abc" => { "def" => { "ghi" => "xyz" } },
+        "baz" => {
+          "more_nested_stuff" => "yup",
+          "an_array" => ["a", "b", "c"]
+        }
+      }
+    end
+
     let(:policyfile_compiler) do
       double( "ChefDK::PolicyfileCompiler",
               name: "my-policyfile",
               normalized_run_list: %w[recipe[foo::default] recipe[bar::default]],
               normalized_named_run_lists: { "rl2" => %w[recipe[bar::default]] },
               all_cookbook_location_specs: {"foo" => cached_location_spec, "bar" => local_location_spec},
-              solution_dependencies: policyfile_solution_dependencies )
+              solution_dependencies: policyfile_solution_dependencies,
+              default_attributes: policyfile_default_attrs,
+              override_attributes: policyfile_override_attrs )
     end
 
     let(:policyfile_lock) do
@@ -776,6 +895,23 @@ REVISION_STRING
           }
         },
 
+        "default_attributes" => {
+          "foo" => "bar",
+          "abc" => { "def" => { "ghi" => "xyz" } },
+          "baz" => {
+            "more_nested_stuff" => "yup",
+            "an_array" => ["a", "b", "c"]
+          }
+        },
+
+        "override_attributes" => {
+          "foo" => "bar",
+          "abc" => { "def" => { "ghi" => "xyz" } },
+          "baz" => {
+            "more_nested_stuff" => "yup",
+            "an_array" => ["a", "b", "c"]
+          }
+        },
         "solution_dependencies" => {
           "Policyfile" => [ [ "foo", "~> 1.0" ] ],
           "dependencies" => { "foo (1.0.0)" => [], "bar (0.1.0)" => [] }
