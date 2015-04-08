@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 #
 # Copyright:: Copyright (c) 2014 Chef Software Inc.
 # License:: Apache License, Version 2.0
@@ -15,7 +16,7 @@
 # limitations under the License.
 #
 
-require 'digest/sha1'
+require 'digest/sha2'
 
 require 'chef-dk/policyfile/storage_config'
 require 'chef-dk/policyfile/cookbook_locks'
@@ -83,6 +84,8 @@ module ChefDK
     attr_accessor :name
     attr_accessor :run_list
     attr_accessor :named_run_lists
+    attr_accessor :default_attributes
+    attr_accessor :override_attributes
 
     attr_reader :solution_dependencies
 
@@ -100,6 +103,9 @@ module ChefDK
       @relative_paths_root = Dir.pwd
       @storage_config = storage_config
       @ui = ui || UI.null
+
+      @default_attributes = {}
+      @override_attributes = {}
 
       @solution_dependencies = Policyfile::SolutionDependencies.new
       @install_report = InstallReport.new(ui: @ui, policyfile_lock: self)
@@ -132,6 +138,8 @@ module ChefDK
         lock["run_list"] = run_list
         lock["named_run_lists"] = named_run_lists unless named_run_lists.empty?
         lock["cookbook_locks"] = cookbook_locks_for_lockfile
+        lock["default_attributes"] = default_attributes
+        lock["override_attributes"] = override_attributes
         lock["solution_dependencies"] = solution_dependencies.to_lock
       end
     end
@@ -139,7 +147,7 @@ module ChefDK
     # Returns a fingerprint of the PolicyfileLock by computing the SHA1 hash of
     # #canonical_revision_string
     def revision_id
-      Digest::SHA1.new.hexdigest(canonical_revision_string)
+      Digest::SHA256.new.hexdigest(canonical_revision_string)
     end
 
     # Generates a string representation of the lock data in a specialized
@@ -171,6 +179,10 @@ module ChefDK
       cookbook_locks_for_lockfile.each do |name, lock|
         canonical_rev_text << "cookbook:#{name};id:#{lock["identifier"]}\n"
       end
+
+      canonical_rev_text << "default_attributes:#{canonicalize(default_attributes)}\n"
+
+      canonical_rev_text << "override_attributes:#{canonicalize(override_attributes)}\n"
 
       canonical_rev_text
     end
@@ -232,6 +244,9 @@ module ChefDK
         end
       end
 
+      @default_attributes = compiler.default_attributes
+      @override_attributes = compiler.override_attributes
+
       @solution_dependencies = compiler.solution_dependencies
 
       self
@@ -263,6 +278,97 @@ module ChefDK
     end
 
     private
+
+    # Generates a canonical JSON representation of the attributes. Based on
+    # http://wiki.laptop.org/go/Canonical_JSON but not quite as strict, yet.
+    #
+    # In particular:
+    # - String encoding stuff isn't normalized
+    # - We allow floats that fit within the range/precision requirements of
+    #   IEEE 754-2008 binary64 (double precision) numbers.
+    # - +/- Infinity and NaN are banned, but float/numeric size aren't checked.
+    #   numerics should be in range [-(2**53)+1, (2**53)-1] to comply with
+    #   IEEE 754-2008
+    #
+    # Recursive, so absurd nesting levels could cause a SystemError. Invalid
+    # input will cause an InvalidPolicyfileAttribute exception.
+    def canonicalize(attributes)
+      unless attributes.kind_of?(Hash)
+        raise "Top level attributes must be a Hash (you gave: #{attributes})"
+      end
+      canonicalize_elements(attributes)
+    end
+
+    def canonicalize_elements(item)
+      case item
+      when Hash
+        # Hash keys will sort differently based on the encoding, but after a
+        # JSON round trip everything will be UTF-8, so we have to normalize the
+        # keys to UTF-8 first so that the sort order uses the UTF-8 strings.
+        item_with_normalized_keys = item.inject({}) do |normalized_item, (key, value)|
+          validate_attr_key(key)
+          normalized_item[key.encode('utf-8')] = value
+          normalized_item
+        end
+        elements = item_with_normalized_keys.keys.sort.map do |key|
+          k = '"' << key << '":'
+          v = canonicalize_elements(item_with_normalized_keys[key])
+          k << v
+        end
+        "{" << elements.join(',') << "}"
+      when String
+        '"' << item.encode('utf-8') << '"'
+      when Array
+        elements = item.map { |i| canonicalize_elements(i) }
+        '[' << elements.join(',') << ']'
+      when Integer
+        item.to_s
+      when Float
+        unless item.finite?
+          raise InvalidPolicyfileAttribute, "Floating point numbers cannot be infinite or NaN. You gave #{item.inspect}"
+        end
+        # Support for floats assumes that any implementation of our JSON
+        # canonicalization routine will use IEEE-754 doubles. In decimal terms,
+        # doubles give 15-17 digits of precision, so we err on the safe side
+        # and only use 15 digits in the string conversion. We use the `g`
+        # format, which is a documented-enough "do what I mean" where floats
+        # >= 0.1 and < precsion are represented as floating point literals, and
+        # other numbers use the exponent notation with a lowercase 'e'. Note
+        # that both Ruby and Erlang document what their `g` does but have some
+        # differences both subtle and non-subtle:
+        #
+        # ```ruby
+        # format("%.15g", 0.1) #=> "0.1"
+        # format("%.15g", 1_000_000_000.0) #=> "1000000000"
+        # ```
+        #
+        # Whereas:
+        #
+        # ```erlang
+        # lists:flatten(io_lib:format("~.15g", [0.1])). %=> "0.100000000000000"
+        # lists:flatten(io_lib:format("~.15e", [1000000000.0])). %=> "1.00000000000000e+9"
+        # ```
+        #
+        # Other implementations should normalize to ruby's %.15g behavior.
+        Kernel.format("%.15g", item)
+      when NilClass
+        "null"
+      when TrueClass
+        "true"
+      when FalseClass
+        "false"
+      else
+        raise InvalidPolicyfileAttribute,
+          "Invalid type in attributes. Only Hash, Array, String, Integer, Float, true, false, and nil are accepted. You gave #{item.inspect} (#{item.class})"
+      end
+    end
+
+    def validate_attr_key(key)
+      unless key.kind_of?(String)
+        raise InvalidPolicyfileAttribute,
+          "Attribute keys must be Strings (other types are not allowed in JSON). You gave: #{key.inspect} (#{key.class})"
+      end
+    end
 
     def set_name_from_lock_data(lock_data)
       name_attribute = lock_data["name"]

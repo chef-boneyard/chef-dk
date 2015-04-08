@@ -38,6 +38,9 @@ module ChefDK
   class CachedCookbookModified < StandardError
   end
 
+  class InvalidPolicyfileAttribute < StandardError
+  end
+
   class MissingComponentError < RuntimeError
     def initialize(component_name, path_checked)
       super("Component #{component_name} is missing. \nReason: Could not find #{path_checked}.")

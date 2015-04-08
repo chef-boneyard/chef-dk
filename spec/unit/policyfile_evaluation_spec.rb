@@ -323,6 +323,74 @@ EOH
 
     end
 
+    describe "defining attributes" do
+
+      let(:policyfile_rb) do
+        <<-EOH
+          name "policy-with-attrs"
+          run_list "foo"
+
+          # basic attribute setting:
+          default["foo"] = "bar"
+
+          # auto-vivify
+          default["abc"]["def"]["ghi"] = "xyz"
+
+          # literal data structures
+          default["baz"] = {
+            "more_nested_stuff" => "yup"
+          }
+
+          # Array literals work and we merge rather than overwrite:
+          default["baz"]["an_array"] = ["a", "b", "c"]
+
+          # all the same stuff works with overrides:
+
+          override["foo"] = "bar"
+
+          override["abc"]["def"]["ghi"] = "xyz"
+
+          override["baz_override"] = {
+            "more_nested_stuff" => "yup"
+          }
+
+          override["baz_override"]["an_array"] = ["a", "b", "c"]
+        EOH
+      end
+
+      let(:expected_combined_default_attrs) do
+        {
+          "foo" => "bar",
+          "abc" => { "def" => { "ghi" => "xyz" } },
+          "baz" => {
+            "more_nested_stuff" => "yup",
+            "an_array" => ["a", "b", "c"]
+          }
+        }
+      end
+
+      let(:expected_combined_override_attrs) do
+        {
+          "foo" => "bar",
+          "abc" => { "def" => { "ghi" => "xyz" } },
+          "baz_override" => {
+            "more_nested_stuff" => "yup",
+            "an_array" => ["a", "b", "c"]
+          }
+        }
+      end
+
+      it "defines default attributes" do
+        expect(policyfile.errors).to eq([])
+        expect(policyfile.default_attributes).to eq(expected_combined_default_attrs)
+      end
+
+      it "defines override attributes" do
+        expect(policyfile.errors).to eq([])
+        expect(policyfile.override_attributes).to eq(expected_combined_override_attrs)
+      end
+    end
+
   end
 
 end

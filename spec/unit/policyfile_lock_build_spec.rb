@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 #
 # Copyright:: Copyright (c) 2014 Chef Software Inc.
 # License:: Apache License, Version 2.0
@@ -130,6 +131,61 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
   end
 
+  describe "policyfiles with invalid attributes" do
+
+    let(:policyfile_lock) do
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
+
+        p.name = "invalid_cache_key_policyfile"
+
+        p.run_list = [ "recipe[foo]" ]
+
+        p.cached_cookbook("foo") do |cb|
+          cb.cache_key = "foo-1.0.0"
+        end
+
+        p.default_attributes = default_attributes
+      end
+    end
+
+    context "invalid floats - infinity" do
+
+      let(:default_attributes) { {"infinity" => Float::INFINITY} }
+
+      it "raises a descriptive error" do
+        expect { policyfile_lock.to_lock }.to raise_error(ChefDK::InvalidPolicyfileAttribute)
+      end
+    end
+
+    context "invalid floats - nan" do
+
+      let(:default_attributes) { {"infinity" => Float::NAN} }
+
+      it "raises a descriptive error" do
+        expect { policyfile_lock.to_lock }.to raise_error(ChefDK::InvalidPolicyfileAttribute)
+      end
+    end
+
+    context "non-string hash/object keys" do
+
+      let(:default_attributes) { {1906 => "lol nope"} }
+
+      it "raises a descriptive error" do
+        expect { policyfile_lock.to_lock }.to raise_error(ChefDK::InvalidPolicyfileAttribute)
+      end
+    end
+
+    context "values that are not Hash/Array/String/Float/Integer/true/false/nil" do
+
+      let(:default_attributes) { { "raw object" => Object.new } }
+
+      it "raises a descriptive error" do
+        expect { policyfile_lock.to_lock }.to raise_error(ChefDK::InvalidPolicyfileAttribute)
+      end
+    end
+
+  end
+
   context "with a minimal policyfile" do
 
     let(:policyfile_lock) do
@@ -150,11 +206,13 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 name:minimal_policyfile
 run-list-item:recipe[foo]
 cookbook:foo;id:467dc855408ce8b74f991c5dc2fd72a6aa369b60
+default_attributes:{}
+override_attributes:{}
 REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -176,6 +234,105 @@ REVISION_STRING
             "source_options" => nil
           },
         },
+        "default_attributes" => {},
+        "override_attributes" => {},
+
+        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
+      }
+    end
+
+    it "has a cache path" do
+      expect(policyfile_lock.cache_path).to eq(cache_path)
+    end
+
+    it "computes a minimal policyfile" do
+      expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
+    end
+
+    it "generates a canonical revision string" do
+      expect(policyfile_lock.canonical_revision_string).to eq(expected_canonical_revision_string)
+    end
+
+    it "generates a revision id" do
+      expect(policyfile_lock.revision_id).to eq(expected_revision_id)
+    end
+
+  end
+
+  context "with a policyfile containing attributes" do
+
+    let(:policyfile_lock) do
+      ChefDK::PolicyfileLock.build(storage_config) do |p|
+
+        p.name = "minimal_policyfile"
+
+        p.run_list = [ "recipe[foo]" ]
+        p.cached_cookbook("foo") do |cb|
+          cb.cache_key = "foo-1.0.0"
+        end
+
+        p.default_attributes = {
+          "foo" => "bar",
+          "aaa".encode('utf-16') => "aaa".encode('utf-16'),
+          "ddd" => true,
+          "ccc" => false,
+          "bbb" => nil,
+          "e"   => 1.2,
+          "f"   => 5,
+          "g"   => 1_000_000_000_000_000.0,
+          "nested" => { "a" => "b" }
+        }
+        p.override_attributes = { "foo2" => "baz" }
+
+      end
+    end
+
+    let(:expected_canonical_revision_string) do
+      <<-REVISION_STRING
+name:minimal_policyfile
+run-list-item:recipe[foo]
+cookbook:foo;id:467dc855408ce8b74f991c5dc2fd72a6aa369b60
+default_attributes:{"aaa":"aaa","bbb":null,"ccc":false,"ddd":true,"e":1.2,"f":5,"foo":"bar","g":1e+15,"nested":{"a":"b"}}
+override_attributes:{"foo2":"baz"}
+REVISION_STRING
+    end
+
+    let(:expected_revision_id) do
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
+    end
+
+    let(:compiled_policyfile) do
+      {
+        "revision_id" => expected_revision_id,
+
+        "name" => "minimal_policyfile",
+
+        "run_list" => ["recipe[foo]"],
+
+        "cookbook_locks" => {
+
+          "foo" => {
+            "version" => "1.0.0",
+            "identifier" => cookbook_foo_cksum,
+            "dotted_decimal_identifier" => cookbook_foo_cksum_dotted,
+            "cache_key" => "foo-1.0.0",
+            "origin" => nil,
+            "source_options" => nil
+          },
+        },
+        "default_attributes" => {
+          "foo" => "bar",
+          "aaa".encode('utf-16') => "aaa".encode('utf-16'),
+          "ddd" => true,
+          "ccc" => false,
+          "bbb" => nil,
+          "e"   => 1.2,
+          "f"   => 5,
+          "g"   => 1_000_000_000_000_000.0,
+          "nested" => { "a" => "b" }
+        },
+        "override_attributes" => { "foo2" => "baz" },
+
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
       }
     end
@@ -225,11 +382,13 @@ REVISION_STRING
 name:dev_cookbook
 run-list-item:recipe[bar]
 cookbook:bar;id:#{cookbook_bar_cksum}
+default_attributes:{}
+override_attributes:{}
 REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -261,6 +420,10 @@ REVISION_STRING
             "source_options" => nil
           },
         },
+
+        "default_attributes" => {},
+        "override_attributes" => {},
+
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
       }
     end
@@ -319,11 +482,13 @@ name:custom_identifier
 run-list-item:recipe[foo]
 cookbook:foo;id:1.0.0
 cookbook:bar;id:0.1.0
+default_attributes:{}
+override_attributes:{}
 REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -364,6 +529,10 @@ REVISION_STRING
             "source_options" => nil
           },
         },
+
+        "default_attributes" => {},
+        "override_attributes" => {},
+
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
       }
     end
@@ -438,11 +607,13 @@ cookbook:foo;id:#{cookbook_foo_cksum}
 cookbook:bar;id:#{cookbook_bar_cksum}
 cookbook:baz;id:#{cookbook_baz_cksum}
 cookbook:dep_of_bar;id:#{cookbook_dep_of_bar_cksum}
+default_attributes:{}
+override_attributes:{}
 REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -504,6 +675,9 @@ REVISION_STRING
 
         },
 
+        "default_attributes" => {},
+        "override_attributes" => {},
+
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
 
       }
@@ -560,11 +734,13 @@ REVISION_STRING
 name:minimal_policyfile
 run-list-item:recipe[foo]
 cookbook:foo;id:#{cookbook_foo_cksum}
+default_attributes:{}
+override_attributes:{}
 REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -587,6 +763,10 @@ REVISION_STRING
             "source_options" => nil
           },
         },
+
+        "default_attributes" => {},
+        "override_attributes" => {},
+
         "solution_dependencies" => {
           "Policyfile" => [],
           "dependencies" => {"foo (1.0.0)" => []}
@@ -624,11 +804,13 @@ name:minimal_policyfile
 run-list-item:recipe[foo]
 named-run-list:rl2;run-list-item:recipe[foo::bar]
 cookbook:foo;id:#{cookbook_foo_cksum}
+default_attributes:{}
+override_attributes:{}
 REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -653,6 +835,9 @@ REVISION_STRING
             "source_options" => nil
           },
         },
+
+        "default_attributes" => {},
+        "override_attributes" => {},
 
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
       }
@@ -706,13 +891,48 @@ REVISION_STRING
       end
     end
 
+    let(:policyfile_default_attrs) do
+      {
+        "foo" => "bar",
+        "abc" => { "def" => { "ghi" => "xyz" } },
+        "baz" => {
+          "more_nested_stuff" => "yup",
+          "an_array" => ["a", "b", "c"]
+        }
+      }
+    end
+
+    let(:canonicalized_default_attrs) do
+      elements = [
+        %q{"abc":{"def":{"ghi":"xyz"}}},
+        %q{"baz":{"an_array":["a","b","c"],"more_nested_stuff":"yup"}},
+        %q{"foo":"bar"}
+      ]
+      "{" + elements.join(',') + "}"
+    end
+
+    let(:policyfile_override_attrs) do
+      {
+        "foo" => "bar",
+        "abc" => { "def" => { "ghi" => "xyz" } },
+        "baz" => {
+          "more_nested_stuff" => "yup",
+          "an_array" => ["a", "b", "c"]
+        }
+      }
+    end
+
+    let(:canonicalized_override_attrs) { canonicalized_default_attrs }
+
     let(:policyfile_compiler) do
       double( "ChefDK::PolicyfileCompiler",
               name: "my-policyfile",
               normalized_run_list: %w[recipe[foo::default] recipe[bar::default]],
               normalized_named_run_lists: { "rl2" => %w[recipe[bar::default]] },
               all_cookbook_location_specs: {"foo" => cached_location_spec, "bar" => local_location_spec},
-              solution_dependencies: policyfile_solution_dependencies )
+              solution_dependencies: policyfile_solution_dependencies,
+              default_attributes: policyfile_default_attrs,
+              override_attributes: policyfile_override_attrs )
     end
 
     let(:policyfile_lock) do
@@ -728,11 +948,13 @@ run-list-item:recipe[bar::default]
 named-run-list:rl2;run-list-item:recipe[bar::default]
 cookbook:foo;id:#{cookbook_foo_cksum}
 cookbook:bar;id:#{cookbook_bar_cksum}
+default_attributes:#{canonicalized_default_attrs}
+override_attributes:#{canonicalized_override_attrs}
 REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -776,6 +998,23 @@ REVISION_STRING
           }
         },
 
+        "default_attributes" => {
+          "foo" => "bar",
+          "abc" => { "def" => { "ghi" => "xyz" } },
+          "baz" => {
+            "more_nested_stuff" => "yup",
+            "an_array" => ["a", "b", "c"]
+          }
+        },
+
+        "override_attributes" => {
+          "foo" => "bar",
+          "abc" => { "def" => { "ghi" => "xyz" } },
+          "baz" => {
+            "more_nested_stuff" => "yup",
+            "an_array" => ["a", "b", "c"]
+          }
+        },
         "solution_dependencies" => {
           "Policyfile" => [ [ "foo", "~> 1.0" ] ],
           "dependencies" => { "foo (1.0.0)" => [], "bar (0.1.0)" => [] }
