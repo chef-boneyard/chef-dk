@@ -313,6 +313,8 @@ module ChefDK
       when Array
         elements = item.map { |i| canonicalize_elements(i) }
         '[' << elements.join(',') << ']'
+      when Integer
+        item.to_s
       when Float
         unless item.finite?
           raise InvalidPolicyfileAttribute, "Floating point numbers cannot be infinite or NaN. You gave #{item.inspect}"
@@ -326,7 +328,7 @@ module ChefDK
         "false"
       else
         raise InvalidPolicyfileAttribute,
-          "Invalid type in attributes. Only Hash, Array, String, Float, true, false, and nil are accepted. You gave #{item.inspect} (#{item.class})"
+          "Invalid type in attributes. Only Hash, Array, String, Integer, Float, true, false, and nil are accepted. You gave #{item.inspect} (#{item.class})"
       end
     end
 
