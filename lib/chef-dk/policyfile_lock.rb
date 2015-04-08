@@ -284,8 +284,8 @@ module ChefDK
     #
     # In particular:
     # - String encoding stuff isn't normalized
-    # - We plan to allow floats that fit within the range/precision
-    #   requirements of IEEE 754-2008 binary64 (double precision) numbers
+    # - We allow floats that fit within the range/precision requirements of
+    #   IEEE 754-2008 binary64 (double precision) numbers.
     # - +/- Infinity and NaN are banned, but float/numeric size aren't checked.
     #   numerics should be in range [-(2**53)+1, (2**53)-1] to comply with
     #   IEEE 754-2008
