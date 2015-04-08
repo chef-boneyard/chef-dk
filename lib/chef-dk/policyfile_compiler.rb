@@ -102,7 +102,7 @@ module ChefDK
     end
 
     def override_attributes
-      dsl.node_attributes.combined_default.to_hash
+      dsl.node_attributes.combined_override.to_hash
     end
 
     def lock

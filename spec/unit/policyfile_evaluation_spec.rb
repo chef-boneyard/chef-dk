@@ -350,15 +350,15 @@ EOH
 
           override["abc"]["def"]["ghi"] = "xyz"
 
-          override["baz"] = {
+          override["baz_override"] = {
             "more_nested_stuff" => "yup"
           }
 
-          override["baz"]["an_array"] = ["a", "b", "c"]
+          override["baz_override"]["an_array"] = ["a", "b", "c"]
         EOH
       end
 
-      let(:expected_merged_attrs) do
+      let(:expected_combined_default_attrs) do
         {
           "foo" => "bar",
           "abc" => { "def" => { "ghi" => "xyz" } },
@@ -369,14 +369,25 @@ EOH
         }
       end
 
+      let(:expected_combined_override_attrs) do
+        {
+          "foo" => "bar",
+          "abc" => { "def" => { "ghi" => "xyz" } },
+          "baz_override" => {
+            "more_nested_stuff" => "yup",
+            "an_array" => ["a", "b", "c"]
+          }
+        }
+      end
+
       it "defines default attributes" do
         expect(policyfile.errors).to eq([])
-        expect(policyfile.default_attributes).to eq(expected_merged_attrs)
+        expect(policyfile.default_attributes).to eq(expected_combined_default_attrs)
       end
 
       it "defines override attributes" do
         expect(policyfile.errors).to eq([])
-        expect(policyfile.override_attributes).to eq(expected_merged_attrs)
+        expect(policyfile.override_attributes).to eq(expected_combined_override_attrs)
       end
     end
 
