@@ -179,6 +179,10 @@ module ChefDK
         canonical_rev_text << "cookbook:#{name};id:#{lock["identifier"]}\n"
       end
 
+      canonical_rev_text << "default_attributes:#{canonicalize(default_attributes)}\n"
+
+      canonical_rev_text << "override_attributes:#{canonicalize(override_attributes)}\n"
+
       canonical_rev_text
     end
 
@@ -273,6 +277,65 @@ module ChefDK
     end
 
     private
+
+    # Generates a canonical JSON representation of the attributes. Based on
+    # http://wiki.laptop.org/go/Canonical_JSON but not quite as strict, yet.
+    #
+    # In particular:
+    # - String encoding stuff isn't normalized
+    # - We plan to allow floats that fit within the range/precision
+    #   requirements of IEEE 754-2008 binary64 (double precision) numbers
+    # - +/- Infinity and NaN are banned, but float/numeric size aren't checked.
+    #   numerics should be in range [-(2**53)+1, (2**53)-1] to comply with
+    #   IEEE 754-2008
+    #
+    # Recursive, so absurd nesting levels could cause a SystemError. Invalid
+    # input will cause an InvalidPolicyfileAttribute exception.
+    def canonicalize(attributes)
+      unless attributes.kind_of?(Hash)
+        raise "Top level attributes must be a Hash (you gave: #{attributes})"
+      end
+      canonicalize_elements(attributes)
+    end
+
+    def canonicalize_elements(item)
+      case item
+      when Hash
+        elements = item.keys.sort.map do |key|
+          validate_attr_key(key)
+          k = '"' << key.to_s << '":'
+          v = canonicalize_elements(item[key])
+          k << v
+        end
+        "{" << elements.join(',') << "}"
+      when String
+        '"' << item << '"'
+      when Array
+        elements = item.map { |i| canonicalize_elements(i) }
+        '[' << elements.join(',') << ']'
+      when Float
+        unless item.finite?
+          raise InvalidPolicyfileAttribute, "Floating point numbers cannot be infinite or NaN. You gave #{item.inspect}"
+        end
+        item.to_s
+      when NilClass
+        "null"
+      when TrueClass
+        "true"
+      when FalseClass
+        "false"
+      else
+        raise InvalidPolicyfileAttribute,
+          "Invalid type in attributes. Only Hash, Array, String, Float, true, false, and nil are accepted. You gave #{item.inspect} (#{item.class})"
+      end
+    end
+
+    def validate_attr_key(key)
+      unless key.kind_of?(String)
+        raise InvalidPolicyfileAttribute,
+          "Attribute keys must be Strings (other types are not allowed in JSON). You gave: #{key.inspect} (#{key.class})"
+      end
+    end
 
     def set_name_from_lock_data(lock_data)
       name_attribute = lock_data["name"]
