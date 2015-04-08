@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 #
 # Copyright:: Copyright (c) 2014 Chef Software Inc.
 # License:: Apache License, Version 2.0
@@ -272,7 +273,7 @@ REVISION_STRING
 
         p.default_attributes = {
           "foo" => "bar",
-          "aaa" => "aaa",
+          "aaa".encode('utf-16') => "aaa".encode('utf-16'),
           "ddd" => true,
           "ccc" => false,
           "bbb" => nil,
@@ -320,7 +321,7 @@ REVISION_STRING
         },
         "default_attributes" => {
           "foo" => "bar",
-          "aaa" => "aaa",
+          "aaa".encode('utf-16') => "aaa".encode('utf-16'),
           "ddd" => true,
           "ccc" => false,
           "bbb" => nil,

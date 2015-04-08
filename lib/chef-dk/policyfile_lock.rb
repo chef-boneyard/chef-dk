@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 #
 # Copyright:: Copyright (c) 2014 Chef Software Inc.
 # License:: Apache License, Version 2.0
@@ -301,15 +302,22 @@ module ChefDK
     def canonicalize_elements(item)
       case item
       when Hash
-        elements = item.keys.sort.map do |key|
+        # Hash keys will sort differently based on the encoding, but after a
+        # JSON round trip everything will be UTF-8, so we have to normalize the
+        # keys to UTF-8 first so that the sort order uses the UTF-8 strings.
+        item_with_normalized_keys = item.inject({}) do |normalized_item, (key, value)|
           validate_attr_key(key)
-          k = '"' << key.to_s << '":'
-          v = canonicalize_elements(item[key])
+          normalized_item[key.encode('utf-8')] = value
+          normalized_item
+        end
+        elements = item_with_normalized_keys.keys.sort.map do |key|
+          k = '"' << key << '":'
+          v = canonicalize_elements(item_with_normalized_keys[key])
           k << v
         end
         "{" << elements.join(',') << "}"
       when String
-        '"' << item << '"'
+        '"' << item.encode('utf-8') << '"'
       when Array
         elements = item.map { |i| canonicalize_elements(i) }
         '[' << elements.join(',') << ']'
