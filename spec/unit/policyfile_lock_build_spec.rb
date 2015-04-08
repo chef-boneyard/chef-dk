@@ -211,7 +211,7 @@ REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -294,7 +294,7 @@ REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -381,7 +381,7 @@ REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -481,7 +481,7 @@ REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -606,7 +606,7 @@ REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -733,7 +733,7 @@ REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -803,7 +803,7 @@ REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do
@@ -947,7 +947,7 @@ REVISION_STRING
     end
 
     let(:expected_revision_id) do
-      Digest::SHA1.new.hexdigest(expected_canonical_revision_string)
+      Digest::SHA256.new.hexdigest(expected_canonical_revision_string)
     end
 
     let(:compiled_policyfile) do

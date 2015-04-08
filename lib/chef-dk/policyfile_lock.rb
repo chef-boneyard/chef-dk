@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'digest/sha1'
+require 'digest/sha2'
 
 require 'chef-dk/policyfile/storage_config'
 require 'chef-dk/policyfile/cookbook_locks'
@@ -146,7 +146,7 @@ module ChefDK
     # Returns a fingerprint of the PolicyfileLock by computing the SHA1 hash of
     # #canonical_revision_string
     def revision_id
-      Digest::SHA1.new.hexdigest(canonical_revision_string)
+      Digest::SHA256.new.hexdigest(canonical_revision_string)
     end
 
     # Generates a string representation of the lock data in a specialized
