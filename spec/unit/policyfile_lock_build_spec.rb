@@ -279,6 +279,7 @@ REVISION_STRING
           "bbb" => nil,
           "e"   => 1.2,
           "f"   => 5,
+          "g"   => 1_000_000_000_000_000.0,
           "nested" => { "a" => "b" }
         }
         p.override_attributes = { "foo2" => "baz" }
@@ -291,7 +292,7 @@ REVISION_STRING
 name:minimal_policyfile
 run-list-item:recipe[foo]
 cookbook:foo;id:467dc855408ce8b74f991c5dc2fd72a6aa369b60
-default_attributes:{"aaa":"aaa","bbb":null,"ccc":false,"ddd":true,"e":1.2,"f":5,"foo":"bar","nested":{"a":"b"}}
+default_attributes:{"aaa":"aaa","bbb":null,"ccc":false,"ddd":true,"e":1.2,"f":5,"foo":"bar","g":1e+15,"nested":{"a":"b"}}
 override_attributes:{"foo2":"baz"}
 REVISION_STRING
     end
@@ -327,6 +328,7 @@ REVISION_STRING
           "bbb" => nil,
           "e"   => 1.2,
           "f"   => 5,
+          "g"   => 1_000_000_000_000_000.0,
           "nested" => { "a" => "b" }
         },
         "override_attributes" => { "foo2" => "baz" },

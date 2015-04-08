@@ -327,7 +327,30 @@ module ChefDK
         unless item.finite?
           raise InvalidPolicyfileAttribute, "Floating point numbers cannot be infinite or NaN. You gave #{item.inspect}"
         end
-        item.to_s
+        # Support for floats assumes that any implementation of our JSON
+        # canonicalization routine will use IEEE-754 doubles. In decimal terms,
+        # doubles give 15-17 digits of precision, so we err on the safe side
+        # and only use 15 digits in the string conversion. We use the `g`
+        # format, which is a documented-enough "do what I mean" where floats
+        # >= 0.1 and < precsion are represented as floating point literals, and
+        # other numbers use the exponent notation with a lowercase 'e'. Note
+        # that both Ruby and Erlang document what their `g` does but have some
+        # differences both subtle and non-subtle:
+        #
+        # ```ruby
+        # format("%.15g", 0.1) #=> "0.1"
+        # format("%.15g", 1_000_000_000.0) #=> "1000000000"
+        # ```
+        #
+        # Whereas:
+        #
+        # ```erlang
+        # lists:flatten(io_lib:format("~.15g", [0.1])). %=> "0.100000000000000"
+        # lists:flatten(io_lib:format("~.15e", [1000000000.0])). %=> "1.00000000000000e+9"
+        # ```
+        #
+        # Other implementations should normalize to ruby's %.15g behavior.
+        Kernel.format("%.15g", item)
       when NilClass
         "null"
       when TrueClass
