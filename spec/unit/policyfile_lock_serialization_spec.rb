@@ -27,6 +27,8 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
       "cookbook_locks" => {
         # TODO: add some valid locks
       },
+      "default_attributes" => { "foo" => "bar" },
+      "override_attributes" => { "override_foo" => "override_bar" },
       "solution_dependencies" => {
         "Policyfile" => [],
         "dependencies" => {}
@@ -37,6 +39,27 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
   let(:storage_config) { ChefDK::Policyfile::StorageConfig.new }
 
   let(:lockfile) { ChefDK::PolicyfileLock.new(storage_config) }
+
+  describe "populating the deserialized lock" do
+
+    before do
+      lockfile.build_from_lock_data(valid_lock_data)
+    end
+
+    it "includes the run list" do
+      expect(lockfile.run_list).to eq(["recipe[cookbook::recipe_name]"])
+    end
+
+    it "includes the cookbook locks" do
+      expect(lockfile.cookbook_locks).to eq({})
+    end
+
+    it "includes the attributes" do
+      expect(lockfile.default_attributes).to eq({"foo" => "bar"})
+      expect(lockfile.override_attributes).to eq({"override_foo" => "override_bar"})
+    end
+
+  end
 
   describe "validating required fields" do
 
@@ -86,6 +109,30 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
       invalid_locks = valid_lock_data.dup
       invalid_locks["cookbook_locks"] = []
       expect { lockfile.build_from_lock_data(invalid_locks) }.to raise_error(ChefDK::InvalidLockfile)
+    end
+
+    it "requires the `default_attributes` section be present and its value is a Hash" do
+      missing_attrs = valid_lock_data.dup
+      missing_attrs.delete("default_attributes")
+
+      expect { lockfile.build_from_lock_data(missing_attrs) }.to raise_error(ChefDK::InvalidLockfile)
+
+      invalid_attrs = valid_lock_data.dup
+      invalid_attrs["default_attributes"] = []
+
+      expect { lockfile.build_from_lock_data(invalid_attrs) }.to raise_error(ChefDK::InvalidLockfile)
+    end
+
+    it "requires the `override_attributes` section be present and its value is a Hash" do
+      missing_attrs = valid_lock_data.dup
+      missing_attrs.delete("override_attributes")
+
+      expect { lockfile.build_from_lock_data(missing_attrs) }.to raise_error(ChefDK::InvalidLockfile)
+
+      invalid_attrs = valid_lock_data.dup
+      invalid_attrs["override_attributes"] = []
+
+      expect { lockfile.build_from_lock_data(invalid_attrs) }.to raise_error(ChefDK::InvalidLockfile)
     end
 
     describe "validating solution_dependencies" do

@@ -145,6 +145,8 @@ describe ChefDK::PolicyfileServices::Push do
       }
     }
   },
+  "default_attributes": {},
+  "override_attributes": {},
   "solution_dependencies": {
     "Policyfile": [
       [

@@ -123,6 +123,8 @@ describe ChefDK::PolicyfileServices::ExportRepo do
       }
     }
   },
+  "default_attributes": {},
+  "override_attributes": {},
   "solution_dependencies": {
     "Policyfile": [
       [

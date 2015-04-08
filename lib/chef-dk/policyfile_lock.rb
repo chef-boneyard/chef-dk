@@ -256,6 +256,7 @@ module ChefDK
       set_name_from_lock_data(lock_data)
       set_run_list_from_lock_data(lock_data)
       set_cookbook_locks_from_lock_data(lock_data)
+      set_attributes_from_lock_data(lock_data)
       set_solution_dependencies_from_lock_data(lock_data)
       self
     end
@@ -420,6 +421,31 @@ module ChefDK
       lock_data["cookbook_locks"].each do |name, lock_info|
         build_cookbook_lock_from_lock_data(name, lock_info)
       end
+    end
+
+    def set_attributes_from_lock_data(lock_data)
+      default_attr_data = lock_data["default_attributes"]
+
+      if default_attr_data.nil?
+        raise InvalidLockfile, "lockfile does not have a `default_attributes` attribute"
+      end
+
+      unless default_attr_data.kind_of?(Hash)
+        raise InvalidLockfile, "lockfile's `default_attributes` attribute must be a Hash (JSON object). (got: #{default_attr_data.inspect})"
+      end
+
+      override_attr_data = lock_data["override_attributes"]
+
+      if override_attr_data.nil?
+        raise InvalidLockfile, "lockfile does not have a `override_attributes` attribute"
+      end
+
+      unless override_attr_data.kind_of?(Hash)
+        raise InvalidLockfile, "lockfile's `override_attributes` attribute must be a Hash (JSON object). (got: #{override_attr_data.inspect})"
+      end
+
+      @default_attributes   = default_attr_data
+      @override_attributes  = override_attr_data
     end
 
     def set_solution_dependencies_from_lock_data(lock_data)
