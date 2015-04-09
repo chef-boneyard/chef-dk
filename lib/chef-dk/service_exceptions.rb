@@ -73,6 +73,9 @@ module ChefDK
   class PolicyfileInstallError < PolicyfileNestedException
   end
 
+  class PolicyfileUpdateError < PolicyfileNestedException
+  end
+
   class PolicyfilePushError < PolicyfileNestedException
   end
 

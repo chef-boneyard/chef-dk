@@ -92,7 +92,8 @@ E
   context "when no Policyfile is present or specified" do
 
     it "errors out" do
-      expect { update_attrs_service.run }.to raise_error(ChefDK::PolicyfileNotFound, "Policyfile not found at path #{policyfile_rb_path}")
+      expect { update_attrs_service.assert_policy_and_lock_present! }.to raise_error(ChefDK::PolicyfileNotFound, "Policyfile not found at path #{policyfile_rb_path}")
+      expect { update_attrs_service.run }.to raise_error(ChefDK::PolicyfileUpdateError)
     end
 
   end
@@ -101,7 +102,8 @@ E
 
     it "errors out" do
       with_file(policyfile_rb_path) { |f| f.print(policyfile_content) }
-      expect { update_attrs_service.run }.to raise_error(ChefDK::LockfileNotFound, "Policyfile lock not found at path #{policyfile_lock_path}")
+      expect { update_attrs_service.assert_policy_and_lock_present! }.to raise_error(ChefDK::LockfileNotFound, "Policyfile lock not found at path #{policyfile_lock_path}")
+      expect { update_attrs_service.run }.to raise_error(ChefDK::PolicyfileUpdateError)
     end
 
   end

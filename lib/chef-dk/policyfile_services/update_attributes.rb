@@ -41,12 +41,7 @@ module ChefDK
       end
 
       def run
-        unless File.exist?(policyfile_expanded_path)
-          raise PolicyfileNotFound, "Policyfile not found at path #{policyfile_expanded_path}"
-        end
-        unless File.exist?(policyfile_lock_expanded_path)
-          raise LockfileNotFound, "Policyfile lock not found at path #{policyfile_lock_expanded_path}"
-        end
+        assert_policy_and_lock_present!
 
         if policyfile_compiler.default_attributes != policyfile_lock.default_attributes
           policyfile_lock.default_attributes = policyfile_compiler.default_attributes
@@ -66,7 +61,8 @@ module ChefDK
         else
           ui.msg("Attributes already up to date")
         end
-
+      rescue => error
+        raise PolicyfileUpdateError.new("Failed to update Policyfile lock", error)
       end
 
       def updated_lock?
@@ -91,6 +87,17 @@ module ChefDK
           PolicyfileLock.new(storage_config, ui: ui).build_from_lock_data(lock_data)
         end
       end
+
+
+      def assert_policy_and_lock_present!
+        unless File.exist?(policyfile_expanded_path)
+          raise PolicyfileNotFound, "Policyfile not found at path #{policyfile_expanded_path}"
+        end
+        unless File.exist?(policyfile_lock_expanded_path)
+          raise LockfileNotFound, "Policyfile lock not found at path #{policyfile_lock_expanded_path}"
+        end
+      end
+
     end
   end
 end
