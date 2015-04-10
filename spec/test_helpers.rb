@@ -73,6 +73,10 @@ module TestHelpers
       @output_stream.puts(message)
     end
 
+    def print(message)
+      @output_stream.print(message)
+    end
+
     def output
       @output_stream.string
     end
