@@ -33,6 +33,8 @@ describe ChefDK::Command::Update do
 
   let(:install_service) { instance_double(ChefDK::PolicyfileServices::Install) }
 
+  let(:update_attrs_service) { instance_double(ChefDK::PolicyfileServices::UpdateAttributes) }
+
   it "disables debug by default" do
     expect(command.debug?).to be(false)
   end
@@ -43,6 +45,22 @@ describe ChefDK::Command::Update do
 
     it "enables debug" do
       expect(command.debug?).to be(true)
+    end
+  end
+
+  context "when attributes update mode is set" do
+
+    let(:params) { ["-a"] }
+
+    it "enables attributes update mode" do
+      expect(command.update_attributes?).to be(true)
+    end
+
+    it "creates an attributes update service object" do
+      expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new).
+        with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd).
+        and_return(update_attrs_service)
+      expect(command.attributes_updater).to eq(update_attrs_service)
     end
   end
 
@@ -137,6 +155,84 @@ E
         it "displays the exception and cause with backtrace" do
           expected_error_text=<<-E
 Error: install failed
+Reason: (StandardError) some operation failed
+
+
+E
+
+          expected_error_text << backtrace.join("\n") << "\n"
+
+          command.run
+          expect(ui.output).to eq(expected_error_text)
+        end
+      end
+
+    end
+
+  end
+
+  describe "running attributes update" do
+
+    let(:params) { ["-a"] }
+
+    let(:ui) { TestHelpers::TestUI.new }
+
+    before do
+      command.ui = ui
+      allow(command).to receive(:attributes_updater).and_return(update_attrs_service)
+    end
+
+    context "when the command runs successfully" do
+
+      before do
+        expect(update_attrs_service).to receive(:run)
+      end
+
+      it "exits with success" do
+        expect(command.run).to eq(0)
+      end
+    end
+
+    context "when the command fails" do
+
+      let(:backtrace) { caller[0...3] }
+
+      let(:cause) do
+        e = StandardError.new("some operation failed")
+        e.set_backtrace(backtrace)
+        e
+      end
+
+      let(:exception) do
+        ChefDK::PolicyfileUpdateError.new("Failed to update Policyfile lock", cause)
+      end
+
+      before do
+        expect(update_attrs_service).to receive(:run).and_raise(exception)
+      end
+
+      it "exits 1" do
+        expect(command.run).to eq(1)
+      end
+
+      it "displays the exception and cause" do
+        expected_error_text=<<-E
+Error: Failed to update Policyfile lock
+Reason: (StandardError) some operation failed
+
+E
+
+        command.run
+        expect(ui.output).to eq(expected_error_text)
+      end
+
+      context "and debug is enabled" do
+
+        let(:params) { ["-a", "-D"] }
+
+        it "displays the exception and cause with backtrace" do
+          expected_error_text=<<-E
+Error: Failed to update Policyfile lock
 Reason: (StandardError) some operation failed
 
 

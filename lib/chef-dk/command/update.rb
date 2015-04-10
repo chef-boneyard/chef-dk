@@ -18,6 +18,7 @@
 require 'chef-dk/command/base'
 require 'chef-dk/ui'
 require 'chef-dk/policyfile_services/install'
+require 'chef-dk/policyfile_services/update_attributes'
 
 module ChefDK
   module Command
@@ -46,10 +47,18 @@ Options:
 BANNER
 
       option :debug,
-        short:       "-D",
-        long:        "--debug",
-        description: "Enable stacktraces and other debug output",
-        default:     false
+        short:        "-D",
+        long:         "--debug",
+        description:  "Enable stacktraces and other debug output",
+        default:      false,
+        boolean:      true
+
+      option :update_attributes,
+        short:        "-a",
+        long:         "--attributes",
+        description:  "Update attributes",
+        default:      false,
+        boolean:      true
 
       attr_reader :policyfile_relative_path
 
@@ -61,11 +70,16 @@ BANNER
 
         @policyfile_relative_path = nil
         @installer = nil
+        @attributes_updater = nil
       end
 
       def run(params = [])
         apply_params!(params)
-        installer.run
+        if update_attributes?
+          attributes_updater.run
+        else
+          installer.run
+        end
         0
       rescue PolicyfileServiceError => e
         handle_error(e)
@@ -76,8 +90,17 @@ BANNER
         @installer ||= PolicyfileServices::Install.new(policyfile: policyfile_relative_path, ui: ui, root_dir: Dir.pwd, overwrite: true)
       end
 
+      def attributes_updater
+        @attributes_updater ||=
+          PolicyfileServices::UpdateAttributes.new(policyfile: policyfile_relative_path, ui: ui, root_dir: Dir.pwd)
+      end
+
       def debug?
         !!config[:debug]
+      end
+
+      def update_attributes?
+        !!config[:update_attributes]
       end
 
       def handle_error(error)
