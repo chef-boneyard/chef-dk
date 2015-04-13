@@ -24,6 +24,10 @@ module ChefDK
         nil
       end
 
+      def print(*anything)
+        nil
+      end
+
     end
 
     def self.null
@@ -44,6 +48,10 @@ module ChefDK
 
     def msg(message)
       @out_stream.puts(message)
+    end
+
+    def print(message)
+      @out_stream.print(message)
     end
   end
 end
