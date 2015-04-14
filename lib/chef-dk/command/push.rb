@@ -104,7 +104,7 @@ E
       def apply_params!(params)
         remaining_args = parse_options(params)
         if remaining_args.size < 1 or remaining_args.size > 2
-          ui.err(banner)
+          ui.err(opt_parser)
           return false
         else
           @policy_group = remaining_args[0]
