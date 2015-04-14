@@ -16,6 +16,7 @@
 #
 
 require 'diff/lcs'
+require 'diff/lcs/hunk'
 require 'paint'
 require 'ffi_yajl'
 

@@ -33,6 +33,8 @@ ChefDK.commands do |c|
 
   c.builtin "push", :Push, desc: "Push a local policy lock to a policy group on the server"
 
+  c.builtin "diff", :Diff, desc: "Generate an itemized diff of two Policyfile lock documents"
+
   c.builtin "export", :Export, desc: "Export a policy lock as a Chef Zero code repo"
 
   c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications"

@@ -36,6 +36,12 @@ module ChefDK
   class LockfileNotFound < PolicyfileServiceError
   end
 
+  class MalformedLockfile < PolicyfileServiceError
+  end
+
+  class GitError < PolicyfileServiceError
+  end
+
   class ExportDirNotEmpty < PolicyfileServiceError
   end
 
@@ -68,6 +74,9 @@ module ChefDK
       end
     end
 
+  end
+
+  class PolicyfileDownloadError < PolicyfileNestedException
   end
 
   class PolicyfileInstallError < PolicyfileNestedException
