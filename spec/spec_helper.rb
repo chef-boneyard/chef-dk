@@ -23,6 +23,8 @@ require 'test_helpers'
 require 'chef/workstation_config_loader'
 
 RSpec.configure do |c|
+  running_on_windows = (RUBY_PLATFORM =~ /mswin|mingw|windows/)
+
   c.include ChefDK
   c.include TestHelpers
 
@@ -37,8 +39,10 @@ RSpec.configure do |c|
   c.run_all_when_everything_filtered = true
   # Tests that randomly fail, but may have value.
   c.filter_run_excluding :volatile => true
+  c.filter_run_excluding :skip_on_windows => true if running_on_windows
 
   c.mock_with(:rspec) do |mocks|
     mocks.verify_partial_doubles = true
   end
+
 end

@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014 Chef Software Inc.
+# Copyright:: Copyright (c) 2015 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -48,7 +48,12 @@ describe ChefDK::Command::Diff do
 
     let(:differ) { instance_double("ChefDK::Policyfile::Differ", run_report: nil) }
 
+    let(:pager) { instance_double("ChefDK::Pager", ui: ui) }
+
     before do
+      allow(ChefDK::Pager).to receive(:new).and_return(pager)
+      allow(pager).to receive(:with_pager).and_yield(pager)
+      allow(command).to receive(:materialize_locks).and_return(nil)
       allow(command).to receive(:differ).and_return(differ)
       allow(command).to receive(:http_client).and_return(http_client)
       command.ui = ui

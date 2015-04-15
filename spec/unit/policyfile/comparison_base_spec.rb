@@ -68,6 +68,10 @@ E
 
     subject(:comparison_base) { described_class.new(policyfile_lock_relpath) }
 
+    before do
+      reset_tempdir
+    end
+
     after do
       reset_tempdir
     end
@@ -90,7 +94,7 @@ E
 
     end
 
-    context "when the local policyfile lock is not readable" do
+    context "when the local policyfile lock is not readable", :skip_on_windows do
 
       before do
         Dir.chdir(tempdir) do

@@ -17,6 +17,7 @@
 
 require 'chef-dk/command/base'
 require 'chef-dk/ui'
+require 'chef-dk/pager'
 require 'chef-dk/policyfile/differ'
 require 'chef-dk/policyfile/comparison_base'
 require 'chef-dk/policyfile/storage_config'
@@ -78,6 +79,12 @@ BANNER
         description: "Compare local lock against last git commit",
         boolean:     true
 
+      option :pager,
+        long:        "--[no-]pager",
+        description: "Enable/disable paged diff ouput (default: enabled)",
+        default:     true,
+        boolean:     true
+
       option :config_file,
         short:       "-c CONFIG_FILE",
         long:        "--config CONFIG_FILE",
@@ -106,6 +113,9 @@ BANNER
         @policyfile_relative_path = nil
         @storage_config = nil
         @http_client = nil
+
+        @old_lock = nil
+        @new_lock = nil
       end
 
       def run(params = [])
@@ -128,14 +138,21 @@ BANNER
       end
 
       def print_diff
-        differ.run_report
+        # eagerly evaluate locks so we hit any errors before we've entered
+        # pagerland. Also, git commands behave weirdly when run while the pager
+        # is active, doing this eagerly also avoids that issue
+        materialize_locks
+        Pager.new(enable_pager: config[:pager]).with_pager do |pager|
+          differ = differ(pager.ui)
+          differ.run_report
+        end
       end
 
-      def differ
+      def differ(ui = ui())
         Policyfile::Differ.new(old_name: old_base.name,
-                               old_lock: old_base.lock,
+                               old_lock: old_lock,
                                new_name: new_base.name,
-                               new_lock: new_base.lock,
+                               new_lock: new_lock,
                                ui: ui)
       end
 
@@ -143,6 +160,16 @@ BANNER
         @http_client ||= ChefDK::AuthenticatedHTTP.new(chef_config.chef_server_url,
                                                        signing_key_filename: chef_config.client_key,
                                                        client_name: chef_config.node_name)
+      end
+
+      def old_lock
+        materialize_locks unless @old_lock
+        @old_lock
+      end
+
+      def new_lock
+        materialize_locks unless @new_lock
+        @new_lock
       end
 
       def policy_name
@@ -271,6 +298,11 @@ BANNER
             args.first
           end
         @storage_config = Policyfile::StorageConfig.new.use_policyfile(policyfile_relative_path)
+      end
+
+      def materialize_locks
+        @old_lock = old_base.lock
+        @new_lock = new_base.lock
       end
 
     end
