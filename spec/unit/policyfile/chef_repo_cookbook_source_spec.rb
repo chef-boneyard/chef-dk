@@ -52,4 +52,15 @@ describe ChefDK::Policyfile::ChefRepoCookbookSource do
     expect(cookbook_source.source_options_for("local-cookbook", "2.3.4")).to eq(expected_opts)
   end
 
+  it "will append a cookbooks directory to the path if it finds it" do
+    expect(Dir).to receive(:exist?).with("#{repo_path}/cookbooks").and_return(true)
+    expect(cookbook_source.path).to eql("#{repo_path}/cookbooks")
+  end
+
+  it "the private setter will append a cookbooks directory to the path if finds it" do
+    expect(cookbook_source.path).to eql(repo_path)
+    expect(Dir).to receive(:exist?).with("#{repo_path}/cookbooks").and_return(true)
+    cookbook_source.send(:path=, repo_path)
+    expect(cookbook_source.path).to eql("#{repo_path}/cookbooks")
+  end
 end
