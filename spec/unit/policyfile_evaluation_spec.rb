@@ -243,6 +243,25 @@ E
 
       end
 
+      context "with the default source set to a chef-repo path" do
+
+        let(:chef_repo) { File.expand_path("spec/unit/fixtures/local_path_cookbooks", project_root) }
+
+        let(:policyfile_rb) do
+          <<-EOH
+            run_list "foo", "bar"
+            default_source :chef_repo, "#{chef_repo}"
+          EOH
+        end
+
+        it "has a default source" do
+          expect(policyfile.errors).to eq([])
+          expected = ChefDK::Policyfile::ChefRepoCookbookSource.new(chef_repo)
+          expect(policyfile.default_source).to eq(expected)
+        end
+
+      end
+
     end
 
     describe "assigning cookbooks to specific sources" do

@@ -18,3 +18,4 @@
 require 'chef-dk/policyfile/null_cookbook_source'
 require 'chef-dk/policyfile/community_cookbook_source'
 require 'chef-dk/policyfile/chef_server_cookbook_source'
+require 'chef-dk/policyfile/chef_repo_cookbook_source'

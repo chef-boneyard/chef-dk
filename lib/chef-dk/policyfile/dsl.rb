@@ -68,13 +68,15 @@ module ChefDK
         @named_run_lists[name] = run_list_items.flatten
       end
 
-      def default_source(source_type = nil, source_uri = nil)
+      def default_source(source_type = nil, source_argument = nil)
         return @default_source if source_type.nil?
         case source_type
         when :community
-          set_default_community_source(source_uri)
+          set_default_community_source(source_argument)
         when :chef_server
-          set_default_chef_server_source(source_uri)
+          set_default_chef_server_source(source_argument)
+        when :chef_repo
+          set_default_chef_repo_source(source_argument)
         else
           @errors << "Invalid default_source type '#{source_type.inspect}'"
         end
@@ -146,6 +148,14 @@ module ChefDK
           @errors << "You must specify the server's URI when using a default_source :chef_server"
         else
           @default_source = ChefServerCookbookSource.new(source_uri)
+        end
+      end
+
+      def set_default_chef_repo_source(path)
+        if path.nil?
+          @errors << "You must specify the path to the chef-repo when using a default_source :chef_repo"
+        else
+          @default_source = ChefRepoCookbookSource.new(path)
         end
       end
 
