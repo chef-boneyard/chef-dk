@@ -30,6 +30,11 @@
   * chef-provisioning-aws - 0.5.0
   * test-kitchen - 1.4.0
   * kitchen-vagrant - 0.17.0
+* [#263](https://github.com/chef/chef-dk/pull/263) Add a `chef_repo` cookbook
+  source which can be used in place of supermarket/berks-like depsolving to
+  support a single monolithic git repo with its 'universe' of cookbooks entirely
+  contained within it.  Cookbook dependencies will be determined only from the
+  filesystem.  Cannot be combined with supermarket/berks-apis as a source.
 
 # Last Release: 0.4.0
 * Add support for uploading Policyfiles via native API rather than as a
