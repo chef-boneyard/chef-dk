@@ -87,21 +87,6 @@ executables included with a gem you install will be created in
 `chef exec`, or use `chef shell-init` to add ChefDK's paths to your
 environment. Those commands are documented below.
 
-#### `chef verify`
-`chef verify` tests the embedded applications. By default it runs a
-quick "smoke test" to verify that the embedded applications are
-installed correctly and can run basic commands. As an end user this is
-probably all you'll ever need, but `verify` can also optionally run unit
-and integration tests by supplying the `--unit` and `--integration`
-flags, respectively.
-
-*WARNING:* The integration tests will do dangerous things like start
-HTTP servers with access to your filesystem and even create users and
-groups if run with sufficient privileges. The tests may also be
-sensitive to your machine's configuration. If you choose to run these,
-we recommend to only run them on dedicated, isolated hosts (we do this
-in our build cluster to verify each build).
-
 ### `chef exec`
 `chef exec <command>` runs any arbitrary shell command with the PATH
 environment variable and the ruby environment variables (`GEM_HOME`,
@@ -122,11 +107,7 @@ run list and locked cookbook set. The `Policyfile.lock.json` can be used
 to install the cookbooks on another machine. The policy lock can be
 uploaded to a Chef Server (via the `chef push` command) to apply the
 expanded run list and locked cookbook set to nodes in your
-infrastructure. The Policyfile feature is currently incomplete and of
-beta quality; changes to the Chef Server APIs will need to be
-implemented before the feature is production-ready. The feature
-currently operates in a compatibility mode. See the POLICYFILE_README.md
-for further details.
+infrastructure. See the POLICYFILE_README.md for further details.
 
 ### `chef push`
 `chef push POLICY_GROUP` uploads a Policyfile.lock.json along with the cookbooks it
@@ -135,6 +116,31 @@ references to a Chef Server. The policy lock is applied to a
 cookbook set. This command operates in compatibility mode and has the
 same caveats as `chef install`. See the POLICYFILE_README.md for further
 details.
+
+### `chef update`
+`chef update` updates a Policyfile.lock.json with the latest cookbooks
+from upstream sources. It supports an `--attributes` flag which will
+cause only attributes from the Policyfile.rb to be updated.
+
+### `chef diff`
+`chef diff` shows an itemized diff between Policyfile locks. It can
+compare Policyfile locks from local disk, git, and/or the Chef Server,
+based on the options given.
+
+#### `chef verify`
+`chef verify` tests the embedded applications. By default it runs a
+quick "smoke test" to verify that the embedded applications are
+installed correctly and can run basic commands. As an end user this is
+probably all you'll ever need, but `verify` can also optionally run unit
+and integration tests by supplying the `--unit` and `--integration`
+flags, respectively.
+
+*WARNING:* The integration tests will do dangerous things like start
+HTTP servers with access to your filesystem and even create users and
+groups if run with sufficient privileges. The tests may also be
+sensitive to your machine's configuration. If you choose to run these,
+we recommend to only run them on dedicated, isolated hosts (we do this
+in our build cluster to verify each build).
 
 ### Using ChefDK as Your Primary Development Environment
 

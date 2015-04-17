@@ -1,6 +1,9 @@
 # Chef Development Kit Changelog
 
 # Unreleased:
+* [PR #359](https://github.com/chef/chef-dk/pull/359): Add a `chef diff`
+  command to show diffs between policyfile locks locally, in git, and on
+  a Chef Server.
 * [PR #345](https://github.com/chef/chef-dk/pull/345): Support fish
   shell in `chef shell-init`
 * Fixed bug where a cookbook with no source options couldn't be added to
