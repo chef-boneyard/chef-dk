@@ -38,6 +38,7 @@
   support a single monolithic git repo with its 'universe' of cookbooks entirely
   contained within it.  Cookbook dependencies will be determined only from the
   filesystem.  Cannot be combined with supermarket/berks-apis as a source.
+* Including `knife-windows` plugin inside the Omnibus ChefDK builds.
 
 # Last Release: 0.4.0
 * Add support for uploading Policyfiles via native API rather than as a
