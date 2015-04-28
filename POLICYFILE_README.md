@@ -2,20 +2,17 @@
 
 ## What's this Policyfile Stuff?
 
-First of all, it's beta-quality software. Though one of our goals is to
-make Chef a lot easier to get started with, it's definitely not a good
-idea to start using it if you're new to Chef. If you're an experienced
-user, we'd love for you to use it and provide feedback, but BEWARE: by
-default, the Policyfile tooling currently works in a "compatibility
-mode" which is generally unsafe to use in an existing Chef Server
-organization. As of Chef Server 12.0.7, users can enable "native mode"
-with configuration options for Chef Server, Chef Client and ChefDK;
-however, native mode can only be enabled after a fresh install of Chef
-Server 12.0.7. Support for upgrading existing servers is forthcoming.
+First of all, the Policyfile feature is a work in progress. As of ChefDK
+0.5.0 and Chef Server 12.0.9, native APIs are enabled by default,
+allowing you to safely experiment with the feature without impacting
+existing production systems. It's recommended that you upgrade to these
+versions before experimenting with Policyfiles.
 
-If you try it out and have any feedback, first check out whether it's
-listed in the "Known Limitations" section below. If your idea/need isn't
-listed there, or if you encounter a bug, file an issue at https://github.com/opscode/chef-dk/issues
+That said, it's possible that features you need to be successful in
+production are not implemented yet. If you try it out and have any
+feedback, first check out whether it's listed in the "Known Limitations"
+section below. If your idea/need isn't listed there, or if you encounter
+a bug, file an issue at https://github.com/opscode/chef-dk/issues
 
 ## Ok, I've Been Warned. What Is It?
 
@@ -195,6 +192,19 @@ In the policyfile DSL, a named run list looks like this:
 
 ```ruby
 named_run_list :update_app, "my_app_cookbook::default"
+```
+
+#### Define Attributes
+
+The Policyfile DSL allows you to define default and override attributes,
+using the exact same syntax you use in attributes files in your
+cookbooks. When you run `chef-client`, these attributes will be applied
+at the "role" precedence level.
+
+
+```ruby
+default["nested"]["attributes"] = "auto-vivify"
+override["same"]["with"] = "overrides"
 ```
 
 ### Testing With Test Kitchen
@@ -448,17 +458,13 @@ changes globally.
 
 ## Compatibility Mode
 
-As of Chef Server 12.0.7, you can enable the new Policyfile APIs on a
-freshly installed Chef Server. This release doesn't contain the
-necessary code to upgrade an existing installation, however, as the
-necessary data migration code is not yet fully tested. Therefore,
-users with existing installs must wait for a subsequent release before
-they can enable the Policyfile APIs.
-
-If you are unable to use a freshly installed Chef Server, ChefDK and
-Chef Client provide a compatibility mode that uses existing Chef
-Server APIs to demonstrate the Policyfile behavior (but again, the way
-it works is dangerous--don't do this in prod!).
+As of Chef Server 12.0.9, and ChefDK 0.5.0, the new Policyfile native
+APIs are enabled by default. This is the safest and recommended way to
+try Policyfiles.  If you are unable to upgrade your Chef Server, you can
+operate ChefDK and Chef Client in a compatibility mode that uses
+existing Chef Server APIs to demonstrate the Policyfile behavior. This
+mode of operation can be dangerous if used in an existing Chef Server
+organization. See the caveats below before using it.
 
 ### Cookbook Artifact Storage
 
@@ -503,13 +509,6 @@ this will be added.
 
 Roles currently cannot be used in the `Policyfile.rb` run list, but will
 be supported in the future.
-
-### Policyfile Attributes
-
-The `Policyfile.rb` run\_list will be able to have roles, which have
-attributes. The `Policyfile.rb` will also allow setting attributes
-directly. These will replace the role-level attributes in the precedence
-hierarchy.
 
 ### Multiple Run List Support
 
