@@ -51,13 +51,12 @@ module ChefDK
       def upload
         ui.msg("Uploading policy to policy group #{policy_group}")
 
-        if using_policy_document_native_api?
+        if !using_policy_document_native_api?
           ui.msg(<<-DRAGONS)
-WARN: Using native policy API preview mode. You may be required to delete and
-re-upload this data when upgrading to the final release version of the feature.
+WARN: Uploading policy to policy group #{policy_group} in compatibility mode.
+Cookbooks will be uploaded with very large version numbers, which may be picked
+up by existing nodes.
 DRAGONS
-        else
-          ui.msg("WARN: Uploading policy to policy group #{policy_group} in compatibility mode")
         end
 
         upload_cookbooks
