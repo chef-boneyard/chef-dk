@@ -1,49 +1,59 @@
 # Chef Development Kit Changelog
 
-# Unreleased:
-* [PR #362](https://github.com/chef/chef-dk/pull/362): Policyfile native
-  API mode is now the default. Add `policy_document_native_api false` to
-  your config file to continue to use the compatibility mode.
-* [PR #359](https://github.com/chef/chef-dk/pull/359): Add a `chef diff`
-  command to show diffs between policyfile locks locally, in git, and on
-  a Chef Server.
-* [PR #345](https://github.com/chef/chef-dk/pull/345): Support fish
+# 0.5.0:
+* [#345](https://github.com/chef/chef-dk/pull/345): Support fish
   shell in `chef shell-init`
-* Fixed bug where a cookbook with no source options couldn't be added to
-  the Policyfile.rb
-* Updated Policyfile uploads to use the URLs specified in Chef RFC 042.
-  Chef Zero has not yet been updated; Chef Zero users should continue to
-  use compatibility mode (`policy_document_native_api false`) for
-  Policyfiles.
 * [Omnibus-Chef #337](https://github.com/chef/omnibus-chef/pull/337):
   Fix a ruby warning for redefined method in rubygems customization that
   interacted poorly with certain Ruby plugins for text editors.
-* Add support for uploading cookbooks to the cookbook artifacts API when
-  `policy_document_native_api true` is set. This new API will be
-  available in the next version of Chef Server if enabled with a server
-  configuration option. Chef Zero support for this new API is
-  incomplete, so this setting cannot be used with Chef Zero until a
-  future update to Chef Zero enables this functionality.
-* `chef -v` now displays the version of the ChefDK, Chef, Berkshelf
-  and Test Kitchen.
+* [#327](https://github.com/chef/chef-dk/pull/327) `chef -v` now displays the
+  version of the ChefDK, Chef, Berkshelf and Test Kitchen.
 * [#150](https://github.com/chef/chef-dk/pull/150) Update `generate repo`
   command to no longer use monolithic repo.
-* Updated dependencies (some bundled with the omnibus build)
-  * Chef - 12.2.0
-  * chef-provisioning - 0.20
-  * chef-provisioning-fog - 0.13.1
-  * chef-provisioning-azure - 0.2.1
-  * chef-provisioning-aws - 0.5.0
-  * test-kitchen - 1.4.0
-  * kitchen-vagrant - 0.17.0
 * [#263](https://github.com/chef/chef-dk/pull/263) Add a `chef_repo` cookbook
   source which can be used in place of supermarket/berks-like depsolving to
   support a single monolithic git repo with its 'universe' of cookbooks entirely
   contained within it.  Cookbook dependencies will be determined only from the
   filesystem.  Cannot be combined with supermarket/berks-apis as a source.
+* [#305](https://github.com/chef/chef-dk/pull/305) Updated Test Kitchen
+  policyfile provisioner to work in Test Kitchen 1.4
 * Including `knife-windows` plugin inside the Omnibus ChefDK builds.
+* Including `winrm-transport` plugin inside the Omnibus ChefDK builds,
+  used by Test Kitchen to connect to windows guests.
+* Updated dependencies (some bundled with the omnibus build)
+  * Chef - 12.2.1
+  * chef-provisioning - 1.1.1
+  * chef-provisioning-fog - 0.13.2
+  * chef-provisioning-azure - 0.3.2
+  * chef-provisioning-aws - 1.1.1
+  * test-kitchen - 1.4.0
+  * kitchen-vagrant - 0.17.0
+  * knife-windows - 0.8.4
+  * winrm-transport - 1.0.0
+  
+## Policyfiles
 
-# Last Release: 0.4.0
+* [#323](https://github.com/chef/chef-dk/pull/323) Add `revision_id` to
+  policyfile locks, which provides a unique identifier for a generated lock.
+* [#351](https://github.com/chef/chef-dk/pull/351) Add attributes to
+  policyfiles.
+* [#359](https://github.com/chef/chef-dk/pull/359) Add the ability for users to
+  update only the attributes of their policyfile.lock by running `chef update -a`.
+* [#352](https://github.com/chef/chef-dk/pull/352) Fixed bug where attributes
+  would be modified in policyfile.lock during cookbook updates.
+* [#359](https://github.com/chef/chef-dk/pull/359) Add a `chef diff` command to
+  show diffs between policyfile locks locally, in git, and on a Chef Server.
+* [#342](https://github.com/chef/chef-dk/pull/342) Fixed bug where a cookbook
+  with no source options couldn't be added to the Policyfile.rb
+* [#362](https://github.com/chef/chef-dk/pull/362): Policyfile native
+  API mode is now the default. Add `policy_document_native_api false` to
+  your config file to continue to use the compatibility mode.
+    * Chef Zero has not yet been updated; Chef Zero users should continue to use
+    compatibility mode (`policy_document_native_api false`) for Policyfiles.
+    * This new API will be enabled by default in the next version of Chef
+    Server (12.1.0).
+
+# 0.4.0
 * Add support for uploading Policyfiles via native API rather than as a
   data bag item. This requires an unreleased version of the Chef Server
   and Chef Client to work, so it is disabled by default. Configure
