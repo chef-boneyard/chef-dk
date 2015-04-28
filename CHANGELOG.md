@@ -1,6 +1,9 @@
 # Chef Development Kit Changelog
 
 # Unreleased:
+* [PR #362](https://github.com/chef/chef-dk/pull/362): Policyfile native
+  API mode is now the default. Add `policy_document_native_api false` to
+  your config file to continue to use the compatibility mode.
 * [PR #359](https://github.com/chef/chef-dk/pull/359): Add a `chef diff`
   command to show diffs between policyfile locks locally, in git, and on
   a Chef Server.
