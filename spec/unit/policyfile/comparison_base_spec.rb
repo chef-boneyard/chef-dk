@@ -99,7 +99,7 @@ E
       before do
         Dir.chdir(tempdir) do
           FileUtils.touch(policyfile_lock_relpath)
-          FileUtils.chmod(0000, policyfile_lock_relpath)
+          allow(File).to receive(:readable?).with(policyfile_lock_relpath).and_return(false)
         end
       end
 
