@@ -94,9 +94,10 @@ environment variable and the ruby environment variables (`GEM_HOME`,
 
 ### `chef shell-init`
 `chef shell-init SHELL_NAME` emits shell commands that modify your
-environment to make ChefDK your primary ruby. For more information to
-help you decide if this is desirable and instructions, see "Using ChefDK
-as Your Primary Development Environment" below.
+environment to make ChefDK your primary ruby. It supports bash, zsh,
+fish and PowerShell (posh). For more information to help you decide if
+this is desirable and instructions, see "Using ChefDK as Your Primary
+Development Environment" below.
 
 ### `chef install`
 `chef install` reads a `Policyfile.rb` document, which contains a
@@ -182,6 +183,22 @@ echo 'eval "$(chef shell-init SHELL_NAME)"' >> ~/.YOUR_SHELL_PROFILE
 
 Where `YOUR_SHELL_PROFILE` is `~/.bash_profile` for most bash users,
 `~/.zshrc` for zsh, and `~/.bashrc` on Ubuntu.
+
+#### Powershell
+
+You can use `chef shell-init` with PowerShell on Windows.
+
+To try it in your current session:
+
+```posh
+chef shell-init powershell | Invoke-Expression
+```
+
+To enable it permanently:
+
+```posh
+"chef shell-init powershell | Invoke-Expression" >> $PROFILE
+```
 
 ## Uninstallation Instructions
 
