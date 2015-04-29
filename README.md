@@ -200,6 +200,22 @@ To enable it permanently:
 "chef shell-init powershell | Invoke-Expression" >> $PROFILE
 ```
 
+#### Fish
+
+`chef shell-init` also supports fish.
+
+To try it:
+
+```fish
+eval (chef shell-init fish)
+```
+
+To permanently enable:
+
+```fish
+echo 'eval (chef shell-init SHELL_NAME)' >> ~/.config/fish/config.fish
+```
+
 ## Uninstallation Instructions
 
 ### Mac OS X
