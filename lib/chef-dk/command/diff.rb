@@ -118,6 +118,10 @@ BANNER
         @new_lock = nil
       end
 
+      def debug?
+        !!config[:debug]
+      end
+
       def run(params = [])
         return 1 unless apply_params!(params)
         print_diff
