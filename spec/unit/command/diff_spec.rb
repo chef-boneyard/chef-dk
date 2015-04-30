@@ -18,6 +18,7 @@
 require 'spec_helper'
 require 'shared/command_with_ui_object'
 require 'chef-dk/command/diff'
+require 'chef-dk/service_exceptions'
 
 describe ChefDK::Command::Diff do
 
@@ -64,6 +65,34 @@ describe ChefDK::Command::Diff do
       it "prints an error message and exits" do
         expect(command.run(params)).to eq(1)
         expect(ui.output).to include("No comparison specified")
+      end
+
+    end
+
+    context "when an PolicyfileServiceError is encountered" do
+
+      let(:params) { %w{ --head } }
+
+      context "without a reason" do
+
+        it "prints the exception successfully" do
+          expect(command).to receive(:print_diff).and_raise(ChefDK::PolicyfileServiceError)
+          expect(command.run(params)).to eq(1)
+          expect(ui.output).to include("Error: ChefDK::PolicyfileServiceError")
+        end
+
+      end
+
+      context "with a reason" do
+
+        let(:err) { ChefDK::PolicyfileNestedException.new("msg", RuntimeError.new) }
+
+        it "prints the exception and reason successfully" do
+          expect(command).to receive(:print_diff).and_raise(err)
+          expect(command.run(params)).to eq(1)
+          expect(ui.output).to include("Error: msg\nReason: (RuntimeError) RuntimeError")
+        end
+
       end
 
     end
