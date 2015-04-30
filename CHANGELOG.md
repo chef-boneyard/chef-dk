@@ -1,5 +1,10 @@
 # Chef Development Kit Changelog
 
+# 0.5.1:
+* [#368](https://github.com/chef/chef-dk/pull/368): Fixing undefined_method
+  error when performing `chef diff`
+* Updating Chef dependency to version 12.3.0
+
 # 0.5.0:
 * [#345](https://github.com/chef/chef-dk/pull/345): Support fish
   shell in `chef shell-init`
