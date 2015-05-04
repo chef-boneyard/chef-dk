@@ -20,6 +20,11 @@ end
 # chefignore
 cookbook_file "#{cookbook_dir}/chefignore"
 
+# .rubocop.yml
+cookbook_file "#{cookbook_dir}/.rubocop.yml" do
+  source 'rubocop.yml'
+end
+
 # Berks
 cookbook_file "#{cookbook_dir}/Berksfile" do
   action :create_if_missing

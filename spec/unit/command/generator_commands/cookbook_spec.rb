@@ -30,6 +30,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
     %w[
       .gitignore
       .kitchen.yml
+      .rubocop.yml
       test
       test/integration
       test/integration/default
@@ -164,7 +165,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       let(:file) { File.join(tempdir, "new_cookbook", "test", "integration", "default", "serverspec", "default_spec.rb") }
 
       include_examples "a generated file", :cookbook_name do
-        let(:line) { "describe 'new_cookbook::default' do" }
+        let(:line) { 'This serverspec test was created by Chef generate' }
       end
     end
 
@@ -188,7 +189,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       let(:file) { File.join(tempdir, "new_cookbook", "spec", "unit", "recipes", "default_spec.rb") }
 
       include_examples "a generated file", :cookbook_name do
-        let(:line) { "describe \'new_cookbook::default\' do" }
+        let(:line) { "This Chefspec test was created by Chef generate" }
       end
     end
 

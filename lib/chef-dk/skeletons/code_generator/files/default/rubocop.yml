@@ -1,0 +1,46 @@
+AllCops:
+  Exclude:
+    - 'Guardfile'
+    - 'vendor/**'
+
+AlignParameters:
+  Enabled: false
+
+ClassLength:
+  Enabled: false
+
+CyclomaticComplexity:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+EmptyLinesAroundBlockBody:
+  Enabled: False
+
+Encoding:
+  Enabled: false
+
+HashSyntax:
+  Enabled: false
+
+LineLength:
+  Enabled: false
+
+MethodLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+PerceivedComplexity:
+  Enabled: false
+
+SingleSpaceBeforeFirstArg:
+  Enabled: true
+  Exclude:
+    - '**/metadata.rb'
+    - 'attributes/**'
+
+Style/FileName:
+  Enabled: false
