@@ -1,5 +1,9 @@
 # Chef Development Kit Changelog
 
+# Unreleased
+*[Omnibus-Chef #385](https://github.com/chef/omnibus-chef/pull/385): Updated
+Berkshelf to version 3.2.4
+
 # 0.5.1:
 * [#368](https://github.com/chef/chef-dk/pull/368): Fixing undefined_method
   error when performing `chef diff`
