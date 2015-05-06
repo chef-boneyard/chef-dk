@@ -68,21 +68,6 @@ module ChefDK
   class InvalidPolicyfileFilename < StandardError
   end
 
-  class ChefRunnerError < StandardError
-
-    attr_reader :cause
-
-    def initialize(message, cause)
-      super(message)
-      @cause = cause
-    end
-
-  end
-
-  class CookbookNotFound < ChefRunnerError; end
-
-  class ChefConvergeError < ChefRunnerError; end
-
   class BUG < RuntimeError
   end
 

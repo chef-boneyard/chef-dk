@@ -16,6 +16,7 @@
 #
 
 require 'chef-dk/exceptions'
+require 'chef-dk/service_exceptions'
 require 'chef'
 
 module ChefDK
