@@ -214,6 +214,8 @@ describe ChefDK::Command::Provision do
           allow(chef_config_loader).to receive(:load)
           allow(command).to receive(:push).and_return(push_service)
 
+          allow(chef_config).to receive(:ssl_verify_mode).and_return(:verify_peer)
+
           command.apply_params!(params)
           command.setup_context
         end
@@ -223,6 +225,15 @@ describe ChefDK::Command::Provision do
 
         it "disables policyfile integration" do
           expect(command.enable_policyfile?).to be(false)
+        end
+
+        it "generates chef config with no policyfile options" do
+          expected_config = <<-CONFIG
+# SSL Settings:
+ssl_verify_mode :verify_peer
+
+CONFIG
+          expect(context.chef_config).to eq(expected_config)
         end
 
         include_examples "common_optional_options"
@@ -276,6 +287,10 @@ describe ChefDK::Command::Provision do
 
           let(:params) { [ given_policy_group, '--sync' ] + extra_params }
 
+          before do
+            allow(chef_config).to receive(:ssl_verify_mode).and_return(:verify_peer)
+          end
+
           it "sets policy group" do
             expect(command.policy_group).to eq(given_policy_group)
             expect(context.policy_group).to eq(given_policy_group)
@@ -285,6 +300,23 @@ describe ChefDK::Command::Provision do
             expect(command.policy_name).to eq("myapp")
             expect(context.policy_name).to eq("myapp")
           end
+
+          it "generates chef config with policyfile options" do
+            expected_config = <<-CONFIG
+# SSL Settings:
+ssl_verify_mode :verify_peer
+
+# Policyfile Settings:
+use_policyfile true
+policy_document_native_api true
+
+policy_group "some-policy-group"
+policy_name "myapp"
+
+CONFIG
+            expect(context.chef_config).to eq(expected_config)
+          end
+
 
           include_examples "common_optional_options"
 
@@ -300,9 +332,12 @@ describe ChefDK::Command::Provision do
 
         let(:params) { [ given_policy_group, '--policy-name', "myapp" ] + extra_params }
 
+
         before do
           command.apply_params!(params)
           command.setup_context
+
+          allow(chef_config).to receive(:ssl_verify_mode).and_return(:verify_peer)
         end
 
         it "sets policy group" do
@@ -313,6 +348,22 @@ describe ChefDK::Command::Provision do
         it "sets policy name" do
           expect(command.policy_name).to eq("myapp")
           expect(context.policy_name).to eq("myapp")
+        end
+
+        it "generates chef config with policyfile options" do
+          expected_config = <<-CONFIG
+# SSL Settings:
+ssl_verify_mode :verify_peer
+
+# Policyfile Settings:
+use_policyfile true
+policy_document_native_api true
+
+policy_group "some-policy-group"
+policy_name "myapp"
+
+CONFIG
+          expect(context.chef_config).to eq(expected_config)
         end
 
         include_examples "common_optional_options"

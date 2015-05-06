@@ -40,6 +40,8 @@ module ChefDK
 
       attr_accessor :node_name
 
+      attr_accessor :enable_policyfile
+
       attr_accessor :policy_group
 
       attr_accessor :policy_name
@@ -57,12 +59,14 @@ module ChefDK
         }
       end
 
-      # TODO: this must respect the no-policy flag.
       def chef_config
-        <<-CONFIG
+        config=<<-CONFIG
 # SSL Settings:
-ssl_verify_mode #{Chef::Config[:ssl_verify_mode].inspect}
+ssl_verify_mode #{Chef::Config.ssl_verify_mode.inspect}
 
+CONFIG
+        if enable_policyfile
+          policyfile_config=<<-CONFIG
 # Policyfile Settings:
 use_policyfile true
 policy_document_native_api true
@@ -70,8 +74,12 @@ policy_document_native_api true
 policy_group "#{policy_group}"
 policy_name "#{policy_name}"
 
-#{extra_chef_config}
 CONFIG
+          config << policyfile_config
+        end
+
+        config << extra_chef_config.to_s
+        config
       end
 
     end
@@ -230,6 +238,8 @@ E
 
           c.action = default_action
           c.node_name = node_name
+
+          c.enable_policyfile = enable_policyfile?
 
           if enable_policyfile?
             c.policy_group = policy_group
