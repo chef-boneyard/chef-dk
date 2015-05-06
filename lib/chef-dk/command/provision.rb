@@ -202,7 +202,7 @@ E
 
         chef_runner.converge
         0
-      rescue PolicyfileServiceError => e
+      rescue ChefRunnerError, PolicyfileServiceError => e
         handle_error(e)
         1
         # TODO: need error handling here in general. In particular,

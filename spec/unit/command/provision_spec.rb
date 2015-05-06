@@ -416,14 +416,11 @@ E
 
         allow(command).to receive(:chef_runner).and_return(chef_runner)
         allow(chef_runner).to receive(:cookbook_path).and_return(Dir.pwd)
-        expect(chef_runner).to receive(:converge).and_raise(base_exception)
+        expect(chef_runner).to receive(:converge).and_raise(exception)
       end
 
-      it "prints an error and exits non-zero", pending: "Add #reason and inspection code to ChefConvergeError" do
+      it "prints an error and exits non-zero" do
         expect(command.run(params)).to eq(1)
-        # TODO: need to handle the nested exception that ChefConvergeError includes.
-        # it should be printed when given the -D debug argument.
-        # That arg might also need to set chef to debug?
         expect(ui.output).to include("Error: Chef failed to converge")
         expect(ui.output).to include("Reason: (StandardError) Something went wrong")
       end
