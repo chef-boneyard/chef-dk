@@ -83,4 +83,7 @@ module ChefDK
 
   class ChefConvergeError < ChefRunnerError; end
 
+  class BUG < RuntimeError
+  end
+
 end

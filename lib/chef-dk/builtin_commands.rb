@@ -35,6 +35,8 @@ ChefDK.commands do |c|
 
   c.builtin "diff", :Diff, desc: "Generate an itemized diff of two Policyfile lock documents"
 
+  c.builtin "provision", :Provision, desc: "Provision VMs and clusters via cookbook"
+
   c.builtin "export", :Export, desc: "Export a policy lock as a Chef Zero code repo"
 
   c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications"

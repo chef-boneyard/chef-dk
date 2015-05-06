@@ -50,6 +50,8 @@ Gem::Specification.new do |gem|
   gem.add_dependency "diff-lcs", "~> 1.0"
   gem.add_dependency "paint", "~> 1.0"
 
+  gem.add_dependency "chef-provisioning"
+
   %w(rspec-core rspec-expectations rspec-mocks).each do |dev_gem|
     gem.add_development_dependency dev_gem, "~> 3.0"
   end
