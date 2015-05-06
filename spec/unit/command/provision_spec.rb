@@ -467,8 +467,6 @@ E
 
         before do
           allow(push_service).to receive(:policy_data).and_return(policy_data)
-          # TODO: having doubts about this, do we *always* want to push? What
-          # if you're adding a new thing to an existing cluster?
           expect(push_service).to receive(:run)
         end
 

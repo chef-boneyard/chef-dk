@@ -50,8 +50,6 @@ module ChefDK
         @extra_chef_config = ""
       end
 
-      # TODO: generate slug id
-
       def convergence_options
         {
           chef_server: Chef::Config.chef_server_url,
@@ -83,7 +81,6 @@ CONFIG
 
     class Provision < Base
 
-      # TODO: update with opts and args when we figure those out
       banner(<<-E)
 Usage: chef provision POLICY_GROUP --policy-name POLICY_NAME [options]
        chef provision POLICY_GROUP --sync [POLICYFILE_PATH] [options]
@@ -207,9 +204,8 @@ E
       rescue ChefRunnerError, PolicyfileServiceError => e
         handle_error(e)
         1
-        # TODO: need error handling here in general. In particular,
-        # chef-provisioning will choke with a load error if the desired
-        # provisioner isn't available (should fix that upstream though :( ).
+        # Chef Provisioning doesn't fail gracefully when a driver is missing:
+        # https://github.com/chef/chef-provisioning/issues/338
       rescue StandardError, LoadError => error
         ui.err("Error: #{error.message}")
         1
@@ -263,7 +259,6 @@ E
         config[:node_name]
       end
 
-      # TODO: Must add a check to verify this exists
       def recipe
         config[:machine_recipe]
       end
@@ -308,7 +303,6 @@ E
 
       private
 
-      # TODO: this should default to CWD or CWD/provision, configure by ARGV.
       def detect_provisioning_cookbook_name_and_path!
         given_path = File.expand_path(cookbook_path, Dir.pwd)
         @provisioning_cookbook_name = File.basename(given_path)
