@@ -24,28 +24,7 @@ require 'chef-dk/service_exception_inspectors'
 
 module ChefDK
 
-  # Base class for errors raised by ChefDK::PolicyfileServices objects. Don't
-  # raise this directly, create a descriptively-named subclass. You can rescue
-  # this to catch all errors from PolicyfileServices objects though.
-  class PolicyfileServiceError < StandardError
-  end
-
-  class PolicyfileNotFound < PolicyfileServiceError
-  end
-
-  class LockfileNotFound < PolicyfileServiceError
-  end
-
-  class MalformedLockfile < PolicyfileServiceError
-  end
-
-  class GitError < PolicyfileServiceError
-  end
-
-  class ExportDirNotEmpty < PolicyfileServiceError
-  end
-
-  class PolicyfileNestedException < PolicyfileServiceError
+  module NestedExceptionWithInspector
 
     attr_reader :cause
     attr_reader :inspector
@@ -76,6 +55,33 @@ module ChefDK
 
   end
 
+  # Base class for errors raised by ChefDK::PolicyfileServices objects. Don't
+  # raise this directly, create a descriptively-named subclass. You can rescue
+  # this to catch all errors from PolicyfileServices objects though.
+  class PolicyfileServiceError < StandardError
+  end
+
+  class PolicyfileNotFound < PolicyfileServiceError
+  end
+
+  class LockfileNotFound < PolicyfileServiceError
+  end
+
+  class MalformedLockfile < PolicyfileServiceError
+  end
+
+  class GitError < PolicyfileServiceError
+  end
+
+  class ExportDirNotEmpty < PolicyfileServiceError
+  end
+
+  class PolicyfileNestedException < PolicyfileServiceError
+
+    include NestedExceptionWithInspector
+
+  end
+
   class PolicyfileDownloadError < PolicyfileNestedException
   end
 
@@ -90,6 +96,16 @@ module ChefDK
 
   class PolicyfileExportRepoError < PolicyfileNestedException
   end
+
+  class ChefRunnerError < StandardError
+
+    include NestedExceptionWithInspector
+
+  end
+
+  class CookbookNotFound < ChefRunnerError; end
+
+  class ChefConvergeError < ChefRunnerError; end
 
 end
 

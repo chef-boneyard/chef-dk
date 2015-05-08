@@ -16,6 +16,7 @@
 #
 
 require 'chef-dk/exceptions'
+require 'chef-dk/service_exceptions'
 require 'chef'
 
 module ChefDK
@@ -58,7 +59,10 @@ module ChefDK
     end
 
     def formatter
-      @formatter ||= Chef::Formatters.new(:doc, stdout, stderr)
+      @formatter ||=
+        Chef::EventDispatch::Dispatcher.new.tap do |d|
+          d.register(Chef::Formatters.new(:doc, stdout, stderr))
+        end
     end
 
     def configure
