@@ -53,6 +53,8 @@ test/*
 features/*
 Guardfile
 Procfile
+.kitchen
+.kitchen.yml
 
 # SCM #
 #######
