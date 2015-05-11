@@ -27,6 +27,8 @@ module ChefDK
 
       def initialize(cookbook_path)
         @cookbook_path = cookbook_path
+        @unborn_branch = nil
+        @unborn_branch_ref = nil
       end
 
       def profile_data
@@ -46,6 +48,15 @@ module ChefDK
 
       def revision
         git!("rev-parse HEAD").stdout.strip
+      rescue Mixlib::ShellOut::ShellCommandFailed => e
+        # We may have an "unborn" branch, i.e. one with no commits.
+        if unborn_branch_ref
+          nil
+        else
+          # if we got here, but verify_ref_cmd didn't error, we don't know why
+          # the original git command failed, so re-raise.
+          raise e
+        end
       end
 
       def clean?
@@ -58,6 +69,15 @@ module ChefDK
 
       def synchronized_remotes
         @synchronized_remotes ||= git!("branch -r --contains #{revision}").stdout.lines.map(&:strip)
+      rescue Mixlib::ShellOut::ShellCommandFailed => e
+        # We may have an "unborn" branch, i.e. one with no commits.
+        if unborn_branch_ref
+          []
+        else
+          # if we got here, but verify_ref_cmd didn't error, we don't know why
+          # the original git command failed, so re-raise.
+          raise e
+        end
       end
 
       def remote
@@ -78,16 +98,52 @@ module ChefDK
       end
 
       def current_branch
-        @current_branch ||= git!('rev-parse --abbrev-ref HEAD').stdout.strip
+        @current_branch ||= detect_current_branch
       end
 
       private
 
       def git!(subcommand, options={})
-        options = { cwd: cookbook_path }.merge(options)
-        cmd = system_command("git #{subcommand}", options)
+        cmd = git(subcommand, options)
         cmd.error!
         cmd
+      end
+
+      def git(subcommand, options={})
+        options = { cwd: cookbook_path }.merge(options)
+        system_command("git #{subcommand}", options)
+      end
+
+      def detect_current_branch
+        branch = git!('rev-parse --abbrev-ref HEAD').stdout.strip
+        @unborn_branch = false
+        branch
+      rescue Mixlib::ShellOut::ShellCommandFailed => e
+        # We may have an "unborn" branch, i.e. one with no commits.
+        if unborn_branch_ref
+          unborn_branch_ref
+        else
+          # if we got here, but verify_ref_cmd didn't error, we don't know why
+          # the original git command failed, so re-raise.
+          raise e
+        end
+      end
+
+      def unborn_branch_ref
+        @unborn_branch_ref ||=
+          begin
+            strict_branch_ref = git!("symbolic-ref -q HEAD").stdout.strip
+            verify_ref_cmd = git("show-ref --verify #{strict_branch_ref}")
+            if verify_ref_cmd.error?
+              @unborn_branch = true
+              strict_branch_ref
+            else
+              # if we got here, but verify_ref_cmd didn't error, then `git
+              # rev-parse` is probably failing for a reason we haven't anticipated.
+              # Calling code should detect this and re-raise.
+              nil
+            end
+          end
       end
 
     end
