@@ -3,8 +3,10 @@
 # Unreleased
 * [chef-dk#383](https://github.com/chef/chef-dk/pull/383): Add `chef
   provision` command, a CLI for running Chef Provisioning recipes.
-*[Omnibus-Chef #385](https://github.com/chef/omnibus-chef/pull/385): Updated
+* [Omnibus-Chef #385](https://github.com/chef/omnibus-chef/pull/385): Updated
 Berkshelf to version 3.2.4
+* [Omnibus-Chef #390](https://github.com/chef/omnibus-chef/pull/390): Updated
+  kitchen-vagrant to 0.18.0
 
 # 0.5.1:
 * [#368](https://github.com/chef/chef-dk/pull/368): Fixing undefined_method
