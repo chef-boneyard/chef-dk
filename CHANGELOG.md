@@ -1,6 +1,6 @@
 # Chef Development Kit Changelog
 
-# Unreleased
+# Last Release: 0.6.0
 * [chef-dk#383](https://github.com/chef/chef-dk/pull/383): Add `chef
   provision` command, a CLI for running Chef Provisioning recipes.
 * [Omnibus-Chef #385](https://github.com/chef/omnibus-chef/pull/385): Updated
