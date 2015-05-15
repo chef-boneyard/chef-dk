@@ -5,8 +5,6 @@ app_dir = File.join(context.app_root, context.app_name)
 cookbooks_dir = context.cookbook_root
 cookbook_dir = File.join(cookbooks_dir, context.cookbook_name)
 
-cookbook_dir = File.join(cookbooks_dir, context.app_name)
-
 # app root dir
 directory app_dir
 
