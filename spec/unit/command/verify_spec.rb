@@ -31,7 +31,6 @@ describe ChefDK::Command::Verify do
   DEFAULT_COMPONENTS = %w(
     berkshelf
     test-kitchen
-    delivery-cli
     chef-client
     chef-dk
     chefspec
@@ -41,6 +40,9 @@ describe ChefDK::Command::Verify do
     kitchen-vagrant
     package\ installation
   )
+
+  # We only ship delivery-cli on *nix only ATM
+  DEFAULT_COMPONENTS << "delivery-cli" unless Chef::Platform.windows?
 
   let(:command_instance) { ChefDK::Command::Verify.new() }
 
