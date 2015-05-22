@@ -22,8 +22,6 @@ install:
   - gem --version
   - gem install bundler --quiet --no-ri --no-rdoc
   - bundler --version
-  - appveyor DownloadFile https://github.com/jdmundrawala/dep-selector-libgecode/releases/download/v1.0.2/dep-selector-libgecode-1.0.2-x86-mingw32.gem -O dep-selector-libgecode-1.0.2-x86-mingw32.gem
-  - gem install dep-selector-libgecode-1.0.2-x86-mingw32.gem
 
 build_script:
   - bundle install
