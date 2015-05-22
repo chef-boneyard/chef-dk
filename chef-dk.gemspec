@@ -43,7 +43,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "chef", "~> 12.0", ">= 12.2.1"
 
-  gem.add_dependency "solve", "~> 1.2"
+  gem.add_dependency "solve", "~> 2.0", ">= 2.0.1"
 
   gem.add_dependency "cookbook-omnifetch", "~> 0.2"
 
