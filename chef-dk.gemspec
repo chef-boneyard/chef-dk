@@ -61,4 +61,6 @@ Gem::Specification.new do |gem|
     gem.add_development_dependency dev_gem, "~> 3.0"
   end
 
+  gem.post_install_message = File.read(File.join(__dir__, 'warning.txt'))
+
 end
