@@ -18,7 +18,7 @@ cookbook_file "#{repo_dir}/chefignore" do
   source "chefignore"
 end
 
-%w{cookbooks data_bags environments roles}.each do |tlo|
+%w{.chef cookbooks data_bags environments roles}.each do |tlo|
   remote_directory "#{repo_dir}/#{tlo}" do
     source "repo/#{tlo}"
   end
