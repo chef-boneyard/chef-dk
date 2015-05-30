@@ -205,6 +205,34 @@ describe ChefDK::Command::Provision do
 
         end
 
+        context "with --opt" do
+          context "with one user-specified option" do
+            let(:extra_params) { %w[ --opt color=ebfg ] }
+
+            it "sets the given option name to the given value" do
+              expect(context.opts.color).to eq("ebfg")
+            end
+          end
+
+          context "with an option given as a quoted arg with spaces" do
+
+            let(:extra_params) { [ '--opt', 'color = ebfg' ] }
+
+            it "sets the given option name to the given value" do
+              expect(context.opts.color).to eq("ebfg")
+            end
+          end
+
+          context "with multiple options given" do
+            let(:extra_params) { %w[ --opt color=ebfg --opt nope=seppb ] }
+
+            it "sets the given option name to the given value" do
+              expect(context.opts.color).to eq("ebfg")
+              expect(context.opts.nope).to eq("seppb")
+            end
+          end
+        end
+
         context "with -d" do
 
           let(:extra_params) { %w[ -d ] }

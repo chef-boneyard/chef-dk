@@ -15,6 +15,8 @@
 # limitations under the License.
 #
 
+require 'ostruct'
+
 require 'chef-dk/command/base'
 require 'chef-dk/configurable'
 require 'chef-dk/chef_runner'
@@ -50,8 +52,15 @@ module ChefDK
 
       attr_accessor :extra_chef_config
 
+      attr_accessor :opts
+
       def initialize
         @extra_chef_config = ""
+        @opts = nil
+      end
+
+      def set_user_opts(hash)
+        @opts = OpenStruct.new(hash)
       end
 
       def convergence_options
@@ -180,6 +189,22 @@ E
         long:         "--target REMOTE_HOST",
         description:  "Set hostname or IP of the host to converge (may be overriden by provisioning cookbook)"
 
+      OPT_SEPARATOR = /[=\s]+/.freeze
+
+      def self.split_opt(key_value)
+        key, _separator, value = key_value.partition(OPT_SEPARATOR)
+        [key, value]
+      end
+
+      opts={}
+
+      option :opts,
+        short:        "-o OPT=VALUE",
+        long:         "--opt OPT=VALUE",
+        description:  "Set arbitrary option OPT on the provisioning context",
+        proc:         lambda { |arg| key, value = split_opt(arg); opts[key] = value; opts },
+        default:      {}
+
       option :debug,
         short:       "-D",
         long:        "--debug",
@@ -247,6 +272,8 @@ E
           c.node_name = node_name
           c.target = target
 
+          c.set_user_opts(user_opts)
+
           c.enable_policyfile = enable_policyfile?
 
           if enable_policyfile?
@@ -279,6 +306,10 @@ E
 
       def target
         config[:target]
+      end
+
+      def user_opts
+        config[:opts]
       end
 
       def recipe
