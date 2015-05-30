@@ -97,6 +97,19 @@ The provisioning context provides the following data:
 * `action`: `:converge`, or `:destroy` if you pass `-d` to the
   CLI.
 * `node_name`: the argument to the `-n` option.
+* `target`: the argument to the `-t` option. This is probably most
+  useful when using provisioning's SSH driver to converge existing
+  hosts.
+* `opts`: contains arbitrary user-defined options set via the `-o`
+  option. For example, given a command line including `-o foo=bar` you
+  would access the command line option via:
+
+```ruby
+context = ChefDK::ProvisioningData.context
+context.opts.foo
+# => "bar"
+```
+
 * `policy_group`: is set to the relevant CLI argument when operating in
   one of the Policyfile modes.
 * `policy_name`: set to either the value of `--policy-name` or the
