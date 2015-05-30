@@ -223,6 +223,24 @@ describe ChefDK::Command::Provision do
             end
           end
 
+          context "with an option with an '=' in it" do
+
+            let(:extra_params) { [ '--opt', 'api_key=abcdef==' ] }
+
+            it "sets the given option name to the given value" do
+              expect(context.opts.api_key).to eq("abcdef==")
+            end
+          end
+
+          context "with an option with a space in it" do
+
+            let(:extra_params) { [ '--opt', 'full_name=Bobo T. Clown' ] }
+
+            it "sets the given option name to the given value" do
+              expect(context.opts.full_name).to eq("Bobo T. Clown")
+            end
+          end
+
           context "with multiple options given" do
             let(:extra_params) { %w[ --opt color=ebfg --opt nope=seppb ] }
 
