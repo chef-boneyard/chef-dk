@@ -40,6 +40,8 @@ module ChefDK
 
       attr_accessor :node_name
 
+      attr_accessor :target
+
       attr_accessor :enable_policyfile
 
       attr_accessor :policy_group
@@ -173,6 +175,11 @@ E
         long:         "--node-name NODE_NAME",
         description:  "Set default node name (may be overriden by provisioning cookbook)"
 
+      option :target,
+        short:        "-t REMOTE_HOST",
+        long:         "--target REMOTE_HOST",
+        description:  "Set hostname or IP of the host to converge (may be overriden by provisioning cookbook)"
+
       option :debug,
         short:       "-D",
         long:        "--debug",
@@ -238,6 +245,7 @@ E
 
           c.action = default_action
           c.node_name = node_name
+          c.target = target
 
           c.enable_policyfile = enable_policyfile?
 
@@ -267,6 +275,10 @@ E
 
       def node_name
         config[:node_name]
+      end
+
+      def target
+        config[:target]
       end
 
       def recipe

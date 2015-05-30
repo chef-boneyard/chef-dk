@@ -195,6 +195,16 @@ describe ChefDK::Command::Provision do
 
         end
 
+        context "with --target" do
+
+          let(:extra_params) { %w[ -t 192.168.255.123 ] }
+
+          it "sets the target host to the given value" do
+            expect(context.target).to eq("192.168.255.123")
+          end
+
+        end
+
         context "with -d" do
 
           let(:extra_params) { %w[ -d ] }
