@@ -2,6 +2,9 @@
 
 # Unreleased
 
+* [Jian Weihang](https://github.com/tonytonyjan): Add post install
+  warning when installing via rubygems
+  [#402](https://github.com/chef/chef-dk/pull/402)
 * [marcusn](https://github.com/marcusn): Exclude `.kitchen` directory in
   generated `chefignore` file
   [#386](https://github.com/chef/chef-dk/pull/386)
