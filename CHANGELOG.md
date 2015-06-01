@@ -1,5 +1,9 @@
 # Chef Development Kit Changelog
 
+# Unreleased
+* [#406](https://github.com/chef/chef-dk/pull/406): Add `--target HOST`
+  and `--opt OPT=VALUE` CLI options to `chef provision`.
+
 # Last Release: 0.6.0
 * [chef-dk#383](https://github.com/chef/chef-dk/pull/383): Add `chef
   provision` command, a CLI for running Chef Provisioning recipes.
