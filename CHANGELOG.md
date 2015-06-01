@@ -5,6 +5,8 @@
 * [Larry Wright](https://github.com/larrywright): Update `chef generate
   repo` README. [#407](https://github.com/chef/chef-dk/pull/407)
 
+* [#382](https://github.com/chef/chef-dk/pull/382): Update generated
+  kitchen config to Ubuntu 14.04 and CentOS 7.1
 * [#406](https://github.com/chef/chef-dk/pull/406): Add `--target HOST`
   and `--opt OPT=VALUE` CLI options to `chef provision`.
 
