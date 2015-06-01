@@ -2,6 +2,9 @@
 
 # Unreleased
 
+* [marcusn](https://github.com/marcusn): Exclude `.kitchen` directory in
+  generated `chefignore` file
+  [#386](https://github.com/chef/chef-dk/pull/386)
 * [Larry Wright](https://github.com/larrywright): Update `chef generate
   repo` README. [#407](https://github.com/chef/chef-dk/pull/407)
 
