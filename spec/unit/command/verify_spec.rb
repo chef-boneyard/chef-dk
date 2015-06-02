@@ -28,22 +28,6 @@ module Gem
 end
 
 describe ChefDK::Command::Verify do
-  DEFAULT_COMPONENTS = %w(
-    berkshelf
-    test-kitchen
-    chef-client
-    chef-dk
-    chefspec
-    rubocop
-    fauxhai
-    knife-spork
-    kitchen-vagrant
-    package\ installation
-  )
-
-  # We only ship delivery-cli on *nix only ATM
-  DEFAULT_COMPONENTS << "delivery-cli" unless Chef::Platform.windows?
-
   let(:command_instance) { ChefDK::Command::Verify.new() }
 
   let(:command_options) { [] }
@@ -51,14 +35,25 @@ describe ChefDK::Command::Verify do
   let(:components) { {} }
 
   let(:default_components) do
-    DEFAULT_COMPONENTS
+    [
+      "berkshelf",
+      "test-kitchen",
+      "chef-client",
+      "chef-dk",
+      "chefspec",
+      "rubocop",
+      "fauxhai",
+      "knife-spork",
+      "kitchen-vagrant",
+      "package installation"
+    ]
   end
 
   def run_command(expected_exit_code)
     expect(command_instance.run(command_options)).to eq(expected_exit_code)
   end
 
-  it "defines #{DEFAULT_COMPONENTS.join(', ')} components by default" do
+  it "defines berks, tk, chef and chef-dk components by default" do
     expect(command_instance.components).not_to be_empty
     expect(command_instance.components.map(&:name)).to match_array(default_components)
   end

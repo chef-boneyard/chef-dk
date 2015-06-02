@@ -96,20 +96,6 @@ module ChefDK
         c.smoke_test { run_in_tmpdir("kitchen init") }
       end
 
-      # We only ship delivery-cli on *nix only ATM
-      unless Chef::Platform.windows?
-        add_component "delivery-cli" do |c|
-          # There is no base_dir as delivery-cli is a single binary in
-          # `/opt/chefdk/bin`.
-          c.base_dir = "chef-dk"
-          c.smoke_test do
-            tmpdir do |cwd|
-              sh!("delivery setup --user=shipit --server=delivery.shipit.io --ent=chef --org=squirrels", cwd: cwd)
-            end
-          end
-        end
-      end
-
       add_component "chef-client" do |c|
         c.base_dir = "chef"
         c.unit_test { sh("bundle exec rspec -fp -t '~volatile_from_verify' spec/unit") }
@@ -202,9 +188,6 @@ end
 
             sh!("/usr/bin/chef-client -v")
             sh!("/usr/bin/chef-solo -v")
-
-            # The Delivery CLI does not have a `--version` flag yet!
-            sh!("/usr/bin/delivery --help") unless Chef::Platform.windows?
 
             # In `knife`, `knife -v` follows a different code path that skips
             # command/plugin loading; `knife -h` loads commands and plugins, but
