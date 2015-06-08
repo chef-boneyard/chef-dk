@@ -81,7 +81,12 @@ module ChefDK
                          if chefdk_home_set
                            ENV['CHEFDK_HOME']
                          else
-                           default_chefdk_home
+                           old_home = File.join(Gem.user_home, '.chefdk')
+                           if RUBY_PLATFORM =~ /mswin|mingw|windows/ && File.exists?(old_home)
+                             old_home
+                           else
+                             default_chefdk_home
+                           end
                          end
                        end
     end
