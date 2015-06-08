@@ -20,6 +20,7 @@ require 'chef-dk/exceptions'
 
 module ChefDK
   module Helpers
+    extend ChefDK::Helpers
 
     #
     # Runs given commands using mixlib-shellout
@@ -74,6 +75,17 @@ module ChefDK
       @omnibus_chefdk_location ||= File.expand_path('embedded/apps/chef-dk', expected_omnibus_root)
     end
 
+    def chefdk_home
+      @chefdk_home ||= begin
+                         chefdk_home_set = !([nil, ''].include? ENV['CHEFDK_HOME'])
+                         if chefdk_home_set
+                           ENV['CHEFDK_HOME']
+                         else
+                           default_chefdk_home
+                         end
+                       end
+    end
+
     private
 
     def omnibus_expand_path(*paths)
@@ -84,6 +96,15 @@ module ChefDK
 
     def expected_omnibus_root
       File.expand_path(File.join(Gem.ruby, "..", "..", ".."))
+    end
+
+    def default_chefdk_home
+      if Chef::Platform.windows?
+        # Add backcompat stuff here
+        File.join(ENV['LOCALAPPDATA'], 'chefdk')
+      else
+        File.expand_path('~/.chefdk')
+      end
     end
 
     #
