@@ -20,8 +20,6 @@ require 'chef-dk/exceptions'
 
 module ChefDK
   module Helpers
-    extend ChefDK::Helpers
-
     #
     # Runs given commands using mixlib-shellout
     #
