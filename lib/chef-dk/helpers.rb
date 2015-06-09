@@ -79,12 +79,7 @@ module ChefDK
                          if chefdk_home_set
                            ENV['CHEFDK_HOME']
                          else
-                           old_home = File.join(Gem.user_home, '.chefdk')
-                           if Chef::Platform.windows? && File.exists?(old_home)
-                             old_home
-                           else
-                             default_chefdk_home
-                           end
+                           default_chefdk_home
                          end
                        end
     end
@@ -103,7 +98,6 @@ module ChefDK
 
     def default_chefdk_home
       if Chef::Platform.windows?
-        # Add backcompat stuff here
         File.join(ENV['LOCALAPPDATA'], 'chefdk')
       else
         File.expand_path('~/.chefdk')

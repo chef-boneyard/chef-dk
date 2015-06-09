@@ -26,6 +26,8 @@ describe ChefDK::Helpers do
     end.new
   end
 
+  let(:env) { {} }
+
   describe "chefdk_home" do
     before do
       allow(ENV).to receive(:[]) do |k|
@@ -45,31 +47,20 @@ describe ChefDK::Helpers do
       context 'on windows' do
         before do
           allow(Chef::Platform).to receive(:windows?).and_return(true)
-          allow(File).to receive(:join).with(Gem.user_home, '.chefdk').and_return(old_home)
         end
 
         let(:env) { { 'LOCALAPPDATA' => 'C:\\foo' } }
-        let(:old_home) { "C:\\Users\\Vagrant\\.chefdk" }
 
-        context 'when .chefdk exists in Gem.user_home' do
-          before do
-            allow(File).to receive(:exists?).with(old_home).and_return(true)
-          end
-
-          it 'returns the old default home directory' do
-            expect(helpers.chefdk_home).to eq(old_home)
-          end
+        it 'uses LOCALAPPDATA' do
+          expect(File).to receive(:join).with(env['LOCALAPPDATA'], 'chefdk').and_return('chefdkdefaulthome')
+          expect(helpers.chefdk_home).to eq('chefdkdefaulthome')
         end
+      end
 
-        context 'when .chefdk does not exist in Gem.user_home' do
-          before do
-            allow(File).to receive(:exists?).with(old_home).and_return(false)
-          end
-
-          it 'returns the old default home directory' do
-            expect(File).to receive(:join).with(env['LOCALAPPDATA'], 'chefdk').and_return('chefdkdefaulthome')
-            expect(helpers.chefdk_home).to eq('chefdkdefaulthome')
-          end
+      context 'on *nix' do
+        it 'uses LOCALAPPDATA' do
+          expect(File).to receive(:expand_path).with('~/.chefdk').and_return('chefdkdefaulthome')
+          expect(helpers.chefdk_home).to eq('chefdkdefaulthome')
         end
       end
     end
