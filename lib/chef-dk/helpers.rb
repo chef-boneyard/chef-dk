@@ -20,6 +20,8 @@ require 'chef-dk/exceptions'
 
 module ChefDK
   module Helpers
+    extend self
+
     #
     # Runs given commands using mixlib-shellout
     #
@@ -126,6 +128,15 @@ module ChefDK
     # as this is the most common case we have.
     def with_file(path, mode='wb+', &block)
       File.open(path, mode, &block)
+    end
+
+    #@api private
+    # This method resets all the instance variables used. It
+    # should only be used for testing
+    def reset!
+      self.instance_variables.each do |ivar|
+        self.instance_variable_set(ivar, nil)
+      end
     end
   end
 end

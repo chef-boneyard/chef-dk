@@ -21,9 +21,8 @@ require 'chef-dk/helpers'
 describe ChefDK::Helpers do
 
   let (:helpers) do
-    helpers = Class.new do
-      include ChefDK::Helpers
-    end.new
+    ChefDK::Helpers.send(:reset!)
+    ChefDK::Helpers
   end
 
   let(:env) { {} }
