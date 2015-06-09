@@ -55,7 +55,7 @@ Gem::Specification.new do |gem|
   # conflicts with the current version of knife-windows.  We can
   # pin to `~> 1.2` when we are packaging knife-windows 1.0 in
   # the ChefDK.
-  gem.add_dependency "chef-provisioning", "~> 1.1.1"
+  gem.add_dependency "chef-provisioning", "~> 1.2"
 
   %w(rspec-core rspec-expectations rspec-mocks).each do |dev_gem|
     gem.add_development_dependency dev_gem, "~> 3.0"
