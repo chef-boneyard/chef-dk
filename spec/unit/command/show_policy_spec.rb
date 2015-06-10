@@ -23,9 +23,11 @@ describe ChefDK::Command::ShowPolicy do
 
   it_behaves_like "a command with a UI object"
 
-  let(:command) do
+  subject(:command) do
     described_class.new
   end
+
+  let(:show_policy_service) { command.show_policy_service }
 
   let(:chef_config_loader) { instance_double("Chef::WorkstationConfigLoader") }
 
@@ -46,42 +48,6 @@ describe ChefDK::Command::ShowPolicy do
       command.apply_params!(params)
     end
 
-    context "with no params" do
-
-      it "disables debug by default" do
-        expect(command.debug?).to be(false)
-      end
-
-      it "is configured to show all policies across all groups" do
-        expect(command.show_all_policies?).to be(true)
-      end
-
-      it "disables displaying orphans" do
-        expect(command.show_orphans?).to be(false)
-      end
-
-    end
-
-    context "when debug mode is set" do
-
-      let(:params) { [ "-D" ] }
-
-      it "enables debug" do
-        expect(command.debug?).to be(true)
-      end
-
-    end
-
-    context "when --show-orphans is given" do
-
-      let(:params) { %w[ -o ] }
-
-      it "enables displaying orphans" do
-        expect(command.show_orphans?).to be(true)
-      end
-
-    end
-
     context "when given a path to the config" do
 
       let(:params) { %w[ -c ~/otherstuff/config.rb ] }
@@ -95,34 +61,84 @@ describe ChefDK::Command::ShowPolicy do
       it "reads the chef/knife config" do
         expect(Chef::WorkstationConfigLoader).to receive(:new).with(config_arg).and_return(chef_config_loader)
         expect(command.chef_config).to eq(chef_config)
+        expect(show_policy_service.chef_config).to eq(chef_config)
       end
 
     end
 
-    context "when given a policy name" do
+    describe "settings that require loading chef config" do
 
-      let(:params) { %w[ appserver ] }
-
-      it "is not configured to show all policies" do
-        expect(command.show_all_policies?).to be(false)
+      before do
+        allow(chef_config_loader).to receive(:load)
       end
 
-      it "is configured to show the given policy" do
-        expect(command.policy_name).to eq("appserver")
+      context "with no params" do
+
+        it "disables debug by default" do
+          expect(command.debug?).to be(false)
+        end
+
+        it "is configured to show all policies across all groups" do
+          expect(command.show_all_policies?).to be(true)
+          expect(show_policy_service.show_all_policies?).to be(true)
+        end
+
+        it "disables displaying orphans" do
+          expect(command.show_orphans?).to be(false)
+          expect(show_policy_service.show_orphans?).to be(false)
+        end
+
       end
 
-      context "and the summary diff option `-s`" do
+      context "when debug mode is set" do
 
-        let(:params) { %w[ appserver -s ] }
+        let(:params) { [ "-D" ] }
 
-        it "enables summary diff output" do
-          expect(command.show_summary_diff?).to be(true)
+        it "enables debug" do
+          expect(command.debug?).to be(true)
+        end
+
+      end
+
+      context "when --show-orphans is given" do
+
+        let(:params) { %w[ -o ] }
+
+        it "enables displaying orphans" do
+          expect(command.show_orphans?).to be(true)
+          expect(show_policy_service.show_orphans?).to be(true)
+        end
+
+      end
+
+      context "when given a policy name" do
+
+        let(:params) { %w[ appserver ] }
+
+        it "is not configured to show all policies" do
+          expect(command.show_all_policies?).to be(false)
+          expect(show_policy_service.show_all_policies?).to be(false)
+        end
+
+        it "is configured to show the given policy" do
+          expect(command.policy_name).to eq("appserver")
+          expect(show_policy_service.policy_name).to eq("appserver")
+        end
+
+        context "and the summary diff option `-s`" do
+
+          let(:params) { %w[ appserver -s ] }
+
+          it "enables summary diff output" do
+            expect(command.show_summary_diff?).to be(true)
+            expect(show_policy_service.show_summary_diff?).to be(true)
+          end
+
         end
 
       end
 
     end
-
   end
 
   describe "running the command" do
@@ -156,15 +172,64 @@ describe ChefDK::Command::ShowPolicy do
 
     context "when the list service raises an exception" do
 
-      #TODO
-      it "prints a debugging message and exits non-zero"
+      let(:backtrace) { caller[0...3] }
+
+      let(:cause) do
+        e = StandardError.new("some operation failed")
+        e.set_backtrace(backtrace)
+        e
+      end
+
+      let(:exception) do
+        ChefDK::PolicyfileListError.new("Failed to list policies", cause)
+      end
+
+      before do
+        allow(command.show_policy_service).to receive(:run).and_raise(exception)
+      end
+
+      it "prints a debugging message and exits non-zero" do
+        expect(command.run([])).to eq(1)
+
+        expected_output=<<-E
+Error: Failed to list policies
+Reason: (StandardError) some operation failed
+
+E
+
+        expect(ui.output).to eq(expected_output)
+      end
+
+      context "when debug is enabled" do
+
+        it "includes the backtrace in the error" do
+
+          command.run(%w[ -D ])
+
+          expected_output=<<-E
+Error: Failed to list policies
+Reason: (StandardError) some operation failed
+
+
+E
+          expected_output << backtrace.join("\n") << "\n"
+
+          expect(ui.output).to eq(expected_output)
+        end
+
+      end
 
     end
 
     context "when the list service executes successfully" do
 
-      # TODO
-      it "exits 0"
+      before do
+        expect(command.show_policy_service).to receive(:run)
+      end
+
+      it "exits 0" do
+        expect(command.run([])).to eq(0)
+      end
 
     end
 

@@ -81,9 +81,11 @@ BANNER
 
       def run(params)
         return 1 unless apply_params!(params)
-        policy_list_service.run
-
+        show_policy_service.run
         0
+      rescue PolicyfileServiceError => e
+        handle_error(e)
+        1
       end
 
       def show_policy_service
@@ -110,6 +112,16 @@ BANNER
 
       def show_orphans?
         config[:show_orphans]
+      end
+
+      def handle_error(error)
+        ui.err("Error: #{error.message}")
+        if error.respond_to?(:reason)
+          ui.err("Reason: #{error.reason}")
+          ui.err("")
+          ui.err(error.extended_error_info) if debug?
+          ui.err(error.cause.backtrace.join("\n")) if debug?
+        end
       end
 
       def apply_params!(params)
