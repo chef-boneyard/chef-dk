@@ -27,7 +27,7 @@ module ChefDK
     class Env < ChefDK::Command::Base
       banner "Usage: chef env"
 
-      attr_reader :ui
+      attr_accessor :ui
 
       def initialize(*args)
         super
