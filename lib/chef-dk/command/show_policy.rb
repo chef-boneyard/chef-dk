@@ -43,12 +43,6 @@ Options:
 
 BANNER
 
-      option :summary_diff,
-        short:        "-s",
-        long:         "--summary-diff",
-        description:  "Summarize differences in policy revisions",
-        default:      false
-
       option :show_orphans,
         short:        "-o",
         long:         "--orphans",
@@ -107,7 +101,7 @@ BANNER
       end
 
       def show_summary_diff?
-        !!config[:summary_diff]
+        false
       end
 
       def show_orphans?

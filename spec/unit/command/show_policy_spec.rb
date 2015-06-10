@@ -125,17 +125,6 @@ describe ChefDK::Command::ShowPolicy do
           expect(show_policy_service.policy_name).to eq("appserver")
         end
 
-        context "and the summary diff option `-s`" do
-
-          let(:params) { %w[ appserver -s ] }
-
-          it "enables summary diff output" do
-            expect(command.show_summary_diff?).to be(true)
-            expect(show_policy_service.show_summary_diff?).to be(true)
-          end
-
-        end
-
       end
 
     end
@@ -155,16 +144,6 @@ describe ChefDK::Command::ShowPolicy do
       let(:params) { %w[ appserver chatserver ] }
 
       it "shows usage and exits" do
-        expect(command.run(params)).to eq(1)
-      end
-
-    end
-
-    context "when the summary diff option is given but no policy name is specified" do
-
-      let(:params) { %w[ -s ] }
-
-      it "prints a message explaining that -s only applies to single policy" do
         expect(command.run(params)).to eq(1)
       end
 
