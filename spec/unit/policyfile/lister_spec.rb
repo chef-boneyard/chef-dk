@@ -16,9 +16,9 @@
 #
 
 require 'spec_helper'
-require 'chef-dk/policyfile_services/info_fetcher'
+require 'chef-dk/policyfile/lister'
 
-describe ChefDK::PolicyfileServices::InfoFetcher do
+describe ChefDK::Policyfile::Lister do
 
   def api_url(org_specific_path)
     "https://chef.example/organizations/myorg/#{org_specific_path}"
@@ -45,55 +45,6 @@ describe ChefDK::PolicyfileServices::InfoFetcher do
     info_fetcher.http_client
   end
 
-  describe "when an error occurs in a GET request" do
-
-    # TODO: make this reusable
-    let(:response) do
-      Net::HTTPResponse.send(:response_class, "500").new("1.0", "500", "Internal Server Error").tap do |r|
-        r.instance_variable_set(:@body, "oops")
-      end
-    end
-
-    let(:http_exception) do
-      begin
-        response.error!
-      rescue => e
-        e
-      end
-    end
-
-    let(:policies_url) { "/policies" }
-
-    let(:policy_groups_url) { "/policy_groups" }
-
-    before do
-      allow(info_fetcher).to receive(:http_client).and_return(http_client)
-    end
-
-    describe "when fetching policy revisions by policy group" do
-
-      before do
-        allow(http_client).to receive(:get).with("policies").and_return({})
-        expect(http_client).to receive(:get).with("policy_groups").and_raise(http_exception)
-      end
-
-      it "raises an error" do
-        expect { info_fetcher.policies_by_group }.to raise_error(ChefDK::PolicyfileListError)
-      end
-    end
-
-    describe "when fetching policy revisions by policy name" do
-
-      before do
-        allow(http_client).to receive(:get).with("policy_groups").and_return({})
-        expect(http_client).to receive(:get).with("policies").and_raise(http_exception)
-      end
-
-      it "raises an error" do
-        expect { info_fetcher.policies_by_name }.to raise_error(ChefDK::PolicyfileListError)
-      end
-    end
-  end
 
   context "when the data is fetched successfully from the server" do
 

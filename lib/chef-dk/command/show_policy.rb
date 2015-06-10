@@ -18,46 +18,12 @@
 require 'chef-dk/command/base'
 require 'chef-dk/ui'
 require 'chef-dk/configurable'
-require 'chef-dk/policyfile_services/info_fetcher'
+require 'chef-dk/policyfile/lister'
+require 'chef-dk/policyfile_services/show_policy'
 
 module ChefDK
   module Command
 
-    class ReportPrinter
-
-      attr_reader :ui
-
-      def initialize(ui)
-        @ui = ui
-      end
-
-      def h1(heading)
-        ui.msg(heading)
-        ui.msg("=" * heading.size)
-        ui.msg("")
-      end
-
-      def h2(heading)
-        ui.msg(heading)
-        ui.msg("-" * heading.size)
-        ui.msg("")
-      end
-
-      def table_list(items)
-        left_justify_size = items.keys.map(&:size).max.to_i + 2
-        items.each do |name, value|
-          justified_name = "#{name}:".ljust(left_justify_size)
-          ui.msg("* #{justified_name} #{value}")
-        end
-
-        ui.msg("")
-      end
-
-      def list(items)
-        items.each { |item| ui.msg("* #{item}") }
-        ui.msg("")
-      end
-    end
 
     class ShowPolicy < Base
 
@@ -113,114 +79,21 @@ BANNER
         @ui = UI.new
       end
 
-      def report
-        @report ||= ReportPrinter.new(ui)
-      end
-
       def run(params)
         return 1 unless apply_params!(params)
-
-        if show_all_policies?
-          display_all_policies
-        else
-          display_single_policy
-        end
+        policy_list_service.run
 
         0
       end
 
-      def display_all_policies
-        if policy_info_fetcher.empty?
-          ui.err("No policies or policy groups exist on the server")
-          return
-        end
-        if policy_info_fetcher.policies_by_name.empty?
-          ui.err("No policies exist on the server")
-          return
-        end
-        policy_info_fetcher.revision_ids_by_group_for_each_policy do |policy_name, rev_id_by_group|
-          report.h1(policy_name)
-
-          if rev_id_by_group.empty?
-            ui.err("Policy #{policy_name} is not assigned to any groups")
-            ui.err("")
-          else
-            rev_ids_for_report = format_rev_ids_for_report(rev_id_by_group)
-            report.table_list(rev_ids_for_report)
-          end
-
-          if show_orphans?
-            orphans = policy_info_fetcher.orphaned_revisions(policy_name)
-
-            unless orphans.empty?
-              report.h2("Orphaned:")
-              formatted_orphans = orphans.map { |id| shorten_rev_id(id) }
-              report.list(formatted_orphans)
-            end
-          end
-        end
-      end
-
-      def display_single_policy
-        report.h1(policy_name)
-        rev_id_by_group = policy_info_fetcher.revision_ids_by_group_for(policy_name)
-
-        if rev_id_by_group.empty?
-          ui.err("No policies named '#{policy_name}' are associated with a policy group")
-          ui.err("")
-        elsif show_summary_diff?
-          unique_rev_ids = rev_id_by_group.unique_revision_ids
-          revision_info = policy_info_fetcher.revision_info_for(policy_name, unique_rev_ids)
-
-          ljust_size = rev_id_by_group.max_group_name_length + 2
-
-          cbs_with_differing_ids = revision_info.cbs_with_differing_ids
-
-          rev_id_by_group.each do |group_name, rev_id|
-            heading = "#{group_name}:".ljust(ljust_size) + shorten_rev_id(rev_id)
-            report.h2(heading)
-
-            differing_cbs_version_info = cbs_with_differing_ids.inject({}) do |cb_version_info, cb_name|
-
-              version, identifier = revision_info.cb_info_for(rev_id, cb_name)
-
-              cb_info_for_report =
-                if !version.nil?
-                  "#{version} (#{shorten_rev_id(identifier)})"
-                else
-                  "*NONE*"
-                end
-
-              cb_version_info[cb_name] = cb_info_for_report
-
-              cb_version_info
-            end
-
-            report.table_list(differing_cbs_version_info)
-          end
-
-        else
-          rev_ids_for_report = format_rev_ids_for_report(rev_id_by_group)
-          report.table_list(rev_ids_for_report)
-        end
-
-        if show_orphans?
-          orphans = policy_info_fetcher.orphaned_revisions(policy_name)
-
-          unless orphans.empty?
-            report.h2("Orphaned:")
-            formatted_orphans = orphans.map { |id| shorten_rev_id(id) }
-            report.list(formatted_orphans)
-          end
-        end
-      end
-
-      def shorten_rev_id(revision_id)
-        revision_id[0,10]
-      end
-
-      def policy_info_fetcher
-        @policy_info_fetcher ||= PolicyfileServices::InfoFetcher.new
+      def show_policy_service
+        @policy_list_service ||=
+          PolicyfileServices::ShowPolicy.new(config: chef_config,
+                                             show_all: show_all_policies?,
+                                             ui: ui,
+                                             policy_name: policy_name,
+                                             show_orphans: show_orphans?,
+                                             summary_diff: show_summary_diff?)
       end
 
       def debug?
@@ -260,14 +133,6 @@ BANNER
           ui.err("")
           ui.err(opt_parser)
           false
-        end
-      end
-
-      private
-
-      def format_rev_ids_for_report(rev_id_by_group)
-        rev_id_by_group.format_revision_ids do |rev_id|
-          rev_id ? rev_id[0,10] : "*NOT APPLIED*"
         end
       end
 

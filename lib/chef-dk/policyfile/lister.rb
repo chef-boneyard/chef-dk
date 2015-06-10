@@ -21,7 +21,7 @@ require 'chef-dk/authenticated_http'
 require 'chef-dk/service_exceptions'
 
 module ChefDK
-  module PolicyfileServices
+  module Policyfile
 
     class RevIDLockDataMap
 
@@ -105,7 +105,7 @@ module ChefDK
       end
     end
 
-    class InfoFetcher
+    class Lister
 
       attr_accessor :policy_lock_content
 
@@ -204,8 +204,6 @@ module ChefDK
 
         policy_group_data = http_client.get("policy_groups")
         set_policies_by_group_from_api(policy_group_data)
-      rescue => e
-        raise PolicyfileListError.new("Failed to fetch policyfile data from the server", e)
       end
 
       def set_policies_by_name_from_api(policy_list_data)
