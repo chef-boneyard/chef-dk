@@ -28,6 +28,8 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
 
   let(:policy_name) { nil }
 
+  let(:policy_group) { nil }
+
   let(:show_orphans) { false }
 
   let(:summary_diff) { false }
@@ -37,6 +39,7 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
                         show_all: show_all,
                         ui: ui,
                         policy_name: policy_name,
+                        policy_group: policy_group,
                         show_orphans: show_orphans,
                         summary_diff: summary_diff)
   end
@@ -45,14 +48,14 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
     show_policy_service.policy_lister
   end
 
+  let(:policyfile_locks_content) {}
+
   describe "show all" do
 
     let(:params) { [] }
 
     let(:policies_by_name) { {} }
     let(:policies_by_group) { {} }
-
-    let(:policyfile_locks_content) {}
 
     describe "when an error occurs fetching data from the server" do
 
@@ -478,41 +481,42 @@ OUTPUT
 
       end
     end
+  end
 
-    describe "showing a single policy" do
+  describe "showing a single policy" do
 
-      let(:policy_name) { "appserver" }
+    let(:policy_name) { "appserver" }
 
-      let(:show_all) { false }
+    let(:show_all) { false }
 
-      let(:policies_by_name) { {} }
-      let(:policies_by_group) { {} }
+    let(:policies_by_name) { {} }
+    let(:policies_by_group) { {} }
+
+    before do
+      policy_lister.set!(policies_by_name, policies_by_group)
+    end
+
+    context "when the server returns the data successfully" do
 
       before do
         policy_lister.set!(policies_by_name, policies_by_group)
+        policy_lister.policy_lock_content = policyfile_locks_content
+
+        show_policy_service.run
       end
 
-      context "when the server returns the data successfully" do
+      context "when there are no revisions of the policy on the server" do
 
-        before do
-          policy_lister.set!(policies_by_name, policies_by_group)
-          policy_lister.policy_lock_content = policyfile_locks_content
-
-          show_policy_service.run
+        let(:policies_by_name) do
+          {}
         end
 
-        context "when there are no revisions of the policy on the server" do
+        let(:policies_by_group) do
+          {}
+        end
 
-          let(:policies_by_name) do
-            {}
-          end
-
-          let(:policies_by_group) do
-            {}
-          end
-
-          it "prints a message to stderr that there are no copies of the policy on the server" do
-            expected_output = <<-OUTPUT
+        it "prints a message to stderr that there are no copies of the policy on the server" do
+          expected_output = <<-OUTPUT
 appserver
 =========
 
@@ -520,29 +524,29 @@ No policies named 'appserver' are associated with a policy group
 
 OUTPUT
 
-            expect(ui.output).to eq(expected_output)
-          end
+          expect(ui.output).to eq(expected_output)
+        end
+
+      end
+
+      context "when all policies are orphaned and orphans are not shown" do
+        let(:policies_by_name) do
+          {
+            "appserver" => {
+              "1111111111111111111111111111111111111111111111111111111111111111" => {},
+              "2222222222222222222222222222222222222222222222222222222222222222" => {},
+              "3333333333333333333333333333333333333333333333333333333333333333" => {}
+            }
+          }
 
         end
 
-        context "when all policies are orphaned and orphans are not shown" do
-          let(:policies_by_name) do
-            {
-              "appserver" => {
-                "1111111111111111111111111111111111111111111111111111111111111111" => {},
-                "2222222222222222222222222222222222222222222222222222222222222222" => {},
-                "3333333333333333333333333333333333333333333333333333333333333333" => {}
-              }
-            }
+        let(:policies_by_group) do
+          {}
+        end
 
-          end
-
-          let(:policies_by_group) do
-            {}
-          end
-
-          it "explains that no policies are assigned to a group" do
-            expected_output = <<-OUTPUT
+        it "explains that no policies are assigned to a group" do
+          expected_output = <<-OUTPUT
 appserver
 =========
 
@@ -550,38 +554,38 @@ No policies named 'appserver' are associated with a policy group
 
 OUTPUT
 
-            expect(ui.output).to eq(expected_output)
-          end
+          expect(ui.output).to eq(expected_output)
+        end
+      end
+
+      context "when all policy groups have the same revision of the policy" do
+
+        let(:policies_by_name) do
+          {
+            "appserver" => {
+              "1111111111111111111111111111111111111111111111111111111111111111" => {},
+              "2222222222222222222222222222222222222222222222222222222222222222" => {},
+              "3333333333333333333333333333333333333333333333333333333333333333" => {}
+            }
+          }
+
         end
 
-        context "when all policy groups have the same revision of the policy" do
-
-          let(:policies_by_name) do
-            {
-              "appserver" => {
-                "1111111111111111111111111111111111111111111111111111111111111111" => {},
-                "2222222222222222222222222222222222222222222222222222222222222222" => {},
-                "3333333333333333333333333333333333333333333333333333333333333333" => {}
-              }
+        let(:policies_by_group) do
+          {
+            "dev" => {
+              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
+            },
+            "staging" => {
+              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
+            },
+            "prod" => {
+              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
             }
-
-          end
-
-          let(:policies_by_group) do
-            {
-              "dev" => {
-                "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
-              },
-              "staging" => {
-                "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
-              },
-              "prod" => {
-                "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
-              }
-            }
-          end
-          it "lists each of the groups with the associated revision" do
-            expected_output = <<-OUTPUT
+          }
+        end
+        it "lists each of the groups with the associated revision" do
+          expected_output = <<-OUTPUT
 appserver
 =========
 
@@ -590,40 +594,40 @@ appserver
 * prod:     2222222222
 
 OUTPUT
-            expect(ui.output).to eq(expected_output)
-          end
+          expect(ui.output).to eq(expected_output)
+        end
+
+      end
+
+      context "when policy groups have revisions with differing cookbooks" do
+
+        let(:policies_by_name) do
+          {
+            "appserver" => {
+              "1111111111111111111111111111111111111111111111111111111111111111" => {},
+              "2222222222222222222222222222222222222222222222222222222222222222" => {},
+              "3333333333333333333333333333333333333333333333333333333333333333" => {}
+            }
+          }
 
         end
 
-        context "when policy groups have revisions with differing cookbooks" do
-
-          let(:policies_by_name) do
-            {
-              "appserver" => {
-                "1111111111111111111111111111111111111111111111111111111111111111" => {},
-                "2222222222222222222222222222222222222222222222222222222222222222" => {},
-                "3333333333333333333333333333333333333333333333333333333333333333" => {}
-              }
+        let(:policies_by_group) do
+          {
+            "dev" => {
+              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
+            },
+            "staging" => {
+              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
+            },
+            "prod" => {
+              "appserver" => "1111111111111111111111111111111111111111111111111111111111111111"
             }
+          }
+        end
 
-          end
-
-          let(:policies_by_group) do
-            {
-              "dev" => {
-                "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
-              },
-              "staging" => {
-                "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
-              },
-              "prod" => {
-                "appserver" => "1111111111111111111111111111111111111111111111111111111111111111"
-              }
-            }
-          end
-
-          it "lists each of the groups with the associated revision" do
-            expected_output = <<-OUTPUT
+        it "lists each of the groups with the associated revision" do
+          expected_output = <<-OUTPUT
 appserver
 =========
 
@@ -632,67 +636,67 @@ appserver
 * prod:     1111111111
 
 OUTPUT
-            expect(ui.output).to eq(expected_output)
+          expect(ui.output).to eq(expected_output)
+        end
+
+        context "when the diff summary option is given" do
+
+          let(:appserver_lock_contents_111) do
+            {
+              "cookbook_locks" => {
+                "apache2" => {
+                  "version" => "2.1.3",
+                  "identifier" => "abcdef" + ("0" * 34)
+                },
+                "yum" => {
+                  "version" => "4.5.6",
+                  "identifier" => "123abc" + ("0" * 34)
+                },
+                "apt" => {
+                  "version" => "10.0.0",
+                  "identifier" => "ffffff" + ("0" * 34)
+                }
+
+              }
+            }
           end
 
-          context "when the diff summary option is given" do
-
-            let(:appserver_lock_contents_111) do
-              {
-                "cookbook_locks" => {
-                  "apache2" => {
-                    "version" => "2.1.3",
-                    "identifier" => "abcdef" + ("0" * 34)
-                  },
-                  "yum" => {
-                    "version" => "4.5.6",
-                    "identifier" => "123abc" + ("0" * 34)
-                  },
-                  "apt" => {
-                    "version" => "10.0.0",
-                    "identifier" => "ffffff" + ("0" * 34)
-                  }
-
+          let(:appserver_lock_contents_222) do
+            {
+              "cookbook_locks" => {
+                "apache2" => {
+                  "version" => "2.0.5",
+                  "identifier" => "aaa123" + ("0" * 34)
+                },
+                "yum" => {
+                  "version" => "4.5.2",
+                  "identifier" => "867530" + ("9" * 34)
+                },
+                "apt" => {
+                  "version" => "10.0.0",
+                  "identifier" => "ffffff" + ("0" * 34)
+                },
+                "other_cookbook" => {
+                  "version" => "9.8.7",
+                  "identifier" => "113113" + ("0" * 34)
                 }
               }
-            end
+            }
+          end
 
-            let(:appserver_lock_contents_222) do
-              {
-                "cookbook_locks" => {
-                  "apache2" => {
-                    "version" => "2.0.5",
-                    "identifier" => "aaa123" + ("0" * 34)
-                  },
-                  "yum" => {
-                    "version" => "4.5.2",
-                    "identifier" => "867530" + ("9" * 34)
-                  },
-                  "apt" => {
-                    "version" => "10.0.0",
-                    "identifier" => "ffffff" + ("0" * 34)
-                  },
-                  "other_cookbook" => {
-                    "version" => "9.8.7",
-                    "identifier" => "113113" + ("0" * 34)
-                  }
-                }
+          let(:policyfile_locks_content) do
+            {
+              "appserver" => {
+                "1111111111111111111111111111111111111111111111111111111111111111" => appserver_lock_contents_111,
+                "2222222222222222222222222222222222222222222222222222222222222222" => appserver_lock_contents_222,
               }
-            end
+            }
+          end
 
-            let(:policyfile_locks_content) do
-              {
-                "appserver" => {
-                  "1111111111111111111111111111111111111111111111111111111111111111" => appserver_lock_contents_111,
-                  "2222222222222222222222222222222222222222222222222222222222222222" => appserver_lock_contents_222,
-                }
-              }
-            end
+          let(:summary_diff) { true }
 
-            let(:summary_diff) { true }
-
-            it "lists each of the groups and displays the version and identifier of the differing cookbooks" do
-              expected_output = <<-OUTPUT
+          it "lists each of the groups and displays the version and identifier of the differing cookbooks" do
+            expected_output = <<-OUTPUT
 appserver
 =========
 
@@ -718,16 +722,16 @@ prod:    1111111111
 * other_cookbook:  *NONE*
 
 OUTPUT
-              expect(ui.output).to eq(expected_output)
-            end
+            expect(ui.output).to eq(expected_output)
           end
+        end
 
-          context "when orphans are displayed" do
+        context "when orphans are displayed" do
 
-            let(:show_orphans) { true }
+          let(:show_orphans) { true }
 
-            it "lists each of the groups, then lists the orphaned revisions" do
-              expected_output = <<-OUTPUT
+          it "lists each of the groups, then lists the orphaned revisions" do
+            expected_output = <<-OUTPUT
 appserver
 =========
 
@@ -742,14 +746,98 @@ Orphaned:
 
 OUTPUT
 
-              expect(ui.output).to eq(expected_output)
-            end
-
+            expect(ui.output).to eq(expected_output)
           end
-        end
 
+        end
       end
+
     end
+  end # showing a single policy
+
+  describe "show policy in a specific policy group" do
+
+    let(:policy_name) { "appserver" }
+
+    let(:policy_group) { "dev" }
+
+    let(:show_all) { false }
+
+    let(:http_client) { instance_double("ChefDK::AuthenticatedHTTP", url: "https://chef.example/organizations/monkeynews") }
+
+    before do
+      allow(show_policy_service).to receive(:http_client).and_return(http_client)
+    end
+
+    it "enables show_policy_revision" do
+      expect(show_policy_service.show_policy_revision?).to be(true)
+    end
+
+    context "when there is no policy assigned for the given name and group" do
+
+      let(:response) do
+        Net::HTTPResponse.send(:response_class, "404").new("1.0", "404", "Not Found").tap do |r|
+          r.instance_variable_set(:@body, "nope")
+        end
+      end
+
+      let(:http_exception) do
+        begin
+          response.error!
+        rescue => e
+          e
+        end
+      end
+
+      before do
+        allow(http_client).to receive(:get).with("policy_groups/dev/policies/appserver").and_raise(http_exception)
+      end
+
+      it "prints a message saying there is no policy assigned" do
+        message = "No policyfile lock named 'appserver' found in policy_group 'dev' at https://chef.example/organizations/monkeynews"
+        expect { show_policy_service.run }.to raise_error(ChefDK::PolicyfileDownloadError, message)
+      end
+
+    end
+
+    context "when the policy exists" do
+
+      let(:policyfile_lock_data) do
+        {
+          "revision_id" => "cf5b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b",
+          "name"=> "example",
+          "run_list"=> [ "recipe[omnibus::default]" ],
+          "cookbook_locks"=> {
+            "omnibus"=> {
+              "version"=> "2.2.0",
+              "identifier"=> "64b3e64306cff223206348e46af545b19032b170",
+              "dotted_decimal_identifier"=> "28345299219435506.9887234981653237.76628930769264",
+              "cache_key"=> "omnibus-2cf98f9797cacce9c8688fc4e74858b858e2bc14",
+              "origin"=> "git@github.com:opscode-cookbooks/omnibus.git",
+              "source_options"=> {
+                "git"=> "git@github.com:opscode-cookbooks/omnibus.git",
+                "revision"=> "2cf98f9797cacce9c8688fc4e74858b858e2bc14",
+                "branch"=> "master"
+              }
+            }
+          }
+        }
+      end
+
+      let(:policyfile_lock_json) { FFI_Yajl::Encoder.encode(policyfile_lock_data, pretty: true) }
+
+      before do
+        allow(http_client).to receive(:get).with("policy_groups/dev/policies/appserver").and_return(policyfile_lock_data)
+      end
+
+      it "displays the policy" do
+        show_policy_service.run
+        expect(ui.output).to include(policyfile_lock_json)
+      end
+
+    end
+
   end
+
 end
 

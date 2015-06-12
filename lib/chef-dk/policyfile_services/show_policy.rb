@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 
+require 'chef-dk/policyfile/comparison_base'
 require 'chef-dk/policyfile/lister'
 
 module ChefDK
@@ -64,24 +65,35 @@ module ChefDK
 
       attr_reader :chef_config
 
-      def initialize(config: nil, show_all: true, ui: nil, policy_name: nil, show_orphans: false, summary_diff: false)
+      attr_reader :policy_group
+
+      def initialize(config: nil, show_all: true, ui: nil, policy_name: nil, policy_group: nil, show_orphans: false, summary_diff: false)
         @chef_config = config
         @show_all = show_all
         @ui = ui
         @policy_name = policy_name
+        @policy_group = policy_group
         @show_orphans = show_orphans
         @summary_diff = summary_diff
       end
 
       def run
-        if show_all_policies?
+        if show_policy_revision?
+          display_policy_revision
+        elsif show_all_policies?
           display_all_policies
         else
           display_single_policy
         end
         true
+      rescue PolicyfileNestedException
+        raise
       rescue => e
         raise PolicyfileListError.new("Failed to list policyfile data from the server", e)
+      end
+
+      def show_policy_revision?
+        !!policy_group
       end
 
       def show_all_policies?
@@ -102,6 +114,11 @@ module ChefDK
 
       def policy_lister
         @policy_info_fetcher ||= Policyfile::Lister.new(config: chef_config)
+      end
+
+      def display_policy_revision
+        lock = Policyfile::ComparisonBase::PolicyGroup.new(policy_group, policy_name, http_client).lock
+        ui.msg(FFI_Yajl::Encoder.encode(lock, pretty: true))
       end
 
       def display_all_policies
@@ -192,6 +209,12 @@ module ChefDK
 
       def shorten_rev_id(revision_id)
         revision_id[0,10]
+      end
+
+      def http_client
+        @http_client ||= ChefDK::AuthenticatedHTTP.new(chef_config.chef_server_url,
+                                                       signing_key_filename: chef_config.client_key,
+                                                       client_name: chef_config.node_name)
       end
 
       private

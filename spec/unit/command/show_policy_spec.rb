@@ -127,6 +127,27 @@ describe ChefDK::Command::ShowPolicy do
 
       end
 
+      context "when given a policy name and a policy group name" do
+
+        let(:params) { %w[ appserver production ] }
+
+        it "is not configured to show all policies" do
+          expect(command.show_all_policies?).to be(false)
+          expect(show_policy_service.show_all_policies?).to be(false)
+        end
+
+        it "is configured to show the given policy" do
+          expect(command.policy_name).to eq("appserver")
+          expect(show_policy_service.policy_name).to eq("appserver")
+        end
+
+        it "is configured to display the exact revision for the given policy+group" do
+          expect(command.policy_group).to eq("production")
+          expect(show_policy_service.policy_group).to eq("production")
+        end
+
+      end
+
     end
   end
 
@@ -141,7 +162,7 @@ describe ChefDK::Command::ShowPolicy do
 
     context "when given too many arguments" do
 
-      let(:params) { %w[ appserver chatserver ] }
+      let(:params) { %w[ appserver policygroup wut-is-this ] }
 
       it "shows usage and exits" do
         expect(command.run(params)).to eq(1)

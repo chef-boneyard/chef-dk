@@ -28,11 +28,15 @@ module ChefDK
     class ShowPolicy < Base
 
       banner(<<-BANNER)
-Usage: chef show-policy [POLICY_NAME] [options]
+Usage: chef show-policy [POLICY_NAME [POLICY_GROUP]] [options]
 
 `chef show-policy` Displays the revisions of policyfiles on the server. By
 default, only active policy revisions are shown. Use the `--orphans` options to
 show policy revisions that are not assigned to any policy group.
+
+When both POLICY_NAME and POLICY_GROUP are given, the command shows the content
+of a the active policyfile lock for the given POLICY_GROUP. See also the `diff`
+command.
 
 The Policyfile feature is incomplete and beta quality. See our detailed README
 for more information.
@@ -66,10 +70,13 @@ BANNER
 
       attr_reader :policy_name
 
+      attr_reader :policy_group
+
       def initialize(*args)
         super
         @show_all_policies = nil
         @policy_name = nil
+        @policy_group = nil
         @ui = UI.new
       end
 
@@ -88,6 +95,7 @@ BANNER
                                              show_all: show_all_policies?,
                                              ui: ui,
                                              policy_name: policy_name,
+                                             policy_group: policy_group,
                                              show_orphans: show_orphans?,
                                              summary_diff: show_summary_diff?)
       end
@@ -127,11 +135,15 @@ BANNER
           ui.err(opt_parser)
           false
         elsif remaining_args.empty?
-          @policy_name = nil
           @show_all_policies = true
           true
         elsif remaining_args.size == 1
           @policy_name = remaining_args.first
+          @show_all_policies = false
+          true
+        elsif remaining_args.size == 2
+          @policy_name = remaining_args[0]
+          @policy_group = remaining_args[1]
           @show_all_policies = false
           true
         else
