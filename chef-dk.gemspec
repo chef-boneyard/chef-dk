@@ -50,12 +50,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "diff-lcs", "~> 1.0"
   gem.add_dependency "paint", "~> 1.0"
 
-  # Chef Provisioning, used by the `chef provision` command:
-  # chef-provisioning 1.2 has a dependency on winrm 1.3, which
-  # conflicts with the current version of knife-windows.  We can
-  # pin to `~> 1.2` when we are packaging knife-windows 1.0 in
-  # the ChefDK.
-  gem.add_dependency "chef-provisioning", "~> 1.1.1"
+  gem.add_dependency "chef-provisioning", "~> 1.2"
 
   %w(rspec-core rspec-expectations rspec-mocks).each do |dev_gem|
     gem.add_development_dependency dev_gem, "~> 3.0"
