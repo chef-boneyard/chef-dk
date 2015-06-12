@@ -20,6 +20,7 @@ require 'chef-dk/exceptions'
 
 module ChefDK
   module Helpers
+    extend self
 
     #
     # Runs given commands using mixlib-shellout
@@ -74,6 +75,17 @@ module ChefDK
       @omnibus_chefdk_location ||= File.expand_path('embedded/apps/chef-dk', expected_omnibus_root)
     end
 
+    def chefdk_home
+      @chefdk_home ||= begin
+                         chefdk_home_set = !([nil, ''].include? ENV['CHEFDK_HOME'])
+                         if chefdk_home_set
+                           ENV['CHEFDK_HOME']
+                         else
+                           default_chefdk_home
+                         end
+                       end
+    end
+
     private
 
     def omnibus_expand_path(*paths)
@@ -84,6 +96,14 @@ module ChefDK
 
     def expected_omnibus_root
       File.expand_path(File.join(Gem.ruby, "..", "..", ".."))
+    end
+
+    def default_chefdk_home
+      if Chef::Platform.windows?
+        File.join(ENV['LOCALAPPDATA'], 'chefdk')
+      else
+        File.expand_path('~/.chefdk')
+      end
     end
 
     #
@@ -108,6 +128,15 @@ module ChefDK
     # as this is the most common case we have.
     def with_file(path, mode='wb+', &block)
       File.open(path, mode, &block)
+    end
+
+    #@api private
+    # This method resets all the instance variables used. It
+    # should only be used for testing
+    def reset!
+      self.instance_variables.each do |ivar|
+        self.instance_variable_set(ivar, nil)
+      end
     end
   end
 end
