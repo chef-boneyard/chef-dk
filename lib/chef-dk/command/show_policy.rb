@@ -92,7 +92,6 @@ BANNER
       def show_policy_service
         @policy_list_service ||=
           PolicyfileServices::ShowPolicy.new(config: chef_config,
-                                             show_all: show_all_policies?,
                                              ui: ui,
                                              policy_name: policy_name,
                                              policy_group: policy_group,
@@ -102,10 +101,6 @@ BANNER
 
       def debug?
         !!config[:debug]
-      end
-
-      def show_all_policies?
-        @show_all_policies
       end
 
       def show_summary_diff?

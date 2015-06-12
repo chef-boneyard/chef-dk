@@ -22,8 +22,6 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
 
   let(:chef_config) { double("Chef::Config") }
 
-  let(:show_all) { true }
-
   let(:ui) { TestHelpers::TestUI.new }
 
   let(:policy_name) { nil }
@@ -36,7 +34,6 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
 
   subject(:show_policy_service) do
     described_class.new(config: chef_config,
-                        show_all: show_all,
                         ui: ui,
                         policy_name: policy_name,
                         policy_group: policy_group,
@@ -487,8 +484,6 @@ OUTPUT
 
     let(:policy_name) { "appserver" }
 
-    let(:show_all) { false }
-
     let(:policies_by_name) { {} }
     let(:policies_by_group) { {} }
 
@@ -760,8 +755,6 @@ OUTPUT
     let(:policy_name) { "appserver" }
 
     let(:policy_group) { "dev" }
-
-    let(:show_all) { false }
 
     let(:http_client) { instance_double("ChefDK::AuthenticatedHTTP", url: "https://chef.example/organizations/monkeynews") }
 

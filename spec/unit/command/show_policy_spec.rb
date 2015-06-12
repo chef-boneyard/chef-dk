@@ -79,7 +79,6 @@ describe ChefDK::Command::ShowPolicy do
         end
 
         it "is configured to show all policies across all groups" do
-          expect(command.show_all_policies?).to be(true)
           expect(show_policy_service.show_all_policies?).to be(true)
         end
 
@@ -116,7 +115,6 @@ describe ChefDK::Command::ShowPolicy do
         let(:params) { %w[ appserver ] }
 
         it "is not configured to show all policies" do
-          expect(command.show_all_policies?).to be(false)
           expect(show_policy_service.show_all_policies?).to be(false)
         end
 
@@ -132,7 +130,6 @@ describe ChefDK::Command::ShowPolicy do
         let(:params) { %w[ appserver production ] }
 
         it "is not configured to show all policies" do
-          expect(command.show_all_policies?).to be(false)
           expect(show_policy_service.show_all_policies?).to be(false)
         end
 

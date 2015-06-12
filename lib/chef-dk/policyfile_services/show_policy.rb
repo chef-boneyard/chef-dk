@@ -67,9 +67,8 @@ module ChefDK
 
       attr_reader :policy_group
 
-      def initialize(config: nil, show_all: true, ui: nil, policy_name: nil, policy_group: nil, show_orphans: false, summary_diff: false)
+      def initialize(config: nil, ui: nil, policy_name: nil, policy_group: nil, show_orphans: false, summary_diff: false)
         @chef_config = config
-        @show_all = show_all
         @ui = ui
         @policy_name = policy_name
         @policy_group = policy_group
@@ -97,7 +96,7 @@ module ChefDK
       end
 
       def show_all_policies?
-        @show_all
+        !policy_name
       end
 
       def show_orphans?
