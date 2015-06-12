@@ -20,6 +20,9 @@ ChefDK.commands do |c|
   c.builtin "exec", :Exec, require_path: "chef-dk/command/exec",
     desc: "Runs the command in context of the embedded ruby"
 
+  c.builtin "env", :Env, require_path: "chef-dk/command/env",
+    desc: "Prints environment variables used by ChefDK"
+
   c.builtin "gem", :GemForwarder, require_path: "chef-dk/command/gem",
     desc: "Runs the `gem` command in context of the embedded ruby"
 
