@@ -20,6 +20,9 @@ ChefDK.commands do |c|
   c.builtin "exec", :Exec, require_path: "chef-dk/command/exec",
     desc: "Runs the command in context of the embedded ruby"
 
+  c.builtin "env", :Env, require_path: "chef-dk/command/env",
+    desc: "Prints environment variables used by ChefDK"
+
   c.builtin "gem", :GemForwarder, require_path: "chef-dk/command/gem",
     desc: "Runs the `gem` command in context of the embedded ruby"
 
@@ -32,6 +35,8 @@ ChefDK.commands do |c|
   c.builtin "update", :Update, desc: "Updates a Policyfile.lock.json with latest run_list and cookbooks"
 
   c.builtin "push", :Push, desc: "Push a local policy lock to a policy group on the server"
+
+  c.builtin "show-policy", :ShowPolicy, desc: "Show policyfile objects on you Chef Server"
 
   c.builtin "diff", :Diff, desc: "Generate an itemized diff of two Policyfile lock documents"
 

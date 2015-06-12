@@ -215,6 +215,31 @@ end
         end
       end
 
+      add_component "openssl" do |c|
+        # https://github.com/chef/chef-dk/issues/420
+        c.base_dir = "chef"
+
+        test = <<-EOF.gsub(/^\s+/, "")
+        require "net/http"
+
+        uris = %w{https://www.google.com https://chef.io/ https://ec2.amazonaws.com}
+        uris.each do |uri|
+          uri = URI(uri)
+          puts "Fetching \#{uri} for SSL check"
+          Net::HTTP.get uri
+        end
+        EOF
+
+        c.unit_test do
+          tmpdir do |cwd|
+            with_file(File.join(cwd, "openssl.rb")) do |f|
+              f.write test
+            end
+            sh!("#{Gem.ruby} openssl.rb", cwd: cwd)
+          end
+        end
+      end
+
       attr_reader :verification_threads
       attr_reader :verification_results
       attr_reader :verification_status

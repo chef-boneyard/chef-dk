@@ -23,9 +23,11 @@ describe ChefDK::Command::ShowPolicy do
 
   it_behaves_like "a command with a UI object"
 
-  let(:command) do
+  subject(:command) do
     described_class.new
   end
+
+  let(:show_policy_service) { command.show_policy_service }
 
   let(:chef_config_loader) { instance_double("Chef::WorkstationConfigLoader") }
 
@@ -46,42 +48,6 @@ describe ChefDK::Command::ShowPolicy do
       command.apply_params!(params)
     end
 
-    context "with no params" do
-
-      it "disables debug by default" do
-        expect(command.debug?).to be(false)
-      end
-
-      it "is configured to show all policies across all groups" do
-        expect(command.show_all_policies?).to be(true)
-      end
-
-      it "disables displaying orphans" do
-        expect(command.show_orphans?).to be(false)
-      end
-
-    end
-
-    context "when debug mode is set" do
-
-      let(:params) { [ "-D" ] }
-
-      it "enables debug" do
-        expect(command.debug?).to be(true)
-      end
-
-    end
-
-    context "when --show-orphans is given" do
-
-      let(:params) { %w[ -o ] }
-
-      it "enables displaying orphans" do
-        expect(command.show_orphans?).to be(true)
-      end
-
-    end
-
     context "when given a path to the config" do
 
       let(:params) { %w[ -c ~/otherstuff/config.rb ] }
@@ -95,43 +61,81 @@ describe ChefDK::Command::ShowPolicy do
       it "reads the chef/knife config" do
         expect(Chef::WorkstationConfigLoader).to receive(:new).with(config_arg).and_return(chef_config_loader)
         expect(command.chef_config).to eq(chef_config)
+        expect(show_policy_service.chef_config).to eq(chef_config)
       end
 
     end
 
-    context "when given a policy name" do
+    describe "settings that require loading chef config" do
 
-      let(:params) { %w[ appserver ] }
-
-      it "is not configured to show all policies" do
-        expect(command.show_all_policies?).to be(false)
+      before do
+        allow(chef_config_loader).to receive(:load)
       end
 
-      it "is configured to show the given policy" do
-        expect(command.policy_name).to eq("appserver")
+      context "with no params" do
+
+        it "disables debug by default" do
+          expect(command.debug?).to be(false)
+        end
+
+        it "is configured to show all policies across all groups" do
+          expect(command.show_all_policies?).to be(true)
+          expect(show_policy_service.show_all_policies?).to be(true)
+        end
+
+        it "disables displaying orphans" do
+          expect(command.show_orphans?).to be(false)
+          expect(show_policy_service.show_orphans?).to be(false)
+        end
+
       end
 
-      context "and the summary diff option `-s`" do
+      context "when debug mode is set" do
 
-        let(:params) { %w[ appserver -s ] }
+        let(:params) { [ "-D" ] }
 
-        it "enables summary diff output" do
-          expect(command.show_summary_diff?).to be(true)
+        it "enables debug" do
+          expect(command.debug?).to be(true)
+        end
+
+      end
+
+      context "when --show-orphans is given" do
+
+        let(:params) { %w[ -o ] }
+
+        it "enables displaying orphans" do
+          expect(command.show_orphans?).to be(true)
+          expect(show_policy_service.show_orphans?).to be(true)
+        end
+
+      end
+
+      context "when given a policy name" do
+
+        let(:params) { %w[ appserver ] }
+
+        it "is not configured to show all policies" do
+          expect(command.show_all_policies?).to be(false)
+          expect(show_policy_service.show_all_policies?).to be(false)
+        end
+
+        it "is configured to show the given policy" do
+          expect(command.policy_name).to eq("appserver")
+          expect(show_policy_service.policy_name).to eq("appserver")
         end
 
       end
 
     end
-
   end
 
   describe "running the command" do
 
     let(:ui) { TestHelpers::TestUI.new }
 
-    let(:policy_info) { command.policy_info_fetcher }
-
     before do
+      allow(chef_config_loader).to receive(:load)
       command.ui = ui
     end
 
@@ -145,695 +149,69 @@ describe ChefDK::Command::ShowPolicy do
 
     end
 
-    context "when the summary diff option is given but no policy name is specified" do
+    context "when the list service raises an exception" do
 
-      let(:params) { %w[ -s ] }
+      let(:backtrace) { caller[0...3] }
 
-      it "prints a message explaining that -s only applies to single policy" do
-        expect(command.run(params)).to eq(1)
+      let(:cause) do
+        e = StandardError.new("some operation failed")
+        e.set_backtrace(backtrace)
+        e
       end
 
-    end
-
-
-    describe "show all" do
-
-      let(:params) { [] }
-
-      let(:policies_by_name) { {} }
-      let(:policies_by_group) { {} }
+      let(:exception) do
+        ChefDK::PolicyfileListError.new("Failed to list policies", cause)
+      end
 
       before do
-        policy_info.set!(policies_by_name, policies_by_group)
+        allow(command.show_policy_service).to receive(:run).and_raise(exception)
       end
 
-      context "when an error occurs contacting the server" do
+      it "prints a debugging message and exits non-zero" do
+        expect(command.run([])).to eq(1)
 
-        it "displays the error and exits"
+        expected_output=<<-E
+Error: Failed to list policies
+Reason: (StandardError) some operation failed
 
+E
+
+        expect(ui.output).to eq(expected_output)
       end
 
-      context "when there are no policies or groups on the server" do
+      context "when debug is enabled" do
 
-        it "prints a message to stderr that there aren't any policies or groups" do
-          expect(command.run(params)).to eq(0)
-          expect(ui.output).to eq("No policies or policy groups exist on the server\n")
-        end
+        it "includes the backtrace in the error" do
 
-      end
+          command.run(%w[ -D ])
 
-      context "when there are policies but no groups" do
+          expected_output=<<-E
+Error: Failed to list policies
+Reason: (StandardError) some operation failed
 
-        let(:policies_by_name) do
-          {
-            "appserver" => {
-              "1111111111111111111111111111111111111111111111111111111111111111" => {},
-              "2222222222222222222222222222222222222222222222222222222222222222" => {}
-            },
-            "load-balancer" => {
-              "5555555555555555555555555555555555555555555555555555555555555555" => {},
-              "6666666666666666666666666666666666666666666666666666666666666666" => {},
-            },
-            "db" => {
-              "9999999999999999999999999999999999999999999999999999999999999999" => {},
-              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {}
-            }
-          }
-        end
 
-        it "prints a message to stderr that there are no active policies" do
-          expect(command.run(params)).to eq(0)
-          expected_output = <<-OUTPUT
-appserver
-=========
+E
+          expected_output << backtrace.join("\n") << "\n"
 
-Policy appserver is not assigned to any groups
-
-load-balancer
-=============
-
-Policy load-balancer is not assigned to any groups
-
-db
-==
-
-Policy db is not assigned to any groups
-
-OUTPUT
-          expect(ui.output).to eq(expected_output)
-        end
-
-        context "with orphans shown" do
-
-          let(:params) { %w[ -o ] }
-
-          it "shows all policies as orphaned" do
-            expect(command.run(params)).to eq(0)
-            expected_output = <<-OUTPUT
-appserver
-=========
-
-Policy appserver is not assigned to any groups
-
-Orphaned:
----------
-
-* 1111111111
-* 2222222222
-
-load-balancer
-=============
-
-Policy load-balancer is not assigned to any groups
-
-Orphaned:
----------
-
-* 5555555555
-* 6666666666
-
-db
-==
-
-Policy db is not assigned to any groups
-
-Orphaned:
----------
-
-* 9999999999
-* aaaaaaaaaa
-
-OUTPUT
-            expect(ui.output).to eq(expected_output)
-          end
-        end
-
-      end
-
-      context "when there are groups but no policies" do
-
-        let(:policies_by_group) do
-          {
-            "dev" => {},
-            "staging" => {},
-            "prod" => {}
-          }
-        end
-
-        it "prints a message to stderr and exits" do
-          expect(command.run(params)).to eq(0)
-          expect(ui.output).to eq("No policies exist on the server\n")
-        end
-
-      end
-
-      context "when there is a revision of each kind of policy assigned to every policy group" do
-
-        let(:policies_by_name) do
-          {
-            "appserver" => {
-              "1111111111111111111111111111111111111111111111111111111111111111" => {},
-              "2222222222222222222222222222222222222222222222222222222222222222" => {}
-            },
-            "load-balancer" => {
-              "5555555555555555555555555555555555555555555555555555555555555555" => {},
-              "6666666666666666666666666666666666666666666666666666666666666666" => {},
-            },
-            "db" => {
-              "9999999999999999999999999999999999999999999999999999999999999999" => {},
-              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {}
-            }
-          }
-        end
-
-        let(:policies_by_group) do
-          {
-            "dev" => {
-              "appserver" => "1111111111111111111111111111111111111111111111111111111111111111",
-              "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
-              "db" => "9999999999999999999999999999999999999999999999999999999999999999"
-            },
-            "staging" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
-              "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
-              "db" => "9999999999999999999999999999999999999999999999999999999999999999"
-            },
-            "prod" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
-              "load-balancer" => "6666666666666666666666666666666666666666666666666666666666666666",
-              "db" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-            }
-          }
-        end
-
-        it "shows each policy name, followed by a list of group_name -> revision" do
-          expected_output = <<-OUTPUT
-appserver
-=========
-
-* dev:      1111111111
-* staging:  2222222222
-* prod:     2222222222
-
-load-balancer
-=============
-
-* dev:      5555555555
-* staging:  5555555555
-* prod:     6666666666
-
-db
-==
-
-* dev:      9999999999
-* staging:  9999999999
-* prod:     aaaaaaaaaa
-
-OUTPUT
-          expect(command.run(params)).to eq(0)
           expect(ui.output).to eq(expected_output)
         end
 
       end
 
-      context "when there is a revision of each kind of policy assigned to every policy group, plus orphaned policies" do
-        let(:policies_by_name) do
-          {
-            "appserver" => {
-              "1111111111111111111111111111111111111111111111111111111111111111" => {},
-              "2222222222222222222222222222222222222222222222222222222222222222" => {},
-              "3333333333333333333333333333333333333333333333333333333333333333" => {}
-            },
-            "load-balancer" => {
-              "5555555555555555555555555555555555555555555555555555555555555555" => {},
-              "6666666666666666666666666666666666666666666666666666666666666666" => {},
-              "7777777777777777777777777777777777777777777777777777777777777777" => {}
-            },
-            "db" => {
-              "9999999999999999999999999999999999999999999999999999999999999999" => {},
-              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {},
-              "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" => {}
-            }
-          }
-        end
-
-        let(:policies_by_group) do
-          {
-            "dev" => {
-              "appserver" => "1111111111111111111111111111111111111111111111111111111111111111",
-              "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
-              "db" => "9999999999999999999999999999999999999999999999999999999999999999"
-            },
-            "staging" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
-              "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
-              "db" => "9999999999999999999999999999999999999999999999999999999999999999"
-            },
-            "prod" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
-              "load-balancer" => "6666666666666666666666666666666666666666666666666666666666666666",
-              "db" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-            }
-          }
-        end
-
-        it "shows each policy name, followed by a list of group_name -> revision, followed by a list of orphaned policies" do
-          expected_output = <<-OUTPUT
-appserver
-=========
-
-* dev:      1111111111
-* staging:  2222222222
-* prod:     2222222222
-
-load-balancer
-=============
-
-* dev:      5555555555
-* staging:  5555555555
-* prod:     6666666666
-
-db
-==
-
-* dev:      9999999999
-* staging:  9999999999
-* prod:     aaaaaaaaaa
-
-OUTPUT
-          expect(command.run(params)).to eq(0)
-          expect(ui.output).to eq(expected_output)
-        end
-
-        context "with orphans shown" do
-
-          let(:params) { %w[ -o ] }
-
-          it "shows each policy name, followed by a list of group_name -> revision, followed by a list of orphaned policies" do
-            expected_output = <<-OUTPUT
-appserver
-=========
-
-* dev:      1111111111
-* staging:  2222222222
-* prod:     2222222222
-
-Orphaned:
----------
-
-* 3333333333
-
-load-balancer
-=============
-
-* dev:      5555555555
-* staging:  5555555555
-* prod:     6666666666
-
-Orphaned:
----------
-
-* 7777777777
-
-db
-==
-
-* dev:      9999999999
-* staging:  9999999999
-* prod:     aaaaaaaaaa
-
-Orphaned:
----------
-
-* bbbbbbbbbb
-
-OUTPUT
-            expect(command.run(params)).to eq(0)
-            expect(ui.output).to eq(expected_output)
-          end
-
-        end
-      end
-
-      context "when some groups do not have a revision of every policy" do
-        let(:policies_by_name) do
-          {
-            "appserver" => {
-              "1111111111111111111111111111111111111111111111111111111111111111" => {},
-              "2222222222222222222222222222222222222222222222222222222222222222" => {}
-            },
-            "load-balancer" => {
-              "5555555555555555555555555555555555555555555555555555555555555555" => {},
-              "6666666666666666666666666666666666666666666666666666666666666666" => {},
-            },
-            "db" => {
-              "9999999999999999999999999999999999999999999999999999999999999999" => {},
-              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {}
-            },
-            "memcache" => {
-              "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" => {}
-            }
-          }
-        end
-
-        let(:policies_by_group) do
-          {
-            "dev" => {
-              "appserver" => "1111111111111111111111111111111111111111111111111111111111111111",
-              "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
-              "db" => "9999999999999999999999999999999999999999999999999999999999999999",
-              "memcache" => "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
-            },
-            "staging" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
-              "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
-              "db" => "9999999999999999999999999999999999999999999999999999999999999999",
-              "memcache" => "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
-            },
-            "prod" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
-              "load-balancer" => "6666666666666666666666666666666666666666666666666666666666666666",
-              "db" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-            }
-          }
-        end
-
-
-        it "shows each policy name, followed by a list of group_name -> revision, omitting groups that don't have that policy" do
-          expected_output = <<-OUTPUT
-appserver
-=========
-
-* dev:      1111111111
-* staging:  2222222222
-* prod:     2222222222
-
-load-balancer
-=============
-
-* dev:      5555555555
-* staging:  5555555555
-* prod:     6666666666
-
-db
-==
-
-* dev:      9999999999
-* staging:  9999999999
-* prod:     aaaaaaaaaa
-
-memcache
-========
-
-* dev:      dddddddddd
-* staging:  dddddddddd
-* prod:     *NOT APPLIED*
-
-OUTPUT
-          expect(command.run(params)).to eq(0)
-          expect(ui.output).to eq(expected_output)
-        end
-
-      end
     end
 
-    describe "showing a single policy" do
-
-      let(:params) { %w[ appserver ] }
-
-      let(:policies_by_name) { {} }
-      let(:policies_by_group) { {} }
+    context "when the list service executes successfully" do
 
       before do
-        policy_info.set!(policies_by_name, policies_by_group)
+        expect(command.show_policy_service).to receive(:run)
       end
 
-      context "when an error occurs contacting the server" do
-
-        it "displays the error and exits"
-
+      it "exits 0" do
+        expect(command.run([])).to eq(0)
       end
-
-      context "when there are no revisions of the policy on the server" do
-
-        let(:policies_by_name) do
-          {}
-        end
-
-        let(:policies_by_group) do
-          {}
-        end
-
-        it "prints a message to stderr that there are no copies of the policy on the server" do
-          expected_output = <<-OUTPUT
-appserver
-=========
-
-No policies named 'appserver' are associated with a policy group
-
-OUTPUT
-
-          expect(command.run(params)).to eq(0)
-          expect(ui.output).to eq(expected_output)
-        end
-
-      end
-
-      context "when all policies are orphaned and orphans are not shown" do
-        let(:policies_by_name) do
-          {
-            "appserver" => {
-              "1111111111111111111111111111111111111111111111111111111111111111" => {},
-              "2222222222222222222222222222222222222222222222222222222222222222" => {},
-              "3333333333333333333333333333333333333333333333333333333333333333" => {}
-            }
-          }
-
-        end
-
-        let(:policies_by_group) do
-          {}
-        end
-
-        it "explains that no policies are assigned to a group" do
-          expected_output = <<-OUTPUT
-appserver
-=========
-
-No policies named 'appserver' are associated with a policy group
-
-OUTPUT
-
-          expect(command.run(params)).to eq(0)
-          expect(ui.output).to eq(expected_output)
-        end
-      end
-
-      context "when all policy groups have the same revision of the policy" do
-
-        let(:policies_by_name) do
-          {
-            "appserver" => {
-              "1111111111111111111111111111111111111111111111111111111111111111" => {},
-              "2222222222222222222222222222222222222222222222222222222222222222" => {},
-              "3333333333333333333333333333333333333333333333333333333333333333" => {}
-            }
-          }
-
-        end
-
-        let(:policies_by_group) do
-          {
-            "dev" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
-            },
-            "staging" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
-            },
-            "prod" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
-            }
-          }
-        end
-        it "lists each of the groups with the associated revision" do
-          expected_output = <<-OUTPUT
-appserver
-=========
-
-* dev:      2222222222
-* staging:  2222222222
-* prod:     2222222222
-
-OUTPUT
-          expect(command.run(params)).to eq(0)
-          expect(ui.output).to eq(expected_output)
-        end
-
-      end
-
-      context "when policy groups have revisions with differing cookbooks" do
-
-        let(:policies_by_name) do
-          {
-            "appserver" => {
-              "1111111111111111111111111111111111111111111111111111111111111111" => {},
-              "2222222222222222222222222222222222222222222222222222222222222222" => {},
-              "3333333333333333333333333333333333333333333333333333333333333333" => {}
-            }
-          }
-
-        end
-
-        let(:policies_by_group) do
-          {
-            "dev" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
-            },
-            "staging" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
-            },
-            "prod" => {
-              "appserver" => "1111111111111111111111111111111111111111111111111111111111111111"
-            }
-          }
-        end
-
-        it "lists each of the groups with the associated revision" do
-          expected_output = <<-OUTPUT
-appserver
-=========
-
-* dev:      2222222222
-* staging:  2222222222
-* prod:     1111111111
-
-OUTPUT
-          expect(command.run(params)).to eq(0)
-          expect(ui.output).to eq(expected_output)
-        end
-
-        context "when the diff summary option is given" do
-
-          let(:appserver_lock_contents_111) do
-            {
-              "cookbook_locks" => {
-                "apache2" => {
-                  "version" => "2.1.3",
-                  "identifier" => "abcdef" + ("0" * 34)
-                },
-                "yum" => {
-                  "version" => "4.5.6",
-                  "identifier" => "123abc" + ("0" * 34)
-                },
-                "apt" => {
-                  "version" => "10.0.0",
-                  "identifier" => "ffffff" + ("0" * 34)
-                }
-
-              }
-            }
-          end
-
-          let(:appserver_lock_contents_222) do
-            {
-              "cookbook_locks" => {
-                "apache2" => {
-                  "version" => "2.0.5",
-                  "identifier" => "aaa123" + ("0" * 34)
-                },
-                "yum" => {
-                  "version" => "4.5.2",
-                  "identifier" => "867530" + ("9" * 34)
-                },
-                "apt" => {
-                  "version" => "10.0.0",
-                  "identifier" => "ffffff" + ("0" * 34)
-                },
-                "other_cookbook" => {
-                  "version" => "9.8.7",
-                  "identifier" => "113113" + ("0" * 34)
-                }
-              }
-            }
-          end
-
-          let(:appserver_lock_content) do
-            {
-              "appserver" => {
-                "1111111111111111111111111111111111111111111111111111111111111111" => appserver_lock_contents_111,
-                "2222222222222222222222222222222222222222222222222222222222222222" => appserver_lock_contents_222,
-              }
-            }
-          end
-
-          let(:params) { %w[ appserver -s ] }
-
-          before do
-            policy_info.policy_lock_content = appserver_lock_content
-          end
-
-          it "lists each of the groups and displays the version and identifier of the differing cookbooks" do
-            expected_output = <<-OUTPUT
-appserver
-=========
-
-dev:     2222222222
--------------------
-
-* apache2:         2.0.5 (aaa1230000)
-* yum:             4.5.2 (8675309999)
-* other_cookbook:  9.8.7 (1131130000)
-
-staging: 2222222222
--------------------
-
-* apache2:         2.0.5 (aaa1230000)
-* yum:             4.5.2 (8675309999)
-* other_cookbook:  9.8.7 (1131130000)
-
-prod:    1111111111
--------------------
-
-* apache2:         2.1.3 (abcdef0000)
-* yum:             4.5.6 (123abc0000)
-* other_cookbook:  *NONE*
-
-OUTPUT
-            expect(command.run(params)).to eq(0)
-            expect(ui.output).to eq(expected_output)
-          end
-        end
-
-        context "when orphans are displayed" do
-
-          let(:params) { %w[ appserver -o ] }
-
-          it "lists each of the groups, then lists the orphaned revisions" do
-            expected_output = <<-OUTPUT
-appserver
-=========
-
-* dev:      2222222222
-* staging:  2222222222
-* prod:     1111111111
-
-Orphaned:
----------
-
-* 3333333333
-
-OUTPUT
-
-            expect(command.run(params)).to eq(0)
-            expect(ui.output).to eq(expected_output)
-          end
-
-        end
-      end
-
-
 
     end
+
   end
 end
 
