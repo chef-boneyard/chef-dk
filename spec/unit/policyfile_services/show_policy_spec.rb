@@ -819,7 +819,11 @@ OUTPUT
 
       let(:policyfile_lock_json) { FFI_Yajl::Encoder.encode(policyfile_lock_data, pretty: true) }
 
+      let(:pager) { instance_double("ChefDK::Pager", ui: ui) }
+
       before do
+        allow(ChefDK::Pager).to receive(:new).and_return(pager)
+        allow(pager).to receive(:with_pager).and_yield(pager)
         allow(http_client).to receive(:get).with("policy_groups/dev/policies/appserver").and_return(policyfile_lock_data)
       end
 

@@ -53,6 +53,12 @@ BANNER
         description:  "Show policy revisions that are unassigned",
         default:      false
 
+      option :pager,
+        long:        "--[no-]pager",
+        description: "Enable/disable paged policyfile lock ouput (default: enabled)",
+        default:     true,
+        boolean:     true
+
       option :config_file,
         short:        "-c CONFIG_FILE",
         long:         "--config CONFIG_FILE",
@@ -96,7 +102,8 @@ BANNER
                                              policy_name: policy_name,
                                              policy_group: policy_group,
                                              show_orphans: show_orphans?,
-                                             summary_diff: show_summary_diff?)
+                                             summary_diff: show_summary_diff?,
+                                             pager: enable_pager?)
       end
 
       def debug?
@@ -109,6 +116,10 @@ BANNER
 
       def show_orphans?
         config[:show_orphans]
+      end
+
+      def enable_pager?
+        config[:pager]
       end
 
       def handle_error(error)

@@ -17,6 +17,7 @@
 
 require 'chef-dk/policyfile/comparison_base'
 require 'chef-dk/policyfile/lister'
+require 'chef-dk/pager'
 
 module ChefDK
   module PolicyfileServices
@@ -67,13 +68,14 @@ module ChefDK
 
       attr_reader :policy_group
 
-      def initialize(config: nil, ui: nil, policy_name: nil, policy_group: nil, show_orphans: false, summary_diff: false)
+      def initialize(config: nil, ui: nil, policy_name: nil, policy_group: nil, show_orphans: false, summary_diff: false, pager: false)
         @chef_config = config
         @ui = ui
         @policy_name = policy_name
         @policy_group = policy_group
         @show_orphans = show_orphans
         @summary_diff = summary_diff
+        @enable_pager = pager
       end
 
       def run
@@ -107,6 +109,10 @@ module ChefDK
         @summary_diff
       end
 
+      def enable_pager?
+        @enable_pager
+      end
+
       def report
         @report ||= ReportPrinter.new(ui)
       end
@@ -117,7 +123,8 @@ module ChefDK
 
       def display_policy_revision
         lock = Policyfile::ComparisonBase::PolicyGroup.new(policy_group, policy_name, http_client).lock
-        ui.msg(FFI_Yajl::Encoder.encode(lock, pretty: true))
+        pager = Pager.new(enable_pager: enable_pager?)
+        pager.with_pager { |p| p.ui.msg(FFI_Yajl::Encoder.encode(lock, pretty: true)) }
       end
 
       def display_all_policies
