@@ -45,7 +45,8 @@ describe ChefDK::Command::Verify do
       "fauxhai",
       "knife-spork",
       "kitchen-vagrant",
-      "package installation"
+      "package installation",
+      "openssl"
     ]
   end
 
