@@ -23,6 +23,7 @@
     * chef-provisioning - 1.2.0
     * chef-provisioning-aws - 1.2.1
     * knife-windows - 1.0.0.rc.0
+* [#412](https://github.com/chef/chef-dk/pull/412) Allow setting the home directory used by ChefDK
   
 # Last Release: 0.6.2
 * I forgot to update a test that was failing in 0.6.1.  Travis didn't catch
