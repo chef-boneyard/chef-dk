@@ -29,6 +29,7 @@
   lock revision by giving the policy name and group to `chef show-policy`
 * [chef/omnibus-chef#406](https://github.com/chef/omnibus-chef/pull/406) Use LOCALAPPDATA as the default ChefDK home on Windows
 * [chef/omnibus-chef#408](https://github.com/chef/omnibus-chef/pull/408) Added ChefDK environment helpers as feature in MSI
+* [chef/omnibus-chef#386](https://github.com/chef/omnibus-chef/pull/386) Added Powershell wrapper modules
   
 # Last Release: 0.6.2
 * I forgot to update a test that was failing in 0.6.1.  Travis didn't catch
