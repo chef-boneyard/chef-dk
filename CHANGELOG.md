@@ -27,6 +27,7 @@
 * [#423](https://github.com/chef/chef-dk/pull/423) Add `chef env` command
 * [#424](https://github.com/chef/chefdk/pull/424) Add the ability to display a specific policyfile 
   lock revision by giving the policy name and group to `chef show-policy`
+* [chef/omnibus-chef#406](https://github.com/chef/omnibus-chef/pull/406) Use LOCALAPPDATA as the default ChefDK home on Windows
   
 # Last Release: 0.6.2
 * I forgot to update a test that was failing in 0.6.1.  Travis didn't catch
