@@ -17,6 +17,12 @@
   kitchen config to Ubuntu 14.04 and CentOS 7.1
 * [#406](https://github.com/chef/chef-dk/pull/406): Add `--target HOST`
   and `--opt OPT=VALUE` CLI options to `chef provision`.
+* [#422](https://github.com/chef/chef-dk/pull/422): Add `chef verify
+  openssl` to validate that the ChefDK can access HTTPS urls correctly
+* Updating dependencies:
+    * chef-provisioning - 1.2.0
+    * chef-provisioning-aws - 1.2.1
+    * knife-windows - 1.0.0.rc.0
   
 # Last Release: 0.6.2
 * I forgot to update a test that was failing in 0.6.1.  Travis didn't catch
