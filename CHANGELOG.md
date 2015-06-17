@@ -1,6 +1,6 @@
 # Chef Development Kit Changelog
 
-# Unreleased
+# Last Release: 0.7.0
 
 * [Jian Weihang](https://github.com/tonytonyjan): Add post install
   warning when installing via rubygems
@@ -31,7 +31,7 @@
 * [chef/omnibus-chef#408](https://github.com/chef/omnibus-chef/pull/408) Added ChefDK environment helpers as feature in MSI
 * [chef/omnibus-chef#386](https://github.com/chef/omnibus-chef/pull/386) Added Powershell wrapper modules
   
-# Last Release: 0.6.2
+# 0.6.2
 * I forgot to update a test that was failing in 0.6.1.  Travis didn't catch
   it because my PR was not against master.
 
