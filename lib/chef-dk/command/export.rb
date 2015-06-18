@@ -48,6 +48,13 @@ Options:
 
 E
 
+      option :archive,
+        short:       "-a",
+        long:        "--archive",
+        description: "Export as a tarball archive rather than a directory",
+        default:     false,
+        boolean:     true
+
       option :force,
         short:       "-f",
         long:        "--force",
@@ -94,10 +101,15 @@ E
         !!config[:debug]
       end
 
+      def archive?
+        !!config[:archive]
+      end
+
       def export_service
         @export_service ||= PolicyfileServices::ExportRepo.new(policyfile: policyfile_relative_path,
                                                        export_dir: export_dir,
                                                        root_dir: Dir.pwd,
+                                                       archive: archive?,
                                                        force: config[:force])
       end
 

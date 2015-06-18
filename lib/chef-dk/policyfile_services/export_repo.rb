@@ -38,9 +38,10 @@ module ChefDK
       attr_reader :root_dir
       attr_reader :export_dir
 
-      def initialize(policyfile: nil, export_dir: nil, root_dir: nil, force: false)
+      def initialize(policyfile: nil, export_dir: nil, root_dir: nil, archive: false, force: false)
         @root_dir = root_dir
         @export_dir = File.expand_path(export_dir)
+        @archive = archive
         @force_export = force
 
         @policy_data = nil
@@ -49,6 +50,10 @@ module ChefDK
         policyfile_rel_path = policyfile || "Policyfile.rb"
         policyfile_full_path = File.expand_path(policyfile_rel_path, root_dir)
         @storage_config = Policyfile::StorageConfig.new.use_policyfile(policyfile_full_path)
+      end
+
+      def archive?
+        @archive
       end
 
       def policy_name

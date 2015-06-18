@@ -59,6 +59,19 @@ describe ChefDK::Command::Export do
       end
     end
 
+    context "when archive mode is set" do
+
+      let(:params) { [ "path/to/export", "-a" ] }
+
+      it "enables archiving the exported repo" do
+        expect(command.archive?).to be(true)
+      end
+
+      it "configures the export service to archive" do
+        expect(command.export_service.archive?).to be(true)
+      end
+    end
+
     context "when the path to the exported repo is given" do
 
       let(:params) { [ "path/to/export" ] }
