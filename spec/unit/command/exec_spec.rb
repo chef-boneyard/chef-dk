@@ -94,7 +94,7 @@ describe ChefDK::Command::Exec do
         expect(ENV).to receive(:[]=).with("GEM_PATH", expected_GEM_PATH)
 
         expect(command_instance).to receive(:exec).with(*command_options)
-        expect{ run_command }.to raise_error # XXX: this isn't a test we just need to swallow the exception
+        expect{ run_command }.to raise_error(RuntimeError) # XXX: this isn't a test we just need to swallow the exception
       end
 
       ['-v', '--version', '-h', '--help'].each do |switch|
@@ -108,7 +108,7 @@ describe ChefDK::Command::Exec do
             expect(ENV).to receive(:[]=).with("GEM_PATH", expected_GEM_PATH)
 
             expect(command_instance).to receive(:exec).with(*command_options)
-            expect{ run_command }.to raise_error # XXX: this isn't a test we just need to swallow the exception
+            expect{ run_command }.to raise_error(RuntimeError) # XXX: this isn't a test we just need to swallow the exception
           end
         end
       end
