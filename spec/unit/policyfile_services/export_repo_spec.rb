@@ -40,10 +40,13 @@ describe ChefDK::PolicyfileServices::ExportRepo do
 
   let(:force_export) { false }
 
+  let(:archive) { false }
+
   subject(:export_service) do
     described_class.new(policyfile: policyfile_rb_explicit_name,
                         root_dir: working_dir,
                         export_dir: export_dir,
+                        archive: archive,
                         force: force_export)
   end
 
@@ -154,6 +157,22 @@ E
         expect(export_service.policy_name).to eq("install-example")
       end
 
+      context "when using archive mode" do
+
+        let(:archive) { true }
+
+        # TODO: also support a full file name
+        context "when the given 'export_dir' is a directory" do
+
+          it "sets the archive file location to $policy_name-$revision.tgz" do
+            expected = File.join(export_dir, "install-example-60e5ad638dce219d8f87d589463ec4a9884007ba5e2adbb4c0a7021d67204f1a.tgz")
+            expect(export_service.archive_file_location).to eq(expected)
+          end
+
+        end
+
+      end
+
       describe "writing updates to the policyfile lock" do
 
         let(:updated_lockfile_io) { StringIO.new }
@@ -169,10 +188,11 @@ E
 
       context "copying the cookbooks to the export dir" do
 
-        context "when the export dir is empty" do
+        shared_examples_for "successful_export" do
           before do
             allow(export_service.policyfile_lock).to receive(:validate_cookbooks!).and_return(true)
             export_service.run
+            pp :export_run
           end
 
           let(:cookbook_files) do
@@ -222,6 +242,11 @@ E
 
         end
 
+        context "when the export dir is empty" do
+
+          include_examples "successful_export"
+        end
+
         context "When an error occurs creating the export" do
 
           before do
@@ -253,14 +278,15 @@ E
           end
 
           it "ignores the non-conflicting content and exports" do
-            export_service.run
-
             expect(File).to exist(file_in_export_dir)
             expect(File).to exist(extra_data_bag_item)
 
             expect(File).to be_directory(File.join(export_dir, "cookbooks"))
             expect(File).to be_directory(File.join(export_dir, "data_bags"))
           end
+
+          include_examples "successful_export"
+
         end
 
         context "When the export dir has conflicting content" do
@@ -310,9 +336,26 @@ E
 
           end
 
+        end # When the export dir has conflicting content
+
+        context "when archive mode is enabled" do
+
+          let(:archive) { true }
+
+          # TODO:
+          it "exports the repo as a tgz archive"
+
+          include_examples "successful_export" do
+
+            before do
+              pp :archive_before_block
+            end
+
+          end
+
         end
 
-      end
+      end # copying the cookbooks to the export dir
     end
 
   end

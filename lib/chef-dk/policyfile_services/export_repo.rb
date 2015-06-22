@@ -16,6 +16,7 @@
 #
 
 require 'fileutils'
+require 'tmpdir'
 
 require 'chef-dk/service_exceptions'
 require 'chef-dk/policyfile_lock'
@@ -50,6 +51,8 @@ module ChefDK
         policyfile_rel_path = policyfile || "Policyfile.rb"
         policyfile_full_path = File.expand_path(policyfile_rel_path, root_dir)
         @storage_config = Policyfile::StorageConfig.new.use_policyfile(policyfile_full_path)
+
+        @staging_dir = nil
       end
 
       def archive?
@@ -79,10 +82,19 @@ module ChefDK
         @policyfile_lock || validate_lockfile
       end
 
+      def archive_file_location
+        return nil unless archive?
+        filename = "#{policyfile_lock.name}-#{policyfile_lock.revision_id}.tgz"
+        File.join(export_dir, filename)
+      end
+
       def export
-        create_repo_structure
-        copy_cookbooks
-        create_policyfile_data_item
+        with_staging_dir do
+          create_repo_structure
+          copy_cookbooks
+          create_policyfile_data_item
+          mv_staged_repo
+        end
       rescue => error
         msg = "Failed to export policy (in #{policyfile_filename}) to #{export_dir}"
         raise PolicyfileExportRepoError.new(msg, error)
@@ -90,13 +102,27 @@ module ChefDK
 
       private
 
-      def create_repo_structure
-        FileUtils.rm_rf(cookbooks_dir)
-        FileUtils.rm_rf(policyfiles_data_bag_dir)
+      def with_staging_dir
+        p = Process.pid
+        t = Time.new.utc.strftime("%Y%m%d%H%M%S")
+        Dir.mktmpdir("chefdk-export-#{p}-#{t}") do |d|
+          begin
+            @staging_dir = d
+            yield
+          ensure
+            @staging_dir = nil
+          end
+        end
+      end
 
+      def staging_dir
+        @staging_dir
+      end
+
+      def create_repo_structure
         FileUtils.mkdir_p(export_dir)
-        FileUtils.mkdir_p(cookbooks_dir)
-        FileUtils.mkdir_p(policyfiles_data_bag_dir)
+        FileUtils.mkdir_p(cookbooks_staging_dir)
+        FileUtils.mkdir_p(policyfiles_data_bag_staging_dir)
       end
 
       def copy_cookbooks
@@ -107,7 +133,7 @@ module ChefDK
 
       def copy_cookbook(lock)
         dirname = "#{lock.name}-#{lock.dotted_decimal_identifier}"
-        export_path = File.join(export_dir, "cookbooks", dirname)
+        export_path = File.join(staging_dir, "cookbooks", dirname)
         metadata_rb_path = File.join(export_path, "metadata.rb")
         FileUtils.cp_r(lock.cookbook_path, export_path)
         FileUtils.rm_f(metadata_rb_path)
@@ -122,8 +148,6 @@ module ChefDK
       end
 
       def create_policyfile_data_item
-        policy_id = "#{policyfile_lock.name}-#{POLICY_GROUP}"
-        item_path = File.join(export_dir, "data_bags", "policyfiles", "#{policy_id}.json")
 
         lock_data = policyfile_lock.to_lock.dup
 
@@ -142,6 +166,17 @@ module ChefDK
         File.open(item_path, "wb+") do |f|
           f.print(FFI_Yajl::Encoder.encode(data_item, pretty: true ))
         end
+      end
+
+      def mv_staged_repo
+        # If we got here, either these dirs are empty/don't exist or force is
+        # set to true.
+        FileUtils.rm_rf(cookbooks_dir)
+        FileUtils.rm_rf(policyfiles_data_bag_dir)
+
+        FileUtils.mv(cookbooks_staging_dir, export_dir)
+        FileUtils.mkdir_p(export_data_bag_dir)
+        FileUtils.mv(policyfiles_data_bag_staging_dir, export_data_bag_dir)
       end
 
       def validate_lockfile
@@ -188,8 +223,28 @@ module ChefDK
         File.join(export_dir, "cookbooks")
       end
 
+      def export_data_bag_dir
+        File.join(export_dir, "data_bags")
+      end
+
       def policyfiles_data_bag_dir
-        File.join(export_dir, "data_bags", "policyfiles")
+        File.join(export_data_bag_dir, "policyfiles")
+      end
+
+      def policy_id
+        "#{policyfile_lock.name}-#{POLICY_GROUP}"
+      end
+
+      def item_path
+        File.join(staging_dir, "data_bags", "policyfiles", "#{policy_id}.json")
+      end
+
+      def cookbooks_staging_dir
+        File.join(staging_dir, "cookbooks")
+      end
+
+      def policyfiles_data_bag_staging_dir
+        File.join(staging_dir, "data_bags", "policyfiles")
       end
 
     end
