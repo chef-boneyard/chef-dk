@@ -86,7 +86,7 @@ E
       def run(params = [])
         return 1 unless apply_params!(params)
         export_service.run
-        ui.msg("Exported policy '#{export_service.policyfile_lock.name}' to #{export_dir}")
+        ui.msg("Exported policy '#{export_service.policyfile_lock.name}' to #{export_target}")
         0
       rescue ExportDirNotEmpty => e
         ui.err("ERROR: " + e.message)
@@ -95,6 +95,14 @@ E
       rescue PolicyfileServiceError => e
         handle_error(e)
         1
+      end
+
+      def export_target
+        if archive?
+          export_service.archive_file_location
+        else
+          export_dir
+        end
       end
 
       def debug?

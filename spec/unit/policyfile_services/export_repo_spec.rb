@@ -192,7 +192,6 @@ E
           before do
             allow(export_service.policyfile_lock).to receive(:validate_cookbooks!).and_return(true)
             export_service.run
-            pp :export_run
           end
 
           let(:cookbook_files) do
@@ -342,18 +341,54 @@ E
 
           let(:archive) { true }
 
-          # TODO:
-          it "exports the repo as a tgz archive"
+          let(:expected_archive_path) do
+            File.join(export_dir, "install-example-60e5ad638dce219d8f87d589463ec4a9884007ba5e2adbb4c0a7021d67204f1a.tgz")
+          end
+
+          it "exports the repo as a tgz archive" do
+            expect(File).to exist(expected_archive_path)
+          end
 
           include_examples "successful_export" do
 
+            # explode the tarball so the assertions can find the files
             before do
-              pp :archive_before_block
+              Zlib::GzipReader.open(expected_archive_path) do |gz_file|
+                tar = Archive::Tar::Minitar::Input.new(gz_file)
+                tar.each do |e|
+                  tar.extract_entry(export_dir, e)
+                end
+              end
             end
 
           end
 
-        end
+          context "when the target dir has a cookbooks or data_bags dir" do
+
+            let(:cookbooks_dir) { File.join(export_dir, "cookbooks") }
+
+            let(:file_in_cookbooks_dir) { File.join(cookbooks_dir, "some_random_cruft") }
+
+            let(:policyfiles_data_bag_dir) { File.join(export_dir, "data_bags", "policyfiles") }
+
+            let(:extra_policyfile_data_item) { File.join(policyfiles_data_bag_dir, "leftover-policy.json") }
+
+            before do
+              FileUtils.mkdir_p(export_dir)
+              FileUtils.mkdir_p(cookbooks_dir)
+              FileUtils.mkdir_p(policyfiles_data_bag_dir)
+              File.open(file_in_cookbooks_dir, "wb+") { |f| f.print "some random cruft" }
+              File.open(extra_policyfile_data_item, "wb+") { |f| f.print "some random cruft" }
+            end
+
+            it "exports successfully" do
+              expect { export_service.run }.to_not raise_error
+              expect(File).to exist(expected_archive_path)
+            end
+
+          end
+
+        end # when archive mode is enabled
 
       end # copying the cookbooks to the export dir
     end

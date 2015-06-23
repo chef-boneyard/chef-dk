@@ -17,6 +17,9 @@
 
 require 'fileutils'
 require 'tmpdir'
+require 'zlib'
+
+require 'archive/tar/minitar'
 
 require 'chef-dk/service_exceptions'
 require 'chef-dk/policyfile_lock'
@@ -93,7 +96,11 @@ module ChefDK
           create_repo_structure
           copy_cookbooks
           create_policyfile_data_item
-          mv_staged_repo
+          if archive?
+            create_archive
+          else
+            mv_staged_repo
+          end
         end
       rescue => error
         msg = "Failed to export policy (in #{policyfile_filename}) to #{export_dir}"
@@ -111,6 +118,14 @@ module ChefDK
             yield
           ensure
             @staging_dir = nil
+          end
+        end
+      end
+
+      def create_archive
+        Zlib::GzipWriter.open(archive_file_location) do |gz_file|
+          Dir.chdir(staging_dir) do
+            Archive::Tar::Minitar.pack(".", gz_file)
           end
         end
       end
@@ -204,7 +219,7 @@ module ChefDK
       end
 
       def assert_export_dir_clean!
-        if !force_export? && !conflicting_fs_entries.empty?
+        if !force_export? && !conflicting_fs_entries.empty? && !archive?
           msg = "Export dir (#{export_dir}) not clean. Refusing to export. (Conflicting files: #{conflicting_fs_entries.join(', ')})"
           raise ExportDirNotEmpty, msg
         end
