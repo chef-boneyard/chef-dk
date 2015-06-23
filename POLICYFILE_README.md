@@ -219,6 +219,31 @@ provisioner:
   require_chef_omnibus: 12.0.0-rc.2
 ```
 
+## Applying the Policy on a Node
+
+On the node you with to use the policy update the client.rb to include
+the following:
+
+```ruby
+# Policyfile Settings:
+use_policyfile true
+# The following is true by default in chef versions >= 12.2.0
+# and can be ommitted
+policy_document_native_api true
+
+policy_group "#{policy_group}"
+policy_name "#{policy_name}"
+```
+
+If you are using the compatability mode you should use the following
+settings:
+
+```ruby
+# Policyfile Settings:
+use_policyfile true
+policy_document_native_api false
+deployment_group "#{policy_name}-#{policy_group}"
+```
 ## Motivation and FAQ
 
 We believe Policyfiles will greatly improve the experience of using Chef
