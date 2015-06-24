@@ -421,3 +421,97 @@ describe ChefDK::Policyfile::LocalCookbook do
   end
 
 end
+
+describe ChefDK::Policyfile::ArchivedCookbook do
+
+  let(:cookbook_name) { "nginx" }
+
+  let(:storage_config) { ChefDK::Policyfile::StorageConfig.new }
+
+  let(:wrapped_cookbook_lock_data) do
+    {
+      "identifier" => "abc123",
+      "dotted_decimal_identifier" => "111.222.333",
+      "version" => "1.2.3",
+      "source" => "../my_repo/nginx",
+      "source_options" => {
+        # when getting the cookbook location spec, source options needs to have
+        # symbolic keys, so a round trip via LocalCookbook#build_from_lock_data
+        # will result in this being a symbol
+        :path => "../my_repo/nginx"
+      },
+      "cache_key" => nil,
+      "scm_info" => {}
+    }
+  end
+
+  let(:wrapped_cookbook_lock) do
+    lock = ChefDK::Policyfile::LocalCookbook.new(cookbook_name, storage_config)
+    allow(lock).to receive(:scm_info).and_return({})
+    lock.build_from_lock_data(wrapped_cookbook_lock_data)
+    lock
+  end
+
+  let(:cookbook_lock) do
+    described_class.new(wrapped_cookbook_lock, storage_config)
+  end
+
+  let(:archived_cookbook_path) { File.join(storage_config.relative_paths_root, "cookbooks", "nginx-111.222.333") }
+
+  it "sets cookbook_path to the path within the archive" do
+    expect(cookbook_lock.cookbook_path).to eq(archived_cookbook_path)
+  end
+
+  it "implements build_from_lock_data" do
+    msg = "ArchivedCookbook cannot be built from lock data, it can only wrap an existing lock object"
+    expect { cookbook_lock.build_from_lock_data({}) }.to raise_error(NotImplementedError, msg)
+  end
+
+  it "implements validate!" do
+    expect(cookbook_lock.validate!).to be(true)
+  end
+
+  it "implements refresh!" do
+    expect(cookbook_lock.refresh!).to be(true)
+  end
+
+  it "implements installed?" do
+    allow(File).to receive(:exist?).with(archived_cookbook_path).and_return(false)
+    allow(File).to receive(:directory?).with(archived_cookbook_path).and_return(false)
+    expect(cookbook_lock.installed?).to be(false)
+    allow(File).to receive(:exist?).with(archived_cookbook_path).and_return(true)
+    allow(File).to receive(:directory?).with(archived_cookbook_path).and_return(true)
+    expect(cookbook_lock.installed?).to be(true)
+  end
+
+  describe "delegated behavior" do
+
+    it "sets the identifier" do
+      expect(cookbook_lock.identifier).to eq("abc123")
+    end
+
+    it "sets the dotted_decimal_identifier" do
+      expect(cookbook_lock.dotted_decimal_identifier).to eq("111.222.333")
+    end
+
+    it "sets the version" do
+      expect(cookbook_lock.version).to eq("1.2.3")
+    end
+
+    it "sets the source attribute" do
+      expect(cookbook_lock.source).to eq("../my_repo/nginx")
+    end
+
+    it "sets the source options, symbolizing keys so the data is compatible with CookbookLocationSpecification" do
+      expected = { path: "../my_repo/nginx" }
+      expect(cookbook_lock.source_options).to eq(expected)
+    end
+
+    it "returns unchanged data when calling to_lock" do
+      expect(cookbook_lock.to_lock).to eq(wrapped_cookbook_lock_data)
+    end
+
+
+  end
+
+end

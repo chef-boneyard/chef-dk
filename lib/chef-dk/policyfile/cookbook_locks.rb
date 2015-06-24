@@ -15,6 +15,8 @@
 # limitations under the License.
 #
 
+require 'forwardable'
+
 require 'chef-dk/exceptions'
 
 require 'chef-dk/cookbook_profiler/null_scm'
@@ -98,11 +100,16 @@ module ChefDK
       end
 
       def cookbook_path
-        raise NotImplementedError, "#{self.class} must override #to_lock with a specific implementation"
+        raise NotImplementedError, "#{self.class} must override #cookbook_path with a specific implementation"
       end
 
       def to_lock
-        raise NotImplementedError, "#{self.class} must override #to_lock with a specific implementation"
+        validate!
+        lock_data
+      end
+
+      def lock_data
+        raise NotImplementedError, "#{self.class} must override #lock_data a specific implementation"
       end
 
       def build_from_lock_data(lock_data)
@@ -227,8 +234,7 @@ module ChefDK
         @source_options = symbolize_source_options_keys(lock_data["source_options"])
       end
 
-      def to_lock
-        validate!
+      def lock_data
         {
           "version" => version,
           "identifier" => identifier,
@@ -298,8 +304,7 @@ module ChefDK
         scm_profiler.profile_data
       end
 
-      def to_lock
-        validate!
+      def lock_data
         {
           "version" => version,
           "identifier" => identifier,
@@ -392,5 +397,59 @@ module ChefDK
       end
 
     end
+
+    class ArchivedCookbook < CookbookLock
+
+      extend Forwardable
+
+      def_delegator :@archived_lock, :name
+      def_delegator :@archived_lock, :source_options
+      def_delegator :@archived_lock, :identifier
+      def_delegator :@archived_lock, :dotted_decimal_identifier
+      def_delegator :@archived_lock, :version
+      def_delegator :@archived_lock, :source
+
+      # #to_lock calls #validate! which will typically ensure that the cookbook
+      # is present at the correct path for the lock type. For an archived
+      # cookbook, the cookbook is located in the archive, so it probably won't
+      # exist there. Therefore, we bypass #validate! and get the lock data
+      # directly.
+      def_delegator :@archived_lock, :lock_data, :to_lock
+
+      def initialize(archived_lock, storage_config)
+        @archived_lock = archived_lock
+        @storage_config = storage_config
+      end
+
+      def build_from_lock_data(lock_data)
+        raise NotImplementedError, "ArchivedCookbook cannot be built from lock data, it can only wrap an existing lock object"
+      end
+
+      def installed?
+        File.exist?(cookbook_path) && File.directory?(cookbook_path)
+      end
+
+      # The cookbook is assumed to be stored in a Chef Zero compatible repo as
+      # created by `chef export`. Currently that only creates "compatibility
+      # mode" repos since Chef Zero doesn't yet support cookbook_artifact APIs.
+      # So the cookbook will be located in a path like:
+      #   cookbooks/nginx-111.222.333
+      def cookbook_path
+        File.join(relative_paths_root, "cookbooks", "#{name}-#{dotted_decimal_identifier}")
+      end
+
+      # We trust that archived cookbooks haven't been modified, so just return
+      # true for #validate!
+      def validate!
+        true
+      end
+
+      # We trust that archived cookbooks haven't been modified, so just return
+      # true for #refresh!
+      def refresh!
+        true
+      end
+    end
+
   end
 end
