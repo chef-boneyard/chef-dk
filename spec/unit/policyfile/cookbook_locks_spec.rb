@@ -209,9 +209,11 @@ describe ChefDK::Policyfile::LocalCookbook do
 
   let(:storage_config) { ChefDK::Policyfile::StorageConfig.new }
 
+  let(:scm_profiler) { instance_double("ChefDK::CookbookProfiler::Git", profile_data: {}) }
+
   let(:cookbook_lock) do
     lock = described_class.new(cookbook_name, storage_config)
-    allow(lock).to receive(:scm_info).and_return({})
+    allow(lock).to receive(:scm_profiler).and_return(scm_profiler)
     lock
   end
 
@@ -252,6 +254,11 @@ describe ChefDK::Policyfile::LocalCookbook do
       path = File.join(tempdir, cookbook_source_relpath)
       FileUtils.mkdir_p(path)
       path
+    end
+
+    # everywhere else, #scm_profiler is stubbed, we need the unstubbed version
+    let(:cookbook_lock) do
+      described_class.new(cookbook_name, storage_config)
     end
 
     before do
@@ -340,6 +347,11 @@ describe ChefDK::Policyfile::LocalCookbook do
     it "sets the source options, symbolizing keys so the data is compatible with CookbookLocationSpecification" do
       expected = { path: "../my_repo/nginx" }
       expect(cookbook_lock.source_options).to eq(expected)
+    end
+
+    it "doesn't refresh scm_data when #lock_data is called" do
+      allow(scm_profiler).to receive(:profile_data).and_raise("This shouldn't get called")
+      cookbook_lock.lock_data
     end
 
     context "after the data has been refreshed" do

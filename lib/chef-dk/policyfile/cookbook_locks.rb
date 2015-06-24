@@ -286,6 +286,7 @@ module ChefDK
         @identifier_updated = false
         @version_updated = false
         @cookbook_in_git_repo = nil
+        @scm_info = nil
       end
 
       def cookbook_path
@@ -301,7 +302,12 @@ module ChefDK
       end
 
       def scm_info
-        scm_profiler.profile_data
+        @scm_info
+      end
+
+      def to_lock
+        refresh_scm_info
+        super
       end
 
       def lock_data
@@ -324,6 +330,7 @@ module ChefDK
         @dotted_decimal_identifier = lock_data["dotted_decimal_identifier"]
         @source = lock_data["source"]
         @source_options = symbolize_source_options_keys(lock_data["source_options"])
+        @scm_info = lock_data["scm_info"]
       end
 
       def validate!
@@ -365,6 +372,10 @@ module ChefDK
       end
 
       private
+
+      def refresh_scm_info
+        @scm_info = scm_profiler.profile_data
+      end
 
       def assert_required_keys_valid!(lock_data)
         super
