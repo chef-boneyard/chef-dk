@@ -38,6 +38,7 @@ to the target machine, you can apply the policy to the machine with
     use_policyfile true
     deployment_group '$POLICY_NAME-local'
     versioned_cookbooks true
+    policy_document_native_api false
 
 The Policyfile feature is incomplete and beta quality. See our detailed README
 for more information.
