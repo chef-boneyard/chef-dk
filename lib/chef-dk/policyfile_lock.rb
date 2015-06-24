@@ -261,6 +261,15 @@ module ChefDK
       self
     end
 
+    def build_from_archive(lock_data)
+      set_name_from_lock_data(lock_data)
+      set_run_list_from_lock_data(lock_data)
+      set_cookbook_locks_as_archives_from_lock_data(lock_data)
+      set_attributes_from_lock_data(lock_data)
+      set_solution_dependencies_from_lock_data(lock_data)
+      self
+    end
+
     def install_cookbooks
       # note: duplicates PolicyfileCompiler#ensure_cache_dir_exists
       ensure_cache_dir_exists
@@ -423,6 +432,22 @@ module ChefDK
       end
     end
 
+    def set_cookbook_locks_as_archives_from_lock_data(lock_data)
+      cookbook_lock_data = lock_data["cookbook_locks"]
+
+      if cookbook_lock_data.nil?
+        raise InvalidLockfile, "lockfile does not have a cookbook_locks attribute"
+      end
+
+      unless cookbook_lock_data.kind_of?(Hash)
+        raise InvalidLockfile, "lockfile's cookbook_locks attribute must be a Hash (JSON object). (got: #{cookbook_lock_data.inspect})"
+      end
+
+      lock_data["cookbook_locks"].each do |name, lock_info|
+        build_cookbook_lock_as_archive_from_lock_data(name, lock_info)
+      end
+    end
+
     def set_attributes_from_lock_data(lock_data)
       default_attr_data = lock_data["default_attributes"]
 
@@ -472,6 +497,24 @@ module ChefDK
         local_cookbook(name).build_from_lock_data(lock_info)
       else
         cached_cookbook(name).build_from_lock_data(lock_info)
+      end
+    end
+
+    def build_cookbook_lock_as_archive_from_lock_data(name, lock_info)
+      unless lock_info.kind_of?(Hash)
+        raise InvalidLockfile, "lockfile cookbook_locks entries must be a Hash (JSON object). (got: #{lock_info.inspect})"
+      end
+
+      if lock_info["cache_key"].nil?
+        local_cookbook = Policyfile::LocalCookbook.new(name, storage_config)
+        local_cookbook.build_from_lock_data(lock_info)
+        archived = Policyfile::ArchivedCookbook.new(local_cookbook, storage_config)
+        @cookbook_locks[name] = archived
+      else
+        cached_cookbook = Policyfile::CachedCookbook.new(name, storage_config)
+        cached_cookbook.build_from_lock_data(lock_info)
+        archived = Policyfile::ArchivedCookbook.new(cached_cookbook, storage_config)
+        @cookbook_locks[name] = archived
       end
     end
 

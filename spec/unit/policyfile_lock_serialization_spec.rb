@@ -336,4 +336,49 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
     end
   end
 
+  describe "populating lock data from an archive" do
+
+    let(:valid_cookbook_lock) do
+      {
+        "version" => "1.0.0",
+        "identifier" => "68c13b136a49b4e66cfe9d8aa2b5a85167b5bf9b",
+        "dotted_decimal_identifier" => "111.222.333",
+        "cache_key" => nil,
+        "source" => "path/to/foo",
+        "source_options" => { path: "path/to/foo"},
+        "scm_info" => nil
+      }
+    end
+
+    let(:lock_data) do
+      valid_lock_with_cached_cookbook = valid_lock_data.dup
+      valid_cached_cookbook = valid_cookbook_lock.dup
+      valid_cached_cookbook["cache_key"] = nil
+      valid_cached_cookbook["source"] = "path/to/foo"
+      valid_lock_with_cached_cookbook["cookbook_locks"] = { "foo" => valid_cached_cookbook }
+      valid_lock_with_cached_cookbook
+    end
+
+    before do
+      lockfile.build_from_archive(lock_data)
+    end
+
+    it "creates cookbook locks as archived cookbooks" do
+      locks = lockfile.cookbook_locks
+
+      expect(locks).to have_key("foo")
+
+      cb_foo = locks["foo"]
+      expect(cb_foo).to be_a(ChefDK::Policyfile::ArchivedCookbook)
+
+      expected_path = File.join(storage_config.relative_paths_root, "cookbooks", "foo-111.222.333")
+
+      expect(cb_foo.cookbook_path).to eq(expected_path)
+      expect(cb_foo.dotted_decimal_identifier).to eq("111.222.333")
+      expect(locks["foo"].to_lock).to eq(valid_cookbook_lock)
+    end
+
+
+  end
+
 end
