@@ -25,12 +25,18 @@
     * knife-windows - 1.0.0.rc.0
 * [#412](https://github.com/chef/chef-dk/pull/412) Allow setting the home directory used by ChefDK
 * [#423](https://github.com/chef/chef-dk/pull/423) Add `chef env` command
-* [#424](https://github.com/chef/chefdk/pull/424) Add the ability to display a specific policyfile 
+* [#424](https://github.com/chef/chefdk/pull/424) Add the ability to display a specific policyfile
   lock revision by giving the policy name and group to `chef show-policy`
+* [#405](https://github.com/chef/chef-dk/pull/405), [#417](https://github.com/chef/chef-dk/pull/417):
+  Add `chef show-policy` command. Requires Chef Server 12.1.
+* [#400](https://github.com/chef/chef-dk/pull/400): Update solve to use
+  pure-ruby Molinillo solver engine.
+* [#432](https://github.com/chef/chef-dk/pull/432): Give `chef export`
+  the ability to create tarballs.
 * [chef/omnibus-chef#406](https://github.com/chef/omnibus-chef/pull/406) Use LOCALAPPDATA as the default ChefDK home on Windows
 * [chef/omnibus-chef#408](https://github.com/chef/omnibus-chef/pull/408) Added ChefDK environment helpers as feature in MSI
 * [chef/omnibus-chef#386](https://github.com/chef/omnibus-chef/pull/386) Added Powershell wrapper modules
-  
+
 # 0.6.2
 * I forgot to update a test that was failing in 0.6.1.  Travis didn't catch
   it because my PR was not against master.
@@ -82,7 +88,7 @@ Berkshelf to version 3.2.4
   * kitchen-vagrant - 0.17.0
   * knife-windows - 0.8.4
   * winrm-transport - 1.0.0
-  
+
 ## Policyfiles
 
 * [#323](https://github.com/chef/chef-dk/pull/323) Add `revision_id` to
