@@ -675,10 +675,4 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
   end
 
-  context "Given a run_list with roles" do
-    it "expands the roles from the given role source" do
-      skip
-    end
-  end
-
 end
