@@ -76,6 +76,9 @@ module ChefDK
   class ExportDirNotEmpty < PolicyfileServiceError
   end
 
+  class InvalidPolicyArchive < PolicyfileServiceError
+  end
+
   class PolicyfileNestedException < PolicyfileServiceError
 
     include NestedExceptionWithInspector
@@ -89,6 +92,9 @@ module ChefDK
   end
 
   class PolicyfileUpdateError < PolicyfileNestedException
+  end
+
+  class PolicyfilePushArchiveError < PolicyfileNestedException
   end
 
   class PolicyfilePushError < PolicyfileNestedException
