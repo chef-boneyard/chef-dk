@@ -49,7 +49,7 @@ module ChefDK
       end
 
       def archive_file_path
-        File.join(root_dir, archive_file)
+        File.expand_path(archive_file, root_dir)
       end
 
       def run

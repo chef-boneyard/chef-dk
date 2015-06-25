@@ -36,6 +36,8 @@ ChefDK.commands do |c|
 
   c.builtin "push", :Push, desc: "Push a local policy lock to a policy group on the server"
 
+  c.builtin "push-archive", :PushArchive, desc: "Push a policy archive to a policy group on the server"
+
   c.builtin "show-policy", :ShowPolicy, desc: "Show policyfile objects on you Chef Server"
 
   c.builtin "diff", :Diff, desc: "Generate an itemized diff of two Policyfile lock documents"
