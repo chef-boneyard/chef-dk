@@ -632,12 +632,6 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "remote-cb" => "0.1.0"})
     end
 
-    it "builds a policyfile lock from the constraints" do
-      skip
-      expect(policyfile).to receive(:cache_path).and_return(Pathname.new("~/.nopenope/cache"))
-      expect(policyfile.lock).to eq(:wat)
-    end
-
     it "includes the policyfile constraint in the solution dependencies" do
       expected_solution_deps = {
         "Policyfile" => [ [ "remote-cb", "~> 0.1" ], [ "local-cookbook", ">= 0.0.0"] ],
