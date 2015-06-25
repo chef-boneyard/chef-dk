@@ -23,6 +23,10 @@ Once you install the package, the `chef-client` suite, `berks`,
 `kitchen`, and this application (`chef`) will be symlinked into your
 system bin directory, ready to use.
 
+### Pre-release Candiates
+
+You can run `curl -LO https://www.chef.io/chef/install.sh && sudo bash ./install.sh -p -P chefdk && rm install.sh` to download and install the latest pre-release candidate.
+
 ## Usage
 
 For help with [Berkshelf][], [Test Kitchen][], [ChefSpec][] or [Foodcritic][],
