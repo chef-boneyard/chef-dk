@@ -96,6 +96,7 @@ module ChefDK
           create_repo_structure
           copy_cookbooks
           create_policyfile_data_item
+          copy_policyfile_lock
           if archive?
             create_archive
           else
@@ -163,7 +164,6 @@ module ChefDK
       end
 
       def create_policyfile_data_item
-
         lock_data = policyfile_lock.to_lock.dup
 
         lock_data["id"] = policy_id
@@ -183,6 +183,12 @@ module ChefDK
         end
       end
 
+      def copy_policyfile_lock
+        File.open(lockfile_staging_path, "wb+") do |f|
+          f.print(FFI_Yajl::Encoder.encode(policyfile_lock.to_lock, pretty: true ))
+        end
+      end
+
       def mv_staged_repo
         # If we got here, either these dirs are empty/don't exist or force is
         # set to true.
@@ -192,6 +198,7 @@ module ChefDK
         FileUtils.mv(cookbooks_staging_dir, export_dir)
         FileUtils.mkdir_p(export_data_bag_dir)
         FileUtils.mv(policyfiles_data_bag_staging_dir, export_data_bag_dir)
+        FileUtils.mv(lockfile_staging_path, export_dir)
       end
 
       def validate_lockfile
@@ -231,7 +238,8 @@ module ChefDK
 
       def conflicting_fs_entries
         Dir.glob(File.join(cookbooks_dir, "*")) +
-          Dir.glob(File.join(policyfiles_data_bag_dir, "*"))
+          Dir.glob(File.join(policyfiles_data_bag_dir, "*")) +
+          Dir.glob(File.join(export_dir, "Policyfile.lock.json"))
       end
 
       def cookbooks_dir
@@ -260,6 +268,10 @@ module ChefDK
 
       def policyfiles_data_bag_staging_dir
         File.join(staging_dir, "data_bags", "policyfiles")
+      end
+
+      def lockfile_staging_path
+        File.join(staging_dir, "Policyfile.lock.json")
       end
 
     end

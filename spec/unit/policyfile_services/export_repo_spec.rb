@@ -239,6 +239,18 @@ E
             expect(data_item_json["id"]).to eq("install-example-local")
           end
 
+          it "copies the policyfile lock in standard format to Policyfile.lock.json" do
+            policyfile_lock_path = File.join(export_dir, "Policyfile.lock.json")
+            policyfile_lock_data = FFI_Yajl::Parser.parse(IO.read(policyfile_lock_path))
+            expected_lock_data = export_service.policyfile_lock.to_lock
+
+            # stringify keys in source_options
+            path = expected_lock_data["cookbook_locks"]["local-cookbook"]["source_options"].delete(:path)
+            expected_lock_data["cookbook_locks"]["local-cookbook"]["source_options"]["path"] = path
+
+            expect(policyfile_lock_data).to eq(expected_lock_data)
+          end
+
         end
 
         context "when the export dir is empty" do
@@ -300,6 +312,8 @@ E
 
           let(:extra_policyfile_data_item) { File.join(policyfiles_data_bag_dir, "leftover-policy.json") }
 
+          let(:conflicting_policyfile_lock) { File.join(export_dir, "Policyfile.lock.json") }
+
           before do
             FileUtils.mkdir_p(export_dir)
             FileUtils.mkdir_p(cookbooks_dir)
@@ -307,10 +321,11 @@ E
             File.open(non_conflicting_file_in_export_dir, "wb+") { |f| f.print "some random cruft" }
             File.open(file_in_cookbooks_dir, "wb+") { |f| f.print "some random cruft" }
             File.open(extra_policyfile_data_item, "wb+") { |f| f.print "some random cruft" }
+            File.open(conflicting_policyfile_lock, "wb+") { |f| f.print "some random cruft" }
           end
 
           it "raises a PolicyfileExportRepoError" do
-            message = "Export dir (#{export_dir}) not clean. Refusing to export. (Conflicting files: #{file_in_cookbooks_dir}, #{extra_policyfile_data_item})"
+            message = "Export dir (#{export_dir}) not clean. Refusing to export. (Conflicting files: #{file_in_cookbooks_dir}, #{extra_policyfile_data_item}, #{conflicting_policyfile_lock})"
             expect { export_service.run }.to raise_error(ChefDK::ExportDirNotEmpty, message)
             expect(File).to exist(non_conflicting_file_in_export_dir)
             expect(File).to exist(file_in_cookbooks_dir)
