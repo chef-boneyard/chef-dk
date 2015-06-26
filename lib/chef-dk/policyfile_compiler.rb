@@ -59,6 +59,8 @@ module ChefDK
       @dsl = Policyfile::DSL.new(storage_config)
       @artifact_server_cookbook_location_specs = {}
 
+      @merged_graph = nil
+
       @ui = ui || UI.null
       @install_report = Policyfile::Reports::Install.new(ui: @ui, policyfile_compiler: self)
     end
@@ -123,7 +125,11 @@ module ChefDK
     end
 
     def create_spec_for_cookbook(cookbook_name, version)
-      source_options = default_source.source_options_for(cookbook_name, version)
+      matching_source = default_source.find { |s|
+        s.universe_graph.has_key?(cookbook_name)
+      }
+
+      source_options = matching_source.source_options_for(cookbook_name, version)
       spec = Policyfile::CookbookLocationSpecification.new(cookbook_name, "= #{version}", source_options, storage_config)
       @artifact_server_cookbook_location_specs[cookbook_name] = spec
     end
@@ -208,8 +214,19 @@ module ChefDK
     end
 
     def remote_artifacts_graph
-      default_source.universe_graph
+      @merged_graph ||=
+        begin
+          conflicting_cb_names = []
+          merged = {}
+          default_source.each do |source|
+            merged.merge!(source.universe_graph) do |conflicting_cb_name, _old, _new|
+              conflicting_cb_names << conflicting_cb_name
+            end
+          end
+          merged
+        end
     end
+
 
     def version_constraint_for(cookbook_name)
       if (cookbook_location_spec = cookbook_location_spec_for(cookbook_name)) and cookbook_location_spec.version_fixed?

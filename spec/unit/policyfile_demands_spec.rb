@@ -32,7 +32,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       p.default_source(*default_source) if default_source
       p.run_list(*run_list)
 
-      allow(p.default_source).to receive(:universe_graph).and_return(external_cookbook_universe)
+      allow(p.default_source.first).to receive(:universe_graph).and_return(external_cookbook_universe)
     end
 
     policyfile
@@ -67,6 +67,11 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         },
 
         "remote-cb" => {
+          "0.1.0" => [ ],
+          "1.1.1" => [ ]
+        },
+
+        "remote-cb-two" => {
           "0.1.0" => [ ],
           "1.1.1" => [ ]
         },
@@ -665,6 +670,112 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
                           ["local-cookbook", ">= 0.0.0"],
                           ["remote-cb", ">= 0.0.0"]]
       expect(policyfile.graph_demands).to eq(expected_demands)
+    end
+
+  end
+
+  context "when using multiple default sources" do
+
+    include_context "community default source"
+
+    let(:run_list) { [ 'repo-cookbook-one', 'remote-cb', 'remote-cb-two' ] }
+
+    before do
+      # This is on the community site
+      policyfile.dsl.cookbook("remote-cb")
+
+      policyfile.default_source(:chef_repo, "path/to/repo")
+      allow(policyfile.default_source.last).to receive(:universe_graph).and_return(repo_cookbook_universe)
+    end
+
+    context "when the graphs don't conflict" do
+
+      let(:repo_cookbook_universe) do
+        {
+          "repo-cookbook-one" => {
+            "1.0.0" => [ ]
+          },
+
+          "repo-cookbook-two" => {
+            "9.9.9" => [ ["repo-cookbook-on-community-dep", "= 1.0.0"] ]
+          },
+
+          "private-cookbook" => {
+            "0.1.0" => [ ]
+          }
+        }
+      end
+
+      it "merges the graphs" do
+        merged = policyfile.remote_artifacts_graph
+        expected = external_cookbook_universe.merge(repo_cookbook_universe)
+
+        expect(merged).to eq(expected)
+      end
+
+      it "solves the graph demands using cookbooks from both sources" do
+        expected = {"repo-cookbook-one" => "1.0.0", "remote-cb" => "1.1.1", "remote-cb-two" => "1.1.1"}
+        expect(policyfile.graph_solution).to eq(expected)
+      end
+
+      it "finds the location of a cookbook declared via explicit `cookbook` with no source options" do
+        community_source = policyfile.default_source.first
+
+        expected_source_options = { artifactserver: "https://chef.example/url", version: "1.1.1" }
+
+        expect(community_source).to be_a(ChefDK::Policyfile::CommunityCookbookSource)
+        expect(community_source).to receive(:source_options_for).
+          with("remote-cb", "1.1.1").
+          and_return(expected_source_options)
+
+        location_spec = policyfile.create_spec_for_cookbook("remote-cb", "1.1.1")
+        expect(location_spec.source_options).to eq(expected_source_options)
+      end
+
+      it "sources cookbooks from the correct source when the cookbook doesn't have a `cookbook` entry" do
+        # these don't have `cookbook` entries in the Policyfile.rb, so they are nil
+        expect(policyfile.cookbook_location_spec_for("repo-cookbook-one")).to be_nil
+        expect(policyfile.cookbook_location_spec_for("remote-cb-two")).to be_nil
+
+        # We have to stub #source_options_for or else we'd need to stub the
+        # source options data inside the source object. That's getting a bit
+        # too deep into the source object's internals.
+
+        expected_repo_options = { path: "path/to/cookbook", version: "1.0.0" }
+        repo_source = policyfile.default_source.last
+        expect(repo_source).to be_a(ChefDK::Policyfile::ChefRepoCookbookSource)
+        expect(repo_source).to receive(:source_options_for).
+          with("repo-cookbook-one", "1.0.0").
+          and_return(expected_repo_options)
+
+
+        repo_cb_location = policyfile.create_spec_for_cookbook("repo-cookbook-one", "1.0.0")
+        expect(repo_cb_location.source_options).to eq(expected_repo_options)
+
+        expected_server_options = { artifactserver: "https://chef.example/url", version: "1.1.1" }
+        community_source = policyfile.default_source.first
+        expect(community_source).to be_a(ChefDK::Policyfile::CommunityCookbookSource)
+        expect(community_source).to receive(:source_options_for).
+          with("remote-cb-two", "1.1.1").
+          and_return(expected_server_options)
+
+        remote_cb_location = policyfile.create_spec_for_cookbook("remote-cb-two", "1.1.1")
+        expect(remote_cb_location.source_options).to eq(expected_server_options)
+      end
+
+    end
+
+    context "when the graphs conflict" do
+
+      it "raises an error describing the conflict"
+
+      context "and the conflicting cookbook has an explicit source in the Policyfile" do
+
+        it "solves the graph"
+
+        it "assigns the correct source options to the cookbook"
+      end
+
     end
 
   end

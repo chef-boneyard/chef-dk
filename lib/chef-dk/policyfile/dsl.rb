@@ -44,7 +44,7 @@ module ChefDK
         @errors = []
         @run_list = []
         @named_run_lists = {}
-        @default_source = NullCookbookSource.new
+        @default_source = [ NullCookbookSource.new ]
         @cookbook_location_specs = {}
         @storage_config = storage_config
 
@@ -140,14 +140,14 @@ module ChefDK
       private
 
       def set_default_community_source(source_uri)
-        @default_source = CommunityCookbookSource.new(source_uri)
+        set_default_source(CommunityCookbookSource.new(source_uri))
       end
 
       def set_default_chef_server_source(source_uri)
         if source_uri.nil?
           @errors << "You must specify the server's URI when using a default_source :chef_server"
         else
-          @default_source = ChefServerCookbookSource.new(source_uri)
+          set_default_source(ChefServerCookbookSource.new(source_uri))
         end
       end
 
@@ -155,8 +155,13 @@ module ChefDK
         if path.nil?
           @errors << "You must specify the path to the chef-repo when using a default_source :chef_repo"
         else
-          @default_source = ChefRepoCookbookSource.new(path)
+          set_default_source(ChefRepoCookbookSource.new(path))
         end
+      end
+
+      def set_default_source(source)
+        @default_source.delete_at(0) if @default_source[0].null?
+        @default_source << source
       end
 
       def validate!

@@ -171,7 +171,9 @@ E
       end
 
       it "has no default cookbook source" do
-        expect(policyfile.default_source).to be_a(ChefDK::Policyfile::NullCookbookSource)
+        expect(policyfile.default_source).to be_an(Array)
+        expect(policyfile.default_source.size).to eq(1)
+        expect(policyfile.default_source.first).to be_a(ChefDK::Policyfile::NullCookbookSource)
       end
 
       context "with the default source set to the community site" do
@@ -185,7 +187,7 @@ E
 
         it "has a default source" do
           expect(policyfile.errors).to eq([])
-          expected = ChefDK::Policyfile::CommunityCookbookSource.new("https://supermarket.chef.io")
+          expected = [ ChefDK::Policyfile::CommunityCookbookSource.new("https://supermarket.chef.io") ]
           expect(policyfile.default_source).to eq(expected)
         end
 
@@ -200,7 +202,7 @@ E
 
           it "has a default source" do
             expect(policyfile.errors).to eq([])
-            expected = ChefDK::Policyfile::CommunityCookbookSource.new("https://cookbook-api.example.com")
+            expected = [ ChefDK::Policyfile::CommunityCookbookSource.new("https://cookbook-api.example.com") ]
             expect(policyfile.default_source).to eq(expected)
           end
 
@@ -256,7 +258,31 @@ E
 
         it "has a default source" do
           expect(policyfile.errors).to eq([])
-          expected = ChefDK::Policyfile::ChefRepoCookbookSource.new(chef_repo)
+          expected = [ ChefDK::Policyfile::ChefRepoCookbookSource.new(chef_repo) ]
+          expect(policyfile.default_source).to eq(expected)
+        end
+
+      end
+
+      context "with multiple default sources" do
+        let(:chef_repo) { File.expand_path("spec/unit/fixtures/local_path_cookbooks", project_root) }
+
+        let(:policyfile_rb) do
+          <<-EOH
+            run_list "foo", "bar"
+
+            default_source :community
+            default_source :chef_repo, "#{chef_repo}"
+          EOH
+        end
+
+        it "has an array of sources" do
+          expect(policyfile.errors).to eq([])
+
+          community_source = ChefDK::Policyfile::CommunityCookbookSource.new("https://supermarket.chef.io")
+          repo_source = ChefDK::Policyfile::ChefRepoCookbookSource.new(chef_repo)
+          expected = [ community_source, repo_source ]
+
           expect(policyfile.default_source).to eq(expected)
         end
 
