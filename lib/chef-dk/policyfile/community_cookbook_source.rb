@@ -56,6 +56,10 @@ module ChefDK
         { artifactserver: base_uri, version: cookbook_version }
       end
 
+      def null?
+        false
+      end
+
       private
 
       def http_connection_for(base_url)

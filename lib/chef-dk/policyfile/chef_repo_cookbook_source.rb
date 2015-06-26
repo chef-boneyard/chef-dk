@@ -57,6 +57,10 @@ module ChefDK
         { path: cookbook_version_paths[cookbook_name][cookbook_version], version: cookbook_version }
       end
 
+      def null?
+        false
+      end
+
       private
 
       # Setter for setting the path.  It may either be a full chef-repo with

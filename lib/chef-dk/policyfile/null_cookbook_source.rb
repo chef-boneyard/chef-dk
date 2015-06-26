@@ -32,6 +32,10 @@ module ChefDK
         raise UnsupportedFeature, 'You must set a default_source in your Policyfile to download cookbooks without explicit sources'
       end
 
+      def null?
+        true
+      end
+
     end
   end
 end

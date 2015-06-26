@@ -39,6 +39,10 @@ module ChefDK
         raise UnsupportedFeature, 'ChefDK does not support chef-server cookbook default sources at this time'
       end
 
+      def null?
+        false
+      end
+
     end
   end
 end
