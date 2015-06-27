@@ -48,6 +48,8 @@ ruby.
     In Powershell
       "chef shell-init powershell | Invoke-Expression" >> $PROFILE
 
+  If your shell specifies the SHELL environment variable, you may omit SHELL_NAME.
+
 OPTIONS:
 
 HELP
@@ -64,8 +66,8 @@ HELP
         # Currently we don't have any shell-specific features, so we ignore the
         # shell name. We'll need it if we add completion.
         remaining_args = parse_options(argv)
-        shell_name = remaining_args.first
-        if shell_name.nil?
+        shell_name = File.basename(remaining_args.first || ENV['SHELL'] || '')
+        if shell_name.empty?
           err("Please specify what shell you are using\n")
           err(opt_parser.to_s)
           return 1
