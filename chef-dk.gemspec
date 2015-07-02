@@ -37,12 +37,6 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  # ChefDK does not directly depend on FFI and should not need this runtime
-  # dependency. It is only here to workaround a segfault issue in FFI 1.9.9
-  # https://github.com/ffi/ffi/pull/441
-  # When a fixed version of FFI is released this can (and should) be removed.
-  gem.add_dependency "ffi", "~> 1.9", "< 1.9.9"
-
   gem.add_dependency "mixlib-cli", "~> 1.5"
   gem.add_dependency "mixlib-shellout", ">= 2.0.0.rc.0", "< 3.0.0"
   gem.add_dependency "ffi-yajl", ">= 1.0", "< 3.0"
