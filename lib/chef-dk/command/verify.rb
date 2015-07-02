@@ -93,7 +93,13 @@ module ChefDK
         c.base_dir = "test-kitchen"
         c.unit_test { sh("bundle exec rake unit") }
         c.integration_test { sh("bundle exec rake features") }
-        c.smoke_test { run_in_tmpdir("kitchen init") }
+
+        # NOTE: By default, kitchen tries to be helpful and install a driver
+        # gem for you. This causes a race condition when running the tests
+        # concurrently, because rubygems breaks when there are partially
+        # installed gems in the gem repository. Instructing kitchen to create a
+        # gemfile instead avoids the gem installation.
+        c.smoke_test { run_in_tmpdir("kitchen init --create-gemfile") }
       end
 
       add_component "chef-client" do |c|
