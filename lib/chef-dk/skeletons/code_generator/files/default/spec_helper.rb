@@ -1,4 +1,7 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
 
-ChefSpec::Coverage.start!
+# Cause ChefSpec to search through all declared resources
+# and report test coverage.
+#
+# ChefSpec::Coverage.start!
