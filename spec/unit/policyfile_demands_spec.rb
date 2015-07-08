@@ -212,6 +212,26 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
     let(:run_list) { ["remote-cb"] }
 
+    context "with no default source" do
+
+      it "fails to locate the cookbook" do
+        expect { policyfile.graph_solution }.to raise_error(Solve::Errors::NoSolutionError)
+      end
+
+      context "when the policyfile also has a `cookbook` entry for the run list item" do
+
+        before do
+          policyfile.dsl.cookbook "remote-cb"
+        end
+
+        it "fails to locate the cookbook" do
+          expect { policyfile.graph_solution }.to raise_error(Solve::Errors::NoSolutionError)
+        end
+
+      end
+
+    end
+
     context "And the default source is the community site" do
 
       include_context "community default source"
