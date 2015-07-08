@@ -36,6 +36,10 @@ module ChefDK
         true
       end
 
+      def desc
+        "null_cookbook_source"
+      end
+
     end
   end
 end

@@ -681,14 +681,16 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     let(:run_list) { [ 'repo-cookbook-one', 'remote-cb', 'remote-cb-two' ] }
 
     before do
-      # This is on the community site
-      policyfile.dsl.cookbook("remote-cb")
-
       policyfile.default_source(:chef_repo, "path/to/repo")
       allow(policyfile.default_source.last).to receive(:universe_graph).and_return(repo_cookbook_universe)
     end
 
     context "when the graphs don't conflict" do
+
+      before do
+        # This is on the community site
+        policyfile.dsl.cookbook("remote-cb")
+      end
 
       let(:repo_cookbook_universe) do
         {
@@ -767,13 +769,84 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
     context "when the graphs conflict" do
 
-      it "raises an error describing the conflict"
+      let(:repo_cookbook_universe) do
+        {
+          "repo-cookbook-one" => {
+            "1.0.0" => [ ]
+          },
+
+          "repo-cookbook-two" => {
+            "9.9.9" => [ ["repo-cookbook-on-community-dep", "= 1.0.0"] ]
+          },
+
+          "private-cookbook" => {
+            "0.1.0" => [ ]
+          },
+
+          # NOTE: cookbooks are considered to conflict when both sources have
+          # cookbooks with the same name, regardless of whether any version
+          # numbers overlap.
+          #
+          # The before block does the equivalent to putting this in the
+          # Policyfile.rb:
+          #
+          #   cookbook "remote-cb"
+          #
+          # This makes the compiler take a slightly different code path than if
+          # the cookbook was just in the dep graphs.
+          "remote-cb" => {
+            "99.99.99" => [ ]
+          },
+
+          # This also conflicts, but only via the graphs
+          "remote-cb-two" => {
+            "1.2.3" => [ ]
+          }
+
+        }
+      end
+
+      context "and no explicit source is given for the conflicting cookbook" do
+
+        before do
+          # This is on the community site
+          policyfile.dsl.cookbook("remote-cb")
+        end
+
+        it "raises an error describing the conflict" do
+          expected_err = <<-ERROR
+Source supermarket(https://supermarket.chef.io) and chef_repo(path/to/repo) contain conflicting cookbooks:
+- remote-cb
+- remote-cb-two
+ERROR
+
+          expect { policyfile.remote_artifacts_graph }.to raise_error do |error|
+            expect(error).to be_a(ChefDK::CookbookSourceConflict)
+            expect(error.message).to eq(expected_err)
+          end
+        end
+      end
 
       context "and the conflicting cookbook has an explicit source in the Policyfile" do
 
-        it "solves the graph"
+        before do
+          # This is on the community site
+          policyfile.dsl.cookbook("remote-cb", path: "path/to/remote-cb")
+          policyfile.dsl.cookbook("remote-cb-two", git: "git://git.example:user/remote-cb-two.git")
+          policyfile.error!
+        end
 
-        it "assigns the correct source options to the cookbook"
+        it "solves the graph" do
+          expect { policyfile.remote_artifacts_graph }.to_not raise_error
+        end
+
+        it "assigns the correct source options to the cookbook" do
+          remote_cb_source_opts = policyfile.cookbook_location_spec_for("remote-cb").source_options
+          expect(remote_cb_source_opts).to eq(path: "path/to/remote-cb")
+
+          remote_cb_two_source_opts = policyfile.cookbook_location_spec_for("remote-cb-two").source_options
+          expect(remote_cb_two_source_opts).to eq(git: "git://git.example:user/remote-cb-two.git")
+        end
       end
 
     end

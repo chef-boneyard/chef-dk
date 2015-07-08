@@ -60,6 +60,10 @@ module ChefDK
         false
       end
 
+      def desc
+        "supermarket(#{uri})"
+      end
+
       private
 
       def http_connection_for(base_url)

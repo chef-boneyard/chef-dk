@@ -61,6 +61,10 @@ module ChefDK
         false
       end
 
+      def desc
+        "chef_repo(#{path})"
+      end
+
       private
 
       # Setter for setting the path.  It may either be a full chef-repo with

@@ -71,7 +71,7 @@ module ChefDK
       def default_source(source_type = nil, source_argument = nil)
         return @default_source if source_type.nil?
         case source_type
-        when :community
+        when :community, :supermarket
           set_default_community_source(source_argument)
         when :chef_server
           set_default_chef_server_source(source_argument)

@@ -43,6 +43,10 @@ module ChefDK
         false
       end
 
+      def desc
+        "chef_server(#{uri})"
+      end
+
     end
   end
 end

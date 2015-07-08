@@ -24,6 +24,7 @@ require 'chef-dk/policyfile/dsl'
 require 'chef-dk/policyfile_lock'
 require 'chef-dk/ui'
 require 'chef-dk/policyfile/reports/install'
+require 'chef-dk/exceptions'
 
 module ChefDK
 
@@ -223,6 +224,7 @@ module ChefDK
               conflicting_cb_names << conflicting_cb_name
             end
           end
+          handle_conflicting_cookbooks(conflicting_cb_names)
           merged
         end
     end
@@ -300,6 +302,20 @@ module ChefDK
 
     def cache_path
       CookbookOmnifetch.storage_path
+    end
+
+    def handle_conflicting_cookbooks(conflicting_cookbooks)
+      # ignore any cookbooks that have a source set.
+      cookbooks_wo_source = conflicting_cookbooks.select do |cookbook_name|
+        location_spec = cookbook_location_spec_for(cookbook_name)
+        location_spec.nil? || location_spec.source_options.empty?
+      end
+
+      if cookbooks_wo_source.empty?
+        nil
+      else
+        raise CookbookSourceConflict.new(cookbooks_wo_source, default_source)
+      end
     end
 
   end

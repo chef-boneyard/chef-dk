@@ -71,4 +71,31 @@ module ChefDK
   class BUG < RuntimeError
   end
 
+  class CookbookSourceConflict < StandardError
+
+    attr_reader :conflicting_cookbooks
+
+    attr_reader :cookbook_sources
+
+    def initialize(conflicting_cookbooks, cookbook_sources)
+      @conflicting_cookbooks = conflicting_cookbooks
+      @cookbook_sources = cookbook_sources
+      super(compute_message)
+    end
+
+    private
+
+    def compute_message
+      conflicting_cookbook_sets = cookbook_sources.combination(2).map do |source_a, source_b|
+        overlapping_cookbooks = conflicting_cookbooks.select do |cookbook_name|
+          source_a.universe_graph.key?(cookbook_name) && source_b.universe_graph.key?(cookbook_name)
+        end
+        "Source #{source_a.desc} and #{source_b.desc} contain conflicting cookbooks:\n" +
+          overlapping_cookbooks.sort.map {|c| "- #{c}"}.join("\n")
+      end
+      conflicting_cookbook_sets.join("\n") + "\n"
+    end
+
+  end
+
 end
