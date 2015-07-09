@@ -3,7 +3,7 @@
 ## What's this Policyfile Stuff?
 
 First of all, the Policyfile feature is a work in progress. As of ChefDK
-0.5.0 and Chef Server 12.0.9, native APIs are enabled by default,
+0.5.0 and Chef Server 12.1.0, native APIs are enabled by default,
 allowing you to safely experiment with the feature without impacting
 existing production systems. It's recommended that you upgrade to these
 versions before experimenting with Policyfiles.
@@ -133,6 +133,45 @@ This tells ChefDK where to find any cookbooks required by your
 `run_list` that do not have specific locations configured by the
 `cookbook` method (see below). If you specify a specific source for
 every cookbook, then you do not need to configure this.
+
+You may use more than one `default_source` statement if, for example,
+you would like to keep your internal cookbooks in one repo and also use
+community cookbooks from supermarket. Beware that these sources cannot
+have any cookbooks in common, or else `chef` will return an error when
+attempting to install the cookbooks, unless you have a `cookbook` entry
+for that cookbook that specifies the source (see below).
+
+#### community
+
+This default source pulls cookbooks from either the public supermarket
+or a private supermarket install. To use public supermarket:
+
+```ruby
+default_source :community
+```
+
+To use a private supermarket install:
+
+```ruby
+default_source :community, "https://mysupermarket.example"
+```
+
+#### chef\_repo
+
+This treats a "monolithic" Chef cookbook repository as an artifact
+store.
+
+```ruby
+default_source :chef_repo, "path/to/repo"
+```
+
+Note that the path argument can be either a path to the top level of
+your Chef repo, or to the `cookbooks` directory within your repo.
+
+#### chef\_server
+
+Chef Server cannot be used as a source until the Server implements the
+"universe" endpoint.
 
 ### `cookbook "NAME" [, "VERSION_CONSTRAINT"] [, SOURCE_OPTIONS]`
 
@@ -408,18 +447,16 @@ how things turn out.
 
 ### Does this Force Me to Use the Single Cookbook per Repo Thing?
 
-No. The "megarepo"/"monolithic repo" workflow will be supported. All of
-the policyfile based commands in ChefDK already support an optional
+No. The "megarepo"/"monolithic repo" workflow is be supported. All of
+the policyfile based commands in ChefDK support an optional
 policyfile name as an argument, so you can add a `policies/` directory
 to your Chef Repo (see also "Am I Going to be Forced to Use This?"
-above). In the future, ChefDK will support a local path option as your
-default cookbook source, which will allow you to generate policies using
-cookbooks from your Chef Repo's `cookbooks/` directory.
+above).
 
 Users who use the "megarepo" workflow may see some benefit to using
-single repos for third-party cookbooks, but this will be optional and
-users can convert from vendor branches piecemeal if they decide to do
-so.
+separate per-cookbook repos for third-party cookbooks, but this will be
+optional and users can convert from vendor branches piecemeal if they
+decide to do so.
 
 ### Do I Have to Change My Workflow to Use This?
 
@@ -466,24 +503,73 @@ those.
 
 ### What About Environments?
 
-We have not made a final decision about how environments will work with
-Policyfiles. In compatibility mode, you cannot use environments and
-Policyfiles together, but this choice could be reversed. Policyfiles
-**do** completely replace the cookbook version constraint portion of the
-environments feature. However, environments do offer a useful way to set
-environment-wide attributes, which some users rely on heavily. The main
-sticking point is that environments provide the same double edged sword
-as many other Chef features where updates to environments are propagated
-immediately to all nodes in an environment. When done correctly, this is
-very convenient, but it also allows mistakes to propagate to all nodes
-immediately. Contrarily, if environment attributes are rolled into the
-Policyfile, you can more easily test the effects of changes and control
-the way these updates are applied, but it's more difficult to apply
-changes globally.
+Environments are not supported when using Policyfiles. Policyfiles
+already provide dependency locking, using a much more convenient
+mechanism.
+
+Policyfiles do not provide a direct replacement for environment
+attributes. For now, there are few ways to replace them:
+
+#### Nested Attributes in the Policyfile
+
+Put all the attributes you want in your Policyfile, but nest them one
+level deeper, e.g.,
+
+```ruby
+default["production"]["app_setting"] = "prod value"
+default["dev"]["app_setting"] = "dev value"
+```
+
+Then you adjust your cookbook code to hoist these values up.
+
+The primary benefit of doing it this way is that the structure of your
+attributes and your cookbook code are versioned together. For example,
+if you need to change a value from a `String` to an `Array` or a `Hash`,
+these attributes will be incompatible with the old code. But by updating
+your cookbook set and attributes together, you can avoid exposing code
+to incompatible attributes structures.
+
+Another benefit is that your code controls which subset of attributes to
+"hoist," so you can describe multiple concerns, such as lifecycle, data
+center, etc. all in one place.
+
+The major downsides are:
+
+* Cannot update attributes everywhere immediately. This is the cost of
+  having "versioned" attributes structures.
+* Have to write code to hoist the attributes, which implies you need a
+  wrapper cookbook when using this approach with community cookbooks.
+* Might have to duplicate information across several policies.
+
+#### Use Data Bags Instead
+
+An alternative is to use data bag items and set whatever attributes you
+need to the data bag item's content.
+
+This has the following benefits:
+
+* Data updates immediately when the data bag is uploaded.
+* Can model multiple concerns such as lifecycle, data center, etc. by
+  using different data bags
+* Can share data bags between lots of policies
+
+And the following downsides:
+
+* Have to create your own versioning system if you want versioning, or
+  be careful to maintain compatibility.
+* Need to write wrapper cookbook code to assign attributes from the data
+  bag item.
+
+#### Search or Service Discovery
+
+Many of the attributes you need to configure based on "environment"
+describe how services integrate themselves with other components in
+their stack. Search or a service discovery tool can help accomplish this
+in a more dynamic way.
 
 ## Compatibility Mode
 
-As of Chef Server 12.0.9, and ChefDK 0.5.0, the new Policyfile native
+As of Chef Server 12.1.0, and ChefDK 0.5.0, the new Policyfile native
 APIs are enabled by default. This is the safest and recommended way to
 try Policyfiles.  If you are unable to upgrade your Chef Server, you can
 operate ChefDK and Chef Client in a compatibility mode that uses
@@ -545,15 +631,18 @@ list to run instead of the primary run list.
 
 ### Private Cookbook Hosting
 
-Currently you cannot host cookbooks behind your firewall. Eventually we
-would like to provide two options for hosting cookbooks yourself:
+You can host your cookbooks privately if you run a private supermarket
+instance. We would also like to add the ability to host your cookbooks
+directly on a Chef Server, using the existing `/cookbooks` endpoint.
+This requires implementation of a `/universe` endpoint on the Chef
+Server, as described here:
+https://github.com/opscode/chef-rfc/blob/master/rfc014-universe-endpoint.md
 
-* Upload cookbooks to a Chef Server or organization's `/cookbooks`
-endpoint;
-* Run your own copy of supermarket.
+### Native API Incomplete
 
-The first option requires implementation of a `/universe` endpoint on
-the Chef Server, as described here: https://github.com/opscode/chef-rfc/blob/master/rfc014-universe-endpoint.md
-
-The second option might be possible currently but has not been tested.
+The native Policyfile APIs are not complete. For example, there is not
+yet an API to delete policy revisions or policy groups. Also, the node
+object is not yet Policyfile-aware, so you cannot easily list nodes by
+policy group membership. Future versions of the Chef Server will add
+these features.
 
