@@ -36,6 +36,9 @@
 * [#438](https://github.com/chef/chef-dk/pull/438): Add `chef push-archive`
   command, which uploads archived policies (as created with `chef export -a`
   to a Chef Server.
+* [#450](https://github.com/chef/chef-dk/pull/450): Allow multiple
+  `default_source` entries in a Policyfile, as long as the sources do
+  not contain conflicting cookbooks.
 * [chef/omnibus-chef#406](https://github.com/chef/omnibus-chef/pull/406) Use LOCALAPPDATA as the default ChefDK home on Windows
 * [chef/omnibus-chef#408](https://github.com/chef/omnibus-chef/pull/408) Added ChefDK environment helpers as feature in MSI
 * [chef/omnibus-chef#386](https://github.com/chef/omnibus-chef/pull/386) Added Powershell wrapper modules
