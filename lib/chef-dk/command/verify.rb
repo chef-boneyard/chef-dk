@@ -121,6 +121,57 @@ module ChefDK
         c.smoke_test { run_in_tmpdir("chef generate cookbook example") }
       end
 
+      # entirely possible this needs to be driven by a utility method in chef-provisioning.
+      add_component "chef-provisioning" do |c|
+        c.base_dir = "chef-dk"
+
+        c.smoke_test do
+          # ------------
+          # we want to avoid hard-coding driver names, but calling Gem::Specification produces a warning; this
+          # seems to be the best way to silence it.
+          verbose = $VERBOSE
+          $VERBOSE = nil
+
+          drivers = Gem::Specification.all.map { |gs| gs.name }.
+                                           select { |n| n =~ /^chef-provisioning-/ }.
+                                           uniq
+
+          versions = Gem::Specification.find_all_by_name("chef-provisioning").map { |s| s.version }
+          $VERBOSE = verbose
+          # ------------
+          failures = []
+
+          tmpdir do |cwd|
+            versions.each do |provisioning_version|
+              gemfile = "chef-provisioning-#{provisioning_version}-chefdk-test.gemfile"
+
+              # write out the gemfile for this chef-provisioning version, and see if Bundler can make it go.
+              with_file(File.join(cwd, gemfile)) do |f|
+                f.puts %Q(gem "chef-provisioning", "= #{provisioning_version}")
+                drivers.each { |d| f.puts %Q(gem "#{d}") }
+              end
+
+              result = sh("bundle install --local --quiet", cwd: cwd, env: {"BUNDLE_GEMFILE" => gemfile })
+
+              if result.exitstatus != 0
+                failures << result
+              end
+
+            end  # end provisioning versions.
+
+            if failures.size > 0
+              failures.each { |fail| puts fail.stdout }
+              puts "\nDriver list (no version restrictions):\n  #{drivers.join("\n  ")}"
+            end
+
+            # dubious on Windows.
+            # this is weird, but we seem to require a Mixlib::ShellOut as the return value. suggestions
+            # welcome.
+            sh(failures.size > 0 ? "false" : "true")
+          end
+        end
+      end
+
       add_component "chefspec" do |c|
         c.gem_base_dir = "chefspec"
         c.unit_test { sh("rake unit") }

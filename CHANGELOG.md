@@ -2,6 +2,7 @@
 
 # Last Release: 0.7.0
 
+* [#433](https://github.com/chef/chef-dk/pull/433): Add `chef verify chef-provisioning`
 * [Jian Weihang](https://github.com/tonytonyjan): Add post install
   warning when installing via rubygems
   [#402](https://github.com/chef/chef-dk/pull/402)
