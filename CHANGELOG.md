@@ -43,6 +43,7 @@
 * [chef/omnibus-chef#406](https://github.com/chef/omnibus-chef/pull/406) Use LOCALAPPDATA as the default ChefDK home on Windows
 * [chef/omnibus-chef#408](https://github.com/chef/omnibus-chef/pull/408) Added ChefDK environment helpers as feature in MSI
 * [chef/omnibus-chef#386](https://github.com/chef/omnibus-chef/pull/386) Added Powershell wrapper modules
+* [chef/omnibus-chef#441](https://github.com/chef/omnibus-chef/pull/441) Use knife-windows 0.8.x but still import winrm 1.3.x compatability
 
 # 0.6.2
 * I forgot to update a test that was failing in 0.6.1.  Travis didn't catch
