@@ -58,7 +58,6 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
 
       let(:http_client) { instance_double(ChefDK::AuthenticatedHTTP) }
 
-      # TODO: make this reusable
       let(:response) do
         Net::HTTPResponse.send(:response_class, "500").new("1.0", "500", "Internal Server Error").tap do |r|
           r.instance_variable_set(:@body, "oops")
