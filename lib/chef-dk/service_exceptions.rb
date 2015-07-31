@@ -31,6 +31,7 @@ module ChefDK
 
     def initialize(message, cause)
       super(message)
+      @message = message
       @inspector = inspector_for(cause)
       @cause = cause
     end
@@ -41,6 +42,14 @@ module ChefDK
 
     def extended_error_info
       inspector.extended_error_info
+    end
+
+    def message
+      @message
+    end
+
+    def to_s
+      "#{message}\nCaused by: #{reason}"
     end
 
     private
