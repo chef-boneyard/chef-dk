@@ -115,6 +115,9 @@ module ChefDK
   class PolicyfileListError < PolicyfileNestedException
   end
 
+  class PolicyfileCleanError < PolicyfileNestedException
+  end
+
   class ChefRunnerError < StandardError
 
     include NestedExceptionWithInspector
