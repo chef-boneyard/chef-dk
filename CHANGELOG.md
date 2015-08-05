@@ -20,10 +20,6 @@
   and `--opt OPT=VALUE` CLI options to `chef provision`.
 * [#422](https://github.com/chef/chef-dk/pull/422): Add `chef verify
   openssl` to validate that the ChefDK can access HTTPS urls correctly
-* Updating dependencies:
-    * chef-provisioning - 1.2.0
-    * chef-provisioning-aws - 1.2.1
-    * knife-windows - 1.0.0.rc.0
 * [#412](https://github.com/chef/chef-dk/pull/412) Allow setting the home directory used by ChefDK
 * [#423](https://github.com/chef/chef-dk/pull/423) Add `chef env` command
 * [#424](https://github.com/chef/chefdk/pull/424) Add the ability to display a specific policyfile
@@ -45,6 +41,18 @@
 * [chef/omnibus-chef#408](https://github.com/chef/omnibus-chef/pull/408) Added ChefDK environment helpers as feature in MSI
 * [chef/omnibus-chef#386](https://github.com/chef/omnibus-chef/pull/386) Added Powershell wrapper modules
 * [chef/omnibus-chef#441](https://github.com/chef/omnibus-chef/pull/441) Use knife-windows 0.8.x but still import winrm 1.3.x compatability
+* [chef/omnibus-chef#443](https://github.com/chef/omnibus-chef/pull/443) MSI signing configuration for Chef Client and Chef DK.
+* [chef/omnibus-chef#448](https://github.com/chef/omnibus-chef/pull/448) Use latest cacerts
+* Updating dependencies:
+    * chef - 12.4.1
+    * ohai - 8.5.0
+    * chef-provisioning - 1.3.0
+    * chef-provisioning-vagrant - 0.9.0
+    * chef-provisioning-aws - 1.3.1
+    * chefspec - 4.3.0
+    * knife-windows - 0.8.6
+    * winrm-transport - 1.0.2
+
 
 # 0.6.2
 * I forgot to update a test that was failing in 0.6.1.  Travis didn't catch
