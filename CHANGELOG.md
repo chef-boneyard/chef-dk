@@ -49,6 +49,7 @@
     * chef-provisioning - 1.3.0
     * chef-provisioning-vagrant - 0.9.0
     * chef-provisioning-aws - 1.3.1
+    * cheffish - 1.3.1
     * chefspec - 4.3.0
     * knife-windows - 0.8.6
     * winrm-transport - 1.0.2
