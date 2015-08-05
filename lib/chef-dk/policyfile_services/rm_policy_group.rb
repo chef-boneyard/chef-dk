@@ -17,36 +17,10 @@
 
 require 'chef-dk/service_exceptions'
 require 'chef-dk/authenticated_http'
+require 'chef-dk/policyfile/undo_record'
 
 module ChefDK
   module PolicyfileServices
-
-    class UndoRecord
-
-      PolicyGroupRestoreData = Struct.new(:policy_name, :policy_group, :data)
-
-      attr_reader :policy_groups
-
-      attr_reader :policy_revisions
-
-      def initialize
-        @policy_groups = []
-        @policy_revisions = []
-      end
-
-      def add_policy_group(name)
-        @policy_groups << name
-      end
-
-      def add_policy_revision(policy_name, policy_group, data)
-        @policy_revisions << PolicyGroupRestoreData.new(policy_name, policy_group, data)
-      end
-
-      def commit!
-        raise NotImplementedError, "TODO"
-      end
-
-    end
 
     class RmPolicyGroup
 
@@ -66,7 +40,7 @@ module ChefDK
         @ui = ui
         @policy_group = policy_group
 
-        @undo_record = UndoRecord.new
+        @undo_record = Policyfile::UndoRecord.new
       end
 
       def run

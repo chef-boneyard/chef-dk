@@ -68,6 +68,9 @@ module ChefDK
   class InvalidPolicyfileFilename < StandardError
   end
 
+  class InvalidUndoRecord < StandardError
+  end
+
   class BUG < RuntimeError
   end
 
