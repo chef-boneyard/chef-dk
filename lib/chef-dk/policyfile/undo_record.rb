@@ -49,6 +49,12 @@ module ChefDK
         reset!
       end
 
+      def ==(other)
+        other.kind_of?(UndoRecord) &&
+          other.policy_groups == policy_groups &&
+          other.policy_revisions == policy_revisions
+      end
+
       def add_policy_group(name)
         @policy_groups << name
       end
@@ -101,7 +107,7 @@ module ChefDK
           @policy_revisions << PolicyGroupRestoreData.new.load(revision)
         end
 
-        true
+        self
       end
 
       def for_serialization

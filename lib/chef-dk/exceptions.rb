@@ -71,6 +71,9 @@ module ChefDK
   class InvalidUndoRecord < StandardError
   end
 
+  class CantUndo < StandardError
+  end
+
   class BUG < RuntimeError
   end
 
