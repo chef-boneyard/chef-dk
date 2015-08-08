@@ -120,10 +120,6 @@ module ChefDK
         }
       end
 
-      def commit!
-        raise NotImplementedError, "TODO"
-      end
-
       private
 
       def reset!

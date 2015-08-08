@@ -17,6 +17,7 @@
 
 require 'chef-dk/service_exceptions'
 require 'chef-dk/authenticated_http'
+require 'chef-dk/policyfile/undo_stack'
 require 'chef-dk/policyfile/undo_record'
 
 module ChefDK
@@ -35,12 +36,16 @@ module ChefDK
       # @api private
       attr_reader :undo_record
 
+      # @api private
+      attr_reader :undo_stack
+
       def initialize(config: nil, ui: nil, policy_group: nil)
         @chef_config = config
         @ui = ui
         @policy_group = policy_group
 
         @undo_record = Policyfile::UndoRecord.new
+        @undo_stack = Policyfile::UndoStack.new
       end
 
       def run
@@ -59,7 +64,7 @@ module ChefDK
         http_client.delete("/policy_groups/#{policy_group}")
         undo_record.add_policy_group(policy_group)
         ui.err("Removed policy group '#{policy_group}'.")
-        undo_record.commit!
+        undo_stack.push(undo_record)
       rescue => e
         raise DeletePolicyGroupError.new("Failed to delete policy group '#{policy_group}'", e)
       end

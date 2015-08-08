@@ -66,6 +66,11 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
     rm_policy_group_service.undo_record
   end
 
+  let(:undo_stack) do
+    rm_policy_group_service.undo_stack
+  end
+
+
   it "configures an HTTP client" do
     expect(ChefDK::AuthenticatedHTTP).to receive(:new).with("https://localhost:10443",
                                                        signing_key_filename: "/path/to/client/key.pem",
@@ -145,7 +150,7 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
       allow(rm_policy_group_service).to receive(:http_client).and_return(http_client)
       expect(http_client).to receive(:get).with("/policy_groups").and_return(empty_policy_groups)
       expect(http_client).to receive(:delete).with("/policy_groups/preprod")
-      expect(undo_record).to receive(:commit!)
+      expect(undo_stack).to receive(:push).with(undo_record)
     end
 
     it "removes the group" do
@@ -198,7 +203,7 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
         and_return(policy_db_9)
 
       expect(http_client).to receive(:delete).with("/policy_groups/preprod")
-      expect(undo_record).to receive(:commit!)
+      expect(undo_stack).to receive(:push).with(undo_record)
     end
 
     it "removes the group" do
