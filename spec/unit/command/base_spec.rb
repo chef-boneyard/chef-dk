@@ -114,4 +114,23 @@ E
 
   end
 
+  describe "when given an option that requires an argument with no argument" do
+
+    it "prints the help banner and exits gracefully" do
+      expect(run_command(%w[-a])).to eq(1)
+
+      expect(stderr).to eq("missing argument: -a\n")
+
+      expected = <<-E
+use me please
+    -a, --arg ARG                    An option with a required argument
+    -u, --user                       If the user exists
+
+E
+      expect(stdout).to eq(expected)
+
+    end
+
+  end
+
 end
