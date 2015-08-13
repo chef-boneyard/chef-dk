@@ -57,7 +57,7 @@ module ChefDK
           run(params)
         end
       rescue OptionParser::InvalidOption, OptionParser::MissingArgument => e
-        err(e.message)
+        err("ERROR: #{e.message}\n")
         msg(opt_parser)
         1
       end

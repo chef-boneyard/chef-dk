@@ -101,7 +101,7 @@ describe ChefDK::Command::Base do
     it "prints the help banner and exits gracefully" do
       expect(run_command(%w[-foo])).to eq(1)
 
-      expect(stderr).to eq("invalid option: -foo\n")
+      expect(stderr).to eq("ERROR: invalid option: -foo\n\n")
 
       expected = <<-E
 use me please
@@ -119,7 +119,7 @@ E
     it "prints the help banner and exits gracefully" do
       expect(run_command(%w[-a])).to eq(1)
 
-      expect(stderr).to eq("missing argument: -a\n")
+      expect(stderr).to eq("ERROR: missing argument: -a\n\n")
 
       expected = <<-E
 use me please
