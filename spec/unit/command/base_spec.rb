@@ -22,6 +22,11 @@ describe ChefDK::Command::Base do
   class TestCommand < ChefDK::Command::Base
     banner "use me please"
 
+    option :argue,
+      short:       "-a ARG",
+      long:        "--arg ARG",
+      description: "An option with a required argument"
+
     option :user,
       :short        => "-u",
       :long         => "--user",
@@ -100,6 +105,7 @@ describe ChefDK::Command::Base do
 
       expected = <<-E
 use me please
+    -a, --arg ARG                    An option with a required argument
     -u, --user                       If the user exists
 
 E
