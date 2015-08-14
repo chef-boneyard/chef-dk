@@ -86,6 +86,14 @@ E
           msg(banner)
           1
         end
+      rescue OptionParser::InvalidOption, OptionParser::MissingArgument => e
+        # ChefDK::Command::Base also handles this error in the same way, but it
+        # does not have access to the correct option parser, so it cannot print
+        # the usage correctly. Therefore, invalid CLI usage needs to be handled
+        # here.
+        err("ERROR: #{e.message}\n")
+        msg(generator.opt_parser)
+        1
       end
 
       def generator_for(arg)

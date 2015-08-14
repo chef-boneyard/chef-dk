@@ -19,13 +19,28 @@ require 'spec_helper'
 require "stringio"
 require 'chef-dk/command/generate'
 
-class ChefDK::Command::GeneratorCommands::Example
+class ChefDK::Command::GeneratorCommands::Example < ChefDK::Command::GeneratorCommands::Base
+
+  option :one,
+    long:         "--option-one",
+    description:  "one"
+
+  option :two,
+    long:         "--option-two",
+    description:  "two"
+
+  option :arg,
+    short:        "-a ARG",
+    long:         "--arg ARG",
+    description:  "an option that takes an argument"
 
   def initialize(argv)
+    super # required by mixlib-cli
     @argv = argv
   end
 
   def run
+    parse_options(@argv)
     {:argv => @argv, :ran_cmd => "example"}
   end
 end
@@ -40,6 +55,10 @@ describe ChefDK::Command::Generate do
 
   def stdout
     stdout_io.string
+  end
+
+  def stderr
+    stderr_io.string
   end
 
   subject(:generate) do
@@ -98,5 +117,26 @@ E
       result = generate.run(%w[example argument_one argument_two --option-one --option-two])
       expect(result[:argv]).to eq(%w[argument_one argument_two --option-one --option-two])
     end
+
+    describe "when an invalid option is passed to the subcommand" do
+
+      it "prints usage and returns non-zero" do
+        result = generate.run(%w[example --nope])
+        expect(result).to eq(1)
+        expect(stderr).to eq("ERROR: invalid option: --nope\n\n")
+      end
+
+    end
+
+    describe "when an option requires an argument but none is given" do
+
+      it "prints usage and returns non-zero" do
+        result = generate.run(%w[example --arg])
+        expect(result).to eq(1)
+        expect(stderr).to eq("ERROR: missing argument: --arg\n\n")
+      end
+
+    end
+
   end
 end
