@@ -1,5 +1,10 @@
 # Chef Development Kit Changelog
 
+# Unreleased:
+
+* [#468](https://github.com/chef/chef-dk/pull/468): Catch errors from
+  optparse and show usage.
+
 # Last Release: 0.7.0
 
 * [#433](https://github.com/chef/chef-dk/pull/433): Add `chef verify chef-provisioning`
