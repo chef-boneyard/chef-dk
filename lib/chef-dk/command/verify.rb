@@ -147,8 +147,10 @@ module ChefDK
 
               # write out the gemfile for this chef-provisioning version, and see if Bundler can make it go.
               with_file(File.join(cwd, gemfile)) do |f|
+                f.puts "platforms :ruby do"
                 f.puts %Q(gem "chef-provisioning", "= #{provisioning_version}")
                 drivers.each { |d| f.puts %Q(gem "#{d}") }
+                f.puts "end"
               end
 
               result = sh("bundle install --local --quiet", cwd: cwd, env: {"BUNDLE_GEMFILE" => gemfile })
