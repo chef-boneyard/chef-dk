@@ -74,7 +74,7 @@ BANNER
       end
 
       def run(params = [])
-        apply_params!(params)
+        return 1 unless apply_params!(params)
         if update_attributes?
           attributes_updater.run
         else
@@ -116,10 +116,11 @@ BANNER
       def apply_params!(params)
         remaining_args = parse_options(params)
         if remaining_args.size > 1
-          ui.err(banner)
-          return 1
+          ui.err(opt_parser)
+          false
         else
           @policyfile_relative_path = remaining_args.first
+          true
         end
       end
 

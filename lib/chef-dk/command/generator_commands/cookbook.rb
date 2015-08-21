@@ -49,7 +49,7 @@ module ChefDK
             setup_context
             chef_runner.converge
           else
-            msg(banner)
+            err(opt_parser)
             1
           end
         rescue ChefDK::ChefRunnerError => e

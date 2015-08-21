@@ -140,7 +140,8 @@ E
         when 2
           @policyfile_relative_path, @export_dir = remaining_args
         else
-          ui.err(banner)
+          ui.err(opt_parser)
+          ui.err("\n")
           return false
         end
         true

@@ -52,7 +52,7 @@ module ChefDK
             chef_runner.converge
             0
           else
-            msg(banner)
+            err(opt_parser)
             1
           end
         end

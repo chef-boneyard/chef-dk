@@ -62,7 +62,7 @@ E
       end
 
       def run(params = [])
-        apply_params!(params)
+        return 1 unless apply_params!(params)
         installer.run
         0
       rescue PolicyfileServiceError => e
@@ -91,10 +91,11 @@ E
       def apply_params!(params)
         remaining_args = parse_options(params)
         if remaining_args.size > 1
-          ui.err(banner)
-          return 1
+          ui.err(opt_parser)
+          return false
         else
           @policyfile_relative_path = remaining_args.first
+          true
         end
       end
 

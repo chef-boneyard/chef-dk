@@ -99,7 +99,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
     it "prints usage when args are empty" do
       with_argv([]).run
-      expect(stdout_io.string).to eq(expected_help_message)
+      expect(stderr_io.string).to include(expected_help_message)
     end
 
   end

@@ -115,7 +115,7 @@ describe ChefDK::Command::GeneratorCommands::Policyfile do
       expected_stdout = "Usage: chef generate policyfile [NAME] [options]"
 
       expect(generator.run).to eq(1)
-      expect(stdout).to include(expected_stdout)
+      expect(stderr).to include(expected_stdout)
     end
 
   end
