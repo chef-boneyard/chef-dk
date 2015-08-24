@@ -31,7 +31,7 @@ describe ChefDK::Command::ShellInit do
     end
   end
 
-  shared_context "shell init script" do |shell|
+  shared_context "shell init script" do |shell, arg|
     let(:user_bin_dir) { File.expand_path(File.join(Gem.user_dir, 'bin')) }
     let(:expected_gem_root) { Gem.default_dir.to_s }
     let(:expected_gem_home) { Gem.user_dir }
@@ -41,9 +41,11 @@ describe ChefDK::Command::ShellInit do
 
       let(:omnibus_bin_dir) { "/foo/bin" }
       let(:omnibus_embedded_bin_dir) { "/foo/embedded/bin" }
-      let(:argv) { [shell] }
+      let(:argv) { arg ? [shell] : [] }
 
       before do
+        allow(ENV).to receive(:[]).and_call_original
+        allow(ENV).to receive(:[]).with('SHELL').and_return(shell)
         allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
         allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
       end
@@ -69,7 +71,7 @@ describe ChefDK::Command::ShellInit do
     end
   end
 
-  shared_examples "a posix shell script" do |shell|
+  shared_examples "a posix shell script" do |shell, arg|
     before do
       stub_const("File::PATH_SEPARATOR", ':')
     end
@@ -82,7 +84,7 @@ export GEM_HOME="#{expected_gem_home}"
 export GEM_PATH="#{expected_gem_path}"
 EOH
     end
-    include_context "shell init script", shell
+    include_context "shell init script", shell, arg
   end
 
   shared_examples "a powershell script" do |shell|
@@ -98,12 +100,15 @@ $env:GEM_HOME="#{expected_gem_home}"
 $env:GEM_PATH="#{expected_gem_path}"
 EOH
     end
-    include_context "shell init script", shell
+    include_context "shell init script", shell, true
   end
 
-  ['bash', 'sh', 'zsh'].each do |shell|
-    context "for #{shell}" do
-      it_behaves_like "a posix shell script", shell
+  %w[bash sh zsh /bin/bash /bin/sh /usr/local/bin/zsh].each do |shell|
+    context "specifying #{shell}" do
+      it_behaves_like "a posix shell script", shell, true
+    end
+    context "infering #{shell}" do
+      it_behaves_like "a posix shell script", shell, false
     end
   end
 
@@ -121,7 +126,7 @@ set -gx GEM_PATH "#{expected_gem_path}";
 EOH
     end
 
-    include_context 'shell init script', 'fish'
+    include_context 'shell init script', 'fish', true
   end
 
   ['powershell', 'posh'].each do |shell|
@@ -131,6 +136,11 @@ EOH
   end
 
   context "when no shell is specified" do
+
+    before do
+      allow(ENV).to receive(:[]).and_call_original
+      allow(ENV).to receive(:[]).with('SHELL').and_return(nil)
+    end
 
     let(:argv) { [] }
 

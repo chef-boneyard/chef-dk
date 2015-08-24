@@ -178,6 +178,8 @@ which ruby
 # => /opt/chefdk/embedded/bin/ruby
 ```
 
+If your shell specifies the `SHELL` environment variable, you may omit `SHELL_NAME`.
+
 To add ChefDK to your shell's environment permanently, add the
 initialization step to your shell's profile:
 
