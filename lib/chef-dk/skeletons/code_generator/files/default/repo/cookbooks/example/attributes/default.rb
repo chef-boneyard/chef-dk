@@ -4,4 +4,4 @@
 # Set a default name
 default["example"]["name"] = "Sam Doe"
 
-# For further information, see the Chef documentation (http://docs.getchef.com/essentials_cookbook_attribute_files.html).
+# For further information, see the Chef documentation (https://docs.getchef.com/essentials_cookbook_attribute_files.html).

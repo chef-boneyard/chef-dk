@@ -20,7 +20,7 @@ Configuration
 
 The config file, `.chef/knife.rb` is a repository specific configuration file for knife. If you're using the Chef Platform, you can download one for your organization from the management console. If you're using the Open Source Chef Server, you can generate a new one with `knife configure`. For more information about configuring Knife, see the Knife documentation.
 
-http://docs.chef.io/knife.html
+https://docs.chef.io/knife.html
 
 Next Steps
 ==========
