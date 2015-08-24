@@ -51,9 +51,11 @@ spec/*
 spec/fixtures/*
 test/*
 features/*
+examples/*
 Guardfile
 Procfile
-.kitchen
+.kitchen*
+.rubocop.yml
 
 # SCM #
 #######
@@ -77,7 +79,9 @@ tmp
 
 # Cookbooks #
 #############
-CONTRIBUTING
+CONTRIBUTING*
+CHANGELOG*
+TESTING*
 
 # Strainer #
 ############
