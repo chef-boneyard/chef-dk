@@ -46,5 +46,7 @@ ChefDK.commands do |c|
 
   c.builtin "export", :Export, desc: "Export a policy lock as a Chef Zero code repo"
 
+  c.builtin "rm-policy-group", :RmPolicyGroup, desc: "Delete a policy group on the server"
+
   c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications"
 end
