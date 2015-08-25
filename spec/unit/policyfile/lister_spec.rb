@@ -248,6 +248,22 @@ describe ChefDK::Policyfile::Lister do
         expect(map["cache"].revision_ids_by_group).to eq(cache_rev_ids)
       end
 
+      context "when the server has an empty group" do
+
+        let(:dev_group_data) do
+          {
+            "uri" => api_url("policy_groups/dev")
+          }
+        end
+
+        # Regression test: this exercises the case where the policy group data
+        # from the server has no "policies" key, which previously caused a NoMethodError.
+        it "correctly lists groups without policies" do
+          expect(info_fetcher.policies_by_group["dev"]).to eq({})
+        end
+
+      end
+
     end
 
   end

@@ -215,7 +215,7 @@ module ChefDK
 
       def set_policies_by_group_from_api(policy_group_data)
         @policies_by_group = policy_group_data.inject({}) do |map, (policy_group, policy_info)|
-          map[policy_group] = policy_info["policies"].inject({}) do |rev_map, (policy_name, rev_info)|
+          map[policy_group] = (policy_info["policies"] || []).inject({}) do |rev_map, (policy_name, rev_info)|
             rev_map[policy_name] = rev_info["revision_id"]; rev_map
           end
 
