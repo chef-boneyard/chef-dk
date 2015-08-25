@@ -29,14 +29,20 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
   let(:non_empty_policy_groups) do
     {
       "dev" => {
-        "appserver" => "1111111111111111111111111111111111111111111111111111111111111111",
-        "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
-        "db" => "9999999999999999999999999999999999999999999999999999999999999999"
+        "uri" => "https://chef.example/organizations/testorg/policy_groups/dev",
+        "policies" => {
+          "appserver" => { "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111" },
+          "load-balancer" => { "revision_id" => "5555555555555555555555555555555555555555555555555555555555555555" },
+          "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" }
+        }
       },
       "preprod" => {
-        "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
-        "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
-        "db" => "9999999999999999999999999999999999999999999999999999999999999999"
+        "uri" => "https://chef.example/organizations/testorg/policy_groups/preprod",
+        "policies" => {
+          "appserver" => { "revision_id" => "2222222222222222222222222222222222222222222222222222222222222222" },
+          "load-balancer" => { "revision_id" => "5555555555555555555555555555555555555555555555555555555555555555" },
+          "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" }
+        }
       }
     }
   end
@@ -45,8 +51,10 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
   let(:empty_policy_groups) do
     {
       "dev" => {
+        "uri" => "https://chef.example/organizations/testorg/policy_groups/dev"
       },
       "preprod" => {
+        "uri" => "https://chef.example/organizations/testorg/policy_groups/preprod"
       }
     }
   end

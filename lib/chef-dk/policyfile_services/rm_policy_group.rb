@@ -49,15 +49,17 @@ module ChefDK
       end
 
       def run
-
         policy_group_list = http_client.get("/policy_groups")
 
         unless policy_group_list.has_key?(policy_group)
           ui.err("Policy group '#{policy_group}' does not exist on the server")
           return false
         end
-        policies_in_group = policy_group_list[policy_group]
-        policies_in_group.each do |name, rev_id|
+        policy_group_info = policy_group_list[policy_group]
+
+        policies_in_group = policy_group_info["policies"] || []
+        policies_in_group.each do |name, revision_info|
+          rev_id = revision_info["revision_id"]
           policy_revision_data = http_client.get("/policies/#{name}/revisions/#{rev_id}")
           undo_record.add_policy_revision(name, policy_group, policy_revision_data)
         end
