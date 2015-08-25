@@ -50,7 +50,7 @@ module ChefDK
         path = File.join(undo_dir, record_id)
 
         with_file(path) do |f|
-          f.print(FFI_Yajl::Encoder.encode(undo_record.for_serialization))
+          f.print(FFI_Yajl::Encoder.encode(undo_record.for_serialization, pretty: true))
         end
 
         records_to_delete = undo_record_files.size - MAX_SIZE
