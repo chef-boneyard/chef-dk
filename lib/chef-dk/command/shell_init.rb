@@ -15,10 +15,29 @@
 # limitations under the License.
 #
 
+require 'erb'
+
+require 'chef-dk/commands_map'
+require 'chef-dk/builtin_commands'
 require 'chef-dk/command/base'
 require 'mixlib/shellout'
 
 module ChefDK
+
+  class ShellCompletionTemplateContext
+
+    def commands
+      ChefDK.commands_map.command_specs.inject({}) do |cmd_info, (_key, cmd_spec)|
+        cmd_info[cmd_spec.name] = cmd_spec.description
+        cmd_info
+      end
+    end
+
+    def get_binding
+      binding
+    end
+  end
+
   module Command
     class ShellInit < ChefDK::Command::Base
 
@@ -56,6 +75,11 @@ HELP
         :long         => "--omnibus-dir OMNIBUS_DIR",
         :description  => "Alternate path to omnibus install (used for testing)"
 
+      def initialize
+        super
+        @shell_completion_template_context = nil
+      end
+
       def omnibus_root
         config[:omnibus_dir] || super
       end
@@ -81,7 +105,26 @@ HELP
         env.each do |var_name, value|
           export(shell_name, var_name, value)
         end
+
+        msg(completion_for(shell_name))
         0
+      end
+
+      def completion_for(shell)
+        # Pull requests accepted!
+        return "" unless shell == "zsh"
+        zsh_completion = File.join(completion_templates_dir, "zsh.zsh.erb")
+        erb = ERB.new(File.read(zsh_completion), nil, '-')
+        context_binding = shell_completion_template_context.get_binding
+        erb.result(context_binding)
+      end
+
+      def completion_templates_dir
+        File.expand_path("../../completions", __FILE__)
+      end
+
+      def shell_completion_template_context
+        @shell_completion_template_context ||= ShellCompletionTemplateContext.new
       end
 
       def export(shell, var, val)

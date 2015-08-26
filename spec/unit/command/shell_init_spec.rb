@@ -50,7 +50,7 @@ describe ChefDK::Command::ShellInit do
 
       it "emits a script to add ChefDK's ruby to the shell environment" do
         command_instance.run(argv)
-        expect(stdout_io.string).to eq(expected_environment_commands)
+        expect(stdout_io.string).to include(expected_environment_commands)
       end
     end
 
@@ -64,7 +64,7 @@ describe ChefDK::Command::ShellInit do
 
       it "emits a script to add ChefDK's ruby to the shell environment" do
         command_instance.run(argv)
-        expect(stdout_io.string).to eq(expected_environment_commands)
+        expect(stdout_io.string).to include(expected_environment_commands)
       end
     end
   end
@@ -101,9 +101,75 @@ EOH
     include_context "shell init script", shell
   end
 
-  ['bash', 'sh', 'zsh'].each do |shell|
-    context "for #{shell}" do
-      it_behaves_like "a posix shell script", shell
+  context "for sh" do
+    it_behaves_like "a posix shell script", "sh"
+  end
+
+  context "for bash" do
+    it_behaves_like "a posix shell script", "bash"
+  end
+
+  context "for zsh" do
+
+    it_behaves_like "a posix shell script", "zsh"
+
+    describe "generating auto-complete" do
+
+      let(:command_descriptions) do
+        {
+          "exec" => "Runs the command in context of the embedded ruby",
+          "env" => "Prints environment variables used by ChefDK",
+          "gem" => "Runs the `gem` command in context of the embedded ruby",
+          "generate" => "Generate a new app, cookbook, or component"
+        }
+      end
+
+      let(:omnibus_bin_dir) { "/foo/bin" }
+      let(:omnibus_embedded_bin_dir) { "/foo/embedded/bin" }
+
+      let(:argv) { [ "zsh" ] }
+
+      let(:expected_completion_function) do
+        <<-END_COMPLETION
+function _chef() {
+
+  local -a _1st_arguments
+  _1st_arguments=(
+      'exec:Runs the command in context of the embedded ruby'
+      'env:Prints environment variables used by ChefDK'
+      'gem:Runs the `gem` command in context of the embedded ruby'
+      'generate:Generate a new app, cookbook, or component'
+    )
+
+  _arguments \\
+    '(-v --version)'{-v,--version}'[version information]' \\
+    '*:: :->subcmds' && return 0
+
+  if (( CURRENT == 1 )); then
+    _describe -t commands "chef subcommand" _1st_arguments
+    return
+  fi
+}
+
+compdef _chef chef
+
+        END_COMPLETION
+      end
+
+      before do
+        # Stub this or else we'd have to update the test every time a new command
+        # is added.
+        allow(command_instance.shell_completion_template_context).to receive(:commands).
+          and_return(command_descriptions)
+
+        allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
+        allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
+      end
+
+      it "generates a completion function for the chef command" do
+        command_instance.run(argv)
+        expect(stdout_io.string).to include(expected_completion_function)
+      end
     end
   end
 
