@@ -64,6 +64,14 @@ describe ChefDK::Policyfile::UndoStack do
       expect(undo_stack.size).to eq(0)
     end
 
+    it "is empty" do
+      expect(undo_stack).to be_empty
+    end
+
+    it "has no items to iterate over" do
+      expect { |b| undo_stack.each_with_id(&b) }.to_not yield_control
+    end
+
     it "has an empty list of undo records" do
       expect(undo_stack.undo_records).to eq([])
     end
@@ -100,7 +108,12 @@ describe ChefDK::Policyfile::UndoStack do
 
   context "when there is one undo record" do
 
+    # `Time.new` is stubbed later on, need to force it to be evaluated before
+    # then.
+    let!(:start_time) { Time.new }
+
     before do
+      allow(Time).to receive(:new).and_return(start_time)
       undo_stack.push(undo_record)
     end
 
@@ -111,6 +124,15 @@ describe ChefDK::Policyfile::UndoStack do
 
     it "has one item" do
       expect(undo_stack.size).to eq(1)
+    end
+
+    it "is not empty" do
+      expect(undo_stack).to_not be_empty
+    end
+
+    it "iterates over the records" do
+      expected_id = start_time.utc.strftime("%Y%m%d%H%M%S")
+      expect { |b| undo_stack.each_with_id(&b) }.to yield_successive_args([expected_id, undo_record])
     end
 
     it "has the undo record that was pushed" do
@@ -154,6 +176,7 @@ describe ChefDK::Policyfile::UndoStack do
       }
 
       ChefDK::Policyfile::UndoRecord.new.tap do |undo_record|
+        undo_record.description = "delete-policy-group preprod-#{i}"
         undo_record.add_policy_group("preprod-#{i}")
         undo_record.add_policy_revision("appserver", "preprod-#{i}", record)
       end

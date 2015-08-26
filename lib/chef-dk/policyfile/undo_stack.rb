@@ -39,6 +39,17 @@ module ChefDK
         undo_record_files.size
       end
 
+      def empty?
+        size == 0
+      end
+
+      # TODO: unit test
+      def each_with_id
+        undo_record_files.each do |filename|
+          yield File.basename(filename), load_undo_record(filename)
+        end
+      end
+
       def undo_records
         undo_record_files.map { |f| load_undo_record(f) }
       end
