@@ -17,9 +17,9 @@
 
 require 'spec_helper'
 require 'shared/command_with_ui_object'
-require 'chef-dk/command/rm_policy_group'
+require 'chef-dk/command/delete_policy_group'
 
-describe ChefDK::Command::RmPolicyGroup do
+describe ChefDK::Command::DeletePolicyGroup do
 
   it_behaves_like "a command with a UI object"
 

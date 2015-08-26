@@ -24,12 +24,12 @@ module ChefDK
   module Command
 
 
-    class RmPolicyGroup < Base
+    class DeletePolicyGroup < Base
 
       banner(<<-BANNER)
-Usage: chef rm-policy-group POLICY_GROUP [options]
+Usage: chef delete-policy-group POLICY_GROUP [options]
 
-`chef rm-policy-group POLICY_GROUP` deletes the policy group POLICY_GROUP on
+`chef delete-policy-group POLICY_GROUP` deletes the policy group POLICY_GROUP on
 the configured Chef Server. Policy Revisions associated to the policy group are
 not deleted. The state of the policy group will be backed up locally, allowing
 you to undo this operation.
