@@ -31,6 +31,10 @@ describe ChefDK::Policyfile::UndoRecord do
 
   context "when empty" do
 
+    it "has an empty description" do
+      expect(undo_record.description).to eq("")
+    end
+
     it "has an empty set of policy groups" do
       expect(undo_record.policy_groups).to eq([])
     end
@@ -42,6 +46,7 @@ describe ChefDK::Policyfile::UndoRecord do
     it "converts to a serializable data structure" do
       expected = {
         "format_version" => 1,
+        "description" => "",
         "backup_data" => {
           "policy_groups" => [],
           "policy_revisions" => []
@@ -54,8 +59,13 @@ describe ChefDK::Policyfile::UndoRecord do
   context "with policy data" do
 
     before do
+      undo_record.description = "delete-policy-group preprod"
       undo_record.add_policy_group("preprod")
       undo_record.add_policy_revision("appserver", "preprod", policy_revision)
+    end
+
+    it "has a description" do
+      expect(undo_record.description).to eq("delete-policy-group preprod")
     end
 
     it "has a policy group" do
@@ -73,6 +83,7 @@ describe ChefDK::Policyfile::UndoRecord do
     it "converts to a serializable data structure" do
       expected = {
         "format_version" => 1,
+        "description" => "delete-policy-group preprod",
         "backup_data" => {
           "policy_groups" => [ "preprod" ],
           "policy_revisions" => [
@@ -118,6 +129,7 @@ describe ChefDK::Policyfile::UndoRecord do
         let(:serialized_data) do
           {
             "format_version" => 1,
+            "description" => "delete-policy-group preprod",
             "backup_data" => []
           }
         end
@@ -133,6 +145,7 @@ describe ChefDK::Policyfile::UndoRecord do
         let(:serialized_data) do
           {
             "format_version" => 1,
+            "description" => "delete-policy-group preprod",
             "backup_data" => {}
           }
         end
@@ -148,6 +161,7 @@ describe ChefDK::Policyfile::UndoRecord do
         let(:serialized_data) do
           {
             "format_version" => 1,
+            "description" => "delete-policy-group preprod",
             "backup_data" => {
               "policy_groups" => nil,
               "policy_revisions" => []
@@ -166,6 +180,7 @@ describe ChefDK::Policyfile::UndoRecord do
         let(:serialized_data) do
           {
             "format_version" => 1,
+            "description" => "delete-policy-group preprod",
             "backup_data" => {
               "policy_groups" => [],
               "policy_revisions" => nil
@@ -184,6 +199,7 @@ describe ChefDK::Policyfile::UndoRecord do
         let(:serialized_data) do
           {
             "format_version" => 1,
+            "description" => "delete-policy-group preprod",
             "backup_data" => {
               "policy_groups" => [],
               "policy_revisions" => [ nil ]
@@ -202,6 +218,7 @@ describe ChefDK::Policyfile::UndoRecord do
       let(:serialized_data) do
         {
           "format_version" => 1,
+          "description" => "delete-policy-group preprod",
           "backup_data" => {
             "policy_groups" => [ "preprod" ],
             "policy_revisions" => [
