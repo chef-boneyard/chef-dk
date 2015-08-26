@@ -168,6 +168,7 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
 
     it "stores the group in the restore file" do
       rm_policy_group_service.run
+      expect(undo_record.description).to eq("delete-policy-group preprod")
       expect(undo_record.policy_groups).to eq( [ policy_group ] )
       expect(undo_record.policy_revisions).to be_empty
     end
@@ -221,6 +222,7 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
 
     it "stores the group and policyfile revision contents in the restore file" do
       rm_policy_group_service.run
+      expect(undo_record.description).to eq("delete-policy-group preprod")
       expect(undo_record.policy_groups).to eq( [ policy_group ] )
 
       expected_policy_revision_undo_data =

@@ -49,6 +49,7 @@ module ChefDK
       end
 
       def run
+        undo_record.description = "delete-policy-group #{policy_group}"
         policy_group_list = http_client.get("/policy_groups")
 
         unless policy_group_list.has_key?(policy_group)
