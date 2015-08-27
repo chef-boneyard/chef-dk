@@ -20,9 +20,6 @@ require 'chef-dk/cookbook_omnifetch'
 require 'chef-dk/exceptions'
 require 'chef/http/simple'
 
-# TODO: fix hardcoding
-Chef::Config.ssl_verify_mode = :verify_peer
-
 module ChefDK
   module Policyfile
 
