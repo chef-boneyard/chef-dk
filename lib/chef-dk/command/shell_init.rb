@@ -111,16 +111,28 @@ HELP
       end
 
       def completion_for(shell)
-        # Pull requests accepted!
-        return "" unless shell == "zsh"
-        zsh_completion = File.join(completion_templates_dir, "zsh.zsh.erb")
-        erb = ERB.new(File.read(zsh_completion), nil, '-')
+        return "" unless (completion_template_basename = completion_template_for(shell))
+        completion_template_path = expand_completion_template_path(completion_template_basename)
+        erb = ERB.new(File.read(completion_template_path), nil, '-')
         context_binding = shell_completion_template_context.get_binding
         erb.result(context_binding)
       end
 
-      def completion_templates_dir
-        File.expand_path("../../completions", __FILE__)
+      def completion_template_for(shell)
+        case shell
+        when "zsh"
+          "zsh.zsh.erb"
+        when "bash"
+          "bash.sh.erb"
+        else
+          # Pull requests accepted!
+          nil
+        end
+
+      end
+
+      def expand_completion_template_path(basename)
+        File.join(File.expand_path("../../completions", __FILE__), basename)
       end
 
       def shell_completion_template_context

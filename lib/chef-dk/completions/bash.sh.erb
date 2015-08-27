@@ -1,0 +1,5 @@
+_chef_comp() {
+    local COMMANDS="<%= commands.keys.join(' ')-%>"
+    COMPREPLY=($(compgen -W "$COMMANDS" -- ${COMP_WORDS[COMP_CWORD]} ))
+}
+complete -F _chef_comp chef
