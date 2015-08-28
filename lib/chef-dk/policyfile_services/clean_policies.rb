@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 
+require 'chef-dk/exceptions'
 require 'chef-dk/service_exceptions'
 require 'chef-dk/policyfile/lister'
 
@@ -53,7 +54,7 @@ module ChefDK
 
           message = "Failed to delete some policy revisions:\n" + details.join("\n") + "\n"
 
-          raise PolicyfileCleanError.new(message, nil)
+          raise PolicyfileCleanError.new(message, MultipleErrors.new("multiple errors"))
         end
 
         true
@@ -74,9 +75,9 @@ module ChefDK
       end
 
       def http_client
-        @http_client ||= ChefDK::AuthenticatedHTTP.new(config.chef_server_url,
-                                                       signing_key_filename: config.client_key,
-                                                       client_name: config.node_name)
+        @http_client ||= ChefDK::AuthenticatedHTTP.new(chef_config.chef_server_url,
+                                                       signing_key_filename: chef_config.client_key,
+                                                       client_name: chef_config.node_name)
       end
 
       private
