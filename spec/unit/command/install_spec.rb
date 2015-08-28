@@ -37,6 +37,10 @@ describe ChefDK::Command::Install do
     expect(command.debug?).to be(false)
   end
 
+  it "doesn't set a config path by default" do
+    expect(command.config_path).to be_nil
+  end
+
   context "when debug mode is set" do
 
     let(:params) { [ "-D" ] }
@@ -44,6 +48,26 @@ describe ChefDK::Command::Install do
     it "enables debug" do
       expect(command.debug?).to be(true)
     end
+  end
+
+  context "when an explicit config file path is given" do
+
+    let(:params) { %w[ -c ~/.chef/alternate_config.rb ] }
+
+    let(:chef_config_loader) { instance_double("Chef::WorkstationConfigLoader") }
+
+    it "sets the config file path to the given value" do
+      expect(command.config_path).to eq("~/.chef/alternate_config.rb")
+    end
+
+    it "loads the config from the given path" do
+      expect(Chef::WorkstationConfigLoader).to receive(:new).
+        with("~/.chef/alternate_config.rb").
+        and_return(chef_config_loader)
+      expect(chef_config_loader).to receive(:load)
+      expect(command.chef_config).to eq(Chef::Config)
+    end
+
   end
 
   context "with no arguments" do

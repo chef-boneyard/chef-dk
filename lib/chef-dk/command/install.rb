@@ -18,11 +18,14 @@
 require 'chef-dk/command/base'
 require 'chef-dk/ui'
 require 'chef-dk/policyfile_services/install'
+require 'chef-dk/configurable'
 
 module ChefDK
   module Command
 
     class Install < Base
+
+      include Configurable
 
       banner(<<-E)
 Usage: chef install [ POLICY_FILE ] [options]
@@ -42,6 +45,11 @@ https://github.com/opscode/chef-dk/blob/master/POLICYFILE_README.md
 Options:
 
 E
+
+      option :config_file,
+        short:       "-c CONFIG_FILE",
+        long:        "--config CONFIG_FILE",
+        description: "Path to configuration file"
 
       option :debug,
         short:       "-D",
@@ -63,6 +71,11 @@ E
 
       def run(params = [])
         return 1 unless apply_params!(params)
+        # Force config file to be loaded. We don't use the configuration
+        # directly, but the user may have SSL configuration options that they
+        # need to talk to a private supermarket (e.g., trusted_certs or
+        # ssl_verify_mode)
+        chef_config
         installer.run
         0
       rescue PolicyfileServiceError => e
@@ -76,6 +89,10 @@ E
 
       def debug?
         !!config[:debug]
+      end
+
+      def config_path
+        config[:config_file]
       end
 
       def handle_error(error)
