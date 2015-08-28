@@ -32,7 +32,7 @@ Usage: chef delete-policy-group POLICY_GROUP [options]
 `chef delete-policy-group POLICY_GROUP` deletes the policy group POLICY_GROUP on
 the configured Chef Server. Policy Revisions associated to the policy group are
 not deleted. The state of the policy group will be backed up locally, allowing
-you to undo this operation.
+you to undo this operation via the `chef undelete` command.
 
 The Policyfile feature is incomplete and beta quality. See our detailed README
 for more information.
@@ -70,6 +70,7 @@ BANNER
       def run(params)
         return 1 unless apply_params!(params)
         rm_policy_group_service.run
+        ui.msg("This operation can be reversed by running `chef undelete --last`.")
         0
       rescue PolicyfileServiceError => e
         handle_error(e)
