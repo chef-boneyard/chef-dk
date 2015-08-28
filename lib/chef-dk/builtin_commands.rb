@@ -46,6 +46,8 @@ ChefDK.commands do |c|
 
   c.builtin "export", :Export, desc: "Export a policy lock as a Chef Zero code repo"
 
+  c.builtin "clean-policy-revisions", :CleanPolicyRevisions, desc: "Delete unused policy revisions on the server"
+
   c.builtin "delete-policy-group", :DeletePolicyGroup, desc: "Delete a policy group on the server"
 
   c.builtin "undelete", :Undelete, desc: "Undo a delete command"
