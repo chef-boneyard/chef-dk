@@ -74,6 +74,10 @@ module ChefDK
   class CantUndo < StandardError
   end
 
+  class UndoRecordNotFound < StandardError
+  end
+
+
   class BUG < RuntimeError
   end
 

@@ -112,6 +112,10 @@ describe ChefDK::Policyfile::UndoStack do
     # then.
     let!(:start_time) { Time.new }
 
+    let(:expected_id) { start_time.utc.strftime("%Y%m%d%H%M%S") }
+
+    let(:missing_id) { (start_time + 1).utc.strftime("%Y%m%d%H%M%S") }
+
     before do
       allow(Time).to receive(:new).and_return(start_time)
       undo_stack.push(undo_record)
@@ -130,8 +134,32 @@ describe ChefDK::Policyfile::UndoStack do
       expect(undo_stack).to_not be_empty
     end
 
+    it "checks whether a record exists by id" do
+      expect(undo_stack).to have_id(expected_id)
+      expect(undo_stack).to_not have_id(missing_id)
+    end
+
+    it "deletes a record by id" do
+      expect(undo_stack.delete(expected_id)).to eq(undo_record)
+    end
+
+    it "deletes a record by id and yields it" do
+      expect { |b| undo_stack.delete(expected_id, &b) }.to yield_with_args(undo_record)
+    end
+
+    it "fails to delete a record that doesn't exist" do
+      expect { undo_stack.delete(missing_id) }.to raise_error(ChefDK::UndoRecordNotFound)
+    end
+
+    it "pops the last record" do
+      expect(undo_stack.pop).to eq(undo_record)
+    end
+
+    it "pops the last record and yields it" do
+      expect { |b| undo_stack.pop(&b) }.to yield_with_args(undo_record)
+    end
+
     it "iterates over the records" do
-      expected_id = start_time.utc.strftime("%Y%m%d%H%M%S")
       expect { |b| undo_stack.each_with_id(&b) }.to yield_successive_args([expected_id, undo_record])
     end
 
@@ -140,15 +168,11 @@ describe ChefDK::Policyfile::UndoStack do
       expect(undo_stack.undo_records).to eq( [ undo_record ] )
     end
 
-    describe "popping the last undo record" do
+    context "and the record is removed" do
 
       let!(:popped_record) { undo_stack.pop }
 
-      it "returns the popped item" do
-        expect(popped_record).to eq(undo_record)
-      end
-
-      it "removes the popped item" do
+      it "has no items" do
         expect(undo_stack_files.size).to eq(0)
       end
 

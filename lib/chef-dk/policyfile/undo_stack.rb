@@ -43,7 +43,10 @@ module ChefDK
         size == 0
       end
 
-      # TODO: unit test
+      def has_id?(id)
+        File.exist?(undo_file_for(id))
+      end
+
       def each_with_id
         undo_record_files.each do |filename|
           yield File.basename(filename), load_undo_record(filename)
@@ -81,11 +84,29 @@ module ChefDK
         end
 
         record = load_undo_record(file_to_pop)
+        # if this hits an exception, we skip unlink
+        yield record if block_given?
         File.unlink(file_to_pop)
         record
       end
 
+      def delete(id)
+        undo_file = undo_file_for(id)
+        unless File.exist?(undo_file)
+          raise UndoRecordNotFound, "No undo record for id '#{id}' exists at #{undo_file}"
+        end
+
+        record = load_undo_record(undo_file)
+        yield record if block_given?
+        File.unlink(undo_file)
+        record
+      end
+
       private
+
+      def undo_file_for(id)
+        File.join(undo_dir, id)
+      end
 
       def load_undo_record(file)
         data = FFI_Yajl::Parser.parse(IO.read(file))
