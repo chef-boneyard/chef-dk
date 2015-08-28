@@ -23,19 +23,6 @@ module ChefDK
   module PolicyfileServices
     class Undelete
 
-      # TODO: this is for the command's banner:
-      # Usage: chef undelete [undo_record_timestamp] [options]
-      #
-      # `chef undelete` helps you recover quickly if you've deleted a policy or
-      # policy group in error.
-      #
-      # Note that the delete commands do not copy cookbooks that might be
-      # referenced by policies. If you have cleaned the policy cookbooks after
-      # the delete operation you want to reverse, `chef undelete` may not be
-      # able to fully restore the previous state. The delete commands also do
-      # not store access control data, so you may have to manually reapply any
-      # ACL customizations you have made.
-
       attr_reader :ui
 
       attr_reader :chef_config

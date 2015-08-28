@@ -48,5 +48,7 @@ ChefDK.commands do |c|
 
   c.builtin "delete-policy-group", :DeletePolicyGroup, desc: "Delete a policy group on the server"
 
+  c.builtin "undelete", :Undelete, desc: "Undo a delete command"
+
   c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications"
 end
