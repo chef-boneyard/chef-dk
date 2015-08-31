@@ -48,6 +48,8 @@ ChefDK.commands do |c|
 
   c.builtin "clean-policy-revisions", :CleanPolicyRevisions, desc: "Delete unused policy revisions on the server"
 
+  c.builtin "clean-policy-cookbooks", :CleanPolicyCookbooks, desc: "Delete unused policyfile cookbooks on the server"
+
   c.builtin "delete-policy-group", :DeletePolicyGroup, desc: "Delete a policy group on the server"
 
   c.builtin "undelete", :Undelete, desc: "Undo a delete command"
