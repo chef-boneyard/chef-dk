@@ -2,6 +2,22 @@
 
 # Unreleased:
 
+* [#491](https://github.com/chef/chef-dk/pull/491): Add `chef clean-policy-revisions`
+  subcommand to delete unused policyfile revisions from the server.
+* [#490](https://github.com/chef/chef-dk/pull/490): Add `chef undelete`
+  subcommand that can undo `chef delete-policy-group` operations.
+* [#489](https://github.com/chef/chef-dk/pull/489): Load configuration
+  file when running `chef install` to ensure SSL config such as
+  `trusted_certs_dir` and `ssl_verify_mode` is applied to HTTP requests
+  to cookbook artifact servers.
+* [#487](https://github.com/chef/chef-dk/pull/487): Add shell completion
+  of subcommand names for bash to `chef shell-init`.
+* [#485](https://github.com/chef/chef-dk/pull/485): Add shell completion
+  of subcommand names for zsh to `chef shell-init`.
+* [#483](https://github.com/chef/chef-dk/pull/483): Add `chef delete-policy-group`
+  subcommand.
+* [#477](https://github.com/chef/chef-dk/pull/477): Ensure options are
+  displayed when showing usage in response to invalid arguments/options
 * [#468](https://github.com/chef/chef-dk/pull/468): Catch errors from
   optparse and show usage.
 
