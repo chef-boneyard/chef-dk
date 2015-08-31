@@ -499,7 +499,7 @@ OUTPUT
         show_policy_service.run
       end
 
-      context "when there are no revisions of the policy on the server" do
+      context "when there are no policies or groups on the server" do
 
         let(:policies_by_name) do
           {}
@@ -507,6 +507,56 @@ OUTPUT
 
         let(:policies_by_group) do
           {}
+        end
+
+        it "prints a message to stderr that there are no copies of the policy on the server" do
+          expected_output = <<-OUTPUT
+appserver
+=========
+
+No policies named 'appserver' are associated with a policy group
+
+OUTPUT
+
+          expect(ui.output).to eq(expected_output)
+        end
+      end
+
+      context "when there are no revisions of the policy on the server" do
+
+        let(:policies_by_name) do
+          {
+            "load-balancer" => {
+              "5555555555555555555555555555555555555555555555555555555555555555" => {},
+              "6666666666666666666666666666666666666666666666666666666666666666" => {},
+            },
+            "db" => {
+              "9999999999999999999999999999999999999999999999999999999999999999" => {},
+              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {}
+            },
+            "memcache" => {
+              "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" => {}
+            }
+          }
+        end
+
+        let(:policies_by_group) do
+          {
+            "dev" => {
+              "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
+              "db" => "9999999999999999999999999999999999999999999999999999999999999999",
+              "memcache" => "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            },
+            "staging" => {
+              "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
+              "db" => "9999999999999999999999999999999999999999999999999999999999999999",
+              "memcache" => "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            },
+            "prod" => {
+              "load-balancer" => "6666666666666666666666666666666666666666666666666666666666666666",
+              "db" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          }
         end
 
         it "prints a message to stderr that there are no copies of the policy on the server" do
@@ -782,7 +832,7 @@ OUTPUT
       end
 
       before do
-        allow(http_client).to receive(:get).with("policy_groups/dev/policies/appserver").and_raise(http_exception)
+        expect(http_client).to receive(:get).with("policy_groups/dev/policies/appserver").and_raise(http_exception)
       end
 
       it "prints a message saying there is no policy assigned" do

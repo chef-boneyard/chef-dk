@@ -67,6 +67,8 @@ module ChefDK
 
     class PolicyGroupRevIDMap
 
+      include Enumerable
+
       attr_reader :policy_name
       attr_reader :revision_ids_by_group
 

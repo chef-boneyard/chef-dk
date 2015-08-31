@@ -163,7 +163,7 @@ module ChefDK
         report.h1(policy_name)
         rev_id_by_group = policy_lister.revision_ids_by_group_for(policy_name)
 
-        if rev_id_by_group.empty?
+        if rev_id_by_group.empty? || rev_id_by_group.all? { |_k, rev| rev.nil? }
           ui.err("No policies named '#{policy_name}' are associated with a policy group")
           ui.err("")
         elsif show_summary_diff?
