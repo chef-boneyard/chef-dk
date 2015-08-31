@@ -253,6 +253,20 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
           clean_policy_cookbooks_service.run
         end
 
+        # Regression test. This was giving us an Argument error for `<Set> - nil`
+        context "when there are no active revisions of a given cookbook" do
+
+          let(:policies_list) { {} }
+
+          it "deletes the non-active cookbooks" do
+            expect(http_client).to receive(:delete).with("/cookbook_artifacts/build-essential/d8ce58401d154378599b0fead81d2c390615602b")
+            expect(http_client).to receive(:delete).with("/cookbook_artifacts/build-essential/2db3df121028894f45497f847de91b91fbf76824")
+            expect(http_client).to receive(:delete).with("/cookbook_artifacts/mysql/6b506252cae939c874bd59b560c339b01c31326b")
+            clean_policy_cookbooks_service.run
+          end
+
+        end
+
       end
     end
   end

@@ -27,6 +27,8 @@ module ChefDK
 
       attr_reader :chef_config
 
+      attr_reader :ui
+
       def initialize(config: nil, ui: nil)
         @chef_config = config
         @ui = ui
@@ -43,9 +45,16 @@ module ChefDK
       end
 
       def gc_cookbooks
-        cookbooks_to_clean.each do |name, identifiers|
+        cookbooks = cookbooks_to_clean
+
+        if cookbooks.empty?
+          ui.msg("No cookbooks deleted.")
+        end
+
+        cookbooks.each do |name, identifiers|
           identifiers.each do |identifier|
             http_client.delete("/cookbook_artifacts/#{name}/#{identifier}")
+            ui.msg("DELETE #{name} #{identifier}")
           end
         end
       end
@@ -75,7 +84,7 @@ module ChefDK
         active_cbs = active_cookbooks
 
         all_cookbooks.inject({}) do |cb_map, (cb_name, revisions)|
-          active_revs = active_cbs[cb_name]
+          active_revs = active_cbs[cb_name] || Set.new
           inactive_revs = Set.new(revisions) - active_revs
           cb_map[cb_name] = inactive_revs unless inactive_revs.empty?
 
