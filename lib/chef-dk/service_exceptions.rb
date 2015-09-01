@@ -121,6 +121,8 @@ module ChefDK
   class DeletePolicyGroupError < PolicyfileNestedException
   end
 
+  class DeletePolicyError < PolicyfileNestedException
+  end
   class PolicyCookbookCleanError < PolicyfileNestedException
   end
 
