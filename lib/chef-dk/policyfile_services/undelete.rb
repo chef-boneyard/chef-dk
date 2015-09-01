@@ -80,11 +80,27 @@ module ChefDK
 
       def restore(undo_record)
         undo_record.policy_revisions.each do |policy_info|
-          rel_uri = "/policy_groups/#{policy_info.policy_group}/policies/#{policy_info.policy_name}"
-          http_client.put(rel_uri, policy_info.data)
-          ui.msg("Restored policy '#{policy_info.policy_name}'")
+          if policy_info.policy_group.nil?
+            recreate_as_orphan(policy_info)
+          else
+            recreate_and_associate_to_group(policy_info)
+          end
         end
-        ui.msg("Restored policy group '#{undo_record.policy_groups.first}'")
+        if ( restored_policy_group = undo_record.policy_groups.first )
+          ui.msg("Restored policy group '#{restored_policy_group}'")
+        end
+      end
+
+      def recreate_as_orphan(policy_info)
+        rel_uri = "/policies/#{policy_info.policy_name}/revisions"
+        http_client.post(rel_uri, policy_info.data)
+        ui.msg("Restored policy '#{policy_info.policy_name}'")
+      end
+
+      def recreate_and_associate_to_group(policy_info)
+        rel_uri = "/policy_groups/#{policy_info.policy_group}/policies/#{policy_info.policy_name}"
+        http_client.put(rel_uri, policy_info.data)
+        ui.msg("Restored policy '#{policy_info.policy_name}'")
       end
 
     end

@@ -254,6 +254,51 @@ OUTPUT
 
   end
 
+  describe "undoing a policy delete" do
+
+    let(:policy_revision) do
+      {
+        "name" => "appserver",
+        "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111"
+      }
+    end
+
+    let(:undo_record1) do
+      ChefDK::Policyfile::UndoRecord.new.tap do |undo_record|
+        undo_record.description = "delete-policy-group example1"
+        undo_record.add_policy_revision("appserver", nil, policy_revision)
+      end
+    end
+
+    let(:undo_stack) do
+      instance_double(ChefDK::Policyfile::UndoStack).tap do |s|
+        allow(s).to receive(:pop).and_yield(undo_record1)
+      end
+    end
+
+    let(:http_client) { instance_double(ChefDK::AuthenticatedHTTP) }
+
+    before do
+      allow(undelete_service).to receive(:http_client).and_return(http_client)
+      allow(undelete_service).to receive(:undo_stack).and_return(undo_stack)
+    end
+
+    context "when the revision to create doesn't exist" do
+
+      before do
+        expect(http_client).to receive(:post).
+          with("/policies/appserver/revisions", policy_revision)
+      end
+
+      it "uploads all policies to the server" do
+        undelete_service.run
+        expect(ui.output).to eq("Restored policy 'appserver'\n")
+      end
+
+    end
+
+  end
+
 
 end
 
