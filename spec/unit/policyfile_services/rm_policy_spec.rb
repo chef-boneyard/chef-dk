@@ -129,6 +129,17 @@ describe ChefDK::PolicyfileServices::RmPolicy do
 
   end
 
+  # This case makes undo impossible to implement, because there are no APIs to
+  # create a policy name without creating a revision (i.e., there is no
+  # `POST /policies`). Because of the separation between CLI and service
+  # objects, running `chef delete-policy empty-policy` will still tell the user
+  # they can undo that action by running `chef undelete --last`, but that isn't
+  # true. That said, a policy with no revisions is invisible to `chef-client`
+  # and `chef show-policy`; the only way to create that state with the CLI is to
+  # `chef delete-policy-group` all the groups that policy was applied to and
+  # then run `chef clean-policy-revisions`, which can be undone by running
+  # `chef undelete` multiple times. So we'll test this scenario to make sure we
+  # don't crash, but not worry about the slightly incorrect behavior.
   context "when the policy exists but has no revisions" do
 
     let(:empty_policy_data) { {} }
@@ -138,21 +149,12 @@ describe ChefDK::PolicyfileServices::RmPolicy do
       expect(http_client).to receive(:get).with("/policies/appserver").and_return(empty_policy_data)
       expect(http_client).to receive(:delete).with("/policies/appserver")
 
-      # or expect it not to ?
       expect(undo_stack).to receive(:push).with(undo_record)
     end
 
     it "removes the policy" do
       rm_policy_service.run
     end
-
-    # this is tricky, we won't be able to undo this b/c we cannot create a
-    # policy_name directly, we have to create a revision. However, this case is
-    # likely to be very rare, as the user has to manually send a DELETE to
-    # /policy_groups/:group/policies/:policy for each group the policy used to
-    # belong to, or delete every policy group that it belonged to, in order to
-    # create this situation.
-    it "explains that there were no revisions, so there is nothing to undo"
 
   end
 

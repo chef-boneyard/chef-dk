@@ -60,9 +60,7 @@ module ChefDK
 
         undo_record.description = "delete-policy #{policy_name}"
 
-        if policy_revision_data.empty? || policy_revision_data["revisions"].empty?
-          # TODO: print some message about this(?)
-        else
+        unless policy_has_no_revisions?
           gather_policy_data_for_undo
         end
 
@@ -83,6 +81,10 @@ module ChefDK
       end
 
       private
+
+      def policy_has_no_revisions?
+        policy_revision_data.empty? || policy_revision_data["revisions"].empty?
+      end
 
       def gather_policy_data_for_undo
         revisions = policy_revision_data["revisions"].keys
