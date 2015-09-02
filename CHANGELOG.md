@@ -6,6 +6,8 @@
   of subcommand for fish to `chef shell-init`.
 * [#496](https://github.com/chef/chef-dk/pull/496): Add `chef clean-policy-cookbooks`
   subcommand to delete unused policyfile cookbooks from the server.
+* [#495](https://github.com/chef/chef-dk/pull/495): Always show 'no
+  policy' message when policy doesn't exist.
 * [#491](https://github.com/chef/chef-dk/pull/491): Add `chef clean-policy-revisions`
   subcommand to delete unused policyfile revisions from the server.
 * [#490](https://github.com/chef/chef-dk/pull/490): Add `chef undelete`
