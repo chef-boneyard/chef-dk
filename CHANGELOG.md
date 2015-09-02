@@ -2,6 +2,10 @@
 
 # Unreleased:
 
+* [#498](https://github.com/chef/chef-dk/pull/498): Add shell completion
+  of subcommand for fish to `chef shell-init`.
+* [#496](https://github.com/chef/chef-dk/pull/496): Add `chef clean-policy-cookbooks`
+  subcommand to delete unused policyfile cookbooks from the server.
 * [#491](https://github.com/chef/chef-dk/pull/491): Add `chef clean-policy-revisions`
   subcommand to delete unused policyfile revisions from the server.
 * [#490](https://github.com/chef/chef-dk/pull/490): Add `chef undelete`
@@ -17,7 +21,7 @@
 * [#483](https://github.com/chef/chef-dk/pull/483): Add `chef delete-policy-group`
   subcommand.
 * [#477](https://github.com/chef/chef-dk/pull/477): Ensure options are
-  displayed when showing usage in response to invalid arguments/options
+  displayed when showing usage in response to invalid arguments/options.
 * [#468](https://github.com/chef/chef-dk/pull/468): Catch errors from
   optparse and show usage.
 
