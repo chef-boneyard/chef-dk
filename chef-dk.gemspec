@@ -38,7 +38,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency "mixlib-cli", "~> 1.5"
-  gem.add_dependency "mixlib-shellout", ">= 2.0.0.rc.0", "< 3.0.0"
+  gem.add_dependency "mixlib-shellout", "~> 2.0"
   gem.add_dependency "ffi-yajl", ">= 1.0", "< 3.0"
 
   gem.add_dependency "minitar", "~> 0.5.4"
