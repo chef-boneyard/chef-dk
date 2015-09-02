@@ -1,0 +1,10 @@
+# Fish Shell command-line completions for ChefDK
+
+function __fish_chef_no_command --description 'Test if chef has yet to be given the main command'
+  set -l cmd (commandline -opc)
+  test (count $cmd) -eq 1
+end
+
+<% commands.each do |command, desc| -%>
+complete -c chef -f -n '__fish_chef_no_command' -a <%= command %> -d "<%= desc %>"
+<% end -%>

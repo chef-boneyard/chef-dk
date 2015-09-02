@@ -120,10 +120,12 @@ HELP
 
       def completion_template_for(shell)
         case shell
-        when "zsh"
-          "zsh.zsh.erb"
         when "bash"
           "bash.sh.erb"
+        when "fish"
+          "chef.fish.erb"
+        when "zsh"
+          "zsh.zsh.erb"
         else
           # Pull requests accepted!
           nil
