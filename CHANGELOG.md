@@ -1,6 +1,6 @@
 # Chef Development Kit Changelog
 
-# Unreleased:
+# 0.8.0
 
 * [#498](https://github.com/chef/chef-dk/pull/498): Add shell completion
   of subcommand for fish to `chef shell-init`.
@@ -25,7 +25,7 @@
 * [#468](https://github.com/chef/chef-dk/pull/468): Catch errors from
   optparse and show usage.
 
-# Last Release: 0.7.0
+# 0.7.0
 
 * [#433](https://github.com/chef/chef-dk/pull/433): Add `chef verify chef-provisioning`
 * [Jian Weihang](https://github.com/tonytonyjan): Add post install
