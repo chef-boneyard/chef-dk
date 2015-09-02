@@ -151,7 +151,7 @@ describe ChefDK::Command::DeletePolicyGroup do
       end
 
       let(:exception) do
-        ChefDK::PolicyfileListError.new("Failed to list policies", cause)
+        ChefDK::DeletePolicyGroupError.new("Failed to delete policy group", cause)
       end
 
       before do
@@ -162,7 +162,7 @@ describe ChefDK::Command::DeletePolicyGroup do
         expect(command.run(%w[example-policy-group])).to eq(1)
 
         expected_output=<<-E
-Error: Failed to list policies
+Error: Failed to delete policy group
 Reason: (StandardError) some operation failed
 
 E
@@ -176,7 +176,7 @@ E
           command.run(%w[ example-policy-group -D ])
 
           expected_output=<<-E
-Error: Failed to list policies
+Error: Failed to delete policy group
 Reason: (StandardError) some operation failed
 
 
@@ -190,7 +190,7 @@ E
 
     end
 
-    context "when the list service executes successfully" do
+    context "when the rm policy group service executes successfully" do
 
       before do
         expect(command.rm_policy_group_service).to receive(:run)
