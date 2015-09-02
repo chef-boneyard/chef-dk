@@ -46,6 +46,7 @@ module ChefDK
 
         @policy_revision_data = nil
         @policy_exists = false
+        @policy_group_data = nil
 
         @undo_record = Policyfile::UndoRecord.new
         @undo_stack = Policyfile::UndoStack.new
@@ -69,7 +70,6 @@ module ChefDK
         undo_stack.push(undo_record)
         ui.err("Removed policy '#{policy_name}'.")
       rescue => e
-        pp e
         raise DeletePolicyError.new("Failed to delete policy '#{policy_name}'", e)
       end
 
@@ -89,10 +89,31 @@ module ChefDK
 
         revisions.each do |revision_id|
           policy_revision_data = http_client.get("/policies/#{policy_name}/revisions/#{revision_id}")
-          undo_record.add_policy_revision(policy_name, nil, policy_revision_data)
+          policy_groups = policy_groups_using_revision(revision_id)
+          if policy_groups.empty?
+            undo_record.add_policy_revision(policy_name, nil, policy_revision_data)
+          else
+            policy_groups.each do |policy_group|
+              undo_record.add_policy_revision(policy_name, policy_group, policy_revision_data)
+            end
+          end
         end
       end
 
+      def policy_groups_using_revision(revision_id)
+        groups = []
+        policy_group_data.each do |group_name, group_info|
+          next unless group_info.key?("policies") && !group_info["policies"].empty?
+          next unless group_info["policies"].key?(policy_name)
+          next unless group_info["policies"][policy_name]["revision_id"] == revision_id
+          groups << group_name if group_info
+        end
+        groups
+      end
+
+      def policy_group_data
+        @policy_group_data ||= http_client.get("/policy_groups")
+      end
 
       def policy_exists?
         return true if @policy_exists

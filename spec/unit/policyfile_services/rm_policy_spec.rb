@@ -165,10 +165,23 @@ describe ChefDK::PolicyfileServices::RmPolicy do
       }
     end
 
+    let(:policy_group_data) do
+      {
+        "dev" => {
+          "uri" => "https://chef.example/organizations/testorg/policy_groups/dev"
+        },
+        "preprod" => {
+          "uri" => "https://chef.example/organizations/testorg/policy_groups/preprod"
+        }
+      }
+    end
+
     before do
       allow(rm_policy_service).to receive(:http_client).and_return(http_client)
 
       expect(http_client).to receive(:get).with("/policies/appserver").and_return(policy_revisions_data)
+      expect(http_client).to receive(:get).with("/policy_groups").and_return(policy_group_data)
+
       expect(http_client).to receive(:get).
         with("/policies/appserver/revisions/2222222222222222222222222222222222222222222222222222222222222222").
         and_return(policy_appserver_2)
@@ -194,8 +207,58 @@ describe ChefDK::PolicyfileServices::RmPolicy do
       expect(stored_revision_info.data).to eq(policy_appserver_2)
     end
 
-  end
+    context "and some policy revisions are associated to policy groups" do
 
+      let(:policy_group_data) do
+        {
+          "dev" => {
+            "uri" => "https://chef.example/organizations/testorg/policy_groups/dev",
+            "policies" => {
+              "appserver" => { "revision_id" => "2222222222222222222222222222222222222222222222222222222222222222" },
+              "load-balancer" => { "revision_id" => "5555555555555555555555555555555555555555555555555555555555555555" },
+              "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" }
+            }
+          },
+          "preprod" => {
+            "uri" => "https://chef.example/organizations/testorg/policy_groups/preprod",
+            "policies" => {
+              "appserver" => { "revision_id" => "2222222222222222222222222222222222222222222222222222222222222222" },
+              "load-balancer" => { "revision_id" => "5555555555555555555555555555555555555555555555555555555555555555" },
+              "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" }
+            }
+          },
+          "prod" => {
+            "uri" => "https://chef.example/organizations/testorg/policy_groups/prod",
+            "policies" => {
+              "appserver" => { "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111" },
+              "load-balancer" => { "revision_id" => "5555555555555555555555555555555555555555555555555555555555555555" },
+              "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" }
+            }
+          }
+        }
+      end
+
+      it "maps the policy revisions to their groups in the restore file" do
+        rm_policy_service.run
+
+        expect(undo_record.description).to eq("delete-policy appserver")
+        expect(undo_record.policy_groups).to eq( [ ] )
+        expect(undo_record.policy_revisions.size).to eq(2)
+
+        stored_revision_info_1 = undo_record.policy_revisions.first
+        expect(stored_revision_info_1.policy_group).to eq("dev")
+        expect(stored_revision_info_1.policy_name).to eq("appserver")
+        expect(stored_revision_info_1.data).to eq(policy_appserver_2)
+
+        stored_revision_info_2 = undo_record.policy_revisions.last
+        expect(stored_revision_info_2.policy_group).to eq("preprod")
+        expect(stored_revision_info_2.policy_name).to eq("appserver")
+        expect(stored_revision_info_2.data).to eq(policy_appserver_2)
+      end
+
+    end
+
+  end
 
 end
 
