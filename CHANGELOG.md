@@ -2,6 +2,8 @@
 
 # 0.8.0
 
+* [#501](https://github.com/chef/chef-dk/pull/501): Add `chef delete-policy`
+  subcommand.
 * [#498](https://github.com/chef/chef-dk/pull/498): Add shell completion
   of subcommand for fish to `chef shell-init`.
 * [#496](https://github.com/chef/chef-dk/pull/496): Add `chef clean-policy-cookbooks`
