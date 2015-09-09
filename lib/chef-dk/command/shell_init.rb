@@ -106,7 +106,7 @@ HELP
           export(shell_name, var_name, value)
         end
 
-        msg(completion_for(shell_name))
+        msg(completion_for(shell_name)) unless shell_name == "powershell"
         0
       end
 
@@ -174,5 +174,3 @@ HELP
     end
   end
 end
-
-
