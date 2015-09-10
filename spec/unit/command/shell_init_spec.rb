@@ -52,6 +52,13 @@ describe ChefDK::Command::ShellInit do
         command_instance.run(argv)
         expect(stdout_io.string).to include(expected_environment_commands)
       end
+
+      it "does not emit any empty lines", :if => ["powershell", "posh"].include?(shell) do
+        command_instance.run(argv)
+        stdout_io.string.each_line do |s|
+          expect(s.strip).not_to be_empty
+        end
+      end
     end
 
     context "with an explicit omnibus directory as an argument" do
@@ -65,6 +72,13 @@ describe ChefDK::Command::ShellInit do
       it "emits a script to add ChefDK's ruby to the shell environment" do
         command_instance.run(argv)
         expect(stdout_io.string).to include(expected_environment_commands)
+      end
+
+      it "does not emit any empty lines", :if => ["powershell", "posh"].include?(shell) do
+        command_instance.run(argv)
+        stdout_io.string.each_line do |s|
+          expect(s.strip).not_to be_empty
+        end
       end
     end
   end
