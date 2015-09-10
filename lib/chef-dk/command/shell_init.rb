@@ -106,8 +106,12 @@ HELP
           export(shell_name, var_name, value)
         end
 
-        msg(completion_for(shell_name)) unless shell_name == "powershell"
+        emit_shell_cmd(completion_for(shell_name))
         0
+      end
+
+      def emit_shell_cmd(cmd)
+        msg(cmd) unless cmd.empty?
       end
 
       def completion_for(shell)
@@ -153,7 +157,7 @@ HELP
       end
 
       def posix_shell_export(var, val)
-        msg(%Q(export #{var}="#{val}"))
+        emit_shell_cmd(%Q(export #{var}="#{val}"))
       end
 
       def fish_shell_export(var, val)
@@ -162,14 +166,14 @@ HELP
         # /dev/null to avoid Fish's helpful warnings about nonexistent
         # PATH elements.
         if var == 'PATH'
-          msg(%Q(set -gx #{var} "#{val.split(':').join('" "')}" 2>/dev/null;))
+          emit_shell_cmd(%Q(set -gx #{var} "#{val.split(':').join('" "')}" 2>/dev/null;))
         else
-          msg(%Q(set -gx #{var} "#{val}";))
+          emit_shell_cmd(%Q(set -gx #{var} "#{val}";))
         end
       end
 
       def powershell_export(var, val)
-        msg(%Q($env:#{var}="#{val}"))
+        emit_shell_cmd(%Q($env:#{var}="#{val}"))
       end
     end
   end
