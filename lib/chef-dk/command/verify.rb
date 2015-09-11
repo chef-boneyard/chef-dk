@@ -238,13 +238,13 @@ end
 
         c.smoke_test do
 
-          if File.directory?("/usr/bin")
-            sh!("/usr/bin/berks -v")
+          if File.directory?(usr_bin_prefix)
+            sh!("#{usr_bin_path("berks")} -v")
 
-            sh!("/usr/bin/chef -v")
+            sh!("#{usr_bin_path("chef")} -v")
 
-            sh!("/usr/bin/chef-client -v")
-            sh!("/usr/bin/chef-solo -v")
+            sh!("#{usr_bin_path("chef-client")} -v")
+            sh!("#{usr_bin_path("chef-solo")} -v")
 
             # In `knife`, `knife -v` follows a different code path that skips
             # command/plugin loading; `knife -h` loads commands and plugins, but
@@ -253,17 +253,17 @@ end
             # exits 0, which runs most of the code.
             #
             # See also: https://github.com/opscode/chef-dk/issues/227
-            sh!("/usr/bin/knife exec -E true")
+            sh!("#{usr_bin_path("knife")} exec -E true")
 
             tmpdir do |dir|
               # Kitchen tries to create a .kitchen dir even when just running
               # `kitchen -v`:
-              sh!("/usr/bin/kitchen -v", cwd: dir)
+              sh!("#{usr_bin_path("kitchen")} -v", cwd: dir)
             end
 
-            sh!("/usr/bin/ohai -v")
+            sh!("#{usr_bin_path("ohai")} -v")
 
-            sh!("/usr/bin/foodcritic -V")
+            sh!("#{usr_bin_path("foodcritic")} -V")
           end
 
           # Test blocks are expected to return a Mixlib::ShellOut compatible
