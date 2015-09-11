@@ -64,5 +64,29 @@ describe ChefDK::Helpers do
       end
     end
 
+    context 'using usr_bin_prefix' do
+      before do
+        stub_const('RUBY_PLATFORM', ruby_platform_string)
+      end
+
+      context 'on Mac' do
+        let(:ruby_platform_string) { 'x86_64-darwin12.0' }
+
+        it 'uses /usr/local/bin' do
+          expect(helpers.usr_bin_prefix).to eq('/usr/local/bin')
+          expect(helpers.usr_bin_path('berks')).to eq('/usr/local/bin/berks')
+        end
+      end
+
+      context 'on other systems' do
+        let(:ruby_platform_string) { 'x86_64-linux' }
+
+        it 'uses /usr/bin' do
+          expect(helpers.usr_bin_prefix).to eq('/usr/bin')
+          expect(helpers.usr_bin_path('berks')).to eq('/usr/bin/berks')
+        end
+      end
+    end
+
   end
 end

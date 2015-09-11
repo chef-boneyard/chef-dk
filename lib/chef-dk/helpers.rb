@@ -86,6 +86,18 @@ module ChefDK
                        end
     end
 
+    # Returns the directory that contains our main symlinks.
+    # On Mac we place all of our symlinks under /usr/local/bin on other
+    # platforms they are under /usr/bin
+    def usr_bin_prefix
+      @usr_bin_prefix ||= os_x? ? "/usr/local/bin" : "/usr/bin"
+    end
+
+    # Returns the full path to the given command under usr_bin_prefix
+    def usr_bin_path(command)
+      File.join(usr_bin_prefix, command)
+    end
+
     private
 
     def omnibus_expand_path(*paths)
@@ -137,6 +149,11 @@ module ChefDK
       self.instance_variables.each do |ivar|
         self.instance_variable_set(ivar, nil)
       end
+    end
+
+    # Returns true if we are on Mac OS X. Otherwise false
+    def os_x?
+      !!(RUBY_PLATFORM =~ /darwin/)
     end
   end
 end
