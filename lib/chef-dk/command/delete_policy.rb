@@ -34,8 +34,7 @@ Usage: chef delete-policy POLICY_NAME [options]
 backed up locally, allowing you to undo this operation via the `chef undelete`
 command.
 
-The Policyfile feature is incomplete and beta quality. See our detailed README
-for more information.
+See our detailed README for more information:
 
 https://github.com/opscode/chef-dk/blob/master/POLICYFILE_README.md
 

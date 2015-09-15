@@ -35,8 +35,7 @@ with all the cookbooks contained in the policy lock. The policy lock is applied
 to a specific POLICY_GROUP, which is a set of nodes that share the same
 run_list and cookbooks.
 
-The Policyfile feature is incomplete and beta quality. See our detailed README
-for more information.
+See our detailed README for more information:
 
 https://github.com/opscode/chef-dk/blob/master/POLICYFILE_README.md
 

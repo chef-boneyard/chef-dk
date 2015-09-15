@@ -130,10 +130,6 @@ before converging the machine(s) defined in the provision cookbook.
 In the third form of the command, `chef provision` expects to create machines
 that will not operate in policyfile mode.
 
-Note that this command is considered beta. Behavior, the APIs that pass CLI
-data to chef-client, and argument names may change as more experience is gained
-from real-world usage.
-
 Chef Provisioning is documented at https://docs.chef.io/provisioning.html
 
 Options:

@@ -34,8 +34,7 @@ Server. Orphaned policyfile revisions are not associated to any group, and
 therefore not in active use by any nodes. To list orphaned policyfile revisions
 before deleting them, use `chef show-policy --orphans`.
 
-The Policyfile feature is incomplete and beta quality. See our detailed README
-for more information.
+See our detailed README for more information:
 
 https://github.com/opscode/chef-dk/blob/master/POLICYFILE_README.md
 

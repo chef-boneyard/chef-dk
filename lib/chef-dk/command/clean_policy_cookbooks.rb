@@ -35,8 +35,7 @@ on the server. Note that cookbooks which are referenced by "orphaned" policy
 revisions are not removed, so you may wish to run `chef clean-policy-revisions`
 to remove orphaned policies before running this command.
 
-The Policyfile feature is incomplete and beta quality. See our detailed README
-for more information.
+See our detailed README for more information:
 
 https://github.com/opscode/chef-dk/blob/master/POLICYFILE_README.md
 

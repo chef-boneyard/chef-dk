@@ -38,8 +38,7 @@ When both POLICY_NAME and POLICY_GROUP are given, the command shows the content
 of a the active policyfile lock for the given POLICY_GROUP. See also the `diff`
 command.
 
-The Policyfile feature is incomplete and beta quality. See our detailed README
-for more information.
+See our detailed README for more information:
 
 https://github.com/opscode/chef-dk/blob/master/POLICYFILE_README.md
 

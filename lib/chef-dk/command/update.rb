@@ -37,8 +37,7 @@ NOTE: `chef update` does not yet support granular updates (e.g., just updating
 the `run_list` or a specific cookbook version). Support will be added in a
 future version.
 
-The Policyfile feature is incomplete and beta quality. See our detailed README
-for more information.
+See our detailed README for more information:
 
 https://github.com/opscode/chef-dk/blob/master/POLICYFILE_README.md
 

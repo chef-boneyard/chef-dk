@@ -44,8 +44,7 @@ previous state.
 The delete commands also do not store access control data, so you may have to
 manually reapply any ACL customizations you have made.
 
-The Policyfile feature is incomplete and beta quality. See our detailed README
-for more information.
+See our detailed README for more information:
 
 https://github.com/opscode/chef-dk/blob/master/POLICYFILE_README.md
 

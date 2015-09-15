@@ -37,8 +37,7 @@ lockfile to install the locked cookbooks on another machine. You can also push
 the lockfile to a "policy group" on a Chef Server and apply that exact set of
 cookbooks to nodes in your infrastructure.
 
-The Policyfile feature is incomplete and beta quality. See our detailed README
-for more information.
+See our detailed README for more information:
 
 https://github.com/opscode/chef-dk/blob/master/POLICYFILE_README.md
 
