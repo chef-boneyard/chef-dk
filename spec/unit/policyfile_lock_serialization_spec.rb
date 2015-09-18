@@ -24,6 +24,9 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
     {
       "name" => "example",
       "run_list" => [ "recipe[cookbook::recipe_name]" ],
+      "named_run_lists" => {
+        "fast-deploy" => [ "recipe[cookbook::deployit]" ]
+      },
       "cookbook_locks" => {
         # TODO: add some valid locks
       },
@@ -48,6 +51,10 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
 
     it "includes the run list" do
       expect(lockfile.run_list).to eq(["recipe[cookbook::recipe_name]"])
+    end
+
+    it "includes the named run lists" do
+      expect(lockfile.named_run_lists).to eq({ "fast-deploy" => [ "recipe[cookbook::deployit]" ] })
     end
 
     it "includes the cookbook locks" do
@@ -100,6 +107,40 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
       expect { lockfile.build_from_lock_data(bad_run_list) }.to raise_error(ChefDK::InvalidLockfile)
     end
 
+    it "allows the named_run_lists field to be absent" do
+      missing_named_run_lists = valid_lock_data.dup
+      missing_named_run_lists.delete("named_run_lists")
+
+      expect { lockfile.build_from_lock_data(missing_named_run_lists) }.to_not raise_error
+    end
+
+    it "requires the named_run_lists field to be a Hash if present" do
+      bad_named_run_lists = valid_lock_data.dup
+      bad_named_run_lists["named_run_lists"] = false
+
+      expect { lockfile.build_from_lock_data(bad_named_run_lists) }.to raise_error(ChefDK::InvalidLockfile)
+    end
+
+    it "requires the keys in named_run_lists to be strings" do
+      bad_named_run_lists = valid_lock_data.dup
+      bad_named_run_lists["named_run_lists"] = { 42 => [] }
+
+      expect { lockfile.build_from_lock_data(bad_named_run_lists) }.to raise_error(ChefDK::InvalidLockfile)
+    end
+
+    it "requires the values in named_run_lists to be arrays" do
+      bad_named_run_lists = valid_lock_data.dup
+      bad_named_run_lists["named_run_lists"] = { "bad" => 42 }
+
+      expect { lockfile.build_from_lock_data(bad_named_run_lists) }.to raise_error(ChefDK::InvalidLockfile)
+    end
+
+    it "requires the values in named_run_lists to be valid run lists" do
+      bad_named_run_lists = valid_lock_data.dup
+      bad_named_run_lists["named_run_lists"] = { "bad" => [ 42 ] }
+
+      expect { lockfile.build_from_lock_data(bad_named_run_lists) }.to raise_error(ChefDK::InvalidLockfile)
+    end
     it "requires the `cookbook_locks` section be present and its value is a Hash" do
       missing_locks = valid_lock_data.dup
       missing_locks.delete("cookbook_locks")

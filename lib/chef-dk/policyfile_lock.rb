@@ -255,6 +255,7 @@ module ChefDK
     def build_from_lock_data(lock_data)
       set_name_from_lock_data(lock_data)
       set_run_list_from_lock_data(lock_data)
+      set_named_run_lists_from_lock_data(lock_data)
       set_cookbook_locks_from_lock_data(lock_data)
       set_attributes_from_lock_data(lock_data)
       set_solution_dependencies_from_lock_data(lock_data)
@@ -264,6 +265,7 @@ module ChefDK
     def build_from_archive(lock_data)
       set_name_from_lock_data(lock_data)
       set_run_list_from_lock_data(lock_data)
+      set_named_run_lists_from_lock_data(lock_data)
       set_cookbook_locks_as_archives_from_lock_data(lock_data)
       set_attributes_from_lock_data(lock_data)
       set_solution_dependencies_from_lock_data(lock_data)
@@ -414,6 +416,34 @@ module ChefDK
       end
 
       @run_list = run_list_attribute
+    end
+
+    def set_named_run_lists_from_lock_data(lock_data)
+      return unless lock_data.key?("named_run_lists")
+
+      lock_data_named_run_lists = lock_data["named_run_lists"]
+
+      unless lock_data_named_run_lists.kind_of?(Hash)
+        msg = "lockfile's named_run_lists must be a Hash (JSON object). (got: #{lock_data_named_run_lists.inspect})"
+        raise InvalidLockfile, msg
+      end
+
+      lock_data_named_run_lists.each do |name, run_list|
+        unless name.kind_of?(String)
+          msg = "Keys in lockfile's named_run_lists must be Strings. (got: #{name.inspect})"
+          raise InvalidLockfile, msg
+        end
+        unless run_list.kind_of?(Array)
+          msg = "Values in lockfile's named_run_lists must be Arrays. (got: #{run_list.inspect})"
+          raise InvalidLockfile, msg
+        end
+        bad_run_list_items = run_list.select { |e| e !~ RUN_LIST_ITEM_FORMAT }
+        unless bad_run_list_items.empty?
+          msg = "lockfile's run_list items must be formatted like `recipe[$COOKBOOK_NAME::$RECIPE_NAME]'. Invalid items: `#{bad_run_list_items.join("' `")}'"
+          raise InvalidLockfile, msg
+        end
+      end
+      @named_run_lists = lock_data_named_run_lists
     end
 
     def set_cookbook_locks_from_lock_data(lock_data)
