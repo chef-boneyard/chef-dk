@@ -127,10 +127,16 @@ module ChefDK
 
         c.smoke_test do
           # ------------
-          # we want to avoid hard-coding driver names, but calling Gem::Specification produces a warning; this
-          # seems to be the best way to silence it.
+          # we want to avoid hard-coding driver names, but calling Gem::Specification produces a warning;
+          # changing $VERBOSE seems to be the best way to silence it.
           verbose = $VERBOSE
           $VERBOSE = nil
+
+          # construct a hash of { driver_name => [version1, version2, ...]}
+          driver_versions = {}
+          Gem::Specification.all.map { |gs| [gs.name, gs.version] }.
+                                  select { |n| n[0] =~ /^chef-provisioning-/ }.
+                                  each { |gem, version| (driver_versions[gem] ||= []) << version }
 
           drivers = Gem::Specification.all.map { |gs| gs.name }.
                                            select { |n| n =~ /^chef-provisioning-/ }.
@@ -141,6 +147,48 @@ module ChefDK
           # ------------
           failures = []
 
+          # ------------
+          # fail the verify if we have more than one version of chef-provisioning or any of its drivers.
+          def format_gem_failure(name, versions)
+            <<-EOS
+#{name} has multiple versions installed:
+#{versions.sort.map { |gv| "    #{gv.to_s}" }.join("\n")}
+            EOS
+          end
+
+          failures << format_gem_failure("chef-provisioning", versions) if versions.size > 1
+
+          driver_versions.keys.sort.each do |driver_name|
+            v = driver_versions[driver_name]
+            failures << format_gem_failure(driver_name, v) if v.size > 1
+          end
+
+          if failures.size > 0
+            failures << <<-EOS
+
+Some applications may need or prefer different versions of the chef-provisioning gem or its drivers, so
+this multiple-version check can fail if a user has installed new versions of those libraries.
+EOS
+          end
+
+          # ------------
+          # load the core gem and all of the drivers (ignoring versions).
+          require "chef/provisioning"
+          drivers.map { |d| "#{d.gsub('-', '/')}_driver" }.each do |driver_gem|
+            begin
+              begin
+                require driver_gem
+              rescue LoadError
+                # anomalously, chef-provisioning-fog does not have a fog_driver.rb. (9/2015)
+                require "#{driver_gem}/driver.rb"
+              end
+            rescue LoadError => ex
+              puts ex
+            end
+          end
+
+          # ------------
+          # look for version dependency conflicts.
           tmpdir do |cwd|
             versions.each do |provisioning_version|
               gemfile = "chef-provisioning-#{provisioning_version}-chefdk-test.gemfile"
@@ -154,15 +202,11 @@ module ChefDK
               result = sh("bundle install --local --quiet", cwd: cwd, env: {"BUNDLE_GEMFILE" => gemfile })
 
               if result.exitstatus != 0
-                failures << result
+                failures << result.stdout
               end
-
             end  # end provisioning versions.
 
-            if failures.size > 0
-              failures.each { |fail| puts fail.stdout }
-              puts "\nDriver list (no version restrictions):\n  #{drivers.join("\n  ")}"
-            end
+            failures.each { |fail| puts fail }
 
             # dubious on Windows.
             # this is weird, but we seem to require a Mixlib::ShellOut as the return value. suggestions
