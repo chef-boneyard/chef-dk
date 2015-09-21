@@ -41,6 +41,7 @@ module Kitchen
       default_config :json_attributes, true
       default_config :chef_zero_host, nil
       default_config :chef_zero_port, 8889
+      default_config :policyfile, "Policyfile.rb"
 
       default_config :chef_client_path do |provisioner|
         provisioner.
@@ -122,7 +123,9 @@ module Kitchen
       def policy_exporter
         # Must force this because TK by default copies the current cookbook to the sandbox
         # See ChefDK::PolicyfileServices::ExportRepo#assert_export_dir_clean!
-        @policy_exporter ||= ChefDK::PolicyfileServices::ExportRepo.new(export_dir: sandbox_path, force: true)
+        @policy_exporter ||= ChefDK::PolicyfileServices::ExportRepo.new(policyfile: config[:policyfile],
+                                                                        export_dir: sandbox_path,
+                                                                        force: true)
       end
 
       # Writes a fake (but valid) validation.pem into the sandbox directory.
