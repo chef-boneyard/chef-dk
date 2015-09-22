@@ -1,359 +1,726 @@
-# Chef Development Kit Changelog
+# Change Log
 
-# 0.8.0
+## [0.8.0](https://github.com/chef/chef-dk/tree/0.8.0) (2015-09-22)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.7.0...0.8.0)
 
-* [#501](https://github.com/chef/chef-dk/pull/501): Add `chef delete-policy`
-  subcommand.
-* [#498](https://github.com/chef/chef-dk/pull/498): Add shell completion
-  of subcommand for fish to `chef shell-init`.
-* [#496](https://github.com/chef/chef-dk/pull/496): Add `chef clean-policy-cookbooks`
-  subcommand to delete unused policyfile cookbooks from the server.
-* [#495](https://github.com/chef/chef-dk/pull/495): Always show 'no
-  policy' message when policy doesn't exist.
-* [#491](https://github.com/chef/chef-dk/pull/491): Add `chef clean-policy-revisions`
-  subcommand to delete unused policyfile revisions from the server.
-* [#490](https://github.com/chef/chef-dk/pull/490): Add `chef undelete`
-  subcommand that can undo `chef delete-policy-group` operations.
-* [#489](https://github.com/chef/chef-dk/pull/489): Load configuration
-  file when running `chef install` to ensure SSL config such as
-  `trusted_certs_dir` and `ssl_verify_mode` is applied to HTTP requests
-  to cookbook artifact servers.
-* [#487](https://github.com/chef/chef-dk/pull/487): Add shell completion
-  of subcommand names for bash to `chef shell-init`.
-* [#485](https://github.com/chef/chef-dk/pull/485): Add shell completion
-  of subcommand names for zsh to `chef shell-init`.
-* [#483](https://github.com/chef/chef-dk/pull/483): Add `chef delete-policy-group`
-  subcommand.
-* [#477](https://github.com/chef/chef-dk/pull/477): Ensure options are
-  displayed when showing usage in response to invalid arguments/options.
-* [#468](https://github.com/chef/chef-dk/pull/468): Catch errors from
-  optparse and show usage.
+**Implemented enhancements:**
 
-# 0.7.0
+- remove beta warnings from policyfile commands [\#513](https://github.com/chef/chef-dk/pull/513) ([danielsdeleo](https://github.com/danielsdeleo))
+- Support OS/X 10.11 package installation [\#509](https://github.com/chef/chef-dk/pull/509) ([sersut](https://github.com/sersut))
+- Add `chef delete-policy` subcommand [\#501](https://github.com/chef/chef-dk/pull/501) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add command line completion for fish shell [\#498](https://github.com/chef/chef-dk/pull/498) ([smith](https://github.com/smith))
+- Add `chef clean-policy-cookbooks` subcommand [\#496](https://github.com/chef/chef-dk/pull/496) ([danielsdeleo](https://github.com/danielsdeleo))
+- `chef clean-policy-revisions` command [\#491](https://github.com/chef/chef-dk/pull/491) ([danielsdeleo](https://github.com/danielsdeleo))
+- `chef undelete` command [\#490](https://github.com/chef/chef-dk/pull/490) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add shell completion for bash [\#487](https://github.com/chef/chef-dk/pull/487) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add basic zsh completion for chef command [\#485](https://github.com/chef/chef-dk/pull/485) ([danielsdeleo](https://github.com/danielsdeleo))
+- `chef rm-policy-group` CLI [\#483](https://github.com/chef/chef-dk/pull/483) ([danielsdeleo](https://github.com/danielsdeleo))
+- Update URLs to https where available [\#479](https://github.com/chef/chef-dk/pull/479) ([tas50](https://github.com/tas50))
 
-* [#433](https://github.com/chef/chef-dk/pull/433): Add `chef verify chef-provisioning`
-* [Jian Weihang](https://github.com/tonytonyjan): Add post install
-  warning when installing via rubygems
-  [#402](https://github.com/chef/chef-dk/pull/402)
-* [marcusn](https://github.com/marcusn): Exclude `.kitchen` directory in
-  generated `chefignore` file
-  [#386](https://github.com/chef/chef-dk/pull/386)
-* [Larry Wright](https://github.com/larrywright): Update `chef generate
-  repo` README. [#407](https://github.com/chef/chef-dk/pull/407)
+**Fixed bugs:**
 
-* [#370](https://github.com/chef/chef-dk/pull/370): Make generated
-  ChefSpec test more idiomatic RSpec
-* [#382](https://github.com/chef/chef-dk/pull/382): Update generated
-  kitchen config to Ubuntu 14.04 and CentOS 7.1
-* [#406](https://github.com/chef/chef-dk/pull/406): Add `--target HOST`
-  and `--opt OPT=VALUE` CLI options to `chef provision`.
-* [#422](https://github.com/chef/chef-dk/pull/422): Add `chef verify
-  openssl` to validate that the ChefDK can access HTTPS urls correctly
-* [#412](https://github.com/chef/chef-dk/pull/412) Allow setting the home directory used by ChefDK
-* [#423](https://github.com/chef/chef-dk/pull/423) Add `chef env` command
-* [#424](https://github.com/chef/chefdk/pull/424) Add the ability to display a specific policyfile
-  lock revision by giving the policy name and group to `chef show-policy`
-* [#405](https://github.com/chef/chef-dk/pull/405), [#417](https://github.com/chef/chef-dk/pull/417):
-  Add `chef show-policy` command. Requires Chef Server 12.1.
-* [#400](https://github.com/chef/chef-dk/pull/400): Update solve to use
-  pure-ruby Molinillo solver engine.
-* [#432](https://github.com/chef/chef-dk/pull/432): Give `chef export`
-  the ability to create tarballs.
-* [#438](https://github.com/chef/chef-dk/pull/438): Add `chef push-archive`
-  command, which uploads archived policies (as created with `chef export -a`
-  to a Chef Server.
-* [#450](https://github.com/chef/chef-dk/pull/450): Allow multiple
-  `default_source` entries in a Policyfile, as long as the sources do
-  not contain conflicting cookbooks.
-* [#456](https://github.com/chef/chef-dk/pull/456): Mockup policyfile revision cleanup
-* [chef/omnibus-chef#406](https://github.com/chef/omnibus-chef/pull/406) Use LOCALAPPDATA as the default ChefDK home on Windows
-* [chef/omnibus-chef#408](https://github.com/chef/omnibus-chef/pull/408) Added ChefDK environment helpers as feature in MSI
-* [chef/omnibus-chef#386](https://github.com/chef/omnibus-chef/pull/386) Added Powershell wrapper modules
-* [chef/omnibus-chef#441](https://github.com/chef/omnibus-chef/pull/441) Use knife-windows 0.8.x but still import winrm 1.3.x compatability
-* [chef/omnibus-chef#443](https://github.com/chef/omnibus-chef/pull/443) MSI signing configuration for Chef Client and Chef DK.
-* [chef/omnibus-chef#448](https://github.com/chef/omnibus-chef/pull/448) Use latest cacerts
-* Updating dependencies:
-    * chef - 12.4.1
-    * ohai - 8.5.0
-    * chef-provisioning - 1.3.0
-    * chef-provisioning-vagrant - 0.9.0
-    * chef-provisioning-aws - 1.3.1
-    * cheffish - 1.3.1
-    * chefspec - 4.3.0
-    * knife-windows - 0.8.6
-    * winrm-transport - 1.0.2
+- chef install doesn't seem to use the Default SSL Policy [\#488](https://github.com/chef/chef-dk/issues/488)
+- berks: Add support for no\_proxy environment variable when using http\_proxy [\#486](https://github.com/chef/chef-dk/issues/486)
+- chef verify doesn't work after installing chefdk 0.7.0 on Windows7 [\#482](https://github.com/chef/chef-dk/issues/482)
+- chef-dk gem out of date [\#475](https://github.com/chef/chef-dk/issues/475)
+- Ubuntu 15.04 error message: The package is of bad quality [\#457](https://github.com/chef/chef-dk/issues/457)
+- knife segmentation fault on YN prompt in ConEmu [\#434](https://github.com/chef/chef-dk/issues/434)
+- chefdk msi is not signed; publisher couldn't be verified [\#154](https://github.com/chef/chef-dk/issues/154)
+- Make `chef verify` test for multiple versions of provisioning gems [\#521](https://github.com/chef/chef-dk/pull/521) ([randomcamel](https://github.com/randomcamel))
+- Include named\_run\_lists when deserializing a lockfile [\#520](https://github.com/chef/chef-dk/pull/520) ([danielsdeleo](https://github.com/danielsdeleo))
+- Remove mixlib-shellout RC from gemspec [\#499](https://github.com/chef/chef-dk/pull/499) ([danielsdeleo](https://github.com/danielsdeleo))
+- Always show 'no policy' message when policy doesn't exist [\#495](https://github.com/chef/chef-dk/pull/495) ([danielsdeleo](https://github.com/danielsdeleo))
+- Chef install configuration [\#489](https://github.com/chef/chef-dk/pull/489) ([danielsdeleo](https://github.com/danielsdeleo))
+- Show full usage when given invalid args [\#477](https://github.com/chef/chef-dk/pull/477) ([danielsdeleo](https://github.com/danielsdeleo))
+- Catch bad params [\#468](https://github.com/chef/chef-dk/pull/468) ([danielsdeleo](https://github.com/danielsdeleo))
+
+**Merged pull requests:**
+
+- Add service class to GC cookbook\_artifacts [\#463](https://github.com/chef/chef-dk/pull/463) ([danielsdeleo](https://github.com/danielsdeleo))
+- Backend for policy group removal [\#461](https://github.com/chef/chef-dk/pull/461) ([danielsdeleo](https://github.com/danielsdeleo))
+
+## [0.7.0](https://github.com/chef/chef-dk/tree/0.7.0) (2015-08-05)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.7.0.rc.4...0.7.0)
+
+**Merged pull requests:**
+
+- Mockup policyfile revision cleanup [\#456](https://github.com/chef/chef-dk/pull/456) ([danielsdeleo](https://github.com/danielsdeleo))
+
+## [0.7.0.rc.4](https://github.com/chef/chef-dk/tree/0.7.0.rc.4) (2015-07-27)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.7.0.rc.3...0.7.0.rc.4)
+
+## [0.7.0.rc.3](https://github.com/chef/chef-dk/tree/0.7.0.rc.3) (2015-07-20)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.7.0.rc.2...0.7.0.rc.3)
+
+**Closed issues:**
+
+- support chef\_repo & supermarket sources together [\#430](https://github.com/chef/chef-dk/issues/430)
+
+**Merged pull requests:**
+
+- Policyfile doc updates [\#451](https://github.com/chef/chef-dk/pull/451) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add `chef verify chef-provisioning` [\#433](https://github.com/chef/chef-dk/pull/433) ([randomcamel](https://github.com/randomcamel))
+
+## [0.7.0.rc.2](https://github.com/chef/chef-dk/tree/0.7.0.rc.2) (2015-07-08)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.7.0.rc.1...0.7.0.rc.2)
+
+**Closed issues:**
+
+- 0.7.0, gems in user install not showing up: [\#443](https://github.com/chef/chef-dk/issues/443)
+- rubygems undefined method `activate' for nil:NilClass [\#411](https://github.com/chef/chef-dk/issues/411)
+
+**Merged pull requests:**
+
+- Multiple policyfile sources [\#450](https://github.com/chef/chef-dk/pull/450) ([danielsdeleo](https://github.com/danielsdeleo))
+- Prevent kitchen from installing gems in smoke tests [\#449](https://github.com/chef/chef-dk/pull/449) ([danielsdeleo](https://github.com/danielsdeleo))
+- Revert "Pin FFI to 1.9.8 because 1.9.9 breaks on windows" [\#446](https://github.com/chef/chef-dk/pull/446) ([jaym](https://github.com/jaym))
+- Pin FFI to 1.9.8 because 1.9.9 breaks on windows [\#442](https://github.com/chef/chef-dk/pull/442) ([danielsdeleo](https://github.com/danielsdeleo))
+- Push Archive Command [\#438](https://github.com/chef/chef-dk/pull/438) ([danielsdeleo](https://github.com/danielsdeleo))
+- Adding pre-release install instructions [\#437](https://github.com/chef/chef-dk/pull/437) ([tyler-ball](https://github.com/tyler-ball))
+
+## [0.7.0.rc.1](https://github.com/chef/chef-dk/tree/0.7.0.rc.1) (2015-06-24)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.7.0.rc.0...0.7.0.rc.1)
+
+**Implemented enhancements:**
+
+- Roles and Environments should have identical implementations [\#182](https://github.com/chef/chef-dk/issues/182)
+
+**Fixed bugs:**
+
+- ChefDK's chef generate command fails with Insufficient permissions after cd'ing to a different directory [\#340](https://github.com/chef/chef-dk/issues/340)
+
+**Closed issues:**
+
+- rbreadline crashes if HOMEDRIVE is unavailable [\#415](https://github.com/chef/chef-dk/issues/415)
+- Running talilor gem causes ruby to crash [\#349](https://github.com/chef/chef-dk/issues/349)
+
+**Merged pull requests:**
+
+- Add stuff I missed to changelog for 0.7 [\#436](https://github.com/chef/chef-dk/pull/436) ([danielsdeleo](https://github.com/danielsdeleo))
+- Export archive [\#432](https://github.com/chef/chef-dk/pull/432) ([danielsdeleo](https://github.com/danielsdeleo))
+- Adding policyfile usage instructions to POLICYFILE\_README.md [\#431](https://github.com/chef/chef-dk/pull/431) ([tyler-ball](https://github.com/tyler-ball))
+- Fix RSpec warnings for "potential false positives" [\#428](https://github.com/chef/chef-dk/pull/428) ([danielsdeleo](https://github.com/danielsdeleo))
+
+## [0.7.0.rc.0](https://github.com/chef/chef-dk/tree/0.7.0.rc.0) (2015-06-17)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.6.2...0.7.0.rc.0)
+
+**Closed issues:**
+
+- chef-provisioning included with the Chef DK is current at v 1.1.1, however the latest is 1.2.0.  [\#409](https://github.com/chef/chef-dk/issues/409)
+- Installing gems to network drives in Windows domain environments is slow and painful [\#374](https://github.com/chef/chef-dk/issues/374)
+- Chefspec tests trigger segfault on chef dk 0.4.0 on Windows [\#332](https://github.com/chef/chef-dk/issues/332)
+
+**Merged pull requests:**
+
+- Missing changelog entries [\#426](https://github.com/chef/chef-dk/pull/426) ([jaym](https://github.com/jaym))
+- Show specific policy [\#424](https://github.com/chef/chef-dk/pull/424) ([danielsdeleo](https://github.com/danielsdeleo))
+
+## [0.6.2](https://github.com/chef/chef-dk/tree/0.6.2) (2015-06-12)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.6.1...0.6.2)
+
+**Fixed bugs:**
+
+- SSL requests broken in ChefDK [\#420](https://github.com/chef/chef-dk/issues/420)
+
+**Closed issues:**
+
+- ChefDK does not install successfully on Mac OS X El Capitan developer seed [\#419](https://github.com/chef/chef-dk/issues/419)
+
+**Merged pull requests:**
+
+- Added chef env command [\#423](https://github.com/chef/chef-dk/pull/423) ([jaym](https://github.com/jaym))
+- Adding verification for openssl Windows issue to prevent regression, fixes \#420 [\#422](https://github.com/chef/chef-dk/pull/422) ([tyler-ball](https://github.com/tyler-ball))
+- Testing out chef-provisioning 1.2 and knife-windows 1.0 RC [\#414](https://github.com/chef/chef-dk/pull/414) ([tyler-ball](https://github.com/tyler-ball))
+- Allow setting CHEFDK\_HOME [\#412](https://github.com/chef/chef-dk/pull/412) ([jaym](https://github.com/jaym))
+
+## [0.6.1](https://github.com/chef/chef-dk/tree/0.6.1) (2015-06-12)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.6.0...0.6.1)
+
+**Implemented enhancements:**
+
+- Include knife-windows gem + deps in the ChefDK gemset [\#107](https://github.com/chef/chef-dk/issues/107)
+
+**Fixed bugs:**
+
+- ChefDK 0.5.1 knife Needs STDERR Redirection for Cookbook Version Selection Deletion [\#393](https://github.com/chef/chef-dk/issues/393)
+
+**Closed issues:**
+
+- read server certificate B: certificate verify failed [\#410](https://github.com/chef/chef-dk/issues/410)
+- FATAL: ArgumentError: invalid Unicode escape on Windows because of recipe name [\#389](https://github.com/chef/chef-dk/issues/389)
+- kitchen-vagrant errors [\#378](https://github.com/chef/chef-dk/issues/378)
+- Remind people who install chef-dk by `gem install` [\#301](https://github.com/chef/chef-dk/issues/301)
+
+**Merged pull requests:**
+
+- Adding verification for openssl issue, fixes https://github.com/chef/chef-dk/issues/420 [\#421](https://github.com/chef/chef-dk/pull/421) ([tyler-ball](https://github.com/tyler-ball))
+- Integrate show policy command [\#417](https://github.com/chef/chef-dk/pull/417) ([danielsdeleo](https://github.com/danielsdeleo))
+- Revert "Merge pull request \#398 from chef/schisamo/delivery-cli" [\#408](https://github.com/chef/chef-dk/pull/408) ([christophermaier](https://github.com/christophermaier))
+- Provision target host option and arbitrary options [\#406](https://github.com/chef/chef-dk/pull/406) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add `chef show-policy` command [\#405](https://github.com/chef/chef-dk/pull/405) ([danielsdeleo](https://github.com/danielsdeleo))
+- Update to Solve 2 with Molinillo solver [\#400](https://github.com/chef/chef-dk/pull/400) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add basic smoke tests for the Delivery CLI [\#398](https://github.com/chef/chef-dk/pull/398) ([schisamo](https://github.com/schisamo))
+
+## [0.6.0](https://github.com/chef/chef-dk/tree/0.6.0) (2015-05-14)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.5.1...0.6.0)
+
+**Fixed bugs:**
+
+- Policyfile git detection blows up in a brand new repo [\#364](https://github.com/chef/chef-dk/issues/364)
+
+**Closed issues:**
+
+- Chef 0.5.1 does not show berks version [\#387](https://github.com/chef/chef-dk/issues/387)
+- chef generate cookbook makes cookbooks that don't pass rubocop [\#380](https://github.com/chef/chef-dk/issues/380)
+- knife encountered an unexpected error [\#379](https://github.com/chef/chef-dk/issues/379)
+- ERROR -- : Actor crashed! Solution - Upgrade Berkshelf to 3.2.4 [\#376](https://github.com/chef/chef-dk/issues/376)
+
+**Merged pull requests:**
+
+- Pinning chef-provisioning to 1.1.1 [\#394](https://github.com/chef/chef-dk/pull/394) ([tyler-ball](https://github.com/tyler-ball))
+- Don't error when profiling an unborn branch [\#392](https://github.com/chef/chef-dk/pull/392) ([danielsdeleo](https://github.com/danielsdeleo))
+- bump chef-dk ffi-yajl dep [\#391](https://github.com/chef/chef-dk/pull/391) ([lamont-granquist](https://github.com/lamont-granquist))
+- Provision command [\#383](https://github.com/chef/chef-dk/pull/383) ([danielsdeleo](https://github.com/danielsdeleo))
+- Fixes \#380, resolve generated cookbook rubocops [\#381](https://github.com/chef/chef-dk/pull/381) ([jtimberman](https://github.com/jtimberman))
+
+## [0.5.1](https://github.com/chef/chef-dk/tree/0.5.1) (2015-04-30)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.5.0...0.5.1)
+
+**Fixed bugs:**
+
+- Chef diff throws undefined\_method error [\#366](https://github.com/chef/chef-dk/issues/366)
+
+**Closed issues:**
+
+- en list [\#371](https://github.com/chef/chef-dk/issues/371)
+- default-centos-64 is not available [\#369](https://github.com/chef/chef-dk/issues/369)
+- Chef diff trying to use native endpoints in compatability mode [\#367](https://github.com/chef/chef-dk/issues/367)
+- gem excon 0.44.2 fixes nasty bug, please include in next release [\#344](https://github.com/chef/chef-dk/issues/344)
+- Please add documentation for Chef shell-init [\#338](https://github.com/chef/chef-dk/issues/338)
+
+**Merged pull requests:**
+
+- Preparing the ChefDK 0.5.1 release [\#373](https://github.com/chef/chef-dk/pull/373) ([tyler-ball](https://github.com/tyler-ball))
+- Fixing undefined\_method error [\#368](https://github.com/chef/chef-dk/pull/368) ([tyler-ball](https://github.com/tyler-ball))
+
+## [0.5.0](https://github.com/chef/chef-dk/tree/0.5.0) (2015-04-29)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.5.0.rc.5...0.5.0)
+
+**Closed issues:**
+
+- Arch Linux support [\#355](https://github.com/chef/chef-dk/issues/355)
+- ChefDK 0.4.0 cheffish chef-zero dependency conflict [\#347](https://github.com/chef/chef-dk/issues/347)
+- ChefDK 0.5.0 rc3 shipped with bad versions of chef-provisioning and friends [\#346](https://github.com/chef/chef-dk/issues/346)
+
+**Merged pull requests:**
+
+- Update shell-init docs for posh and fish [\#365](https://github.com/chef/chef-dk/pull/365) ([danielsdeleo](https://github.com/danielsdeleo))
+- Preping for 0.5.0 release with CHANGELOG updates and version file update [\#363](https://github.com/chef/chef-dk/pull/363) ([tyler-ball](https://github.com/tyler-ball))
+- Enable policyfile native mode by default, remove warning [\#362](https://github.com/chef/chef-dk/pull/362) ([danielsdeleo](https://github.com/danielsdeleo))
+- Use a stub to ensure we always test file-not-readable behavior [\#361](https://github.com/chef/chef-dk/pull/361) ([danielsdeleo](https://github.com/danielsdeleo))
+- CLI front-end for diff [\#359](https://github.com/chef/chef-dk/pull/359) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add Policy Differ Class [\#356](https://github.com/chef/chef-dk/pull/356) ([danielsdeleo](https://github.com/danielsdeleo))
+- Attribute only update [\#354](https://github.com/chef/chef-dk/pull/354) ([danielsdeleo](https://github.com/danielsdeleo))
+- Ensure attributes are maintained in deserialization [\#352](https://github.com/chef/chef-dk/pull/352) ([danielsdeleo](https://github.com/danielsdeleo))
+- Policyfile attributes [\#351](https://github.com/chef/chef-dk/pull/351) ([danielsdeleo](https://github.com/danielsdeleo))
+- Disabling test that fails intermitently on debian [\#350](https://github.com/chef/chef-dk/pull/350) ([tyler-ball](https://github.com/tyler-ball))
+- add chef\_repo cookbook source [\#263](https://github.com/chef/chef-dk/pull/263) ([lamont-granquist](https://github.com/lamont-granquist))
+
+## [0.5.0.rc.5](https://github.com/chef/chef-dk/tree/0.5.0.rc.5) (2015-04-06)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.5.0.rc.4...0.5.0.rc.5)
+
+**Merged pull requests:**
+
+- Changes link to point to downloads.chef.io [\#348](https://github.com/chef/chef-dk/pull/348) ([cwebberOps](https://github.com/cwebberOps))
+- Add Fish shell support to `chef shell-init` [\#345](https://github.com/chef/chef-dk/pull/345) ([schisamo](https://github.com/schisamo))
+
+## [0.5.0.rc.4](https://github.com/chef/chef-dk/tree/0.5.0.rc.4) (2015-04-03)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.5.0.rc.3...0.5.0.rc.4)
+
+## [0.5.0.rc.3](https://github.com/chef/chef-dk/tree/0.5.0.rc.3) (2015-04-01)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.5.0.rc.2...0.5.0.rc.3)
+
+**Closed issues:**
+
+- chefdk installer crashes on windows unless previously uninstalled version is removed from disk [\#334](https://github.com/chef/chef-dk/issues/334)
+
+## [0.5.0.rc.2](https://github.com/chef/chef-dk/tree/0.5.0.rc.2) (2015-03-27)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.5.0.rc.1...0.5.0.rc.2)
+
+## [0.5.0.rc.1](https://github.com/chef/chef-dk/tree/0.5.0.rc.1) (2015-03-26)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.4.0...0.5.0.rc.1)
+
+**Implemented enhancements:**
+
+- Generators should read metadata values from chef/knife configuration [\#322](https://github.com/chef/chef-dk/issues/322)
+- OSX: Pull certs from Keychain [\#140](https://github.com/chef/chef-dk/issues/140)
+
+**Fixed bugs:**
+
+- Chef Linux Group Provider is not indempotent [\#336](https://github.com/chef/chef-dk/issues/336)
+- Ubuntu 14.04 bad quality package [\#316](https://github.com/chef/chef-dk/issues/316)
+- Windows 8.1 \>\> berks install fails SSLv3 error [\#311](https://github.com/chef/chef-dk/issues/311)
+- Downloads for ubuntu 14.04? [\#308](https://github.com/chef/chef-dk/issues/308)
+- ruby -w shows warnings because user\_dir is overridden [\#302](https://github.com/chef/chef-dk/issues/302)
+- ruby -w shows warnings because user\\_dir is overridden [\#302](https://github.com/chef/chef-dk/issues/302)
+- chef-provisioning fails, bad chef\_server\_url, should be updated to latest 'master' branch [\#297](https://github.com/chef/chef-dk/issues/297)
+- chef-provisioning fails, bad chef\\_server\\_url, should be updated to latest 'master' branch [\#297](https://github.com/chef/chef-dk/issues/297)
+- "chef install" with policy file and a local chef zero fails to write to tmp dir [\#293](https://github.com/chef/chef-dk/issues/293)
+- Celluloid Errors / Compatibility with ChefDK 0.3.5 [\#284](https://github.com/chef/chef-dk/issues/284)
+- chefdk-0.3.2-1 - windows - rubocop.bat - bad path to ruby.exe [\#221](https://github.com/chef/chef-dk/issues/221)
+- gitignore file not created when chef generate cookbook used in chef-site repo [\#145](https://github.com/chef/chef-dk/issues/145)
+- chef --version should print the version of included tools in addition to chef-dk [\#48](https://github.com/chef/chef-dk/issues/48)
+- Updating to use new shells available to windows-guest-branch of test-kitchen [\#305](https://github.com/chef/chef-dk/pull/305) ([tyler-ball](https://github.com/tyler-ball))
+
+**Closed issues:**
+
+- chef gem install guard-foodcritic not working [\#335](https://github.com/chef/chef-dk/issues/335)
+- chefdk checking old location of 'client.rb' and client.rb seems to be corrupt [\#328](https://github.com/chef/chef-dk/issues/328)
+- chefdk, vagrant, berkshelf mac osx [\#326](https://github.com/chef/chef-dk/issues/326)
+- knife ssl check failure on Windows 7 [\#319](https://github.com/chef/chef-dk/issues/319)
+- Wrong path for ruby.exe for ChefDK 0.3.5 on Windows for Several Commands [\#242](https://github.com/chef/chef-dk/issues/242)
+- chef shell-init should support powershell and cmd [\#186](https://github.com/chef/chef-dk/issues/186)
+- chef-zero not working with 0.2.2 [\#168](https://github.com/chef/chef-dk/issues/168)
+- Request: Can we include unit testing skeletons with recipe generators? [\#152](https://github.com/chef/chef-dk/issues/152)
+- chef generate cookbook: documentation on customizing output [\#62](https://github.com/chef/chef-dk/issues/62)
+
+**Merged pull requests:**
+
+- ChefDK 0.5.0.rc.1 Release [\#343](https://github.com/chef/chef-dk/pull/343) ([tyler-ball](https://github.com/tyler-ball))
+- Empty Cookbook Options Fix [\#342](https://github.com/chef/chef-dk/pull/342) ([danielsdeleo](https://github.com/danielsdeleo))
+- Erchef Policyfile integration [\#341](https://github.com/chef/chef-dk/pull/341) ([danielsdeleo](https://github.com/danielsdeleo))
+- doc: explicit brew install. [\#337](https://github.com/chef/chef-dk/pull/337) ([lloydde](https://github.com/lloydde))
+- Excluding failing tests from nightlies [\#333](https://github.com/chef/chef-dk/pull/333) ([tyler-ball](https://github.com/tyler-ball))
+- Print versions of common tools when doing --version on chef-dk [\#327](https://github.com/chef/chef-dk/pull/327) ([kmacgugan](https://github.com/kmacgugan))
+- Fix code formatting, add missing code formatting. [\#324](https://github.com/chef/chef-dk/pull/324) ([mbrukman](https://github.com/mbrukman))
+- Policyfile Revision IDs [\#323](https://github.com/chef/chef-dk/pull/323) ([danielsdeleo](https://github.com/danielsdeleo))
+- Point to supermarket for CLA links [\#321](https://github.com/chef/chef-dk/pull/321) ([danielsdeleo](https://github.com/danielsdeleo))
+- Upload to Cookbook Artifacts API when Native Mode is Enabled [\#318](https://github.com/chef/chef-dk/pull/318) ([danielsdeleo](https://github.com/danielsdeleo))
+- Use stronger language when warning about native API. [\#317](https://github.com/chef/chef-dk/pull/317) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add chefspec and serverspec to the CHANGELOG [\#314](https://github.com/chef/chef-dk/pull/314) ([nathenharvey](https://github.com/nathenharvey))
+- Change location of serverspec spec\_helper.rb file [\#307](https://github.com/chef/chef-dk/pull/307) ([charlesjohnson](https://github.com/charlesjohnson))
+
+## [0.4.0](https://github.com/chef/chef-dk/tree/0.4.0) (2015-01-29)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.3.6...0.4.0)
+
+**Fixed bugs:**
+
+- Unable to use ChefDK as Your Primary Development Environment [\#256](https://github.com/chef/chef-dk/issues/256)
+
+**Closed issues:**
+
+- `knife` doesn't work on fresh install [\#303](https://github.com/chef/chef-dk/issues/303)
+- `chef verify` fails on windows \("Verification of component 'chefspec' failed."\) [\#298](https://github.com/chef/chef-dk/issues/298)
+- Chef DK 0.3.6 windows download missing [\#296](https://github.com/chef/chef-dk/issues/296)
+- How to get current components version? [\#295](https://github.com/chef/chef-dk/issues/295)
+- Chef DK on MS WIndows instructions [\#288](https://github.com/chef/chef-dk/issues/288)
+- Update to berkshelf 3.2.2 \(released Dec 18, 2014\) [\#286](https://github.com/chef/chef-dk/issues/286)
+- chef gem install should avoid installing RI doc [\#264](https://github.com/chef/chef-dk/issues/264)
+
+**Merged pull requests:**
+
+- Bump version to 0.4.0 [\#304](https://github.com/chef/chef-dk/pull/304) ([jaym](https://github.com/jaym))
+- Policyfile Native API support for `chef push` [\#299](https://github.com/chef/chef-dk/pull/299) ([danielsdeleo](https://github.com/danielsdeleo))
+
+## [0.3.6](https://github.com/chef/chef-dk/tree/0.3.6) (2015-01-14)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.3.5...0.3.6)
+
+**Implemented enhancements:**
+
+- Request: Allow generator cookbook path to be a git repo [\#190](https://github.com/chef/chef-dk/issues/190)
+
+**Fixed bugs:**
+
+- ChefDK for OS X \(.dmg file\) and Ubuntu \(.deb\) breaks ...site install because of no metadata.rb [\#285](https://github.com/chef/chef-dk/issues/285)
+- ChefSpec unusably slow in ChefDK \> 0.3.2 [\#280](https://github.com/chef/chef-dk/issues/280)
+- bundle install with Nokogiri gem fails [\#278](https://github.com/chef/chef-dk/issues/278)
+- Installing Chef-DK on OSX to non-system drive results in broken scripts [\#247](https://github.com/chef/chef-dk/issues/247)
+- Chef exec does not pass variables to specified executable correctly [\#244](https://github.com/chef/chef-dk/issues/244)
+- Cannot load such file -- chef/encrypted\_data\_bag\_item/check\_encrypted [\#227](https://github.com/chef/chef-dk/issues/227)
+- Windows PATH separator wrong in Chef exec command [\#180](https://github.com/chef/chef-dk/issues/180)
+- chefspec and segmentation fault using chefdk 0.2.0 on windows 7 [\#171](https://github.com/chef/chef-dk/issues/171)
+- chefspec and segmentation fault using chefdk 0.2.0 on windows 7 [\#171](https://github.com/chef/chef-dk/issues/171)
+
+**Closed issues:**
+
+- berks-api fails due to json gem version conflict [\#281](https://github.com/chef/chef-dk/issues/281)
+- /opt/vagrant/embedded/lib/ruby/2.0.0/net/http.rb:918:in `connect': SSL\_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed \(OpenSSL::SSL::SSLError\) [\#279](https://github.com/chef/chef-dk/issues/279)
+- kitchen verify is broken [\#276](https://github.com/chef/chef-dk/issues/276)
+- Running any chef command returns ohai error [\#273](https://github.com/chef/chef-dk/issues/273)
+- some cookbook dependencies are breaking chefspec [\#272](https://github.com/chef/chef-dk/issues/272)
+- We ship old versions of Chef with ChefDK [\#267](https://github.com/chef/chef-dk/issues/267)
+- Gem conflicts [\#252](https://github.com/chef/chef-dk/issues/252)
+- Hardcoded "opscode" path [\#251](https://github.com/chef/chef-dk/issues/251)
+- OSX Uninstallation instructions are wrong [\#248](https://github.com/chef/chef-dk/issues/248)
+- Knife Bootstrap breaks when bootstrapping Ubuntu 14.04 node via chefdk 12.0.0.rc.0 [\#246](https://github.com/chef/chef-dk/issues/246)
+- Can't execute bin after chef gem install [\#239](https://github.com/chef/chef-dk/issues/239)
+- Certain knife operations result in exception on `chef/encrypted\_data\_bag\_item/check\_encrypted` [\#238](https://github.com/chef/chef-dk/issues/238)
+- Print `chef shell-init` WARN to stderr [\#237](https://github.com/chef/chef-dk/issues/237)
+- Broken Link in Chef Docs for 'docs.gethef.com' [\#236](https://github.com/chef/chef-dk/issues/236)
+
+**Merged pull requests:**
+
+- chefdk 0.3.6 [\#294](https://github.com/chef/chef-dk/pull/294) ([jaym](https://github.com/jaym))
+- Add serverspec to cookbook & app generators [\#290](https://github.com/chef/chef-dk/pull/290) ([charlesjohnson](https://github.com/charlesjohnson))
+- Adding omnibus-chef 318 to release notes [\#283](https://github.com/chef/chef-dk/pull/283) ([tyler-ball](https://github.com/tyler-ball))
+- Multi Run List Support for Policyfiles \(ChefDK portion\) [\#277](https://github.com/chef/chef-dk/pull/277) ([danielsdeleo](https://github.com/danielsdeleo))
+- Allow relative paths for generator cookbook config [\#274](https://github.com/chef/chef-dk/pull/274) ([danielsdeleo](https://github.com/danielsdeleo))
+- Update CHANGELOG for recent generator and policyfile enhancements [\#271](https://github.com/chef/chef-dk/pull/271) ([danielsdeleo](https://github.com/danielsdeleo))
+- Configure generator cookbook in ~/.chef/config.rb [\#270](https://github.com/chef/chef-dk/pull/270) ([danielsdeleo](https://github.com/danielsdeleo))
+- Added appveyor yaml [\#269](https://github.com/chef/chef-dk/pull/269) ([jaym](https://github.com/jaym))
+- Add chefspec to generators [\#266](https://github.com/chef/chef-dk/pull/266) ([charlesjohnson](https://github.com/charlesjohnson))
+- Custom generator cookbook names [\#265](https://github.com/chef/chef-dk/pull/265) ([danielsdeleo](https://github.com/danielsdeleo))
+- Simple `chef update` Command [\#262](https://github.com/chef/chef-dk/pull/262) ([danielsdeleo](https://github.com/danielsdeleo))
+- Removing things from verify that don't work [\#261](https://github.com/chef/chef-dk/pull/261) ([jaym](https://github.com/jaym))
+- Add kitchen provisioner for policyfiles w/ chef zero [\#260](https://github.com/chef/chef-dk/pull/260) ([danielsdeleo](https://github.com/danielsdeleo))
+- For knife spork, we need to run rake, not rake test [\#259](https://github.com/chef/chef-dk/pull/259) ([jaym](https://github.com/jaym))
+- Use File::PATH\_SEPARATOR for GEM\_PATH [\#257](https://github.com/chef/chef-dk/pull/257) ([jaym](https://github.com/jaym))
+- Pass version to command when execing [\#255](https://github.com/chef/chef-dk/pull/255) ([jaym](https://github.com/jaym))
+- Consistent quoting for exports [\#254](https://github.com/chef/chef-dk/pull/254) ([jaym](https://github.com/jaym))
+- Adding powershell to chef shell-init [\#253](https://github.com/chef/chef-dk/pull/253) ([jaym](https://github.com/jaym))
+- Export Policyfile as Chef Zero-compatible repo [\#249](https://github.com/chef/chef-dk/pull/249) ([danielsdeleo](https://github.com/danielsdeleo))
+- Show the path checked on MissingComponentError [\#245](https://github.com/chef/chef-dk/pull/245) ([jaym](https://github.com/jaym))
+- Add verification of linked scripts on \*nix [\#243](https://github.com/chef/chef-dk/pull/243) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add support for a Windows environment without true/false [\#240](https://github.com/chef/chef-dk/pull/240) ([btm](https://github.com/btm))
+- Added fauxhai, rubocop, knife-spork, and kitchen-vagrant to verify [\#235](https://github.com/chef/chef-dk/pull/235) ([jaym](https://github.com/jaym))
+
+## [0.3.5](https://github.com/chef/chef-dk/tree/0.3.5) (2014-11-13)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.3.4...0.3.5)
+
+**Closed issues:**
+
+- `chef shell-init` emits warnings on stdout, preventing the use of bash `eval` [\#229](https://github.com/chef/chef-dk/issues/229)
+- chefdk 0.3.3 Ubuntu and Debian packages have broken chef\* scripts [\#228](https://github.com/chef/chef-dk/issues/228)
+- chefdk is still in `gem env` after uninstalling it [\#223](https://github.com/chef/chef-dk/issues/223)
+- Incompatible bundler version when using test-kitchen with vagrant driver [\#218](https://github.com/chef/chef-dk/issues/218)
+
+**Merged pull requests:**
+
+- Pulled in fix for joining paths on windows [\#232](https://github.com/chef/chef-dk/pull/232) ([jaym](https://github.com/jaym))
+- Emit PATH warnings to stderr instead of stdout [\#231](https://github.com/chef/chef-dk/pull/231) ([danielsdeleo](https://github.com/danielsdeleo))
+- Various changes to get specs to pass on windows [\#225](https://github.com/chef/chef-dk/pull/225) ([jaym](https://github.com/jaym))
+
+## [0.3.4](https://github.com/chef/chef-dk/tree/0.3.4) (2014-11-12)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.3.3...0.3.4)
+
+**Merged pull requests:**
+
+- Update Changelog for 0.3.4, bump version [\#230](https://github.com/chef/chef-dk/pull/230) ([danielsdeleo](https://github.com/danielsdeleo))
+
+## [0.3.3](https://github.com/chef/chef-dk/tree/0.3.3) (2014-11-12)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.3.2...0.3.3)
+
+**Implemented enhancements:**
+
+- code\_generator kitchen.yml.erb is out-of-date \(centos-6.4\) [\#177](https://github.com/chef/chef-dk/issues/177)
+- Add `--generator-arg` option to generator base [\#217](https://github.com/chef/chef-dk/pull/217) ([martinb3](https://github.com/martinb3))
+
+**Fixed bugs:**
+
+- chef push got 400 "Bad Request" from Enterprise Chef 12.0.0.rc5 and 11.1.3 [\#208](https://github.com/chef/chef-dk/issues/208)
+- Berks install fails on Windows with SSL v3 verify error [\#199](https://github.com/chef/chef-dk/issues/199)
+- Windows chefdk 0.1.1 verify failing when run in base directory [\#102](https://github.com/chef/chef-dk/issues/102)
+- Input/output error on Windows when trying to converge with test-kitchen [\#89](https://github.com/chef/chef-dk/issues/89)
+- Windows can't install into anything other than C:\opscode [\#68](https://github.com/chef/chef-dk/issues/68)
+
+**Closed issues:**
+
+- Move 'rspec' to /opt/chef/bin [\#215](https://github.com/chef/chef-dk/issues/215)
+- ChefDK 0.3.2 still ships chef-client 11.16.0 [\#213](https://github.com/chef/chef-dk/issues/213)
+- chef generate should accept arbitrary attribute data like chef-client and other tools [\#210](https://github.com/chef/chef-dk/issues/210)
+- RspecJunitFormatter gem Conflict  [\#209](https://github.com/chef/chef-dk/issues/209)
+- Berks Install fails on OS X 10.10 with SSL V3 verify error. [\#205](https://github.com/chef/chef-dk/issues/205)
+- Bump the version of Ridley and Berkshelf [\#204](https://github.com/chef/chef-dk/issues/204)
+- Please provide more info on ChefDK package updates [\#203](https://github.com/chef/chef-dk/issues/203)
+- Problem with Test-Ketchen and EC2 [\#105](https://github.com/chef/chef-dk/issues/105)
+
+**Merged pull requests:**
+
+- Don't treat git local remotes as "remote" [\#241](https://github.com/chef/chef-dk/pull/241) ([danielsdeleo](https://github.com/danielsdeleo))
+- Bump version and update changelog for 0.3.3 [\#226](https://github.com/chef/chef-dk/pull/226) ([danielsdeleo](https://github.com/danielsdeleo))
+- Allow prereleases to be included in the chefdk [\#224](https://github.com/chef/chef-dk/pull/224) ([jkeiser](https://github.com/jkeiser))
+- Check deeper directories for .git when selecting a SCM profiler [\#220](https://github.com/chef/chef-dk/pull/220) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add changelog entry for \#217 [\#219](https://github.com/chef/chef-dk/pull/219) ([danielsdeleo](https://github.com/danielsdeleo))
+- Fixup erchef API errors [\#216](https://github.com/chef/chef-dk/pull/216) ([danielsdeleo](https://github.com/danielsdeleo))
+- Improve Debug for Policyfile Commands [\#214](https://github.com/chef/chef-dk/pull/214) ([danielsdeleo](https://github.com/danielsdeleo))
+- Update code\_generator template to latest centos [\#212](https://github.com/chef/chef-dk/pull/212) ([martinb3](https://github.com/martinb3))
+
+## [0.3.2](https://github.com/chef/chef-dk/tree/0.3.2) (2014-10-28)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.3.1...0.3.2)
+
+**Closed issues:**
+
+- chefDK embedded ruby path is behind chef embedded [\#206](https://github.com/chef/chef-dk/issues/206)
+
+**Merged pull requests:**
+
+- Update changelog and version for 0.3.2 [\#207](https://github.com/chef/chef-dk/pull/207) ([danielsdeleo](https://github.com/danielsdeleo))
+
+## [0.3.1](https://github.com/chef/chef-dk/tree/0.3.1) (2014-10-23)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.3.0...0.3.1)
+
+**Closed issues:**
+
+- chef gem install still installs to user's ~/.chefdk [\#198](https://github.com/chef/chef-dk/issues/198)
+- upgrading to 0.3.0-1 breaks berks install in chefspecs [\#197](https://github.com/chef/chef-dk/issues/197)
+- chef-dk eclipse plugin [\#196](https://github.com/chef/chef-dk/issues/196)
+- Gem conflicts archive libarchive-ruby [\#195](https://github.com/chef/chef-dk/issues/195)
+- Hitimes extension error [\#192](https://github.com/chef/chef-dk/issues/192)
+- Digest::Base cannot be directly inherited in Ruby \(RuntimeError\) [\#191](https://github.com/chef/chef-dk/issues/191)
+- ChefDK Download Page Causing Reload/Redirect Loop [\#179](https://github.com/chef/chef-dk/issues/179)
+- knife cookbook test -o on windows failing do to : seporator [\#178](https://github.com/chef/chef-dk/issues/178)
+
+**Merged pull requests:**
+
+- Update version and changelog for 0.3.1 [\#202](https://github.com/chef/chef-dk/pull/202) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add short description of Policyfile syntax [\#200](https://github.com/chef/chef-dk/pull/200) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add policyfile generator [\#189](https://github.com/chef/chef-dk/pull/189) ([danielsdeleo](https://github.com/danielsdeleo))
+- Skip PATH sanity tests outside of omnibus [\#188](https://github.com/chef/chef-dk/pull/188) ([danielsdeleo](https://github.com/danielsdeleo))
+- DRY Policyfile and lock file path munging [\#185](https://github.com/chef/chef-dk/pull/185) ([danielsdeleo](https://github.com/danielsdeleo))
+
+## [0.3.0](https://github.com/chef/chef-dk/tree/0.3.0) (2014-10-01)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.2.2...0.3.0)
+
+**Fixed bugs:**
+
+- chef dk install panel incomplete install path [\#161](https://github.com/chef/chef-dk/issues/161)
+- Error using embedded knife/chef-zero when creating environment [\#159](https://github.com/chef/chef-dk/issues/159)
+- Foodcritic not running correctly after installing 0.2.2 msi on windows 7 [\#165](https://github.com/chef/chef-dk/issues/165)
+- New install of ChefDK 0.2.1 on Mac OS X 10.9.4 - Appears to fail - not really though [\#158](https://github.com/chef/chef-dk/issues/158)
+- Move git\_init check into it's own block under have\_git [\#147](https://github.com/chef/chef-dk/pull/147) ([tbunnyman](https://github.com/tbunnyman))
+
+**Closed issues:**
+
+- ChefDK installation on Windows disregards target drive on scripts in chefdk/bin folder [\#170](https://github.com/chef/chef-dk/issues/170)
+- 0.2.2: knife and kitchen complaining about eventmachine-1.0.3 [\#169](https://github.com/chef/chef-dk/issues/169)
+- Build chef-dk from source [\#166](https://github.com/chef/chef-dk/issues/166)
+- chef gem install pulls in ri and rdoc [\#164](https://github.com/chef/chef-dk/issues/164)
+- 0.2.2 knife still uses 12.0.0.alpha.1 [\#162](https://github.com/chef/chef-dk/issues/162)
+- bundle install requires sudo / root password or --path? [\#148](https://github.com/chef/chef-dk/issues/148)
+- Support chef-dk on Linux Debian Wheezy \(aka Debian 7.x\) [\#51](https://github.com/chef/chef-dk/issues/51)
+- WARN users when their PATH includes embedded first [\#163](https://github.com/chef/chef-dk/issues/163)
+
+**Merged pull requests:**
+
+- Bump version and update CHANGELOG.md. [\#176](https://github.com/chef/chef-dk/pull/176) ([sersut](https://github.com/sersut))
+- add warnings for bad PATH settings [\#175](https://github.com/chef/chef-dk/pull/175) ([lamont-granquist](https://github.com/lamont-granquist))
+- Contribution info for 0.3.0 contributions. [\#174](https://github.com/chef/chef-dk/pull/174) ([sersut](https://github.com/sersut))
+- add changelog for ruby 2.1.3 version bump [\#172](https://github.com/chef/chef-dk/pull/172) ([lamont-granquist](https://github.com/lamont-granquist))
+- Extract Table Printing Logic [\#167](https://github.com/chef/chef-dk/pull/167) ([danielsdeleo](https://github.com/danielsdeleo))
+- Set GEM\_HOME to Gem.user\_dir instead of Gem.paths.home [\#160](https://github.com/chef/chef-dk/pull/160) ([rberger](https://github.com/rberger))
+- Policyfile CLI [\#157](https://github.com/chef/chef-dk/pull/157) ([danielsdeleo](https://github.com/danielsdeleo))
+- Update README.md [\#151](https://github.com/chef/chef-dk/pull/151) ([AnalogJ](https://github.com/AnalogJ))
+- Gracefully handle invalid CLI options [\#173](https://github.com/chef/chef-dk/pull/173) ([danielsdeleo](https://github.com/danielsdeleo))
+
+## [0.2.2](https://github.com/chef/chef-dk/tree/0.2.2) (2014-09-10)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.2.1...0.2.2)
+
+**Fixed bugs:**
+
+- Error messages when doing `chef gem list` [\#146](https://github.com/chef/chef-dk/issues/146)
+- Error messages when doing `chef gem list` [\#146](https://github.com/chef/chef-dk/issues/146)
+- Berkshelf SSL\_connect error on Windows: certificate verify failed [\#106](https://github.com/chef/chef-dk/issues/106)
+
+**Closed issues:**
+
+- ChefDK 0.2.1 on Windows defaults to using chef 12.0.0.alpha.1, inconsistent with Mac/Linux [\#156](https://github.com/chef/chef-dk/issues/156)
+- `chef exec rspec` fails with 'Permission denied @ dir\_s\_mkdir' [\#135](https://github.com/chef/chef-dk/issues/135)
+
+**Merged pull requests:**
+
+- Make sure the context is set right while generating a template. [\#149](https://github.com/chef/chef-dk/pull/149) ([sersut](https://github.com/sersut))
+
+## [0.2.1](https://github.com/chef/chef-dk/tree/0.2.1) (2014-08-27)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.2.0...0.2.1)
+
+**Implemented enhancements:**
+
+- Make adding generators a bit easier [\#116](https://github.com/chef/chef-dk/issues/116)
+- Support chef-dk on Mac OSX 10.8  [\#14](https://github.com/chef/chef-dk/issues/14)
+
+**Fixed bugs:**
+
+- knife and berks create many temp directories [\#133](https://github.com/chef/chef-dk/issues/133)
+- Installing gems to profile directory on Windows breaks when username has a space in it [\#129](https://github.com/chef/chef-dk/issues/129)
+- Chef generate app directory confusion ! [\#111](https://github.com/chef/chef-dk/issues/111)
+- devkit is broken on windows [\#100](https://github.com/chef/chef-dk/issues/100)
+- Supermarket is live, use it for Berks source [\#112](https://github.com/chef/chef-dk/pull/112) ([jtimberman](https://github.com/jtimberman))
+
+**Closed issues:**
+
+- Need to update Berkshelf to at least 3.1.5 [\#141](https://github.com/chef/chef-dk/issues/141)
+- Foodcritic not working on Windows when installed with Chef-DK [\#139](https://github.com/chef/chef-dk/issues/139)
+- Chef exec, Chefspec and Rake.  [\#137](https://github.com/chef/chef-dk/issues/137)
+- provide i686 packages and support ubuntu 14.04 [\#132](https://github.com/chef/chef-dk/issues/132)
+- Incorrect permissions on files in ubuntu package [\#130](https://github.com/chef/chef-dk/issues/130)
+- Upgrade foodcritic [\#128](https://github.com/chef/chef-dk/issues/128)
+- Multiple versions of chef client installed [\#127](https://github.com/chef/chef-dk/issues/127)
+- semverse stack level too deep with berkshelf 3.1.1 [\#126](https://github.com/chef/chef-dk/issues/126)
+- chef exec rake fails on Ubuntu 14.04 [\#125](https://github.com/chef/chef-dk/issues/125)
+- foodcritic fails on freshly installed ChefDK windows [\#124](https://github.com/chef/chef-dk/issues/124)
+- chef exec rake fails on osx mavericks \(segfault\) [\#123](https://github.com/chef/chef-dk/issues/123)
+- chefdk 0.2.0 doesnt pretty print json objects anymore [\#121](https://github.com/chef/chef-dk/issues/121)
+- `chef generate cookbook` should not require elevated privileges on Windows [\#109](https://github.com/chef/chef-dk/issues/109)
+- chef exec rspec not working [\#103](https://github.com/chef/chef-dk/issues/103)
+- chef-dk 0.1.0-1 defaults to attempting to download nonexistent chef 11.14.0-alpha-1 during bootstrap [\#96](https://github.com/chef/chef-dk/issues/96)
+- Run 'make clean' in depselector-libgecode vendor directory [\#92](https://github.com/chef/chef-dk/issues/92)
+- Investigate removing `ruby/gems/2.0.0/cache` [\#72](https://github.com/chef/chef-dk/issues/72)
+- Run `gem cleanup` before packaging [\#71](https://github.com/chef/chef-dk/issues/71)
+
+**Merged pull requests:**
+
+- Version bump and rel info for 0.2.1. [\#143](https://github.com/chef/chef-dk/pull/143) ([sersut](https://github.com/sersut))
+- Add validation of Policyfile.lock data structures when ingesting [\#142](https://github.com/chef/chef-dk/pull/142) ([danielsdeleo](https://github.com/danielsdeleo))
+- Validate source options for cookbooks [\#138](https://github.com/chef/chef-dk/pull/138) ([danielsdeleo](https://github.com/danielsdeleo))
+- Disable atomic file updates on Windows [\#134](https://github.com/chef/chef-dk/pull/134) ([btm](https://github.com/btm))
+- Removes ignoring of CHANGELOG [\#131](https://github.com/chef/chef-dk/pull/131) ([cwebberOps](https://github.com/cwebberOps))
+- Add a description of policyfile design and status [\#122](https://github.com/chef/chef-dk/pull/122) ([danielsdeleo](https://github.com/danielsdeleo))
+- Detect Cookbook Changes and enable auto-updating of the Policyfile.lock.json [\#120](https://github.com/chef/chef-dk/pull/120) ([danielsdeleo](https://github.com/danielsdeleo))
+- Upload Cookbooks Specified in Lockfile [\#119](https://github.com/chef/chef-dk/pull/119) ([danielsdeleo](https://github.com/danielsdeleo))
+- Easy generators [\#118](https://github.com/chef/chef-dk/pull/118) ([adamhjk](https://github.com/adamhjk))
+- Adds chef generate repo support [\#117](https://github.com/chef/chef-dk/pull/117) ([adamhjk](https://github.com/adamhjk))
+- add create\_if\_missing to files which will be customized [\#115](https://github.com/chef/chef-dk/pull/115) ([lamont-granquist](https://github.com/lamont-granquist))
+- Break generator commands into seperate files [\#114](https://github.com/chef/chef-dk/pull/114) ([adamhjk](https://github.com/adamhjk))
+- use ChefDK instead of Chef DK [\#110](https://github.com/chef/chef-dk/pull/110) ([smith](https://github.com/smith))
+- Set environment before exec to ensure PATH takes effect [\#104](https://github.com/chef/chef-dk/pull/104) ([danielsdeleo](https://github.com/danielsdeleo))
+- adding smoke and unit test for chefspec [\#101](https://github.com/chef/chef-dk/pull/101) ([lamont-granquist](https://github.com/lamont-granquist))
+- Lcg/rspec 3 [\#99](https://github.com/chef/chef-dk/pull/99) ([lamont-granquist](https://github.com/lamont-granquist))
+- debugger/pry-debugger no likey ruby 2.1.x [\#98](https://github.com/chef/chef-dk/pull/98) ([lamont-granquist](https://github.com/lamont-granquist))
+
+## [0.2.0](https://github.com/chef/chef-dk/tree/0.2.0) (2014-07-09)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.1.1...0.2.0)
+
+**Implemented enhancements:**
+
+- Prefetch fixed cookbooks [\#80](https://github.com/chef/chef-dk/pull/80) ([danielsdeleo](https://github.com/danielsdeleo))
+- Initial specification of policyfile builder [\#53](https://github.com/chef/chef-dk/pull/53) ([danielsdeleo](https://github.com/danielsdeleo))
+
+**Fixed bugs:**
+
+- Chef Client binaries fail with dyld: lazy symbol binding failed: Symbol not found: \_yajl\_alloc [\#82](https://github.com/chef/chef-dk/issues/82)
+- chef-solo from chefdk slow to run at startup. Not sure how to troubleshoot [\#77](https://github.com/chef/chef-dk/issues/77)
+- New build of ChefDK against new net-ssh [\#75](https://github.com/chef/chef-dk/issues/75)
+- Windows chef-dk alpha is very large. [\#70](https://github.com/chef/chef-dk/issues/70)
+- Windows: "DL is deprecated, please use Fiddle" [\#69](https://github.com/chef/chef-dk/issues/69)
+- Windows installer defects [\#67](https://github.com/chef/chef-dk/issues/67)
+- ohai should be runnable after installing Chef DK [\#60](https://github.com/chef/chef-dk/issues/60)
+- Collect the low hanging fruits in order to reduce the package size of Chef DK [\#59](https://github.com/chef/chef-dk/issues/59)
+- chef gem install \<gemname\> --version displays chefDK version [\#46](https://github.com/chef/chef-dk/issues/46)
+- Chef Verify Failures on Windows [\#43](https://github.com/chef/chef-dk/issues/43)
+- Handle GemRunner returning nil on success [\#57](https://github.com/chef/chef-dk/pull/57) ([mpasternacki](https://github.com/mpasternacki))
+- Avoid appending a double ".erb" in templates [\#54](https://github.com/chef/chef-dk/pull/54) ([David-Gil](https://github.com/David-Gil))
+
+**Closed issues:**
+
+- Link to Learn Chef site in the README [\#93](https://github.com/chef/chef-dk/issues/93)
+- default recipe in generated kitchen.yml file does not match name of default cookbook [\#85](https://github.com/chef/chef-dk/issues/85)
+- ChefDK comes with broken tar.exe [\#84](https://github.com/chef/chef-dk/issues/84)
+- Calling knife returns 'Could not locate Gemfile' message [\#79](https://github.com/chef/chef-dk/issues/79)
+- Can't run ChefSpec with ChefDK \(Windows Alpha\)?! [\#78](https://github.com/chef/chef-dk/issues/78)
+- make the 'knife' that runs in chef-dk a released version so bootstrap doesn't explode [\#74](https://github.com/chef/chef-dk/issues/74)
+- chef-dk 0.1.0-1 bundled ruby is linked against libc 2.17 or later. [\#56](https://github.com/chef/chef-dk/issues/56)
+- Add knife-solve to Chef DK [\#44](https://github.com/chef/chef-dk/issues/44)
+- Document how to uninstall chefdk [\#17](https://github.com/chef/chef-dk/issues/17)
+
+**Merged pull requests:**
+
+- Version bump for 0.2.0 release and updated change log. [\#95](https://github.com/chef/chef-dk/pull/95) ([sersut](https://github.com/sersut))
+- Add link to Learn Chef [\#94](https://github.com/chef/chef-dk/pull/94) ([nathenharvey](https://github.com/nathenharvey))
+- Bump chef to latest RC for chef dk. [\#90](https://github.com/chef/chef-dk/pull/90) ([sersut](https://github.com/sersut))
+- switch to using chef-zero instead of chef-solo [\#88](https://github.com/chef/chef-dk/pull/88) ([lamont-granquist](https://github.com/lamont-granquist))
+- Cache community coookbooks [\#87](https://github.com/chef/chef-dk/pull/87) ([danielsdeleo](https://github.com/danielsdeleo))
+- Make `chef generate app` set cookbook name [\#86](https://github.com/chef/chef-dk/pull/86) ([mcquin](https://github.com/mcquin))
+- Fix appending .erb to template filename. [\#83](https://github.com/chef/chef-dk/pull/83) ([mcquin](https://github.com/mcquin))
+- Uninstall instructions for Chef DK.  [\#81](https://github.com/chef/chef-dk/pull/81) ([sersut](https://github.com/sersut))
+- Pin chef in the Gemfile instead of gemspec. [\#76](https://github.com/chef/chef-dk/pull/76) ([sersut](https://github.com/sersut))
+- Policyfile solve graph [\#73](https://github.com/chef/chef-dk/pull/73) ([danielsdeleo](https://github.com/danielsdeleo))
+- Pin chef to a version that supports Windows with Ruby 2.0. [\#66](https://github.com/chef/chef-dk/pull/66) ([sersut](https://github.com/sersut))
+- Cleanup the README links and language [\#65](https://github.com/chef/chef-dk/pull/65) ([sethvargo](https://github.com/sethvargo))
+- Suggest `exec` and `shell-init` to run commands from gems [\#64](https://github.com/chef/chef-dk/pull/64) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add `shell-init` command. [\#63](https://github.com/chef/chef-dk/pull/63) ([danielsdeleo](https://github.com/danielsdeleo))
+- Implement Policyfile evaluation [\#61](https://github.com/chef/chef-dk/pull/61) ([danielsdeleo](https://github.com/danielsdeleo))
+- install specific gem version [\#55](https://github.com/chef/chef-dk/pull/55) ([mcquin](https://github.com/mcquin))
+- Remove cookbooks folder from gitignore skeleton [\#49](https://github.com/chef/chef-dk/pull/49) ([David-Gil](https://github.com/David-Gil))
+
+## [0.1.1](https://github.com/chef/chef-dk/tree/0.1.1) (2014-05-14)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.1.0...0.1.1)
+
+**Implemented enhancements:**
+
+- Add skeleton option for chef generate [\#40](https://github.com/chef/chef-dk/pull/40) ([martinisoft](https://github.com/martinisoft))
+
+**Fixed bugs:**
+
+- chef-apply requires privileged access to run [\#42](https://github.com/chef/chef-dk/issues/42)
+- Symlink to chef-zero is not created on Debian/Ubuntu in /usr/bin [\#35](https://github.com/chef/chef-dk/issues/35)
+- Can't run chef generate cookbook with an existing cookbook [\#12](https://github.com/chef/chef-dk/issues/12)
+
+**Closed issues:**
+
+- ChefDK fails on windows due to Chef incompatibility with ruby 2.0 [\#41](https://github.com/chef/chef-dk/issues/41)
+- embedded rubocop out of date [\#39](https://github.com/chef/chef-dk/issues/39)
+- failing to install knife-ec2 in Chef-DK embedded setup [\#36](https://github.com/chef/chef-dk/issues/36)
+- Chef DK and OpenSSL w/ Open Source Chef Server [\#34](https://github.com/chef/chef-dk/issues/34)
+- Knife error -  `parse': '11.14.0.alpha.1' does not match 'x.y.z' or 'x.y' \(Chef::Exceptions::InvalidCookbookVersion\) [\#32](https://github.com/chef/chef-dk/issues/32)
+- Can't seem to install with brew cask [\#30](https://github.com/chef/chef-dk/issues/30)
+- Add file to enable vendoring chef-dk and required gems within the chef-dk ruby instance [\#27](https://github.com/chef/chef-dk/issues/27)
+
+**Merged pull requests:**
+
+- Remove shell scripts from tests [\#47](https://github.com/chef/chef-dk/pull/47) ([danielsdeleo](https://github.com/danielsdeleo))
+- Verify fixes for windows [\#45](https://github.com/chef/chef-dk/pull/45) ([danielsdeleo](https://github.com/danielsdeleo))
+- whoops, forgot chef exec docs [\#38](https://github.com/chef/chef-dk/pull/38) ([lamont-granquist](https://github.com/lamont-granquist))
+- don't print help after successful command [\#33](https://github.com/chef/chef-dk/pull/33) ([mcquin](https://github.com/mcquin))
+- Import 0.1.0 Release notes to changelog [\#31](https://github.com/chef/chef-dk/pull/31) ([danielsdeleo](https://github.com/danielsdeleo))
+- tests don't write to spec/unit [\#29](https://github.com/chef/chef-dk/pull/29) ([mcquin](https://github.com/mcquin))
+- Utilize TemplateHelper for README.md, kitchen.yml [\#28](https://github.com/chef/chef-dk/pull/28) ([byggztryng](https://github.com/byggztryng))
+- add chef exec command [\#22](https://github.com/chef/chef-dk/pull/22) ([lamont-granquist](https://github.com/lamont-granquist))
+
+## [0.1.0](https://github.com/chef/chef-dk/tree/0.1.0) (2014-04-28)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.0.1...0.1.0)
+
+**Implemented enhancements:**
+
+- `chef verify` doesn't work as non-root [\#13](https://github.com/chef/chef-dk/issues/13)
+- run as a normal user, chef gem install should install gems to a writable location [\#11](https://github.com/chef/chef-dk/issues/11)
+
+**Closed issues:**
+
+- permissions end up incorrect after install chef-dk on MacOS X [\#19](https://github.com/chef/chef-dk/issues/19)
+- Creating a new chef binary is unhelpful [\#7](https://github.com/chef/chef-dk/issues/7)
+- README could be more helpful [\#24](https://github.com/chef/chef-dk/issues/24)
+- `chef verify` on new OSX install fails [\#21](https://github.com/chef/chef-dk/issues/21)
+- Unable to run `kitchen init` [\#20](https://github.com/chef/chef-dk/issues/20)
+- How does ChefDK interoperate \(or break\) normal ruby gem workflows? [\#16](https://github.com/chef/chef-dk/issues/16)
+- kitchen-vagrant missing when installing chef-dk from dmg [\#15](https://github.com/chef/chef-dk/issues/15)
+
+**Merged pull requests:**
+
+- omit @graphviz tagged cucumber test in berks [\#26](https://github.com/chef/chef-dk/pull/26) ([mcquin](https://github.com/mcquin))
+- Improved Verify [\#25](https://github.com/chef/chef-dk/pull/25) ([danielsdeleo](https://github.com/danielsdeleo))
+- exclude graphviz tags from berks tests [\#23](https://github.com/chef/chef-dk/pull/23) ([mcquin](https://github.com/mcquin))
+
+## [0.0.1](https://github.com/chef/chef-dk/tree/0.0.1) (2014-04-15)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.0.1.alpha.1...0.0.1)
+
+## [0.0.1.alpha.1](https://github.com/chef/chef-dk/tree/0.0.1.alpha.1) (2014-04-12)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.0.1.alpha.0...0.0.1.alpha.1)
+
+**Merged pull requests:**
+
+- Disable @spawn tests on berks to unblock chefdk releases.  [\#9](https://github.com/chef/chef-dk/pull/9) ([sersut](https://github.com/sersut))
+- Update shellout to 1.4.0; Update chef to release version [\#8](https://github.com/chef/chef-dk/pull/8) ([danielsdeleo](https://github.com/danielsdeleo))
+
+## [0.0.1.alpha.0](https://github.com/chef/chef-dk/tree/0.0.1.alpha.0) (2014-04-09)
+**Merged pull requests:**
+
+- CC-44: Verify chef-dk gem during "chef verify" [\#6](https://github.com/chef/chef-dk/pull/6) ([sersut](https://github.com/sersut))
+- Use chef as our code generator [\#5](https://github.com/chef/chef-dk/pull/5) ([danielsdeleo](https://github.com/danielsdeleo))
+- Verify command for chef which runs the specs for the components. [\#4](https://github.com/chef/chef-dk/pull/4) ([sersut](https://github.com/sersut))
+- Rework the command loader to be as lazy as possible [\#3](https://github.com/chef/chef-dk/pull/3) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add a simple gem command to install to the bundled gems [\#2](https://github.com/chef/chef-dk/pull/2) ([danielsdeleo](https://github.com/danielsdeleo))
+- CC-14: Create chef-dk gem [\#1](https://github.com/chef/chef-dk/pull/1) ([sersut](https://github.com/sersut))
 
 
-# 0.6.2
-* I forgot to update a test that was failing in 0.6.1.  Travis didn't catch
-  it because my PR was not against master.
 
-# 0.6.1
-* [420](https://github.com/chef/chef-dk/issues/420): Fixing Windows builds
-   where SSL is not working - see bug for details.
-
-# 0.6.0
-* [chef-dk#383](https://github.com/chef/chef-dk/pull/383): Add `chef
-  provision` command, a CLI for running Chef Provisioning recipes.
-* [Omnibus-Chef #385](https://github.com/chef/omnibus-chef/pull/385): Updated
-Berkshelf to version 3.2.4
-* [Omnibus-Chef #390](https://github.com/chef/omnibus-chef/pull/390): Updated
-  kitchen-vagrant to 0.18.0
-
-# 0.5.1:
-* [#368](https://github.com/chef/chef-dk/pull/368): Fixing undefined_method
-  error when performing `chef diff`
-* Updating Chef dependency to version 12.3.0
-
-# 0.5.0:
-* [#345](https://github.com/chef/chef-dk/pull/345): Support fish
-  shell in `chef shell-init`
-* [Omnibus-Chef #337](https://github.com/chef/omnibus-chef/pull/337):
-  Fix a ruby warning for redefined method in rubygems customization that
-  interacted poorly with certain Ruby plugins for text editors.
-* [#327](https://github.com/chef/chef-dk/pull/327) `chef -v` now displays the
-  version of the ChefDK, Chef, Berkshelf and Test Kitchen.
-* [#150](https://github.com/chef/chef-dk/pull/150) Update `generate repo`
-  command to no longer use monolithic repo.
-* [#263](https://github.com/chef/chef-dk/pull/263) Add a `chef_repo` cookbook
-  source which can be used in place of supermarket/berks-like depsolving to
-  support a single monolithic git repo with its 'universe' of cookbooks entirely
-  contained within it.  Cookbook dependencies will be determined only from the
-  filesystem.  Cannot be combined with supermarket/berks-apis as a source.
-* [#305](https://github.com/chef/chef-dk/pull/305) Updated Test Kitchen
-  policyfile provisioner to work in Test Kitchen 1.4
-* Including `knife-windows` plugin inside the Omnibus ChefDK builds.
-* Including `winrm-transport` plugin inside the Omnibus ChefDK builds,
-  used by Test Kitchen to connect to windows guests.
-* Updated dependencies (some bundled with the omnibus build)
-  * Chef - 12.2.1
-  * chef-provisioning - 1.1.1
-  * chef-provisioning-fog - 0.13.2
-  * chef-provisioning-azure - 0.3.2
-  * chef-provisioning-aws - 1.1.1
-  * test-kitchen - 1.4.0
-  * kitchen-vagrant - 0.17.0
-  * knife-windows - 0.8.4
-  * winrm-transport - 1.0.0
-
-## Policyfiles
-
-* [#323](https://github.com/chef/chef-dk/pull/323) Add `revision_id` to
-  policyfile locks, which provides a unique identifier for a generated lock.
-* [#351](https://github.com/chef/chef-dk/pull/351) Add attributes to
-  policyfiles.
-* [#359](https://github.com/chef/chef-dk/pull/359) Add the ability for users to
-  update only the attributes of their policyfile.lock by running `chef update -a`.
-* [#352](https://github.com/chef/chef-dk/pull/352) Fixed bug where attributes
-  would be modified in policyfile.lock during cookbook updates.
-* [#359](https://github.com/chef/chef-dk/pull/359) Add a `chef diff` command to
-  show diffs between policyfile locks locally, in git, and on a Chef Server.
-* [#342](https://github.com/chef/chef-dk/pull/342) Fixed bug where a cookbook
-  with no source options couldn't be added to the Policyfile.rb
-* [#362](https://github.com/chef/chef-dk/pull/362): Policyfile native
-  API mode is now the default. Add `policy_document_native_api false` to
-  your config file to continue to use the compatibility mode.
-    * Chef Zero has not yet been updated; Chef Zero users should continue to use
-    compatibility mode (`policy_document_native_api false`) for Policyfiles.
-    * This new API will be enabled by default in the next version of Chef
-    Server (12.1.0).
-
-# 0.4.0
-* Add support for uploading Policyfiles via native API rather than as a
-  data bag item. This requires an unreleased version of the Chef Server
-  and Chef Client to work, so it is disabled by default. Configure
-  `policy_document_native_api true` to enable.
-
-# 0.3.6
-* Support cookbooks that contain only `metadata.json` with Policyfiles.
-* Add named run lists to the Policyfile DSL. The feature however, is not
-  usable until support is added to Chef Client.
-* Allow generator cookbooks to have arbitrary names. The
-  argument to `--generator-cookbook` should be the path to the cookbook,
-  rather than the path to the directory containing the generator
-  cookbook.
-* Custom Generator cookbooks can now be configured in
-  `~/.chef/config.rb` (or `knife.rb`) by setting
-  `chefdk.generator_cookbook`.
-* Added `chef update` command, which rebuilds `Policyfile.lock.json`
-  to reflect any changes in the `Policyfile.rb` and updates cookbooks to
-  the latest versions that match the dependency constraints.
-* Added `chef export` command. This command creates a directory
-  containing all cookbooks referenced by the `Policyfile.lock.json` and
-  a copy of the lock file as a data bag item. This directory can be
-  served by Chef Zero to apply your policy to a node.
-* Added `policyfile_zero` Test Kitchen provisioner. This provisioner
-  converges chef-client in policyfile mode using Chef Zero. This
-  currently requires TK to be modified to use mixlib-shellout 2.x, which
-  will be addressed in the next TK release.
-* [Omnibus-Chef #318](https://github.com/opscode/omnibus-chef/pull/318):
-  Will no longer install gem documentation when using `chef gem`.
-  This speeds up gem installs.
-* Powershell support for `chef shell-init`
-* `chef generate` will now generate ChefSpec tests for new recipes, and ServerSpec tests when a kitchen.yml is generated
-
-# 0.3.5
-* Update Chef to 11.18.0 RC0, resolves issue with knife loading commands
-  from incompatible versions installed as gems. See:
-  https://github.com/opscode/chef-dk/issues/227
-* Use the correct separator when joining paths on windows:
-  https://github.com/opscode/chef-dk/pull/232 fixes #180
-
-# 0.3.4
-* Rollback appbundler to 0.2.0, resolves
-  https://github.com/opscode/chef-dk/issues/228
-* Update components: Berks 3.2.0, Chef 11.16.4, Bundler 1.7.5
-
-# 0.3.3
-
-* [**Martin Smith**](https://github.com/martinb3): Add the ability to
-specify arbitrary context attributes in generators from the command
-line. Attributes are specified by passing the `--generator-arg` option
-to a `chef generate` command with arguments of the form `key=value`. For
-example, if you pass the option `--generator-arg database=mysql`, you
-can access this in generator recipes with
-`ChefDK::Generator.context.database` (which will return `"mysql"` in
-this example).
-* Fix bug in `chef verify` when prerelease ChefSpec is installed
-* Include chef-provisioning and AWS, Azure, Vagrant and Fog drivers
-* Fix erchef incompatibility in `chef push`
-* Search upwards for `.git` dir when generating metadata for Policyfile
-  locks.
-
-# 0.3.2
-
-* Revert the packaged certificate bundle to the '2014.08.20' version.
-This works around an issue where SSL connections to AWS would fail with
-certificate validation errors. More information can be found in
-[#199](https://github.com/opscode/chef-dk/issues/199).
-* Enforce mode 0644 for the CA cert bundle in omnibus packaging; A
-change to omnibus resulted in this file being mode 0600, preventing
-non-root users from verifying SSL certificates.
-
-# 0.3.1
-
-* Add a generator for Policyfiles
-* Fix a regression in Windows packaging; the build step to upgrade the
-OpenSSL version within the package was inadvertently removed, causing
-certificate validation to fail in some contexts.
-
-# 0.3.0
-
-* [**Robert J. Berger**](https://github.com/rberger):
-  Use Gem.user_dir instead of Gem.paths.home for GEM_HOME in chef exec.
-* [**the Bunny Man**](https://github.com/tbunnyman):
-  Treat existence of git and skip_git flag correctly in the generators.
-
-* Initial Release of the Policyfile feature. This feature relies on
-updates to the server API before it is production-ready, though it
-provides a compatibility mode for testing purposes. The Policyfile
-feature is accessed via the `chef install` and `chef push` commands. See
-POLICYFILE_README.md in this repo for further information about the
-feature and its current limitations.
-* CLI no longer dumps stack trace when given invalid options
-* Update Unix ruby to 2.1.3 from 2.1.2
-* Warn when embedded/bin directory exists before bin directory in ENV['PATH']
-
-# 0.2.2
-
-* Fix a regression where `chef generate template` fails with
-  `undefined method `content_source' for #<chefdk::generator::context:0x00000003e37af8>`
-  in 0.2.1
-
-## 0.2.1
-
-Other than some minor bug fixes, here is a list of included changes:
-
-* Chef DK is now supported on Mac 10.8.
-* Fixed a bug in `chef exec` to set the ENV correctly. This resolves errors like
-  [this](https://github.com/opscode/chef-dk/issues/103) when running commands
-  with `chef exec`.
-* Make supermarket the default source in generated Gemfiles.
-* `chef generate repo` command is now available. This command generates a chef
-  repository which is equivalent to [chef-repo](https://github.com/opscode/chef-repo).
-* Generators do not require Administrator privileges on Windows anymore.
-
-## 0.2.0
-
-### Chef Development Kit Windows Support
-
-Version 0.2.0 of Chef Development Kit is now available as an MSI package for Windows. Supported operating system versions are:
-
-* Windows Server 2008 R2 / Windows 7
-* Windows Server 2012 / Windows 8
-* Windows Server 2012 R2 / Windows 8.1
-
-### Added `chef shell-init`
-`chef shell-init SHELL_NAME` emits shell commands that modify your
-environment to make ChefDK your primary ruby. For more information to
-help you decide if this is desirable and instructions, see "Using ChefDK
-as Your Primary Development Environment" in the README.
-
-### Added option to generate subcommand
-
-The 'chef generate' subcommand now has the '--generator-cookbook' option to let you
-specify a path to an alternate skeleton cookbook for generating cookbooks. For an
-example, look at 'lib/chef-dk/skeletons' which is the default if this option
-is not specified. Your cookbook will need to be named `code_generator` in order
-for the recipes to be run.
-
-* [Add skeleton option for chef generate](https://github.com/opscode/chef-dk/pull/40) by [martinisoft](https://github.com/martinisoft)
-
-### Added subcommand
-
-The 'chef exec' subcommand added to execute commands with the PATH and ruby environment
-of the chefdk omnibus environment (analogous to 'bundle exec').
-
-* [chef exec](https://github.com/opscode/chef-dk/pull/22)
-
-## Release: 0.1.0
-
-### Berkshelf Updates
-
-Berkshelf is updated to 3.1.1. [(Berkshelf Changelog)](https://github.com/berkshelf/berkshelf/blob/master/CHANGELOG.md)
-
-ChefDK changes for Berkshelf 3.1.1:
-
-* [Integration test fixes](https://github.com/opscode/chef-dk/pull/26)
-* [Unit test fixes](https://github.com/opscode/chef-dk/pull/23)
-
-### Test Kitchen Updates
-
-ChefDK now includes the `kitchen-vagrant` driver by default. Other
-drivers can be installed via `chef gem`. Additionally, Test Kitchen has
-been updated to install drivers to the embedded ruby when using `kitchen init`.
-
-* [Test Kitchen gem install fix](https://github.com/test-kitchen/test-kitchen/pull/416)
-* [kitchen init bug report](https://github.com/opscode/chef-dk/issues/15)
-
-### `verify` Command Improvements:
-
-Runs a set of smoke tests by default; Can independently run smoke,
-unit and/or integration tests.
-
-* [chef verify patch](https://github.com/opscode/chef-dk/pull/25)
-* [chef verify failure on OS X](https://github.com/opscode/chef-dk/issues/21)
-* [chef verify failure as non-root](https://github.com/opscode/chef-dk/issues/13)
-
-### `gem` Command Improvements:
-
-Gems now install in "user" mode by default, and are installed to
-`~/.chefdk/gem`. Executables will be installed to
-`~/.chefdk/gem/ruby/2.1.0/bin`. See [the notes on the README](https://github.com/opscode/chef-dk#using-chefdk-as-your-primary-development-environment)
-for more information about updating your environment to use ChefDK as
-your primary Ruby development environment.
-
-* [chef gem should work as non-root](https://github.com/opscode/chef-dk/issues/11)
-
-### Improved Documentation
-
-The README now has basic usage instructions for the `chef` command line
-tool and documents how it interacts (or doesn't) with other Ruby
-development tools.
-
-* [Update README](https://github.com/opscode/chef-dk/issues/24)
-* [Explain how ChefDK affects my workflow](https://github.com/opscode/chef-dk/issues/16)
-
-### Added Tool
-
-`chef-vault` is now a part of the default package.
+\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
