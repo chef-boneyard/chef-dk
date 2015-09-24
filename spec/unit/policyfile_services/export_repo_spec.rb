@@ -251,6 +251,29 @@ E
             expect(policyfile_lock_data).to eq(expected_lock_data)
           end
 
+          it "creates a working local mode configuration file" do
+            expected_config_text = <<-CONFIG
+### Chef Client Configuration ###
+# The settings in this file will configure chef to apply the exported policy in
+# this directory. To use it, run:
+#
+# chef-client -c client.rb -z
+#
+
+use_policyfile true
+
+# compatibility mode settings are used because chef-zero doesn't yet support
+# native mode:
+deployment_group 'install-example-local'
+versioned_cookbooks true
+policy_document_native_api false
+
+CONFIG
+            config_path = File.join(export_dir, "client.rb")
+            expect(File).to exist(config_path)
+            expect(IO.read(config_path)).to eq(expected_config_text)
+          end
+
         end
 
         context "when the export dir is empty" do

@@ -31,14 +31,12 @@ module ChefDK
 Usage: chef export [ POLICY_FILE ] DESTINATION_DIRECTORY [options]
 
 `chef export` creates a Chef Zero compatible Chef repository containing the
-cookbooks described in a Policyfile.lock.json. Once the exported repo is copied
-to the target machine, you can apply the policy to the machine with
-`chef-client -z`. You will need at least the following config:
+cookbooks described in a Policyfile.lock.json. The exported repository also
+contains a client.rb which configures chef to apply your policy. Once the
+exported repo is copied to the target machine, you can apply the policy to the
+machine with:
 
-    use_policyfile true
-    deployment_group '$POLICY_NAME-local'
-    versioned_cookbooks true
-    policy_document_native_api false
+`chef-client -c client.rb -z`.
 
 See our detailed README for more information:
 

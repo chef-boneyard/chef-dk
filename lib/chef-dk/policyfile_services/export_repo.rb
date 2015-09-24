@@ -97,6 +97,7 @@ module ChefDK
           copy_cookbooks
           create_policyfile_data_item
           copy_policyfile_lock
+          create_client_rb
           if archive?
             create_archive
           else
@@ -189,6 +190,28 @@ module ChefDK
         end
       end
 
+      def create_client_rb
+        File.open(client_rb_staging_path, "wb+") do |f|
+          f.print( <<-CONFIG )
+### Chef Client Configuration ###
+# The settings in this file will configure chef to apply the exported policy in
+# this directory. To use it, run:
+#
+# chef-client -c client.rb -z
+#
+
+use_policyfile true
+
+# compatibility mode settings are used because chef-zero doesn't yet support
+# native mode:
+deployment_group '#{policy_name}-local'
+versioned_cookbooks true
+policy_document_native_api false
+
+CONFIG
+        end
+      end
+
       def mv_staged_repo
         # If we got here, either these dirs are empty/don't exist or force is
         # set to true.
@@ -199,6 +222,7 @@ module ChefDK
         FileUtils.mkdir_p(export_data_bag_dir)
         FileUtils.mv(policyfiles_data_bag_staging_dir, export_data_bag_dir)
         FileUtils.mv(lockfile_staging_path, export_dir)
+        FileUtils.mv(client_rb_staging_path, export_dir)
       end
 
       def validate_lockfile
@@ -272,6 +296,10 @@ module ChefDK
 
       def lockfile_staging_path
         File.join(staging_dir, "Policyfile.lock.json")
+      end
+
+      def client_rb_staging_path
+        File.join(staging_dir, "client.rb")
       end
 
     end
