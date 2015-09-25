@@ -133,4 +133,37 @@ E
 
   end
 
+  describe "when parsing Chef's configuration fails" do
+
+    let(:exception_message) do
+      <<-MESSAGE
+You have an error in your config file /Users/ddeleo/.chef/config.rb (Chef::Exceptions::ConfigurationError)
+
+Mixlib::Config::UnknownConfigOptionError: Cannot set unsupported config value foo.
+  /Users/person/.chef/config.rb:50:in `from_string'
+Relevant file content:
+ 49: chefdk.generator_cookbook "~/.chef/code_generator"
+ 50: chefdk.foo "bar"
+ 51:
+
+MESSAGE
+    end
+
+    let(:exception) { Chef::Exceptions::ConfigurationError.new(exception_message) }
+
+    before do
+      allow(command_instance).to receive(:run).and_raise(exception)
+    end
+
+    it "exits non-zero" do
+      expect(run_command([])).to eq(1)
+    end
+
+    it "prints the exception message to stderr" do
+      run_command([])
+      expect(stderr).to include(exception_message)
+    end
+
+  end
+
 end

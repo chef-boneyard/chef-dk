@@ -18,6 +18,7 @@
 require 'mixlib/cli'
 require 'chef-dk/helpers'
 require 'chef-dk/version'
+require 'chef/exceptions'
 
 module ChefDK
   module Command
@@ -56,6 +57,9 @@ module ChefDK
         else
           run(params)
         end
+      rescue Chef::Exceptions::ConfigurationError => e
+        err("ERROR: #{e.message}\n")
+        1
       rescue OptionParser::InvalidOption, OptionParser::MissingArgument => e
         err("ERROR: #{e.message}\n")
         msg(opt_parser)

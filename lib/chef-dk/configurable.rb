@@ -25,6 +25,11 @@ class Chef::Config
 
   config_context(:chefdk) do
 
+    # Error when we encounter unknown keys. This makes it clear to the user if
+    # they get the name of the config key wrong (e.g., `chefdk.generator`
+    # instead of `chefdk.generator_cookbook`).
+    config_strict_mode(true)
+
     default(:generator_cookbook, File.expand_path("../skeletons/code_generator", __FILE__))
 
   end
