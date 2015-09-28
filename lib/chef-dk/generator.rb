@@ -151,6 +151,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 EOH
         end
         if comment
+          # Ensure there's no trailing whitespace
           result.gsub(/^(.+)$/, "#{comment} \\1").gsub(/^$/, "#{comment}")
         else
           result
