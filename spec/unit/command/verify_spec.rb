@@ -38,6 +38,7 @@ describe ChefDK::Command::Verify do
     [
       "berkshelf",
       "test-kitchen",
+      "tk-policyfile-provisioner",
       "chef-client",
       "chef-dk",
       "chef-provisioning",

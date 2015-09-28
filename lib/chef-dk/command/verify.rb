@@ -102,6 +102,43 @@ module ChefDK
         c.smoke_test { run_in_tmpdir("kitchen init --create-gemfile") }
       end
 
+      add_component "tk-policyfile-provisioner" do |c|
+
+        c.base_dir = "chef-dk"
+
+        c.smoke_test do
+          tmpdir do |cwd|
+            File.open(File.join(cwd, ".kitchen.yml"), "w+") do |f|
+              f.print(<<-KITCHEN_YML)
+---
+driver:
+  name: dummy
+  network:
+    - ["forwarded_port", {guest: 80, host: 8080}]
+
+provisioner:
+  name: policyfile_zero
+  require_chef_omnibus: 12.3.0
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[aar::default]
+    attributes:
+
+KITCHEN_YML
+            end
+
+            sh("kitchen list", cwd: cwd)
+
+          end
+        end
+
+      end
+
       add_component "chef-client" do |c|
         c.base_dir = "chef"
         c.unit_test { sh("bundle exec rspec -fp -t '~volatile_from_verify' spec/unit") }
