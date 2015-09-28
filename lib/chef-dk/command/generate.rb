@@ -51,7 +51,7 @@ module ChefDK
       generator(:file, :CookbookFile, "Generate a cookbook file")
       generator(:lwrp, :LWRP, "Generate a lightweight resource/provider")
       generator(:repo, :Repo, "Generate a Chef code repository")
-      generator(:policyfile, :Policyfile, "Generate a Policyfile for use with the install/push commands (experimental)")
+      generator(:policyfile, :Policyfile, "Generate a Policyfile for use with the install/push commands")
 
       def self.banner_headline
         <<-E
