@@ -1,7 +1,25 @@
 # Change Log
 
-## [0.8.0](https://github.com/chef/chef-dk/tree/0.8.0) (2015-09-22)
-[Full Changelog](https://github.com/chef/chef-dk/compare/0.7.0...0.8.0)
+## [0.9.0](https://github.com/chef/chef-dk/tree/0.9.0) (2015-09-28)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.8.0...0.9.0)
+
+**Closed issues:**
+
+- shell-init broken for both bash and zsh in 0.8.0 [\#537](https://github.com/chef/chef-dk/issues/537)
+- Conflict using `bundler` inside `chefdk` [\#536](https://github.com/chef/chef-dk/issues/536)
+- Chefdk 0.8.0 not working on Debian 7 Wheezy because of libc version mismatch [\#533](https://github.com/chef/chef-dk/issues/533)
+- cookbook\_file is not working with Test-kitchen with windows server through vagrant [\#512](https://github.com/chef/chef-dk/issues/512)
+- WIN 8 no knife configuration found [\#484](https://github.com/chef/chef-dk/issues/484)
+- chefdk preventing vagrant from working [\#466](https://github.com/chef/chef-dk/issues/466)
+
+**Merged pull requests:**
+
+- Verify that the policyfile\_zero provisioner can load [\#539](https://github.com/chef/chef-dk/pull/539) ([danielsdeleo](https://github.com/danielsdeleo))
+- Enable strict config, catch config errors in command base [\#535](https://github.com/chef/chef-dk/pull/535) ([danielsdeleo](https://github.com/danielsdeleo))
+- Include a valid config in exported policies [\#532](https://github.com/chef/chef-dk/pull/532) ([danielsdeleo](https://github.com/danielsdeleo))
+
+## [v0.8.0](https://github.com/chef/chef-dk/tree/v0.8.0) (2015-09-22)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.7.0...v0.8.0)
 
 **Implemented enhancements:**
 
@@ -36,6 +54,7 @@
 
 **Merged pull requests:**
 
+- Use github\_changelog\_generator for changelog [\#527](https://github.com/chef/chef-dk/pull/527) ([jkeiser](https://github.com/jkeiser))
 - Add service class to GC cookbook\_artifacts [\#463](https://github.com/chef/chef-dk/pull/463) ([danielsdeleo](https://github.com/danielsdeleo))
 - Backend for policy group removal [\#461](https://github.com/chef/chef-dk/pull/461) ([danielsdeleo](https://github.com/danielsdeleo))
 
@@ -52,7 +71,7 @@
 ## [0.7.0.rc.3](https://github.com/chef/chef-dk/tree/0.7.0.rc.3) (2015-07-20)
 [Full Changelog](https://github.com/chef/chef-dk/compare/0.7.0.rc.2...0.7.0.rc.3)
 
-**Closed issues:**
+**Implemented enhancements:**
 
 - support chef\_repo & supermarket sources together [\#430](https://github.com/chef/chef-dk/issues/430)
 
