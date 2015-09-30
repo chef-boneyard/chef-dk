@@ -30,7 +30,7 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = '>= 2.0'
 
-  gem.files = %w(Rakefile LICENSE README.md CONTRIBUTING.md) + Dir.glob("{lib,spec}/**/*", File::FNM_DOTMATCH).reject do |f|
+  gem.files = %w(Gemfile Rakefile LICENSE README.md CONTRIBUTING.md) + Dir.glob("{lib,spec}/**/*", File::FNM_DOTMATCH).reject do |f|
     File.directory?(f)
   end
   gem.executables   = %w( chef )
