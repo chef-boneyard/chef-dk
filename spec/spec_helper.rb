@@ -30,6 +30,7 @@ RSpec.configure do |c|
 
   # Avoid loading config.rb/knife.rb unintentionally
   c.before(:each) do
+    Chef::Config.reset
     allow_any_instance_of(Chef::WorkstationConfigLoader).to receive(:load)
   end
 

@@ -71,6 +71,7 @@ describe ChefDK::ChefRunner do
   end
 
   it "sets up chef policy" do
+    chef_runner.configure
     expect(chef_runner.policy.node.run_list).to eq(run_list)
   end
 
