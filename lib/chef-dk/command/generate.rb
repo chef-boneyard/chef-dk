@@ -28,6 +28,7 @@ require 'chef-dk/command/generator_commands/recipe'
 require 'chef-dk/command/generator_commands/template'
 require 'chef-dk/command/generator_commands/repo'
 require 'chef-dk/command/generator_commands/policyfile'
+require 'chef-dk/command/generator_commands/generator_generator'
 
 module ChefDK
   module Command
@@ -52,6 +53,7 @@ module ChefDK
       generator(:lwrp, :LWRP, "Generate a lightweight resource/provider")
       generator(:repo, :Repo, "Generate a Chef code repository")
       generator(:policyfile, :Policyfile, "Generate a Policyfile for use with the install/push commands")
+      generator(:generator, :GeneratorGenerator, "Copy ChefDK's generator cookbook so you can customize it")
 
       def self.banner_headline
         <<-E
