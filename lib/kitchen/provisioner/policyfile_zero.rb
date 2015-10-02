@@ -27,6 +27,29 @@ module Kitchen
 
   module Provisioner
 
+    class Base
+
+      # PolicyfileZero needs to access the base behavior of creating the
+      # sandbox directory without invoking the behavior of
+      # ChefBase#create_sandbox, because that will trigger the use of
+      # Chef::CommonSandbox, which we need to override.
+      alias_method :create_sandbox_directory, :create_sandbox
+
+    end
+
+    class PolicyfileSandbox < Chef::CommonSandbox
+
+      # Stub #prepare_cookbooks because we have implemented this in the
+      # provisioner, below. If a Berksfile is present, the default
+      # implementation will try to run Berkshelf, which can lead to dependency
+      # issues since berks is not yet using Solve 2.x. See also
+      # PolicyfileZero#load_needed_dependencies! which is stubbed to prevent
+      # berks from loading.
+      def prepare_cookbooks
+      end
+
+    end
+
     # Policyfile + Chef Zero provisioner.
     #
     # @author Daniel DeLeo <dan@chef.io>
@@ -66,7 +89,8 @@ module Kitchen
 
       # (see Base#create_sandbox)
       def create_sandbox
-        super
+        create_sandbox_directory
+        PolicyfileSandbox.new(config, sandbox_path, instance).populate
         prepare_cookbooks
         prepare_validation_pem
         prepare_client_rb
@@ -95,6 +119,11 @@ module Kitchen
           [cmd, *args].join(" ").
           tap { |str| str.insert(0, reload_ps1_path) if windows_os? }
         )
+      end
+
+      # We don't want to load Berkshelf or Librarian; Policyfile is managing
+      # dependencies, so these can only cause trouble.
+      def load_needed_dependencies!
       end
 
       private
