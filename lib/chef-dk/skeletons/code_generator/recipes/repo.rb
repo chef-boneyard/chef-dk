@@ -37,7 +37,7 @@ if context.have_git
   execute("initialize-git") do
     command("git init .")
     cwd repo_dir
-    not_if { File.exists?("#{repo_dir}/.gitignore") }
+    not_if { File.exist?("#{repo_dir}/.gitignore") }
   end
 
   template "#{repo_dir}/.gitignore" do
