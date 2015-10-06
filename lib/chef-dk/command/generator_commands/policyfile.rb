@@ -43,6 +43,9 @@ module ChefDK
           super
           Generator.add_attr_to_context(:policyfile_dir, policyfile_dir)
           Generator.add_attr_to_context(:new_file_basename, new_file_basename)
+          Generator.add_attr_to_context(:policy_name, "example-application-service")
+          Generator.add_attr_to_context(:policy_run_list, "example_cookbook::default")
+          Generator.add_attr_to_context(:policy_local_cookbook, nil)
         end
 
         def run

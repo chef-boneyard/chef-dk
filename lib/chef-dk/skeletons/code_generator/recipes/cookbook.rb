@@ -20,10 +20,19 @@ end
 # chefignore
 cookbook_file "#{cookbook_dir}/chefignore"
 
-# Berks
-cookbook_file "#{cookbook_dir}/Berksfile" do
-  action :create_if_missing
+# Policyfile
+template "#{cookbook_dir}/Policyfile.rb" do
+  source "Policyfile.rb.erb"
+  helpers(ChefDK::Generator::TemplateHelper)
 end
+
+###
+# Berks is no longer the default, uncomment this to enable it.
+#
+# # Berks
+# cookbook_file "#{cookbook_dir}/Berksfile" do
+#   action :create_if_missing
+# end
 
 # TK & Serverspec
 template "#{cookbook_dir}/.kitchen.yml" do

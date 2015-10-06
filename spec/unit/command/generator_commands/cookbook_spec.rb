@@ -36,7 +36,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       test/integration/default/serverspec
       test/integration/default/serverspec/default_spec.rb
       test/integration/helpers/serverspec/spec_helper.rb
-      Berksfile
+      Policyfile.rb
       chefignore
       metadata.rb
       README.md
@@ -150,6 +150,44 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       include_examples "a generated file", :cookbook_name do
         let(:line) { "# new_cookbook" }
       end
+    end
+
+    describe "Policyfile.rb" do
+
+      let(:file) { File.join(tempdir, "new_cookbook", "Policyfile.rb") }
+
+      let(:expected_content) do
+        <<-POLICYFILE_RB
+# Policyfile.rb - Describe how you want Chef to build your system.
+#
+# For more information on the Policyfile feature, visit
+# https://github.com/opscode/chef-dk/blob/master/POLICYFILE_README.md
+
+# A name that describes what the system you're building with Chef does.
+name "new_cookbook"
+
+# Where to find external cookbooks:
+default_source :supermarket
+
+# run_list: chef-client will run these recipes in the order specified.
+run_list "new_cookbook::default"
+
+# Specify a custom source for a single cookbook:
+cookbook "new_cookbook", path: "."
+POLICYFILE_RB
+      end
+
+      before do
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          cookbook_generator.run
+        end
+      end
+
+      it "has a run_list and cookbook path that will work out of the box" do
+        expect(IO.read(file)).to eq(expected_content)
+      end
+
     end
 
     describe ".kitchen.yml" do
