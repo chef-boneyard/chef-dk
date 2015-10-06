@@ -38,6 +38,9 @@ if context.have_git
     command("git init .")
     cwd repo_dir
     not_if { File.exist?("#{repo_dir}/.gitignore") }
+    ## if we're already in a git repo, dont init.
+    ## exits 0 if we're in a repo, 128 if we're not.
+    not_if "git rev-parse"
   end
 
   template "#{repo_dir}/.gitignore" do
