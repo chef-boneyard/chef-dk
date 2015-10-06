@@ -34,12 +34,13 @@ end
 
 # git
 if context.have_git
-  execute("initialize-git") do
-    command("git init .")
-    cwd repo_dir
-    not_if { File.exist?("#{repo_dir}/.gitignore") }
+  if !context.skip_git_init
+    execute("initialize-git") do
+      command("git init .")
+      cwd repo_dir
+      not_if { File.exist?("#{repo_dir}/.gitignore") }
+    end
   end
-
   template "#{repo_dir}/.gitignore" do
     source "repo/gitignore.erb"
     helpers(ChefDK::Generator::TemplateHelper)

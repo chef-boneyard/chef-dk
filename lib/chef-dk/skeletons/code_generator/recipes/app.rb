@@ -85,12 +85,12 @@ end
 
 # git
 if context.have_git
-
-  execute("initialize-git") do
-    command("git init .")
-    cwd app_dir
+  if !context.skip_git_init
+    execute("initialize-git") do
+      command("git init .")
+      cwd app_dir
+    end
   end
-
   cookbook_file "#{app_dir}/.gitignore" do
     source "gitignore"
   end
