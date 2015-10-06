@@ -191,11 +191,53 @@ POLICYFILE_RB
     end
 
     describe ".kitchen.yml" do
+
+      before do
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          cookbook_generator.run
+        end
+      end
+
       let(:file) { File.join(tempdir, "new_cookbook", ".kitchen.yml") }
 
-      include_examples "a generated file", :cookbook_name do
-        let(:line) { /\s*- recipe\[new_cookbook::default\]/ }
+      let(:expected_content) do
+        <<-KITCHEN_YML
+---
+driver:
+  name: vagrant
+
+## The forwarded_port port feature lets you connect to ports on the VM guest via
+## localhost on the host.
+## see also: https://docs.vagrantup.com/v2/networking/forwarded_ports.html
+
+#  network:
+#    - ["forwarded_port", {guest: 80, host: 8080}]
+
+provisioner:
+  name: policyfile_zero
+
+## require_chef_omnibus specifies a specific chef version to install. You can
+## also set this to `true` to always use the latest version.
+## see also: https://docs.chef.io/config_yml_kitchen.html
+
+#  require_chef_omnibus: 12.5.0
+
+platforms:
+  - name: ubuntu-14.04
+  - name: centos-7.1
+
+suites:
+  - name: default
+    attributes:
+KITCHEN_YML
       end
+
+
+      it "uses the policyfile_zero provisioner" do
+        expect(IO.read(file)).to eq(expected_content)
+      end
+
     end
 
     describe "test/integration/default/serverspec/default_spec.rb" do

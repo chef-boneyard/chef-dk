@@ -36,7 +36,10 @@ end
 
 # TK & Serverspec
 template "#{cookbook_dir}/.kitchen.yml" do
-  source 'kitchen.yml.erb'
+  ## Uncomment this and delete the following `source` line to generate
+  ## non-Policyfile kitchen.yml files (do this if you're using berks):
+  # source 'kitchen.yml.erb'
+  source 'kitchen_policyfile.yml.erb'
   helpers(ChefDK::Generator::TemplateHelper)
   action :create_if_missing
 end
