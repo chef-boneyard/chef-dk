@@ -241,41 +241,24 @@ describe ChefDK::Command::GeneratorCommands::Repo do
         end
       end
 
-      describe "environments" do
+      describe "policies" do
         describe "README.md" do
-          let(:file) { "environments/README.md" }
+          let(:file) { "policies/README.md" }
 
-          it "has the right contents" do
-            expect(file_contents).to match(/Create environments here, in either the Role Ruby DSL \(\.rb\) or JSON \(\.json\) files\./)
+          let(:expected_content) do
+            <<-README
+Create policyfiles here. When using a chef-repo, give your policyfiles
+the same filename as the name set in the policyfile itself, and use the
+`.rb` file extension.
+README
           end
-        end
-
-        describe "example.json" do
-          let(:file) { "environments/example.json" }
 
           it "has the right contents" do
-            expect(file_contents).to match(/"description": "This is an example environment defined as JSON"/)
+            expect(file_contents).to include(expected_content)
           end
         end
       end
 
-      describe "roles" do
-        describe "README.md" do
-          let(:file) { "roles/README.md" }
-
-          it "has the right contents" do
-            expect(file_contents).to match(/Create roles here, in either the Role Ruby DSL \(\.rb\) or JSON \(\.json\) files\./)
-          end
-        end
-
-        describe "example.json" do
-          let(:file) { "roles/example.json" }
-
-          it "has the right contents" do
-            expect(file_contents).to match(/"description": "This is an example role defined as JSON"/)
-          end
-        end
-      end
     end
   end
 end

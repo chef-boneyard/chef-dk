@@ -18,7 +18,11 @@ cookbook_file "#{repo_dir}/chefignore" do
   source "chefignore"
 end
 
-%w{cookbooks data_bags environments roles}.each do |tlo|
+# By default, we now create a policies directory and don't create a roles or
+# environments directory. The skeleton files for those still exist, so just add
+# roles and environments to the array here to generate a repo with these
+# directories.
+%w{cookbooks data_bags policies}.each do |tlo|
   remote_directory "#{repo_dir}/#{tlo}" do
     source "repo/#{tlo}"
   end
