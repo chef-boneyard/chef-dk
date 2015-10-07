@@ -10,6 +10,10 @@ template "#{repo_dir}/LICENSE" do
   helpers(ChefDK::Generator::TemplateHelper)
 end
 
+cookbook_file "#{repo_dir}/.chef-repo.txt" do
+  source "repo/dot-chef-repo.txt"
+end
+
 cookbook_file "#{repo_dir}/README.md" do
   source "repo/README.md"
 end

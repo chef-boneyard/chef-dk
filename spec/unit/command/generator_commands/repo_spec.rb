@@ -181,6 +181,15 @@ describe ChefDK::Command::GeneratorCommands::Repo do
         end
       end
 
+      describe ".chef-repo.txt" do
+
+        let(:file) { ".chef-repo.txt" }
+
+        it "explains why it's there" do
+          expect(file_contents).to include("This file gives ChefDK's generators a hint")
+        end
+      end
+
       describe "cookbooks" do
         describe "README.md" do
           let(:file) { "cookbooks/README.md" }

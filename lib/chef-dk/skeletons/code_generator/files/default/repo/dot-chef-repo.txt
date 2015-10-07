@@ -1,0 +1,6 @@
+.chef-repo.txt
+==============
+
+This file gives ChefDK's generators a hint that you are using a Chef Repo and
+this is the root directory of your Chef Repo. ChefDK's generators use this to
+generate code that is designed to work with the Chef Repo workflow.
