@@ -31,6 +31,7 @@ RSpec.configure do |c|
   # Avoid loading config.rb/knife.rb unintentionally
   c.before(:each) do
     Chef::Config.reset
+    Chef::Config.treat_deprecation_warnings_as_errors(true)
     allow_any_instance_of(Chef::WorkstationConfigLoader).to receive(:load)
   end
 

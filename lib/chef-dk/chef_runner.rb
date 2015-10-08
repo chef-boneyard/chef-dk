@@ -50,7 +50,7 @@ module ChefDK
     def policy
       return @policy_builder if @policy_builder
 
-      @policy_builder = Chef::PolicyBuilder::ExpandNodeObject.new("chef-dk", ohai.data, {}, nil, formatter)
+      @policy_builder = Chef::PolicyBuilder::Dynamic.new("chef-dk", ohai.data, {}, nil, formatter)
       @policy_builder.load_node
       @policy_builder.build_node
       @policy_builder.node.run_list(*run_list)
