@@ -69,6 +69,8 @@ directory "#{cookbook_dir}/spec/unit/recipes" do
 end
 
 cookbook_file "#{cookbook_dir}/spec/spec_helper.rb" do
+  # Change this to "spec_helper.rb" to get the berkshelf version
+  source "spec_helper_policyfile.rb"
   action :create_if_missing
 end
 
