@@ -2,17 +2,20 @@
 
 ## What's this Policyfile Stuff?
 
-First of all, the Policyfile feature is a work in progress. As of ChefDK
-0.5.0 and Chef Server 12.1.0, native APIs are enabled by default,
-allowing you to safely experiment with the feature without impacting
-existing production systems. It's recommended that you upgrade to these
-versions before experimenting with Policyfiles.
+First of all, the Policyfile feature is a work in progress. We are
+rapidly approaching completion of the "1.0" feature set, though some
+features you might need to be successful with Policyfiles are scheduled
+for post-1.0 releases (more on this below).
 
-That said, it's possible that features you need to be successful in
-production are not implemented yet. If you try it out and have any
-feedback, first check out whether it's listed in the "Known Limitations"
-section below. If your idea/need isn't listed there, or if you encounter
-a bug, file an issue at https://github.com/opscode/chef-dk/issues
+Each release of ChefDK, Chef Client, and Chef Server in the 12.x series
+contains incremental Policyfile improvements. For the best experience,
+make sure you are on the latest versions before you experiment with
+Policyfiles.
+
+A list of planned features which are not yet implemented is given in the
+"Known Limitations" section below. If your idea/need isn't listed there,
+or if you encounter a bug, file an issue at
+https://github.com/opscode/chef-dk/issues
 
 ## Ok, I've Been Warned. What Is It?
 
@@ -141,20 +144,23 @@ have any cookbooks in common, or else `chef` will return an error when
 attempting to install the cookbooks, unless you have a `cookbook` entry
 for that cookbook that specifies the source (see below).
 
-#### community
+#### supermarket
 
 This default source pulls cookbooks from either the public supermarket
 or a private supermarket install. To use public supermarket:
 
 ```ruby
-default_source :community
+default_source :supermarket
 ```
 
 To use a private supermarket install:
 
 ```ruby
-default_source :community, "https://mysupermarket.example"
+default_source :supermarket, "https://mysupermarket.example"
 ```
+
+Note: this used to be `default_source :community`. That still works,
+though `:supermarket` is preferred.
 
 #### chef\_repo
 
@@ -171,7 +177,7 @@ your Chef repo, or to the `cookbooks` directory within your repo.
 #### chef\_server
 
 Chef Server cannot be used as a source until the Server implements the
-"universe" endpoint.
+"universe" endpoint. See [Chef RFC014](https://github.com/chef/chef-rfc/blob/master/rfc014-universe-endpoint.md).
 
 ### `cookbook "NAME" [, "VERSION_CONSTRAINT"] [, SOURCE_OPTIONS]`
 
@@ -215,6 +221,7 @@ Examples:
 ```ruby
 cookbook 'my_app', path: 'cookbooks/my_app'
 cookbook 'mysql', github: 'opscode-cookbooks/mysql', branch: 'master'
+cookbook 'chef-ingredient', git: 'https://github.com/chef-cookbooks/chef-ingredient.git', tag: 'v0.12.0'
 ```
 
 ### `named_run_list "NAME", "ITEM1", "ITEM2", ...`
@@ -255,7 +262,10 @@ serve cookbook data. Add the following to your `.kitchen.yml`:
 ```yaml
 provisioner:
   name: policyfile_zero
-  require_chef_omnibus: 12.0.0-rc.2
+  # This line upgrades you to the latest version of Chef. It's not
+  # strictly necessary, you should be able to use this with any version
+  # of Chef 12.x.
+  require_chef_omnibus: true
 ```
 
 ## Applying the Policy on a Node
@@ -274,7 +284,7 @@ policy_group "#{policy_group}"
 policy_name "#{policy_name}"
 ```
 
-If you are using the compatability mode you should use the following
+If you are using the compatibility mode you should use the following
 settings:
 
 ```ruby
@@ -447,16 +457,28 @@ how things turn out.
 
 ### Does this Force Me to Use the Single Cookbook per Repo Thing?
 
-No. The "megarepo"/"monolithic repo" workflow is be supported. All of
+No. The "megarepo"/"monolithic repo" workflow is supported. All of
 the policyfile based commands in ChefDK support an optional
 policyfile name as an argument, so you can add a `policies/` directory
 to your Chef Repo (see also "Am I Going to be Forced to Use This?"
 above).
 
+In addition, Policyfiles now allow you to specify more than one default
+source, so you can use code like this to use both your monolithic repo
+and the public supermarket at the same time:
+
+```ruby
+# This policyfile is in a directory policies/ in your repo, the second
+# argument is the path to the chef-repo root
+default_source :chef_repo, "../"
+# This will consult the public supermarket to get community cookbooks:
+default_source :supermarket
+```
+
 Users who use the "megarepo" workflow may see some benefit to using
-separate per-cookbook repos for third-party cookbooks, but this will be
-optional and users can convert from vendor branches piecemeal if they
-decide to do so.
+separate per-cookbook repos for publicly sharing cookbooks, but this
+will be optional and users can convert from vendor branches piecemeal if
+they decide to do so.
 
 ### Do I Have to Change My Workflow to Use This?
 
@@ -479,11 +501,11 @@ machines. Tools that use the old APIs will need to be updated.
 ### Are Policyfiles Versioned?
 
 Policyfiles are versioned, but the versioning mechanism is different
-than SemVer depedency resolution--it's more like git branching.
+than SemVer dependency resolution--it's more like git branching.
 
 Each time you create or update a Policyfile lock document, ChefDK
 generates a `revision_id` based on the lock content (again this is a
-SHA1 hash) and inserts this into the resulting JSON.
+SHA hash) and inserts this into the resulting JSON.
 
 Additionally, the Chef Server has a new concept called a _policy group_,
 which is a collection of nodes. In practice, it will probably be common
@@ -588,7 +610,7 @@ Policyfile feature in compatibility mode, beware:
 * Cookbooks uploaded by the policyfile commands will have very large
 version numbers with no sort order. Any `chef-client` that is not
 operating in policyfile mode will prefer these cookbooks to ones
-uploaded normally unless you are dilligent about using environment
+uploaded normally unless you are diligent about using environment
 version constraints.
 * The `/cookbooks` endpoint is not designed to be used this way, so it
 doesn't show you the "real" version numbers or additional metadata about
@@ -606,7 +628,8 @@ given IDs of the form `$policyname-policygroup`.
 
 ## Known Limitations
 
-The implementation of the Policyfile feature is still incomplete. This
+The implementation is nearing a "1.0" level of completeness, however
+some important features will be implemented in 1.x releases. This
 is a (possibly not complete) list of planned features and use cases that
 currently aren't implemented/supported.
 
@@ -618,31 +641,19 @@ this will be added.
 
 ### Role Support
 
-Roles currently cannot be used in the `Policyfile.rb` run list, but will
-be supported in the future.
-
-### Multiple Run List Support
-
-ChefDK now provides a named run list feature which will provide roughly
-the same functionality as Chef Client's override run list option,
-however Chef Client's policyfile mode does not yet support the feature.
-A future update to Chef Client will allow users to specify a named run
-list to run instead of the primary run list.
-
-### Private Cookbook Hosting
-
-You can host your cookbooks privately if you run a private supermarket
-instance. We would also like to add the ability to host your cookbooks
-directly on a Chef Server, using the existing `/cookbooks` endpoint.
-This requires implementation of a `/universe` endpoint on the Chef
-Server, as described here:
-https://github.com/opscode/chef-rfc/blob/master/rfc014-universe-endpoint.md
+Roles currently cannot be used in the `Policyfile.rb` run list. Though
+the design of Policyfiles allows for roles to be used, there has been
+little demand for role support; rather, people want a
+Policyfile-specific means of composing parts (like a "base" policy plus
+application-specific stuff) into a whole. This work is in the design
+phase.
 
 ### Native API Incomplete
 
-The native Policyfile APIs are not complete. For example, there is not
-yet an API to delete policy revisions or policy groups. Also, the node
-object is not yet Policyfile-aware, so you cannot easily list nodes by
-policy group membership. Future versions of the Chef Server will add
-these features.
+As of Chef Client 12.5 and Chef Server 12.3 (not yet released when this
+was written), the node object has fields for `policy_name` and
+`policy_group`, which are searchable.
+
+Chef Server implements RBAC internally for policies and policy groups,
+but the RBAC API needs to be updated to allow users to modify ACLs.
 
