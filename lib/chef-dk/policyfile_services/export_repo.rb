@@ -21,6 +21,8 @@ require 'zlib'
 
 require 'archive/tar/minitar'
 
+require 'chef/cookbook/chefignore'
+
 require 'chef-dk/service_exceptions'
 require 'chef-dk/policyfile_lock'
 require 'chef-dk/policyfile/storage_config'
@@ -152,7 +154,8 @@ module ChefDK
         dirname = "#{lock.name}-#{lock.dotted_decimal_identifier}"
         export_path = File.join(staging_dir, "cookbooks", dirname)
         metadata_rb_path = File.join(export_path, "metadata.rb")
-        FileUtils.cp_r(lock.cookbook_path, export_path)
+        FileUtils.mkdir(export_path) if not File.directory?(export_path)
+        FileUtils.cp_r(cookbook_files_to_copy(lock.cookbook_path), export_path)
         FileUtils.rm_f(metadata_rb_path)
         metadata = lock.cookbook_version.metadata
         metadata.version(lock.dotted_decimal_identifier)
@@ -162,6 +165,13 @@ module ChefDK
         File.open(metadata_json_path, "wb+") do |f|
           f.print(FFI_Yajl::Encoder.encode(metadata.to_hash, pretty: true ))
         end
+      end
+
+      def cookbook_files_to_copy(cookbook_path)
+        chefignore_file = File.join(cookbook_path, 'chefignore')
+        chefignore = Chef::Cookbook::Chefignore.new(chefignore_file)
+        Dir.glob(File.join(cookbook_path, '*')).
+          reject{ |f| chefignore.ignored?(File.basename(f)) }
       end
 
       def create_policyfile_data_item
