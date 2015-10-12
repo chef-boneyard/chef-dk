@@ -63,6 +63,7 @@ module ChefDK
           Generator.add_attr_to_context(:cookbook_root, cookbook_root)
           Generator.add_attr_to_context(:cookbook_name, cookbook_name)
           Generator.add_attr_to_context(:recipe_name, recipe_name)
+          Generator.add_attr_to_context(:include_chef_repo_source, false)
           Generator.add_attr_to_context(:policy_name, policy_name)
           Generator.add_attr_to_context(:policy_run_list, policy_run_list)
           Generator.add_attr_to_context(:policy_local_cookbook, ".")

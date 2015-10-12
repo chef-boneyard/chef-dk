@@ -107,6 +107,106 @@ describe ChefDK::Command::GeneratorCommands::Policyfile do
 
   end
 
+  context "when the current working directory is a chef repo" do
+
+    let(:chef_repo_dot_txt) { File.join(tempdir, ".chef-repo.txt") }
+
+    let(:policies_dir) { File.join(tempdir, "policies") }
+
+    let(:expected_policyfile_content) do
+      <<-POLICYFILE_RB
+# Policyfile.rb - Describe how you want Chef to build your system.
+#
+# For more information on the Policyfile feature, visit
+# https://github.com/opscode/chef-dk/blob/master/POLICYFILE_README.md
+
+# A name that describes what the system you're building with Chef does.
+name "my-app-frontend"
+
+# This lets you source cookbooks from your chef-repo.
+default_source :chef_repo, "../"
+
+# Where to find external cookbooks:
+default_source :supermarket
+
+# run_list: chef-client will run these recipes in the order specified.
+run_list "my-app-frontend::default"
+
+# Specify a custom source for a single cookbook:
+# cookbook "example_cookbook", path: "../cookbooks/example_cookbook"
+POLICYFILE_RB
+    end
+
+    before do
+      FileUtils.touch(chef_repo_dot_txt)
+      FileUtils.mkdir(policies_dir)
+    end
+
+    context "when ARGV is empty" do
+
+      let(:argv) { [] }
+
+      it "errors and explains a policy name is required when using a chef-repo" do
+        Dir.chdir(tempdir) do
+          expect(generator.run).to eq(1)
+        end
+        expect(File).to_not exist(File.join(tempdir, "Policyfile.rb"))
+        expected_error = "ERROR: You must give a policy name when generating a policy in a chef-repo."
+        expect(stderr).to include(expected_error)
+      end
+
+    end
+
+    context "when ARGV is a single name with no path separators" do
+
+      let(:argv) { ["my-app-frontend"] }
+
+      let(:expected_policyfile_path) { File.join(policies_dir, "my-app-frontend.rb") }
+
+      before do
+        Dir.chdir(tempdir) do
+          expect(generator.run).to eq(0)
+        end
+      end
+
+      it "creates the policy under the policies/ directory" do
+        expect(File).to exist(expected_policyfile_path)
+      end
+
+      it "adds chef_repo as a default source and uses argv for the policy name" do
+        expect(IO.read(expected_policyfile_path)).to eq(expected_policyfile_content)
+      end
+
+    end
+
+    context "when ARGV looks like a path" do
+
+      let(:other_policy_dir) { File.join(tempdir, "other-policies") }
+
+      let(:expected_policyfile_path) { File.join(other_policy_dir, "my-app-frontend.rb") }
+
+      let(:argv) { [ "other-policies/my-app-frontend" ] }
+
+      before do
+        FileUtils.mkdir(other_policy_dir)
+
+        Dir.chdir(tempdir) do
+          expect(generator.run).to eq(0)
+        end
+      end
+
+      it "creates the policy in the specified path" do
+        expect(File).to exist(expected_policyfile_path)
+      end
+
+      it "adds chef_repo as a default source" do
+        expect(IO.read(expected_policyfile_path)).to eq(expected_policyfile_content)
+      end
+
+    end
+
+  end
+
   context "when ARGV has too many arguments" do
 
     let(:argv) { %w{ foo bar baz } }

@@ -6,6 +6,11 @@
 # A name that describes what the system you're building with Chef does.
 name "<%= policy_name %>"
 
+<% if include_chef_repo_source %>
+# This lets you source cookbooks from your chef-repo.
+default_source :chef_repo, "../"
+
+<% end -%>
 # Where to find external cookbooks:
 default_source :supermarket
 
