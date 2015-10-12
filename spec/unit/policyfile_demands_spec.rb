@@ -834,8 +834,10 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         end
 
         it "raises an error describing the conflict" do
+          repo_path = File.expand_path("path/to/repo")
+
           expected_err = <<-ERROR
-Source supermarket(https://supermarket.chef.io) and chef_repo(path/to/repo) contain conflicting cookbooks:
+Source supermarket(https://supermarket.chef.io) and chef_repo(#{repo_path}) contain conflicting cookbooks:
 - remote-cb
 - remote-cb-two
 ERROR

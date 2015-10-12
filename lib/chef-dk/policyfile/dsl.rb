@@ -155,7 +155,7 @@ module ChefDK
         if path.nil?
           @errors << "You must specify the path to the chef-repo when using a default_source :chef_repo"
         else
-          set_default_source(ChefRepoCookbookSource.new(path))
+          set_default_source(ChefRepoCookbookSource.new(File.expand_path(path, storage_config.relative_paths_root)))
         end
       end
 

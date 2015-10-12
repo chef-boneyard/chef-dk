@@ -262,6 +262,27 @@ E
           expect(policyfile.default_source).to eq(expected)
         end
 
+        context "when the path to the chef repo is relative" do
+
+          let(:policyfile_rb) do
+            <<-EOH
+              run_list "foo", "bar"
+              default_source :chef_repo, "../cookbooks"
+            EOH
+          end
+
+          # storage_config is created with path to Policyfile.rb in CWD
+          let(:expected_path) { File.expand_path("../cookbooks") }
+
+          it "sets the repo path relative to the directory the policyfile is in" do
+            expect(policyfile.errors).to eq([])
+            expect(policyfile.default_source.size).to eq(1)
+            expect(policyfile.default_source.first).to be_a(ChefDK::Policyfile::ChefRepoCookbookSource)
+            expect(policyfile.default_source.first.path).to eq(expected_path)
+          end
+
+        end
+
       end
 
       context "with multiple default sources" do
