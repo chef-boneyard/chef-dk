@@ -46,7 +46,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "solve", "~> 2.0", ">= 2.0.1"
 
-  gem.add_dependency "cookbook-omnifetch", "~> 0.2"
+  gem.add_dependency "cookbook-omnifetch", "~> 0.2", ">= 0.2.2"
 
   gem.add_dependency "diff-lcs", "~> 1.0"
   gem.add_dependency "paint", "~> 1.0"
