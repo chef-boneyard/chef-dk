@@ -60,6 +60,14 @@ module ChefDK
           other.source_options == source_options
       end
 
+      def to_s
+        # Note, this may appear in exceptions
+        s = "Cookbook '#{name}'"
+        s << " #{version_constraint}"
+        s << " #{source_options}" unless source_options.empty?
+        s
+      end
+
       def mirrors_canonical_upstream?
         [:git, :github, :artifactserver].include?(source_type)
       end

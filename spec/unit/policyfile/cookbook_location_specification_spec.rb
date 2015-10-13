@@ -77,6 +77,11 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
     expect(cookbook_location_spec.source_options_for_lock).to eq(lock_data)
   end
 
+  it "converts to a readable string with all relevant info" do
+    expected_s = "Cookbook 'my_cookbook' >= 0.0.0"
+    expect(cookbook_location_spec.to_s).to eq(expected_s)
+  end
+
   describe "fetching and querying a cookbook" do
 
     before do
