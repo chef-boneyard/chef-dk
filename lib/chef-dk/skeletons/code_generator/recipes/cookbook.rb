@@ -20,6 +20,9 @@ end
 # chefignore
 cookbook_file "#{cookbook_dir}/chefignore"
 
+# Rakefile
+cookbook_file "#{cookbook_dir}/Rakefile"
+
 # Policyfile
 template "#{cookbook_dir}/Policyfile.rb" do
   source "Policyfile.rb.erb"
