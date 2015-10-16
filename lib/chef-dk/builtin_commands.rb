@@ -17,6 +17,9 @@
 
 
 ChefDK.commands do |c|
+  c.builtin "desktop", :Desktop, require_path: "chef-dk/command/desktop",
+    desc: "Setups up the local workstation per custom configuration"
+
   c.builtin "exec", :Exec, require_path: "chef-dk/command/exec",
     desc: "Runs the command in context of the embedded ruby"
 
