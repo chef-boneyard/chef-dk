@@ -36,6 +36,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       test/integration/default/serverspec
       test/integration/default/serverspec/default_spec.rb
       test/integration/helpers/serverspec/spec_helper.rb
+      Rakefile
       Policyfile.rb
       chefignore
       metadata.rb
