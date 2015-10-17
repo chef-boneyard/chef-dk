@@ -31,6 +31,8 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       .gitignore
       .kitchen.yml
       test
+      test/reports
+      test/reports/.keep
       test/integration
       test/integration/default
       test/integration/default/serverspec
