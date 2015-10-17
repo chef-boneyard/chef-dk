@@ -14,3 +14,4 @@ bin/*
 
 .kitchen/
 .kitchen.local.yml
+test/reports/*

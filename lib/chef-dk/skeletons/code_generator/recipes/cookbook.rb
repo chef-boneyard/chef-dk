@@ -47,6 +47,10 @@ template "#{cookbook_dir}/.kitchen.yml" do
   action :create_if_missing
 end
 
+# Directory to collect CI reports
+directory "#{cookbook_dir}/test/reports"
+file "#{cookbook_dir}/test/reports/.keep"
+
 directory "#{cookbook_dir}/test/integration/default/serverspec" do
   recursive true
 end
