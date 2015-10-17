@@ -48,7 +48,9 @@ template "#{cookbook_dir}/.kitchen.yml" do
 end
 
 # Directory to collect CI reports
-directory "#{cookbook_dir}/test/reports"
+directory "#{cookbook_dir}/test/reports" do
+  recursive true
+end
 file "#{cookbook_dir}/test/reports/.keep"
 
 directory "#{cookbook_dir}/test/integration/default/serverspec" do
