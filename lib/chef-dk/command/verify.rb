@@ -281,6 +281,18 @@ require 'spec_helper'
         end
       end
 
+      add_component "generated-cookbooks-pass-chefspec" do |c|
+
+        c.base_dir = "chef-dk"
+        c.smoke_test do
+          tmpdir do |cwd|
+            sh("chef generate cookbook example", cwd: cwd)
+            cb_cwd = File.join(cwd, "example")
+            sh("rspec", cwd: cb_cwd)
+          end
+        end
+      end
+
       add_component "rubocop" do |c|
         c.gem_base_dir = "rubocop"
         c.smoke_test do

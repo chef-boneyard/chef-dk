@@ -43,6 +43,7 @@ describe ChefDK::Command::Verify do
       "chef-dk",
       "chef-provisioning",
       "chefspec",
+      "generated-cookbooks-pass-chefspec",
       "rubocop",
       "fauxhai",
       "knife-spork",
