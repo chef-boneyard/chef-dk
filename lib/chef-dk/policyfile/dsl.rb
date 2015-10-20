@@ -73,6 +73,8 @@ module ChefDK
         case source_type
         when :community, :supermarket
           set_default_community_source(source_argument)
+        when :delivery_supermarket
+          set_default_delivery_supermarket_source(source_argument)
         when :chef_server
           set_default_chef_server_source(source_argument)
         when :chef_repo
@@ -141,6 +143,14 @@ module ChefDK
 
       def set_default_community_source(source_uri)
         set_default_source(CommunityCookbookSource.new(source_uri))
+      end
+
+      def set_default_delivery_supermarket_source(source_uri)
+        if source_uri.nil?
+          @errors << "You must specify the server's URI when using a default_source :delivery_supermarket"
+        else
+          set_default_source(DeliverySupermarketSource.new(source_uri))
+        end
       end
 
       def set_default_chef_server_source(source_uri)

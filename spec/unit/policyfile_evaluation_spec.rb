@@ -226,6 +226,42 @@ E
 
       end
 
+      context "with the default source set to a delivery_supermarket" do
+
+        context "when no URI is given" do
+
+          let(:policyfile_rb) do
+            <<-EOH
+              run_list "foo", "bar"
+              default_source :delivery_supermarket
+            EOH
+          end
+
+          it "errors out with a message that the supermarket URI is required" do
+            expect(policyfile.errors).to eq([ "You must specify the server's URI when using a default_source :delivery_supermarket" ])
+          end
+
+        end
+
+        context "when the URI is given" do
+
+          let(:policyfile_rb) do
+            <<-EOH
+              run_list "foo", "bar"
+              default_source :delivery_supermarket, "https://supermarket.example.com"
+            EOH
+          end
+
+          it "sets the default source to the delivery_supermarket" do
+            expect(policyfile.errors).to eq([])
+            expected = [ ChefDK::Policyfile::DeliverySupermarketSource.new("https://supermarket.example.com") ]
+            expect(policyfile.default_source).to eq(expected)
+          end
+
+        end
+
+      end
+
       context "with the default source set to a chef server" do
 
         let(:policyfile_rb) do
