@@ -70,10 +70,11 @@ module ChefDK
       #
       # Components included in Chef Development kit:
       # :base_dir => Relative path of the component w.r.t. omnibus_apps_dir
+      # :gem_base_dir => Takes a gem name instead and uses first gem found
       # :test_cmd => Test command to be launched for the component
       #
       add_component "berkshelf" do |c|
-        c.base_dir = "berkshelf"
+        c.gem_base_dir = "berkshelf"
         # For berks the real command to run is "bundle exec thor spec:ci"
         # We can't run it right now since graphviz specs are included in the
         # test suite by default. We will be able to switch to that command when/if
@@ -90,7 +91,7 @@ module ChefDK
       end
 
       add_component "test-kitchen" do |c|
-        c.base_dir = "test-kitchen"
+        c.gem_base_dir = "test-kitchen"
         c.unit_test { sh("bundle exec rake unit") }
         c.integration_test { sh("bundle exec rake features") }
 
@@ -104,7 +105,7 @@ module ChefDK
 
       add_component "tk-policyfile-provisioner" do |c|
 
-        c.base_dir = "chef-dk"
+        c.gem_base_dir = "chef-dk"
 
         c.smoke_test do
           tmpdir do |cwd|
@@ -140,7 +141,7 @@ KITCHEN_YML
       end
 
       add_component "chef-client" do |c|
-        c.base_dir = "chef"
+        c.gem_base_dir = "chef"
         c.unit_test { sh("bundle exec rspec -fp -t '~volatile_from_verify' spec/unit") }
         c.integration_test { sh("bundle exec rspec -fp spec/integration spec/functional") }
 
@@ -153,14 +154,14 @@ KITCHEN_YML
       end
 
       add_component "chef-dk" do |c|
-        c.base_dir = "chef-dk"
+        c.gem_base_dir = "chef-dk"
         c.unit_test { sh("bundle exec rspec") }
         c.smoke_test { run_in_tmpdir("chef generate cookbook example") }
       end
 
       # entirely possible this needs to be driven by a utility method in chef-provisioning.
       add_component "chef-provisioning" do |c|
-        c.base_dir = "chef-dk"
+        c.gem_base_dir = "chef-dk"
 
         c.smoke_test do
           # ------------
@@ -327,7 +328,7 @@ end
 
       add_component "package installation" do |c|
 
-        c.base_dir = "chef-dk"
+        c.gem_base_dir = "chef-dk"
 
         c.smoke_test do
 
@@ -367,7 +368,7 @@ end
 
       add_component "openssl" do |c|
         # https://github.com/chef/chef-dk/issues/420
-        c.base_dir = "chef"
+        c.gem_base_dir = "chef"
 
         test = <<-EOF.gsub(/^\s+/, "")
         require "net/http"
