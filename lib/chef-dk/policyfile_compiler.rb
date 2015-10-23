@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 
+require 'set'
 require 'forwardable'
 
 require 'solve'
@@ -221,14 +222,16 @@ module ChefDK
           merged = {}
           default_source.each do |source|
             merged.merge!(source.universe_graph) do |conflicting_cb_name, _old, _new|
-              conflicting_cb_names << conflicting_cb_name
+              if cookbook_could_appear_in_solution?(conflicting_cb_name)
+                conflicting_cb_names << conflicting_cb_name
+              end
+              {} # return empty set of versions
             end
           end
           handle_conflicting_cookbooks(conflicting_cb_names)
           merged
         end
     end
-
 
     def version_constraint_for(cookbook_name)
       if (cookbook_location_spec = cookbook_location_spec_for(cookbook_name)) and cookbook_location_spec.version_fixed?
@@ -316,6 +319,44 @@ module ChefDK
       else
         raise CookbookSourceConflict.new(cookbooks_wo_source, default_source)
       end
+    end
+
+    def cookbook_could_appear_in_solution?(cookbook_name)
+      all_possible_dep_names.include?(cookbook_name)
+    end
+
+    # Traverses the dependency graph in a simple manner to find the set of
+    # cookbooks that could be considered in the dependency solution. Version
+    # constraints are not considered so this could include extra cookbooks.
+    def all_possible_dep_names
+      @all_possible_dep_names ||= cookbooks_for_demands.inject(Set.new) do |deps_set, demand_cookbook|
+
+        deps_set_for_source = default_source.inject(Set.new) do |deps_set_for_cb, source|
+          possible_deps = possible_dependencies_of(demand_cookbook, source)
+          deps_set_for_cb.merge(possible_deps)
+        end
+
+        deps_set.merge(deps_set_for_source)
+      end
+    end
+
+    def possible_dependencies_of(cookbook_name, source, dependency_set = Set.new)
+      return dependency_set if dependency_set.include?(cookbook_name)
+      return dependency_set unless source.universe_graph.key?(cookbook_name)
+
+      dependency_set << cookbook_name
+
+      deps_by_version = source.universe_graph[cookbook_name]
+
+      dep_cookbook_names = deps_by_version.values.inject(Set.new) do |names, constraint_list|
+        names.merge(constraint_list.map { |c| c.first })
+      end
+
+      dep_cookbook_names.each do |dep_cookbook_name|
+        possible_dependencies_of(dep_cookbook_name, source, dependency_set)
+      end
+
+      dependency_set
     end
 
   end

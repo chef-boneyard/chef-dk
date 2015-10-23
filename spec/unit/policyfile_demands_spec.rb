@@ -821,24 +821,83 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
           # This also conflicts, but only via the graphs
           "remote-cb-two" => {
             "1.2.3" => [ ]
+          },
+
+          # This has a dependency on a conflicting cookbook
+          "dep_on_conflicting_cookbook" => {
+
+            # Only the older cookbook has the conflicting dep, however we don't
+            # know how the dependency solver will solve this without doing more
+            # inspection of the graph, so the expected behavior is to error if
+            # any possible solution could have a conflict.
+            "1.0.0" => [ ["remote-cb-two", ">= 0.0.0" ] ],
+            "2.0.0" => [ ]
+
           }
 
         }
       end
 
-      context "and no explicit source is given for the conflicting cookbook" do
+      context "and the conflicting cookbook is in the run list" do
 
-        before do
-          # This is on the community site
-          policyfile.dsl.cookbook("remote-cb")
+        let(:run_list) { [ 'repo-cookbook-one', 'remote-cb', 'remote-cb-two' ] }
+
+        context "and no explicit source is given for the conflicting cookbook" do
+
+          before do
+            # This is on the community site
+            policyfile.dsl.cookbook("remote-cb")
+          end
+
+          it "raises an error describing the conflict" do
+            repo_path = File.expand_path("path/to/repo")
+
+            expected_err = <<-ERROR
+Source supermarket(https://supermarket.chef.io) and chef_repo(#{repo_path}) contain conflicting cookbooks:
+- remote-cb
+- remote-cb-two
+ERROR
+
+            expect { policyfile.remote_artifacts_graph }.to raise_error do |error|
+              expect(error).to be_a(ChefDK::CookbookSourceConflict)
+              expect(error.message).to eq(expected_err)
+            end
+          end
         end
+
+        context "and the conflicting cookbook has an explicit source in the Policyfile" do
+
+          before do
+            # This is on the community site
+            policyfile.dsl.cookbook("remote-cb", path: "path/to/remote-cb")
+            policyfile.dsl.cookbook("remote-cb-two", git: "git://git.example:user/remote-cb-two.git")
+            policyfile.error!
+          end
+
+          it "solves the graph" do
+            expect { policyfile.remote_artifacts_graph }.to_not raise_error
+          end
+
+          it "assigns the correct source options to the cookbook" do
+            remote_cb_source_opts = policyfile.cookbook_location_spec_for("remote-cb").source_options
+            expect(remote_cb_source_opts).to eq(path: "path/to/remote-cb")
+
+            remote_cb_two_source_opts = policyfile.cookbook_location_spec_for("remote-cb-two").source_options
+            expect(remote_cb_two_source_opts).to eq(git: "git://git.example:user/remote-cb-two.git")
+          end
+        end
+
+      end
+
+      context "when top-level cookbooks don't conflict, but dependencies could" do
+
+        let(:run_list) { [ "dep_on_conflicting_cookbook" ] }
 
         it "raises an error describing the conflict" do
           repo_path = File.expand_path("path/to/repo")
 
           expected_err = <<-ERROR
 Source supermarket(https://supermarket.chef.io) and chef_repo(#{repo_path}) contain conflicting cookbooks:
-- remote-cb
 - remote-cb-two
 ERROR
 
@@ -849,27 +908,16 @@ ERROR
         end
       end
 
-      context "and the conflicting cookbook has an explicit source in the Policyfile" do
+      context "when the conflicting cookbook could not be in the solution set" do
 
-        before do
-          # This is on the community site
-          policyfile.dsl.cookbook("remote-cb", path: "path/to/remote-cb")
-          policyfile.dsl.cookbook("remote-cb-two", git: "git://git.example:user/remote-cb-two.git")
-          policyfile.error!
-        end
+        let(:run_list) { [ 'local_cookbook' ] }
 
         it "solves the graph" do
           expect { policyfile.remote_artifacts_graph }.to_not raise_error
         end
 
-        it "assigns the correct source options to the cookbook" do
-          remote_cb_source_opts = policyfile.cookbook_location_spec_for("remote-cb").source_options
-          expect(remote_cb_source_opts).to eq(path: "path/to/remote-cb")
-
-          remote_cb_two_source_opts = policyfile.cookbook_location_spec_for("remote-cb-two").source_options
-          expect(remote_cb_two_source_opts).to eq(git: "git://git.example:user/remote-cb-two.git")
-        end
       end
+
 
     end
 
