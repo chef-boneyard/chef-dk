@@ -284,7 +284,7 @@ require 'spec_helper'
 
       add_component "generated-cookbooks-pass-chefspec" do |c|
 
-        c.base_dir = "chef-dk"
+        c.gem_base_dir = "chef-dk"
         c.smoke_test do
           tmpdir do |cwd|
             sh("chef generate cookbook example", cwd: cwd)
