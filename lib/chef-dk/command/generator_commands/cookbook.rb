@@ -35,6 +35,12 @@ module ChefDK
 
         attr_reader :cookbook_name_or_path
 
+        option :berks,
+          short:       "-b",
+          long:        "--berks",
+          description: "Generate cookbooks with berkshelf integration",
+          boolean:     true
+
         options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
@@ -67,6 +73,8 @@ module ChefDK
           Generator.add_attr_to_context(:policy_name, policy_name)
           Generator.add_attr_to_context(:policy_run_list, policy_run_list)
           Generator.add_attr_to_context(:policy_local_cookbook, ".")
+
+          Generator.add_attr_to_context(:use_berkshelf, berks_mode?)
         end
 
         def policy_name
@@ -95,6 +103,10 @@ module ChefDK
 
         def cookbook_full_path
           File.expand_path(cookbook_name_or_path, Dir.pwd)
+        end
+
+        def berks_mode?
+          config[:berks]
         end
 
         def read_and_validate_params

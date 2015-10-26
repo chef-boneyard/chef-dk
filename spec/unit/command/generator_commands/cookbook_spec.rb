@@ -293,6 +293,73 @@ SPEC_HELPER
 
     end
 
+    context "when configured for Berkshelf" do
+
+      let(:argv) { %w[new_cookbook --berks] }
+
+      describe "Berksfile" do
+
+        let(:file) { File.join(tempdir, "new_cookbook", "Berksfile") }
+
+        let(:expected_content) do
+          <<-POLICYFILE_RB
+source 'https://supermarket.chef.io'
+
+metadata
+POLICYFILE_RB
+        end
+
+        before do
+          Dir.chdir(tempdir) do
+            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+            cookbook_generator.run
+          end
+        end
+
+        it "pulls deps from metadata" do
+          expect(IO.read(file)).to eq(expected_content)
+        end
+
+      end
+
+      include_examples "kitchen_yml_and_integration_tests" do
+
+        let(:expected_kitchen_yml_content) do
+          <<-KITCHEN_YML
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-14.04
+  - name: centos-7.1
+
+suites:
+  - name: default
+    run_list:
+      - recipe[new_cookbook::default]
+    attributes:
+KITCHEN_YML
+        end
+
+      end
+
+      include_examples "chefspec_spec_helper_file" do
+
+        let(:expected_chefspec_spec_helper_content) do
+          <<-SPEC_HELPER
+require 'chefspec'
+require 'chefspec/berkshelf'
+SPEC_HELPER
+        end
+
+      end
+
+    end
+
     describe "metadata.rb" do
       let(:file) { File.join(tempdir, "new_cookbook", "metadata.rb") }
 
