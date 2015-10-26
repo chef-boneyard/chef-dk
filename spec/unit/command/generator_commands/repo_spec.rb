@@ -252,6 +252,14 @@ describe ChefDK::Command::GeneratorCommands::Repo do
 
       context "when Policyfiles are enabled" do
 
+        it "does not create a roles directory" do
+          expect(File).to_not exist(File.join(repo_path, "roles"))
+        end
+
+        it "does not create an environments directory" do
+          expect(File).to_not exist(File.join(repo_path, "environments"))
+        end
+
         describe "policies" do
           describe "README.md" do
             let(:file) { "policies/README.md" }
