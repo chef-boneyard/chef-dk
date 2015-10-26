@@ -36,7 +36,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       test/integration/default/serverspec
       test/integration/default/serverspec/default_spec.rb
       test/integration/helpers/serverspec/spec_helper.rb
-      Policyfile.rb
+      Berksfile
       chefignore
       metadata.rb
       README.md
@@ -100,6 +100,12 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
     it "prints usage when args are empty" do
       with_argv([]).run
       expect(stderr_io.string).to include(expected_help_message)
+    end
+
+    it "errors if both berks and policyfiles are requested" do
+      expect(with_argv(%w{my_cookbook --berks --policy}).run).to eq(1)
+      message = "Berkshelf and Policyfiles are mutually exclusive. Please specify only one."
+      expect(stderr_io.string).to include(message)
     end
 
   end
@@ -205,6 +211,8 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
     end
 
     context "when configured for Policyfiles" do
+
+      let(:argv) { %w[new_cookbook --policy] }
 
       describe "Policyfile.rb" do
 

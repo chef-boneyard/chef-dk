@@ -39,13 +39,22 @@ module ChefDK
           short:       "-b",
           long:        "--berks",
           description: "Generate cookbooks with berkshelf integration",
-          boolean:     true
+          boolean:     true,
+          default:     nil
+
+        option :policy,
+          short:        "-p",
+          long:         "--policy",
+          description:  "Use policyfiles instead of Berkshelf",
+          boolean:      true,
+          default:      nil
 
         options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
           @params_valid = true
           @cookbook_name = nil
+          @berks_mode = true
           super
         end
 
@@ -54,6 +63,7 @@ module ChefDK
           if params_valid?
             setup_context
             chef_runner.converge
+            0
           else
             err(opt_parser)
             1
@@ -106,13 +116,24 @@ module ChefDK
         end
 
         def berks_mode?
-          config[:berks]
+          @berks_mode
         end
 
         def read_and_validate_params
           arguments = parse_options(params)
           @cookbook_name_or_path = arguments[0]
-          @params_valid = false unless @cookbook_name_or_path
+          unless @cookbook_name_or_path
+            @params_valid = false
+          end
+
+          if config[:berks] && config[:policy]
+            err("Berkshelf and Policyfiles are mutually exclusive. Please specify only one.")
+            @params_valid = false
+          end
+
+          if config[:policy]
+            @berks_mode = false
+          end
         end
 
         def params_valid?
