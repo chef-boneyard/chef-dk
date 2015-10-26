@@ -280,6 +280,64 @@ README
 
       end
 
+      context "when roles/environments are enabled" do
+
+        let(:argv) { %w[new_repo --roles] }
+
+        it "does not create a policies directory" do
+          expect(File).to_not exist(File.join(repo_path, "policies"))
+        end
+
+        describe "roles" do
+          describe "README.md" do
+            let(:file) { "roles/README.md" }
+
+            let(:expected_content) do
+              <<-README
+Create roles here, in either the Role Ruby DSL (.rb) or JSON (.json) files. To install roles on the server, use knife.
+
+For example, in this directory you'll find an example role file called `example.json` which can be uploaded to the Chef Server:
+
+    knife role from file roles/example.json
+
+For more information on roles, see the Chef wiki page:
+
+https://docs.getchef.com/essentials_roles.html
+README
+            end
+
+            it "has the right contents" do
+              expect(file_contents).to include(expected_content)
+            end
+          end
+        end
+
+        describe "environments" do
+          describe "README.md" do
+            let(:file) { "environments/README.md" }
+
+            let(:expected_content) do
+              <<-README
+Create environments here, in either the Role Ruby DSL (.rb) or JSON (.json) files. To install environments on the server, use knife.
+
+For example, in this directory you'll find an example environment file called `example.json` which can be uploaded to the Chef Server:
+
+    knife environment from file environments/example.json
+
+For more information on environments, see the Chef wiki page:
+
+https://docs.chef.io/environments.html
+README
+            end
+
+            it "has the right contents" do
+              expect(file_contents).to include(expected_content)
+            end
+          end
+        end
+
+      end
+
     end
   end
 end

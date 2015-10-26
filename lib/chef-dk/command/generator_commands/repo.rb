@@ -33,10 +33,17 @@ module ChefDK
         attr_reader :repo_name_or_path
 
         option :policy_only,
-          :short => "-p",
-          :long => "--policy-only",
-          :description => "Create a repository for policy only, not cookbooks",
-          :default => false
+          short:        "-p",
+          long:         "--policy-only",
+          description:  "Create a repository for policy only, not cookbooks",
+          default:      false
+
+        option :roles,
+          short:        "-r",
+          long:         "--roles",
+          description:  "Create roles and environments directories instead of using policyfiles",
+          default:      false
+
 
         options.merge!(SharedGeneratorOptions.options)
 
@@ -61,6 +68,7 @@ module ChefDK
           super
           Generator.add_attr_to_context(:repo_root, repo_root)
           Generator.add_attr_to_context(:repo_name, repo_name)
+          Generator.add_attr_to_context(:use_roles, use_roles?)
         end
 
         def recipe
@@ -77,6 +85,10 @@ module ChefDK
 
         def repo_full_path
           File.expand_path(repo_name_or_path, Dir.pwd)
+        end
+
+        def use_roles?
+          config[:roles]
         end
 
         def read_and_validate_params
