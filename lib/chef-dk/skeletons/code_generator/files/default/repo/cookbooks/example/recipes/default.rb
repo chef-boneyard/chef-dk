@@ -5,4 +5,4 @@ log "Welcome to Chef, #{node["example"]["name"]}!" do
   level :info
 end
 
-# For more information, see the documentation: https://docs.getchef.com/essentials_cookbook_recipes.html
+# For more information, see the documentation: https://docs.chef.io/essentials_cookbook_recipes.html

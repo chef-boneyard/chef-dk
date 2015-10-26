@@ -3,8 +3,8 @@ Data Bags
 
 This directory contains directories of the various data bags you create for your infrastructure. Each subdirectory corresponds to a data bag on the Chef Server, and contains JSON files of the items that go in the bag.
 
-For example, in this directory you'll find an example data bag directory called `example`, which contains an item definition called `example_item.json` 
- 
+For example, in this directory you'll find an example data bag directory called `example`, which contains an item definition called `example_item.json`
+
 Before uploading this item to the server, we must first create the data bag on the Chef Server.
 
     knife data bag create example
@@ -14,8 +14,8 @@ Then we can upload the items in the data bag's directory to the Chef Server.
     knife data bag from file example example_item.json
 
 For more information on data bags, see the Chef wiki page:
-                               
-https://docs.getchef.com/essentials_data_bags.html
+
+https://docs.chef.io/essentials_data_bags.html
 
 Encrypted Data Bags
 -------------------
@@ -54,5 +54,5 @@ Use the secret_key to view the contents.
 
 
 For more information on encrypted data bags, see the Chef wiki page:
-                               
-https://docs.getchef.com/essentials_data_bags.html
+
+https://docs.chef.io/essentials_data_bags.html
