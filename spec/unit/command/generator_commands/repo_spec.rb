@@ -250,22 +250,26 @@ describe ChefDK::Command::GeneratorCommands::Repo do
         end
       end
 
-      describe "policies" do
-        describe "README.md" do
-          let(:file) { "policies/README.md" }
+      context "when Policyfiles are enabled" do
 
-          let(:expected_content) do
-            <<-README
+        describe "policies" do
+          describe "README.md" do
+            let(:file) { "policies/README.md" }
+
+            let(:expected_content) do
+              <<-README
 Create policyfiles here. When using a chef-repo, give your policyfiles
 the same filename as the name set in the policyfile itself, and use the
 `.rb` file extension.
 README
-          end
+            end
 
-          it "has the right contents" do
-            expect(file_contents).to include(expected_content)
+            it "has the right contents" do
+              expect(file_contents).to include(expected_content)
+            end
           end
         end
+
       end
 
     end
