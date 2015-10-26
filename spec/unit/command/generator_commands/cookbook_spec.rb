@@ -156,25 +156,50 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
     # `expected_kitchen_yml_content`
     shared_examples_for "kitchen_yml_and_integration_tests" do
 
-      before do
-        Dir.chdir(tempdir) do
-          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          cookbook_generator.run
+      describe "Generating Test Kitchen and integration testing files" do
+
+        before do
+          Dir.chdir(tempdir) do
+            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+            cookbook_generator.run
+          end
+        end
+
+        let(:file) { File.join(tempdir, "new_cookbook", ".kitchen.yml") }
+
+        it "creates a .kitchen.yml with the expected content" do
+          expect(IO.read(file)).to eq(expected_kitchen_yml_content)
+        end
+
+        describe "test/integration/default/serverspec/default_spec.rb" do
+          let(:file) { File.join(tempdir, "new_cookbook", "test", "integration", "default", "serverspec", "default_spec.rb") }
+
+          include_examples "a generated file", :cookbook_name do
+            let(:line) { "describe 'new_cookbook::default' do" }
+          end
         end
       end
+    end
 
-      let(:file) { File.join(tempdir, "new_cookbook", ".kitchen.yml") }
+    # This shared example group requires you to define a let binding for
+    # `expected_chefspec_spec_helper_content`
+    shared_examples_for "chefspec_spec_helper_file" do
 
-      it "creates a .kitchen.yml with the expected content" do
-        expect(IO.read(file)).to eq(expected_kitchen_yml_content)
-      end
+      describe "Generating ChefSpec files" do
 
-      describe "test/integration/default/serverspec/default_spec.rb" do
-        let(:file) { File.join(tempdir, "new_cookbook", "test", "integration", "default", "serverspec", "default_spec.rb") }
-
-        include_examples "a generated file", :cookbook_name do
-          let(:line) { "describe 'new_cookbook::default' do" }
+        before do
+          Dir.chdir(tempdir) do
+            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+            cookbook_generator.run
+          end
         end
+
+        let(:file) { File.join(tempdir, "new_cookbook", "spec", "spec_helper.rb") }
+
+        it "creates a spec/spec_helper.rb for ChefSpec with the expected content" do
+          expect(IO.read(file)).to eq(expected_chefspec_spec_helper_content)
+        end
+
       end
 
     end
@@ -255,6 +280,16 @@ KITCHEN_YML
 
       end
 
+      include_examples "chefspec_spec_helper_file" do
+
+        let(:expected_chefspec_spec_helper_content) do
+          <<-SPEC_HELPER
+require 'chefspec'
+require 'chefspec/policyfile'
+SPEC_HELPER
+        end
+
+      end
 
     end
 
