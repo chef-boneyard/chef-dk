@@ -1,0 +1,79 @@
+
+# Copyright 2012, 2013, 2014, 2015 Datadog, Inc.
+# Copyright 2015 Clinton C Wolfe
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#  http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+require 'rspec/core/rake_task'
+require 'rubocop/rake_task'
+require 'foodcritic'
+
+task default: [
+  :syntax,
+  :style,
+  :test
+]
+
+# Syntax checks
+namespace :syntax do
+  desc 'Ruby .rb syntax checks'
+  task :ruby do |_t|
+    Dir.glob('**/*.rb').each do |f|
+      print f + ': '
+      system("ruby -wc #{f}")
+    end
+  end
+
+  desc 'Ruby template syntax checks'
+  task :erb do |_t|
+    Dir.glob('**/*.erb').each do |f|
+      print f + ': '
+      system("erb -x #{f} | ruby -c")
+    end
+  end
+end
+
+desc 'Run all syntax checks'
+task syntax: ['syntax:ruby', 'syntax:erb']
+
+# Style tests. Rubocop and Foodcritic
+namespace :style do
+  desc 'Run Ruby style checks'
+  RuboCop::RakeTask.new(:ruby)
+
+  desc 'Run Chef style checks'
+  FoodCritic::Rake::LintTask.new(:chef) do |t|
+    t.options = { fail_tags: ['correctness'] }
+  end
+end
+
+desc 'Run all style checks'
+task style: ['style:chef', 'style:ruby']
+
+# Tests, spec and test kitchen
+namespace :test do
+  # Rspec and ChefSpec
+  desc 'Run ChefSpec examples'
+  RSpec::Core::RakeTask.new(:spec) do |t|
+    t.verbose = false
+  end
+
+  # Test kitchen
+  desc 'Run kitchen test'
+  task :kitchen do
+    sh 'kitchen test'
+  end
+end
+
+desc 'Run all tests'
+task test: ['test:spec', 'test:kitchen']

@@ -20,6 +20,9 @@ end
 # chefignore
 cookbook_file "#{cookbook_dir}/chefignore"
 
+# Rakefile
+cookbook_file "#{cookbook_dir}/Rakefile"
+
 # Policyfile
 template "#{cookbook_dir}/Policyfile.rb" do
   source "Policyfile.rb.erb"
@@ -43,6 +46,12 @@ template "#{cookbook_dir}/.kitchen.yml" do
   helpers(ChefDK::Generator::TemplateHelper)
   action :create_if_missing
 end
+
+# Directory to collect CI reports
+directory "#{cookbook_dir}/test/reports" do
+  recursive true
+end
+file "#{cookbook_dir}/test/reports/.keep"
 
 directory "#{cookbook_dir}/test/integration/default/serverspec" do
   recursive true
