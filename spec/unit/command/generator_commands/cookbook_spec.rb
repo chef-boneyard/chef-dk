@@ -152,12 +152,41 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       end
     end
 
-    describe "Policyfile.rb" do
+    # This shared example group requires a let binding for
+    # `expected_kitchen_yml_content`
+    shared_examples_for "kitchen_yml_and_integration_tests" do
 
-      let(:file) { File.join(tempdir, "new_cookbook", "Policyfile.rb") }
+      before do
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          cookbook_generator.run
+        end
+      end
 
-      let(:expected_content) do
-        <<-POLICYFILE_RB
+      let(:file) { File.join(tempdir, "new_cookbook", ".kitchen.yml") }
+
+      it "creates a .kitchen.yml with the expected content" do
+        expect(IO.read(file)).to eq(expected_kitchen_yml_content)
+      end
+
+      describe "test/integration/default/serverspec/default_spec.rb" do
+        let(:file) { File.join(tempdir, "new_cookbook", "test", "integration", "default", "serverspec", "default_spec.rb") }
+
+        include_examples "a generated file", :cookbook_name do
+          let(:line) { "describe 'new_cookbook::default' do" }
+        end
+      end
+
+    end
+
+    context "when configured for Policyfiles" do
+
+      describe "Policyfile.rb" do
+
+        let(:file) { File.join(tempdir, "new_cookbook", "Policyfile.rb") }
+
+        let(:expected_content) do
+          <<-POLICYFILE_RB
 # Policyfile.rb - Describe how you want Chef to build your system.
 #
 # For more information on the Policyfile feature, visit
@@ -175,34 +204,25 @@ run_list "new_cookbook::default"
 # Specify a custom source for a single cookbook:
 cookbook "new_cookbook", path: "."
 POLICYFILE_RB
-      end
-
-      before do
-        Dir.chdir(tempdir) do
-          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          cookbook_generator.run
         end
-      end
 
-      it "has a run_list and cookbook path that will work out of the box" do
-        expect(IO.read(file)).to eq(expected_content)
-      end
-
-    end
-
-    describe ".kitchen.yml" do
-
-      before do
-        Dir.chdir(tempdir) do
-          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          cookbook_generator.run
+        before do
+          Dir.chdir(tempdir) do
+            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+            cookbook_generator.run
+          end
         end
+
+        it "has a run_list and cookbook path that will work out of the box" do
+          expect(IO.read(file)).to eq(expected_content)
+        end
+
       end
 
-      let(:file) { File.join(tempdir, "new_cookbook", ".kitchen.yml") }
+      include_examples "kitchen_yml_and_integration_tests" do
 
-      let(:expected_content) do
-        <<-KITCHEN_YML
+        let(:expected_kitchen_yml_content) do
+          <<-KITCHEN_YML
 ---
 driver:
   name: vagrant
@@ -231,21 +251,11 @@ suites:
   - name: default
     attributes:
 KITCHEN_YML
+        end
+
       end
 
 
-      it "uses the policyfile_zero provisioner" do
-        expect(IO.read(file)).to eq(expected_content)
-      end
-
-    end
-
-    describe "test/integration/default/serverspec/default_spec.rb" do
-      let(:file) { File.join(tempdir, "new_cookbook", "test", "integration", "default", "serverspec", "default_spec.rb") }
-
-      include_examples "a generated file", :cookbook_name do
-        let(:line) { "describe 'new_cookbook::default' do" }
-      end
     end
 
     describe "metadata.rb" do
