@@ -8,18 +8,22 @@ directory repo_dir
 template "#{repo_dir}/LICENSE" do
   source "LICENSE.#{context.license}.erb"
   helpers(ChefDK::Generator::TemplateHelper)
+  action :create_if_missing
 end
 
 cookbook_file "#{repo_dir}/.chef-repo.txt" do
   source "repo/dot-chef-repo.txt"
+  action :create_if_missing
 end
 
 cookbook_file "#{repo_dir}/README.md" do
   source "repo/README.md"
+  action :create_if_missing
 end
 
 cookbook_file "#{repo_dir}/chefignore" do
   source "chefignore"
+  action :create_if_missing
 end
 
 directories_to_create = %w{ cookbooks data_bags }
@@ -33,6 +37,7 @@ end
 directories_to_create.each do |tlo|
   remote_directory "#{repo_dir}/#{tlo}" do
     source "repo/#{tlo}"
+    action :create_if_missing
   end
 end
 
@@ -42,6 +47,7 @@ cookbook_file "#{repo_dir}/cookbooks/README.md" do
   else
     source "cookbook_readmes/README.md"
   end
+  action :create_if_missing
 end
 
 # git
@@ -56,5 +62,6 @@ if context.have_git
   template "#{repo_dir}/.gitignore" do
     source "repo/gitignore.erb"
     helpers(ChefDK::Generator::TemplateHelper)
+    action :create_if_missing
   end
 end
