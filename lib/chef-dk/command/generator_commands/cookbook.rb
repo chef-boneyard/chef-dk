@@ -43,7 +43,7 @@ module ChefDK
           default:     nil
 
         option :policy,
-          short:        "-p",
+          short:        "-P",
           long:         "--policy",
           description:  "Use policyfiles instead of Berkshelf",
           boolean:      true,

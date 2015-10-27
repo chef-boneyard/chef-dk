@@ -53,6 +53,26 @@ describe ChefDK::Command::GeneratorCommands::Repo do
     ChefDK::Generator.reset
   end
 
+  describe "when given invalid arguments" do
+
+    before do
+      allow(generator).to receive(:stdout).and_return(stdout_io)
+      allow(generator).to receive(:stderr).and_return(stderr_io)
+    end
+
+    context "when conflicting --roles and --policy are given" do
+
+      let(:argv) { %w[ new-repo --roles --policy ] }
+
+      it "emits an error saying that the options are exclusive" do
+        expected_message = "Roles and Policyfiles are exclusive. Please only select one."
+        expect(generator.run).to eq(1)
+        expect(stderr_io.string).to include(expected_message)
+      end
+
+    end
+  end
+
   context "when given the name of the repo to generate" do
 
     before do
@@ -81,7 +101,7 @@ describe ChefDK::Command::GeneratorCommands::Repo do
       before do
         Dir.chdir(tempdir) do
           allow(generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          generator.run
+          expect(generator.run).to eq(0)
         end
       end
 
@@ -251,6 +271,8 @@ describe ChefDK::Command::GeneratorCommands::Repo do
       end
 
       context "when Policyfiles are enabled" do
+
+        let(:argv) { %w[ new_repo --policy ] }
 
         it "does not create a roles directory" do
           expect(File).to_not exist(File.join(repo_path, "roles"))

@@ -42,14 +42,21 @@ module ChefDK
           short:        "-r",
           long:         "--roles",
           description:  "Create roles and environments directories instead of using policyfiles",
-          default:      false
+          default:      nil
 
+        option :policy,
+          short:        "-P",
+          long:         "--policy",
+          description:  "Use policyfiles instead of Berkshelf",
+          boolean:      true,
+          default:      nil
 
         options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
           @params_valid = true
           @repo_name = nil
+          @use_roles = true
           super
         end
 
@@ -58,6 +65,7 @@ module ChefDK
           if params_valid?
             setup_context
             chef_runner.converge
+            0
           else
             err(opt_parser)
             1
@@ -88,13 +96,22 @@ module ChefDK
         end
 
         def use_roles?
-          config[:roles]
+          @use_roles
         end
 
         def read_and_validate_params
           arguments = parse_options(params)
           @repo_name_or_path = arguments[0]
-          @params_valid = false unless @repo_name_or_path
+          unless @repo_name_or_path
+            @params_valid = false
+          end
+          if !config[:roles].nil? && !config[:policy].nil?
+            err("Roles and Policyfiles are exclusive. Please only select one.")
+            @params_valid = false
+          end
+          if config[:policy]
+            @use_roles = false
+          end
         end
 
         def params_valid?
