@@ -77,14 +77,10 @@ module Kitchen
           remote_path_join(%W[#{provisioner[:chef_omnibus_root]} embedded bin])
       end
 
-      # Emit a warning that Policyfile stuff is still experimental.
-      #
       # (see Base#finalize_config!)
       def finalize_config!(*args)
         super
-        banner("Using experimental policyfile mode for chef-client")
-        warn("The Policyfile feature is under active development.")
-        warn("For best results, always use the latest chef-client version")
+        banner("Using policyfile mode for chef-client")
       end
 
       # (see Base#create_sandbox)
