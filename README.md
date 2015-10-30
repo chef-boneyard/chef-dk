@@ -25,7 +25,7 @@ system bin directory, ready to use.
 
 ### Pre-release Candidates
 
-You can run `curl -LO https://www.chef.io/chef/install.sh && sudo bash ./install.sh -P chefdk -p && rm install.sh` to download and install the latest pre-release candidate.  If you want to specify a different version replace `-p` with `-v <version>`
+You can run `curl -LO https://omnitruck.chef.io/install.sh && sudo bash ./install.sh -P chefdk -p && rm install.sh` to download and install the latest `current` channel candidate.  If you want to specify a specific version replace `-p` with `-v <version>`
 
 ## Usage
 
