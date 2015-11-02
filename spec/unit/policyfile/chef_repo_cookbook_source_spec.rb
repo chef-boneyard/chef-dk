@@ -63,4 +63,26 @@ describe ChefDK::Policyfile::ChefRepoCookbookSource do
     cookbook_source.send(:path=, repo_path)
     expect(cookbook_source.path).to eql("#{repo_path}/cookbooks")
   end
+
+  context "when created with a block to set source preferences" do
+
+    subject(:cookbook_source) do
+      described_class.new(repo_path) do |s|
+        s.preferred_for "foo", "bar", "baz"
+      end
+    end
+
+    it "sets the source preferences as given" do
+      expect(cookbook_source.preferred_cookbooks).to eq( %w[ foo bar baz ] )
+    end
+
+    it "is the preferred source for the requested cookbooks" do
+      expect(cookbook_source.preferred_source_for?("foo")).to be(true)
+      expect(cookbook_source.preferred_source_for?("bar")).to be(true)
+      expect(cookbook_source.preferred_source_for?("baz")).to be(true)
+      expect(cookbook_source.preferred_source_for?("razzledazzle")).to be(false)
+    end
+
+  end
+
 end

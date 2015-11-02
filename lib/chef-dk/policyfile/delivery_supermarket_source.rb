@@ -50,9 +50,13 @@ module ChefDK
       def_delegator :@community_source, :uri
       def_delegator :@community_source, :source_options_for
       def_delegator :@community_source, :null?
+      def_delegator :@community_source, :preferred_cookbooks
+      def_delegator :@community_source, :preferred_source_for?
+      def_delegator :@community_source, :preferred_for
 
       def initialize(uri)
         @community_source = CommunityCookbookSource.new(uri)
+        yield self if block_given?
       end
 
       def ==(other)

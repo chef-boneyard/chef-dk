@@ -29,16 +29,28 @@ module ChefDK
       # UI object for output
       attr_accessor :ui
 
+      attr_reader :preferred_cookbooks
+
       # Constructor
       #
       # @param path [String] path to a chef-repo or the cookbook path under it
       def initialize(path)
         self.path = path
         @ui = UI.new
+        @preferred_cookbooks = []
+        yield self if block_given?
+      end
+
+      def preferred_for(*cookbook_names)
+        preferred_cookbooks.concat(cookbook_names)
+      end
+
+      def preferred_source_for?(cookbook_name)
+        preferred_cookbooks.include?(cookbook_name)
       end
 
       def ==(other)
-        other.kind_of?(self.class) && other.path == path
+        other.kind_of?(self.class) && other.path == path && other.preferred_cookbooks == preferred_cookbooks
       end
 
       # Calls the slurp_metadata! helper once to calculate the @universe_graph

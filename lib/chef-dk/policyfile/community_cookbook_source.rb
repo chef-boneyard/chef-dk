@@ -26,14 +26,25 @@ module ChefDK
     class CommunityCookbookSource
 
       attr_reader :uri
+      attr_reader :preferred_cookbooks
 
       def initialize(uri = nil)
         @uri = uri || "https://supermarket.chef.io"
         @http_connections = {}
+        @preferred_cookbooks = []
+        yield self if block_given?
+      end
+
+      def preferred_for(*cookbook_names)
+        preferred_cookbooks.concat(cookbook_names)
+      end
+
+      def preferred_source_for?(cookbook_name)
+        preferred_cookbooks.include?(cookbook_name)
       end
 
       def ==(other)
-        other.kind_of?(self.class) && other.uri == uri
+        other.kind_of?(self.class) && other.uri == uri && other.preferred_cookbooks == preferred_cookbooks
       end
 
       def universe_graph
