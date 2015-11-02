@@ -25,7 +25,23 @@ system bin directory, ready to use.
 
 ### Pre-release Candidates
 
-You can run `curl -LO https://omnitruck.chef.io/install.sh && sudo bash ./install.sh -P chefdk -p && rm install.sh` to download and install the latest `current` channel candidate.  If you want to specify a specific version replace `-p` with `-v <version>`
+The following commands will download the latest ChefDK package from the `current` channel.  The `current` channel holds builds that have passed testing and are candidates for release.
+
+#### Linux and OS/X:
+
+In a terminal, run:
+
+`curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -c current -P chefdk`
+
+To download a specific version, append the `-v` flag.  EG, `-v 0.9.0`.
+
+#### Windows
+
+Open up a Powershell command prompt as Administrator and run:
+
+`. { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -channel current -project chefdk`
+
+To download a specific version, append the `-version` flag.  EG, `-version 0.9.0`.
 
 ## Usage
 
