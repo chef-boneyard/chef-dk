@@ -68,17 +68,17 @@ module ChefDK
         @named_run_lists[name] = run_list_items.flatten
       end
 
-      def default_source(source_type = nil, source_argument = nil)
+      def default_source(source_type = nil, source_argument = nil, &block)
         return @default_source if source_type.nil?
         case source_type
         when :community, :supermarket
-          set_default_community_source(source_argument)
+          set_default_community_source(source_argument, &block)
         when :delivery_supermarket
-          set_default_delivery_supermarket_source(source_argument)
+          set_default_delivery_supermarket_source(source_argument, &block)
         when :chef_server
-          set_default_chef_server_source(source_argument)
+          set_default_chef_server_source(source_argument, &block)
         when :chef_repo
-          set_default_chef_repo_source(source_argument)
+          set_default_chef_repo_source(source_argument, &block)
         else
           @errors << "Invalid default_source type '#{source_type.inspect}'"
         end
@@ -141,19 +141,19 @@ module ChefDK
 
       private
 
-      def set_default_community_source(source_uri)
-        set_default_source(CommunityCookbookSource.new(source_uri))
+      def set_default_community_source(source_uri, &block)
+        set_default_source(CommunityCookbookSource.new(source_uri, &block))
       end
 
-      def set_default_delivery_supermarket_source(source_uri)
+      def set_default_delivery_supermarket_source(source_uri, &block)
         if source_uri.nil?
           @errors << "You must specify the server's URI when using a default_source :delivery_supermarket"
         else
-          set_default_source(DeliverySupermarketSource.new(source_uri))
+          set_default_source(DeliverySupermarketSource.new(source_uri, &block))
         end
       end
 
-      def set_default_chef_server_source(source_uri)
+      def set_default_chef_server_source(source_uri, &block)
         if source_uri.nil?
           @errors << "You must specify the server's URI when using a default_source :chef_server"
         else
@@ -161,11 +161,11 @@ module ChefDK
         end
       end
 
-      def set_default_chef_repo_source(path)
+      def set_default_chef_repo_source(path, &block)
         if path.nil?
           @errors << "You must specify the path to the chef-repo when using a default_source :chef_repo"
         else
-          set_default_source(ChefRepoCookbookSource.new(File.expand_path(path, storage_config.relative_paths_root)))
+          set_default_source(ChefRepoCookbookSource.new(File.expand_path(path, storage_config.relative_paths_root), &block))
         end
       end
 
@@ -177,6 +177,22 @@ module ChefDK
       def validate!
         if @run_list.empty?
           @errors << "Invalid run_list. run_list cannot be empty"
+        end
+
+        handle_preferred_cookbooks_conflicts
+      end
+
+      def handle_preferred_cookbooks_conflicts
+        conflicting_source_messages = []
+        default_source.combination(2).each do |source_a, source_b|
+          conflicting_preferences = source_a.preferred_cookbooks & source_b.preferred_cookbooks
+          next if conflicting_preferences.empty?
+          conflicting_source_messages << "#{source_a.desc} and #{source_b.desc} are both set as the preferred source for cookbook(s) '#{conflicting_preferences.join(', ')}'"
+        end
+        unless conflicting_source_messages.empty?
+          msg = "Multiple sources are marked as the preferred source for some cookbooks. Only one source can be preferred for a cookbook.\n"
+          msg << conflicting_source_messages.join("\n") << "\n"
+          @errors << msg
         end
       end
 

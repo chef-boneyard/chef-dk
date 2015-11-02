@@ -345,6 +345,65 @@ E
 
       end
 
+      context "with multiple supermarkets with source preferences set for specific cookbooks" do
+
+        context "when the preferences don't conflict" do
+          let(:policyfile_rb) do
+            <<-EOH
+              run_list "foo", "bar", "baz"
+
+              default_source :supermarket do |s|
+                s.preferred_for "foo"
+              end
+
+              default_source :supermarket, "https://mart.example" do |s|
+                s.preferred_for "bar", "baz"
+              end
+            EOH
+          end
+
+          it "has an array of sources, with cookbook preferences set" do
+            expect(policyfile.errors).to eq([])
+            expect(policyfile.default_source.size).to eq(2)
+
+            public_supermarket = policyfile.default_source.first
+            expect(public_supermarket.preferred_cookbooks).to eq(%w[ foo ])
+
+            private_supermarket = policyfile.default_source.last
+            expect(private_supermarket.uri).to eq("https://mart.example")
+            expect(private_supermarket.preferred_cookbooks).to eq(%w[ bar baz ])
+          end
+
+        end
+
+        context "when the preferences conflict" do
+          let(:policyfile_rb) do
+            # both supermarkets are the preferred source for "foo"
+            <<-EOH
+              run_list "foo", "bar"
+
+              default_source :supermarket do |s|
+                s.preferred_for "foo"
+              end
+
+              default_source :supermarket, "https://mart.example" do |s|
+                s.preferred_for "foo"
+              end
+            EOH
+          end
+
+          it "emits an error" do
+            err = <<-MESSAGE
+Multiple sources are marked as the preferred source for some cookbooks. Only one source can be preferred for a cookbook.
+supermarket(https://supermarket.chef.io) and supermarket(https://mart.example) are both set as the preferred source for cookbook(s) 'foo'
+MESSAGE
+            expect(policyfile.errors).to eq([err])
+          end
+
+        end
+
+      end
+
     end
 
     describe "assigning cookbooks to specific sources" do
