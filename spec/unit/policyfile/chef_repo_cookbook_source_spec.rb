@@ -42,6 +42,11 @@ describe ChefDK::Policyfile::ChefRepoCookbookSource do
       },
     }
   }
+
+  it "gives the set of arguments to `default_source` used to create it" do
+    expect(cookbook_source.default_source_args).to eq([:chef_repo, repo_path])
+  end
+
   it "fetches the universe graph" do
     actual_universe = cookbook_source.universe_graph
     expect(actual_universe).to eql(local_repo_universe)

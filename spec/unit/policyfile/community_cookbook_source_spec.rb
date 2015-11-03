@@ -30,6 +30,14 @@ describe ChefDK::Policyfile::CommunityCookbookSource do
 
   let(:pruned_universe) { JSON.parse(IO.read(File.join(fixtures_path, "cookbooks_api/pruned_small_universe.json"))) }
 
+  it "defaults to using the public supermarket over HTTPS" do
+    expect(cookbook_source.uri).to eq(default_community_uri)
+  end
+
+  it "gives the set of arguments to `default_source` used to create it" do
+    expect(cookbook_source.default_source_args).to eq([:supermarket, default_community_uri])
+  end
+
   describe "fetching the Universe graph over HTTP" do
 
     before do

@@ -80,6 +80,10 @@ describe ChefDK::Policyfile::DeliverySupermarketSource do
     expect(cookbook_source.desc).to eq("delivery_supermarket(https://delivery-supermarket.example)")
   end
 
+  it "gives the set of arguments to `default_source` used to create it" do
+    expect(cookbook_source.default_source_args).to eq([:delivery_supermarket, supermarket_uri])
+  end
+
   describe "when fetching the /universe graph" do
 
     before do

@@ -63,6 +63,10 @@ module ChefDK
         other.kind_of?(self.class) && other.uri == uri
       end
 
+      def default_source_args
+        [:delivery_supermarket, uri]
+      end
+
       def universe_graph
         @universe_graph ||= begin
           @community_source.universe_graph.inject({}) do |truncated, (cookbook_name, version_and_deps_list)|

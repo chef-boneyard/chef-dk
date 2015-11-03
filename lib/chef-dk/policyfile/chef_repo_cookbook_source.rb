@@ -41,6 +41,10 @@ module ChefDK
         yield self if block_given?
       end
 
+      def default_source_args
+        [:chef_repo, path]
+      end
+
       def preferred_for(*cookbook_names)
         preferred_cookbooks.concat(cookbook_names)
       end

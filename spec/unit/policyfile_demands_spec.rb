@@ -856,6 +856,12 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 Source supermarket(https://supermarket.chef.io) and chef_repo(#{repo_path}) contain conflicting cookbooks:
 - remote-cb
 - remote-cb-two
+
+You can set a preferred source to resolve this issue with code like:
+
+default_source :supermarket, "https://supermarket.chef.io", do |s|
+  s.preferred_source_for "remote-cb", "remote-cb-two"
+end
 ERROR
 
             expect { policyfile.remote_artifacts_graph }.to raise_error do |error|
@@ -952,6 +958,12 @@ ERROR
           expected_err = <<-ERROR
 Source supermarket(https://supermarket.chef.io) and chef_repo(#{repo_path}) contain conflicting cookbooks:
 - remote-cb-two
+
+You can set a preferred source to resolve this issue with code like:
+
+default_source :supermarket, "https://supermarket.chef.io", do |s|
+  s.preferred_source_for "remote-cb-two"
+end
 ERROR
 
           expect { policyfile.remote_artifacts_graph }.to raise_error do |error|
