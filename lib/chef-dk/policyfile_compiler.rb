@@ -127,10 +127,7 @@ module ChefDK
     end
 
     def create_spec_for_cookbook(cookbook_name, version)
-      matching_source = default_source.find { |s|
-        s.universe_graph.has_key?(cookbook_name)
-      }
-
+      matching_source = best_source_for(cookbook_name)
       source_options = matching_source.source_options_for(cookbook_name, version)
       spec = Policyfile::CookbookLocationSpecification.new(cookbook_name, "= #{version}", source_options, storage_config)
       @artifact_server_cookbook_location_specs[cookbook_name] = spec
@@ -222,10 +219,12 @@ module ChefDK
           merged = {}
           default_source.each do |source|
             merged.merge!(source.universe_graph) do |conflicting_cb_name, _old, _new|
-              if cookbook_could_appear_in_solution?(conflicting_cb_name)
+              if (preference = preferred_source_for_cookbook(conflicting_cb_name))
+                preference.universe_graph[conflicting_cb_name]
+              elsif cookbook_could_appear_in_solution?(conflicting_cb_name)
                 conflicting_cb_names << conflicting_cb_name
+                {} # return empty set of versions
               end
-              {} # return empty set of versions
             end
           end
           handle_conflicting_cookbooks(conflicting_cb_names)
@@ -305,6 +304,22 @@ module ChefDK
 
     def cache_path
       CookbookOmnifetch.storage_path
+    end
+
+    def best_source_for(cookbook_name)
+      preferred = default_source.find { |s| s.preferred_source_for?(cookbook_name) }
+      if preferred.nil?
+        default_source.find { |s|
+          s.universe_graph.has_key?(cookbook_name)
+        }
+      else
+        preferred
+      end
+    end
+
+
+    def preferred_source_for_cookbook(conflicting_cb_name)
+      default_source.find { |s| s.preferred_source_for?(conflicting_cb_name) }
     end
 
     def handle_conflicting_cookbooks(conflicting_cookbooks)

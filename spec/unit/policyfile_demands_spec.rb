@@ -887,6 +887,59 @@ ERROR
           end
         end
 
+        context "and the conflicting cookbook has a preferred source" do
+
+          let(:community_source) { policyfile.dsl.default_source.first }
+
+          let(:repo_source) { policyfile.dsl.default_source.last }
+
+          let(:full_universe_graph) do
+            {
+              "remote-cb" => {
+                "1.1.1" => {
+                  "download_url" => "https://supermarket.chef.io/api/v1/cookbooks/remote-cb/versions/1.1.1/download"
+                }
+              }
+            }
+          end
+
+          let(:cookbook_version_paths) do
+            {
+              "remote-cb-two" => {
+                "1.1.1" => "path/to/repo/remote-cb-two"
+              }
+            }
+          end
+
+          before do
+            community_source.preferred_for 'remote-cb'
+            allow(community_source).to receive(:full_community_graph).and_return(full_universe_graph)
+            allow(repo_source).to receive(:cookbook_version_paths).and_return(cookbook_version_paths)
+            repo_source.preferred_for 'remote-cb-two'
+          end
+
+          it "solves the graph" do
+            expect { policyfile.remote_artifacts_graph }.to_not raise_error
+          end
+
+          it "assigns the correct source options to the cookbook" do
+            expected_remote_cb_source_opts = {
+              artifactserver: "https://supermarket.chef.io/api/v1/cookbooks/remote-cb/versions/1.1.1/download",
+              version: "1.1.1"
+            }
+            actual_remote_cb_source_opts = policyfile.create_spec_for_cookbook("remote-cb", "1.1.1").source_options
+            expect(actual_remote_cb_source_opts).to eq(expected_remote_cb_source_opts)
+
+            expected_remote_cb_two_source_opts = {
+              path: "path/to/repo/remote-cb-two",
+              version: "1.1.1"
+            }
+            actual_remote_cb_two_source_opts = policyfile.create_spec_for_cookbook("remote-cb-two", "1.1.1").source_options
+            expect(actual_remote_cb_two_source_opts).to eq(expected_remote_cb_two_source_opts)
+          end
+
+        end
+
       end
 
       context "when top-level cookbooks don't conflict, but dependencies could" do
