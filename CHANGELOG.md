@@ -1,7 +1,56 @@
 # Change Log
 
-## [0.9.0](https://github.com/chef/chef-dk/tree/0.9.0) (2015-09-28)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v0.8.0...0.9.0)
+## [0.10.0](https://github.com/chef/chef-dk/tree/0.10.0) (2015-11-05)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.9.0...0.10.0)
+
+**Closed issues:**
+
+- chef generate overwrites the readme.md if present. [\#577](https://github.com/chef/chef-dk/issues/577)
+- Cookbook path error message [\#564](https://github.com/chef/chef-dk/issues/564)
+- ChefDK 0.8.0 install on Windows breaks existing $env:PSModulePath until environment is restarted [\#534](https://github.com/chef/chef-dk/issues/534)
+- "chef shell-init powershell" fails on Windows 8.1 in OOB configuration [\#448](https://github.com/chef/chef-dk/issues/448)
+- chef vault refresh and chef-client 12.4.0 [\#447](https://github.com/chef/chef-dk/issues/447)
+- Ohai locks up computer if on Active Directory [\#439](https://github.com/chef/chef-dk/issues/439)
+- missing knife plugins after chef-dk upgrade [\#427](https://github.com/chef/chef-dk/issues/427)
+- chefdk\[:generator\_cookbook\] setting in knife.rb or config.rb causes knife commands to fail [\#375](https://github.com/chef/chef-dk/issues/375)
+
+**Merged pull requests:**
+
+- Fix incorrect suggested code in errors [\#591](https://github.com/chef/chef-dk/pull/591) ([danielsdeleo](https://github.com/danielsdeleo))
+- Return correct type when filtering out cookbooks from graph [\#590](https://github.com/chef/chef-dk/pull/590) ([danielsdeleo](https://github.com/danielsdeleo))
+- Adding `chef verify inspec` and Test Kitchen verifier to generators \(commented out\) [\#589](https://github.com/chef/chef-dk/pull/589) ([tyler-ball](https://github.com/tyler-ball))
+- Preferred supermarkets for cookbooks [\#587](https://github.com/chef/chef-dk/pull/587) ([danielsdeleo](https://github.com/danielsdeleo))
+- Remove unused test scripts directory [\#586](https://github.com/chef/chef-dk/pull/586) ([danielsdeleo](https://github.com/danielsdeleo))
+- Configurable depsolver [\#584](https://github.com/chef/chef-dk/pull/584) ([danielsdeleo](https://github.com/danielsdeleo))
+- Only report cookbook source conflicts that could affect solution [\#581](https://github.com/chef/chef-dk/pull/581) ([danielsdeleo](https://github.com/danielsdeleo))
+- Update new tests to run out of chef-dk gem dir. [\#580](https://github.com/chef/chef-dk/pull/580) ([ksubrama](https://github.com/ksubrama))
+- Add :delivery\_supermarket default source type [\#574](https://github.com/chef/chef-dk/pull/574) ([danielsdeleo](https://github.com/danielsdeleo))
+- Verify that generated cookbooks pass chefspec [\#572](https://github.com/chef/chef-dk/pull/572) ([danielsdeleo](https://github.com/danielsdeleo))
+- Fix typo in warning.txt. Obvious fix. [\#567](https://github.com/chef/chef-dk/pull/567) ([tonyflint](https://github.com/tonyflint))
+- Better "not a cookbook" errors [\#566](https://github.com/chef/chef-dk/pull/566) ([danielsdeleo](https://github.com/danielsdeleo))
+- Make chef repo prefer policyfiles [\#563](https://github.com/chef/chef-dk/pull/563) ([danielsdeleo](https://github.com/danielsdeleo))
+- Update chef verify to pull component tests from gems [\#562](https://github.com/chef/chef-dk/pull/562) ([ksubrama](https://github.com/ksubrama))
+- Update POLICYFILE\_README for the current state of the world [\#560](https://github.com/chef/chef-dk/pull/560) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add gemspec files to allow bundler to run from the gem [\#559](https://github.com/chef/chef-dk/pull/559) ([ksubrama](https://github.com/ksubrama))
+- Make Generated Cookbook Use ChefSpec Policyfile Mode [\#557](https://github.com/chef/chef-dk/pull/557) ([danielsdeleo](https://github.com/danielsdeleo))
+
+## [0.9.0](https://github.com/chef/chef-dk/tree/0.9.0) (2015-10-07)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.8.1...0.9.0)
+
+**Closed issues:**
+
+- generate repo doesn't git init [\#551](https://github.com/chef/chef-dk/issues/551)
+
+**Merged pull requests:**
+
+- Generate Policyfiles instead of Berksfiles in new cookbooks [\#555](https://github.com/chef/chef-dk/pull/555) ([danielsdeleo](https://github.com/danielsdeleo))
+- add git init condition to prevent init inside an existing git repository [\#554](https://github.com/chef/chef-dk/pull/554) ([keen99](https://github.com/keen99))
+- Fix typographical error\(s\) [\#550](https://github.com/chef/chef-dk/pull/550) ([orthographic-pedant](https://github.com/orthographic-pedant))
+- Further customize kitchen to avoid berksfile detection [\#545](https://github.com/chef/chef-dk/pull/545) ([danielsdeleo](https://github.com/danielsdeleo))
+- Generate generator [\#544](https://github.com/chef/chef-dk/pull/544) ([danielsdeleo](https://github.com/danielsdeleo))
+
+## [0.8.1](https://github.com/chef/chef-dk/tree/0.8.1) (2015-09-30)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.8.0...0.8.1)
 
 **Closed issues:**
 
