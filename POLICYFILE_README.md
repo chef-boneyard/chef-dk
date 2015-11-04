@@ -179,6 +179,51 @@ your Chef repo, or to the `cookbooks` directory within your repo.
 Chef Server cannot be used as a source until the Server implements the
 "universe" endpoint. See [Chef RFC014](https://github.com/chef/chef-rfc/blob/master/rfc014-universe-endpoint.md).
 
+### Using Multiple Default Sources
+
+ChefDK now allows you to specify multiple default sources. For example,
+you may combine cookbooks from your "monolithic repo" with cookbooks
+from the public Supermarket with code like this:
+
+```ruby
+default_source :supermarket
+default_source :chef_repo, "path/to/repo"
+```
+
+Similarly, if you are running a private Supermarket instance, you may
+use that in combination with the public Supermarket with code like:
+
+```ruby
+default_source :supermarket
+default_source :supermarket, "https://supermarket.example"
+```
+
+Note that when your run list or its dependencies require a cookbook that
+is present in more than one source, you must be explict about which
+source you prefer. This prevents the case where you have a working
+policy that suddenly pulls a cookbook from an unexpected source because
+a cookbook with that name was added to one of your default sources. For
+example, if you have an internally developed cookbook named
+"chef-client", it will conflict with the public one maintained by Chef.
+If you want to fetch this cookbook from your private supermarket, you'd
+write:
+
+```ruby
+default_source :supermarket
+default_source :supermarket, "https://supermarket.example" do |s|
+  s.preferred_source_for "chef-client"
+end
+```
+
+To specify multiple cookbooks, list them all on one line, like this:
+
+```ruby
+default_source :supermarket
+default_source :supermarket, "https://supermarket.example" do |s|
+  s.preferred_source_for "chef-client", "nginx", "mysql"
+end
+```
+
 ### `cookbook "NAME" [, "VERSION_CONSTRAINT"] [, SOURCE_OPTIONS]`
 
 The `cookbook` method serves several purposes:
