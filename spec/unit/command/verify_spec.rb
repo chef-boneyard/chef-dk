@@ -49,7 +49,8 @@ describe ChefDK::Command::Verify do
       "knife-spork",
       "kitchen-vagrant",
       "package installation",
-      "openssl"
+      "openssl",
+      "inspec"
     ]
   end
 
