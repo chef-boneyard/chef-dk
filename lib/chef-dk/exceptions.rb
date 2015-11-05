@@ -115,8 +115,8 @@ module ChefDK
       <<-EXAMPLE
 You can set a preferred source to resolve this issue with code like:
 
-default_source :#{source_key}, "#{location}", do |s|
-  s.preferred_source_for "#{overlapping_cookbooks.join('", "')}"
+default_source :#{source_key}, "#{location}" do |s|
+  s.preferred_for "#{overlapping_cookbooks.join('", "')}"
 end
 EXAMPLE
     end
