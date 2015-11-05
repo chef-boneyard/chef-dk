@@ -977,8 +977,14 @@ ERROR
 
         let(:run_list) { [ 'local_cookbook' ] }
 
-        it "solves the graph" do
+        it "creates the merged graph without error" do
           expect { policyfile.remote_artifacts_graph }.to_not raise_error
+          expect { policyfile.graph }.to_not raise_error
+        end
+
+        it "has an empty set of artifacts for the conflicting cookbook" do
+          expect(policyfile.remote_artifacts_graph["remote-cb"]).to eq({})
+          expect(policyfile.remote_artifacts_graph["remote-cb-two"]).to eq({})
         end
 
       end

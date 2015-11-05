@@ -224,6 +224,8 @@ module ChefDK
               elsif cookbook_could_appear_in_solution?(conflicting_cb_name)
                 conflicting_cb_names << conflicting_cb_name
                 {} # return empty set of versions
+              else
+                {} # return empty set of versions
               end
             end
           end
