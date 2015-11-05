@@ -276,6 +276,11 @@ provisioner:
 
 #  require_chef_omnibus: 12.5.0
 
+# Uncomment the following verifier to leverage Inspec instead of Busser (the
+# default verifier)
+# verifier:
+#   name: inspec
+
 platforms:
   - name: ubuntu-14.04
   - name: centos-7.1
@@ -340,6 +345,11 @@ driver:
 
 provisioner:
   name: chef_zero
+
+# Uncomment the following verifier to leverage Inspec instead of Busser (the
+# default verifier)
+# verifier:
+#   name: inspec
 
 platforms:
   - name: ubuntu-14.04

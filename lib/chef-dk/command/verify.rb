@@ -391,6 +391,37 @@ end
         end
       end
 
+      add_component "inspec" do |c|
+        c.gem_base_dir = "inspec"
+
+        # Commenting out the unit and integration tests for now until we figure
+        # out the bundler error
+        #c.unit_test { sh("bundle exec rake test:isolated") }
+        # This runs Test Kitchen (using kitchen-inspec) with some inspec tests
+        #c.integration_test { sh("bundle exec rake test:vm") }
+
+        # It would be nice to use a chef generator to create these specs, but
+        # we dont have that yet.  So we do it manually.
+        c.smoke_test do
+          tmpdir do |cwd|
+            File.open(File.join(cwd, "some_spec.rb"), "w+") do |f|
+              f.print <<-INSPEC_TEST
+                rule '01' do
+                  impact 0.7
+                  title 'Some Test'
+                  desc 'Make sure inspec is installed and loading correct'
+                  describe 1 do
+                    it { should eq(1) }
+                  end
+                end
+              INSPEC_TEST
+            end
+            # TODO when we appbundle inspec, no longer `chef exec`
+            sh("chef exec inspec exec .", cwd: cwd)
+          end
+        end
+      end
+
       attr_reader :verification_threads
       attr_reader :verification_results
       attr_reader :verification_status
