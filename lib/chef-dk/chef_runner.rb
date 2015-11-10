@@ -71,6 +71,14 @@ module ChefDK
       Chef::Config.color = true
       Chef::Config.diff_disabled = true
 
+      # If the user has set policyfile configuration in the workstation config
+      # file, the underlying chef-client code may enable policyfile mode and
+      # then fail because chef-solo doesn't support policyfiles.
+      Chef::Config.use_policyfile = false
+      Chef::Config.policy_name = nil
+      Chef::Config.policy_group = nil
+      Chef::Config.deployment_group = nil
+
       # atomic file operations on Windows require Administrator privileges to be able to read the SACL from a file
       # Using file_staging_uses_destdir(true) will get us inherited permissions indirectly on tempfile creation
       Chef::Config.file_atomic_update = false if Chef::Platform.windows?

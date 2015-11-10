@@ -81,6 +81,34 @@ describe ChefDK::ChefRunner do
     expect(test_state[:converged_recipes]).to eq([ "recipe_one", "recipe_two" ])
   end
 
+  context "when policyfile options are set in the workstation config" do
+
+    before do
+      Chef::Config.use_policyfile true
+      Chef::Config.policy_name "workstation"
+      Chef::Config.policy_group "test"
+
+      # chef-client ignores `deployment_group` unless
+      # `policy_document_native_api` is set to false
+      Chef::Config.deployment_group "workstation-test"
+      Chef::Config.policy_document_native_api false
+    end
+
+    it "unsets the options" do
+      chef_runner.configure
+
+      expect(Chef::Config.use_policyfile).to be(false)
+      expect(Chef::Config.policy_name).to be_nil
+      expect(Chef::Config.policy_group).to be_nil
+      expect(Chef::Config.deployment_group).to be_nil
+    end
+
+    it "converges successfully" do
+      expect { chef_runner.converge }.to_not raise_error
+    end
+
+  end
+
   context "when the embedded chef run fails" do
 
     let(:embedded_runner) { instance_double("Chef::Runner") }
