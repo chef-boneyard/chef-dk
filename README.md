@@ -10,7 +10,7 @@ Chef Development Kit (ChefDK) brings Chef and the development tools developed by
 
 This repository contains the code for the `chef` command. The full
 package is built via the 'chefdk' project in
-[omnibus-chef](https://github.com/opscode/omnibus-chef).
+[omnibus-chef](https://github.com/chef/omnibus-chef).
 
 ## Installation
 
