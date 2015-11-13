@@ -26,7 +26,7 @@ system bin directory, ready to use.
 ### Clean Installation
 
 If you update from an older ChefDK installation and start seeing an error message similar to
-`ERROR: Gem::ConflictError: Unable to activate foo-1.0.0, because bar-1.0.0 conflicts with bar (~> 2.0.0`
+`ERROR: Gem::ConflictError: Unable to activate foo-1.0.0, because bar-1.0.0 conflicts with bar (~> 2.0.0)`
  then you probably need to delete your `~/.chefdk` folder.
 
 When you run `chef gem install` it installs gems into your `~/.chefdk` folder and loads these gems into the Ruby environment.
