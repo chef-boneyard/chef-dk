@@ -155,7 +155,7 @@ module ChefDK
         export_path = File.join(staging_dir, "cookbooks", dirname)
         metadata_rb_path = File.join(export_path, "metadata.rb")
         FileUtils.mkdir(export_path) if not File.directory?(export_path)
-        FileUtils.cp_r(cookbook_files_to_copy(lock.cookbook_path), export_path)
+        copy_unignored_cookbook_files(lock, export_path)
         FileUtils.rm_f(metadata_rb_path)
         metadata = lock.cookbook_version.metadata
         metadata.version(lock.dotted_decimal_identifier)
@@ -167,11 +167,28 @@ module ChefDK
         end
       end
 
+      def copy_unignored_cookbook_files(lock, export_path)
+        cookbook_files_to_copy(lock.cookbook_path).each do |rel_path|
+          full_source_path = File.join(lock.cookbook_path, rel_path)
+          full_dest_path = File.join(export_path, rel_path)
+          dest_dirname = File.dirname(full_dest_path)
+          FileUtils.mkdir_p(dest_dirname) unless File.directory?(dest_dirname)
+          FileUtils.cp(full_source_path, full_dest_path)
+        end
+      end
+
       def cookbook_files_to_copy(cookbook_path)
-        chefignore_file = File.join(cookbook_path, 'chefignore')
-        chefignore = Chef::Cookbook::Chefignore.new(chefignore_file)
-        Dir.glob(File.join(cookbook_path, '*')).
-          reject{ |f| chefignore.ignored?(File.basename(f)) }
+        cookbook_loader_for(cookbook_path).cookbook_version.manifest_records_by_path.keys
+      end
+
+      def cookbook_loader_for(cookbook_path)
+        loader = Chef::Cookbook::CookbookVersionLoader.new(cookbook_path, chefignore_for(cookbook_path))
+        loader.load!
+        loader
+      end
+
+      def chefignore_for(cookbook_path)
+        Chef::Cookbook::Chefignore.new(File.join(cookbook_path, "chefignore"))
       end
 
       def create_policyfile_data_item

@@ -204,6 +204,11 @@ E
           let(:expected_files_relative) do
             metadata_rb = Pathname.new("metadata.rb")
             expected = cookbook_files.delete_if { |p| p == metadata_rb }
+
+            # Berksfile is chefignored
+            berksfile = Pathname.new("Berksfile")
+            expected = expected.delete_if { |p| p == berksfile }
+
             expected << Pathname.new("metadata.json")
           end
 
