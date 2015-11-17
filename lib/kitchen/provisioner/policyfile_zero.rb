@@ -62,6 +62,7 @@ module Kitchen
       # Since it makes no sense to modify these, they are hardcoded elsewhere.
       default_config :client_rb, {}
       default_config :json_attributes, true
+      default_config :named_run_list, nil
       default_config :chef_zero_host, nil
       default_config :chef_zero_port, 8889
       default_config :policyfile, "Policyfile.rb"
@@ -109,6 +110,10 @@ module Kitchen
         end
         if config[:log_file]
           args << "--logfile #{config[:log_file]}"
+        end
+
+        if config[:named_run_list]
+          args << "--named-run-list #{config[:named_run_list]}"
         end
 
         wrap_shell_code(
