@@ -13,7 +13,7 @@ This will create a lockfile `policies/my-app-frontend.lock.json`.
 To update locked dependencies, run `chef update` like this:
 
 ```
-chef update policies/my-app-fronend.rb
+chef update policies/my-app-frontend.rb
 ```
 
 You can upload the policy (with associated cookbooks) to the server
