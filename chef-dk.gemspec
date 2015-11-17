@@ -42,7 +42,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "minitar", "~> 0.5.4"
 
-  gem.add_dependency "chef", "~> 12.0", ">= 12.2.1"
+  gem.add_dependency "chef", "~> 12.5"
 
   gem.add_dependency "solve", "~> 2.0", ">= 2.0.1"
 

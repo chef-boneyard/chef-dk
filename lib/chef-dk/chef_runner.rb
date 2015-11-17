@@ -17,6 +17,7 @@
 
 require 'chef-dk/exceptions'
 require 'chef-dk/service_exceptions'
+require 'chef/policy_builder/dynamic'
 require 'chef'
 
 module ChefDK
