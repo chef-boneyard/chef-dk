@@ -300,9 +300,9 @@ override["same"]["with"] = "overrides"
 
 ### Testing With Test Kitchen
 
-ChefDK now includes a Test Kitchen provisioner, which allows you to
-converge VMs using Chef Client in policyfile mode, using Chef Zero to
-serve cookbook data. Add the following to your `.kitchen.yml`:
+ChefDK includes a Test Kitchen provisioner, which allows you to converge
+VMs using Chef Client in policyfile mode, using Chef Zero to serve
+cookbook data. Add the following to your `.kitchen.yml`:
 
 ```yaml
 provisioner:
@@ -311,6 +311,35 @@ provisioner:
   # strictly necessary, you should be able to use this with any version
   # of Chef 12.x.
   require_chef_omnibus: true
+```
+
+#### Using Named Run Lists With Kitchen
+
+As of ChefDK 0.11, the Test Kitchen provisioner supports named run
+lists. In addition to testing named run lists that you are using on
+production policies, you can use this feature to test different recipes
+in a library cookbook in isolation.
+
+To use a different named run list on a per-suite basis, specify the
+named run list inside a `provisioner` section, like this:
+
+```yaml
+suites:
+  - name: client
+    provisioner:
+      named_run_list: test_client_recipe
+  - name: server
+    provisioner:
+      named_run_list: test_server_recipe
+```
+
+To use a named run list globally, specify it at the top level of the
+provisioner section:
+
+```yaml
+provisioner:
+  name: policyfile_zero
+  named_run_list: integration_test_run_list
 ```
 
 ## Applying the Policy on a Node
