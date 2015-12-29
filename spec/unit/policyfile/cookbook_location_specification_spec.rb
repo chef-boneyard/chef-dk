@@ -138,11 +138,15 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
     end
 
     it "determines whether a cookbook has a given recipe" do
+      cookbook_path = cookbook_location_spec.cookbook_path
+      # "cache" cookbook_path so we stub the correct object
+      allow(cookbook_location_spec).to receive(:cookbook_path).and_return(cookbook_path)
+
       default_recipe_path = install_path.join("recipes/default.rb")
       nope_recipe_path = install_path.join("recipes/nope.rb")
 
-      expect(install_path).to receive(:join).with("recipes/default.rb").and_return(default_recipe_path)
-      expect(install_path).to receive(:join).with("recipes/nope.rb").and_return(nope_recipe_path)
+      expect(cookbook_path).to receive(:join).with("recipes/default.rb").and_return(default_recipe_path)
+      expect(cookbook_path).to receive(:join).with("recipes/nope.rb").and_return(nope_recipe_path)
 
       expect(default_recipe_path).to receive(:exist?).and_return(true)
       expect(nope_recipe_path).to receive(:exist?).and_return(false)

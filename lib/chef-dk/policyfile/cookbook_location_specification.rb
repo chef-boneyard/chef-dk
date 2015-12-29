@@ -124,7 +124,7 @@ module ChefDK
       end
 
       def cookbook_has_recipe?(recipe_name)
-        expected_path = installer.install_path.join("recipes/#{recipe_name}.rb")
+        expected_path = cookbook_path.join("recipes/#{recipe_name}.rb")
         expected_path.exist?
       end
 
@@ -139,6 +139,14 @@ module ChefDK
 
       def source_options_invalid?
         !source_options.empty? && installer.nil?
+      end
+
+      def cookbook_path
+        if installer.respond_to?(:expanded_path)
+          installer.expanded_path
+        else
+          installer.install_path.expand_path
+        end
       end
 
     end
