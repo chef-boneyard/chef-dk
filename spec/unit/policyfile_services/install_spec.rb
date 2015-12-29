@@ -111,6 +111,26 @@ E
         expect(generated_lock.cookbook_locks).to have_key("local-cookbook")
       end
 
+      it "prints the policy name" do
+        install_service.run
+        expect(ui.output).to include("Building policy install-example")
+      end
+
+      it "prints the expanded run list" do
+        install_service.run
+        expect(ui.output).to include("Expanded run list: recipe[local-cookbook]")
+      end
+
+      it "prints the lockfile path" do
+        install_service.run
+        expect(ui.output).to include("Lockfile written to #{working_dir}/Policyfile.lock.json")
+      end
+
+      it "prints the lockfile's revision id" do
+        install_service.run
+        expect(ui.output).to include("Policy revision id: 60e5ad638dce219d8f87d589463ec4a9884007ba5e2adbb4c0a7021d67204f1a")
+      end
+
     end
 
     context "and a lockfile exists and `overwrite` is specified" do
