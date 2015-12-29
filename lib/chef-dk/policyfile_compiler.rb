@@ -116,6 +116,14 @@ module ChefDK
     def install
       ensure_cache_dir_exists
 
+      cookbook_and_recipe_list = combined_run_lists.map(&:name).map do |recipe_spec|
+        cookbook, _separator, recipe = recipe_spec.partition("::")
+        recipe = "default" if recipe.empty?
+        [cookbook, recipe]
+      end
+
+      missing_recipes_by_cb_spec = {}
+
       graph_solution.each do |cookbook_name, version|
         spec = cookbook_location_spec_for(cookbook_name)
         if spec.nil? or !spec.version_fixed?
@@ -123,7 +131,29 @@ module ChefDK
           install_report.installing_cookbook(spec)
           spec.ensure_cached
         end
+
+        required_recipes = cookbook_and_recipe_list.select { |cb_name, _recipe| cb_name == spec.name }
+        missing_recipes = required_recipes.select {|_cb_name, recipe| !spec.cookbook_has_recipe?(recipe) }
+
+        unless missing_recipes.empty?
+          missing_recipes_by_cb_spec[spec] = missing_recipes
+        end
       end
+
+      unless missing_recipes_by_cb_spec.empty?
+        message = "The installed cookbooks do not contain all the recipes required by your run list(s):\n"
+        missing_recipes_by_cb_spec.each do |spec, missing_items|
+          message << "#{spec.to_s}\nis missing the following required recipes:\n"
+          missing_items.each { |_cb, recipe| message << "* #{recipe}\n" }
+        end
+
+        message << "\n"
+        message << "You may have specified an incorrect recipe in your run list,\nor this recipe may not be available in that version of the cookbook\n"
+
+        raise CookbookDoesNotContainRequiredRecipe, message
+      end
+
+
     end
 
     def create_spec_for_cookbook(cookbook_name, version)
@@ -134,7 +164,7 @@ module ChefDK
     end
 
     def all_cookbook_location_specs
-      # in the installation proces, we create "artifact_server_cookbook_location_specs"
+      # in the installation process, we create "artifact_server_cookbook_location_specs"
       # for any cookbook that isn't sourced from a single-version source (e.g.,
       # path and git only support one version at a time), but we might have
       # specs for them to track additional version constraint demands. Merging
@@ -252,13 +282,22 @@ module ChefDK
     end
 
     def cookbooks_in_run_list
-      combined_run_lists = expanded_named_run_lists.values.inject(expanded_run_list.to_a) do |accum_run_lists, run_list|
-        accum_run_lists |= run_list.to_a
-      end
-
       recipes = combined_run_lists.map {|recipe| recipe.name }
       recipes.map { |r| r[/^([^:]+)/, 1] }
     end
+
+    def combined_run_lists
+      expanded_named_run_lists.values.inject(expanded_run_list.to_a) do |accum_run_lists, run_list|
+        accum_run_lists |= run_list.to_a
+      end
+    end
+
+    def combined_run_lists_by_cb_name
+      combined_run_lists.inject({}) do |by_name_accum, run_list_item|
+        by_name_accum
+      end
+    end
+
 
     def build
       yield @dsl

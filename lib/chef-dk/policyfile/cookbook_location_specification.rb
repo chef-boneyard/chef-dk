@@ -123,6 +123,11 @@ module ChefDK
         cached_cookbook.dependencies
       end
 
+      # TODO: needs unit test, actual behavior
+      def cookbook_has_recipe?(recipe_name)
+        true
+      end
+
       def cached_cookbook
         # TODO: handle 'bad' return values here (cookbook not installed yet)
         installer.cached_cookbook

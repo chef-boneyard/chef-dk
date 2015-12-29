@@ -184,8 +184,6 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
   context "Given resolvable cookbook demands" do
 
-    let(:run_list) { ["remote-cb"] }
-
     let(:default_source) { [:supermarket] }
 
     let(:trimmed_cookbook_universe) do
@@ -206,10 +204,15 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     end
 
     let(:cb_location_spec) do
+      s = "Cookbook 'remote-cb'"
+      s << " = 1.1.1"
+      s << " #{remote_cb_source_opts}"
+
       instance_double("ChefDK::Policyfile::CookbookLocationSpecification",
                       name: "remote-cb",
                       version_constraint: Semverse::Constraint.new("= 1.1.1"),
-                      ensure_cached: nil)
+                      ensure_cached: nil,
+                      to_s: s)
     end
 
     before do
@@ -236,17 +239,151 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
     context "when the resolved cookbooks have the recipes requested by the run list" do
 
-      it "installs without error" do
-        expect { policyfile.install }.to_not raise_error
+      context "with an implied default recipe" do
+
+        before do
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
+            with("default").
+            and_return(true)
+        end
+
+        let(:run_list) { ["remote-cb"] }
+
+        it "installs without error" do
+          expect { policyfile.install }.to_not raise_error
+        end
+
+      end
+
+      context "with an explicit recipe name" do
+
+        before do
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
+            with("this_exists").
+            and_return(true)
+        end
+
+        let(:run_list) { ["remote-cb::this_exists"] }
+
+        it "installs without error" do
+          expect { policyfile.install }.to_not raise_error
+        end
+
+      end
+
+      context "with a fully qualified recipe name" do
+
+        before do
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
+            with("this_exists").
+            and_return(true)
+        end
+
+        let(:run_list) { ["recipe[remote-cb::this_exists]"] }
+
+        it "installs without error" do
+          expect { policyfile.install }.to_not raise_error
+        end
+
       end
 
     end
 
-    context "when the resolved cookbooks do not have the recipes requested by the run list", :pending do
+    context "when the resolved cookbooks do not have the recipes requested by the run list" do
 
-      it "emits an error" do
-        expect { policyfile.install }.to raise_error(ChefDK::CookbookDoesNotContainRequiredRecipe)
+      context "when the cookbook with a missing recipe appears once in the run list" do
+        before do
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
+            with("this_recipe_doesnt_exist").
+            and_return(false)
+        end
+
+        let(:run_list) { ["remote-cb::this_recipe_doesnt_exist"] }
+
+        it "emits an error" do
+          message =<<-MESSAGE
+The installed cookbooks do not contain all the recipes required by your run list(s):
+Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
+is missing the following required recipes:
+* this_recipe_doesnt_exist
+
+You may have specified an incorrect recipe in your run list,
+or this recipe may not be available in that version of the cookbook
+MESSAGE
+
+          expect { policyfile.install }.to raise_error do |e|
+            expect(e).to be_a(ChefDK::CookbookDoesNotContainRequiredRecipe)
+            expect(e.message).to eq(message)
+          end
+        end
       end
+
+      context "when there is one valid item and one invalid item in the run list" do
+
+        before do
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
+            with("default").
+            and_return(true)
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
+            with("this_recipe_doesnt_exist").
+            and_return(false)
+        end
+
+
+        let(:run_list) { ["remote-cb::default", "remote-cb::this_recipe_doesnt_exist"] }
+
+        it "emits an error" do
+          message =<<-MESSAGE
+The installed cookbooks do not contain all the recipes required by your run list(s):
+Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
+is missing the following required recipes:
+* this_recipe_doesnt_exist
+
+You may have specified an incorrect recipe in your run list,
+or this recipe may not be available in that version of the cookbook
+MESSAGE
+
+          expect { policyfile.install }.to raise_error do |e|
+            expect(e).to be_a(ChefDK::CookbookDoesNotContainRequiredRecipe)
+            expect(e.message).to eq(message)
+          end
+        end
+
+      end
+
+      context "when there are multiple invalid items in the run list" do
+
+        before do
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
+            with("this_recipe_doesnt_exist").
+            and_return(false)
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
+            with("this_also_doesnt_exist").
+            and_return(false)
+        end
+
+        let(:run_list) { ["remote-cb::this_recipe_doesnt_exist", "remote-cb::this_also_doesnt_exist"] }
+
+        it "emits an error" do
+          message =<<-MESSAGE
+The installed cookbooks do not contain all the recipes required by your run list(s):
+Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
+is missing the following required recipes:
+* this_recipe_doesnt_exist
+* this_also_doesnt_exist
+
+You may have specified an incorrect recipe in your run list,
+or this recipe may not be available in that version of the cookbook
+MESSAGE
+
+          expect { policyfile.install }.to raise_error do |e|
+            expect(e).to be_a(ChefDK::CookbookDoesNotContainRequiredRecipe)
+            expect(e.message).to eq(message)
+          end
+        end
+
+      end
+
 
     end
   end
