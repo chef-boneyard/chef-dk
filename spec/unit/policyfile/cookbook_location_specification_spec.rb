@@ -30,7 +30,9 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
 
   let(:cached_cookbook) { double("ChefDK::CookbookMetadata") }
 
-  let(:installer) { double("CookbookOmnifetch location", cached_cookbook: cached_cookbook) }
+  let(:install_path) { Pathname.new("~/.chefdk/cache/cookbooks/my_cookbook-1.0.0") }
+
+  let(:installer) { double("CookbookOmnifetch location", cached_cookbook: cached_cookbook, install_path: install_path) }
 
   let(:storage_config) do
     ChefDK::Policyfile::StorageConfig.new.use_policyfile(policyfile_filename)
@@ -133,6 +135,20 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
     it "gives the cookbook's dependencies via the metadata" do
       expect(cached_cookbook).to receive(:dependencies).and_return("apt" => "~> 1.2.3")
       expect(cookbook_location_spec.dependencies).to eq("apt" => "~> 1.2.3")
+    end
+
+    it "determines whether a cookbook has a given recipe" do
+      default_recipe_path = install_path.join("recipes/default.rb")
+      nope_recipe_path = install_path.join("recipes/nope.rb")
+
+      expect(install_path).to receive(:join).with("recipes/default.rb").and_return(default_recipe_path)
+      expect(install_path).to receive(:join).with("recipes/nope.rb").and_return(nope_recipe_path)
+
+      expect(default_recipe_path).to receive(:exist?).and_return(true)
+      expect(nope_recipe_path).to receive(:exist?).and_return(false)
+
+      expect(cookbook_location_spec.cookbook_has_recipe?("default")).to be(true)
+      expect(cookbook_location_spec.cookbook_has_recipe?("nope")).to be(false)
     end
 
   end

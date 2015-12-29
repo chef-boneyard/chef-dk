@@ -123,9 +123,9 @@ module ChefDK
         cached_cookbook.dependencies
       end
 
-      # TODO: needs unit test, actual behavior
       def cookbook_has_recipe?(recipe_name)
-        true
+        expected_path = installer.install_path.join("recipes/#{recipe_name}.rb")
+        expected_path.exist?
       end
 
       def cached_cookbook
