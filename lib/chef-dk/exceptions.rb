@@ -38,6 +38,9 @@ module ChefDK
   class CachedCookbookModified < StandardError
   end
 
+  class CookbookDoesNotContainRequiredRecipe < StandardError
+  end
+
   class InvalidPolicyfileAttribute < StandardError
   end
 

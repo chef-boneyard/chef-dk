@@ -182,6 +182,75 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     expect(policyfile.errors).to eq([])
   end
 
+  context "Given resolvable cookbook demands" do
+
+    let(:run_list) { ["remote-cb"] }
+
+    let(:default_source) { [:supermarket] }
+
+    let(:trimmed_cookbook_universe) do
+      {
+        "remote-cb" => {
+          "1.1.1" => [ ]
+        }
+
+      }
+    end
+
+    let(:remote_cb_source_opts) do
+      { artifactserver: "https://supermarket.example/c/remote-cb/1.1.1/download", version: "1.1.1" }
+    end
+
+    let(:default_source_obj) do
+      instance_double("ChefDK::Policyfile::CommunityCookbookSource")
+    end
+
+    let(:cb_location_spec) do
+      instance_double("ChefDK::Policyfile::CookbookLocationSpecification",
+                      name: "remote-cb",
+                      version_constraint: Semverse::Constraint.new("= 1.1.1"),
+                      ensure_cached: nil)
+    end
+
+    before do
+      policyfile.default_source.replace([ default_source_obj ])
+
+      allow(default_source_obj).to receive(:universe_graph).
+        and_return(trimmed_cookbook_universe)
+
+      allow(default_source_obj).to receive(:preferred_source_for?).
+        with("remote-cb").
+        and_return(true)
+
+      allow(default_source_obj).to receive(:source_options_for).
+        with("remote-cb", "1.1.1").
+        and_return(remote_cb_source_opts)
+
+
+      allow(ChefDK::Policyfile::CookbookLocationSpecification).to receive(:new).
+        with("remote-cb", "= 1.1.1", remote_cb_source_opts, policyfile.storage_config).
+        and_return(cb_location_spec)
+
+      allow(cb_location_spec).to receive(:installed?).and_return(true)
+    end
+
+    context "when the resolved cookbooks have the recipes requested by the run list" do
+
+      it "installs without error" do
+        expect { policyfile.install }.to_not raise_error
+      end
+
+    end
+
+    context "when the resolved cookbooks do not have the recipes requested by the run list", :pending do
+
+      it "emits an error" do
+        expect { policyfile.install }.to raise_error(ChefDK::CookbookDoesNotContainRequiredRecipe)
+      end
+
+    end
+  end
+
   context "Given no local or git cookbooks, no default source, and an empty run list" do
 
     let(:run_list) { [] }
