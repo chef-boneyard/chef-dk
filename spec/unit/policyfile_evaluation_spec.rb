@@ -88,6 +88,85 @@ E
         end
       end
 
+      context "when given an invalid run list item" do
+
+        context "when there is only one colon between cookbook and recipe name" do
+
+          let(:policyfile_rb) do
+            <<-EOH
+              name "hello"
+
+              # Should be "foo::bar" (missing a colon)
+              run_list "foo:bar"
+            EOH
+          end
+
+          it "has an error message with the offending run list item" do
+            expect(policyfile.errors).to_not be_empty
+            expected_message = "Run List Item 'foo:bar' has invalid cookbook name 'foo:bar'.\nCookbook names can only contain alphanumerics, hypens, and underscores."
+            expect(policyfile.errors.first).to eq(expected_message)
+          end
+        end
+
+        context "when there is only one colon between cookbook and recipe name in fully qualified form" do
+
+          let(:policyfile_rb) do
+            <<-EOH
+              name "hello"
+
+              # Should be "foo::bar" (missing a colon)
+              run_list "recipe[foo:bar]"
+            EOH
+          end
+
+          it "has an error message with the offending run list item" do
+            expect(policyfile.errors).to_not be_empty
+            expected_message = "Run List Item 'recipe[foo:bar]' has invalid cookbook name 'foo:bar'.\nCookbook names can only contain alphanumerics, hypens, and underscores."
+            expect(policyfile.errors.first).to eq(expected_message)
+          end
+        end
+
+        context "when the recipe name is empty" do
+
+          let(:policyfile_rb) do
+            <<-EOH
+              name "hello"
+
+              # Should be "foo::default" or just "foo"
+              run_list "foo::"
+            EOH
+          end
+
+          it "has an error message with the offending run list item" do
+            expect(policyfile.errors).to_not be_empty
+            expected_message = "Run List Item 'foo::' has invalid recipe name ''.\nRecipe names can only contain alphanumerics, hypens, and underscores."
+            expect(policyfile.errors.first).to eq(expected_message)
+          end
+
+        end
+
+        context "with an invalid run list item in a named run list" do
+
+          let(:policyfile_rb) do
+            <<-EOH
+              name "hello"
+
+              # this one is valid:
+              run_list "foo"
+
+              named_run_list :oops, "foo:bar"
+            EOH
+          end
+
+          it "has an error message with the offending run list item" do
+            expect(policyfile.errors).to_not be_empty
+            expected_message = "Named Run List 'oops' Item 'foo:bar' has invalid cookbook name 'foo:bar'.\nCookbook names can only contain alphanumerics, hypens, and underscores."
+            expect(policyfile.errors.first).to eq(expected_message)
+          end
+
+        end
+      end
+
       context "when policyfile evaluation is aborted by user signal" do
 
         let(:policyfile_rb) { "raise Interrupt" }

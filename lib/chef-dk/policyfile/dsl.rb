@@ -20,10 +20,13 @@ require 'chef-dk/policyfile/cookbook_location_specification'
 require 'chef-dk/policyfile/storage_config'
 
 require 'chef/node/attribute'
+require 'chef/run_list/run_list_item'
 
 module ChefDK
   module Policyfile
     class DSL
+
+      RUN_LIST_ITEM_COMPONENT = %r/^[.[:alnum:]_-]+$/.freeze
 
       include StorageConfigDelegation
 
@@ -60,12 +63,20 @@ module ChefDK
 
       def run_list(*run_list_items)
         run_list_items = run_list_items.flatten
-        @run_list = run_list_items unless run_list_items.empty?
+        unless run_list_items.empty?
+          validate_run_list_items(run_list_items)
+          @run_list = run_list_items
+        end
         @run_list
       end
 
       def named_run_list(name, *run_list_items)
-        @named_run_lists[name] = run_list_items.flatten
+        run_list_items = run_list_items.flatten
+        unless run_list_items.empty?
+          validate_run_list_items(run_list_items, name)
+          @named_run_lists[name] = run_list_items
+        end
+        @named_run_lists[name]
       end
 
       def default_source(source_type = nil, source_argument = nil, &block)
@@ -180,6 +191,26 @@ module ChefDK
         end
 
         handle_preferred_cookbooks_conflicts
+      end
+
+      def validate_run_list_items(items, run_list_name = nil)
+        items.each do |item|
+
+          run_list_desc = run_list_name.nil? ? "Run List Item '#{item}'" : "Named Run List '#{run_list_name}' Item '#{item}'"
+
+          item_name = Chef::RunList::RunListItem.new(item).name
+          cookbook, separator, recipe = item_name.partition('::')
+
+          if RUN_LIST_ITEM_COMPONENT.match(cookbook).nil?
+            @errors << "#{run_list_desc} has invalid cookbook name '#{cookbook}'.\nCookbook names can only contain alphanumerics, hypens, and underscores."
+          end
+          unless separator.empty?
+            # we have a cookbook and recipe
+            if RUN_LIST_ITEM_COMPONENT.match(recipe).nil?
+              @errors << "#{run_list_desc} has invalid recipe name '#{recipe}'.\nRecipe names can only contain alphanumerics, hypens, and underscores."
+            end
+          end
+        end
       end
 
       def handle_preferred_cookbooks_conflicts
