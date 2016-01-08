@@ -10,6 +10,9 @@ shared_examples_for "custom generator cookbook" do
     let(:default_generator_cookbook_path) { File.expand_path('lib/chef-dk/skeletons/code_generator', project_root) }
 
     let(:generator_cookbook_path) { File.join(tempdir, 'a_generator_cookbook') }
+    let(:generator_copyright_holder) { 'Chef' }
+    let(:generator_email) { 'mail@chef.io' }
+    let(:generator_license) { 'Free as in Beer'}
 
     let(:argv) { [generator_arg, "--generator-cookbook", generator_cookbook_path] }
 
@@ -32,7 +35,18 @@ shared_examples_for "custom generator cookbook" do
 
       let(:argv) { [generator_arg] }
 
-      let(:chefdk_config) { double("Mixlib::Config context for ChefDK", generator_cookbook: generator_cookbook_path) }
+      let(:generator_config) do
+        double("Generator Config Context",
+          license: generator_license,
+          copyright_holder: generator_copyright_holder,
+          email: generator_email)
+      end
+
+      let(:chefdk_config) do
+        double("Mixlib::Config context for ChefDK",
+          generator_cookbook: generator_cookbook_path,
+          generator: generator_config)
+      end
 
       before do
         allow(code_generator).to receive(:chefdk_config).and_return(chefdk_config)
@@ -114,4 +128,3 @@ shared_examples_for "custom generator cookbook" do
     end
   end
 end
-
