@@ -39,7 +39,7 @@ override :'kitchen-inspec', version: "v0.10.0"
 # We should do a gem release of berkshelf and TK
 # before releasing chefdk.
 override :berkshelf,      version: "master"
-override :'test-kitchen', version: "v1.5.0.rc.1"
+override :'test-kitchen', version: "master"
 
 override :'knife-windows', version: "v1.1.1"
 override :'knife-spork',   version: "1.5.0"
