@@ -1,9 +1,6 @@
-*.gem
 .bundle
 vendor/bundle
 pkg/*
-.vagrant
-.kitchen
 .kitchen.local.yml
 bin/*
 files/chef-server-cookbooks/cache/
@@ -12,4 +9,3 @@ cookbooks
 vendor/cookbooks
 build_timestamp
 ldd.out
-jenkins/chef-solo
