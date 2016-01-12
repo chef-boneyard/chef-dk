@@ -21,7 +21,7 @@ default_version "local_source"
 # the local git checkout. This is what you'd want to occur by default if you
 # just ran omnibus build locally.
 version("local_source") do
-  source path: "#{project.files_path}/../.."
+  source path: "#{project.files_path}/../..",
          # Since we are using the local repo, we try to not copy any files
          # that are generated in the process of bundle installing omnibus.
          # If the install steps are well-behaved, this should not matter
