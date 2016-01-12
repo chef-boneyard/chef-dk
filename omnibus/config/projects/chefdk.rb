@@ -43,7 +43,7 @@ override :'test-kitchen', version: "master"
 
 override :'knife-windows', version: "v1.1.1"
 override :'knife-spork',   version: "1.6.1"
-override :fauxhai,         version: "v3.0.1"
+override :fauxhai,         version: "master"
 override :chefspec,        version: "v4.5.0"
 
 override :bundler,        version: "1.10.6"
