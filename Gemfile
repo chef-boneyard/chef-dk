@@ -19,6 +19,11 @@ source 'https://rubygems.org'
 
 gemspec :name => "chef-dk"
 
+# TODO remove when Chef is released with net-ssh pinned
+gem 'chef', github: 'chef/chef', branch: 'tball/netssh'
+# TODO remove when chef-provisioning is released with net-ssh pinned
+gem 'chef-provisioning', github: 'chef/chef-provisioning', branch: 'tball/netssh'
+
 group(:dev) do
   gem 'guard'
   gem 'guard-rspec'
