@@ -42,7 +42,7 @@ override :berkshelf,      version: "master"
 override :'test-kitchen', version: "master"
 
 override :'knife-windows', version: "v1.1.1"
-override :'knife-spork',   version: "1.5.0"
+override :'knife-spork',   version: "1.6.1"
 override :fauxhai,         version: "v3.0.1"
 override :chefspec,        version: "v4.5.0"
 
