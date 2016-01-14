@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/chef/omnibus.git
-  revision: 964e9740f3f7c829070af8a90c10fcaf33aece71
+  revision: 88400e2feee1498e432b6c5f70707b14fb22e8c9
   specs:
     omnibus (5.0.0)
       aws-sdk (~> 2)
@@ -127,7 +127,7 @@ GEM
       rake (~> 10.1)
       systemu (~> 2.6.4)
       wmi-lite (~> 1.0)
-    rake (10.4.2)
+    rake (10.5.0)
     retryable (2.0.1)
     ridley (4.2.0)
       addressable
