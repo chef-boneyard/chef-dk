@@ -88,7 +88,7 @@ override :zlib,           version: "1.2.8"
 # Manage the chef-provisioning version via chef-dk.gemspec.
 # TODO delete this when chef-provisioning is released and go back
 # to managing the dependency through chef-dk gemspec
-override :'chef-provisioning', version: "tball/netssh"
+override :'chef-provisioning', version: "master"
 override :'chef-provisioning-aws', version: "v1.7.0"
 override :'chef-provisioning-azure', version: "v0.4.0"
 override :'chef-provisioning-fog', version: "v0.15.0"

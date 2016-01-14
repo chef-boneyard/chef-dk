@@ -22,7 +22,7 @@ gemspec :name => "chef-dk"
 # TODO remove when Chef is released with net-ssh pinned
 gem 'chef', github: 'chef/chef'
 # TODO remove when chef-provisioning is released with net-ssh pinned
-gem 'chef-provisioning', github: 'chef/chef-provisioning', branch: 'tball/netssh'
+gem 'chef-provisioning', github: 'chef/chef-provisioning'
 
 group(:dev) do
   gem 'guard'
