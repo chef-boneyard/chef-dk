@@ -32,7 +32,7 @@ else
 end
 
 # Uncomment to pin the chef version
-override :chef,             version: "tball/netssh"
+override :chef,             version: "master"
 override :ohai,             version: "master"
 override :inspec,           version: "master"
 override :'kitchen-inspec', version: "v0.10.0"
