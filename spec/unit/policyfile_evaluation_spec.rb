@@ -103,7 +103,9 @@ E
 
           it "has an error message with the offending run list item" do
             expect(policyfile.errors).to_not be_empty
-            expected_message = "Run List Item 'foo:bar' has invalid cookbook name 'foo:bar'.\nCookbook names can only contain alphanumerics, hyphens, and underscores."
+            expected_message = "Run List Item 'foo:bar' has invalid cookbook name 'foo:bar'.\n" +
+              "Cookbook names can only contain alphanumerics, hyphens, and underscores.\n" +
+              "Did you mean 'foo::bar'?"
             expect(policyfile.errors.first).to eq(expected_message)
           end
         end
@@ -121,7 +123,9 @@ E
 
           it "has an error message with the offending run list item" do
             expect(policyfile.errors).to_not be_empty
-            expected_message = "Run List Item 'recipe[foo:bar]' has invalid cookbook name 'foo:bar'.\nCookbook names can only contain alphanumerics, hyphens, and underscores."
+            expected_message = "Run List Item 'recipe[foo:bar]' has invalid cookbook name 'foo:bar'.\n" +
+              "Cookbook names can only contain alphanumerics, hyphens, and underscores.\n" +
+              "Did you mean 'recipe[foo::bar]'?"
             expect(policyfile.errors.first).to eq(expected_message)
           end
         end
@@ -160,7 +164,9 @@ E
 
           it "has an error message with the offending run list item" do
             expect(policyfile.errors).to_not be_empty
-            expected_message = "Named Run List 'oops' Item 'foo:bar' has invalid cookbook name 'foo:bar'.\nCookbook names can only contain alphanumerics, hyphens, and underscores."
+            expected_message = "Named Run List 'oops' Item 'foo:bar' has invalid cookbook name 'foo:bar'.\n" +
+              "Cookbook names can only contain alphanumerics, hyphens, and underscores.\n" +
+              "Did you mean 'foo::bar'?"
             expect(policyfile.errors.first).to eq(expected_message)
           end
 
