@@ -1,6 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014 Chef Software Inc.
-# License:: Apache License, Version 2.0
+# Copyright 2015 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,17 +14,29 @@
 # limitations under the License.
 #
 
-source 'https://rubygems.org'
+name "r-train"
+default_version "master"
 
-gemspec :name => "chef-dk"
+source git: "git://github.com/chef/train.git"
 
-# TODO remove when Chef is released with net-ssh pinned
-gem 'chef', github: 'chef/chef'
-# TODO remove when chef-provisioning is released with net-ssh pinned
-gem 'chef-provisioning', github: 'chef/chef-provisioning'
+relative_path "r-train"
 
-group(:dev) do
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'ruby_gntp'
+if windows?
+  dependency "ruby-windows"
+  dependency "ruby-windows-devkit"
+else
+  dependency "ruby"
+end
+
+dependency "rubygems"
+dependency "bundler"
+
+build do
+  env = with_standard_compiler_flags(with_embedded_path)
+
+  bundle "install --with test integration --without tools", env: env
+
+  gem "build train.gemspec", env: env
+  gem "install r-train-*.gem" \
+      " --no-ri --no-rdoc", env: env
 end

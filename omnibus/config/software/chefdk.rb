@@ -51,15 +51,16 @@ dependency "rubygems"
 dependency "bundler"
 dependency "appbundler"
 dependency "chef"
+dependency "test-kitchen"
+dependency "r-train"
+dependency "inspec"
+dependency "kitchen-inspec"
+dependency "kitchen-vagrant"
 dependency "berkshelf"
 dependency "chef-vault"
 dependency "foodcritic"
 dependency "ohai"
-dependency "inspec"
 dependency "rubocop"
-dependency "test-kitchen"
-dependency "kitchen-inspec"
-dependency "kitchen-vagrant"
 # This is a TK dependency but isn't declared in that software definition
 # because it is an optional dependency but we want to give it to ChefDK users
 dependency "winrm-transport"
@@ -68,6 +69,7 @@ dependency "knife-windows"
 dependency "knife-spork"
 dependency "fauxhai"
 dependency "chefspec"
+dependency "chef-provisioning"
 
 dependency "chefdk-env-customization" if windows?
 

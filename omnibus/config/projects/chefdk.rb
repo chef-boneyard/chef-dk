@@ -36,10 +36,13 @@ override :chef,             version: "master"
 override :ohai,             version: "master"
 override :inspec,           version: "master"
 override :'kitchen-inspec', version: "v0.10.0"
+# TODO delete this and the software def when r-train is released
+override :'r-train',        version: "master"
 # We should do a gem release of berkshelf and TK
 # before releasing chefdk.
-override :berkshelf,      version: "master"
-override :'test-kitchen', version: "master"
+# Tyler's master branch pins TK to master
+override :berkshelf,        version: "master", source: { git: "git://github.com/tyler-ball/berkshelf" }
+override :'test-kitchen',   version: "master"
 
 override :'knife-windows', version: "v1.1.1"
 override :'knife-spork',   version: "master"
@@ -83,6 +86,9 @@ override :zlib,           version: "1.2.8"
 
 # NOTE: the base chef-provisioning gem is a dependency of chef-dk (the app).
 # Manage the chef-provisioning version via chef-dk.gemspec.
+# TODO delete this when chef-provisioning is released and go back
+# to managing the dependency through chef-dk gemspec
+override :'chef-provisioning', version: "master"
 override :'chef-provisioning-aws', version: "v1.7.0"
 override :'chef-provisioning-azure', version: "v0.4.0"
 override :'chef-provisioning-fog', version: "v0.15.0"

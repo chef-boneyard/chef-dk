@@ -6,7 +6,7 @@ platform:
 
 environment:
   matrix:
-    - ruby_version: "200"
+    - ruby_version: "21"
 
 clone_folder: c:\projects\chefdk
 clone_depth: 1
@@ -19,8 +19,9 @@ install:
   - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
   - echo %PATH%
   - ruby --version
+  - gem update --system
   - gem --version
-  - gem install bundler --quiet --no-ri --no-rdoc
+  - gem install bundler --no-ri --no-rdoc
   - bundler --version
 
 build_script:
