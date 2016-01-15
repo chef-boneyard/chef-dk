@@ -202,12 +202,12 @@ module ChefDK
           cookbook, separator, recipe = item_name.partition('::')
 
           if RUN_LIST_ITEM_COMPONENT.match(cookbook).nil?
-            @errors << "#{run_list_desc} has invalid cookbook name '#{cookbook}'.\nCookbook names can only contain alphanumerics, hypens, and underscores."
+            @errors << "#{run_list_desc} has invalid cookbook name '#{cookbook}'.\nCookbook names can only contain alphanumerics, hyphens, and underscores."
           end
           unless separator.empty?
             # we have a cookbook and recipe
             if RUN_LIST_ITEM_COMPONENT.match(recipe).nil?
-              @errors << "#{run_list_desc} has invalid recipe name '#{recipe}'.\nRecipe names can only contain alphanumerics, hypens, and underscores."
+              @errors << "#{run_list_desc} has invalid recipe name '#{recipe}'.\nRecipe names can only contain alphanumerics, hyphens, and underscores."
             end
           end
         end
