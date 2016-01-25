@@ -51,7 +51,7 @@ override :chefspec,        version: "v4.5.0"
 override :bundler,      version: "1.11.2"
 override :rubygems,     version: "2.5.2"
 
-override :'chef-vault',   version: "v2.6.1"
+override :"chef-vault",   version: "master"
 
 # TODO: Can we bump default versions in omnibus-software?
 override :libedit,        version: "20130712-3.1"
