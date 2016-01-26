@@ -97,7 +97,8 @@ module ChefDK
         with_staging_dir do
           create_repo_structure
           copy_cookbooks
-          create_policyfile_data_item
+          create_policyfile_repo_item
+          create_policy_group_repo_item
           copy_policyfile_lock
           create_client_rb
           if archive?
@@ -140,8 +141,9 @@ module ChefDK
 
       def create_repo_structure
         FileUtils.mkdir_p(export_dir)
-        FileUtils.mkdir_p(cookbooks_staging_dir)
-        FileUtils.mkdir_p(policyfiles_data_bag_staging_dir)
+        FileUtils.mkdir_p(cookbook_artifacts_staging_dir)
+        FileUtils.mkdir_p(policies_staging_dir)
+        FileUtils.mkdir_p(policy_groups_staging_dir)
       end
 
       def copy_cookbooks
@@ -151,14 +153,13 @@ module ChefDK
       end
 
       def copy_cookbook(lock)
-        dirname = "#{lock.name}-#{lock.dotted_decimal_identifier}"
-        export_path = File.join(staging_dir, "cookbooks", dirname)
+        dirname = "#{lock.name}-#{lock.identifier}"
+        export_path = File.join(staging_dir, "cookbook_artifacts", dirname)
         metadata_rb_path = File.join(export_path, "metadata.rb")
         FileUtils.mkdir(export_path) if not File.directory?(export_path)
         copy_unignored_cookbook_files(lock, export_path)
         FileUtils.rm_f(metadata_rb_path)
         metadata = lock.cookbook_version.metadata
-        metadata.version(lock.dotted_decimal_identifier)
 
         metadata_json_path = File.join(export_path, "metadata.json")
 
@@ -191,23 +192,23 @@ module ChefDK
         Chef::Cookbook::Chefignore.new(File.join(cookbook_path, "chefignore"))
       end
 
-      def create_policyfile_data_item
-        lock_data = policyfile_lock.to_lock.dup
+      def create_policyfile_repo_item
+        File.open(policyfile_repo_item_path, "wb+") do |f|
+          f.print(FFI_Yajl::Encoder.encode(policyfile_lock.to_lock, pretty: true ))
+        end
+      end
 
-        lock_data["id"] = policy_id
-
-        data_item = {
-          "id" => policy_id,
-          "name" => "data_bag_item_policyfiles_#{policy_id}",
-          "data_bag" => "policyfiles",
-          "raw_data" => lock_data,
-          # we'd prefer to leave this out, but the "compatibility mode"
-          # implementation in chef-client relies on magical class inflation
-          "json_class" => "Chef::DataBagItem"
+      def create_policy_group_repo_item
+        data = {
+          "policies" => {
+            policyfile_lock.name => {
+              "revision_id" => policyfile_lock.revision_id
+            }
+          }
         }
 
-        File.open(item_path, "wb+") do |f|
-          f.print(FFI_Yajl::Encoder.encode(data_item, pretty: true ))
+        File.open(policy_group_repo_item_path, "wb+") do |f|
+          f.print(FFI_Yajl::Encoder.encode(data, pretty: true ))
         end
       end
 
@@ -227,13 +228,11 @@ module ChefDK
 # chef-client -c client.rb -z
 #
 
-use_policyfile true
+policy_name '#{policy_name}'
+policy_group 'local'
 
-# compatibility mode settings are used because chef-zero doesn't yet support
-# native mode:
-deployment_group '#{policy_name}-local'
-versioned_cookbooks true
-policy_document_native_api false
+use_policyfile true
+policy_document_native_api true
 
 CONFIG
         end
@@ -242,12 +241,13 @@ CONFIG
       def mv_staged_repo
         # If we got here, either these dirs are empty/don't exist or force is
         # set to true.
-        FileUtils.rm_rf(cookbooks_dir)
-        FileUtils.rm_rf(policyfiles_data_bag_dir)
+        FileUtils.rm_rf(cookbook_artifacts_dir)
+        FileUtils.rm_rf(policies_dir)
+        FileUtils.rm_rf(policy_groups_dir)
 
-        FileUtils.mv(cookbooks_staging_dir, export_dir)
-        FileUtils.mkdir_p(export_data_bag_dir)
-        FileUtils.mv(policyfiles_data_bag_staging_dir, export_data_bag_dir)
+        FileUtils.mv(cookbook_artifacts_staging_dir, export_dir)
+        FileUtils.mv(policies_staging_dir, export_dir)
+        FileUtils.mv(policy_groups_staging_dir, export_dir)
         FileUtils.mv(lockfile_staging_path, export_dir)
         FileUtils.mv(client_rb_staging_path, export_dir)
       end
@@ -288,37 +288,43 @@ CONFIG
       end
 
       def conflicting_fs_entries
-        Dir.glob(File.join(cookbooks_dir, "*")) +
-          Dir.glob(File.join(policyfiles_data_bag_dir, "*")) +
+        Dir.glob(File.join(cookbook_artifacts_dir, "*")) +
+          Dir.glob(File.join(policies_dir, "*")) +
+          Dir.glob(File.join(policy_groups_dir, "*")) +
           Dir.glob(File.join(export_dir, "Policyfile.lock.json"))
       end
 
-      def cookbooks_dir
-        File.join(export_dir, "cookbooks")
+      def cookbook_artifacts_dir
+        File.join(export_dir, "cookbook_artifacts")
       end
 
-      def export_data_bag_dir
-        File.join(export_dir, "data_bags")
+      def policies_dir
+        File.join(export_dir, "policies")
       end
 
-      def policyfiles_data_bag_dir
-        File.join(export_data_bag_dir, "policyfiles")
+      def policy_groups_dir
+        File.join(export_dir, "policy_groups")
       end
 
-      def policy_id
-        "#{policyfile_lock.name}-#{POLICY_GROUP}"
+      def policyfile_repo_item_path
+        basename = "#{policyfile_lock.name}-#{policyfile_lock.revision_id}"
+        File.join(staging_dir, "policies", "#{basename}.json")
       end
 
-      def item_path
-        File.join(staging_dir, "data_bags", "policyfiles", "#{policy_id}.json")
+      def policy_group_repo_item_path
+        File.join(staging_dir, "policy_groups", "local.json")
       end
 
-      def cookbooks_staging_dir
-        File.join(staging_dir, "cookbooks")
+      def cookbook_artifacts_staging_dir
+        File.join(staging_dir, "cookbook_artifacts")
       end
 
-      def policyfiles_data_bag_staging_dir
-        File.join(staging_dir, "data_bags", "policyfiles")
+      def policies_staging_dir
+        File.join(staging_dir, "policies")
+      end
+
+      def policy_groups_staging_dir
+        File.join(staging_dir, "policy_groups")
       end
 
       def lockfile_staging_path

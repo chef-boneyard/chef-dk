@@ -106,9 +106,12 @@ describe ChefDK::PolicyfileServices::ExportRepo do
 
       let(:local_cookbook_path) { File.join(fixtures_path, "local_path_cookbooks/local-cookbook") }
 
+      let(:revision_id) { "60e5ad638dce219d8f87d589463ec4a9884007ba5e2adbb4c0a7021d67204f1a" }
+
       let(:lockfile_content) do
         <<-E
 {
+  "revision_id": "#{revision_id}",
   "name": "install-example",
   "run_list": [
     "recipe[local-cookbook::default]"
@@ -212,9 +215,9 @@ E
             expected << Pathname.new("metadata.json")
           end
 
-          let(:cookbook_with_version) { "local-cookbook-70567763561641081.489844270461035.258281553147148" }
+          let(:cookbook_with_version) { "local-cookbook-fab501cfaf747901bd82c1bc706beae7dc3a350c" }
 
-          let(:exported_cookbook_root) { Pathname.new(File.join(export_dir, "cookbooks", cookbook_with_version)) }
+          let(:exported_cookbook_root) { Pathname.new(File.join(export_dir, "cookbook_artifacts", cookbook_with_version)) }
 
           let(:expected_files) do
             expected_files_relative.map do |file_rel_path|
@@ -228,20 +231,28 @@ E
             end
           end
 
-          # This behavior does two things:
-          # * ensures that Chef Zero uses our hacked version number
-          # * works around external dependencies (e.g., using `git` in backticks)
-          #   in metadata.rb issue
+          # Using JSON form of metadata ensures that we don't rely on anything
+          # in the ruby code in metadata.rb; commonly folks will do things like
+          # shell out to git for the version number, etc.
           it "writes metadata.json in the exported cookbook, removing metadata.rb" do
             metadata_json_path = File.join(exported_cookbook_root, "metadata.json")
             metadata_json = FFI_Yajl::Parser.parse(IO.read(metadata_json_path))
-            expect(metadata_json["version"]).to eq("70567763561641081.489844270461035.258281553147148")
+            expect(metadata_json["version"]).to eq("2.3.4")
           end
 
-          it "copies the policyfile lock in data item format to data_bags/policyfiles" do
-            data_bag_item_path = File.join(export_dir, "data_bags", "policyfiles", "install-example-local.json")
-            data_item_json = FFI_Yajl::Parser.parse(IO.read(data_bag_item_path))
-            expect(data_item_json["id"]).to eq("install-example-local")
+          it "copies the policyfile lock to policies/POLICY_NAME.json" do
+            exported_policy_path = File.join(export_dir, "policies", "install-example-#{revision_id}.json")
+            exported_policy_json = IO.read(exported_policy_path)
+            expect(exported_policy_json).to eq(FFI_Yajl::Encoder.encode(export_service.policyfile_lock.to_lock, pretty: true))
+          end
+
+          it "creates a policy_group file for the local policy group with the revision id of the exported policy" do
+            exported_policy_group_path = File.join(export_dir, "policy_groups", "local.json")
+            exported_policy_group_data = FFI_Yajl::Parser.parse(IO.read(exported_policy_group_path))
+
+            expected_data = { "policies" => { "install-example" => { "revision_id" => revision_id } } }
+
+            expect(exported_policy_group_data).to eq(expected_data)
           end
 
           it "copies the policyfile lock in standard format to Policyfile.lock.json" do
@@ -265,13 +276,11 @@ E
 # chef-client -c client.rb -z
 #
 
-use_policyfile true
+policy_name 'install-example'
+policy_group 'local'
 
-# compatibility mode settings are used because chef-zero doesn't yet support
-# native mode:
-deployment_group 'install-example-local'
-versioned_cookbooks true
-policy_document_native_api false
+use_policyfile true
+policy_document_native_api true
 
 CONFIG
             config_path = File.join(export_dir, "client.rb")
@@ -320,8 +329,9 @@ CONFIG
             expect(File).to exist(file_in_export_dir)
             expect(File).to exist(extra_data_bag_item)
 
-            expect(File).to be_directory(File.join(export_dir, "cookbooks"))
-            expect(File).to be_directory(File.join(export_dir, "data_bags"))
+            expect(File).to be_directory(File.join(export_dir, "cookbook_artifacts"))
+            expect(File).to be_directory(File.join(export_dir, "policies"))
+            expect(File).to be_directory(File.join(export_dir, "policy_groups"))
           end
 
           include_examples "successful_export"
@@ -332,32 +342,39 @@ CONFIG
 
           let(:non_conflicting_file_in_export_dir) { File.join(export_dir, "some_random_cruft") }
 
-          let(:cookbooks_dir) { File.join(export_dir, "cookbooks") }
+          let(:cookbook_artifacts_dir) { File.join(export_dir, "cookbook_artifacts") }
 
-          let(:file_in_cookbooks_dir) { File.join(cookbooks_dir, "some_random_cruft") }
+          let(:file_in_cookbook_artifacts_dir) { File.join(cookbook_artifacts_dir, "some_random_cruft") }
 
-          let(:policyfiles_data_bag_dir) { File.join(export_dir, "data_bags", "policyfiles") }
+          let(:policies_dir) { File.join(export_dir, "policies") }
 
-          let(:extra_policyfile_data_item) { File.join(policyfiles_data_bag_dir, "leftover-policy.json") }
+          let(:policy_groups_dir) { File.join(export_dir, "policy_groups") }
+
+          let(:extra_policy_item) { File.join(policies_dir, "leftover-policy.json") }
+
+          let(:extra_policy_group_item) { File.join(policy_groups_dir, "leftover-policy-group.json") }
 
           let(:conflicting_policyfile_lock) { File.join(export_dir, "Policyfile.lock.json") }
 
           before do
             FileUtils.mkdir_p(export_dir)
-            FileUtils.mkdir_p(cookbooks_dir)
-            FileUtils.mkdir_p(policyfiles_data_bag_dir)
+            FileUtils.mkdir_p(cookbook_artifacts_dir)
+            FileUtils.mkdir_p(policies_dir)
+            FileUtils.mkdir_p(policy_groups_dir)
             File.open(non_conflicting_file_in_export_dir, "wb+") { |f| f.print "some random cruft" }
-            File.open(file_in_cookbooks_dir, "wb+") { |f| f.print "some random cruft" }
-            File.open(extra_policyfile_data_item, "wb+") { |f| f.print "some random cruft" }
+            File.open(file_in_cookbook_artifacts_dir, "wb+") { |f| f.print "some random cruft" }
+            File.open(extra_policy_item, "wb+") { |f| f.print "some random cruft" }
+            File.open(extra_policy_group_item, "wb+") { |f| f.print "some random cruft" }
             File.open(conflicting_policyfile_lock, "wb+") { |f| f.print "some random cruft" }
           end
 
           it "raises a PolicyfileExportRepoError" do
-            message = "Export dir (#{export_dir}) not clean. Refusing to export. (Conflicting files: #{file_in_cookbooks_dir}, #{extra_policyfile_data_item}, #{conflicting_policyfile_lock})"
+            message = "Export dir (#{export_dir}) not clean. Refusing to export. (Conflicting files: #{file_in_cookbook_artifacts_dir}, #{extra_policy_item}, #{extra_policy_group_item}, #{conflicting_policyfile_lock})"
             expect { export_service.run }.to raise_error(ChefDK::ExportDirNotEmpty, message)
             expect(File).to exist(non_conflicting_file_in_export_dir)
-            expect(File).to exist(file_in_cookbooks_dir)
-            expect(File).to exist(extra_policyfile_data_item)
+            expect(File).to exist(file_in_cookbook_artifacts_dir)
+            expect(File).to exist(extra_policy_item)
+            expect(File).to exist(extra_policy_group_item)
           end
 
           context "and the force option is set" do
@@ -367,13 +384,15 @@ CONFIG
             it "clears the export dir and exports" do
               export_service.run
 
-              expect(File).to_not exist(file_in_cookbooks_dir)
-              expect(File).to_not exist(extra_policyfile_data_item)
+              expect(File).to_not exist(file_in_cookbook_artifacts_dir)
+              expect(File).to_not exist(extra_policy_item)
+              expect(File).to_not exist(extra_policy_group_item)
 
               expect(File).to exist(non_conflicting_file_in_export_dir)
 
-              expect(File).to be_directory(File.join(export_dir, "cookbooks"))
-              expect(File).to be_directory(File.join(export_dir, "data_bags"))
+              expect(File).to be_directory(File.join(export_dir, "cookbook_artifacts"))
+              expect(File).to be_directory(File.join(export_dir, "policies"))
+              expect(File).to be_directory(File.join(export_dir, "policy_groups"))
             end
 
           end
