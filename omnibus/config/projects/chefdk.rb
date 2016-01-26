@@ -40,7 +40,7 @@ override :'kitchen-inspec', version: "v0.10.0"
 # We should do a gem release of berkshelf and TK
 # before releasing chefdk.
 # Tyler's master branch pins TK to master
-override :berkshelf,        version: "master", source: { git: "git://github.com/tyler-ball/berkshelf" }
+override :berkshelf,        version: "master"
 override :'test-kitchen',   version: "master"
 
 override :'knife-windows', version: "v1.1.1"
