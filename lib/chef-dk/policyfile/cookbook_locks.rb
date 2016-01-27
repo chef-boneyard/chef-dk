@@ -446,7 +446,7 @@ module ChefDK
       # So the cookbook will be located in a path like:
       #   cookbooks/nginx-111.222.333
       def cookbook_path
-        File.join(relative_paths_root, "cookbooks", "#{name}-#{dotted_decimal_identifier}")
+        File.join(relative_paths_root, "cookbook_artifacts", "#{name}-#{identifier}")
       end
 
       # We trust that archived cookbooks haven't been modified, so just return

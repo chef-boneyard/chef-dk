@@ -221,7 +221,7 @@ E
 
       end
 
-      context "when the archive has no cookbooks/ directory" do
+      context "when the archive has no cookbook_artifacts/ directory" do
 
         let(:archive_files) { [ FileToTar.new("Policyfile.lock.json", "") ] }
 
@@ -229,14 +229,14 @@ E
           expect(exception).to_not be_nil
           expect(exception.message).to eq("Failed to publish archived policy")
           expect(exception_cause).to be_a(ChefDK::InvalidPolicyArchive)
-          expect(exception_cause.message).to eq("Archive does not contain a cookbooks directory")
+          expect(exception_cause.message).to eq("Archive does not contain a cookbook_artifacts directory")
         end
 
       end
 
       context "when the archive has the correct files but the lockfile is invalid" do
 
-        let(:archive_dirs) { ["cookbooks"] }
+        let(:archive_dirs) { ["cookbook_artifacts"] }
 
         let(:archive_files) { [ FileToTar.new("Policyfile.lock.json", lockfile_content) ] }
 
@@ -290,18 +290,18 @@ E
 
     let(:cookbook_name) { "local-cookbook" }
 
-    let(:dotted_decimal_identifier) { "70567763561641081.489844270461035.258281553147148" }
+    let(:identifier) { "fab501cfaf747901bd82c1bc706beae7dc3a350c" }
 
-    let(:cookbook_dir) { File.join("cookbooks", "#{cookbook_name}-#{dotted_decimal_identifier}") }
+    let(:cookbook_artifact_dir) { File.join("cookbook_artifacts", "#{cookbook_name}-#{identifier}") }
 
-    let(:recipes_dir) { File.join(cookbook_dir, "recipes") }
+    let(:recipes_dir) { File.join(cookbook_artifact_dir, "recipes") }
 
-    let(:archive_dirs) { ["cookbooks", cookbook_dir, recipes_dir] }
+    let(:archive_dirs) { ["cookbook_artifacts", cookbook_artifact_dir, recipes_dir] }
 
     let(:archive_files) do
       [
         FileToTar.new("Policyfile.lock.json", lockfile_content),
-        FileToTar.new(File.join(cookbook_dir, "metadata.rb"), "name 'local-cookbook'"),
+        FileToTar.new(File.join(cookbook_artifact_dir, "metadata.rb"), "name 'local-cookbook'"),
         FileToTar.new(File.join(recipes_dir, "default.rb"), "puts 'hello'")
       ]
     end

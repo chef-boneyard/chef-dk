@@ -90,8 +90,8 @@ module ChefDK
           raise InvalidPolicyArchive, "Archive does not contain a Policyfile.lock.json"
         end
 
-        unless File.directory?(File.join(staging_dir, "cookbooks"))
-          raise InvalidPolicyArchive, "Archive does not contain a cookbooks directory"
+        unless File.directory?(File.join(staging_dir, "cookbook_artifacts"))
+          raise InvalidPolicyArchive, "Archive does not contain a cookbook_artifacts directory"
         end
 
 

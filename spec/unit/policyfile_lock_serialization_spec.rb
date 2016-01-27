@@ -412,7 +412,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
       cb_foo = locks["foo"]
       expect(cb_foo).to be_a(ChefDK::Policyfile::ArchivedCookbook)
 
-      expected_path = File.join(storage_config.relative_paths_root, "cookbooks", "foo-111.222.333")
+      expected_path = File.join(storage_config.relative_paths_root, "cookbook_artifacts", "foo-68c13b136a49b4e66cfe9d8aa2b5a85167b5bf9b")
 
       expect(cb_foo.cookbook_path).to eq(expected_path)
       expect(cb_foo.dotted_decimal_identifier).to eq("111.222.333")

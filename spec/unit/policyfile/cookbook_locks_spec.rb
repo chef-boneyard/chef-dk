@@ -468,7 +468,7 @@ describe ChefDK::Policyfile::ArchivedCookbook do
     described_class.new(wrapped_cookbook_lock, storage_config)
   end
 
-  let(:archived_cookbook_path) { File.join(storage_config.relative_paths_root, "cookbooks", "nginx-111.222.333") }
+  let(:archived_cookbook_path) { File.join(storage_config.relative_paths_root, "cookbook_artifacts", "nginx-abc123") }
 
   it "sets cookbook_path to the path within the archive" do
     expect(cookbook_lock.cookbook_path).to eq(archived_cookbook_path)
