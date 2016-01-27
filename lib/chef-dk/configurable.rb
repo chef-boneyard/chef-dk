@@ -61,5 +61,9 @@ module ChefDK
     def generator_config
       chefdk_config.generator
     end
+
+    def knife_config
+      chef_config.knife
+    end
   end
 end
