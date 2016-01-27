@@ -34,9 +34,9 @@ class Chef::Config
 
     config_context(:generator) do
       config_strict_mode(true)
-      default(:copyright_holder, 'The Authors')
-      default(:email, 'you@example.com')
-      default(:license, 'all_rights')
+      configurable :copyright_holder
+      configurable :email
+      configurable :license
     end
   end
 end

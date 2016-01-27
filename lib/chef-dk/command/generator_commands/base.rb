@@ -120,9 +120,27 @@ module ChefDK
         # configuration
         #
         def apply_generator_values_from_config
-          config[:copyright_holder] ||= generator_config.copyright_holder
-          config[:email] ||= generator_config.email
-          config[:license] ||= generator_config.license
+          config[:copyright_holder] ||= coerce_generator_copyright_holder
+          config[:email] ||= coerce_generator_email
+          config[:license] ||= coerce_generator_license
+        end
+
+        def coerce_generator_copyright_holder
+          generator_config.copyright_holder ||
+          knife_config.cookbook_copyright ||
+          "The Authors"
+        end
+
+        def coerce_generator_email
+          generator_config.email ||
+          knife_config.cookbook_email ||
+          "you@example.com"
+        end
+
+        def coerce_generator_license
+          generator_config.license ||
+          knife_config.cookbook_license ||
+          "all_rights"
         end
       end
     end
