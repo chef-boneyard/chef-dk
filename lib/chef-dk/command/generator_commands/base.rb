@@ -65,6 +65,7 @@ module ChefDK
 
         # Sets git related generator_context values.
         def setup_context
+          apply_generator_values_from_config
           Generator.add_attr_to_context(:have_git, have_git?)
           Generator.add_attr_to_context(:skip_git_init, false)
           config.each do |k,v|
@@ -115,6 +116,32 @@ module ChefDK
           config[:generator_cookbook] || chefdk_config.generator_cookbook
         end
 
+        # Load any values that were not defined via cli switches from Chef
+        # configuration
+        #
+        def apply_generator_values_from_config
+          config[:copyright_holder] ||= coerce_generator_copyright_holder
+          config[:email] ||= coerce_generator_email
+          config[:license] ||= coerce_generator_license
+        end
+
+        def coerce_generator_copyright_holder
+          generator_config.copyright_holder ||
+          knife_config.cookbook_copyright ||
+          "The Authors"
+        end
+
+        def coerce_generator_email
+          generator_config.email ||
+          knife_config.cookbook_email ||
+          "you@example.com"
+        end
+
+        def coerce_generator_license
+          generator_config.license ||
+          knife_config.cookbook_license ||
+          "all_rights"
+        end
       end
     end
   end

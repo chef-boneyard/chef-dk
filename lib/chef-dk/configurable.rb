@@ -32,6 +32,12 @@ class Chef::Config
 
     default(:generator_cookbook, File.expand_path("../skeletons/code_generator", __FILE__))
 
+    config_context(:generator) do
+      config_strict_mode(true)
+      configurable :copyright_holder
+      configurable :email
+      configurable :license
+    end
   end
 end
 
@@ -52,6 +58,12 @@ module ChefDK
       @config_loader ||= Chef::WorkstationConfigLoader.new(config[:config_file])
     end
 
+    def generator_config
+      chefdk_config.generator
+    end
+
+    def knife_config
+      chef_config.knife
+    end
   end
 end
-
