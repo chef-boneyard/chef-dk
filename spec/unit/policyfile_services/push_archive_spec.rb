@@ -279,6 +279,37 @@ E
           end
 
         end
+
+        # `chef export` previously generated Chef repos designed for
+        # compatibility mode Policyfile usage. We don't intend to be backwards
+        # compatible, but we want to kindly explain what's going on.
+        context "when the archive is in the old format" do
+
+          let(:lockfile_content) { valid_lockfile }
+
+          let(:archive_dirs) { %w{ cookbooks data_bags } }
+
+          let(:archive_files) do
+            [
+              FileToTar.new("Policyfile.lock.json", lockfile_content),
+              FileToTar.new("client.rb", "#content"),
+            ]
+          end
+
+          it "errors out, explaining the compatibility issue" do
+            expect(exception).to_not be_nil
+            expect(exception.message).to eq("Failed to publish archived policy")
+            expect(exception_cause).to be_a(ChefDK::InvalidPolicyArchive)
+
+            msg = <<-MESSAGE
+This archive was created with an older version of ChefDK. This version of
+ChefDK does not support archives in the older format. Re-create the archive
+with a newer version of ChefDK or downgrade ChefDK.
+MESSAGE
+            expect(exception_cause.message).to eq(msg)
+          end
+
+        end
       end
     end
 

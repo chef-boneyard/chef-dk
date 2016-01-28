@@ -86,6 +86,14 @@ module ChefDK
       def read_policyfile_lock(staging_dir)
         policyfile_lock_path = File.join(staging_dir, "Policyfile.lock.json")
 
+        if looks_like_old_format_archive?(staging_dir)
+          raise InvalidPolicyArchive, <<-MESSAGE
+This archive was created with an older version of ChefDK. This version of
+ChefDK does not support archives in the older format. Re-create the archive
+with a newer version of ChefDK or downgrade ChefDK.
+MESSAGE
+        end
+
         unless File.exist?(policyfile_lock_path)
           raise InvalidPolicyArchive, "Archive does not contain a Policyfile.lock.json"
         end
@@ -167,6 +175,27 @@ module ChefDK
         end
       end
 
+      def looks_like_old_format_archive?(staging_dir)
+        cookbooks_dir = File.join(staging_dir, "cookbooks")
+        data_bags_dir = File.join(staging_dir, "data_bags")
+
+        cookbook_artifacts_dir = File.join(staging_dir, "cookbook_artifacts")
+        policies_dir = File.join(staging_dir, "policies")
+        policy_groups_dir = File.join(staging_dir, "policy_groups")
+
+        # Old archives just had these two dirs
+        have_old_dirs = File.exist?(cookbooks_dir) && File.exist?(data_bags_dir)
+
+        # New archives created by `chef export` will have all of these; it's
+        # also possible we'll encounter an "artisanal" archive, which might
+        # only be missing one of these by accident. In that case we want to
+        # trigger a different error than we're detecting here.
+        have_any_new_dirs = File.exist?(cookbook_artifacts_dir) ||
+          File.exist?(policies_dir) ||
+          File.exist?(policy_groups_dir)
+
+        have_old_dirs && !have_any_new_dirs
+      end
 
     end
   end
