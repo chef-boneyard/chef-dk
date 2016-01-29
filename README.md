@@ -240,7 +240,9 @@ echo 'eval (chef shell-init SHELL_NAME)' >> ~/.config/fish/config.fish
 
 ### Mac OS X
 
-You can uninstall Chef Development Kit on Mac using below commands:
+You can uninstall Chef Development Kit on Mac using the below commands.
+
+First, remove the main package files:
 
 ```sh
 # Remove the installed files
@@ -248,9 +250,22 @@ sudo rm -rf /opt/chefdk
 
 # Remove the system installation entry
 sudo pkgutil --forget com.getchef.pkg.chefdk
+```
 
-# Remove the symlinks under /usr/bin for Chef Development Kit
+Next, remove the symlinks which the Chef Development Kit installs. The location for these differs based on your OS X version.
+
+Pre-El Capitan:
+
+```sh
+# Symlinks are in /usr/bin
 ls -la /usr/bin | egrep '/opt/chefdk' | awk '{ print $9 }' | sudo xargs -I % rm -f /usr/bin/%
+```
+
+Post-El Capitan:
+
+```sh
+# Symlinks are in /usr/local/bin
+ls -la /usr/local/bin | egrep '/opt/chefdk' | awk '{ print $9 }' | sudo xargs -I % rm -f /usr/local/bin/%
 ```
 
 ### Windows
