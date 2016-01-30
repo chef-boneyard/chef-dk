@@ -19,12 +19,7 @@ name "rubygems-customization"
 
 source path: "#{project.files_path}/#{name}"
 
-if windows?
-  dependency "ruby-windows"
-else
-  dependency "ruby"
-end
-
+dependency "ruby"
 dependency "rubygems"
 
 build do
