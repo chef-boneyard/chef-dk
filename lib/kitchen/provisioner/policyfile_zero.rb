@@ -177,9 +177,9 @@ module Kitchen
 
         data["use_policyfile"] = true
         data["versioned_cookbooks"] = true
-        data["deployment_group"] = "#{policy_exporter.policy_name}-local"
-        # TODO this will need to be updated when chef-zero supports erchef paths (policy_group vs policies)
-        data["policy_document_native_api"] = false
+        data["policy_name"] = policy_exporter.policy_name
+        data["policy_group"] = "local"
+        data["policy_document_native_api"] = true
 
         info("Preparing client.rb")
         debug("Creating client.rb from #{data.inspect}")
