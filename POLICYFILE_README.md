@@ -302,15 +302,21 @@ override["same"]["with"] = "overrides"
 
 ChefDK includes a Test Kitchen provisioner, which allows you to converge
 VMs using Chef Client in policyfile mode, using Chef Zero to serve
-cookbook data. Add the following to your `.kitchen.yml`:
+cookbook data.
+
+As of ChefDK 0.11, you need to install Chef Client 12.7 in order for
+Chef Client to correctly converge in the VM. As of this writing, Chef
+12.7 is not yet released, so you will need to configure kitchen to pull
+builds from the 'current' channel, as shown in the example:
+
+Add the following to your `.kitchen.yml`:
 
 ```yaml
 provisioner:
   name: policyfile_zero
-  # This line upgrades you to the latest version of Chef. It's not
-  # strictly necessary, you should be able to use this with any version
-  # of Chef 12.x.
-  require_chef_omnibus: true
+  # Chef 12.7 is required but isn't yet released. You can install builds
+  # from the current channel to get a 12.7 "prerelease" build.
+  chef_omnibus_install_options: -c current
 ```
 
 #### Using Named Run Lists With Kitchen
