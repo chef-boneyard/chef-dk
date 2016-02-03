@@ -227,7 +227,7 @@ module ChefDK
 # The settings in this file will configure chef to apply the exported policy in
 # this directory. To use it, run:
 #
-# chef-client -c client.rb -z
+# chef-client -z
 #
 
 policy_name '#{policy_name}'
@@ -302,6 +302,7 @@ README
         FileUtils.rm_rf(cookbook_artifacts_dir)
         FileUtils.rm_rf(policies_dir)
         FileUtils.rm_rf(policy_groups_dir)
+        FileUtils.rm_rf(dot_chef_dir)
 
         FileUtils.mv(cookbook_artifacts_staging_dir, export_dir)
         FileUtils.mv(policies_staging_dir, export_dir)
@@ -363,6 +364,10 @@ README
 
       def policy_groups_dir
         File.join(export_dir, "policy_groups")
+      end
+
+      def dot_chef_dir
+        File.join(export_dir, ".chef")
       end
 
       def policyfile_repo_item_path

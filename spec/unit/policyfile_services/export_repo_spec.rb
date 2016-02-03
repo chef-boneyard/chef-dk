@@ -273,7 +273,7 @@ E
 # The settings in this file will configure chef to apply the exported policy in
 # this directory. To use it, run:
 #
-# chef-client -c client.rb -z
+# chef-client -z
 #
 
 policy_name 'install-example'

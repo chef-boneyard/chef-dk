@@ -128,6 +128,17 @@ describe ChefDK::Command::Export do
       it "returns 0" do
         expect(command.run(params)).to eq(0)
       end
+
+      it "prints instructions for running chef-client in the repo" do
+        command.run(params)
+
+        expected_message = <<-MESSAGE
+To converge this system with the exported policy, run:
+  cd /path/to/export
+  chef-client -z
+MESSAGE
+        expect(ui.output).to include(expected_message)
+      end
     end
 
     context "when the command is unsuccessful" do
