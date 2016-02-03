@@ -88,6 +88,8 @@ module ChefDK
 
         if looks_like_old_format_archive?(staging_dir)
           raise InvalidPolicyArchive, <<-MESSAGE
+This archive is in an unsupported format.
+
 This archive was created with an older version of ChefDK. This version of
 ChefDK does not support archives in the older format. Re-create the archive
 with a newer version of ChefDK or downgrade ChefDK.
