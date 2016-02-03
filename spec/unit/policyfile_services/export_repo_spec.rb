@@ -289,7 +289,7 @@ unless Gem::Requirement.new(">= 12.7").satisfied_by?(current_version)
   puts("!" * 80)
   puts(<<-MESSAGE)
 This Chef Repo requires features introduced in Chef 12.7, but you are using
-Chef 12.7.0. Please upgrade to Chef 12.7 or later.
+Chef \#{Chef::VERSION}. Please upgrade to Chef 12.7 or later.
 MESSAGE
   puts("!" * 80)
   exit!(1)
