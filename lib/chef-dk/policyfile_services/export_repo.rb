@@ -101,6 +101,7 @@ module ChefDK
           create_policy_group_repo_item
           copy_policyfile_lock
           create_client_rb
+          create_readme_md
           if archive?
             create_archive
           else
@@ -252,6 +253,49 @@ CONFIG
         end
       end
 
+      def create_readme_md
+        File.open(readme_staging_path, "wb+") do |f|
+          f.print( <<-README )
+# Exported Chef Repository for Policy '#{policy_name}'
+
+Policy revision: #{policyfile_lock.revision_id}
+
+This directory contains all the cookbooks and configuration necessary for Chef
+to converge a system using this exported policy. To converge a system with the
+exported policy, use a privileged account to run `chef-client -z` from the
+directory containing the exported policy.
+
+## Contents:
+
+### Policyfile.lock.json
+
+A copy of the exported policy, used by the `chef push-archive` command.
+
+### .chef/config.rb
+
+A configuration file for Chef Client. This file configures Chef Client to use
+the correct `policy_name` and `policy_group` for this exported repository. Chef
+Client will use this configuration automatically if you've set your working
+directory properly.
+
+### cookbook_artifacts/
+
+All of the cookbooks required by the policy will be stored in this directory.
+
+### policies/
+
+A different copy of the exported policy, used by the `chef-client` command.
+
+### policy_groups/
+
+Policy groups are used by Chef Server to manage multiple revisions of the same
+policy. However, exported policies contain only a single policy revision, so
+this policy group name is hardcoded to "local" and should not be changed.
+
+README
+        end
+      end
+
       def mv_staged_repo
         # If we got here, either these dirs are empty/don't exist or force is
         # set to true.
@@ -264,6 +308,7 @@ CONFIG
         FileUtils.mv(policy_groups_staging_dir, export_dir)
         FileUtils.mv(lockfile_staging_path, export_dir)
         FileUtils.mv(dot_chef_staging_dir, export_dir)
+        FileUtils.mv(readme_staging_path, export_dir)
       end
 
       def validate_lockfile
@@ -351,6 +396,10 @@ CONFIG
 
       def client_rb_staging_path
         File.join(dot_chef_staging_dir, "config.rb")
+      end
+
+      def readme_staging_path
+        File.join(staging_dir, "README.md")
       end
 
     end

@@ -301,6 +301,11 @@ CONFIG
             expect(IO.read(config_path)).to eq(expected_config_text)
           end
 
+          it "generates a README.md in the exported repo" do
+            readme_path = File.join(export_dir, "README.md")
+            expect(File).to exist(readme_path)
+          end
+
         end
 
         context "when the export dir is empty" do
