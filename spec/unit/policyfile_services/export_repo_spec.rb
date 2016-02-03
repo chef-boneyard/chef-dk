@@ -296,7 +296,7 @@ MESSAGE
 end
 
 CONFIG
-            config_path = File.join(export_dir, "client.rb")
+            config_path = File.join(export_dir, ".chef", "config.rb")
             expect(File).to exist(config_path)
             expect(IO.read(config_path)).to eq(expected_config_text)
           end

@@ -141,6 +141,7 @@ module ChefDK
 
       def create_repo_structure
         FileUtils.mkdir_p(export_dir)
+        FileUtils.mkdir_p(dot_chef_staging_dir)
         FileUtils.mkdir_p(cookbook_artifacts_staging_dir)
         FileUtils.mkdir_p(policies_staging_dir)
         FileUtils.mkdir_p(policy_groups_staging_dir)
@@ -262,7 +263,7 @@ CONFIG
         FileUtils.mv(policies_staging_dir, export_dir)
         FileUtils.mv(policy_groups_staging_dir, export_dir)
         FileUtils.mv(lockfile_staging_path, export_dir)
-        FileUtils.mv(client_rb_staging_path, export_dir)
+        FileUtils.mv(dot_chef_staging_dir, export_dir)
       end
 
       def validate_lockfile
@@ -328,6 +329,10 @@ CONFIG
         File.join(staging_dir, "policy_groups", "local.json")
       end
 
+      def dot_chef_staging_dir
+        File.join(staging_dir, ".chef")
+      end
+
       def cookbook_artifacts_staging_dir
         File.join(staging_dir, "cookbook_artifacts")
       end
@@ -345,7 +350,7 @@ CONFIG
       end
 
       def client_rb_staging_path
-        File.join(staging_dir, "client.rb")
+        File.join(dot_chef_staging_dir, "config.rb")
       end
 
     end
