@@ -48,7 +48,9 @@ override :'knife-spork',   version: "master"
 override :fauxhai,         version: "master"
 override :chefspec,        version: "v4.5.0"
 
-override :bundler,        version: "1.10.6"
+override :bundler,      version: "1.11.2"
+override :rubygems,     version: "2.5.2"
+
 override :'chef-vault',   version: "v2.6.1"
 
 # TODO: Can we bump default versions in omnibus-software?
@@ -64,16 +66,6 @@ if windows?
   end
 else
   override :ruby,           version: "2.1.6"
-end
-
-######
-# This points to jay's patched version for now to avoid a security
-# vulnerability and to allow pry to get installed on windows builds.
-# See the software definition for details.
-if windows?
-  override :rubygems,     version: "jdm/2.4.8-patched"
-else
-  override :rubygems,     version: "2.4.8"
 end
 
 override :rubocop, version: "v0.35.1"
