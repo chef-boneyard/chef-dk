@@ -40,7 +40,7 @@ machine with:
 
 See our detailed README for more information:
 
-https://github.com/opscode/chef-dk/blob/master/POLICYFILE_README.md
+https://github.com/chef/chef-dk/blob/master/POLICYFILE_README.md
 
 Options:
 

@@ -586,7 +586,7 @@ REVISION_STRING
 
         p.cached_cookbook("baz") do |cb|
           cb.cache_key = "baz-f59ee7a5bca6a4e606b67f7f856b768d847c39bb"
-          cb.origin = "git://github.com/opscode-cookbooks/bar.git"
+          cb.origin = "git://github.com/chef-cookbooks/bar.git"
         end
 
         p.cached_cookbook("dep_of_bar") do |cb|
@@ -659,7 +659,7 @@ REVISION_STRING
             "identifier"=> cookbook_baz_cksum,
             "dotted_decimal_identifier" => cookbook_baz_cksum_dotted,
             "cache_key" => "baz-f59ee7a5bca6a4e606b67f7f856b768d847c39bb",
-            "origin" => "git://github.com/opscode-cookbooks/bar.git",
+            "origin" => "git://github.com/chef-cookbooks/bar.git",
             "source_options" => nil
           },
 
