@@ -68,7 +68,7 @@ else
   override :ruby,           version: "2.1.6"
 end
 
-override :rubocop, version: "v0.35.1"
+override :rubocop, version: "v0.37.0"
 
 override :'kitchen-vagrant', version: "v0.19.0"
 override :'winrm-transport', version: "v1.0.3"
@@ -80,10 +80,10 @@ override :zlib,           version: "1.2.8"
 # TODO delete this when chef-provisioning is released and go back
 # to managing the dependency through chef-dk gemspec
 override :'chef-provisioning', version: "master"
-override :'chef-provisioning-aws', version: "v1.7.0"
-override :'chef-provisioning-azure', version: "v0.4.0"
-override :'chef-provisioning-fog', version: "v0.15.0"
-override :'chef-provisioning-vagrant', version: "v0.10.0"
+override :'chef-provisioning-aws', version: "v1.8.0"
+override :'chef-provisioning-azure', version: "v0.5.0"
+override :'chef-provisioning-fog', version: "v0.16.0"
+override :'chef-provisioning-vagrant', version: "v0.11.0"
 
 dependency "preparation"
 dependency "chefdk"
