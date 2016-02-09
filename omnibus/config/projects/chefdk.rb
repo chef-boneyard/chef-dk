@@ -20,7 +20,8 @@ maintainer "Chef Software, Inc. <maintainers@chef.io>"
 homepage "https://www.chef.io"
 
 build_iteration 1
-build_version '0.10.0'
+require_relative "../../../lib/chef-dk/version"
+build_version ChefDK::Version
 
 if windows?
   # NOTE: Ruby DevKit fundamentally CANNOT be installed into "Program Files"

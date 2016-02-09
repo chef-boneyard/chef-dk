@@ -53,6 +53,8 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "chef-provisioning", "~> 1.2"
 
+  gem.add_development_dependency "github_changelog_generator"
+
   %w(rspec-core rspec-expectations rspec-mocks).each do |dev_gem|
     gem.add_development_dependency dev_gem, "~> 3.0"
   end
