@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Set up a custom tmpdir, and clean it up before and after the tests
+TMPDIR="${TMPDIR:-/tmp}/cheftest"
+export TMPDIR
+rm -rf $TMPDIR
+mkdir -p $TMPDIR
+
 export PATH=/opt/chefdk/bin:$PATH
 
 # Ensure the calling environment (disapproval look Bundler) does not
@@ -20,3 +26,6 @@ do
 done
 
 sudo chef verify --unit
+
+# Clean up the tmpdir at the end for good measure.
+rm -rf $TMPDIR

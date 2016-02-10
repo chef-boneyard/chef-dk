@@ -3,6 +3,13 @@
 
 cd C:\opscode\chefdk\bin
 
+REM ; Set the temporary directory to a custom location, and wipe it before
+REM ; and after the tests run.
+SET TEMP=%TEMP%\cheftest
+SET TMP=%TMP%\cheftest
+RMDIR /S /Q %TEMP%
+MKDIR %TEMP%
+
 ECHO(
 
 FOR %%b IN (
@@ -30,3 +37,6 @@ FOR %%b IN (
 )
 
 chef verify
+
+REM ; Destroy everything at the end for good measure.
+RMDIR /S /Q %TEMP%
