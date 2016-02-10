@@ -21,7 +21,7 @@ homepage "https://www.chef.io"
 
 build_iteration 1
 require_relative "../../../lib/chef-dk/version"
-build_version ChefDK::Version
+build_version ChefDK::VERSION
 
 if windows?
   # NOTE: Ruby DevKit fundamentally CANNOT be installed into "Program Files"
