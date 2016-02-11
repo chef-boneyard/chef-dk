@@ -41,6 +41,19 @@
                  Sequence="execute"
                  Before="FastUnzip" />
 
+    <Property Id="POWERSHELLEXE">
+      <RegistrySearch Id="POWERSHELLEXE"
+                      Type="raw"
+                      Root="HKLM"
+                      Key="SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell"
+                      Name="Path" />
+    </Property>
+
+    <SetProperty Id="ElevateShellShortcuts"
+                 Value="&quot;[POWERSHELLEXE]&quot; -NoLogo -NonInteractive -InputFormat None -NoProfile -ExecutionPolicy Bypass -File [#ElevateScriptPS1]"
+                 Sequence="execute"
+                 Before="ElevateShellShortcuts" />
+
     <CustomAction Id="FastUnzip"
                   BinaryKey="CustomActionFastMsiDLL"
                   DllEntry="FastUnzip"
@@ -57,10 +70,18 @@
                   Execute="deferred"
                   Impersonate="no"
                   Return="ignore" />
+ 
+    <CustomAction Id="ElevateShellShortcuts"
+                  BinaryKey="WixCA"
+                  DllEntry="CAQuietExec64"
+                  Execute="deferred"
+                  Return="check"
+                  Impersonate="no" />
 
     <InstallExecuteSequence>
       <Custom Action="FastUnzip" After="InstallFiles">NOT Installed</Custom>
       <Custom Action="Cleanup" After="RemoveFiles">REMOVE~="ALL"</Custom>
+      <Custom Action="ElevateShellShortcuts" After="CreateShortcuts">NOT Installed</Custom>
     </InstallExecuteSequence>
 
     <UI>
@@ -82,6 +103,9 @@
               </Component>
               <Component Id="StartChefDk" Guid="{A8378BA1-85D7-4F11-B1C0-52BF84B4730A}" >
                 <File Id="StartChefDkScript" Source="Resources\assets\start-chefdk.ps1" KeyPath="yes" />
+              </Component>
+              <Component Id="ElevateStartChefDk" Guid="{943d3808-69db-41b9-8e47-8729f0794177}" >
+                <File Id="ElevateScriptPS1" Source="Resources\assets\Set-ElevatedDkShortcut.ps1" />
               </Component>
             </Directory>
             <Directory Id="PSMODULES" Name="modules" >
@@ -108,7 +132,7 @@
                     Name="!(loc.ChefDkShortcutDefName)"
                     Description="!(loc.ChefDkShortcutDefDescription)"
                     Target="[WindowsFolder]\System32\WindowsPowerShell\v1.0\powershell.exe"
-                    Arguments="-ExecutionPolicy Bypass -File [#StartChefDkScript]"
+                    Arguments="-ExecutionPolicy Bypass -NoExit -File [#StartChefDkScript]"
                     Icon="oc.ico"/>
         </Component>
       </Directory>
@@ -119,7 +143,7 @@
                     Name="!(loc.ChefDkShortcutDefName)"
                     Description="!(loc.ChefDkShortcutDefDescription)"
                     Target="[WindowsFolder]\System32\WindowsPowerShell\v1.0\powershell.exe"
-                    Arguments="-ExecutionPolicy Bypass -File [#StartChefDkScript]"
+                    Arguments="-ExecutionPolicy Bypass -NoExit -File [#StartChefDkScript]"
                     Icon="oc.ico"/>
         </Component>
       </Directory>
@@ -135,11 +159,13 @@
     <Feature Id="ChefDkStartMenuShortcutFeature" Title="!(loc.FeatureChefDkStartMenuShortcut)" Description="!(loc.FeatureChefDkStartMenuShortcutDescription)" Level="1" AllowAdvertise="no" >
       <ComponentRef Id="StartChefDk" />
       <ComponentRef Id="StartMenuShortcut" />
+      <ComponentRef Id="ElevateStartChefDk" />
     </Feature>
 
     <Feature Id="ChefDkDesktopShortcutFeature" Title="!(loc.FeatureChefDkDesktopShortcut)" Description="!(loc.FeatureChefDkDesktopShortcutDescription)" Level="1" AllowAdvertise="no" >
       <ComponentRef Id="StartChefDk" />
       <ComponentRef Id="DesktopShortcut" />
+      <ComponentRef Id="ElevateStartChefDk" />
     </Feature>
 
     <Feature Id="ChefDkEnvHacks" Title="!(loc.FeatureChefDkEnvHacks)" Description="!(loc.FeatureChefDkEnvHacksDesc)" Level="1000" AllowAdvertise="no">
