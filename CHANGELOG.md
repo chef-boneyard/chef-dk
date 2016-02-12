@@ -1,14 +1,13 @@
 # Change Log
 
-## [0.11.0](https://github.com/chef/chef-dk/tree/0.11.0) (2016-02-09)
+## [0.11.0](https://github.com/chef/chef-dk/tree/0.11.0) (2016-02-12)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.10.0...0.11.0)
 
 **Implemented enhancements:**
 
 - chef-dk 0.7.0 chef Binary Should Support Alternate Config Files [\#518](https://github.com/chef/chef-dk/issues/518)
-- 'man knife' does not work [\#476](https://github.com/chef/chef-dk/issues/476)
 - Local Configuration? [\#473](https://github.com/chef/chef-dk/issues/473)
-- Policyfile should support community as a cookbook source. [\#401](https://github.com/chef/chef-dk/issues/401)
+- elevate windows shortcuts [\#678](https://github.com/chef/chef-dk/pull/678) ([mwrock](https://github.com/mwrock))
 - Update rubocop and chef-provisioning drivers to latest version [\#670](https://github.com/chef/chef-dk/pull/670) ([tas50](https://github.com/tas50))
 - add pry, pry-byebug, pry-remote to chef-dk [\#662](https://github.com/chef/chef-dk/pull/662) ([lamont-granquist](https://github.com/lamont-granquist))
 - Native policy export [\#659](https://github.com/chef/chef-dk/pull/659) ([danielsdeleo](https://github.com/danielsdeleo))
@@ -26,16 +25,13 @@
 - after 'knife rehash' no 'knife download' subcommands available [\#624](https://github.com/chef/chef-dk/issues/624)
 - Kitchen::Provisioner::PolicyfileZero does not respect chefignore [\#612](https://github.com/chef/chef-dk/issues/612)
 - knife validatorless bootstrap + chef-vault Options Bootstrap and Rebootstrap  [\#610](https://github.com/chef/chef-dk/issues/610)
-- undefined method make\_child\_entry [\#598](https://github.com/chef/chef-dk/issues/598)
-- RuboCop version issues in ChefDK 0.10.0 [\#593](https://github.com/chef/chef-dk/issues/593)
 - NameError: uninitialized constant Chef::Provisioning::FogDriver::Driver::Cheff [\#592](https://github.com/chef/chef-dk/issues/592)
 - Update ChefDK Rubocop to 0.34.2 or higher [\#588](https://github.com/chef/chef-dk/issues/588)
-- Windows binaries like chef-client have invalid paths in embedded/bin [\#529](https://github.com/chef/chef-dk/issues/529)
 - \[Specinfra\] Windows convert\_regexp Consumes Forward Slashes [\#526](https://github.com/chef/chef-dk/issues/526)
-- 'man knife' does not work [\#476](https://github.com/chef/chef-dk/issues/476)
 - ChefDK Uninstallation on Windows [\#292](https://github.com/chef/chef-dk/issues/292)
 - Artificially high time estimate for uninstalling [\#250](https://github.com/chef/chef-dk/issues/250)
 - High CPU issue after installing ChefDK \(windows 8.1\) [\#144](https://github.com/chef/chef-dk/issues/144)
+- Update ManufacturerName to be a cleaner string [\#675](https://github.com/chef/chef-dk/pull/675) ([chefsalim](https://github.com/chefsalim))
 - Bring in bundler 1.11.2 and rubygems 2.5.2 [\#666](https://github.com/chef/chef-dk/pull/666) ([lamont-granquist](https://github.com/lamont-granquist))
 - Better chef export error messages [\#665](https://github.com/chef/chef-dk/pull/665) ([danielsdeleo](https://github.com/danielsdeleo))
 - Bump omnibus and update solaris mapfile [\#653](https://github.com/chef/chef-dk/pull/653) ([ksubrama](https://github.com/ksubrama))
