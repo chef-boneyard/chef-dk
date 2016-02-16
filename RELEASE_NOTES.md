@@ -1,76 +1,59 @@
-# ChefDK 0.10.0 Release notes
+# ChefDK 0.11 Release notes
 
 ## New / Updated Packages
 
-* inspec - new dependency, version 0.9.0
-* kitchen-inspec - new dependency, version 0.9.0
-* knife-windows - updated to 1.1.1
-* chef-provisioning - updated to 1.5.0
-* chef-provisioning-aws - updated to 1.6.1
+This version of ChefDK includes a number of key updates to dependent packages:
 
-## Inspec
+* chef - updated to 12.7.2
+* ohai - updated to 8.10.0
+* inspec - updated to 0.11.0
+* kitchen-inspec - updated to 0.11.0
+* berkshelf - updated to 4.1.1
+* test-kitchen - updated to 1.5.0
+* knife-windows - updated to 1.2.1
+* foodcritic - new dependency, 6.0.0
+* rubocop - updated to 0.37.2
+* chef-provisioning - updated to 1.6.0
+* openssl - updated to 1.0.1r
+* CACerts - updated with latest root certificates
 
-[Chef Inspec](https://www.chef.io/inspec/) was released November 3rd.  We're now packaging this tool into the ChefDK.  The Github README has an [overview](https://github.com/chef/inspec#what-is-inspec) of the project and the developers posted an informative [blog](https://www.chef.io/blog/2015/11/04/the-road-to-inspec/) as well.
+## Chef 12.7.2
 
-The primary means of interfacing with Inspec is through its command line tool `inspec`.  The *most* important thing to note about the integration with the ChefDK right now is that the `inspec` tool is not added to your PATH by default when installing the ChefDK.  To leverage it you can either
+Please see the Release Notes (https://github.com/chef/chef/blob/master/RELEASE_NOTES.md)
+for information on the key changes in Chef 12.7.2.
 
-1. Prepend all your `inspec` invocations with `chef exec`.  For example, following their [guide](https://github.com/chef/inspec#usage) you would run `chef exec inspec exec test.rb` to run local Inspec tests.
-2. Add the executable to your PATH manually.  On linux/OSX systems this is located at `/opt/chefdk/embedded/bin` and on Windows it is located at `C:\opscode\chefdk\embedded\bin`.
+## Knife-windows 1.2.1
 
-This path change is temporary - we plan to include `inspec` in the PATH by default in future ChefDK releases.
+Knife-windows now supports NTLM authentication from Linux.
 
-## Kitchen-Inspec
+See the knife-windows Changelog for more details (https://github.com/chef/knife-windows/blob/master/CHANGELOG.md)
 
-[Kitchen-Inspec](https://github.com/chef/kitchen-inspec) is a new Test Kitchen verifier that leverages Inspec.  This verifier is only compatiable with Test Kitchen version 1.4 or greater, and will only work with other Test Kitchen plugins that also leverage Test Kitchen 1.4.  Some examples of drivers which leverage Test Kitchen 1.4 are the Vagrant plugin and EC2 plugin.
+## PolicyFile improvements and fixes
 
-Look at the [.kitchen.yml](https://github.com/chef/inspec/blob/master/examples/test-kitchen/.kitchen.yml) and [tests](https://github.com/chef/inspec/tree/master/examples/test-kitchen/test/integration/default) in the Inspec example of what a cookbook leveraging Inspec should look like.
+There are a number of PolicyFile fixes and improvements:
 
-The advantage of using this is that the Inspec verifier executes locally on the target node, instead of executing remotely from the node running Test Kitchen. This should reduce test times.  It also leverages the advanced auditing and compliance features that Inspec exposes.
+* Using chef-sugar with Policy files now works (https://github.com/sethvargo/chef-sugar/issues/114).
+* Chef export now uses a new repository layout that allows Chef Zero 4.5+ to serve Policyfile content using the native Policyfile APIs. This is mostly noticeable if looking at the generated configuration files.
+* Improved Policy logging. Policy files now show policy revision id during runs  (https://github.com/chef/chef-dk/pull/630)
+* Better validation - Policy files now validate the recipes in the run list (https://github.com/chef/chef-dk/issues/629).
 
-## knife-windows Enhancements
-This release of the ChefDK ships with Knife-Windows 1.1.1 and marks the first v1 release to be bundled with ChefDK. Full details of features included in both 1.0.0 and 1.1.0 can be found in the release notes here:
+### Breaking change
 
-- https://github.com/chef/knife-windows/blob/v1.0.0/RELEASE_NOTES.md
-- https://github.com/chef/knife-windows/blob/v1.1.0/RELEASE_NOTES.md
+ChefDK 0.11.0 generated repos are not backward compatible with older versions of Chef Client.
 
-For those who make use of Knife-Windows in your day to day Chef development workflow, here are the breaking changes and highlights:
+Repos created by the `chef export` command will only work with Chef Client 12.7 or later. The policyfile_zero provisioner for Test Kitchen uses chef export under the hood, so you will need to configure Test Kitchen to install Chef Client 12.7 or later.
 
-### Breaking changes
+## Improved Windows installer for ChefDK
 
-* `Negotiate` is the default authentication protocol - Prior to this release, the default authentication protocol depended on the format of the `--winrm-user` option. The `basic` authentication protocol would be assumed unless that option had the format `domain\user`. To revert to the behavior of previous releases or otherwise force knife-windows to use a specific authentication protocol such as `basic`, use the `--winrm-authentication-protocol` option.
-* Default WinRM port depends on the transport - The default port is still 5985 for non-ssl connections, but now defaults to 5986 if you're using ssl.
-* Kerberos Keytab short option is now `-T` to fix a conflict with the `--identity-file` option.
+This release of ChefDK uses an improved Windows MSI-based installer (FastMSI) which speeds up the
+installation performance for ChefDK on Windows. The performance improvements will be most
+noticeable in clean installs of ChefDK 0.11. In-place upgrade from an earlier version of ChefDK (ie, without
+uninstalling the old version) may not show improvements in install time.
 
-### Making it easier to setup WinRM over SSL
+## Upgrading from older versions of Chef DK
 
-Setting up WinRM communication over SSL can be far from straight forward. Certificates need to be configured on both ends, firewall rules must be added and a WinRM listener has to be created. This Knife-Windows release adds some new `knife` commands to help automate these tasks:
+There is a known issue when upgrading from an older version of Chef DK. In some cases, `knife` commands may fail with a 'missing file' error message. This is because `knife rehash` generates full rather than relative paths, that include the version of the previously installed Chef client.
 
-* `knife windows cert generate` generates a certificate and related public key file for use in configuring a WinRM listener and validating communication
-* `knife windows cert install` installs a certificate such as one generated by the `cert generate` subcommand into the Windows certificate store
-* `knife windows listener create` creates a WinRM SSL listener on a Windows system
+If this happens, you will need to delete the ~/.chef/plugin_manifest.json file, and run `knife rehash` again.
 
-### Validating WinRM Configuration
-A new subcommand: `knife wsman test` verifies winrm functionality on a remote system.
-
-### New Bootstrap Options
-* `--hint` creates Ohai hints on bootstrap
-* `--bootstrap-install-command` allows an alternate command to be used to install Chef Client
-* `--install-as-service` will have Chef Client be installed as a Windows service on bootstrap
-* `--msi_url` provides an alternate URL to the Chef Client installation package
-
-### Validatorless bootstrapping
-Look mom, no validator! Thats right - as seen in the core chef client first, this is now possible in `knife windows bootstrap` as well.
-
-### Proxy support for WinRM
-The `knife winrm` and `knife bootstrap windows winrm` subcommands now honor the proxy server configured via the `http_proxy` setting in knife.rb for WinRM traffic.
-
-## `chef generate` commands now default to using Berksfile instead of Policyfile
-
-In ChefDK 0.9.0, we changed the defaults for `chef generate cookbook` to
-create Policyfiles instead of Berksfiles. Our training materials and
-tutorials were not updated to account for this change, so we've changed
-the behavior back. You can still generate cookbooks with Policyfiles by
-passing the `-P` option to `chef generate cookbook`.
-
-Additionally, you can generate a Chef repo with appropriate directories
-for Policyfiles by running `chef generate repo -P`.
+This issue will be resolved in future releases of Chef DK.
