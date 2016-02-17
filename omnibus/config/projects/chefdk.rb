@@ -38,9 +38,6 @@ override :ohai,             version: "v8.10.0"
 override :inspec,           version: "v0.11.0"
 override :'kitchen-inspec', version: "master"
 
-# We should do a gem release of berkshelf and TK
-# before releasing chefdk.
-# Tyler's master branch pins TK to master
 override :berkshelf,        version: "v4.1.1"
 override :'test-kitchen',   version: "v1.5.0"
 
