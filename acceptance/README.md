@@ -1,5 +1,5 @@
-# Acceptance Testing for Chef Client
-This folder contains acceptance tests that are required for Chef client
+# Acceptance Testing for Chef DK
+This folder contains acceptance tests that are required for ChefDK
 release readiness.
 
 ## Getting started
@@ -12,10 +12,6 @@ Before running chef-acceptance, you *MUST* do the following on your current sess
 ```
 export APPBUNDLER_ALLOW_RVM=true
 ```
-
-Also, if you are running acceptance for Chef DK, you *MUST* set the
-KITCHEN_CHEF_PRODUCT environment variable - see the Optional Settings
-section below. 
 
 ## Pre-requisites / One time set up
 
@@ -94,16 +90,6 @@ If KITCHEN_INSTANCES is not specified, the default instances are default-ubuntu-
 In addition to the environment settings above, there are a number of
 key values that are available to set for changing the way the acceptance
 tests are run.
-
-### KITCHEN_CHEF_PRODUCT
-
-You can set this if you want to run acceptance on something other than the
-chef client. For example, if running acceptance for Chef DK, you *MUST*
-set this environment appropriately:
-
-```shell
-export KITCHEN_CHEF_PRODUCT=chefdk
-```
 
 ### KITCHEN_CHEF_CHANNEL
 

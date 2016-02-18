@@ -9,7 +9,7 @@ module KitchenAcceptance
     property :chef_product, String, default: lazy {
       ENV["KITCHEN_CHEF_PRODUCT"] ||
       # If we're running the chef or chefdk projects in jenkins, pick up the project name.
-      (%w(chef chefdk).include?(ENV["PROJECT_NAME"]) ? ENV["PROJECT_NAME"] : "chef")
+      (%w(chef chefdk).include?(ENV["PROJECT_NAME"]) ? ENV["PROJECT_NAME"] : "chefdk")
     }
     property :chef_channel, String, default: lazy {
       ENV["KITCHEN_CHEF_CHANNEL"] ||
