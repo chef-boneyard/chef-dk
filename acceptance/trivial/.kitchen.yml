@@ -1,0 +1,7 @@
+verifier:
+  name: inspec
+
+suites:
+  - name: chefdk-current-install
+    includes: [ubuntu-14.04]
+    run_list:
