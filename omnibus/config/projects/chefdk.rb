@@ -97,6 +97,12 @@ dependency "shebang-cleanup"
 dependency "version-manifest"
 dependency "openssl-customization"
 
+if windows?
+  dependency "rb-readline"
+  dependency "ruby-windows-devkit"
+  dependency "ruby-windows-devkit-bash"
+end
+
 package :rpm do
   signing_passphrase ENV['OMNIBUS_RPM_SIGNING_PASSPHRASE']
 end
