@@ -35,8 +35,8 @@ end
 # Uncomment to pin the chef version
 override :chef,             version: "12.7.2"
 override :ohai,             version: "v8.10.0"
-override :inspec,           version: "v0.11.0"
-override :'kitchen-inspec', version: "v0.11.0"
+override :inspec,           version: "v0.13.0"
+override :'kitchen-inspec', version: "v0.12.0"
 
 override :berkshelf,        version: "v4.2.0"
 
