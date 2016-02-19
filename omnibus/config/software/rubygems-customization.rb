@@ -19,12 +19,6 @@ name "rubygems-customization"
 
 source path: "#{project.files_path}/#{name}"
 
-if windows?
-  dependency "ruby-windows"
-else
-  dependency "ruby"
-end
-
 dependency "rubygems"
 
 build do
@@ -35,18 +29,32 @@ build do
       "#{project_dir}/default/operating_system.rb"
     end
 
-    site_ruby = Bundler.with_clean_env do
-      ruby = windows_safe_path("#{install_dir}/embedded/bin/ruby")
-      %x|#{ruby} -rrbconfig -e "puts RbConfig::CONFIG['sitelibdir']"|.strip
+    source_content = File.read(source_customization_file)
+
+    # Patch both the system rubygems and the upgraded "site" rubygems.
+    ["sitelibdir", "rubylibdir"].each do |config|
+      path = Bundler.with_clean_env do
+        ruby = windows_safe_path("#{install_dir}/embedded/bin/ruby")
+        %x|#{ruby} -rrbconfig -e "puts RbConfig::CONFIG['#{config}']"|.strip
+      end
+      if path.nil? || path.empty?
+        raise "Could not determine embedded Ruby's #{config} directory, aborting!"
+      end
+
+      destination = "#{path}/rubygems/defaults/operating_system.rb"
+      FileUtils.mkdir_p(File.dirname(destination))
+      # Don't assume that we're the only ones with rubygems customization.
+      # Put our stuff before any existing customization.
+      if File.exist?(destination)
+        File.open(destination, "r+") do |f|
+          unpatched_customization = f.read
+          f.rewind
+          f.write(source_content)
+          f.write(unpatched_customization)
+        end
+      else
+        FileUtils.cp source_customization_file, destination
+      end
     end
-
-    if site_ruby.nil? || site_ruby.empty?
-      raise "Could not determine embedded Ruby's site directory, aborting!"
-    end
-
-    destination = "#{site_ruby}/rubygems/defaults"
-
-    FileUtils.mkdir_p destination
-    FileUtils.cp source_customization_file, destination
   end
 end

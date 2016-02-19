@@ -39,16 +39,12 @@ end
 
 relative_path "chef-dk"
 
-if windows?
-  dependency "ruby-windows"
-  dependency "ruby-windows-devkit"
-else
-  dependency "libffi" if debian?
-  dependency "ruby"
-end
-
-dependency "rubygems"
+dependency "ruby"
+dependency "rubygems-native"
 dependency "bundler"
+# Put this early in the dependency chain to ensure that nokogiri is compiled
+# correctly using the system libraries.
+dependency "nokogiri"
 dependency "appbundler"
 dependency "chef"
 dependency "test-kitchen"
@@ -63,7 +59,6 @@ dependency "rubocop"
 # This is a TK dependency but isn't declared in that software definition
 # because it is an optional dependency but we want to give it to ChefDK users
 dependency "winrm-transport"
-dependency "openssl-customization"
 dependency "knife-windows"
 dependency "knife-spork"
 dependency "fauxhai"
