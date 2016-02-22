@@ -21,7 +21,7 @@ name "chefdk-env-customization"
 
 source path: "#{project.files_path}/#{name}"
 
-dependency "ruby-windows"
+dependency "ruby"
 
 build do
   block "Add chefdk_env_customization file" do

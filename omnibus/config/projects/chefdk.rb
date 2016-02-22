@@ -32,6 +32,18 @@ else
   install_dir "#{default_root}/#{name}"
 end
 
+# Don't use the FIPS enabled custom builds yet in Chef-DK.
+# Use binaries from rubyinstaller until we have tested/qualified our chef-dk
+# custom builds on windows.
+if windows?
+  override :ruby, version: "rubyinstaller"
+else
+  override :ruby, version: "compiled"
+end
+
+override :'ruby-compiled',  version: "2.1.6"
+override :'ruby-rubyinstaller', version: "2.1.6"
+
 # Uncomment to pin the chef version
 override :chef,             version: "12.7.2"
 override :ohai,             version: "v8.10.0"
@@ -58,15 +70,6 @@ override :libedit,        version: "20130712-3.1"
 override :libtool,        version: "2.4.2"
 # override :libxml2,        version: "2.9.3"
 override :libxslt,        version: "1.1.28"
-
-if windows?
-  override :'ruby-windows', version: "2.1.6"
-  if windows_arch_i386?
-    override :'ruby-windows-devkit', version: "4.7.2-20130224"
-  end
-else
-  override :ruby,           version: "2.1.6"
-end
 
 override :rubocop, version: "v0.37.2"
 
@@ -95,7 +98,6 @@ dependency "chef-provisioning-azure"
 dependency "rubygems-customization"
 dependency "shebang-cleanup"
 dependency "version-manifest"
-dependency "openssl-customization"
 
 package :rpm do
   signing_passphrase ENV['OMNIBUS_RPM_SIGNING_PASSPHRASE']
