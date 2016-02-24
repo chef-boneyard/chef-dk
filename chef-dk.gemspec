@@ -31,7 +31,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '>= 2.0'
 
   gem.files = %w(Gemfile Rakefile LICENSE README.md CONTRIBUTING.md warning.txt) + Dir.glob("*.gemspec") +
-      Dir.glob("{lib,spec}/**/*", File::FNM_DOTMATCH).reject { |f|  File.directory?(f) }
+      Dir.glob("{lib,spec,acceptance}/**/*", File::FNM_DOTMATCH).reject { |f|  File.directory?(f) }
   gem.executables   = %w( chef )
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
