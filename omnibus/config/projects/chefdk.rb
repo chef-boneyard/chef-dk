@@ -33,19 +33,19 @@ else
 end
 
 # Uncomment to pin the chef version
-override :chef,             version: "12.7.2"
-override :ohai,             version: "v8.10.0"
-override :inspec,           version: "v0.14.2"
-override :'kitchen-inspec', version: "v0.12.2"
+override :chef,             version: "master"
+override :ohai,             version: "master"
+override :inspec,           version: "master"
+override :'kitchen-inspec', version: "master"
 
-override :berkshelf,        version: "v4.2.1"
+override :berkshelf,        version: "master"
 
-override :'test-kitchen',   version: "v1.5.0"
+override :'test-kitchen',   version: "master"
 
-override :'knife-windows', version: "v1.2.1"
+override :'knife-windows', version: "master"
 override :'knife-spork',   version: "master"
 override :fauxhai,         version: "master"
-override :chefspec,        version: "v4.5.0"
+override :chefspec,        version: "master"
 override :foodcritic,      version: "v6.0.1"
 
 override :bundler,      version: "1.11.2"
@@ -70,8 +70,8 @@ end
 
 override :rubocop, version: "v0.37.2"
 
-override :'kitchen-vagrant', version: "v0.19.0"
-override :'winrm-transport', version: "v1.0.3"
+override :'kitchen-vagrant', version: "master"
+override :'winrm-transport', version: "master"
 override :yajl,           version: "1.2.1"
 override :zlib,           version: "1.2.8"
 
@@ -79,11 +79,11 @@ override :zlib,           version: "1.2.8"
 # Manage the chef-provisioning version via chef-dk.gemspec.
 # TODO delete this when chef-provisioning is released and go back
 # to managing the dependency through chef-dk gemspec
-override :'chef-provisioning', version: "v1.6.0"
-override :'chef-provisioning-aws', version: "v1.8.0"
-override :'chef-provisioning-azure', version: "v0.5.0"
-override :'chef-provisioning-fog', version: "v0.16.0"
-override :'chef-provisioning-vagrant', version: "v0.11.0"
+override :'chef-provisioning', version: "master"
+override :'chef-provisioning-aws', version: "master"
+override :'chef-provisioning-azure', version: "master"
+override :'chef-provisioning-fog', version: "master"
+override :'chef-provisioning-vagrant', version: "master"
 
 dependency "preparation"
 dependency "chefdk"
