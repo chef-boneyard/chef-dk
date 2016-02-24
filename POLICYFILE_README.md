@@ -15,7 +15,7 @@ Policyfiles.
 A list of planned features which are not yet implemented is given in the
 "Known Limitations" section below. If your idea/need isn't listed there,
 or if you encounter a bug, file an issue at
-https://github.com/opscode/chef-dk/issues
+https://github.com/chef/chef-dk/issues
 
 ## Ok, I've Been Warned. What Is It?
 

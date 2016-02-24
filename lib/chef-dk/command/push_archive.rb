@@ -37,7 +37,7 @@ run_list and cookbooks.
 
 For more information about Policyfiles, see our detailed README:
 
-https://github.com/opscode/chef-dk/blob/master/POLICYFILE_README.md
+https://github.com/chef/chef-dk/blob/master/POLICYFILE_README.md
 
 Options:
 E

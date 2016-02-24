@@ -346,7 +346,7 @@ end
             # `knife exec` forces command loading to happen and this command
             # exits 0, which runs most of the code.
             #
-            # See also: https://github.com/opscode/chef-dk/issues/227
+            # See also: https://github.com/chef/chef-dk/issues/227
             sh!("#{usr_bin_path("knife")} exec -E true")
 
             tmpdir do |dir|
