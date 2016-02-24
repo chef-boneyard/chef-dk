@@ -32,6 +32,59 @@ else
   install_dir "#{default_root}/#{name}"
 end
 
+# Uncomment to pin the chef version
+override :chef,             version: "12.7.2"
+override :ohai,             version: "v8.10.0"
+override :inspec,           version: "v0.14.2"
+override :'kitchen-inspec', version: "v0.12.2"
+
+override :berkshelf,        version: "v4.2.0"
+
+override :'test-kitchen',   version: "v1.5.0"
+
+override :'knife-windows', version: "v1.2.1"
+override :'knife-spork',   version: "master"
+override :fauxhai,         version: "master"
+override :chefspec,        version: "v4.5.0"
+override :foodcritic,      version: "v6.0.0"
+
+override :bundler,      version: "1.11.2"
+override :rubygems,     version: "2.5.2"
+
+override :"chef-vault",   version: "master"
+
+# TODO: Can we bump default versions in omnibus-software?
+override :libedit,        version: "20130712-3.1"
+override :libtool,        version: "2.4.2"
+# override :libxml2,        version: "2.9.3"
+override :libxslt,        version: "1.1.28"
+
+if windows?
+  override :'ruby-windows', version: "2.1.6"
+  if windows_arch_i386?
+    override :'ruby-windows-devkit', version: "4.7.2-20130224"
+  end
+else
+  override :ruby,           version: "2.1.6"
+end
+
+override :rubocop, version: "v0.37.2"
+
+override :'kitchen-vagrant', version: "v0.19.0"
+override :'winrm-transport', version: "v1.0.3"
+override :yajl,           version: "1.2.1"
+override :zlib,           version: "1.2.8"
+
+# NOTE: the base chef-provisioning gem is a dependency of chef-dk (the app).
+# Manage the chef-provisioning version via chef-dk.gemspec.
+# TODO delete this when chef-provisioning is released and go back
+# to managing the dependency through chef-dk gemspec
+override :'chef-provisioning', version: "v1.6.0"
+override :'chef-provisioning-aws', version: "v1.8.0"
+override :'chef-provisioning-azure', version: "v0.5.0"
+override :'chef-provisioning-fog', version: "v0.16.0"
+override :'chef-provisioning-vagrant', version: "v0.11.0"
+
 dependency "preparation"
 dependency "chefdk"
 dependency "pry"
