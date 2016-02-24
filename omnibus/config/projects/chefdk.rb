@@ -46,7 +46,7 @@ override :'knife-windows', version: "v1.2.1"
 override :'knife-spork',   version: "master"
 override :fauxhai,         version: "master"
 override :chefspec,        version: "v4.5.0"
-override :foodcritic,      version: "v6.0.0"
+override :foodcritic,      version: "v6.0.1"
 
 override :bundler,      version: "1.11.2"
 override :rubygems,     version: "2.5.2"
