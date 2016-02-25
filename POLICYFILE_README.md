@@ -350,7 +350,7 @@ provisioner:
 
 ## Applying the Policy on a Node
 
-On the node you with to use the policy update the client.rb to include
+On the node you wish to use the policy, update the client.rb to include
 the following:
 
 ```ruby
@@ -364,7 +364,7 @@ policy_group "#{policy_group}"
 policy_name "#{policy_name}"
 ```
 
-If you are using the compatibility mode you should use the following
+If you are using the compatibility mode, you should use the following
 settings:
 
 ```ruby
