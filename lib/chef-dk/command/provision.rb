@@ -22,8 +22,6 @@ require 'chef-dk/configurable'
 require 'chef-dk/chef_runner'
 require 'chef-dk/policyfile_services/push'
 
-require 'chef/provisioning'
-
 module ChefDK
 
   module ProvisioningData
@@ -216,6 +214,9 @@ E
 
       def initialize(*args)
         super
+
+        # Require this lazily, only when the command is run
+        require 'chef/provisioning'
 
         @ui = UI.new
 
@@ -435,4 +436,3 @@ E
     end
   end
 end
-
