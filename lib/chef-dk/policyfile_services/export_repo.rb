@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 
+require 'pathname'
 require 'fileutils'
 require 'tmpdir'
 require 'zlib'
@@ -181,7 +182,13 @@ module ChefDK
       end
 
       def cookbook_files_to_copy(cookbook_path)
-        cookbook_loader_for(cookbook_path).cookbook_version.manifest_records_by_path.keys
+        cookbook = cookbook_loader_for(cookbook_path).cookbook_version
+
+        root = Pathname.new(cookbook.root_dir)
+
+        cookbook.all_files.map do |full_path|
+          Pathname.new(full_path).relative_path_from(root).to_s
+        end
       end
 
       def cookbook_loader_for(cookbook_path)
