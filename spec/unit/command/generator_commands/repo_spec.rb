@@ -131,6 +131,15 @@ describe ChefDK::Command::GeneratorCommands::Repo do
           end
         end
 
+        context "apachev2" do
+          let(:argv) { ["new_repo", "-I", "apachev2" ] }
+
+          it "is the apache license" do
+            expect(file_contents).to match(/Apache License/)
+            expect(file_contents).to match(/Version 2.0/)
+          end
+        end
+
         context "mit" do
           let(:argv) { ["new_repo", "-I", "mit" ] }
 
@@ -363,5 +372,3 @@ README
     end
   end
 end
-
-
