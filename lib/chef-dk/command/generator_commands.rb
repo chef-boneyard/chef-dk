@@ -36,7 +36,10 @@ module ChefDK
       option :license,
         :short => "-I LICENSE",
         :long => "--license LICENSE",
-        :description => "all_rights, apache2, mit, gplv2, gplv3 - defaults to all_rights",
+        :description => "all_rights, apachev2, mit, gplv2, gplv3 - defaults to all_rights",
+        :proc => Proc.new { |l|
+          l.match(/apache.?2/) ? 'apache2' : l
+        },
         :default => nil
 
       option :copyright_holder,
