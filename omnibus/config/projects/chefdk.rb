@@ -32,6 +32,11 @@ else
   install_dir "#{default_root}/#{name}"
 end
 
+override :ruby, version: "2.1.6"
+override :'ruby-windows-devkit', version: "4.7.2-20130224" if windows? && windows_arch_i386?
+override :bundler,      version: "1.11.2"
+override :rubygems,     version: "2.5.2"
+
 # Uncomment to pin the chef version
 override :chef,             version: "12.8.1"
 override :ohai,             version: "v8.12.1"
@@ -59,15 +64,6 @@ override :libtool,        version: "2.4.2"
 # override :libxml2,        version: "2.9.3"
 override :libxslt,        version: "1.1.28"
 
-if windows?
-  override :'ruby-windows', version: "2.1.6"
-  if windows_arch_i386?
-    override :'ruby-windows-devkit', version: "4.7.2-20130224"
-  end
-else
-  override :ruby,           version: "2.1.6"
-end
-
 override :rubocop, version: "v0.37.2"
 
 override :'kitchen-vagrant', version: "v0.19.0"
@@ -89,6 +85,7 @@ dependency "chef-provisioning-aws"
 dependency "chef-provisioning-fog"
 dependency "chef-provisioning-vagrant"
 dependency "chef-provisioning-azure"
+dependency "ruby-windows-devkit" if windows?
 dependency "rubygems-customization"
 dependency "shebang-cleanup"
 dependency "version-manifest"
