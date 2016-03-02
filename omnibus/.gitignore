@@ -9,3 +9,4 @@ cookbooks
 vendor/cookbooks
 build_timestamp
 ldd.out
+Berksfile.lock

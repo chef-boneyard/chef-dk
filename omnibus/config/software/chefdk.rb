@@ -39,17 +39,13 @@ end
 
 relative_path "chef-dk"
 
-if windows?
-  dependency "ruby-windows"
-  dependency "ruby-windows-devkit"
-else
-  dependency "libffi" if debian?
-  dependency "ruby"
-end
+dependency "ruby"
 
 dependency "rubygems"
 dependency "bundler"
 dependency "appbundler"
+# windows does not have native readline support with compiled ruby
+dependency "rb-readline" if windows?
 dependency "chef"
 dependency "test-kitchen"
 dependency "inspec"
