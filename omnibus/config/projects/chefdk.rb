@@ -71,7 +71,7 @@ end
 override :rubocop, version: "v0.37.2"
 
 override :'kitchen-vagrant', version: "master"
-override :'winrm-transport', version: "master"
+override :'winrm-fs',     version: "master"
 override :yajl,           version: "1.2.1"
 override :zlib,           version: "1.2.8"
 
