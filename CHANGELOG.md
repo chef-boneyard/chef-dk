@@ -1,5 +1,28 @@
 # Change Log
 
+## [0.12.0](https://github.com/chef/chef-dk/tree/0.12.0) (2016-03-02)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.11.2...0.12.0)
+
+**Implemented enhancements:**
+
+- Replace winrm-transport with winrm-fs and bump test-kitchen in omnibus gemfile [\#722](https://github.com/chef/chef-dk/pull/722) ([mwrock](https://github.com/mwrock))
+- Update foodcritic to v6.0.1 [\#702](https://github.com/chef/chef-dk/pull/702) ([jaym](https://github.com/jaym))
+- Bumping berkshelf version to 4.2.1 [\#697](https://github.com/chef/chef-dk/pull/697) ([someara](https://github.com/someara))
+
+## [v0.11.2](https://github.com/chef/chef-dk/tree/v0.11.2) (2016-02-22)
+[Full Changelog](https://github.com/chef/chef-dk/compare/0.11.0...v0.11.2)
+
+**Implemented enhancements:**
+
+- Update Inspec and kitchen-inspec [\#700](https://github.com/chef/chef-dk/pull/700) ([chris-rock](https://github.com/chris-rock))
+- Update to latest inspec and kitchen-inspec versions [\#698](https://github.com/chef/chef-dk/pull/698) ([chris-rock](https://github.com/chris-rock))
+- Update berkshelf pin and chefdk version [\#690](https://github.com/chef/chef-dk/pull/690) ([chefsalim](https://github.com/chefsalim))
+- elevate windows shortcuts [\#678](https://github.com/chef/chef-dk/pull/678) ([mwrock](https://github.com/mwrock))
+
+**Fixed bugs:**
+
+- Fix typo in builtin\_commands.rb [\#688](https://github.com/chef/chef-dk/pull/688) ([chefsalim](https://github.com/chefsalim))
+
 ## [0.11.0](https://github.com/chef/chef-dk/tree/0.11.0) (2016-02-12)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.10.0...0.11.0)
 
@@ -7,7 +30,6 @@
 
 - chef-dk 0.7.0 chef Binary Should Support Alternate Config Files [\#518](https://github.com/chef/chef-dk/issues/518)
 - Local Configuration? [\#473](https://github.com/chef/chef-dk/issues/473)
-- elevate windows shortcuts [\#678](https://github.com/chef/chef-dk/pull/678) ([mwrock](https://github.com/mwrock))
 - Update rubocop and chef-provisioning drivers to latest version [\#670](https://github.com/chef/chef-dk/pull/670) ([tas50](https://github.com/tas50))
 - add pry, pry-byebug, pry-remote to chef-dk [\#662](https://github.com/chef/chef-dk/pull/662) ([lamont-granquist](https://github.com/lamont-granquist))
 - Native policy export [\#659](https://github.com/chef/chef-dk/pull/659) ([danielsdeleo](https://github.com/danielsdeleo))
@@ -797,7 +819,7 @@
 - don't print help after successful command [\#33](https://github.com/chef/chef-dk/pull/33) ([mcquin](https://github.com/mcquin))
 - Import 0.1.0 Release notes to changelog [\#31](https://github.com/chef/chef-dk/pull/31) ([danielsdeleo](https://github.com/danielsdeleo))
 - tests don't write to spec/unit [\#29](https://github.com/chef/chef-dk/pull/29) ([mcquin](https://github.com/mcquin))
-- Utilize TemplateHelper for README.md, kitchen.yml [\#28](https://github.com/chef/chef-dk/pull/28) ([byggztryng](https://github.com/byggztryng))
+- Utilize TemplateHelper for README.md, kitchen.yml [\#28](https://github.com/chef/chef-dk/pull/28) ([ghost](https://github.com/ghost))
 - add chef exec command [\#22](https://github.com/chef/chef-dk/pull/22) ([lamont-granquist](https://github.com/lamont-granquist))
 
 ## [0.1.0](https://github.com/chef/chef-dk/tree/0.1.0) (2014-04-28)
