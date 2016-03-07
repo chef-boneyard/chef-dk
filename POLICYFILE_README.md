@@ -19,10 +19,6 @@ https://github.com/chef/chef-dk/issues
 
 ## Ok, I've Been Warned. What Is It?
 
-One last warning: This section of the document describes features that
-don't exist yet as if they do exist. The "Known Limitations" section
-lists the features that are not yet complete.
-
 The Policyfile is a Chef feature that allows you to specify precisely
 which cookbook revisions `chef-client` should use, and which recipes
 should be applied, via a single document. This document is uploaded to
@@ -305,18 +301,13 @@ VMs using Chef Client in policyfile mode, using Chef Zero to serve
 cookbook data.
 
 As of ChefDK 0.11, you need to install Chef Client 12.7 in order for
-Chef Client to correctly converge in the VM. As of this writing, Chef
-12.7 is not yet released, so you will need to configure kitchen to pull
-builds from the 'current' channel, as shown in the example:
+Chef Client to correctly converge in the VM.
 
 Add the following to your `.kitchen.yml`:
 
 ```yaml
 provisioner:
   name: policyfile_zero
-  # Chef 12.7 is required but isn't yet released. You can install builds
-  # from the current channel to get a 12.7 "prerelease" build.
-  chef_omnibus_install_options: -c current
 ```
 
 #### Using Named Run Lists With Kitchen
@@ -364,15 +355,23 @@ policy_group "#{policy_group}"
 policy_name "#{policy_name}"
 ```
 
-If you are using the compatibility mode, you should use the following
-settings:
+## Bootstrapping With Policyfiles
 
-```ruby
-# Policyfile Settings:
-use_policyfile true
-policy_document_native_api false
-deployment_group "#{policy_name}-#{policy_group}"
-```
+If using `knife bootstrap`, simply provide the
+`--policy-group POLICY_GROUP` and `--policy-name POLICY_NAME` command
+line options.
+
+If you have a customized bootstrap process, just add `policy_name` and
+`policy_group` to the first boot JSON file you pass to `chef-client`.
+
+## Searching for Nodes
+
+As of Chef Client 12.5, the `policy_name` and `policy_group` of a node
+are stored as searchable attributes. Additionally, these fields are
+included in the default "fuzzy search" that `knife` will run if not
+given a Solr-formatted query, so you can run `knife search dev` to find
+nodes in the "dev" policy group, for example.
+
 ## Motivation and FAQ
 
 We believe Policyfiles will greatly improve the experience of using Chef
@@ -671,40 +670,12 @@ in a more dynamic way.
 
 ## Compatibility Mode
 
-As of Chef Server 12.1.0, and ChefDK 0.5.0, the new Policyfile native
-APIs are enabled by default. This is the safest and recommended way to
-try Policyfiles.  If you are unable to upgrade your Chef Server, you can
-operate ChefDK and Chef Client in a compatibility mode that uses
-existing Chef Server APIs to demonstrate the Policyfile behavior. This
-mode of operation can be dangerous if used in an existing Chef Server
-organization. See the caveats below before using it.
-
-### Cookbook Artifact Storage
-
-In compatibility mode, ChefDK must implement content-hash-based storage
-of cookbooks using the existing `/cookbooks` endpoint. To do so, it maps
-hash IDs to `X.Y.Z` version numbers. While this works to demonstrate the
-Policyfile behavior, it is certainly a kludge. If you are trying the
-Policyfile feature in compatibility mode, beware:
-
-* Cookbooks uploaded by the policyfile commands will have very large
-version numbers with no sort order. Any `chef-client` that is not
-operating in policyfile mode will prefer these cookbooks to ones
-uploaded normally unless you are diligent about using environment
-version constraints.
-* The `/cookbooks` endpoint is not designed to be used this way, so it
-doesn't show you the "real" version numbers or additional metadata about
-these cookbooks. While we have plans to make arbitrary cookbook IDs
-easier to manage in the final implementation, there's little we can do
-about it in the exiting API.
-
-### Policyfile Storage
-
-In compatibility mode, ChefDK uses data bag items to store
-`Policyfile.lock.json` documents. To minimize the chance of conflict
-with other data bag items, ChefDK stores all of these documents in the
-"policyfiles" data bag; individual `Policyfile.lock.json` revisions are
-given IDs of the form `$policyname-policygroup`.
+Policyfiles were originally developed using some hacks that allowed you
+to use policyfiles with a Chef Server without policyfile support. Chef
+Server and Chef Zero now both fully support the new policyfile API
+endpoints, so you don't need to worry about Compatibility mode, just
+make sure you have Chef Server 12.3 or later and Chef Client 12.7 or
+later.
 
 ## Known Limitations
 
@@ -727,13 +698,4 @@ little demand for role support; rather, people want a
 Policyfile-specific means of composing parts (like a "base" policy plus
 application-specific stuff) into a whole. This work is in the design
 phase.
-
-### Native API Incomplete
-
-As of Chef Client 12.5 and Chef Server 12.3 (not yet released when this
-was written), the node object has fields for `policy_name` and
-`policy_group`, which are searchable.
-
-Chef Server implements RBAC internally for policies and policy groups,
-but the RBAC API needs to be updated to allow users to modify ACLs.
 
