@@ -6,8 +6,6 @@ export TMPDIR
 rm -rf $TMPDIR
 mkdir -p $TMPDIR
 
-export PATH=/opt/chefdk/bin:$PATH
-
 # Ensure the calling environment (disapproval look Bundler) does not
 # infect our Ruby environment created by the `chef` cli.
 for ruby_env_var in _ORIGINAL_GEM_PATH \
@@ -25,7 +23,19 @@ do
   unset $ruby_env_var
 done
 
-sudo chef verify --unit
+# ACCEPTANCE environment variable will be set on acceptance testers.
+# If is it set; we run the acceptance tests, otherwise run rspec tests.
+if [ "x$ACCEPTANCE" != "x" ]; then
+  export PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:$PATH
+
+  cd /opt/$PROJECT_NAME/embedded/lib/ruby/gems/*/gems/chef-dk-[0-9]*/acceptance
+  
+  sudo env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID ARTIFACTORY_USERNAME=$ARTIFACTORY_USERNAME ARTIFACTORY_PASSWORD=$ARTIFACTORY_PASSWORD bundle install
+  sudo env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID ARTIFACTORY_USERNAME=$ARTIFACTORY_USERNAME ARTIFACTORY_PASSWORD=$ARTIFACTORY_PASSWORD KITCHEN_DRIVER=ec2 bundle exec chef-acceptance test
+else
+  export PATH=/opt/chefdk/bin:$PATH
+  sudo chef verify --unit
+fi
 
 # Clean up the tmpdir at the end for good measure.
 rm -rf $TMPDIR
