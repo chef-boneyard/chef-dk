@@ -19,6 +19,10 @@ source 'https://rubygems.org'
 
 gemspec :name => "chef-dk"
 
+# Chef 12.8.1 Gem includes some extra files which can break gem installation on
+# windows. For now we are pulling chef from github at the tag as a workaround.
+gem "chef", github: "chef", tag: "12.8.1"
+
 group(:dev) do
   gem 'guard'
   gem 'guard-rspec'
