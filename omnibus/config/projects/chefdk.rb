@@ -38,7 +38,7 @@ override :ohai,             version: "master"
 override :inspec,           version: "master"
 override :'kitchen-inspec', version: "master"
 
-override :berkshelf,        version: "master"
+override :berkshelf,        version: "v4.2.3"
 
 override :'test-kitchen',   version: "master"
 
