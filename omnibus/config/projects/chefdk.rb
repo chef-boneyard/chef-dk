@@ -44,6 +44,7 @@ override :inspec,           version: "v0.15.0"
 override :'kitchen-inspec', version: "v0.12.3"
 
 override :berkshelf,        version: "v4.3.0"
+override :'dep-selector-libgecode', version: "1.2.0"
 
 override :'test-kitchen',   version: "v1.6.0"
 

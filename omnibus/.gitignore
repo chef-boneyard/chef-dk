@@ -1,12 +1,12 @@
+Berksfile.lock
+bin/
 .bundle
 vendor/bundle
-pkg/*
+pkg/
 .kitchen.local.yml
-bin/*
 files/chef-server-cookbooks/cache/
 files/msi/ChefClient-Config.wxi
 cookbooks
 vendor/cookbooks
 build_timestamp
 ldd.out
-Berksfile.lock
