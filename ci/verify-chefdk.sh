@@ -25,7 +25,6 @@ do
   unset $ruby_env_var
 done
 
+# This has to be the last thing we run so that we return the correct exit code
+# to the Ci system.
 sudo chef verify --unit
-
-# Clean up the tmpdir at the end for good measure.
-rm -rf $TMPDIR

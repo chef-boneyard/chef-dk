@@ -36,7 +36,5 @@ FOR %%b IN (
   ECHO(
 )
 
+REM ; Run this last so the correct exit code is propagated
 chef verify
-
-REM ; Destroy everything at the end for good measure.
-RMDIR /S /Q %TEMP%
