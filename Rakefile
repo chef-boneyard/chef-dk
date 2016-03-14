@@ -20,6 +20,8 @@ require "bundler/gem_tasks"
 require "github_changelog_generator/task"
 
 GitHubChangelogGenerator::RakeTask.new :changelog do |config|
+  config.user = "chef"
+  config.project = "chef-dk"
   config.future_release = ChefDK::VERSION
   config.enhancement_labels = "enhancement,Enhancement,New Feature,Feature".split(",")
   config.bug_labels = "bug,Bug,Improvement,Upstream Bug".split(",")
