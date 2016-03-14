@@ -28,10 +28,13 @@ done
 if [ "x$ACCEPTANCE" != "x" ]; then
   export PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:$PATH
 
-  cd /opt/$PROJECT_NAME/embedded/lib/ruby/gems/*/gems/chef-dk-[0-9]*/acceptance
+  set -e
+  
+  cd /opt/$PROJECT_NAME/embedded/lib/ruby/gems/*/gems/chef-[0-9]*/acceptance
+  sudo env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID ARTIFACTORY_USERNAME=$ARTIFACTORY_USERNAME ARTIFACTORY_PASSWORD=$ARTIFACTORY_PASSWORD bundle install
+  sudo env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID ARTIFACTORY_USERNAME=$ARTIFACTORY_USERNAME ARTIFACTORY_PASSWORD=$ARTIFACTORY_PASSWORD KITCHEN_DRIVER=ec2 bundle exec chef-acceptance test top-cookbooks
 
-  # This has to be the last thing we run so that we return the correct exit code
-  # to the Ci system.
+  cd /opt/$PROJECT_NAME/embedded/lib/ruby/gems/*/gems/chef-dk-[0-9]*/acceptance
   sudo env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID ARTIFACTORY_USERNAME=$ARTIFACTORY_USERNAME ARTIFACTORY_PASSWORD=$ARTIFACTORY_PASSWORD bundle install
   sudo env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID ARTIFACTORY_USERNAME=$ARTIFACTORY_USERNAME ARTIFACTORY_PASSWORD=$ARTIFACTORY_PASSWORD KITCHEN_DRIVER=ec2 bundle exec chef-acceptance test
 else
