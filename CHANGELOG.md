@@ -1,13 +1,21 @@
 # Change Log
 
-## [0.12.0](https://github.com/chef/chef-dk/tree/0.12.0) (2016-03-02)
+## [0.12.0](https://github.com/chef/chef-dk/tree/0.12.0) (2016-03-14)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.11.2...0.12.0)
 
 **Implemented enhancements:**
 
+- Pin all omnibus software to latest release versions [\#739](https://github.com/chef/chef-dk/pull/739) ([danielsdeleo](https://github.com/danielsdeleo))
+- Improve Chef-DK shortcut startup time by skipping powershell profile [\#734](https://github.com/chef/chef-dk/pull/734) ([adamedx](https://github.com/adamedx))
+- Pin berkshelf to 4.3.0 [\#732](https://github.com/chef/chef-dk/pull/732) ([mwrock](https://github.com/mwrock))
+- Clean up static libs at build time [\#724](https://github.com/chef/chef-dk/pull/724) ([chefsalim](https://github.com/chefsalim))
 - Replace winrm-transport with winrm-fs and bump test-kitchen in omnibus gemfile [\#722](https://github.com/chef/chef-dk/pull/722) ([mwrock](https://github.com/mwrock))
 - Update foodcritic to v6.0.1 [\#702](https://github.com/chef/chef-dk/pull/702) ([jaym](https://github.com/jaym))
 - Bumping berkshelf version to 4.2.1 [\#697](https://github.com/chef/chef-dk/pull/697) ([someara](https://github.com/someara))
+
+**Fixed bugs:**
+
+- Chef Export no longer includes files outside of CookbookVersionLoader segments such as test/ or spec/ [\#709](https://github.com/chef/chef-dk/issues/709)
 
 ## [v0.11.2](https://github.com/chef/chef-dk/tree/v0.11.2) (2016-02-22)
 [Full Changelog](https://github.com/chef/chef-dk/compare/0.11.0...v0.11.2)
