@@ -274,7 +274,7 @@ provisioner:
 ## also set this to `true` to always use the latest version.
 ## see also: https://docs.chef.io/config_yml_kitchen.html
 
-#  require_chef_omnibus: 12.5.0
+#  require_chef_omnibus: 12.8.1
 
 # Uncomment the following verifier to leverage Inspec instead of Busser (the
 # default verifier)
