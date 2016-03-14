@@ -18,6 +18,27 @@
 require 'chef-dk/exceptions'
 require 'chef-dk/helpers'
 
+# https://github.com/bundler/bundler/issues/4368
+# As of rubygems 2.6.2, Rubygems will call Bundler::SpecSet#size, which does
+# not exist as of Bundler 1.11.2.
+#
+# `#size` and `#length` should be synonyms in idiomatic ruby so we alias to
+# make bundler and rubygems play nicely.
+if Object.const_defined?(:Bundler) &&
+    Bundler.const_defined?(:SpecSet) &&
+    Bundler::SpecSet.instance_methods.include?(:length) &&
+    !Bundler::SpecSet.instance_methods.include?(:size)
+
+  module Bundler
+    class SpecSet
+
+      alias_method :size, :length
+
+    end
+  end
+
+end
+
 module ChefDK
   class ComponentTest
 
@@ -148,8 +169,8 @@ module ChefDK
       # So we first ask if there is a normal version, and if there is not, we ask if there
       # is a prerelease version.  ">= 0.a" is how we ask for a prerelease version, because a
       # prerelease version is defined as "any version with a letter in it."
-      gem = Gem::Specification::find_by_name(@gem_name_for_base_dir)
-      gem ||= Gem::Specification::find_by_name(@gem_name_for_base_dir, '>= 0.a')
+      gem = Gem::Specification.find_by_name(@gem_name_for_base_dir)
+      gem ||= Gem::Specification.find_by_name(@gem_name_for_base_dir, '>= 0.a')
       gem.gem_dir
     end
 
