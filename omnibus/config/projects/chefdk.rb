@@ -34,7 +34,7 @@ end
 
 # Uncomment to pin the chef version
 override :chef,             version: "12.8.1"
-override :ohai,             version: "v8.12.0"
+override :ohai,             version: "v8.12.1"
 override :inspec,           version: "v0.15.0"
 override :'kitchen-inspec', version: "v0.12.3"
 
@@ -42,8 +42,8 @@ override :berkshelf,        version: "v4.3.0"
 
 override :'test-kitchen',   version: "v1.6.0"
 
-override :'knife-windows', version: "v1.3.0"
-override :'knife-spork',   version: "master"
+override :'knife-windows', version: "v1.4.0"
+override :'knife-spork',   version: "1.6.1"
 override :fauxhai,         version: "v3.1.0"
 override :chefspec,        version: "v4.6.0"
 override :foodcritic,      version: "v6.0.1"
