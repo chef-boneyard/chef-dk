@@ -32,7 +32,7 @@ else
   install_dir "#{default_root}/#{name}"
 end
 
-override :ruby, version: "2.1.6"
+override :ruby, version: "2.1.8"
 override :'ruby-windows-devkit', version: "4.7.2-20130224" if windows? && windows_arch_i386?
 override :bundler,      version: "1.11.2"
 override :rubygems,     version: "2.5.2"
