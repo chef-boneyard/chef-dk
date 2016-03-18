@@ -32,6 +32,10 @@ else
   install_dir "#{default_root}/#{name}"
 end
 
+override :ruby, version: "2.1.8"
+override :bundler,      version: "1.11.2"
+override :rubygems,     version: "2.5.2"
+
 # Uncomment to pin the chef version
 override :chef,             version: "12.8.1"
 override :ohai,             version: "v8.12.1"
@@ -39,6 +43,7 @@ override :inspec,           version: "v0.15.0"
 override :'kitchen-inspec', version: "v0.12.3"
 
 override :berkshelf,        version: "v4.3.0"
+override :'dep-selector-libgecode', version: "1.2.0"
 
 override :'test-kitchen',   version: "v1.6.0"
 
@@ -59,15 +64,6 @@ override :libtool,        version: "2.4.2"
 # override :libxml2,        version: "2.9.3"
 override :libxslt,        version: "1.1.28"
 
-if windows?
-  override :'ruby-windows', version: "2.1.6"
-  if windows_arch_i386?
-    override :'ruby-windows-devkit', version: "4.7.2-20130224"
-  end
-else
-  override :ruby,           version: "2.1.6"
-end
-
 override :rubocop, version: "v0.37.2"
 
 override :'kitchen-vagrant', version: "v0.19.0"
@@ -83,12 +79,14 @@ override :'chef-provisioning-fog', version: "v0.16.0"
 override :'chef-provisioning-vagrant', version: "v0.11.0"
 
 dependency "preparation"
+dependency "rb-readline"
 dependency "chefdk"
 dependency "pry"
 dependency "chef-provisioning-aws"
 dependency "chef-provisioning-fog"
 dependency "chef-provisioning-vagrant"
 dependency "chef-provisioning-azure"
+dependency "ruby-windows-devkit" if windows?
 dependency "rubygems-customization"
 dependency "shebang-cleanup"
 dependency "version-manifest"

@@ -39,13 +39,7 @@ end
 
 relative_path "chef-dk"
 
-if windows?
-  dependency "ruby-windows"
-  dependency "ruby-windows-devkit"
-else
-  dependency "libffi" if debian?
-  dependency "ruby"
-end
+dependency "ruby"
 
 dependency "rubygems"
 dependency "bundler"
