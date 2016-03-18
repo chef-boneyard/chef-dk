@@ -32,9 +32,11 @@ else
   install_dir "#{default_root}/#{name}"
 end
 
+pins = parse_pins_file("./chefdk-pins.txt")
+
 # Uncomment to pin the chef version
-override :chef,             version: "12.8.1"
-override :ohai,             version: "v8.12.1"
+override :chef,             version: pins["chef"]
+override :ohai,             version: pins["ohai"]
 override :inspec,           version: "v0.15.0"
 override :'kitchen-inspec', version: "v0.12.3"
 

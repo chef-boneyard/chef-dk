@@ -1,0 +1,22 @@
+# NOTE: in real life this would be a JSON/YAML/TOML/CSV (but not XML, no) file,
+# just doing it as plain text for demonstration
+
+chef "12.8.1"
+ohai "v8.12.1"
+inspec "v0.15.0"
+kitchen-inspec "v0.12.3"
+berkshelf "v4.3.0"
+test-kitchen "v1.6.0"
+knife-windows "v1.4.0"
+knife-spork "1.6.1"
+fauxhai "v3.1.0"
+chefspec "v4.6.0"
+foodcritic "v6.0.1"
+chef-vault "v2.8.0"
+kitchen-vagrant "v0.19.0"
+winrm-fs "v0.3.2"
+chef-provisioning-aws "v1.8.0"
+chef-provisioning-azure "v0.5.0"
+chef-provisioning-fog "v0.16.0"
+chef-provisioning-vagrant "v0.11.0"
+
