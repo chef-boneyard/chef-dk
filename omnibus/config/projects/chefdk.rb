@@ -33,7 +33,6 @@ else
 end
 
 override :ruby, version: "2.1.8"
-override :'ruby-windows-devkit', version: "4.7.2-20130224" if windows? && windows_arch_i386?
 override :bundler,      version: "1.11.2"
 override :rubygems,     version: "2.5.2"
 
@@ -80,6 +79,7 @@ override :'chef-provisioning-fog', version: "v0.16.0"
 override :'chef-provisioning-vagrant', version: "v0.11.0"
 
 dependency "preparation"
+dependency "rb-readline"
 dependency "chefdk"
 dependency "pry"
 dependency "chef-provisioning-aws"
