@@ -223,7 +223,9 @@ platforms:
     transport:
       username: administrator
 
-  - name: windows-2012
+  - name: windows-2012r2
+    provisioner:
+      architecture: <%= ENV["KITCHEN_CHEF_WIN_ARCHITECTURE"] %>
     driver:
       image_search:
         name: Windows_Server-2012-RTM*-English-*-Base-*
@@ -234,7 +236,9 @@ platforms:
         image-type: machine
     transport:
       username: administrator
-  - name: windows-2008r2
+  - name: windows-2012r2
+    provisioner:
+      architecture: <%= ENV["KITCHEN_CHEF_WIN_ARCHITECTURE"] %>
     driver:
       image_search:
         name: Windows_Server-2008-R2*-English-*-Base-*

@@ -41,3 +41,7 @@ Vagrantfile
 
 # Test Kitchen
 .kitchen/
+
+# Chef-Acceptance
+acceptance/Gemfile.lock
+.acceptance_logs
