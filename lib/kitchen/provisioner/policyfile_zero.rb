@@ -96,9 +96,10 @@ module Kitchen
       # (see Base#run_command)
       def run_command
         level = config[:log_level] == :info ? :auto : config[:log_level]
-        chef_client_bin = sudo(config[:chef_client_path])
+        
+        cmd = "#{sudo(config[:chef_client_path])} --local-mode".
+          tap { |str| str.insert(0, "& ") if powershell_shell? }
 
-        cmd = "#{chef_client_bin} --local-mode"
         args = [
           "--config #{config[:root_path]}/client.rb",
           "--log_level #{level}",
