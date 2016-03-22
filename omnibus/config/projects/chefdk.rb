@@ -38,7 +38,8 @@ override :rubygems,     version: "2.5.2"
 
 # Uncomment to pin the chef version
 override :chef,             version: "12.8.1"
-override :ohai,             version: "v8.12.1"
+# This is v8.12.1 plus two packaging related fixes
+override :ohai,             version: "f8522ea9ca3b1252af6a03a4c58057d320e8343c"
 override :inspec,           version: "v0.15.0"
 override :'kitchen-inspec', version: "v0.12.3"
 
