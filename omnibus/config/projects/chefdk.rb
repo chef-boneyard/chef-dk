@@ -43,7 +43,7 @@ override :ohai,             version: "f8522ea9ca3b1252af6a03a4c58057d320e8343c"
 override :inspec,           version: "v0.15.0"
 override :'kitchen-inspec', version: "v0.12.3"
 
-override :berkshelf,        version: "v4.3.0"
+override :berkshelf,        version: "v4.3.1"
 override :'dep-selector-libgecode', version: "1.2.0"
 
 override :'test-kitchen',   version: "v1.6.0"
