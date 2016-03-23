@@ -19,6 +19,31 @@ require "bundler/gem_tasks"
 
 require "github_changelog_generator/task"
 
+namespace :version do
+  task :bump => 'version:bump_patch'
+
+  task :show do
+    puts ChefDK::VERSION
+  end
+
+  def version_rb_path
+    File.expand_path("../lib/chef-dk/version.rb", __FILE__)
+  end
+
+  # Add 1 to the current patch version in the VERSION file, and write it back out.
+  task :bump_patch do
+    current_version_file = IO.read(version_rb_path)
+    new_version = nil
+    new_version_file = current_version_file.sub(/^(\s*VERSION\s*=\s*")(\d+\.\d+\.)(\d+)/) do
+      new_version = "#{$2}#{$3.to_i + 1}"
+      "#{$1}#{new_version}"
+    end
+    puts "Updating version in #{version_rb_path} from #{ChefDK::VERSION} to #{new_version.chomp}"
+    IO.write(version_rb_path, new_version_file)
+  end
+
+end
+
 GitHubChangelogGenerator::RakeTask.new :changelog do |config|
   config.user = "chef"
   config.project = "chef-dk"
