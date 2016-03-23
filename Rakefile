@@ -44,6 +44,8 @@ namespace :version do
 
 end
 
+require_relative 'tasks/dependencies'
+
 GitHubChangelogGenerator::RakeTask.new :changelog do |config|
   config.user = "chef"
   config.project = "chef-dk"
