@@ -32,72 +32,32 @@ else
   install_dir "#{default_root}/#{name}"
 end
 
-override :ruby, version: "2.1.8"
-override :bundler,      version: "1.11.2"
-override :rubygems,     version: "2.5.2"
+# Bring in generated gem overrides
+overrides_file = File.expand_path('../../chefdk_overrides.rb', __FILE__)
+instance_eval(IO.read(overrides_file), overrides_file, 1)
 
-# Uncomment to pin the chef version
-override :chef,             version: "12.8.1"
-# This is v8.12.1 plus two packaging related fixes
-override :ohai,             version: "f8522ea9ca3b1252af6a03a4c58057d320e8343c"
-override :inspec,           version: "v0.15.0"
-override :'kitchen-inspec', version: "v0.12.3"
-
-override :berkshelf,        version: "v4.3.1"
-override :'dep-selector-libgecode', version: "1.2.0"
-
-override :'test-kitchen',   version: "v1.6.0"
-
-override :'knife-windows', version: "v1.4.0"
-override :'knife-spork',   version: "1.6.1"
-override :fauxhai,         version: "v3.1.0"
-override :chefspec,        version: "v4.6.0"
-override :foodcritic,      version: "v6.0.1"
-
-override :bundler,      version: "1.11.2"
-override :rubygems,     version: "2.5.2"
-
-override :"chef-vault",   version: "v2.8.0"
-
-# TODO: Can we bump default versions in omnibus-software?
+# Lower level library pins
 override :libedit,        version: "20130712-3.1"
+#override :"libffi",           version: "3.2.1"
+#override :"libiconv",         version: "1.14"
+#override :"liblzma",          version: "5.2.2"
+## according to comment in omnibus-sw, latest versions don't work on solaris
+# https://github.com/chef/omnibus-software/blob/aefb7e79d29ca746c3f843673ef5e317fa3cba54/config/software/libtool.rb#L23
 override :libtool,        version: "2.4.2"
 # override :libxml2,        version: "2.9.3"
 override :libxslt,        version: "1.1.28"
-
+override :makedepend,         version: "1.0.5"
+#override :"ncurses",          version: "5.9"
+#override :"pkg-config-lite",  version: "0.28-1"
 override :rubocop, version: "v0.37.2"
-
-override :'kitchen-vagrant', version: "v0.19.0"
-override :'winrm-fs',     version: "v0.3.2"
+override :ruby, version: "2.1.8"
+override :rubygems, version: "2.5.2"
+override :"util-macros",      version: "1.19.0"
+override :xproto,             version: "7.0.28"
+#override :"libyaml",          version: "0.1.6"
 override :yajl,           version: "1.2.1"
 override :zlib,           version: "1.2.8"
 
-# NOTE: the base chef-provisioning gem is a dependency of chef-dk (the app).
-# Manage the chef-provisioning version via chef-dk.gemspec.
-override :'chef-provisioning-aws', version: "v1.8.0"
-override :'chef-provisioning-azure', version: "v0.5.0"
-override :'chef-provisioning-fog', version: "v0.16.0"
-override :'chef-provisioning-vagrant', version: "v0.11.0"
-
-# Lower level library pins
-override :xproto,             version: "7.0.28"
-override :"util-macros",      version: "1.19.0"
-override :makedepend,         version: "1.0.5"
-
-## We are currently on the latest of these:
-#override :"ncurses",          version: "5.9"
-#override :"zlib",             version: "1.2.8"
-#override :"pkg-config-lite",  version: "0.28-1"
-#override :"libffi",           version: "3.2.1"
-#override :"libyaml",          version: "0.1.6"
-#override :"libiconv",         version: "1.14"
-#override :"liblzma",          version: "5.2.2"
-#override :"libxml2",          version: "2.9.3"
-#override :"libxslt",          version: "1.1.28"
-
-## according to comment in omnibus-sw, latest versions don't work on solaris
-# https://github.com/chef/omnibus-software/blob/aefb7e79d29ca746c3f843673ef5e317fa3cba54/config/software/libtool.rb#L23
-#override :"libtool"
 
 ## These can float as they are frequently updated in a way that works for us
 #override :"cacerts",                             # probably best to float?
