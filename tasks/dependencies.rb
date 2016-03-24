@@ -9,7 +9,7 @@ end
 
 task :dependencies do
   # Read the chefdk overrides file to get the list of gems and other things besides version (like source info)
-  overrides_file = File.expand_path("../../omnibus/config/chefdk_overrides.rb", __FILE__)
+  overrides_file = File.expand_path("../../omnibus/config/chefdk_gem_overrides.rb", __FILE__)
   puts "Reading #{overrides_file} ..."
   reader = OverrideReader.new
   reader.instance_eval(IO.read(overrides_file), overrides_file, 1)
