@@ -33,7 +33,7 @@ else
 end
 
 # Bring in generated gem overrides
-overrides_file = File.expand_path('../../chefdk_overrides.rb', __FILE__)
+overrides_file = File.expand_path('../../chefdk_gem_overrides.rb', __FILE__)
 instance_eval(IO.read(overrides_file), overrides_file, 1)
 
 # Lower level library pins
