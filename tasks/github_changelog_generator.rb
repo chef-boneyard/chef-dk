@@ -15,19 +15,17 @@
 # limitations under the License.
 #
 
-namespace :dependencies do
-  task :update do
-    require 'fileutils'
-    # Create Gemfile.lock
-    sh "bin/bundle-platform \"ruby\" lock --update --lockfile Gemfile.lock"
-    # Create Gemfile.windows.lock
-    sh "bin/bundle-platform \"ruby x86-mingw32\" lock --update --lockfile Gemfile.windows.lock"
+begin
+  require "github_changelog_generator/task"
+
+  GitHubChangelogGenerator::RakeTask.new :changelog do |config|
+    config.user = "chef"
+    config.project = "chef-dk"
+    config.future_release = ChefDK::VERSION
+    config.enhancement_labels = "enhancement,Enhancement,New Feature,Feature".split(",")
+    config.bug_labels = "bug,Bug,Improvement,Upstream Bug".split(",")
+    config.exclude_labels = "duplicate,question,invalid,wontfix,no_changelog,Exclude From Changelog,Question,Discussion".split(",")
   end
-  task :check do
-    sh "bundle install"
-    sh "bundle outdated" do |ok,err|
-      # Ignore bad exit; this is only informational
-    end
-  end
+rescue LoadError
+  puts "github_changelog_generator is not available. gem install github_changelog_generator to generate changelogs"
 end
-task :dependencies => [ "dependencies:update", "dependencies:check" ]

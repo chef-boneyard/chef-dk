@@ -17,7 +17,7 @@
 
 # This is a windows only dependency
 
-name "chefdk-env-customization"
+name "chef-dk-env-customization"
 
 license :project_license
 

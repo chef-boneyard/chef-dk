@@ -5,10 +5,10 @@ pkg/*
 */tags
 *~
 bin
-!bin/chef
+! bin/chef
+! bin/bundle-platform
 
 # You should check in your Gemfile.lock in applications, and not in gems
-/Gemfile.lock
 /Gemfile.local
 
 # pull master of omnibus+omnibus-software

@@ -21,8 +21,11 @@ before_install:
   - gem install bundler --no-ri --no-rdoc
   - gem --version
 
-rvm:
-  - 2.1.1
+include:
+  - rvm: 2.2
+  - rvm: 2.1
+  - gemfile: chef-dk-gemset/Gemfile
+    rvm: 2.2
 
 branches:
   only:

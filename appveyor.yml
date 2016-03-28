@@ -23,6 +23,7 @@ install:
   - gem --version
   - gem install bundler --no-ri --no-rdoc
   - bundler --version
+  - set BUNDLE_GEMFILE=C:\projects\chefdk\chef-dk-gemset\Gemfile
 
 build_script:
   - bundle install
