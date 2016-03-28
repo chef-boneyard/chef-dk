@@ -295,6 +295,17 @@ dpkg --list | grep chefdk # or dpkg --status chefdk
 # see man dkpg for details
 dpkg -P chefdk
 ```
+
+# For ChefDK Developers
+
+## Building the ChefDK
+
+To build the chef-dk, we use the omnibus system. Go to the [omnibus README](omnibus/README.md) to find out how to build!
+
+To update the chef-dk's dependencies, run `rake dependencies`. This will update the `Gemfile.lock` and `Gemfile.windows.lock` and show you any outdated dependencies (some outdated dependencies are to be expected; just scan them for anything that looks particularly bad).
+
+To add or remove a package from the chef-dk, edit `Gemfile`.
+
 - - -
 
 [Berkshelf]: http://berkshelf.com "Berkshelf"

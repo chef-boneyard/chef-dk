@@ -79,8 +79,14 @@ module ChefDK
         # We can't run it right now since graphviz specs are included in the
         # test suite by default. We will be able to switch to that command when/if
         # Graphviz is added to omnibus.
-        c.unit_test { sh("bundle exec rspec --color --format progress spec/unit --tag ~graphviz") }
-        c.integration_test { sh("bundle exec cucumber --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict") }
+        c.unit_test do
+          sh("bundle install")
+          sh("bundle exec rspec --color --format progress spec/unit --tag ~graphviz")
+        end
+        c.integration_test do
+          sh("bundle install")
+          sh("bundle exec cucumber --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict")
+        end
 
         c.smoke_test do
           tmpdir do |cwd|
@@ -92,8 +98,14 @@ module ChefDK
 
       add_component "test-kitchen" do |c|
         c.gem_base_dir = "test-kitchen"
-        c.unit_test { sh("bundle exec rake unit") }
-        c.integration_test { sh("bundle exec rake features") }
+        c.unit_test do
+          sh("bundle install")
+          sh("bundle exec rake unit")
+        end
+        c.integration_test do
+          sh("bundle install")
+          sh("bundle exec rake features")
+        end
 
         # NOTE: By default, kitchen tries to be helpful and install a driver
         # gem for you. This causes a race condition when running the tests
@@ -142,8 +154,14 @@ KITCHEN_YML
 
       add_component "chef-client" do |c|
         c.gem_base_dir = "chef"
-        c.unit_test { sh("bundle exec rspec -fp -t '~volatile_from_verify' spec/unit") }
-        c.integration_test { sh("bundle exec rspec -fp spec/integration spec/functional") }
+        c.unit_test do
+          sh("bundle install")
+          sh("bundle exec rspec -fp -t '~volatile_from_verify' spec/unit")
+        end
+        c.integration_test do
+          sh("bundle install")
+          sh("bundle exec rspec -fp spec/integration spec/functional")
+        end
 
         c.smoke_test do
           tmpdir do |cwd|
@@ -155,8 +173,13 @@ KITCHEN_YML
 
       add_component "chef-dk" do |c|
         c.gem_base_dir = "chef-dk"
-        c.unit_test { sh("bundle exec rspec") }
-        c.smoke_test { run_in_tmpdir("chef generate cookbook example") }
+        c.unit_test do
+          sh("bundle install")
+          sh("bundle exec rspec")
+        end
+        c.smoke_test do
+          run_in_tmpdir("chef generate cookbook example")
+        end
       end
 
       # entirely possible this needs to be driven by a utility method in chef-provisioning.

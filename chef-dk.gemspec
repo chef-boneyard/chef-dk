@@ -30,7 +30,9 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = '>= 2.0'
 
-  gem.files = %w(Gemfile Rakefile LICENSE README.md CONTRIBUTING.md warning.txt) + Dir.glob("*.gemspec") +
+  gem.files = %w(Rakefile LICENSE README.md CONTRIBUTING.md warning.txt) +
+      Dir.glob("Gemfile*") + # Includes Gemfile and locks
+      Dir.glob("*.gemspec") +
       Dir.glob("{lib,spec,acceptance}/**/*", File::FNM_DOTMATCH).reject { |f|  File.directory?(f) }
   gem.executables   = %w( chef )
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
@@ -53,7 +55,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "chef-provisioning", "~> 1.2"
 
-  gem.add_development_dependency "github_changelog_generator", "1.11.3"
+  gem.add_development_dependency "github_changelog_generator"
 
   %w(rspec-core rspec-expectations rspec-mocks).each do |dev_gem|
     gem.add_development_dependency dev_gem, "~> 3.0"
