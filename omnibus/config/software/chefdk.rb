@@ -56,7 +56,7 @@ dependency "ohai"
 dependency "rubocop"
 # This is a TK dependency but isn't declared in that software definition
 # because it is an optional dependency but we want to give it to ChefDK users
-dependency "winrm-transport"
+dependency "winrm-fs"
 dependency "openssl-customization"
 dependency "knife-windows"
 dependency "knife-spork"
