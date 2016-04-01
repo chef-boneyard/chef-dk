@@ -306,6 +306,62 @@ To update the chef-dk's dependencies, run `rake dependencies`. This will update 
 
 To add or remove a package from the chef-dk, edit `Gemfile`.
 
+# How the ChefDK Builds and Versions
+
+The ChefDK is an amalgam of many components. These components update all the time, necessitating new builds. This is an overview of the process of versioning, building and releasing the ChefDK.
+
+## ChefDK Packages
+
+The ChefDK is distributed as packages for debian, rhel, ubuntu, windows and os/x. It includes a large number of components from various sources, and these are versioned and maintained separately from the chef-dk project, which bundles them all together conveniently for the user.
+
+These packages go through several milestones:
+- `master`: When code is checked in to master, the patch version of chef-dk is bumped (e.g. 0.9.10 -> 0.9.11) and a build is kicked off automatically to create and test the packages in Chef's Jenkins cluster.
+- `unstable`: When a package is built, it enters the unstable channel. When all packages for all OS's have successfully built, the test phase is kicked off in Jenkins across all supported OS's. These builds are password-protected and generally only available to the test systems.
+- `current`: If the packages pass all the tests on all supported OS's, it is promoted as a unit to `current`, and is available via Chef's artifactory by running `curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -c current -P chefdk`
+- `stable`: Periodically, Chef will pick a release to "bless" for folks who would like a slower update schedule than "every time a build passes the tests." When this happens, it is manually promoted to stable and an announcement is sent to the list. It can be reached at https://downloads.chef.io or installed using the `curl` command without specifying `-c current`. Packages in `stable` are no longer available in `current`.
+
+Additionally, periodically Chef will update the desired versions of chef-dk components and check that in to `master`, triggering a new build with the updated components in it.
+
+## Automated Version Bumping
+
+Whenever a change is checked in to `master`, the patch version of `chef-dk` is bumped. To do this, the `lita-versioner` bot listens to github for merged PRs, and when it finds one, takes these actions:
+
+1. Bumps the patch version in `lib/chef-dk/version.rb` (e.g. 0.9.14 -> 0.9.15).
+2. Runs `rake dependencies:update_conservative` to update the `Gemfile.lock` and `Gemfile.windows.lock` to include the new version.
+3. Pushes to `master` and submits a new build to Chef's Jenkins cluster.
+
+## Component Versions
+
+The chef-dk has two sorts of component: ruby components like `berkshelf` and `test-kitchen`, and binary components like `openssl` and even `ruby` itself.
+
+Rubygems and omnibus versions, as well as the test verisons, can be updated by running `rake dependencies` and submitting a PR.
+
+### Binary Components
+
+The versions of binary components are stored in `omnibus/config/projects/chefdk.rb` and manually updated by Chef every so often. These have software definitions either in `omnibus/config/software` or, more often, in the [omnibus-software](https://github.com/chef/omnibus-software/tree/master/config/software) project.
+
+### Rubygems Components
+
+Most of the actual front-facing software in the chef-dk is composed of ruby projects. berkshelf, test-kitchen and even chef itself are made of ruby gems. Chef uses the typical ruby way of controlling rubygems versions, the `Gemfile`. Specifically, the `Gemfile` at the top of the chef-dk repository governs the version of every single gem we install into the chef-dk package. It's a one-stop shop.
+
+Our rubygems component versions are locked down with `Gemfile.lock` and `Gemfile.windows.lock` (which affects windows), and can be updated with `rake dependencies`.
+
+### Build Tooling Versions
+
+Of special mention is the software we use to build omnibus itself. There are two distinct bits of code that control the versions of compilers, make, git, and other tools we use to build.
+
+First, the Jenkins machines that run the build are configured entirely by the [opscode-ci cookbook](https://github.com/chef-cookbooks/opscode-ci) cookbook. They install most of the tools we use via `build-essentials`, and standardize the build environment so we can tear down and bring up builders at will. These machines are kept alive long-running, are periodically updated by Chef to the latest opscode-ci, omnibus and build-essentials cookbooks.
+
+Second, the version of omnibus we use to build the chef-dk is governed by `omnibus/Gemfile`. When software definitions or the omnibus framework is updated, this is the file that drives whether we pick it up.
+
+The omnibus tooling versions are locked down with `omnibus/Gemfile.lock`, and can be updated by running `rake dependencies`.
+
+### Test Versions
+
+chef-dk is tested by the [chef-acceptance framework](https://github.com/chef/chef-acceptance), which contains suites that are run on the Jenkins test machines. The definitions of the tests are in the `acceptance` directory. The version of chef-acceptance and test-kitchen, are governed by `acceptance/Gemfile`.
+
+The test tooling versions are locked down with `acceptance/Gemfile.lock`, which can be updated by running `rake dependencies`.
+
 - - -
 
 [Berkshelf]: http://berkshelf.com "Berkshelf"
