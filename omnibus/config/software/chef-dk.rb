@@ -38,6 +38,21 @@ dependency "ruby"
 dependency "rubygems"
 dependency "bundler"
 
+# Install all the native gems separately
+
+# Worst offenders first to take best advantage of cache:
+dependency "chef-dk-gem-dep-selector-libgecode"
+dependency "chef-dk-gem-gherkin"
+dependency "chef-dk-gem-byebug"
+dependency "chef-dk-gem-nokogiri"
+
+# Now everyone else, in alphabetical order because we don't care THAT much
+Dir.entries(File.dirname(__FILE__)).sort.each do |gem_software|
+  if gem_software =~ /^(chef-dk-gem-.+)\.rb$/
+    dependency $1
+  end
+end
+
 build do
   # This is where we get the definitions below
   require_relative "../../files/chef-dk/build-chef-dk"
