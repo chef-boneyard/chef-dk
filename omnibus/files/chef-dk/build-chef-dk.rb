@@ -7,6 +7,13 @@ require_relative "../chef-dk-gem/build-chef-dk-gem"
 module BuildChefDK
   include BuildChefDKGem
 
+  # Some gems are part of our bundle (must be installed) but not important
+  # enough to lock. List those here.
+  GEMS_ALLOWED_TO_FLOAT = [
+    "rubocop", # different projects disagree in their dev dependencies
+    "unicode-display_width", # dep of rubocop
+  ]
+
   def create_bundle_config(without: [ "development" ], retries: nil, jobs: nil, frozen: nil)
     if without
       without = without.dup
@@ -84,6 +91,7 @@ module BuildChefDK
       end
     end
 
+    # Show the config for good measure
     bundle "config"
 
     # Make `Gemfile` point to these by removing path and git sources and pinning versions.
@@ -94,7 +102,7 @@ module BuildChefDK
         if line =~ /^\s*\*\s*(\S+)\s+\((\S+).*\)\s*$/
           name, version = $1, $2
           # rubocop is an exception, since different projects disagree
-          next if name == 'rubocop'
+          next if GEMS_ALLOWED_TO_FLOAT.include?(name)
           gem_pins << "gem #{name.inspect}, #{version.inspect}\n"
         end
       end
