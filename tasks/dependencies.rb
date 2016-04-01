@@ -15,29 +15,101 @@
 # limitations under the License.
 #
 
+# Once you decide that the list of outdated gems is OK, you can just
+# add gems to the output of bundle outdated here and we'll parse it to get the
+# list of outdated gems.
+#
+# We're starting with debt here, but don't want it to get worse.
+ACCEPTABLE_OUTDATED_GEMS = %w{
+  jmespath
+  rubocop
+  celluloid
+  celluloid-io
+  docker-api
+  fog-cloudatcost
+  fog-google
+  gherkin
+  google-api-client
+  inifile
+  jwt
+  mime-types
+  mini_portile2
+  mixlib-install
+  net-ssh
+  retriable
+  slop
+  timers
+  unicode-display_width
+  varia_model
+}
+
+require_relative "bundle_util"
+
 namespace :dependencies do
   # Update all dependencies to the latest constraint-matching version
   task :update do
-    require 'fileutils'
-    # Create Gemfile.lock
-    sh "bin/bundle-platform \"ruby\" lock --update --lockfile Gemfile.lock"
-    # Install the locked versions so that we can continue to run things.
-    sh "bundle install"
-    # Create Gemfile.windows.lock
-    sh "bin/bundle-platform \"ruby x86-mingw32\" lock --update --lockfile Gemfile.windows.lock"
+    extend BundleUtil
+    puts ""
+    puts "--------------------------------------------------"
+    puts "Updating Gemfile.lock ..."
+    puts "--------------------------------------------------"
+    bundle "update"
+
+    platforms.each do |platform|
+      puts ""
+      puts "--------------------------------------------------"
+      puts "Updating Gemfile.#{platform}.lock ..."
+      puts "--------------------------------------------------"
+      bundle "lock --update --lockfile Gemfile.#{platform}.lock", platform: platform
+    end
+
+    puts ""
+    puts "--------------------------------------------------"
+    puts "Updating omnibus/Gemfile.lock ..."
+    puts "--------------------------------------------------"
+    bundle "lock --update", cwd: "omnibus"
+    # TODO make platform-specific locks for omnibus on windows, too
   end
   # Just like update, but only updates the minimum dependencies it can
   task :update_conservative do
-    # Create Gemfile.lock
-    sh "bin/bundle-platform \"ruby\" lock --lockfile Gemfile.lock"
-    # Install the locked versions so that we can continue to run things.
-    sh "bundle install"
-    # Create Gemfile.windows.lock
-    sh "bin/bundle-platform \"ruby x86-mingw32\" lock --update --lockfile Gemfile.windows.lock"
+    extend BundleUtil
+    puts ""
+    puts "--------------------------------------------------"
+    puts "Updating Gemfile.lock (conservatively) ..."
+    puts "--------------------------------------------------"
+    bundle "install"
+
+    platforms.each do |platform|
+      puts ""
+      puts "--------------------------------------------------"
+      puts "Updating Gemfile.#{platform}.lock (conservatively) ..."
+      puts "--------------------------------------------------"
+      bundle "lock --lockfile Gemfile.#{platform}.lock", platform: platform
+    end
+
+    puts ""
+    puts "--------------------------------------------------"
+    puts "Updating omnibus/Gemfile.lock (conservatively) ..."
+    puts "--------------------------------------------------"
+    bundle "lock", cwd: "omnibus"
+    # TODO make platform-specific locks for omnibus on windows, too
   end
   task :check do
-    sh "bundle outdated" do |ok,err|
-      # Ignore bad exit; this is only informational
+    puts ""
+    puts "--------------------------------------------------"
+    puts "Checking for outdated gems ..."
+    puts "--------------------------------------------------"
+    # TODO check for outdated windows gems too
+    bundle_outdated = bundle("outdated", extract_output: true)
+    puts bundle_outdated
+    outdated_gems = parse_bundle_outdated(bundle_outdated).map { |line, gem_name| gem_name }
+    # Weed out the acceptable ones
+    outdated_gems = outdated_gems.reject { |gem_name| ACCEPTABLE_OUTDATED_GEMS.include?(gem_name) }
+    if outdated_gems.empty?
+      puts ""
+      puts "SUCCESS!"
+    else
+      raise "ERROR: outdated gems: #{outdated_gems.join(", ")}. Either fix them or add them to ACCEPTABLE_OUTDATED_GEMS in #{__FILE__}."
     end
   end
 end
