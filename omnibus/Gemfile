@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'omnibus', git: 'https://github.com/chef/omnibus.git'
-gem 'omnibus-software', git: 'https://github.com/chef/omnibus-software.git'
+gem 'omnibus-software', git: 'https://github.com/chef/omnibus-software.git', branch: "winrm_fs"
 
 # omnibus pulls in aws-sdk which pulls in aws-sdk-core which pulls in jmespath which pulls in json_pure
 # json_pure breaks us. jmespath added it in 1.2.2. Pin to 1.1.
