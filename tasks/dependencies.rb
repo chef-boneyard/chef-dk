@@ -38,6 +38,7 @@ ACCEPTABLE_OUTDATED_GEMS = %w{
   net-ssh
   retriable
   slop
+  test-kitchen
   timers
   unicode-display_width
   varia_model
@@ -69,7 +70,15 @@ namespace :dependencies do
     puts "--------------------------------------------------"
     bundle "lock --update", cwd: "omnibus"
     # TODO make platform-specific locks for omnibus on windows, too
+
+    puts ""
+    puts "--------------------------------------------------"
+    puts "Updating acceptance/Gemfile.lock ..."
+    puts "--------------------------------------------------"
+    bundle "lock --update", cwd: "acceptance"
+    # TODO make platform-specific locks for omnibus on windows, too
   end
+
   # Just like update, but only updates the minimum dependencies it can
   task :update_conservative do
     extend BundleUtil
@@ -93,7 +102,16 @@ namespace :dependencies do
     puts "--------------------------------------------------"
     bundle "lock", cwd: "omnibus"
     # TODO make platform-specific locks for omnibus on windows, too
+
+    puts ""
+    puts "--------------------------------------------------"
+    puts "Updating acceptance/Gemfile.lock (conservatively) ..."
+    puts "--------------------------------------------------"
+    bundle "lock", cwd: "acceptance"
+    # TODO make platform-specific locks for omnibus on windows, too
   end
+
+  # Find out if we're using the latest gems we can (so we don't regress versions)
   task :check do
     puts ""
     puts "--------------------------------------------------"

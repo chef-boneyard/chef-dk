@@ -302,7 +302,7 @@ dpkg -P chefdk
 
 To build the chef-dk, we use the omnibus system. Go to the [omnibus README](omnibus/README.md) to find out how to build!
 
-To update the chef-dk's dependencies, run `rake dependencies`. This will update the `Gemfile.lock` and `Gemfile.windows.lock` and show you any outdated dependencies (some outdated dependencies are to be expected; just scan them for anything that looks particularly bad).
+To update the chef-dk's dependencies, run `rake dependencies`. This will update the `Gemfile.lock`, `Gemfile.windows.lock` and `omnibus/Gemfile.lock`, and show you any outdated dependencies. Some outdated dependencies are to be expected; it will inform you if any new ones appear that we don't know about, and tell you how to proceed.
 
 To add or remove a package from the chef-dk, edit `Gemfile`.
 
