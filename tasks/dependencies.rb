@@ -16,15 +16,26 @@
 #
 
 namespace :dependencies do
+  # Update all dependencies to the latest constraint-matching version
   task :update do
     require 'fileutils'
     # Create Gemfile.lock
     sh "bin/bundle-platform \"ruby\" lock --update --lockfile Gemfile.lock"
+    # Install the locked versions so that we can continue to run things.
+    sh "bundle install"
+    # Create Gemfile.windows.lock
+    sh "bin/bundle-platform \"ruby x86-mingw32\" lock --update --lockfile Gemfile.windows.lock"
+  end
+  # Just like update, but only updates the minimum dependencies it can
+  task :update_conservative do
+    # Create Gemfile.lock
+    sh "bin/bundle-platform \"ruby\" lock --lockfile Gemfile.lock"
+    # Install the locked versions so that we can continue to run things.
+    sh "bundle install"
     # Create Gemfile.windows.lock
     sh "bin/bundle-platform \"ruby x86-mingw32\" lock --update --lockfile Gemfile.windows.lock"
   end
   task :check do
-    sh "bundle install"
     sh "bundle outdated" do |ok,err|
       # Ignore bad exit; this is only informational
     end

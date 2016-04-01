@@ -2,11 +2,6 @@ name "chef-dk-complete"
 
 license :project_license
 
-dependency "libxml2"
-dependency "libxslt"
-dependency "libiconv"
-dependency "liblzma"
-dependency "zlib"
 dependency "chef-dk"
 if windows?
   dependency "chef-dk-env-customization"

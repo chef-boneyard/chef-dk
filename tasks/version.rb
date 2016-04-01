@@ -16,14 +16,14 @@
 #
 
 namespace :version do
-  task :bump => 'version:bump_patch'
+  task :bump => [ 'version:bump_patch', 'dependencies:update_conservative' ]
 
   task :show do
     puts ChefDK::VERSION
   end
 
   def version_rb_path
-    File.expand_path("../lib/chef-dk/version.rb", __FILE__)
+    File.expand_path("../../lib/chef-dk/version.rb", __FILE__)
   end
 
   # Add 1 to the current patch version in the VERSION file, and write it back out.
