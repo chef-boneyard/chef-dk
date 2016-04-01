@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 
-platforms = ARGV.shift.split(" ")
-Gem.platforms = platforms.map { |p| Gem::Platform.new(p) }
+platforms = ARGV.shift
+old_platforms = Gem.platforms
+Gem.platforms = platforms.split(" ").map { |p| Gem::Platform.new(p) }
+puts "bundle-platform set Gem.platforms to #{Gem.platforms.map { |p| p.to_s }} (was #{old_platforms.map { |p| p.to_s } })"
 
 # The rest of this is a normal bundler binstub
 require "pathname"
