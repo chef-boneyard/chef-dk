@@ -40,5 +40,4 @@ Vagrantfile
 .kitchen/
 
 # Chef-Acceptance
-acceptance/Gemfile.lock
 .acceptance_logs
