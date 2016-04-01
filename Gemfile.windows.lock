@@ -80,7 +80,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.13.3)
+    chef-dk (0.13.4)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
