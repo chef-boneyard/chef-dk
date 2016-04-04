@@ -1,4 +1,3 @@
-Berksfile.lock
 bin/
 .bundle
 vendor/bundle
