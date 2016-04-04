@@ -58,17 +58,19 @@ build do
   require_relative "../../files/chef-dk/build-chef-dk"
   extend BuildChefDK
 
-  # Prepare to install
-  create_bundle_config(retries: 4, jobs: 4, frozen: true)
-  use_platform_specific_lockfile
+  chefdk_build_env = env.dup
+  chefdk_build_env["BUNDLE_GEMFILE"] = chefdk_gemfile
+
+  # Prepare to install: build config, retries, job, frozen=true
+  create_bundle_config(chefdk_gemfile, retries: 4, jobs: 4, frozen: true)
 
   # Install all the things. Arguments are specified in .bundle/config (see create_bundle_config)
-  bundle "install --verbose", env: env
-  bundle "check", env: env
+  bundle "install --verbose", env: chefdk_build_env
+  bundle "check", env: chefdk_build_env
 
   # appbundle and fix up git-sourced gems
   properly_reinstall_git_and_path_sourced_gems
-  install_gemfile
+  install_shared_gemfile
   appbundle_gems %w(berkshelf chef chef-dk test-kitchen)
 
   # For whatever reason, nokogiri software def deletes this (rather small) directory
