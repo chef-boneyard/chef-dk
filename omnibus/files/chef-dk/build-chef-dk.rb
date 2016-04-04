@@ -14,14 +14,15 @@ module BuildChefDK
     "unicode-display_width", # dep of rubocop
   ]
 
-  def create_bundle_config(without: [ "development" ], retries: nil, jobs: nil, frozen: nil)
+  def create_bundle_config(gemfile, without: [ "development" ], retries: nil, jobs: nil, frozen: nil)
     if without
       without = without.dup
       # no_aix, no_windows groups
       without << "no_#{Omnibus::Ohai["platform"]}"
     end
 
-    bundle_config = File.join(project_dir, ".bundle", "config")
+    bundle_config = File.expand_path("../.bundle/config", gemfile)
+
     block "Put build config into #{bundle_config}: #{ { without: without, retries: retries, jobs: jobs, frozen: frozen } }" do
       # bundle config build.nokogiri #{nokogiri_build_config} messes up the line,
       # so we write it directly ourselves.
@@ -37,20 +38,27 @@ module BuildChefDK
     end
   end
 
-  def use_platform_specific_lockfile
-    # Use the platform-specific gemfile.lock if there is one
+  #
+  # Get the (possibly platform-specific) path to the Gemfile.
+  # /var/omnibus/cache/src/chef-dk/Gemfile or
+  # /var/omnibus/cache/src/chef-dk/Gemfile.windows
+  #
+  def chefdk_gemfile
     gemfile = File.join(project_dir, "Gemfile")
-    platform_lockfile = File.join(project_dir, "Gemfile.#{Omnibus::Ohai['platform']}.lock")
-    if File.exist?(platform_lockfile)
-      block do
-        log.info(log_key) { "Using #{platform_lockfile} as lockfile" }
-      end
-      copy(platform_lockfile, "#{gemfile}.lock")
-    else
-      block do
-        log.info(log_key) { "No platform-specific lockfile #{platform_lockfile}, using default #{gemfile}.lock"}
-      end
+    # Check for platform specific version
+    platform_gemfile = "#{gemfile}.#{Omnibus::Ohai["platform"]}"
+    if File.exist?(platform_gemfile)
+      gemfile = platform_gemfile
     end
+    gemfile
+  end
+
+  #
+  # Get the path to the top level shared Gemfile included by all individual
+  # Gemfiles
+  #
+  def shared_gemfile
+    File.join(install_dir, "Gemfile")
   end
 
   #
@@ -64,7 +72,7 @@ module BuildChefDK
   # chef-dk so that it doesn't have git or path references anymore.
   #
   def properly_reinstall_git_and_path_sourced_gems
-    gemfile = File.join(project_dir, "Gemfile")
+    chefdk_env = env.dup.merge("BUNDLE_GEMFILE" => chefdk_gemfile)
 
     # Reinstall git-sourced or path-sourced gems, and delete the originals
     block "Reinstall git-sourced gems properly" do
@@ -77,28 +85,31 @@ module BuildChefDK
       # or `gem :x, path: '.'` or `gemspec`). To do this, we just detect which ones
       # have properly-installed paths (in the `gems` directory that shows up when
       # you run `gem list`).
-      locally_installed_gems = shellout!("#{bundle_bin} list --paths", env: env, cwd: project_dir).
+      locally_installed_gems = shellout!("#{bundle_bin} list --paths", env: chefdk_env, cwd: project_dir).
         stdout.lines.select { |gem_path| !gem_path.start_with?(gem_install_dir) }
 
       # Install the gems for real using `rake install` in their directories
-      bundle_env = env.merge("BUNDLE_GEMFILE" => gemfile)
       locally_installed_gems.each do |gem_path|
         gem_path = gem_path.chomp
         # We use the already-installed bundle to rake install, because (hopefully)
         # just rake installing doesn't require anything special.
         log.info(log_key) { "Properly installing git or path sourced gem #{gem_path} using rake install" }
-        shellout!("#{bundle_bin} exec #{rake_bin} install", env: bundle_env, cwd: gem_path)
+        shellout!("#{bundle_bin} exec #{rake_bin} install", env: chefdk_env, cwd: gem_path)
       end
     end
+  end
+
+  def install_shared_gemfile
+    chefdk_env = env.dup.merge("BUNDLE_GEMFILE" => chefdk_gemfile)
 
     # Show the config for good measure
-    bundle "config"
+    bundle "config", env: chefdk_env
 
     # Make `Gemfile` point to these by removing path and git sources and pinning versions.
     block "Rewrite Gemfile using all properly-installed gems" do
       gem_pins = ""
       result = []
-      shellout!("#{bundle_bin} list", env: env).stdout.lines.map do |line|
+      shellout!("#{bundle_bin} list", env: chefdk_env).stdout.lines.map do |line|
         if line =~ /^\s*\*\s*(\S+)\s+\((\S+).*\)\s*$/
           name, version = $1, $2
           # rubocop is an exception, since different projects disagree
@@ -107,7 +118,7 @@ module BuildChefDK
         end
       end
 
-      create_file(gemfile) { <<-EOM }
+      create_file(shared_gemfile) { <<-EOM }
         # Meant to be included in component Gemfiles with:
         #
         #     instance_eval(IO.read("#{install_dir}/Gemfile"), "#{install_dir}/Gemfile")
@@ -123,12 +134,13 @@ module BuildChefDK
       EOM
     end
 
-    # Unfreeze the lockfile so we can update it.
-    create_bundle_config(frozen: false)
+    shared_gemfile_env = env.dup.merge("BUNDLE_GEMFILE" => shared_gemfile)
 
-    # Update `Gemfile.lock` to point at the installed versions
-    delete "Gemfile.lock"
-    bundle "lock", env: env
+    # Create a `Gemfile.lock` at the final location
+    bundle "lock", env: shared_gemfile_env
+
+    # Freeze the location's Gemfile.lock.
+    create_bundle_config(shared_gemfile, frozen: true)
 
     # Clear the now-unnecessary git caches, cached gems, and git-checked-out gems
     block "Delete bundler git cache and git installs" do
@@ -185,7 +197,7 @@ module BuildChefDK
         # something, we need to know about it so we can include it in the main
         # solve).
         # Save bundle config and modify to use --without development before checking
-        bundle_config = File.join(installed_path, ".bundle/config")
+        bundle_config = File.expand_path("../.bundle/config", installed_gemfile)
         orig_config = IO.read(bundle_config) if File.exist?(bundle_config)
         # "test", "changelog" and "guard" come from berkshelf, "maintenance" comes from chef
         shellout!("#{bundle_bin} config --local without development:test:guard:maintenance:changelog", env: env, cwd: installed_path)
@@ -205,11 +217,5 @@ module BuildChefDK
         end
       end
     end
-  end
-
-  def install_gemfile
-    copy ".bundle", install_dir
-    copy "Gemfile", install_dir
-    copy "Gemfile.lock", install_dir
   end
 end
