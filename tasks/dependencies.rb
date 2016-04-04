@@ -68,14 +68,20 @@ namespace :dependencies do
     puts "--------------------------------------------------"
     puts "Updating omnibus/Gemfile.lock ..."
     puts "--------------------------------------------------"
-    bundle "lock --update", cwd: "omnibus"
+    bundle "update", cwd: "omnibus"
     # TODO make platform-specific locks for omnibus on windows, too
+
+    puts ""
+    puts "--------------------------------------------------"
+    puts "Updating omnibus/Berksfile.lock ..."
+    puts "--------------------------------------------------"
+    bundle "exec berks update", cwd: "omnibus"
 
     puts ""
     puts "--------------------------------------------------"
     puts "Updating acceptance/Gemfile.lock ..."
     puts "--------------------------------------------------"
-    bundle "lock --update", cwd: "acceptance"
+    bundle "update", cwd: "acceptance"
     # TODO make platform-specific locks for omnibus on windows, too
   end
 
@@ -100,14 +106,20 @@ namespace :dependencies do
     puts "--------------------------------------------------"
     puts "Updating omnibus/Gemfile.lock (conservatively) ..."
     puts "--------------------------------------------------"
-    bundle "lock", cwd: "omnibus"
+    bundle "install", cwd: "omnibus"
     # TODO make platform-specific locks for omnibus on windows, too
+
+    puts ""
+    puts "--------------------------------------------------"
+    puts "Updating omnibus/Berksfile.lock (conservatively) ..."
+    puts "--------------------------------------------------"
+    bundle "exec berks install", cwd: "omnibus"
 
     puts ""
     puts "--------------------------------------------------"
     puts "Updating acceptance/Gemfile.lock (conservatively) ..."
     puts "--------------------------------------------------"
-    bundle "lock", cwd: "acceptance"
+    bundle "install", cwd: "acceptance"
     # TODO make platform-specific locks for omnibus on windows, too
   end
 
