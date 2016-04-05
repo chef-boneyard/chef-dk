@@ -68,16 +68,20 @@ build do
 
   # Install all the things. Arguments are specified in .bundle/config (see create_bundle_config)
   bundle "install --verbose", env: chefdk_build_env
-  bundle "check", env: chefdk_build_env
-
-  # appbundle and fix up git-sourced gems
-  properly_reinstall_git_and_path_sourced_gems
-  install_shared_gemfile
-  appbundle_gems %w(berkshelf chef chef-dk test-kitchen)
 
   # For whatever reason, nokogiri software def deletes this (rather small) directory
   block "Remove mini_portile test dir" do
     mini_portile = shellout!("#{bundle_bin} show mini_portile").stdout.chomp
     remove_directory File.join(mini_portile, "test")
   end
+
+  # Check that it worked
+  bundle "check", env: chefdk_build_env
+
+  # appbundle and fix up git-sourced gems
+  properly_reinstall_git_and_path_sourced_gems
+  install_shared_gemfile
+
+  # Check that the final gemfile worked
+  bundle "check", env: env, cwd: File.dirname(shared_gemfile)
 end
