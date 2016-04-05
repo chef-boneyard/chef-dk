@@ -8,6 +8,8 @@ module BuildChefDKGem
       new(software, software_filename).send(:define)
     end
 
+    include Omnibus::Logging
+
     protected
 
     def initialize(software, software_filename)
@@ -99,8 +101,18 @@ module BuildChefDKGem
         Bundler.settings[:frozen] = true
         begin
           bundle = Bundler::Definition.build(gemfile_path, lockfile_path, nil)
-          gemspec = bundle.resolve.find { |spec| spec.name == gem_name }
-          raise "#{gem_name} not found in #{lockfile_path}" unless gemspec
+          without = [ :development, :test, :guard, :maintenance, :changelog, :"no_#{Omnibus::Ohai["platform"]}" ]
+          dependencies = bundle.dependencies.reject {|d| (d.groups & without).any? }
+          # This is sacrilege: figure out a way we can grab the list of dependencies *without*
+          # requiring everything to be installed or calling private methods ...
+          gemspec = bundle.resolve.for(bundle.send(:expand_dependencies, dependencies)).find { |s| s.name == gem_name }
+          if gemspec
+            log.info(software.name) { "Using #{gem_name} version #{gemspec.version} from #{gemfile_path}" }
+          elsif bundle.resolve.find { |s| s.name == gem_name }
+            log.info(software.name) { "#{gem_name} not loaded from #{gemfile_path}, skipping"}
+          else
+            raise "#{gem_name} not found in #{gemfile_path} or #{lockfile_path}"
+          end
           gemspec
         ensure
           Bundler.settings[:frozen] = old_frozen

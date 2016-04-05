@@ -48,39 +48,39 @@ require_relative "bundle_util"
 
 namespace :dependencies do
   # Update all dependencies to the latest constraint-matching version
-  task :update do
+  task :update => "dependencies:update_omnibus_overrides" do
     extend BundleUtil
     puts ""
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     puts "Updating Gemfile.lock ..."
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     bundle "update"
 
     platforms.each do |platform|
       puts ""
-      puts "--------------------------------------------------"
+      puts "-------------------------------------------------------------------"
       puts "Updating Gemfile.#{platform}.lock ..."
-      puts "--------------------------------------------------"
+      puts "-------------------------------------------------------------------"
       bundle "lock --update", gemfile: "Gemfile.windows", platform: platform
     end
 
     puts ""
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     puts "Updating omnibus/Gemfile.lock ..."
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     bundle "update", cwd: "omnibus"
     # TODO make platform-specific locks for omnibus on windows, too
 
     puts ""
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     puts "Updating omnibus/Berksfile.lock ..."
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     bundle "exec berks update", cwd: "omnibus"
 
     puts ""
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     puts "Updating acceptance/Gemfile.lock ..."
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     bundle "update", cwd: "acceptance"
     # TODO make platform-specific locks for omnibus on windows, too
   end
@@ -89,46 +89,73 @@ namespace :dependencies do
   task :update_conservative do
     extend BundleUtil
     puts ""
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     puts "Updating Gemfile.lock (conservatively) ..."
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     bundle "install"
 
     platforms.each do |platform|
       puts ""
-      puts "--------------------------------------------------"
+      puts "-------------------------------------------------------------------"
       puts "Updating Gemfile.#{platform}.lock (conservatively) ..."
-      puts "--------------------------------------------------"
+      puts "-------------------------------------------------------------------"
       bundle "lock", gemfile: "Gemfile.windows", platform: platform
     end
 
     puts ""
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     puts "Updating omnibus/Gemfile.lock (conservatively) ..."
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     bundle "install", cwd: "omnibus"
     # TODO make platform-specific locks for omnibus on windows, too
 
     puts ""
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     puts "Updating omnibus/Berksfile.lock (conservatively) ..."
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     bundle "exec berks install", cwd: "omnibus"
 
     puts ""
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     puts "Updating acceptance/Gemfile.lock (conservatively) ..."
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     bundle "install", cwd: "acceptance"
     # TODO make platform-specific locks for omnibus on windows, too
+  end
+
+  task :update_omnibus_overrides do
+    puts ""
+    puts "-------------------------------------------------------------------"
+    puts "Updating omnibus/files/chef-dk-overrides.rb ..."
+    puts "-------------------------------------------------------------------"
+    # Get the latest bundler version
+    overrides_path = File.expand_path("../../omnibus/files/chef-dk-overrides.rb", __FILE__)
+    gem_list = `gem list -re bundler`
+    gem_list =~ /bundler\s*\(([^)]*)\)/
+    bundler_version = $1
+
+    # Read the overrides file
+    overrides = IO.read(overrides_path)
+
+    # Replace the bundler version
+    replaced = false
+    overrides.sub!(/^(override\s+:bundler,\s*version:\s*")([^"]*)("\s*)$/) do
+      replaced = true
+      puts "bundler version: #{bundler_version} (was #{$2})"
+      "#{$1}#{bundler_version}#{$3}"
+    end
+    raise "bundler version not found in overrides file!" unless replaced
+
+    # Write the overrides file back out
+    IO.write(overrides_path, overrides)
   end
 
   # Find out if we're using the latest gems we can (so we don't regress versions)
   task :check do
     puts ""
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     puts "Checking for outdated gems ..."
-    puts "--------------------------------------------------"
+    puts "-------------------------------------------------------------------"
     # TODO check for outdated windows gems too
     bundle_outdated = bundle("outdated", extract_output: true)
     puts bundle_outdated
