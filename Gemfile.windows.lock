@@ -716,7 +716,6 @@ DEPENDENCIES
   buff-ruby_engine (= 0.1.0)
   buff-shell_out (= 0.2.0)
   builder (= 3.2.2)
-  bundler (= 1.11.2)
   byebug (= 8.2.2)
   celluloid (= 0.16.0)
   celluloid-io (= 0.16.2)
