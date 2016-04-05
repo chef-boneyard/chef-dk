@@ -78,7 +78,7 @@ build do
   # Check that it worked
   bundle "check", env: chefdk_build_env
 
-  # appbundle and fix up git-sourced gems
+  # fix up git-sourced gems
   properly_reinstall_git_and_path_sourced_gems
   install_shared_gemfile
 
