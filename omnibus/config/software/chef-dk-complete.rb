@@ -3,6 +3,7 @@ name "chef-dk-complete"
 license :project_license
 
 dependency "chef-dk"
+dependency "chef-dk-appbundle"
 if windows?
   dependency "chef-dk-env-customization"
   dependency "chef-dk-powershell-scripts"
