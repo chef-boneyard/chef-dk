@@ -7,6 +7,7 @@ class OverrideReader
   end
 end
 
+desc "Update ChefDK's omnibus package dependencies"
 task :dependencies do
   # Read the chefdk overrides file to get the list of gems and other things besides version (like source info)
   overrides_file = File.expand_path("../../omnibus/config/chefdk_gem_overrides.rb", __FILE__)

@@ -20,6 +20,8 @@ require "bundler/gem_tasks"
 require "github_changelog_generator/task"
 
 namespace :version do
+
+  desc "Bump the patch version so a release build can be made"
   task :bump => 'version:bump_patch'
 
   task :show do
