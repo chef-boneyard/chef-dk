@@ -54,14 +54,6 @@ module BuildChefDK
   end
 
   #
-  # Get the path to the top level shared Gemfile included by all individual
-  # Gemfiles
-  #
-  def shared_gemfile
-    File.join(install_dir, "Gemfile")
-  end
-
-  #
   # Some gems we installed don't end up in the `gem list` due to the fact that
   # they have git sources (`gem 'chef', github: 'chef/chef'`) or paths (`gemspec`
   # or `gem 'chef-config', path: 'chef-config'`). To get them in there, we need

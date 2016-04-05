@@ -2,7 +2,8 @@ require "shellwords"
 require "pathname"
 require "bundler"
 
-# We use this to break up the `build` method into readable parts
+# Common definitions and helpers (like compile environment and binary
+# locations) for all chef-dk software definitions.
 module BuildChefDKGem
   def embedded_bin(binary)
     windows_safe_path("#{install_dir}/embedded/bin/#{binary}")
@@ -19,8 +20,17 @@ module BuildChefDKGem
   def rake_bin
     embedded_bin("rake")
   end
+
+  #
+  # Get the path to the top level shared Gemfile included by all individual
+  # Gemfiles
+  #
+  def shared_gemfile
+    File.join(install_dir, "Gemfile")
+  end
+
+  # A common env for building everything including nokogiri and dep-selector-libgecode
   def env
-    # A common env for building everything including nokogiri and dep-selector-libgecode
     env = with_standard_compiler_flags(with_embedded_path, bfd_flags: true)
 
     # From dep-selector-libgecode
@@ -42,19 +52,26 @@ module BuildChefDKGem
     env["NOKOGIRI_USE_SYSTEM_LIBRARIES"] = "true"
     env
   end
+
+  #
+  # Install arguments for various gems (to be passed to `gem install` or set in
+  # `bundle config build.<gemname>`).
+  #
   def all_install_args
     @all_install_args = {
-      "nokogiri" => [
-        "--use-system-libraries",
-        "--with-xml2-lib=#{Shellwords.escape("#{install_dir}/embedded/lib")}",
-        "--with-xml2-include=#{Shellwords.escape("#{install_dir}/embedded/include/libxml2")}",
-        "--with-xslt-lib=#{Shellwords.escape("#{install_dir}/embedded/lib")}",
-        "--with-xslt-include=#{Shellwords.escape("#{install_dir}/embedded/include/libxslt")}",
-        "--with-iconv-dir=#{Shellwords.escape("#{install_dir}/embedded")}",
-        "--with-zlib-dir=#{Shellwords.escape("#{install_dir}/embedded")}"
-      ].join(" ")
+      "nokogiri" => Shellwords.join(%w{
+        --use-system-libraries
+        --with-xml2-lib=#{install_dir}/embedded/lib
+        --with-xml2-include=#{install_dir}/embedded/include/libxml2
+        --with-xslt-lib=#{install_dir}/embedded/lib
+        --with-xslt-include=#{install_dir}/embedded/include/libxslt
+        --with-iconv-dir=#{install_dir}/embedded
+        --with-zlib-dir=#{install_dir}/embedded
+      })
     }
   end
+
+  # gem install arguments for a particular gem. "" if no special args.
   def install_args_for(gem_name)
     all_install_args[gem_name] || ""
   end
