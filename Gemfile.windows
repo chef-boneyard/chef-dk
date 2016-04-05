@@ -31,5 +31,4 @@
 require_relative "tasks/gemfile_util"
 extend GemfileUtil
 generic_gemfile = File.expand_path("../Gemfile", __FILE__)
-puts "Reading locks from #{generic_gemfile} to fill in #{__FILE__}"
 include_locked_gemfile(generic_gemfile)

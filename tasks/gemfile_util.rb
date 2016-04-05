@@ -94,7 +94,6 @@ module GemfileUtil
   private
 
   def add_gemfile_line(line, lineno)
-    puts line
     instance_eval(line, __FILE__, lineno)
   end
 end
