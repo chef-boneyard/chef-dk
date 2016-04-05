@@ -17,7 +17,10 @@
 
 source 'https://rubygems.org'
 
-gemspec :name => "chef-dk"
+# path is needed because when we attempt to load this gemspec to look at it from
+# another bundle, it will expand the path relative to the other bundle rather than
+# this file.
+gemspec path: File.dirname(__FILE__), name: "chef-dk"
 
 # EXPERIMENTAL: ALL gems specified here will be installed in chef-dk omnibus.
 # This represents all gems that will be part of chef-dk.
@@ -59,6 +62,14 @@ gem "pry-stack_explorer"
 gem "rb-readline"
 gem "rubocop", "~> 0.37.2"
 gem "winrm-fs"
+# NOTE this needs to be excluded from AIX too, but we don't support that on
+# ChefDK and putting a thing in multiple groups :no_windows, :no_aix won't work
+# because it --without no_aix will still install things in group :no_windows.
+# Need to specify groups positively; investigate.
+# http://stackoverflow.com/questions/8420414/how-to-add-mac-specific-gems-to-bundle-on-mac-but-not-on-linux
+group :no_windows do
+  gem "ruby-shadow"
+end
 
 # bundled or development dependencies we want to ship
 gem "dep_selector"
@@ -69,32 +80,3 @@ gem "rdoc"
 gem "yard"
 
 gem "jmespath", '< 1.2'
-
-
-# See `rake dependencies` for the usage of this:
-
-# If we're running out of bin/bundle-platform, we're updating deps. If the platform
-# is set to anything other than "ruby," we are doing a platform-specific lockfile,
-# and therefore MUST pin all gem versions to the same as the generic Gemfile.lock.
-# It is an error if we use different versions anywhere. This ensures that by
-# pinning all dependencies to their version in Gemfile.lock.
-if File.basename($0) == "bundle-platform" && Gem.platforms != [ "ruby" ]
-  puts "platform-bundling for a different platform: #{Gem.platforms.map { |p| p.to_s }}."
-  puts "Reading all versions from Gemfile.lock"
-  # We ensure everything in windows is pinned to the same version as "generic"
-  # by reading the generic Gemfile.lock and pinning to that version in the Gemfile.
-  lockfile = File.expand_path("../Gemfile.lock", __FILE__)
-  Bundler::LockfileParser.new(IO.read(lockfile)).specs.each do |spec|
-    # copy the groups from the existing spec if they are there
-    options = {}
-    current = dependencies.find { |d| d.name == spec.name }
-    if current
-      unless current.requirement.satisfied_by?(spec.version)
-        puts "WARN: using locked #{spec.name} version #{spec.version} when gemfile asks for #{current}"
-      end
-      dependencies.delete(current)
-      options[:groups] = current.groups
-    end
-    gem spec.name, spec.version, options
-  end
-end

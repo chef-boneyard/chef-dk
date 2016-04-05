@@ -8,7 +8,7 @@ module BundleUtil
   end
 
   def bundle_platform
-    File.join(project_root, "bin", "bundle-platform")
+    File.join(project_root, "tasks", "bundle-platform")
   end
 
   # Parse the output of "bundle outdated" and get the list of gems that
@@ -25,7 +25,7 @@ module BundleUtil
   end
 
   # Run bundle-platform with the given ruby platform(s)
-  def bundle(args, platform: nil, cwd: nil, extract_output: false)
+  def bundle(args, gemfile: nil, platform: nil, cwd: nil, extract_output: false)
     args = args.split(/\s+/)
     # Set the env var that lets Gemfile know it's
     puts ""
@@ -38,11 +38,33 @@ module BundleUtil
       ruby_platforms = platform ? PLATFORMS[platform].join(" ") : "ruby"
       cmd = Shellwords.join([bundle_platform, ruby_platforms, *args])
       puts "#{prefix}#{Shellwords.join(["bundle", *args])}#{platform ? " for #{platform} platform" : ""}:"
-      puts "#{prefix}> #{cmd}"
-      if extract_output
-        `#{cmd}`
-      else
-        sh bundle_platform, ruby_platforms, *args
+      with_gemfile(gemfile) do
+        puts "#{prefix}> #{cmd}"
+        if extract_output
+          `#{cmd}`
+        else
+          sh bundle_platform, ruby_platforms, *args
+        end
+      end
+    end
+  end
+
+  def with_gemfile(gemfile)
+    old_gemfile = ENV["BUNDLE_GEMFILE"]
+    if gemfile
+      ENV["BUNDLE_GEMFILE"] = gemfile
+    else
+      ENV.delete("BUNDLE_GEMFILE")
+    end
+    begin
+      yield
+    ensure
+      if gemfile
+        if old_gemfile
+          ENV["BUNDLE_GEMFILE"] = old_gemfile
+        else
+          ENV.delete("BUNDLE_GEMFILE")
+        end
       end
     end
   end

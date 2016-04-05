@@ -61,7 +61,7 @@ namespace :dependencies do
       puts "--------------------------------------------------"
       puts "Updating Gemfile.#{platform}.lock ..."
       puts "--------------------------------------------------"
-      bundle "lock --update --lockfile Gemfile.#{platform}.lock", platform: platform
+      bundle "lock --update", gemfile: "Gemfile.windows", platform: platform
     end
 
     puts ""
@@ -99,7 +99,7 @@ namespace :dependencies do
       puts "--------------------------------------------------"
       puts "Updating Gemfile.#{platform}.lock (conservatively) ..."
       puts "--------------------------------------------------"
-      bundle "lock --lockfile Gemfile.#{platform}.lock", platform: platform
+      bundle "lock", gemfile: "Gemfile.windows", platform: platform
     end
 
     puts ""
