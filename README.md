@@ -334,17 +334,23 @@ Whenever a change is checked in to `master`, the patch version of `chef-dk` is b
 
 The chef-dk has two sorts of component: ruby components like `berkshelf` and `test-kitchen`, and binary components like `openssl` and even `ruby` itself.
 
-Rubygems and omnibus versions, as well as the test verisons, can be updated by running `rake dependencies` and submitting a PR.
+In general, you can find all chef-dk desired versions in the [Gemfile](Gemfile) and [chef-dk-overrides](omnibus/config/files/chef-dk-overrides.rb) files. The [Gemfile.lock](Gemfile.lock) is the locked version of the Gemfile. [build](omnibus/Gemfile) and [test](acceptance/Gemfile) Gemfiles and [Berksfile](omnibus/Berksfile) version the toolset we use to build and test.
 
 ### Binary Components
 
-The versions of binary components are stored in `omnibus/config/projects/chefdk.rb` and manually updated by Chef every so often. These have software definitions either in `omnibus/config/software` or, more often, in the [omnibus-software](https://github.com/chef/omnibus-software/tree/master/config/software) project.
+The versions of binary components (as well as rubygems and bundler, which can't be versioned in a Gemfile) are stored in [chef-dk-overrides.rb](omnibus/config/files/chef-dk-overrides.rb).  `rake dependencies` will update the `bundler` version, and the rest are be updated manually by Chef every so often.
+
+These have software definitions either in [omnibus/config/software](omnibus/config/software) or, more often, in the [omnibus-software](https://github.com/chef/omnibus-software/tree/master/config/software) project.
 
 ### Rubygems Components
 
 Most of the actual front-facing software in the chef-dk is composed of ruby projects. berkshelf, test-kitchen and even chef itself are made of ruby gems. Chef uses the typical ruby way of controlling rubygems versions, the `Gemfile`. Specifically, the `Gemfile` at the top of the chef-dk repository governs the version of every single gem we install into the chef-dk package. It's a one-stop shop.
 
 Our rubygems component versions are locked down with `Gemfile.lock` and `Gemfile.windows.lock` (which affects windows), and can be updated with `rake dependencies`.
+
+**Windows**: [Gemfile.lock](Gemfile.lock) is generated platform-agnostic. In order to keep windows versions in sync, [Gemfile.windows](Gemfile.windows) reads the generic Gemfile.lock and explicitly pins all gems to those versions, allowing bundler to bring in windows-specific versions of the gems and new deps, but requiring that all gems shared between Windows and Unix have the same version.
+
+The tool we use to generate Windows-specific lockfiles on non-Windows machines is [tasks/bundle-platform](bundle-platform), which takes the first argument and sets `Gem.platforms`, and then calls `bundle` with the remaining arguments.
 
 ### Build Tooling Versions
 
@@ -361,6 +367,67 @@ The omnibus tooling versions are locked down with `omnibus/Gemfile.lock`, and ca
 chef-dk is tested by the [chef-acceptance framework](https://github.com/chef/chef-acceptance), which contains suites that are run on the Jenkins test machines. The definitions of the tests are in the `acceptance` directory. The version of chef-acceptance and test-kitchen, are governed by `acceptance/Gemfile`.
 
 The test tooling versions are locked down with `acceptance/Gemfile.lock`, which can be updated by running `rake dependencies`.
+
+## The Build Process
+
+The actual ChefDK build process is done with Omnibus, and has several general steps:
+
+1. `bundle install` from `chef-dk/Gemfile.lock`
+2. Reinstall any gems that came from git or path using `rake install`
+3. appbundle chef, chef-dk, test-kitchen and berkshelf
+4. Put miscellaneous powershell scripts and cleanup
+
+### Kicking Off The Build
+
+The build is kicked off in Jenkins by running this on the machine (which is already the correct OS and already has the correct dependencies, loaded by the `omnibus` cookbook):
+
+```
+load-omnibus-toolchain.bat
+cd chef-dk/omnibus
+bundle install
+bundle exec omnibus build chefdk
+```
+
+This causes the [chefdk project definition](omnibus/config/projects/chefdk.rb) to load, which runs the [chef-dk-complete](omnibus/config/software/chef-dk-complete.rb) software definition, the primary software definition driving the whole build process. The reason we embed it all in a software definiton instead of the project is to take advantage of omnibus caching: omnibus will invalidate the entire project (and recompile ruby, openssl, and everything else) if you change anything at all in the project file. Not so with a software definition.
+
+### Installing the Gems
+
+The primary build definition that installs the many ChefDK rubygems is [`software/chef-dk.rb`](omnibus/software/chef-dk.rb). This has dependencies on any binary libraries, ruby, rubygems and bundler. It has a lot of steps, so it uses a [library](omnibus/files/chef-dk/build-chef-dk.rb) to help reuse code and make it manageable to look at.
+
+What it does:
+
+1. Depends on software defs for pre-cached gems (see "Gems and Caching" below).
+2. Installs all gems from the bundle:
+   - Sets up a `.bundle/config` ([code](omnibus/files/chef-dk/build-chef-dk.rb#L17-L39)) with --retries=4, --jobs=1, --without=development,no_<platform>, and `build.config.nokogiri` to pass.
+   - Sets up a common environment, standardizing the compilers and flags we use, in [`env`](omnibus/files/chef-dk-gem/build-chef-dk-gem.rb#L32-L54).
+   - [Runs](omnibus/config/software/chef-dk.rb#L68) `bundle install --verbose`
+3. Reinstalls any gems that were installed via path:
+   - [Runs](omnibus/files/chef-dk/build-chef-dk.rb#L80) `bundle list --paths` to get the installed directories of all gems.
+   - For each gem not installed in the main gem dir, [runs](omnibus/files/chef-dk/build-chef-dk.rb#L89) `rake install` from the installed gem directory.
+   - [Deletes](omnibus/files/chef-dk/build-chef-dk.rb#L139-L143) the bundler git cache and path- and git-installed gems from the build.
+4. [Creates](omnibus/files/chef-dk/build-chef-dk.rb#L102-L152) `/opt/chefdk/Gemfile` and `/opt/chefdk/Gemfile.lock` with the gems that were installed in the build.
+
+#### Gems and Caching
+
+Some gems take a super long time to install (particularly native-compiled ones such as nokogiri and dep-selector-libgecode) and do not change version very often. In order to avoid doing this work every time, we take advantage of omnibus caching by separating out these gems into their own software definitions. [chef-dk-gem-dep-selector-libgecode](omnibus/config/software/chef-dk-gem-dep-selector-libgecode.rb) for example.
+
+Each of these gems uses the `config/files/chef-dk-gem/build-chef-dk-gem` library to define itself. The name of the software definition itself indicates the .
+
+We only create software definitions for long-running gems. Everything else is just installed in the [chef-dk](omnibus/config/software/chef-dk.rb) software definition in a big `bundle install` catchall.
+
+Most gems we just install in the single `chef-dk` software definition.
+
+The first thing
+
+### Appbundling
+
+After the gems are installed, we *appbundle* them in [chef-dk-appbundle](omnibus/config/software/chef-dk-appbundle.rb). This creates binstubs that use the bundle to pin the software .
+
+During the process of appbundling, we update the gem's `Gemfile` to include the locks in the top level `/opt/chefdk/Gemfile.lock`, so we can guarantee they will never pick up things outside the build. We then run `bundle lock` to update the gem's `Gemfile.lock`, and `bundle check` to ensure all the gems are actually installed. The appbundler then uses these pins.
+
+### Other Cleanup
+
+Finally, the chef-dk does several more steps including installing powershell scripts and shortcuts, and removing extra documentation to keep the build slim.
 
 - - -
 
