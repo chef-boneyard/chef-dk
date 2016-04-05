@@ -44,7 +44,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.13.4)
+    chef-dk (0.13.8)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -73,12 +73,12 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (2.2.31)
-      aws-sdk-resources (= 2.2.31)
-    aws-sdk-core (2.2.31)
+    aws-sdk (2.2.32)
+      aws-sdk-resources (= 2.2.32)
+    aws-sdk-core (2.2.32)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.2.31)
-      aws-sdk-core (= 2.2.31)
+    aws-sdk-resources (2.2.32)
+      aws-sdk-core (= 2.2.32)
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -397,8 +397,10 @@ GEM
       rubyzip (~> 1.1)
       thor (~> 0.19)
     ipaddress (0.8.3)
-    jmespath (1.1.3)
+    jmespath (1.2.3)
+      json_pure (>= 1.8.1)
     json (1.8.3)
+    json_pure (1.8.3)
     jwt (1.5.1)
     kitchen-ec2 (1.0.0)
       aws-sdk (~> 2)
@@ -454,7 +456,7 @@ GEM
     nenv (0.3.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (3.0.2)
+    net-ssh (3.1.1)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     net-ssh-multi (1.2.1)
@@ -589,7 +591,7 @@ GEM
       addressable (>= 2.3.5, < 2.5)
       faraday (~> 0.8, < 0.10)
     semverse (1.2.1)
-    serverspec (2.31.0)
+    serverspec (2.31.1)
       multi_json
       rspec (~> 3.0)
       rspec-its
@@ -605,9 +607,9 @@ GEM
     solve (2.0.3)
       molinillo (~> 0.4.2)
       semverse (~> 1.1)
-    specinfra (2.55.0)
+    specinfra (2.56.0)
       net-scp
-      net-ssh (>= 2.7, < 3.1)
+      net-ssh (>= 2.7, < 4.0)
       net-telnet
       sfl
     stuartpreston-azure-sdk-for-ruby (0.7.1)
@@ -642,7 +644,7 @@ GEM
     varia_model (0.4.1)
       buff-extensions (~> 1.0)
       hashie (>= 2.0.2, < 4.0.0)
-    winrm (1.7.2)
+    winrm (1.7.3)
       builder (>= 2.1.2)
       gssapi (~> 1.2)
       gyoku (~> 1.0)
@@ -683,7 +685,7 @@ DEPENDENCIES
   github_changelog_generator
   guard
   inspec (>= 0.17.1)
-  jmespath (< 1.2)
+  json (>= 1.8.1)
   kitchen-ec2
   kitchen-inspec
   kitchen-vagrant

@@ -62,6 +62,9 @@ gem "pry-stack_explorer"
 gem "rb-readline"
 gem "rubocop", "~> 0.37.2"
 gem "winrm-fs"
+# `json_pure` has a bug in it that is failing ChefDK builds.  We include the
+# prevents loading the `json_pure` gem
+gem 'json', '>= 1.8.1'
 # NOTE this needs to be excluded from AIX too, but we don't support that on
 # ChefDK and putting a thing in multiple groups :no_windows, :no_aix won't work
 # because it --without no_aix will still install things in group :no_windows.
@@ -78,5 +81,3 @@ gem "ruby-prof"
 gem "rake"
 gem "rdoc"
 gem "yard"
-
-gem "jmespath", '< 1.2'
