@@ -63,19 +63,21 @@ module BuildChefDKGem
 
     def gemfile_path
       # gemfile path could be relative to software filename (and often is)
-      @gemfile_path ||= File.join(root_path, "Gemfile")
+      @gemfile_path ||= begin
+        # Grab the version (and maybe source) from the lockfile so omnibus knows whether
+        # to toss the cache or not
+        gemfile_path = File.join(root_path, "Gemfile")
+        platform_gemfile_path = "#{gemfile_path}.#{Omnibus::Ohai["platform"]}"
+        if File.exist?(platform_gemfile_path)
+          gemfile_path = platform_gemfile_path
+        end
+        gemfile_path
+      end
+
     end
 
     def lockfile_path
-      @lockfile_path ||= begin
-        # Grab the version (and maybe source) from the lockfile so omnibus knows whether
-        # to toss the cache or not
-        lockfile_path = "#{gemfile_path}.#{Omnibus::Ohai["platform"]}.lock"
-        unless File.exist?(lockfile_path)
-          lockfile_path = "#{gemfile_path}.lock"
-        end
-        lockfile_path
-      end
+      @lockfile_path ||= "#{gemfile_path}.lock"
     end
 
     def gem_name
@@ -93,10 +95,16 @@ module BuildChefDKGem
 
     def gemspec
       @gemspec ||= begin
-        lockfile = Bundler::LockfileParser.new(IO.read(lockfile_path))
-        gemspec = lockfile.specs.find { |s| s.name == gem_name }
-        raise "#{gem_name} not found in #{lockfile_path}" unless gemspec
-        gemspec
+        old_frozen = Bundler.settings[:frozen]
+        Bundler.settings[:frozen] = true
+        begin
+          bundle = Bundler::Definition.build(gemfile_path, lockfile_path, nil)
+          gemspec = bundle.resolve.find { |spec| spec.name == gem_name }
+          raise "#{gem_name} not found in #{lockfile_path}" unless gemspec
+          gemspec
+        ensure
+          Bundler.settings[:frozen] = old_frozen
+        end
       end
     end
 

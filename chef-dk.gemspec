@@ -33,7 +33,7 @@ Gem::Specification.new do |gem|
   gem.files = %w(Rakefile LICENSE README.md CONTRIBUTING.md warning.txt) +
       Dir.glob("Gemfile*") + # Includes Gemfile and locks
       Dir.glob("*.gemspec") +
-      Dir.glob("{lib,spec,acceptance}/**/*", File::FNM_DOTMATCH).reject { |f|  File.directory?(f) }
+      Dir.glob("{lib,spec,acceptance,tasks}/**/*", File::FNM_DOTMATCH).reject { |f|  File.directory?(f) }
   gem.executables   = %w( chef )
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]

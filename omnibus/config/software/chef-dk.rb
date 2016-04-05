@@ -62,7 +62,9 @@ build do
   chefdk_build_env["BUNDLE_GEMFILE"] = chefdk_gemfile
 
   # Prepare to install: build config, retries, job, frozen=true
-  create_bundle_config(chefdk_gemfile, retries: 4, jobs: 4, frozen: true)
+  # TODO Windows install seems to sometimes install already-installed gems such
+  # as gherkin (and fail as a result) if you use jobs: 4.
+  create_bundle_config(chefdk_gemfile, retries: 4, jobs: 1, frozen: true)
 
   # Install all the things. Arguments are specified in .bundle/config (see create_bundle_config)
   bundle "install --verbose", env: chefdk_build_env

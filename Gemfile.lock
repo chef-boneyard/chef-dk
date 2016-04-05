@@ -580,6 +580,7 @@ GEM
       unicode-display_width (~> 0.3)
     ruby-prof (0.15.9)
     ruby-progressbar (1.7.5)
+    ruby-shadow (2.5.0)
     rubyntlm (0.6.0)
     rubyzip (1.2.0)
     rufus-lru (1.0.5)
@@ -665,6 +666,7 @@ PLATFORMS
 DEPENDENCIES
   appbundler!
   berkshelf
+  bundler
   chef!
   chef-dk!
   chef-provisioning (>= 1.6.0)
@@ -702,6 +704,7 @@ DEPENDENCIES
   rspec-mocks (~> 3.0)
   rubocop (~> 0.37.2)
   ruby-prof
+  ruby-shadow
   test-kitchen (>= 1.6.0)
   winrm-fs
   yard

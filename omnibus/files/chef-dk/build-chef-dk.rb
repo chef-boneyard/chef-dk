@@ -100,6 +100,7 @@ module BuildChefDK
   end
 
   def install_shared_gemfile
+    shared_gemfile = self.shared_gemfile
     chefdk_env = env.dup.merge("BUNDLE_GEMFILE" => chefdk_gemfile)
 
     # Show the config for good measure
@@ -114,23 +115,23 @@ module BuildChefDK
           name, version = $1, $2
           # rubocop is an exception, since different projects disagree
           next if GEMS_ALLOWED_TO_FLOAT.include?(name)
-          gem_pins << "gem #{name.inspect}, #{version.inspect}\n"
+          gem_pins << "override_gem #{name.inspect}, #{version.inspect}\n"
         end
       end
 
       create_file(shared_gemfile) { <<-EOM }
-        # Meant to be included in component Gemfiles with:
+        # Meant to be included in component Gemfiles at the end with:
         #
         #     instance_eval(IO.read("#{install_dir}/Gemfile"), "#{install_dir}/Gemfile")
         #
-        # Load our gem version overrides and disallow the includer Gemfile from
-        # specifying the same ones
-        #{gem_pins}
-        def gem(name, *args)
+        # Override any existing gems with our own.
+        def override_gem(name, *args, &block)
           # If the Gemfile re-specifies something in our lockfile, ignore it.
-          return if dependencies.any? { |dep| dep.name == name }
-          super
+          current = dependencies.find { |dep| dep.name == name }
+          dependencies.delete(current) if current
+          gem(name, *args, &block)
         end
+        #{gem_pins}
       EOM
     end
 
@@ -160,7 +161,7 @@ module BuildChefDK
   # Relocks the Gemfiles inside the specified gems (e.g. berkshelf, test-kitchen,
   # chef) to use the chef-dk distribution's chosen gems.
   def appbundle_gems(gems)
-    gemfile = File.join(project_dir, "Gemfile")
+    shared_gemfile = self.shared_gemfile
 
     # re-lock the Gemfile to the build
     # Ensure the main bin dir exists
@@ -177,21 +178,31 @@ module BuildChefDK
         #
         # Include the main distribution Gemfile in the gem's Gemfile
         #
-        distribution_gemfile = Pathname(gemfile).relative_path_from(Pathname(installed_gemfile).dirname).to_s
-        gemfile_text = <<-EOM.gsub(/^\s+/, '')
+        # NOTE: if this fails and the build retries, you will see this multiple
+        # times in the file.
+        #
+        distribution_gemfile = Pathname(shared_gemfile).relative_path_from(Pathname(installed_gemfile)).to_s
+        gemfile_text = IO.read(installed_gemfile)
+        gemfile_text << <<-EOM.gsub(/^\s+/, '')
           # Lock gems that are part of the distribution
-          distribution_gemfile = #{distribution_gemfile.inspect}
+          distribution_gemfile = File.expand_path(#{distribution_gemfile.inspect}, __FILE__)
           instance_eval(IO.read(distribution_gemfile), distribution_gemfile)
         EOM
-        gemfile_text << IO.read(installed_gemfile)
         create_file(installed_gemfile) { gemfile_text }
 
         # Remove the gemfile.lock
         remove_file("#{installed_gemfile}.lock") if File.exist?("#{installed_gemfile}.lock")
 
+        # If it's frozen, make it not be.
+        shellout!("#{bundle_bin} config --delete frozen")
+
         # This could be changed to `bundle install` if we wanted to actually
         # install extra deps out of their gemfile ...
         shellout!("#{bundle_bin} lock", env: env, cwd: installed_path)
+        # bundle lock doesn't always tell us when it fails, so we have to check :/
+        unless File.exist?("#{installed_gemfile}.lock")
+          raise "bundle lock failed: no #{installed_gemfile}.lock created!"
+        end
 
         # Ensure all the gems we need are actually installed (if the bundle adds
         # something, we need to know about it so we can include it in the main
@@ -200,7 +211,8 @@ module BuildChefDK
         bundle_config = File.expand_path("../.bundle/config", installed_gemfile)
         orig_config = IO.read(bundle_config) if File.exist?(bundle_config)
         # "test", "changelog" and "guard" come from berkshelf, "maintenance" comes from chef
-        shellout!("#{bundle_bin} config --local without development:test:guard:maintenance:changelog", env: env, cwd: installed_path)
+        shellout!("#{bundle_bin} config --local without development:test:guard:maintenance:changelog:no_#{Omnibus::Ohai["platform"]}", env: env, cwd: installed_path)
+        shellout!("#{bundle_bin} config --local frozen 1")
 
         shellout!("#{bundle_bin} check", env: env, cwd: installed_path)
 
@@ -211,7 +223,7 @@ module BuildChefDK
 
         # Restore bundle config
         if orig_config
-          create_file bundle_config { orig_config }
+          create_file(bundle_config) { orig_config }
         else
           remove_file bundle_config
         end
