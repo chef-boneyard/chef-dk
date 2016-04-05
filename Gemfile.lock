@@ -666,7 +666,6 @@ PLATFORMS
 DEPENDENCIES
   appbundler!
   berkshelf
-  bundler
   chef!
   chef-dk!
   chef-provisioning (>= 1.6.0)

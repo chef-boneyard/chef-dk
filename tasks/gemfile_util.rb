@@ -57,13 +57,14 @@ module GemfileUtil
 
     # Go through and create the actual gemfile from the given locks and
     # groups.
-    puts bundle.resolve.map { |spec| spec.name }
     bundle.resolve.sort_by { |spec| spec.name }.each do |spec|
+      # bundler can't be installed by bundler so don't pin it.
+      next if spec.name == "bundler"
       dep = bundle.dependencies.find { |d| d.name == spec.name}
       gem_metadata = ""
       if dep
         gem_metadata << ", groups: #{dep.groups.inspect}" if dep.groups != [:default]
-        gem_metadata << ", platforms: #{dep.platforms.inspect}"
+        gem_metadata << ", platforms: #{dep.platforms.inspect}" if dep.platforms && !dep.platforms.empty?
       end
       case spec.source
       when Bundler::Source::Rubygems
