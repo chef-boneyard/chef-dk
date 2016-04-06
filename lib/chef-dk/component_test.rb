@@ -99,6 +99,10 @@ module ChefDK
       instance_eval(&@smoke_test)
     end
 
+    def bin(binary)
+      File.join(omnibus_embedded_bin_dir, binary)
+    end
+
     def sh(command, options={})
       combined_opts = default_command_options.merge(options)
 

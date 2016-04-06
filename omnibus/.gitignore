@@ -1,4 +1,4 @@
-bin/
+binstubs
 .bundle
 vendor/bundle
 pkg/

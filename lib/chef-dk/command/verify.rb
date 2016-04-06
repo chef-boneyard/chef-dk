@@ -75,23 +75,23 @@ module ChefDK
       #
       add_component "berkshelf" do |c|
         c.gem_base_dir = "berkshelf"
-        # For berks the real command to run is "bundle exec thor spec:ci"
+        # For berks the real command to run is "#{bin("bundle")} exec thor spec:ci"
         # We can't run it right now since graphviz specs are included in the
         # test suite by default. We will be able to switch to that command when/if
         # Graphviz is added to omnibus.
         c.unit_test do
-          sh("bundle install")
-          sh("bundle exec rspec --color --format progress spec/unit --tag ~graphviz")
+          sh("#{bin("bundle")} install")
+          sh("#{bin("bundle")} exec #{bin("rspec")} --color --format progress spec/unit --tag ~graphviz")
         end
         c.integration_test do
-          sh("bundle install")
-          sh("bundle exec cucumber --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict")
+          sh("#{bin("bundle")} install")
+          sh("#{bin("bundle")} exec #{bin("cucumber")} --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict")
         end
 
         c.smoke_test do
           tmpdir do |cwd|
             FileUtils.touch(File.join(cwd,"Berksfile"))
-            sh("berks install", cwd: cwd)
+            sh("#{bin("berks")} install", cwd: cwd)
           end
         end
       end
@@ -99,12 +99,12 @@ module ChefDK
       add_component "test-kitchen" do |c|
         c.gem_base_dir = "test-kitchen"
         c.unit_test do
-          sh("bundle install")
-          sh("bundle exec rake unit")
+          sh("#{bin("bundle")} install")
+          sh("#{bin("bundle")} exec rake unit")
         end
         c.integration_test do
-          sh("bundle install")
-          sh("bundle exec rake features")
+          sh("#{bin("bundle")} install")
+          sh("#{bin("bundle")} exec rake features")
         end
 
         # NOTE: By default, kitchen tries to be helpful and install a driver
@@ -155,18 +155,18 @@ KITCHEN_YML
       add_component "chef-client" do |c|
         c.gem_base_dir = "chef"
         c.unit_test do
-          sh("bundle install")
-          sh("bundle exec rspec -fp -t '~volatile_from_verify' spec/unit")
+          sh("#{bin("bundle")} install")
+          sh("#{bin("bundle")} exec #{bin("rspec")} -fp -t '~volatile_from_verify' spec/unit")
         end
         c.integration_test do
-          sh("bundle install")
-          sh("bundle exec rspec -fp spec/integration spec/functional")
+          sh("#{bin("bundle")} install")
+          sh("#{bin("bundle")} exec #{bin("rspec")} -fp spec/integration spec/functional")
         end
 
         c.smoke_test do
           tmpdir do |cwd|
             FileUtils.touch(File.join(cwd, "apply.rb"))
-            sh("chef-apply apply.rb", cwd: cwd)
+            sh("#{bin("chef-apply")} apply.rb", cwd: cwd)
           end
         end
       end
@@ -174,11 +174,11 @@ KITCHEN_YML
       add_component "chef-dk" do |c|
         c.gem_base_dir = "chef-dk"
         c.unit_test do
-          sh("bundle install")
-          sh("bundle exec rspec")
+          sh("#{bin("bundle")} install")
+          sh("#{bin("bundle")} exec #{bin("rspec")}")
         end
         c.smoke_test do
-          run_in_tmpdir("chef generate cookbook example")
+          run_in_tmpdir("#{bin("chef")} generate cookbook example")
         end
       end
 
@@ -260,7 +260,7 @@ EOS
                 drivers.each { |d| f.puts %Q(gem "#{d}") }
               end
 
-              result = sh("bundle install --local --quiet", cwd: cwd, env: {"BUNDLE_GEMFILE" => gemfile })
+              result = sh("#{bin("bundle")} install --local --quiet", cwd: cwd, env: {"BUNDLE_GEMFILE" => gemfile })
 
               if result.exitstatus != 0
                 failures << result.stdout
@@ -280,8 +280,8 @@ EOS
       add_component "chefspec" do |c|
         c.gem_base_dir = "chefspec"
         c.unit_test do
-          sh("bundle install")
-          sh("bundle exec rake unit")
+          sh("#{bin("bundle")} install")
+          sh("#{bin("bundle")} exec #{bin("rake")} unit")
         end
         c.smoke_test do
           tmpdir do |cwd|
@@ -303,8 +303,7 @@ end
 require 'spec_helper'
               EOF
             end
-            sh("bundle install")
-            sh("bundle exec rspec", cwd: cwd)
+            sh(bin("rspec"), cwd: cwd)
           end
         end
       end
@@ -314,9 +313,9 @@ require 'spec_helper'
         c.gem_base_dir = "chef-dk"
         c.smoke_test do
           tmpdir do |cwd|
-            sh("chef generate cookbook example", cwd: cwd)
+            sh("#{bin("chef")} generate cookbook example", cwd: cwd)
             cb_cwd = File.join(cwd, "example")
-            sh("rspec", cwd: cb_cwd)
+            sh(bin("rspec"), cwd: cb_cwd)
           end
         end
       end
@@ -332,25 +331,25 @@ def foo
 end
               EOF
             end
-            sh("rubocop foo.rb -l", cwd: cwd)
+            sh("#{bin("rubocop")} foo.rb -l", cwd: cwd)
           end
         end
       end
 
       add_component "fauxhai" do |c|
         c.gem_base_dir = "fauxhai"
-        c.smoke_test { sh("gem list fauxhai") }
+        c.smoke_test { sh("#{bin("gem")} list fauxhai") }
       end
 
       add_component "knife-spork" do |c|
         c.gem_base_dir = "knife-spork"
-        c.smoke_test { sh('knife spork info')}
+        c.smoke_test { sh("#{bin("knife")} spork info")}
       end
 
       add_component "kitchen-vagrant" do |c|
         c.gem_base_dir = "kitchen-vagrant"
         # The build is not passing in travis, so no tests
-        c.smoke_test { sh("gem list kitchen-vagrant") }
+        c.smoke_test { sh("#{bin("gem")} list kitchen-vagrant") }
       end
 
       add_component "package installation" do |c|
@@ -423,9 +422,9 @@ end
 
         # Commenting out the unit and integration tests for now until we figure
         # out the bundler error
-        #c.unit_test { sh("bundle exec rake test:isolated") }
+        #c.unit_test { sh("#{bin("bundle")} exec rake test:isolated") }
         # This runs Test Kitchen (using kitchen-inspec) with some inspec tests
-        #c.integration_test { sh("bundle exec rake test:vm") }
+        #c.integration_test { sh("#{bin("bundle")} exec rake test:vm") }
 
         # It would be nice to use a chef generator to create these specs, but
         # we dont have that yet.  So we do it manually.
@@ -444,7 +443,7 @@ end
               INSPEC_TEST
             end
             # TODO when we appbundle inspec, no longer `chef exec`
-            sh("chef exec inspec exec .", cwd: cwd)
+            sh("#{bin("chef")} exec #{bin("inspec")} exec .", cwd: cwd)
           end
         end
       end
