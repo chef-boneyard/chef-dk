@@ -279,7 +279,10 @@ EOS
 
       add_component "chefspec" do |c|
         c.gem_base_dir = "chefspec"
-        c.unit_test { sh("rake unit") }
+        c.unit_test do
+          sh("bundle install")
+          sh("bundle exec rake unit")
+        end
         c.smoke_test do
           tmpdir do |cwd|
             FileUtils.mkdir(File.join(cwd, "spec"))
@@ -300,7 +303,8 @@ end
 require 'spec_helper'
               EOF
             end
-            sh("rspec", cwd: cwd)
+            sh("bundle install")
+            sh("bundle exec rspec", cwd: cwd)
           end
         end
       end
