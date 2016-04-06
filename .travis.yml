@@ -24,8 +24,6 @@ before_install:
 include:
   - rvm: 2.2
   - rvm: 2.1
-  - gemfile: chef-dk-gemset/Gemfile
-    rvm: 2.2
 
 branches:
   only:
