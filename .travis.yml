@@ -21,9 +21,10 @@ before_install:
   - gem install bundler --no-ri --no-rdoc
   - gem --version
 
-include:
-  - rvm: 2.2
-  - rvm: 2.1
+matrix:
+  include:
+    - rvm: 2.2
+    - rvm: 2.1
 
 branches:
   only:
