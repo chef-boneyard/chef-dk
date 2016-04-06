@@ -1,6 +1,6 @@
 override :berkshelf, :version => "v4.3.2"
 override :bundler, :version => "1.11.2"
-override :"chef-provisioning", :version => "v1.6.0"
+override :"chef-provisioning", :version => "v1.7.0"
 override :"chef-provisioning-aws", :version => "v1.8.0"
 override :"chef-provisioning-azure", :version => "v0.5.0"
 override :"chef-provisioning-fog", :version => "v0.16.0"
