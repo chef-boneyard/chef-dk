@@ -60,7 +60,7 @@ module BuildChefDKGem
 
     # Path above omnibus (where Gemfile is)
     def root_path
-      File.expand_path("../..", software.project.files_path)
+      File.expand_path("../../../../..", __FILE__)
     end
 
     def gemfile_path

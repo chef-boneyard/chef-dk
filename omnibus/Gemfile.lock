@@ -1,14 +1,13 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 0e03409b6e1123ef987ae0b79e2f79be256a5de5
-  branch: netssh_30_pin
+  revision: c69fa3a0b3df1e202e3f829596999c13c1d3b8e3
   specs:
     omnibus-software (4.0.0)
       omnibus (>= 5.2.0)
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 961695bbc1b29a4d006a2ddae93ad48b9827f074
+  revision: cdd633075fb689cc8efb2b1ccb89ebf2850e32ee
   specs:
     omnibus (5.3.0)
       aws-sdk (~> 2)
@@ -38,13 +37,13 @@ GEM
     addressable (2.4.0)
     artifactory (2.3.2)
     awesome_print (1.6.1)
-    aws-sdk (2.2.31)
-      aws-sdk-resources (= 2.2.31)
-    aws-sdk-core (2.2.31)
+    aws-sdk (2.2.32)
+      aws-sdk-resources (= 2.2.32)
+    aws-sdk-core (2.2.32)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.2.31)
-      aws-sdk-core (= 2.2.31)
-    berkshelf (4.3.1)
+    aws-sdk-resources (2.2.32)
+      aws-sdk-core (= 2.2.32)
+    berkshelf (4.3.2)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (~> 2.0, >= 2.0.2)
       buff-config (~> 1.0)
@@ -119,7 +118,7 @@ GEM
       rspec-mocks (~> 3.2)
     mixlib-cli (1.5.0)
     mixlib-config (2.2.1)
-    mixlib-install (1.0.2)
+    mixlib-install (1.0.3)
       artifactory (>= 2.3.0)
       mixlib-shellout (>= 2.2.6)
       mixlib-versioning (>= 1.1.0)
@@ -190,7 +189,7 @@ GEM
       molinillo (~> 0.4.2)
       semverse (~> 1.1)
     systemu (2.6.5)
-    test-kitchen (1.7.0)
+    test-kitchen (1.7.1)
       mixlib-install (~> 1.0, >= 1.0.2)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
@@ -203,7 +202,7 @@ GEM
     varia_model (0.4.1)
       buff-extensions (~> 1.0)
       hashie (>= 2.0.2, < 4.0.0)
-    winrm (1.7.2)
+    winrm (1.7.3)
       builder (>= 2.1.2)
       gssapi (~> 1.2)
       gyoku (~> 1.0)

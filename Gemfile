@@ -28,32 +28,32 @@ gemspec path: File.dirname(__FILE__), name: "chef-dk"
 # All software we recognize needs to stay at the latest possible version. But
 # since that's not expressible here, we make it >= the last *known* version to
 # at least prevent downgrades beyond that:
-gem "appbundler", github: "chef/appbundler", branch: "jk/multiple-gems"
+gem "appbundler", github: "chef/appbundler" # until next release with multiple-gem support
 gem "berkshelf"
 # Chef 12.8.1 Gem includes some extra files which can break gem installation on
 # windows. For now we are pulling chef from github at the tag as a workaround.
-gem "chef", github: "chef/chef", branch: "v12.9.7"
-gem "cheffish", ">= 2.0.3"
 gem "chef-provisioning", ">= 1.6.0"
 gem "chef-provisioning-aws", ">= 1.8.0"
 gem "chef-provisioning-azure", ">= 0.5.0"
 gem "chef-provisioning-fog", ">= 0.18.0"
 gem "chef-provisioning-vagrant", ">= 0.11.0"
-gem "inspec", ">= 0.17.1"
-gem "ohai", ">= 8.13.0"
-gem "test-kitchen", ">= 1.6.0"
-
-# All of the following used to be software definitions we included:
-gem "chef-vault"
+gem "chef-vault", github: "chef/chef-vault" # Until a version is released with a Gemfile
+gem "chef", github: "chef/chef", branch: "v12.9.7"
+gem "cheffish", ">= 2.0.3"
 gem "chefspec"
-gem "dep-selector-libgecode"
 gem "fauxhai"
-gem "foodcritic"
+gem "foodcritic", github: "acrmp/foodcritic" # Until a version is released with a Gemfile
+gem "inspec", ">= 0.17.1"
 gem "kitchen-ec2"
 gem "kitchen-inspec"
 gem "kitchen-vagrant"
 gem "knife-windows"
+gem "ohai", ">= 8.13.0"
+gem "test-kitchen", ">= 1.6.0"
+
+# All of the following used to be software definitions we included:
 gem "knife-spork"
+gem "dep-selector-libgecode"
 gem "nokogiri"
 gem "pry"
 gem "pry-byebug"

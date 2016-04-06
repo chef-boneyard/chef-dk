@@ -34,6 +34,8 @@ module BundleUtil
     end
     cwd = File.expand_path(cwd || ".", project_root)
     Dir.chdir(cwd) do
+      gemfile ||= "Gemfile"
+      gemfile = File.expand_path(gemfile, cwd)
       raise "No platform #{platform} (supported: #{PLATFORMS.keys.join(", ")})" if platform && !PLATFORMS[platform]
       ruby_platforms = platform ? PLATFORMS[platform].join(" ") : "ruby"
       cmd = Shellwords.join([bundle_platform, ruby_platforms, *args])
@@ -51,20 +53,14 @@ module BundleUtil
 
   def with_gemfile(gemfile)
     old_gemfile = ENV["BUNDLE_GEMFILE"]
-    if gemfile
-      ENV["BUNDLE_GEMFILE"] = gemfile
-    else
-      ENV.delete("BUNDLE_GEMFILE")
-    end
+    ENV["BUNDLE_GEMFILE"] = gemfile
     begin
       yield
     ensure
-      if gemfile
-        if old_gemfile
-          ENV["BUNDLE_GEMFILE"] = old_gemfile
-        else
-          ENV.delete("BUNDLE_GEMFILE")
-        end
+      if old_gemfile
+        ENV["BUNDLE_GEMFILE"] = old_gemfile
+      else
+        ENV.delete("BUNDLE_GEMFILE")
       end
     end
   end
