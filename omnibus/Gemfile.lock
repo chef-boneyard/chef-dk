@@ -223,6 +223,7 @@ PLATFORMS
 
 DEPENDENCIES
   berkshelf
+  json (>= 1.8.1)
   kitchen-vagrant
   omnibus!
   omnibus-software!

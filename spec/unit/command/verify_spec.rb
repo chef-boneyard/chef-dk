@@ -83,9 +83,18 @@ describe ChefDK::Command::Verify do
       expect{command_instance.omnibus_apps_dir}.to raise_error(ChefDK::OmnibusInstallNotFound)
     end
 
-    it "raises MissingComponentError when a component doesn't exist" do
-      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path,"eg_omnibus_dir/missing_component/embedded/bin/ruby"))
-      expect{command_instance.validate_components!}.to raise_error(ChefDK::MissingComponentError)
+    context "and a component's gem is not installed" do
+      before do
+        component_map = ChefDK::Command::Verify.component_map.dup
+        component_map["cucumber"] = ChefDK::ComponentTest.new("cucumber")
+        component_map["cucumber"].gem_base_dir = "cucumber"
+        allow(ChefDK::Command::Verify).to receive(:component_map).and_return(component_map)
+      end
+
+      it "raises MissingComponentError when a component doesn't exist" do
+        allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path,"eg_omnibus_dir/missing_component/embedded/bin/ruby"))
+        expect{command_instance.validate_components!}.to raise_error(ChefDK::MissingComponentError)
+      end
     end
   end
 
