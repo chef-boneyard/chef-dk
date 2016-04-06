@@ -19,6 +19,8 @@
 
 name "chefdk-env-customization"
 
+license :project_license
+
 source path: "#{project.files_path}/#{name}"
 
 dependency "ruby"
