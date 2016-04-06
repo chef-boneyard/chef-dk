@@ -53,7 +53,7 @@ module BuildChefDKGem
           block do
             log.info(log_key) { "Found version #{gem_version} of #{gem_name} in #{lockfile_path}. Building early to take advantage of omnibus caching ..." }
           end
-          gem "install #{gem_name} -v #{gem_version} --ignore-dependencies --verbose -- #{install_args_for(gem_name)}", env: env
+          gem "install #{gem_name} -v #{gem_version} --no-doc --no-ri --ignore-dependencies --verbose -- #{install_args_for(gem_name)}", env: env
         end
       end
     end
