@@ -32,7 +32,7 @@ gem "appbundler", github: "chef/appbundler" # until next release with multiple-g
 gem "berkshelf"
 # Chef 12.8.1 Gem includes some extra files which can break gem installation on
 # windows. For now we are pulling chef from github at the tag as a workaround.
-gem "chef-provisioning", ">= 1.6.0"
+gem "chef-provisioning", ">= 1.6.0", github: "chef/chef-provisioning" # until chef-provisioning with mixlib-install 1.0 is released
 gem "chef-provisioning-aws", ">= 1.8.0"
 gem "chef-provisioning-azure", ">= 0.5.0"
 gem "chef-provisioning-fog", ">= 0.18.0"

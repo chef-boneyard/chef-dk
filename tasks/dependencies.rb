@@ -20,9 +20,8 @@
 # list of outdated gems.
 #
 # We're starting with debt here, but don't want it to get worse.
+
 ACCEPTABLE_OUTDATED_GEMS = %w{
-  jmespath
-  rubocop
   celluloid
   celluloid-io
   docker-api
@@ -30,15 +29,12 @@ ACCEPTABLE_OUTDATED_GEMS = %w{
   fog-google
   gherkin
   google-api-client
-  inifile
   jwt
   mime-types
   mini_portile2
-  mixlib-install
-  net-ssh
   retriable
+  rubocop
   slop
-  test-kitchen
   timers
   unicode-display_width
   varia_model
