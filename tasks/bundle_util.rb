@@ -27,8 +27,6 @@ module BundleUtil
   # Run bundle-platform with the given ruby platform(s)
   def bundle(args, gemfile: nil, platform: nil, cwd: nil, extract_output: false, delete_gemfile_lock: false)
     args = args.split(/\s+/)
-    # Set the env var that lets Gemfile know it's
-    puts ""
     if cwd
       prefix = "[#{cwd}] "
     end

@@ -67,15 +67,18 @@ build do
   create_bundle_config(chefdk_gemfile, retries: 4, jobs: 1, frozen: true)
 
   # Install all the things. Arguments are specified in .bundle/config (see create_bundle_config)
+  block { log.info(log_key) { "" } }
   bundle "install --verbose", env: chefdk_build_env
 
   # For whatever reason, nokogiri software def deletes this (rather small) directory
+  block { log.info(log_key) { "" } }
   block "Remove mini_portile test dir" do
     mini_portile = shellout!("#{bundle_bin} show mini_portile").stdout.chomp
     remove_directory File.join(mini_portile, "test")
   end
 
   # Check that it worked
+  block { log.info(log_key) { "" } }
   bundle "check", env: chefdk_build_env
 
   # fix up git-sourced gems
@@ -83,5 +86,6 @@ build do
   install_shared_gemfile
 
   # Check that the final gemfile worked
+  block { log.info(log_key) { "" } }
   bundle "check", env: env, cwd: File.dirname(shared_gemfile)
 end

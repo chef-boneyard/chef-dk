@@ -35,7 +35,7 @@ else
 end
 
 # Load dynamically updated overrides
-overrides_path = File.expand_path("../../../files/chef-dk-overrides.rb", __FILE__)
+overrides_path = File.expand_path("../../../../omnibus_overrides.rb", __FILE__)
 instance_eval(IO.read(overrides_path), overrides_path)
 
 dependency "preparation"

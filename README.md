@@ -302,7 +302,7 @@ dpkg -P chefdk
 
 To build the chef-dk, we use the omnibus system. Go to the [omnibus README](omnibus/README.md) to find out how to build!
 
-To update the chef-dk's dependencies, run `rake dependencies`. This will update the `Gemfile.lock`, `Gemfile.windows.lock`, `omnibus/Gemfile.lock`, `acceptance/Gemfile.lock`, `omnibus/Berksfile.lock`, and `omnibus/files/chef-dk-overrides.rb`.  It will also show you any outdated dependencies due to conflicting constraints. Some outdated dependencies are to be expected; it will inform you if any new ones appear that we don't know about, and tell you how to proceed.
+To update the chef-dk's dependencies, run `rake dependencies`. This will update the `Gemfile.lock`, `Gemfile.windows.lock`, `omnibus/Gemfile.lock`, `acceptance/Gemfile.lock`, `omnibus/Berksfile.lock`, and `omnibus_overrides.rb`.  It will also show you any outdated dependencies due to conflicting constraints. Some outdated dependencies are to be expected; it will inform you if any new ones appear that we don't know about, and tell you how to proceed.
 
 To add or remove a package from the chef-dk, edit `Gemfile`.
 
@@ -334,11 +334,11 @@ Whenever a change is checked in to `master`, the patch version of `chef-dk` is b
 
 The chef-dk has two sorts of component: ruby components like `berkshelf` and `test-kitchen`, and binary components like `openssl` and even `ruby` itself.
 
-In general, you can find all chef-dk desired versions in the [Gemfile](Gemfile) and [chef-dk-overrides](omnibus/config/files/chef-dk-overrides.rb) files. The [Gemfile.lock](Gemfile.lock) is the locked version of the Gemfile. [build](omnibus/Gemfile) and [test](acceptance/Gemfile) Gemfiles and [Berksfile](omnibus/Berksfile) version the toolset we use to build and test.
+In general, you can find all chef-dk desired versions in the [Gemfile](Gemfile) and [version_policy.rb](version_policy.rb) files. The [Gemfile.lock](Gemfile.lock) is the locked version of the Gemfile, and [omnibus_overrides](omnibus_overrides.rb) is the locked version of omnibus. [build](omnibus/Gemfile) and [test](acceptance/Gemfile) Gemfiles and [Berksfile](omnibus/Berksfile) version the toolset we use to build and test.
 
 ### Binary Components
 
-The versions of binary components (as well as rubygems and bundler, which can't be versioned in a Gemfile) are stored in [chef-dk-overrides.rb](omnibus/config/files/chef-dk-overrides.rb).  `rake dependencies` will update the `bundler` version, and the rest are be updated manually by Chef every so often.
+The versions of binary components (as well as rubygems and bundler, which can't be versioned in a Gemfile) are stored in [version_policy.rb](version_policy.rb) (the `OMNIBUS_OVERRIDES` constant) and locked in [omnibus_overrides](omnibus_overrides.rb).  `rake dependencies` will update the `bundler` version, and the rest are be updated manually by Chef every so often.
 
 These have software definitions either in [omnibus/config/software](omnibus/config/software) or, more often, in the [omnibus-software](https://github.com/chef/omnibus-software/tree/master/config/software) project.
 
@@ -347,6 +347,8 @@ These have software definitions either in [omnibus/config/software](omnibus/conf
 Most of the actual front-facing software in the chef-dk is composed of ruby projects. berkshelf, test-kitchen and even chef itself are made of ruby gems. Chef uses the typical ruby way of controlling rubygems versions, the `Gemfile`. Specifically, the `Gemfile` at the top of the chef-dk repository governs the version of every single gem we install into the chef-dk package. It's a one-stop shop.
 
 Our rubygems component versions are locked down with `Gemfile.lock` and `Gemfile.windows.lock` (which affects windows), and can be updated with `rake dependencies`.
+
+There are three gems versioned outside the `Gemfile`: `rubygems`, `bundler` and `chef`. `rubygems` and `bundler` are in the `RUBYGEMS_AT_LATEST_VERSION` constant in [version_policy.rb](version-policy.rb) and locked in [omnibus_overrides](omnibus_overrides.rb). `chef`'s version is stored in the [Gemfile](Gemfile) and pins to the latest `current` build of chef (the latest one to pass tests). They are kept up to date by `rake dependencies`.
 
 **Windows**: [Gemfile.lock](Gemfile.lock) is generated platform-agnostic. In order to keep windows versions in sync, [Gemfile.windows](Gemfile.windows) reads the generic Gemfile.lock and explicitly pins all gems to those versions, allowing bundler to bring in windows-specific versions of the gems and new deps, but requiring that all gems shared between Windows and Unix have the same version.
 

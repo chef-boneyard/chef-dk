@@ -2,18 +2,11 @@ require "shellwords"
 require "pathname"
 require "bundler"
 require_relative "../chef-dk-gem/build-chef-dk-gem"
+require_relative "../../../version_policy"
 
 # We use this to break up the `build` method into readable parts
 module BuildChefDK
   include BuildChefDKGem
-
-  # Some gems are part of our bundle (must be installed) but not important
-  # enough to lock. List those here.
-  GEMS_ALLOWED_TO_FLOAT = [
-    "rubocop", # different projects disagree in their dev dependencies
-    "unicode-display_width", # dep of rubocop
-    "powerpack" # dep of rubocop
-  ]
 
   def create_bundle_config(gemfile, without: [ "development" ], retries: nil, jobs: nil, frozen: nil)
     if without
@@ -65,6 +58,8 @@ module BuildChefDK
   # chef-dk so that it doesn't have git or path references anymore.
   #
   def properly_reinstall_git_and_path_sourced_gems
+    # Emit blank line to separate different tasks
+    block { log.info(log_key) { "" } }
     chefdk_env = env.dup.merge("BUNDLE_GEMFILE" => chefdk_gemfile)
 
     # Reinstall git-sourced or path-sourced gems, and delete the originals
@@ -86,6 +81,8 @@ module BuildChefDK
         gem_path = gem_path.chomp
         # We use the already-installed bundle to rake install, because (hopefully)
         # just rake installing doesn't require anything special.
+        # Emit blank line to separate different tasks
+        log.info(log_key) { "" }
         log.info(log_key) { "Properly installing git or path sourced gem #{gem_path} using rake install" }
         shellout!("#{bundle_bin} exec #{rake_bin} install", env: chefdk_env, cwd: gem_path)
       end
@@ -93,6 +90,9 @@ module BuildChefDK
   end
 
   def install_shared_gemfile
+    # Emit blank line to separate different tasks
+    block { log.info(log_key) { "" } }
+
     shared_gemfile = self.shared_gemfile
     chefdk_env = env.dup.merge("BUNDLE_GEMFILE" => chefdk_gemfile)
 

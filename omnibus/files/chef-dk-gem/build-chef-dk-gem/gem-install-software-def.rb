@@ -8,6 +8,7 @@ module BuildChefDKGem
       new(software, software_filename).send(:define)
     end
 
+    include BuildChefDKGem
     include Omnibus::Logging
 
     protected
@@ -101,7 +102,7 @@ module BuildChefDKGem
         Bundler.settings[:frozen] = true
         begin
           bundle = Bundler::Definition.build(gemfile_path, lockfile_path, nil)
-          without = [ :development, :test, :guard, :maintenance, :integration, :tools, :changelog, :"no_#{Omnibus::Ohai["platform"]}" ]
+          without = without_groups
           dependencies = bundle.dependencies.reject { |d| (d.groups & without).any? }
           # This is sacrilege: figure out a way we can grab the list of dependencies *without*
           # requiring everything to be installed or calling private methods ...
