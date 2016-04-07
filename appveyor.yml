@@ -25,7 +25,7 @@ install:
   - bundler --version
 
 build_script:
-  - bundle install --without no_windows
+  - bundle install --without no_windows omnibus_package
 
 test_script:
   - bundle exec rspec
