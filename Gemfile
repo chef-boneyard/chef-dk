@@ -55,7 +55,7 @@ group(:omnibus_package) do
   gem "kitchen-vagrant"
   gem "knife-windows"
   gem "ohai", ">= 8.13.0"
-  gem "test-kitchen", ">= 1.6.0", github: "test-kitchen/test-kitchen", branch: "jk/optional-rake"
+  gem "test-kitchen", ">= 1.6.0"
 
   # All of the following used to be software definitions we included:
   gem "knife-spork"
