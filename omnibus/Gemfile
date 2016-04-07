@@ -1,17 +1,17 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'omnibus', git: 'https://github.com/chef/omnibus.git'
-gem 'omnibus-software', git: 'https://github.com/chef/omnibus-software.git'
+gem "omnibus", git: "https://github.com/chef/omnibus.git"
+gem "omnibus-software", git: "https://github.com/chef/omnibus-software.git", ref: "c69fa3a0b3df1e202e3f829596999c13c1d3b8e3"
 
 # `json_pure` has a bug in it that is failing ChefDK builds.  We include the
 # json gem into the Gemfile so that running `bundle exec` will have
-# this gem on the load path, and cause `require 'json/ext'` to succeed.  This
+# this gem on the load path, and cause `require "json/ext"` to succeed.  This
 # prevents loading the `json_pure` gem
-gem 'json', '>= 1.8.1'
+gem "json", ">= 1.8.1"
 
 # pedump pessimistically pins multipart-post to a version from 2013 which makes
 # bundler very unhappy. Remove this when upstream has merged zed-0xff/pedump#6 .
-gem 'pedump', git: 'https://github.com/ksubrama/pedump.git', branch: 'patch-1'
+gem "pedump", git: "https://github.com/ksubrama/pedump.git", branch: "patch-1"
 
 # This development group is installed by default when you run `bundle install`,
 # but if you are using Omnibus in a CI-based infrastructure, you do not need
@@ -19,10 +19,10 @@ gem 'pedump', git: 'https://github.com/ksubrama/pedump.git', branch: 'patch-1'
 # by running `bundle install --without development` to speed up build times.
 group :development do
   # Use Berkshelf for resolving cookbook dependencies
-  gem 'berkshelf'
+  gem "berkshelf"
 
   # Use Test Kitchen with Vagrant for converging the build environment
-  gem 'test-kitchen'
-  gem 'kitchen-vagrant'
-  gem 'winrm-fs'
+  gem "test-kitchen"
+  gem "kitchen-vagrant"
+  gem "winrm-fs"
 end
