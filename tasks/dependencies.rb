@@ -21,130 +21,151 @@
 #
 # We're starting with debt here, but don't want it to get worse.
 
-ACCEPTABLE_OUTDATED_GEMS = %w{
-  celluloid
-  celluloid-io
-  docker-api
-  fog-cloudatcost
-  fog-google
-  gherkin
-  google-api-client
-  jwt
-  mime-types
-  mini_portile2
-  retriable
-  rubocop
-  slop
-  timers
-  unicode-display_width
-  varia_model
-}
-
 require_relative "bundle_util"
+require_relative "../version_policy"
 
 namespace :dependencies do
   # Update all dependencies to the latest constraint-matching version
-  task :update => "dependencies:update_omnibus_overrides" do
+  task :update, [:conservative] => %w{
+                    dependencies:update_chef_current
+                    dependencies:update_omnibus_overrides
+                    dependencies:update_gemfile_lock
+                    dependencies:update_platform_gemfile_locks
+                    dependencies:update_omnibus_gemfile_lock
+                    dependencies:update_acceptance_gemfile_lock
+                    dependencies:update_omnibus_berksfile_lock
+                  }
+
+  task :update_gemfile_lock, [:conservative] do |t, conservative: false|
     extend BundleUtil
     puts ""
     puts "-------------------------------------------------------------------"
-    puts "Updating Gemfile.lock ..."
+    puts "Updating Gemfile.lock#{conservative ? " (conservatively)" : ""} ..."
     puts "-------------------------------------------------------------------"
-    bundle "update", delete_gemfile_lock: true
+    bundle "install", delete_gemfile_lock: !conservative
+  end
 
+  task :update_platform_gemfile_locks, [:conservative] do |t, conservative: false|
+    extend BundleUtil
     platforms.each do |platform|
       puts ""
       puts "-------------------------------------------------------------------"
-      puts "Updating Gemfile.#{platform}.lock ..."
+      puts "Updating Gemfile.#{platform}.lock#{conservative ? " (conservatively)" : ""} ..."
       puts "-------------------------------------------------------------------"
-      bundle "lock --update", gemfile: "Gemfile.#{platform}", platform: platform, delete_gemfile_lock: true
+      bundle "lock", gemfile: "Gemfile.#{platform}", platform: platform, delete_gemfile_lock: !conservative
     end
-
-    puts ""
-    puts "-------------------------------------------------------------------"
-    puts "Updating omnibus/Gemfile.lock ..."
-    puts "-------------------------------------------------------------------"
-    bundle "update", cwd: "omnibus", delete_gemfile_lock: true
-    # TODO make platform-specific locks for omnibus on windows, too
-
-    puts ""
-    puts "-------------------------------------------------------------------"
-    puts "Updating omnibus/Berksfile.lock ..."
-    puts "-------------------------------------------------------------------"
-    File.delete("#{project_root}/omnibus/Berksfile.lock") if File.exist?("#{project_root}/omnibus/Berksfile.lock")
-    bundle "exec berks install", cwd: "omnibus"
-
-    puts ""
-    puts "-------------------------------------------------------------------"
-    puts "Updating acceptance/Gemfile.lock ..."
-    puts "-------------------------------------------------------------------"
-    bundle "update", cwd: "acceptance", delete_gemfile_lock: true
-    # TODO make platform-specific locks for omnibus on windows, too
   end
 
-  # Just like update, but only updates the minimum dependencies it can
-  task :update_conservative do
+  task :update_omnibus_gemfile_lock, [:conservative] do |t, conservative: false|
     extend BundleUtil
     puts ""
     puts "-------------------------------------------------------------------"
-    puts "Updating Gemfile.lock (conservatively) ..."
+    puts "Updating omnibus/Gemfile.lock#{conservative ? " (conservatively)" : ""} ..."
     puts "-------------------------------------------------------------------"
-    bundle "install"
-
-    platforms.each do |platform|
-      puts ""
-      puts "-------------------------------------------------------------------"
-      puts "Updating Gemfile.#{platform}.lock (conservatively) ..."
-      puts "-------------------------------------------------------------------"
-      bundle "lock", gemfile: "Gemfile.#{platform}", platform: platform
-    end
-
-    puts ""
-    puts "-------------------------------------------------------------------"
-    puts "Updating omnibus/Gemfile.lock (conservatively) ..."
-    puts "-------------------------------------------------------------------"
-    bundle "install", cwd: "omnibus"
-    # TODO make platform-specific locks for omnibus on windows, too
-
-    puts ""
-    puts "-------------------------------------------------------------------"
-    puts "Updating omnibus/Berksfile.lock (conservatively) ..."
-    puts "-------------------------------------------------------------------"
-    bundle "exec berks install", cwd: "omnibus"
-
-    puts ""
-    puts "-------------------------------------------------------------------"
-    puts "Updating acceptance/Gemfile.lock (conservatively) ..."
-    puts "-------------------------------------------------------------------"
-    bundle "install", cwd: "acceptance"
-    # TODO make platform-specific locks for omnibus on windows, too
+    bundle "install", cwd: "omnibus", delete_gemfile_lock: !conservative
   end
 
-  task :update_omnibus_overrides do
+  task :update_omnibus_berksfile_lock, [:conservative] do |t, conservative: false|
+    extend BundleUtil
     puts ""
     puts "-------------------------------------------------------------------"
-    puts "Updating omnibus/files/chef-dk-overrides.rb ..."
+    puts "Updating omnibus/Berksfile.lock#{conservative ? " (conservatively)" : ""} ..."
     puts "-------------------------------------------------------------------"
-    # Get the latest bundler version
-    overrides_path = File.expand_path("../../omnibus/files/chef-dk-overrides.rb", __FILE__)
-    gem_list = `gem list -re bundler`
-    gem_list =~ /bundler\s*\(([^)]*)\)/
-    bundler_version = $1
-
-    # Read the overrides file
-    overrides = IO.read(overrides_path)
-
-    # Replace the bundler version
-    replaced = false
-    overrides.sub!(/^(override\s+:bundler,\s*version:\s*")([^"]*)("\s*)$/) do
-      replaced = true
-      puts "bundler version: #{bundler_version} (was #{$2})"
-      "#{$1}#{bundler_version}#{$3}"
+    if !conservative && File.exist?("#{project_root}/omnibus/Berksfile.lock")
+      File.delete("#{project_root}/omnibus/Berksfile.lock")
     end
-    raise "bundler version not found in overrides file!" unless replaced
+    bundle "exec berks install", cwd: "omnibus"
+  end
 
-    # Write the overrides file back out
-    IO.write(overrides_path, overrides)
+  task :update_acceptance_gemfile_lock, [:conservative] do |t, conservative: false|
+    extend BundleUtil
+    puts ""
+    puts "-------------------------------------------------------------------"
+    puts "Updating acceptance/Gemfile.lock#{conservative ? " (conservatively)" : ""} ..."
+    puts "-------------------------------------------------------------------"
+    bundle "install", cwd: "acceptance", delete_gemfile_lock: !conservative
+  end
+
+  task :update_chef_current, [:conservative] do |t, conservative: false|
+    extend BundleUtil
+    unless conservative
+      puts ""
+      puts "-------------------------------------------------------------------"
+      puts "Updating Gemfile ..."
+      puts "-------------------------------------------------------------------"
+
+      require "mixlib/install"
+      # TODO in some edge cases, stable will actually be the latest chef because
+      # promotion *moves* the package out of current into stable rather than
+      # copying
+      puts "Getting latest chef 'current' version from omnitruck ..."
+      options = {
+        channel: :current,
+        product_name: 'chef',
+        product_version: :latest
+      }
+      version = Mixlib::Install.new(options).artifact_info.first.version
+
+      # Modify the gemfile to pin to current chef
+      gemfile_path = File.join(project_root, "Gemfile")
+      gemfile = IO.read(gemfile_path)
+      found = gemfile.sub!(/^(gem "chef", github: "chef\/chef", branch: ")([^"]*)(")$/m) do
+        if $2 != "v#{version}"
+          puts "Setting chef version in Gemfile to v#{version} (was #{$2})"
+        else
+          puts "chef version in Gemfile already at latest current (#{$2})"
+        end
+        "#{$1}v#{version}#{$3}"
+      end
+      unless found
+        raise "Gemfile does not have a line of the form 'gem \"chef\", github: \"chef/chef\", branch: \"v<version>\"', so we didn't update it to latest current (v#{version}). Remove dependencies:update_current_chef from the `dependencies:update` rake task to prevent it from being run if this is intentional."
+      end
+
+      if gemfile != IO.read(gemfile_path)
+        puts "Writing modified #{gemfile_path} ..."
+        IO.write(gemfile_path, gemfile)
+      end
+    end
+  end
+
+  task :update_omnibus_overrides, [:conservative] do |t, conservative: false|
+    unless conservative
+      puts ""
+      puts "-------------------------------------------------------------------"
+      puts "Updating omnibus_overrides.rb ..."
+      puts "-------------------------------------------------------------------"
+
+      # Generate the new overrides file
+      overrides = "# Generated by \"rake dependencies\". Do not edit.\n"
+
+      # Replace the bundler and rubygems versions
+      OMNIBUS_RUBYGEMS_AT_LATEST_VERSION.each do |override_name, gem_name|
+        # Get the latest bundler version
+        puts "Running gem list -re #{gem_name} ..."
+        gem_list = `gem list -re #{gem_name}`
+        unless gem_list =~ /^#{gem_name}\s*\(([^)]*)\)$/
+          raise "gem list -re #{gem_name} failed with output:\n#{gem_list}"
+        end
+
+        # Emit it
+        puts "Latest version of #{gem_name} is #{$1}"
+        overrides << "override #{override_name.inspect}, version: #{$1.inspect}\n"
+      end
+
+      # Add explicit overrides
+      OMNIBUS_OVERRIDES.each do |override_name, version|
+        overrides << "override #{override_name.inspect}, version: #{version.inspect}\n"
+      end
+
+      # Write the file out (if changed)
+      overrides_path = File.expand_path("../../omnibus_overrides.rb", __FILE__)
+      if overrides != IO.read(overrides_path)
+        puts "Overrides changed!"
+        puts `git diff #{overrides_path}`
+        puts "Writing modified #{overrides_path} ..."
+        IO.write(overrides_path, overrides)
+      end
+    end
   end
 
   # Find out if we're using the latest gems we can (so we don't regress versions)
@@ -167,4 +188,4 @@ namespace :dependencies do
     end
   end
 end
-task :dependencies => [ "dependencies:update", "dependencies:check" ]
+task :dependencies, [:conservative] => [ "dependencies:update", "dependencies:check" ]

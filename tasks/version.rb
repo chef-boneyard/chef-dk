@@ -16,7 +16,11 @@
 #
 
 namespace :version do
-  task :bump => [ 'version:bump_patch', 'dependencies:update_conservative' ]
+  task :bump => 'version:bump_patch' do
+    # We need to update our Gemfile.lock(s) to include the new version. But let's
+    # not upgrade other stuff at the same time ...
+    Rake.application.invoke_task("dependencies:update[conservative]")
+  end
 
   task :show do
     puts ChefDK::VERSION

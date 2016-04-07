@@ -1,6 +1,7 @@
 require "shellwords"
 require "pathname"
 require "bundler"
+require_relative "../../../version_policy"
 
 # Common definitions and helpers (like compile environment and binary
 # locations) for all chef-dk software definitions.
@@ -19,6 +20,9 @@ module BuildChefDKGem
   end
   def rake_bin
     embedded_bin("rake")
+  end
+  def without_groups
+    INSTALL_WITHOUT_GROUPS.map { |g| g.to_sym } + [ :"no_#{Omnibus::Ohai["platform"]}" ]
   end
 
   #

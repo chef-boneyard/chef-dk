@@ -49,7 +49,7 @@ module BuildChefDKAppbundle
       orig_config = IO.read(bundle_config) if File.exist?(bundle_config)
       # "test", "changelog" and "guard" come from berkshelf, "maintenance" comes from chef
       # "tools" and "integration" come from inspec
-      shellout!("#{bundle_bin} config --local without development:test:guard:maintenance:tools:integration:changelog:no_#{Omnibus::Ohai["platform"]}", env: env, cwd: installed_path)
+      shellout!("#{bundle_bin} config --local without #{without_groups.join(":")}", env: env, cwd: installed_path)
       shellout!("#{bundle_bin} config --local frozen 1")
 
       shellout!("#{bundle_bin} check", env: env, cwd: installed_path)
