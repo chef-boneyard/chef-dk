@@ -25,58 +25,64 @@ gemspec path: File.dirname(__FILE__), name: "chef-dk"
 # EXPERIMENTAL: ALL gems specified here will be installed in chef-dk omnibus.
 # This represents all gems that will be part of chef-dk.
 
+group(:omnibus_package, :development) do
+  gem "pry"
+end
+
 # All software we recognize needs to stay at the latest possible version. But
 # since that's not expressible here, we make it >= the last *known* version to
 # at least prevent downgrades beyond that:
-gem "appbundler", github: "chef/appbundler" # until next release with multiple-gem support
-gem "berkshelf"
-# Chef 12.8.1 Gem includes some extra files which can break gem installation on
-# windows. For now we are pulling chef from github at the tag as a workaround.
-gem "chef-provisioning", ">= 1.7.0"
-gem "chef-provisioning-aws", ">= 1.8.0"
-gem "chef-provisioning-azure", ">= 0.5.0"
-gem "chef-provisioning-fog", ">= 0.18.0"
-gem "chef-provisioning-vagrant", ">= 0.11.0"
-gem "chef-vault", github: "chef/chef-vault" # Until a version is released with a Gemfile
-# The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
-gem "chef", github: "chef/chef", branch: "v12.9.29"
-gem "cheffish", ">= 2.0.3"
-gem "chefspec"
-gem "fauxhai"
-gem "foodcritic", ">= 6.1.0"
-gem "inspec", ">= 0.17.1"
-gem "kitchen-ec2"
-gem "kitchen-inspec"
-gem "kitchen-vagrant"
-gem "knife-windows"
-gem "ohai", ">= 8.13.0"
-gem "test-kitchen", ">= 1.6.0", github: "test-kitchen/test-kitchen", branch: "jk/optional-rake"
+group(:omnibus_package) do
+  gem "appbundler", github: "chef/appbundler" # until next release with multiple-gem support
+  gem "berkshelf"
+  # Chef 12.8.1 Gem includes some extra files which can break gem installation on
+  # windows. For now we are pulling chef from github at the tag as a workaround.
+  gem "chef-provisioning", ">= 1.7.0"
+  gem "chef-provisioning-aws", ">= 1.8.0"
+  gem "chef-provisioning-azure", ">= 0.5.0"
+  gem "chef-provisioning-fog", ">= 0.18.0"
+  gem "chef-provisioning-vagrant", ">= 0.11.0"
+  gem "chef-vault", github: "chef/chef-vault" # Until a version is released with a Gemfile
+  # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
+  gem "chef", github: "chef/chef", branch: "v12.9.29"
+  gem "cheffish", ">= 2.0.3"
+  gem "chefspec"
+  gem "fauxhai"
+  gem "foodcritic", ">= 6.1.0"
+  gem "inspec", ">= 0.17.1"
+  gem "kitchen-ec2"
+  gem "kitchen-inspec"
+  gem "kitchen-vagrant"
+  gem "knife-windows"
+  gem "ohai", ">= 8.13.0"
+  gem "test-kitchen", ">= 1.6.0", github: "test-kitchen/test-kitchen", branch: "jk/optional-rake"
 
-# All of the following used to be software definitions we included:
-gem "knife-spork"
-gem "dep-selector-libgecode"
-gem "nokogiri"
-gem "pry"
-gem "pry-byebug"
-gem "pry-remote"
-gem "pry-stack_explorer"
-gem "rb-readline"
-gem "rubocop", "~> 0.37.2"
-gem "winrm-fs"
+  # All of the following used to be software definitions we included:
+  gem "knife-spork"
+  gem "dep-selector-libgecode"
+  gem "nokogiri"
+  gem "pry-byebug"
+  gem "pry-remote"
+  gem "pry-stack_explorer"
+  gem "rb-readline"
+  gem "rubocop", "~> 0.37.2"
+  gem "winrm-fs"
+
+  # bundled or development dependencies we want to ship
+  gem "dep_selector"
+  gem "guard"
+  gem "ruby-prof"
+  gem "rake"
+  gem "rdoc"
+  gem "yard"
+end
 
 # NOTE this needs to be excluded from AIX too, but we don't support that on
 # ChefDK and putting a thing in multiple groups :no_windows, :no_aix won't work
 # because it --without no_aix will still install things in group :no_windows.
 # Need to specify groups positively; investigate.
 # http://stackoverflow.com/questions/8420414/how-to-add-mac-specific-gems-to-bundle-on-mac-but-not-on-linux
-group :no_windows do
+group(:no_windows) do
   gem "ruby-shadow"
 end
 
-# bundled or development dependencies we want to ship
-gem "dep_selector"
-gem "guard"
-gem "ruby-prof"
-gem "rake"
-gem "rdoc"
-gem "yard"

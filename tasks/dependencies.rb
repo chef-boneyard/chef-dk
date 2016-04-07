@@ -109,7 +109,7 @@ namespace :dependencies do
       # Modify the gemfile to pin to current chef
       gemfile_path = File.join(project_root, "Gemfile")
       gemfile = IO.read(gemfile_path)
-      found = gemfile.sub!(/^(gem "chef", github: "chef\/chef", branch: ")([^"]*)(")$/m) do
+      found = gemfile.sub!(/^(\s*gem "chef", github: "chef\/chef", branch: ")([^"]*)(")$/m) do
         if $2 != "v#{version}"
           puts "Setting chef version in Gemfile to v#{version} (was #{$2})"
         else
