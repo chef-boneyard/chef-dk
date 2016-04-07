@@ -19,7 +19,7 @@ friendly_name "Chef Development Kit"
 maintainer "Chef Software, Inc. <maintainers@chef.io>"
 homepage "https://www.chef.io"
 license "Apache-2.0"
-license_file "LICENSE"
+license_file "../LICENSE"
 
 build_iteration 1
 require_relative "../../../lib/chef-dk/version"
