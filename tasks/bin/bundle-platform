@@ -7,7 +7,7 @@ puts "bundle-platform set Gem.platforms to #{Gem.platforms.map { |p| p.to_s }} (
 
 # The rest of this is a normal bundler binstub
 require "pathname"
-ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../../Gemfile",
+ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../../../Gemfile",
   Pathname.new(__FILE__).realpath)
 
 require "rubygems"

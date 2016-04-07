@@ -50,34 +50,35 @@ namespace :dependencies do
     puts "-------------------------------------------------------------------"
     puts "Updating Gemfile.lock ..."
     puts "-------------------------------------------------------------------"
-    bundle "update"
+    bundle "update", delete_gemfile_lock: true
 
     platforms.each do |platform|
       puts ""
       puts "-------------------------------------------------------------------"
       puts "Updating Gemfile.#{platform}.lock ..."
       puts "-------------------------------------------------------------------"
-      bundle "lock --update", gemfile: "Gemfile.windows", platform: platform
+      bundle "lock --update", gemfile: "Gemfile.#{platform}", platform: platform, delete_gemfile_lock: true
     end
 
     puts ""
     puts "-------------------------------------------------------------------"
     puts "Updating omnibus/Gemfile.lock ..."
     puts "-------------------------------------------------------------------"
-    bundle "update", cwd: "omnibus"
+    bundle "update", cwd: "omnibus", delete_gemfile_lock: true
     # TODO make platform-specific locks for omnibus on windows, too
 
     puts ""
     puts "-------------------------------------------------------------------"
     puts "Updating omnibus/Berksfile.lock ..."
     puts "-------------------------------------------------------------------"
-    bundle "exec berks update", cwd: "omnibus"
+    File.delete("#{project_root}/omnibus/Berksfile.lock") if File.exist?("#{project_root}/omnibus/Berksfile.lock")
+    bundle "exec berks install", cwd: "omnibus"
 
     puts ""
     puts "-------------------------------------------------------------------"
     puts "Updating acceptance/Gemfile.lock ..."
     puts "-------------------------------------------------------------------"
-    bundle "update", cwd: "acceptance"
+    bundle "update", cwd: "acceptance", delete_gemfile_lock: true
     # TODO make platform-specific locks for omnibus on windows, too
   end
 
@@ -95,7 +96,7 @@ namespace :dependencies do
       puts "-------------------------------------------------------------------"
       puts "Updating Gemfile.#{platform}.lock (conservatively) ..."
       puts "-------------------------------------------------------------------"
-      bundle "lock", gemfile: "Gemfile.windows", platform: platform
+      bundle "lock", gemfile: "Gemfile.#{platform}", platform: platform
     end
 
     puts ""
