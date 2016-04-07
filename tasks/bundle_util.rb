@@ -8,7 +8,7 @@ module BundleUtil
   end
 
   def bundle_platform
-    File.join(project_root, "tasks", "bundle-platform")
+    File.join(project_root, "tasks", "bin", "bundle-platform")
   end
 
   # Parse the output of "bundle outdated" and get the list of gems that
@@ -25,7 +25,7 @@ module BundleUtil
   end
 
   # Run bundle-platform with the given ruby platform(s)
-  def bundle(args, gemfile: nil, platform: nil, cwd: nil, extract_output: false)
+  def bundle(args, gemfile: nil, platform: nil, cwd: nil, extract_output: false, delete_gemfile_lock: false)
     args = args.split(/\s+/)
     # Set the env var that lets Gemfile know it's
     puts ""
@@ -33,19 +33,34 @@ module BundleUtil
       prefix = "[#{cwd}] "
     end
     cwd = File.expand_path(cwd || ".", project_root)
-    Dir.chdir(cwd) do
-      gemfile ||= "Gemfile"
-      gemfile = File.expand_path(gemfile, cwd)
-      raise "No platform #{platform} (supported: #{PLATFORMS.keys.join(", ")})" if platform && !PLATFORMS[platform]
-      ruby_platforms = platform ? PLATFORMS[platform].join(" ") : "ruby"
-      cmd = Shellwords.join([bundle_platform, ruby_platforms, *args])
-      puts "#{prefix}#{Shellwords.join(["bundle", *args])}#{platform ? " for #{platform} platform" : ""}:"
-      with_gemfile(gemfile) do
-        puts "#{prefix}> #{cmd}"
-        if extract_output
-          `#{cmd}`
-        else
-          sh bundle_platform, ruby_platforms, *args
+    Bundler.with_clean_env do
+      Dir.chdir(cwd) do
+        gemfile ||= "Gemfile"
+        gemfile = File.expand_path(gemfile, cwd)
+        raise "No platform #{platform} (supported: #{PLATFORMS.keys.join(", ")})" if platform && !PLATFORMS[platform]
+
+        # First delete the gemfile.lock
+        if delete_gemfile_lock
+          if File.exist?("#{gemfile}.lock")
+            puts "Deleting #{gemfile}.lock ..."
+            File.delete("#{gemfile}.lock")
+          end
+        end
+
+        # Run the bundle command
+        ruby_platforms = platform ? PLATFORMS[platform].join(" ") : "ruby"
+        cmd = Shellwords.join([bundle_platform, ruby_platforms, *args])
+        puts "#{prefix}#{Shellwords.join(["bundle", *args])}#{platform ? " for #{platform} platform" : ""}:"
+        with_gemfile(gemfile) do
+          puts "#{prefix}BUNDLE_GEMFILE=#{gemfile}"
+          puts "#{prefix}> #{cmd}"
+          if extract_output
+            `#{cmd}`
+          else
+            unless system(bundle_platform, ruby_platforms, *args)
+              raise "#{bundle_platform} failed: exit code #{$?}"
+            end
+          end
         end
       end
     end
