@@ -32,17 +32,17 @@ gem "appbundler", github: "chef/appbundler" # until next release with multiple-g
 gem "berkshelf"
 # Chef 12.8.1 Gem includes some extra files which can break gem installation on
 # windows. For now we are pulling chef from github at the tag as a workaround.
-gem "chef-provisioning", ">= 1.6.0", github: "chef/chef-provisioning" # until chef-provisioning with mixlib-install 1.0 is released
+gem "chef-provisioning", ">= 1.7.0"
 gem "chef-provisioning-aws", ">= 1.8.0"
 gem "chef-provisioning-azure", ">= 0.5.0"
 gem "chef-provisioning-fog", ">= 0.18.0"
 gem "chef-provisioning-vagrant", ">= 0.11.0"
 gem "chef-vault", github: "chef/chef-vault" # Until a version is released with a Gemfile
-gem "chef", github: "chef/chef", branch: "v12.9.7"
+gem "chef", github: "chef/chef", branch: "v12.9.29"
 gem "cheffish", ">= 2.0.3"
 gem "chefspec"
 gem "fauxhai"
-gem "foodcritic", github: "acrmp/foodcritic" # Until a version is released with a Gemfile
+gem "foodcritic", ">= 6.1.0"
 gem "inspec", ">= 0.17.1"
 gem "kitchen-ec2"
 gem "kitchen-inspec"
@@ -62,9 +62,7 @@ gem "pry-stack_explorer"
 gem "rb-readline"
 gem "rubocop", "~> 0.37.2"
 gem "winrm-fs"
-# `json_pure` has a bug in it that is failing ChefDK builds.  We include the
-# prevents loading the `json_pure` gem
-gem 'json', '>= 1.8.1'
+
 # NOTE this needs to be excluded from AIX too, but we don't support that on
 # ChefDK and putting a thing in multiple groups :no_windows, :no_aix won't work
 # because it --without no_aix will still install things in group :no_windows.

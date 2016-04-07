@@ -302,7 +302,7 @@ dpkg -P chefdk
 
 To build the chef-dk, we use the omnibus system. Go to the [omnibus README](omnibus/README.md) to find out how to build!
 
-To update the chef-dk's dependencies, run `rake dependencies`. This will update the `Gemfile.lock`, `Gemfile.windows.lock` and `omnibus/Gemfile.lock`, and show you any outdated dependencies. Some outdated dependencies are to be expected; it will inform you if any new ones appear that we don't know about, and tell you how to proceed.
+To update the chef-dk's dependencies, run `rake dependencies`. This will update the `Gemfile.lock`, `Gemfile.windows.lock`, `omnibus/Gemfile.lock`, `acceptance/Gemfile.lock`, `omnibus/Berksfile.lock`, and `omnibus/files/chef-dk-overrides.rb`.  It will also show you any outdated dependencies due to conflicting constraints. Some outdated dependencies are to be expected; it will inform you if any new ones appear that we don't know about, and tell you how to proceed.
 
 To add or remove a package from the chef-dk, edit `Gemfile`.
 
@@ -350,7 +350,7 @@ Our rubygems component versions are locked down with `Gemfile.lock` and `Gemfile
 
 **Windows**: [Gemfile.lock](Gemfile.lock) is generated platform-agnostic. In order to keep windows versions in sync, [Gemfile.windows](Gemfile.windows) reads the generic Gemfile.lock and explicitly pins all gems to those versions, allowing bundler to bring in windows-specific versions of the gems and new deps, but requiring that all gems shared between Windows and Unix have the same version.
 
-The tool we use to generate Windows-specific lockfiles on non-Windows machines is [tasks/bundle-platform](bundle-platform), which takes the first argument and sets `Gem.platforms`, and then calls `bundle` with the remaining arguments.
+The tool we use to generate Windows-specific lockfiles on non-Windows machines is [tasks/bin/bundle-platform](bundle-platform), which takes the first argument and sets `Gem.platforms`, and then calls `bundle` with the remaining arguments.
 
 ### Build Tooling Versions
 
