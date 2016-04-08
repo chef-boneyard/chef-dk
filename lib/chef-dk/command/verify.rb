@@ -67,6 +67,8 @@ module ChefDK
         self.class.components
       end
 
+      bundle_install_mutex = Mutex.new
+
       #
       # Components included in Chef Development kit:
       # :base_dir => Relative path of the component w.r.t. omnibus_apps_dir
@@ -80,11 +82,11 @@ module ChefDK
         # test suite by default. We will be able to switch to that command when/if
         # Graphviz is added to omnibus.
         c.unit_test do
-          sh("#{bin("bundle")} install")
+          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
           sh("#{bin("bundle")} exec #{bin("rspec")} --color --format progress spec/unit --tag ~graphviz")
         end
         c.integration_test do
-          sh("#{bin("bundle")} install")
+          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
           sh("#{bin("bundle")} exec #{bin("cucumber")} --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict")
         end
 
@@ -99,11 +101,11 @@ module ChefDK
       add_component "test-kitchen" do |c|
         c.gem_base_dir = "test-kitchen"
         c.unit_test do
-          sh("#{bin("bundle")} install")
+          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
           sh("#{bin("bundle")} exec rake unit")
         end
         c.integration_test do
-          sh("#{bin("bundle")} install")
+          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
           sh("#{bin("bundle")} exec rake features")
         end
 
@@ -155,11 +157,11 @@ KITCHEN_YML
       add_component "chef-client" do |c|
         c.gem_base_dir = "chef"
         c.unit_test do
-          sh("#{bin("bundle")} install")
+          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
           sh("#{bin("bundle")} exec #{bin("rspec")} -fp -t '~volatile_from_verify' spec/unit")
         end
         c.integration_test do
-          sh("#{bin("bundle")} install")
+          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
           sh("#{bin("bundle")} exec #{bin("rspec")} -fp spec/integration spec/functional")
         end
 
@@ -174,7 +176,7 @@ KITCHEN_YML
       add_component "chef-dk" do |c|
         c.gem_base_dir = "chef-dk"
         c.unit_test do
-          sh("#{bin("bundle")} install")
+          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
           sh("#{bin("bundle")} exec #{bin("rspec")}")
         end
         c.smoke_test do
@@ -260,7 +262,9 @@ EOS
                 drivers.each { |d| f.puts %Q(gem "#{d}") }
               end
 
-              result = sh("#{bin("bundle")} install --local --quiet", cwd: cwd, env: {"BUNDLE_GEMFILE" => gemfile })
+              result = bundle_install_mutex.synchronize do
+                sh("#{bin("bundle")} install --local --quiet", cwd: cwd, env: {"BUNDLE_GEMFILE" => gemfile })
+              end
 
               if result.exitstatus != 0
                 failures << result.stdout
@@ -280,7 +284,7 @@ EOS
       add_component "chefspec" do |c|
         c.gem_base_dir = "chefspec"
         c.unit_test do
-          sh("#{bin("bundle")} install")
+          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
           sh("#{bin("bundle")} exec #{bin("rake")} unit")
         end
         c.smoke_test do
