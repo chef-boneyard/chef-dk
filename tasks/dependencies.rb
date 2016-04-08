@@ -15,50 +15,37 @@
 # limitations under the License.
 #
 
-# Once you decide that the list of outdated gems is OK, you can just
-# add gems to the output of bundle outdated here and we'll parse it to get the
-# list of outdated gems.
-#
-# We're starting with debt here, but don't want it to get worse.
-
 require_relative "bundle_util"
+require_relative "bundle"
 require_relative "../version_policy"
 
 desc "Tasks to update and check dependencies"
 namespace :dependencies do
   # Update all dependencies to the latest constraint-matching version
-  desc "Update all dependencies. update[conservative] to update as little as possible."
+  desc "Update all dependencies. dependencies:update[conservative] to update as little as possible."
   task :update, [:conservative] => %w{
                     dependencies:update_current_chef
-                    dependencies:update_omnibus_overrides
                     dependencies:update_gemfile_lock
+                    dependencies:update_omnibus_overrides
                     dependencies:update_omnibus_gemfile_lock
                     dependencies:update_acceptance_gemfile_lock
                     dependencies:update_omnibus_berksfile_lock
                   }
 
-  desc "Update Gemfile.lock and Gemfile.<platform>.lock. update_gemfile_lock[conservative] to update as little as possible."
-  task :update_gemfile_lock, [:conservative] do |t, conservative: false|
-    extend BundleUtil
-    puts ""
-    puts "-------------------------------------------------------------------"
-    puts "Updating Gemfile.lock#{conservative ? " (conservatively)" : ""} ..."
-    puts "-------------------------------------------------------------------"
-    bundle "install", delete_gemfile_lock: !conservative
-
-    extend BundleUtil
-    platforms.each do |platform|
-      puts ""
-      puts "-------------------------------------------------------------------"
-      puts "Updating Gemfile.#{platform}.lock#{conservative ? " (conservatively)" : ""} ..."
-      puts "-------------------------------------------------------------------"
-      bundle "lock", gemfile: "Gemfile.#{platform}", platform: platform, delete_gemfile_lock: !conservative
+  desc "Update Gemfile.lock and all Gemfile.<platform>.locks. update_gemfile_lock[conservative] to update as little as possible."
+  task :update_gemfile_lock, [:conservative] do |t, rake_args|
+    conservative = rake_args[:conservative]
+    if conservative
+      Rake::Task["bundle:install"].invoke
+    else
+      Rake::Task["bundle:update"].invoke
     end
   end
 
   desc "Update omnibus/Gemfile.lock. update_omnibus_gemfile_lock[conservative] to update as little as possible."
-  task :update_omnibus_gemfile_lock, [:conservative] do |t, conservative: false|
+  task :update_omnibus_gemfile_lock, [:conservative] do |t, rake_args|
     extend BundleUtil
+    conservative = rake_args[:conservative]
     puts ""
     puts "-------------------------------------------------------------------"
     puts "Updating omnibus/Gemfile.lock#{conservative ? " (conservatively)" : ""} ..."
@@ -67,8 +54,9 @@ namespace :dependencies do
   end
 
   desc "Update omnibus/Berksfile.lock. update_omnibus_berksfile_lock[conservative] to update as little as possible."
-  task :update_omnibus_berksfile_lock, [:conservative] do |t, conservative: false|
+  task :update_omnibus_berksfile_lock, [:conservative] do |t, rake_args|
     extend BundleUtil
+    conservative = rake_args[:conservative]
     puts ""
     puts "-------------------------------------------------------------------"
     puts "Updating omnibus/Berksfile.lock#{conservative ? " (conservatively)" : ""} ..."
@@ -79,9 +67,10 @@ namespace :dependencies do
     bundle "exec berks install", cwd: "omnibus"
   end
 
-  desc "Update acceptance/Gemfile.lock. update_acceptance_gemfile_lock[conservative] to update as little as possible."
-  task :update_acceptance_gemfile_lock, [:conservative] do |t, conservative: false|
+  desc "Update acceptance/Gemfile.lock (or one or more gems via update[gem1,gem2,...]). update_acceptance_gemfile_lock[conservative] to update as little as possible."
+  task :update_acceptance_gemfile_lock, [:conservative] do |t, rake_args|
     extend BundleUtil
+    conservative = rake_args[:conservative]
     puts ""
     puts "-------------------------------------------------------------------"
     puts "Updating acceptance/Gemfile.lock#{conservative ? " (conservatively)" : ""} ..."
@@ -90,8 +79,9 @@ namespace :dependencies do
   end
 
   desc "Update current chef release in Gemfile. update_current_chef[conservative] does nothing."
-  task :update_current_chef, [:conservative] do |t, conservative: false|
+  task :update_current_chef, [:conservative] do |t, rake_args|
     extend BundleUtil
+    conservative = rake_args[:conservative]
     unless conservative
       puts ""
       puts "-------------------------------------------------------------------"
@@ -133,7 +123,8 @@ namespace :dependencies do
   end
 
   desc "Update omnibus overrides, including versions in version_policy.rb and latest version of gems: #{OMNIBUS_RUBYGEMS_AT_LATEST_VERSION.keys}. update_omnibus_overrides[conservative] does nothing."
-  task :update_omnibus_overrides, [:conservative] do |t, conservative: false|
+  task :update_omnibus_overrides, [:conservative] do |t, rake_args|
+    conservative = rake_args[:conservative]
     unless conservative
       puts ""
       puts "-------------------------------------------------------------------"
@@ -196,3 +187,4 @@ namespace :dependencies do
 end
 desc "Update all dependencies and check for outdated gems. Call dependencies[conservative] to update as little as possible."
 task :dependencies, [:conservative] => [ "dependencies:update", "dependencies:check_outdated" ]
+task :update, [:conservative] => [ "dependencies:update", "dependencies:check_outdated"]

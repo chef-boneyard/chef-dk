@@ -24,6 +24,15 @@ module BundleUtil
     result
   end
 
+  def with_bundle_unfrozen
+    bundle "config --delete frozen"
+    begin
+      yield
+    ensure
+      bundle "config --local frozen 1"
+    end
+  end
+
   # Run bundle-platform with the given ruby platform(s)
   def bundle(args, gemfile: nil, platform: nil, cwd: nil, extract_output: false, delete_gemfile_lock: false)
     args = args.split(/\s+/)

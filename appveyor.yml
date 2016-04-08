@@ -22,6 +22,7 @@ install:
   - gem update --system
   - gem --version
   - gem install bundler --no-ri --no-rdoc
+  - SET BUNDLE_GEMFILE=Gemfile.windows
   - bundler --version
 
 build_script:
