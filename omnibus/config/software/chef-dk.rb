@@ -42,7 +42,6 @@ dependency "bundler"
 
 # Worst offenders first to take best advantage of cache:
 dependency "chef-dk-gem-dep-selector-libgecode"
-dependency "chef-dk-gem-gherkin"
 dependency "chef-dk-gem-byebug"
 dependency "chef-dk-gem-nokogiri"
 

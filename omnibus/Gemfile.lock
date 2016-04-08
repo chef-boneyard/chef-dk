@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: c69fa3a0b3df1e202e3f829596999c13c1d3b8e3
-  ref: c69fa3a0b3df1e202e3f829596999c13c1d3b8e3
+  revision: 8d611676c4458fa679cbc48e2111892ae7986cbf
   specs:
     omnibus-software (4.0.0)
       omnibus (>= 5.2.0)
@@ -38,12 +37,12 @@ GEM
     addressable (2.4.0)
     artifactory (2.3.2)
     awesome_print (1.6.1)
-    aws-sdk (2.2.32)
-      aws-sdk-resources (= 2.2.32)
-    aws-sdk-core (2.2.32)
+    aws-sdk (2.2.33)
+      aws-sdk-resources (= 2.2.33)
+    aws-sdk-core (2.2.33)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.2.32)
-      aws-sdk-core (= 2.2.32)
+    aws-sdk-resources (2.2.33)
+      aws-sdk-core (= 2.2.33)
     berkshelf (4.3.2)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (~> 2.0, >= 2.0.2)
@@ -104,7 +103,7 @@ GEM
       json_pure (>= 1.8.1)
     json (1.8.3)
     json_pure (1.8.3)
-    kitchen-vagrant (0.19.0)
+    kitchen-vagrant (0.20.0)
       test-kitchen (~> 1.4)
     libyajl2 (1.2.0)
     little-plugger (1.1.4)
