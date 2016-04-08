@@ -42,8 +42,19 @@ dependency "bundler"
 
 # Worst offenders first to take best advantage of cache:
 dependency "chef-dk-gem-dep-selector-libgecode"
-dependency "chef-dk-gem-byebug"
+dependency "chef-dk-gem-ffi-yajl"
+dependency "chef-dk-gem-json"
 dependency "chef-dk-gem-nokogiri"
+dependency "chef-dk-gem-libyajl2"
+dependency "chef-dk-gem-ffi"
+dependency "chef-dk-gem-ruby-prof"
+dependency "chef-dk-gem-dep_selector"
+dependency "chef-dk-gem-nio4r"
+dependency "chef-dk-gem-byebug"
+dependency "chef-dk-gem-yajl-ruby"
+dependency "chef-dk-gem-hitimes"
+dependency "chef-dk-gem-debug_inspector"
+dependency "chef-dk-gem-binding_of_caller"
 
 # Now everyone else, in alphabetical order because we don't care THAT much
 Dir.entries(File.dirname(__FILE__)).sort.each do |gem_software|
