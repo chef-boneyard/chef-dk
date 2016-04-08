@@ -30,7 +30,6 @@ branches:
   only:
     - master
 
-install: bundle install --without omnibus_package
 script: bundle exec rspec
 
 notifications:

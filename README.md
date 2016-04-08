@@ -302,9 +302,24 @@ dpkg -P chefdk
 
 To build the chef-dk, we use the omnibus system. Go to the [omnibus README](omnibus/README.md) to find out how to build!
 
-To update the chef-dk's dependencies, run `rake dependencies`. This will update the `Gemfile.lock`, `Gemfile.windows.lock`, `omnibus/Gemfile.lock`, `acceptance/Gemfile.lock`, `omnibus/Berksfile.lock`, and `omnibus_overrides.rb`.  It will also show you any outdated dependencies due to conflicting constraints. Some outdated dependencies are to be expected; it will inform you if any new ones appear that we don't know about, and tell you how to proceed.
+## Updating Dependencies
 
-To add or remove a package from the chef-dk, edit `Gemfile`.
+If you want to change our constraints (change which packages and versions we accept in the chef-dk), there are several places to do so:
+
+* To add or remove a package from the chef-dk, or update its version, edit [Gemfile](Gemfile).
+* To change the version of binary packages, edit [version_policy.rb](version_policy.rb).
+* To add new packages to the chef-dk, edit [omnibus/config/projects/chefdk.rb](omnibus/config/projects/chefdk.rb).
+
+Once you've made any changes you want, you have to update the lockfiles that actually drive the build:
+* To update the chef-dk's dependencies to the very latest versions available, run `rake bundle:update`.
+* To update the chef-dk's dependencies *conservatively* (changing as little as possible), run `rake bundle:install`.
+* To update specific gems only, run `rake bundle:update[gem1 gem2 ...]`
+* **`bundle update` and `bundle install` will *not* work, on purpose:** the rake task handles both the windows and non-windows lockfiles and updates them in sync.
+
+*
+
+
+To perform a full update of all dependencies everywhere, run `rake dependencies`. This will update the `Gemfile.lock`, `Gemfile.windows.lock`, `omnibus/Gemfile.lock`, `acceptance/Gemfile.lock`, `omnibus/Berksfile.lock`, and `omnibus_overrides.rb`.  It will also show you any outdated dependencies due to conflicting constraints. Some outdated dependencies are to be expected; it will inform you if any new ones appear that we don't know about, and tell you how to proceed.
 
 # How the ChefDK Builds and Versions
 
