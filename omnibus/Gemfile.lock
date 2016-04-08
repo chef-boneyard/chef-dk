@@ -7,12 +7,13 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: cdd633075fb689cc8efb2b1ccb89ebf2850e32ee
+  revision: 15fc7bab524b26b09539c477bcedb2b2efc9fffc
   specs:
     omnibus (5.3.0)
       aws-sdk (~> 2)
       chef-sugar (~> 3.3)
       cleanroom (~> 1.0)
+      ffi-yajl (~> 2.2)
       mixlib-shellout (~> 2.0)
       mixlib-versioning
       ohai (~> 8.0)
