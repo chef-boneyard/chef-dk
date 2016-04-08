@@ -7,9 +7,9 @@ GIT
 
 GIT
   remote: git://github.com/chef/chef-vault.git
-  revision: 09fa0a3a20458e75b917f549e3a3055a282e3f97
+  revision: f8da88305664f542d5f9b9a02d817f295a3e31ac
   specs:
-    chef-vault (2.8.0)
+    chef-vault (2.9.0)
 
 GIT
   remote: git://github.com/chef/chef.git
@@ -62,7 +62,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.13.13)
+    chef-dk (0.13.14)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -133,7 +133,7 @@ GEM
     buff-shell_out (0.2.0)
       buff-ruby_engine (~> 0.1.0)
     builder (3.2.2)
-    byebug (8.2.3)
+    byebug (8.2.4)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     celluloid-io (0.16.2)
