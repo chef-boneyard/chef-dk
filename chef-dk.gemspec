@@ -30,8 +30,11 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = '>= 2.0'
 
-  gem.files = %w(Gemfile Rakefile LICENSE README.md CONTRIBUTING.md warning.txt) + Dir.glob("*.gemspec") +
-      Dir.glob("{lib,spec,acceptance}/**/*", File::FNM_DOTMATCH).reject { |f|  File.directory?(f) }
+  gem.files = %w{Rakefile LICENSE README.md CONTRIBUTING.md warning.txt} +
+      %w{version_policy.rb omnibus_overrides.rb} +
+      Dir.glob("Gemfile*") + # Includes Gemfile and locks
+      Dir.glob("*.gemspec") +
+      Dir.glob("{lib,spec,acceptance,tasks}/**/*", File::FNM_DOTMATCH).reject { |f|  File.directory?(f) }
   gem.executables   = %w( chef )
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
@@ -53,12 +56,12 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "chef-provisioning", "~> 1.2"
 
-  gem.add_development_dependency "github_changelog_generator", "1.11.3"
+  gem.add_development_dependency "github_changelog_generator"
 
   %w(rspec-core rspec-expectations rspec-mocks).each do |dev_gem|
     gem.add_development_dependency dev_gem, "~> 3.0"
   end
 
-  gem.post_install_message = File.read(File.join(__dir__, 'warning.txt'))
+  gem.post_install_message = File.read(File.expand_path("../warning.txt", __FILE__))
 
 end

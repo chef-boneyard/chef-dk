@@ -1,61 +1,198 @@
-class OverrideReader
-  def overrides
-    @overrides ||= {}
-  end
-  def override(name, **options)
-    overrides[name] = options
-  end
-end
+#
+# Copyright:: Copyright (c) 2016 Chef Software Inc.
+# License:: Apache License, Version 2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
 
-desc "Update ChefDK's omnibus package dependencies"
-task :dependencies do
-  # Read the chefdk overrides file to get the list of gems and other things besides version (like source info)
-  overrides_file = File.expand_path("../../omnibus/config/chefdk_gem_overrides.rb", __FILE__)
-  puts "Reading #{overrides_file} ..."
-  reader = OverrideReader.new
-  reader.instance_eval(IO.read(overrides_file), overrides_file, 1)
+# Once you decide that the list of outdated gems is OK, you can just
+# add gems to the output of bundle outdated here and we'll parse it to get the
+# list of outdated gems.
+#
+# We're starting with debt here, but don't want it to get worse.
 
-  # Grab all matching specs
-  found_gems = {}
-  sources = Gem::SourceList.from [ "https://rubygems.org" ]
-  sources.each_source { |s| s.load_specs(:latest) }
-  specs = Gem::SpecFetcher.new(sources).detect(:latest) do |tuple|
-    name = tuple.name.to_sym
-    name = :'rubygems' if name == :'rubygems-update'
-    reader.overrides.has_key?(name) && tuple.platform === 'ruby'
-  end
-  specs.each do |tuple, source|
-    name = tuple.name.to_sym
-    name = :'rubygems' if name == :'rubygems-update'
-    # :latest will give you different versions depending on arch. Pick latest latest.
-    if !found_gems[name] || tuple.version >= found_gems[name]
-      found_gems[name] = tuple.version
+require_relative "bundle_util"
+require_relative "../version_policy"
+
+desc "Tasks to update and check dependencies"
+namespace :dependencies do
+  # Update all dependencies to the latest constraint-matching version
+  desc "Update all dependencies. update[conservative] to update as little as possible."
+  task :update, [:conservative] => %w{
+                    dependencies:update_current_chef
+                    dependencies:update_omnibus_overrides
+                    dependencies:update_gemfile_lock
+                    dependencies:update_omnibus_gemfile_lock
+                    dependencies:update_acceptance_gemfile_lock
+                    dependencies:update_omnibus_berksfile_lock
+                  }
+
+  desc "Update Gemfile.lock and Gemfile.<platform>.lock. update_gemfile_lock[conservative] to update as little as possible."
+  task :update_gemfile_lock, [:conservative] do |t, conservative: false|
+    extend BundleUtil
+    puts ""
+    puts "-------------------------------------------------------------------"
+    puts "Updating Gemfile.lock#{conservative ? " (conservatively)" : ""} ..."
+    puts "-------------------------------------------------------------------"
+    bundle "install", delete_gemfile_lock: !conservative
+
+    extend BundleUtil
+    platforms.each do |platform|
+      puts ""
+      puts "-------------------------------------------------------------------"
+      puts "Updating Gemfile.#{platform}.lock#{conservative ? " (conservatively)" : ""} ..."
+      puts "-------------------------------------------------------------------"
+      bundle "lock", gemfile: "Gemfile.#{platform}", platform: platform, delete_gemfile_lock: !conservative
     end
   end
 
-  # Figure out the final override version for each override
-  new_overrides = {}
-  reader.overrides.each do |name, version: nil, **options|
-    new_version = found_gems[name].to_s
-    raise "Could not find #{gem_name} in rubygems!" unless new_version
-    new_version = "v#{new_version}" if version.start_with?("v")
-    if version == new_version
-      puts "#{name}: #{new_version}"
+  desc "Update omnibus/Gemfile.lock. update_omnibus_gemfile_lock[conservative] to update as little as possible."
+  task :update_omnibus_gemfile_lock, [:conservative] do |t, conservative: false|
+    extend BundleUtil
+    puts ""
+    puts "-------------------------------------------------------------------"
+    puts "Updating omnibus/Gemfile.lock#{conservative ? " (conservatively)" : ""} ..."
+    puts "-------------------------------------------------------------------"
+    bundle "install", cwd: "omnibus", delete_gemfile_lock: !conservative
+  end
+
+  desc "Update omnibus/Berksfile.lock. update_omnibus_berksfile_lock[conservative] to update as little as possible."
+  task :update_omnibus_berksfile_lock, [:conservative] do |t, conservative: false|
+    extend BundleUtil
+    puts ""
+    puts "-------------------------------------------------------------------"
+    puts "Updating omnibus/Berksfile.lock#{conservative ? " (conservatively)" : ""} ..."
+    puts "-------------------------------------------------------------------"
+    if !conservative && File.exist?("#{project_root}/omnibus/Berksfile.lock")
+      File.delete("#{project_root}/omnibus/Berksfile.lock")
+    end
+    bundle "exec berks install", cwd: "omnibus"
+  end
+
+  desc "Update acceptance/Gemfile.lock. update_acceptance_gemfile_lock[conservative] to update as little as possible."
+  task :update_acceptance_gemfile_lock, [:conservative] do |t, conservative: false|
+    extend BundleUtil
+    puts ""
+    puts "-------------------------------------------------------------------"
+    puts "Updating acceptance/Gemfile.lock#{conservative ? " (conservatively)" : ""} ..."
+    puts "-------------------------------------------------------------------"
+    bundle "install", cwd: "acceptance", delete_gemfile_lock: !conservative
+  end
+
+  desc "Update current chef release in Gemfile. update_current_chef[conservative] does nothing."
+  task :update_current_chef, [:conservative] do |t, conservative: false|
+    extend BundleUtil
+    unless conservative
+      puts ""
+      puts "-------------------------------------------------------------------"
+      puts "Updating Gemfile ..."
+      puts "-------------------------------------------------------------------"
+
+      require "mixlib/install"
+      # TODO in some edge cases, stable will actually be the latest chef because
+      # promotion *moves* the package out of current into stable rather than
+      # copying
+      puts "Getting latest chef 'current' version from omnitruck ..."
+      options = {
+        channel: :current,
+        product_name: 'chef',
+        product_version: :latest
+      }
+      version = Mixlib::Install.new(options).artifact_info.first.version
+
+      # Modify the gemfile to pin to current chef
+      gemfile_path = File.join(project_root, "Gemfile")
+      gemfile = IO.read(gemfile_path)
+      found = gemfile.sub!(/^(\s*gem "chef", github: "chef\/chef", branch: ")([^"]*)(")$/m) do
+        if $2 != "v#{version}"
+          puts "Setting chef version in Gemfile to v#{version} (was #{$2})"
+        else
+          puts "chef version in Gemfile already at latest current (#{$2})"
+        end
+        "#{$1}v#{version}#{$3}"
+      end
+      unless found
+        raise "Gemfile does not have a line of the form 'gem \"chef\", github: \"chef/chef\", branch: \"v<version>\"', so we didn't update it to latest current (v#{version}). Remove dependencies:update_current_chef from the `dependencies:update` rake task to prevent it from being run if this is intentional."
+      end
+
+      if gemfile != IO.read(gemfile_path)
+        puts "Writing modified #{gemfile_path} ..."
+        IO.write(gemfile_path, gemfile)
+      end
+    end
+  end
+
+  desc "Update omnibus overrides, including versions in version_policy.rb and latest version of gems: #{OMNIBUS_RUBYGEMS_AT_LATEST_VERSION.keys}. update_omnibus_overrides[conservative] does nothing."
+  task :update_omnibus_overrides, [:conservative] do |t, conservative: false|
+    unless conservative
+      puts ""
+      puts "-------------------------------------------------------------------"
+      puts "Updating omnibus_overrides.rb ..."
+      puts "-------------------------------------------------------------------"
+
+      # Generate the new overrides file
+      overrides = "# Generated by \"rake dependencies\". Do not edit.\n"
+
+      # Replace the bundler and rubygems versions
+      OMNIBUS_RUBYGEMS_AT_LATEST_VERSION.each do |override_name, gem_name|
+        # Get the latest bundler version
+        puts "Running gem list -re #{gem_name} ..."
+        gem_list = `gem list -re #{gem_name}`
+        unless gem_list =~ /^#{gem_name}\s*\(([^)]*)\)$/
+          raise "gem list -re #{gem_name} failed with output:\n#{gem_list}"
+        end
+
+        # Emit it
+        puts "Latest version of #{gem_name} is #{$1}"
+        overrides << "override #{override_name.inspect}, version: #{$1.inspect}\n"
+      end
+
+      # Add explicit overrides
+      OMNIBUS_OVERRIDES.each do |override_name, version|
+        overrides << "override #{override_name.inspect}, version: #{version.inspect}\n"
+      end
+
+      # Write the file out (if changed)
+      overrides_path = File.expand_path("../../omnibus_overrides.rb", __FILE__)
+      if overrides != IO.read(overrides_path)
+        puts "Overrides changed!"
+        puts `git diff #{overrides_path}`
+        puts "Writing modified #{overrides_path} ..."
+        IO.write(overrides_path, overrides)
+      end
+    end
+  end
+
+  # Find out if we're using the latest gems we can (so we don't regress versions)
+  desc "Check for gems that are not at the latest released version, and report if anything not in ACCEPTABLE_OUTDATED_GEMS (version_policy.rb) is out of date."
+  task :check_outdated do
+    puts ""
+    puts "-------------------------------------------------------------------"
+    puts "Checking for outdated gems ..."
+    puts "-------------------------------------------------------------------"
+    # TODO check for outdated windows gems too
+    bundle_outdated = bundle("outdated", extract_output: true)
+    puts bundle_outdated
+    outdated_gems = parse_bundle_outdated(bundle_outdated).map { |line, gem_name| gem_name }
+    # Weed out the acceptable ones
+    outdated_gems = outdated_gems.reject { |gem_name| ACCEPTABLE_OUTDATED_GEMS.include?(gem_name) }
+    if outdated_gems.empty?
+      puts ""
+      puts "SUCCESS!"
     else
-      puts "#{name}: #{new_version} (was #{version})"
+      raise "ERROR: outdated gems: #{outdated_gems.join(", ")}. Either fix them or add them to ACCEPTABLE_OUTDATED_GEMS in #{__FILE__}."
     end
-    new_overrides[name] = { version: new_version, **options }
   end
-
-  # Write the file back out
-  puts "Writing changes out to #{overrides_file} ..."
-  output = File.open(overrides_file, 'w')
-  new_overrides.each do |name, **options|
-    line = "override #{name.inspect}"
-    options.each do |key, value|
-      line << ", #{key.inspect} => #{value.inspect}"
-    end
-    output.puts line
-  end
-  output.close
 end
+desc "Update all dependencies and check for outdated gems. Call dependencies[conservative] to update as little as possible."
+task :dependencies, [:conservative] => [ "dependencies:update", "dependencies:check_outdated" ]

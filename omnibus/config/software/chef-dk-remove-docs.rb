@@ -1,6 +1,5 @@
 #
-# Copyright:: Copyright (c) 2016 Chef Software Inc.
-# License:: Apache License, Version 2.0
+# Copyright 2012-2014 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +14,20 @@
 # limitations under the License.
 #
 
-require "bundler/gem_tasks"
-require_relative "tasks/version"
-require_relative "tasks/dependencies"
-require_relative "tasks/github_changelog_generator"
+name "chef-dk-remove-docs"
+
+license :project_license
+
+build do
+  # This is where we get the definitions below
+  require_relative "../../files/chef-dk/build-chef-dk"
+  extend BuildChefDK
+
+  delete "#{install_dir}/embedded/docs"
+  delete "#{install_dir}/embedded/share/man"
+  delete "#{install_dir}/embedded/share/doc"
+  delete "#{install_dir}/embedded/share/gtk-doc"
+  delete "#{install_dir}/embedded/ssl/man"
+  delete "#{install_dir}/embedded/man"
+  delete "#{install_dir}/embedded/info"
+end

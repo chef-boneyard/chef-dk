@@ -1,5 +1,4 @@
-Berksfile.lock
-bin/
+binstubs
 .bundle
 vendor/bundle
 pkg/

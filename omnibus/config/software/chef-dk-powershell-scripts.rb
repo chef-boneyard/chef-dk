@@ -17,27 +17,24 @@
 
 # This is a windows only dependency
 
-name "chefdk-env-customization"
+name "chef-dk-powershell-scripts"
 
 license :project_license
 
-source path: "#{project.files_path}/#{name}"
+# chef-dk-gems must be installed so we can get the chef gem's powershell scripts
+dependency "chef-dk"
 
-dependency "ruby"
+require_relative "../../files/chef-dk-gem/build-chef-dk-gem"
 
 build do
-  block "Add chefdk_env_customization file" do
-    source_customization_file = "#{project_dir}/windows/chefdk_env_customization.rb"
-
-    site_ruby = Bundler.with_clean_env do
-      ruby = windows_safe_path("#{install_dir}/embedded/bin/ruby")
-      %x|#{ruby} -rrbconfig -e "puts RbConfig::CONFIG['sitelibdir']"|.strip
+  extend BuildChefDKGem
+  block "Install windows powershell scripts" do
+    # Copy the chef gem's distro stuff over
+    chef_gem_path = shellout!("#{bundle_bin} show chef", env: env.merge("BUNDLE_GEMFILE" => shared_gemfile)).stdout.chomp
+    chef_module_dir = File.join(install_dir, "modules", "chef")
+    FileUtils.mkdir_p(chef_module_dir) if !File.exists?(chef_module_dir)
+    Dir.glob("#{chef_gem_path}/distro/powershell/chef/*").each do |file|
+      copy_file(file, chef_module_dir)
     end
-
-    if site_ruby.nil? || site_ruby.empty?
-      raise "Could not determine embedded Ruby's site directory, aborting!"
-    end
-
-    FileUtils.cp source_customization_file, site_ruby
   end
 end

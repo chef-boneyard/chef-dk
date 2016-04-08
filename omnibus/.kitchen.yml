@@ -11,13 +11,14 @@ driver:
     cpus: 4
     memory: 4096
   synced_folders:
-    - ['..', '/home/vagrant/chef-dk']
-    - ['../../omnibus', '/home/vagrant/omnibus']
-    - ['../../omnibus-software', '/home/vagrant/omnibus-software']
+    - ['../..', '/home/vagrant']
 
 provisioner:
   name: chef_zero
   require_chef_omnibus: true # Always install the latest version of Chef
+  attributes:
+    vagrant:
+      this_key_exists_so_we_have_a_vagrant_key: true
 
 platforms:
   - name: centos-5.10

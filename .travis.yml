@@ -21,13 +21,16 @@ before_install:
   - gem install bundler --no-ri --no-rdoc
   - gem --version
 
-rvm:
-  - 2.1.1
+matrix:
+  include:
+    - rvm: 2.2
+    - rvm: 2.1
 
 branches:
   only:
     - master
 
+install: bundle install --without omnibus_package
 script: bundle exec rspec
 
 notifications:

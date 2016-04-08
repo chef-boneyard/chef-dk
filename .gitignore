@@ -4,15 +4,9 @@ coverage
 pkg/*
 */tags
 *~
-bin
-!bin/chef
 
 # You should check in your Gemfile.lock in applications, and not in gems
-/Gemfile.lock
 /Gemfile.local
-
-# pull master of omnibus+omnibus-software
-omnibus/Gemfile.lock
 
 # Do not check in the .bundle directory, or any of the files inside it. Those
 # files are specific to each particular machine, and are used to persist
@@ -43,5 +37,4 @@ Vagrantfile
 .kitchen/
 
 # Chef-Acceptance
-acceptance/Gemfile.lock
 .acceptance_logs
