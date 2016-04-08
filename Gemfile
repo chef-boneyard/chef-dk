@@ -48,14 +48,14 @@ group(:omnibus_package) do
   gem "cheffish", ">= 2.0.3"
   gem "chefspec"
   gem "fauxhai"
-  gem "foodcritic", ">= 6.1.0"
+  gem "foodcritic", ">= 6.1.1"
   gem "inspec", ">= 0.17.1"
   gem "kitchen-ec2"
   gem "kitchen-inspec"
   gem "kitchen-vagrant"
   gem "knife-windows"
   gem "ohai", ">= 8.13.0"
-  gem "test-kitchen", ">= 1.6.0"
+  gem "test-kitchen", ">= 1.6.0", github: "test-kitchen/test-kitchen", branch: "jk/relaxed-cucumber"
 
   # All of the following used to be software definitions we included:
   gem "knife-spork"
@@ -85,4 +85,3 @@ end
 group(:no_windows) do
   gem "ruby-shadow"
 end
-
