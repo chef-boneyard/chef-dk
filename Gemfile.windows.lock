@@ -75,7 +75,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.13.15)
+    chef-dk (0.13.16)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -418,7 +418,7 @@ GEM
     inflecto (0.0.2)
     inifile (3.0.0)
     iniparse (1.4.2)
-    inspec (0.17.1)
+    inspec (0.18.0)
       json (~> 1.8)
       method_source (~> 0.8)
       pry (~> 0)
@@ -645,7 +645,7 @@ GEM
     solve (2.0.3)
       molinillo (~> 0.4.2)
       semverse (~> 1.1)
-    specinfra (2.56.0)
+    specinfra (2.56.1)
       net-scp
       net-ssh (>= 2.7, < 4.0)
       net-telnet
@@ -822,7 +822,7 @@ DEPENDENCIES
   inflecto (= 0.0.2)
   inifile (= 3.0.0)
   iniparse (= 1.4.2)
-  inspec (= 0.17.1)
+  inspec (= 0.18.0)
   ipaddress (= 0.8.3)
   jmespath (= 1.2.4)
   json (= 1.8.3)
@@ -917,7 +917,7 @@ DEPENDENCIES
   signet (= 0.7.2)
   slop (= 3.6.0)
   solve (= 2.0.3)
-  specinfra (= 2.56.0)
+  specinfra (= 2.56.1)
   stuartpreston-azure-sdk-for-ruby (= 0.7.1)
   syslog-logger (= 1.6.8)
   systemu (= 2.6.5)
