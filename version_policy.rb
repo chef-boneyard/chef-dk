@@ -25,8 +25,6 @@ OMNIBUS_OVERRIDES = {
   libxslt: "1.1.28",
   makedepend: "1.0.5",
   ruby: "2.1.8",
-  rubygems: "2.5.2",
-  bundler: "1.11.2",
   :"util-macros" => "1.19.0",
   xproto: "7.0.28",
   zlib: "1.2.8",
@@ -51,8 +49,7 @@ OMNIBUS_OVERRIDES = {
 # name of the rubygem (gem list -re <rubygem name> gets us the latest version).
 #
 OMNIBUS_RUBYGEMS_AT_LATEST_VERSION = {
-  # Not ready for rubygems yet, uncomment after this patch lands in chef-dk
-  # rubygems: "rubygems-update",
+  rubygems: "rubygems-update",
   bundler: "bundler"
 }
 

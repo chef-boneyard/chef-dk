@@ -7,20 +7,13 @@ GIT
       mixlib-cli (~> 1.4)
 
 GIT
-  remote: git://github.com/chef/chef-vault.git
-  revision: f8da88305664f542d5f9b9a02d817f295a3e31ac
-  ref: f8da88305664f542d5f9b9a02d817f295a3e31ac
-  specs:
-    chef-vault (2.9.0)
-
-GIT
   remote: git://github.com/chef/chef.git
-  revision: 202d0abe721c5e48867855588da3f07e025ecbe8
-  ref: 202d0abe721c5e48867855588da3f07e025ecbe8
+  revision: ff6d2337ee830854c4489d860955609aeaec9674
+  ref: ff6d2337ee830854c4489d860955609aeaec9674
   specs:
-    chef (12.9.29-universal-mingw32)
+    chef (12.9.36-universal-mingw32)
       bundler (>= 1.10)
-      chef-config (= 12.9.29)
+      chef-config (= 12.9.36)
       chef-zero (~> 4.5)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -31,6 +24,7 @@ GIT
       mixlib-cli (~> 1.4)
       mixlib-log (~> 1.3)
       mixlib-shellout (~> 2.0)
+      net-sftp (~> 2.1, >= 2.1.2)
       net-ssh (>= 2.9, < 4.0)
       net-ssh-multi (~> 1.1)
       ohai (>= 8.6.0.alpha.1, < 9)
@@ -54,15 +48,15 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.9.29)
+    chef-config (12.9.36)
       fuzzyurl (~> 0.8.0)
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
 
 GIT
   remote: git://github.com/test-kitchen/test-kitchen.git
-  revision: 43b4212a0c71d420f70b02c4b477c3ab0d59c7b1
-  ref: 43b4212a0c71d420f70b02c4b477c3ab0d59c7b1
+  revision: 973d42e43a33d1fc78f803682d31bb50ee709628
+  ref: 973d42e43a33d1fc78f803682d31bb50ee709628
   specs:
     test-kitchen (1.7.2)
       mixlib-install (~> 1.0, >= 1.0.4)
@@ -177,6 +171,7 @@ GEM
       retryable
     chef-provisioning-vagrant (0.11.0)
       chef-provisioning
+    chef-vault (2.9.0)
     chef-zero (4.5.0)
       ffi-yajl (~> 2.2)
       hashie (>= 2.0, < 4.0)
@@ -494,6 +489,8 @@ GEM
     nenv (0.3.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
     net-ssh (3.1.1)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
@@ -748,7 +745,7 @@ DEPENDENCIES
   chef-provisioning-azure (= 0.5.0)
   chef-provisioning-fog (= 0.18.0)
   chef-provisioning-vagrant (= 0.11.0)
-  chef-vault!
+  chef-vault (= 2.9.0)
   chef-zero (= 4.5.0)
   cheffish (= 2.0.3)
   chefspec (= 4.6.1)
@@ -859,6 +856,7 @@ DEPENDENCIES
   multipart-post (= 2.0.0)
   nenv (= 0.3.0)
   net-scp (= 1.2.1)
+  net-sftp (= 2.1.2)
   net-ssh (= 3.1.1)
   net-ssh-gateway (= 1.2.0)
   net-ssh-multi (= 1.2.1)
