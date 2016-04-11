@@ -49,7 +49,6 @@ namespace :bundle do
       puts "-------------------------------------------------------------------"
       puts "Updating Gemfile.lock ..."
       puts "-------------------------------------------------------------------"
-      bundle "install #{args}", delete_gemfile_lock: true
       bundle "install #{args}"
       platforms.each do |platform|
         puts ""
