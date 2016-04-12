@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/chef/chef-acceptance.git
-  revision: 455676a8bd3155a3f565791d225707ad2302f8b8
+  revision: 49458ec493dbd12588680eea9f2f9beb76463d09
   specs:
     chef-acceptance (0.2.0)
       mixlib-shellout (~> 2.0)
@@ -24,12 +24,12 @@ GEM
   specs:
     addressable (2.4.0)
     artifactory (2.3.2)
-    aws-sdk (2.2.33)
-      aws-sdk-resources (= 2.2.33)
-    aws-sdk-core (2.2.33)
+    aws-sdk (2.2.34)
+      aws-sdk-resources (= 2.2.34)
+    aws-sdk-core (2.2.34)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.2.33)
-      aws-sdk-core (= 2.2.33)
+    aws-sdk-resources (2.2.34)
+      aws-sdk-core (= 2.2.34)
     berkshelf (4.3.2)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (~> 2.0, >= 2.0.2)
@@ -86,7 +86,7 @@ GEM
     hashie (3.4.3)
     hitimes (1.2.3)
     httpclient (2.7.1)
-    inspec (0.17.1)
+    inspec (0.18.0)
       json (~> 1.8)
       method_source (~> 0.8)
       pry (~> 0)
@@ -117,7 +117,7 @@ GEM
       rspec-expectations (~> 3.2)
       rspec-mocks (~> 3.2)
     mixlib-config (2.2.1)
-    mixlib-install (1.0.4)
+    mixlib-install (1.0.5)
       artifactory (>= 2.3.0)
       mixlib-shellout (>= 2.2.6)
       mixlib-versioning (>= 1.1.0)

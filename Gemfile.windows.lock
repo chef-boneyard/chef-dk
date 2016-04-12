@@ -1,19 +1,19 @@
 GIT
   remote: git://github.com/chef/appbundler.git
-  revision: 9e6ef05fecd0972e10aaaba674739ebe3186ed82
-  ref: 9e6ef05fecd0972e10aaaba674739ebe3186ed82
+  revision: a8376ff735ec63d6f4e3cffe971223516890239c
+  ref: a8376ff735ec63d6f4e3cffe971223516890239c
   specs:
-    appbundler (0.8.0)
+    appbundler (0.9.0)
       mixlib-cli (~> 1.4)
 
 GIT
   remote: git://github.com/chef/chef.git
-  revision: ff6d2337ee830854c4489d860955609aeaec9674
-  ref: ff6d2337ee830854c4489d860955609aeaec9674
+  revision: 5371a896228647bdb1b9260bc36b3afc756897c7
+  ref: 5371a896228647bdb1b9260bc36b3afc756897c7
   specs:
-    chef (12.9.36-universal-mingw32)
+    chef (12.9.38-universal-mingw32)
       bundler (>= 1.10)
-      chef-config (= 12.9.36)
+      chef-config (= 12.9.38)
       chef-zero (~> 4.5)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -48,7 +48,7 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.9.36)
+    chef-config (12.9.38)
       fuzzyurl (~> 0.8.0)
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
@@ -99,12 +99,12 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (2.2.33)
-      aws-sdk-resources (= 2.2.33)
-    aws-sdk-core (2.2.33)
+    aws-sdk (2.2.34)
+      aws-sdk-resources (= 2.2.34)
+    aws-sdk-core (2.2.34)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.2.33)
-      aws-sdk-core (= 2.2.33)
+    aws-sdk-resources (2.2.34)
+      aws-sdk-core (= 2.2.34)
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -473,7 +473,7 @@ GEM
       rspec-mocks (~> 3.2)
     mixlib-cli (1.5.0)
     mixlib-config (2.2.1)
-    mixlib-install (1.0.4)
+    mixlib-install (1.0.5)
       artifactory (>= 2.3.0)
       mixlib-shellout (>= 2.2.6)
       mixlib-versioning (>= 1.1.0)
@@ -721,9 +721,9 @@ DEPENDENCIES
   artifactory (= 2.3.2)
   ast (= 2.2.0)
   autoparse (= 0.3.3)
-  aws-sdk (= 2.2.33)
-  aws-sdk-core (= 2.2.33)
-  aws-sdk-resources (= 2.2.33)
+  aws-sdk (= 2.2.34)
+  aws-sdk-core (= 2.2.34)
+  aws-sdk-resources (= 2.2.34)
   aws-sdk-v1 (= 1.66.0)
   berkshelf (= 4.3.2)
   berkshelf-api-client (= 2.0.2)
@@ -846,7 +846,7 @@ DEPENDENCIES
   mixlib-authentication (= 1.4.0)
   mixlib-cli (= 1.5.0)
   mixlib-config (= 2.2.1)
-  mixlib-install (= 1.0.4)
+  mixlib-install (= 1.0.5)
   mixlib-log (= 1.6.0)
   mixlib-shellout (= 2.2.6)
   mixlib-versioning (= 1.1.0)
