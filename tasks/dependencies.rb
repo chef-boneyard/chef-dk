@@ -78,6 +78,16 @@ namespace :dependencies do
     bundle "install", cwd: "acceptance", delete_gemfile_lock: !conservative
   end
 
+  def latest_gem_version(gem_name)
+    # Get the latest bundler version
+    puts "Running gem list -r #{gem_name} ..."
+    gem_list = `gem list -r #{gem_name}`
+    unless gem_list =~ /^#{gem_name}\s*\((\S+).*\)$/
+      raise "gem list -re #{gem_name} failed with output:\n#{gem_list}"
+    end
+    $1
+  end
+
   desc "Update current chef release in Gemfile. update_current_chef[conservative] does nothing."
   task :update_current_chef, [:conservative] do |t, rake_args|
     extend BundleUtil
@@ -98,21 +108,36 @@ namespace :dependencies do
         product_name: 'chef',
         product_version: :latest
       }
-      version = Mixlib::Install.new(options).artifact_info.first.version
+      current_version = Mixlib::Install.new(options).artifact_info.first.version
+
+      # TODO in some edge cases, stable will actually be the latest chef because
+      # promotion *moves* the package out of current into stable rather than
+      # copying
+      puts "Getting latest released chef gem ..."
+      released_version = latest_gem_version("chef")
+      if Gem::Version.new(released_version) >= Gem::Version.new(current_version)
+        puts "The latest chef gem #{released_version} is more recent than the current channel chef release (#{current_version}). Using #{released_version} ..."
+        gem_source = ""
+        latest_version = released_version
+      else
+        puts "The current channel chef release #{current_version} is more recent than the latest chef gem #{released_version}. Using #{current_version} ..."
+        gem_source = ", #{current_version.inspect}, github: \"chef/chef\", ref: \"v#{current_version.to_s}\""
+        latest_version = current_version
+      end
 
       # Modify the gemfile to pin to current chef
       gemfile_path = File.join(project_root, "Gemfile")
       gemfile = IO.read(gemfile_path)
-      found = gemfile.sub!(/^(\s*gem "chef", github: "chef\/chef", branch: ")([^"]*)(")$/m) do
-        if $2 != "v#{version}"
-          puts "Setting chef version in Gemfile to v#{version} (was #{$2})"
+      found = gemfile.sub!(/^(\s*gem\s+"chef")(.*)$/) do
+        if gem_source != $2
+          puts "Setting chef version in Gemfile to #{latest_version} (was #{$2.empty? ? "<latest>" : $2})"
         else
-          puts "chef version in Gemfile already at latest current (#{$2})"
+          puts "chef version in Gemfile already at latest (#{latest_version})"
         end
-        "#{$1}v#{version}#{$3}"
+        "#{$1}#{gem_source}"
       end
       unless found
-        raise "Gemfile does not have a line of the form 'gem \"chef\", github: \"chef/chef\", branch: \"v<version>\"', so we didn't update it to latest current (v#{version}). Remove dependencies:update_current_chef from the `dependencies:update` rake task to prevent it from being run if this is intentional."
+        raise "Gemfile does not have a line of the form 'gem \"chef\"', so we didn't update it to the latest (#{latest_version}). Remove dependencies:update_current_chef from the `dependencies:update` rake task to prevent it from being run if this is intentional."
       end
 
       if gemfile != IO.read(gemfile_path)
@@ -136,16 +161,11 @@ namespace :dependencies do
 
       # Replace the bundler and rubygems versions
       OMNIBUS_RUBYGEMS_AT_LATEST_VERSION.each do |override_name, gem_name|
-        # Get the latest bundler version
-        puts "Running gem list -re #{gem_name} ..."
-        gem_list = `gem list -re #{gem_name}`
-        unless gem_list =~ /^#{gem_name}\s*\(([^)]*)\)$/
-          raise "gem list -re #{gem_name} failed with output:\n#{gem_list}"
-        end
+        version = latest_gem_version(gem_name)
 
         # Emit it
-        puts "Latest version of #{gem_name} is #{$1}"
-        overrides << "override #{override_name.inspect}, version: #{$1.inspect}\n"
+        puts "Latest version of #{gem_name} is #{$version}"
+        overrides << "override #{override_name.inspect}, version: #{$version.inspect}\n"
       end
 
       # Add explicit overrides
