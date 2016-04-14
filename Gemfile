@@ -57,7 +57,10 @@ group(:omnibus_package) do
   gem "ohai", ">= 8.13.0"
   gem "test-kitchen", ">= 1.6.0", github: "test-kitchen/test-kitchen" # until a release with relaxed cucumber in it
   gem "mixlib-install", github: "chef/mixlib-install"
+
+  # For Delivery build node
   gem "chef-sugar"
+  gem "opscode-pushy-client", github: "chef/opscode-pushy-client"
 
   # All of the following used to be software definitions we included:
   gem "knife-spork"

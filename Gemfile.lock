@@ -51,6 +51,16 @@ GIT
       mixlib-versioning (>= 1.1.0)
 
 GIT
+  remote: git://github.com/chef/opscode-pushy-client.git
+  revision: 8911cd105640701bc6cd5f6f16ff59629bfc4f36
+  specs:
+    opscode-pushy-client (2.0.2)
+      chef (>= 12.5)
+      ffi-rzmq
+      ohai
+      uuidtools
+
+GIT
   remote: git://github.com/test-kitchen/test-kitchen.git
   revision: 168f0c45437413363cc1cc5ad9c3062b724b9e66
   specs:
@@ -212,6 +222,10 @@ GEM
     fauxhai (3.2.0)
       net-ssh
     ffi (1.9.10)
+    ffi-rzmq (2.0.4)
+      ffi-rzmq-core (>= 1.0.1)
+    ffi-rzmq-core (1.0.4)
+      ffi (~> 1.9)
     ffi-yajl (2.2.3)
       libyajl2 (~> 1.2)
     fission (0.5.0)
@@ -713,6 +727,7 @@ DEPENDENCIES
   mixlib-install!
   nokogiri
   ohai (>= 8.13.0)
+  opscode-pushy-client!
   pry
   pry-byebug
   pry-remote
