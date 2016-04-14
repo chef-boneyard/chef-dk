@@ -55,6 +55,14 @@ group(:omnibus_package) do
   gem "test-kitchen"
   # Until listen supports Ruby 2.0 and 2.1
   gem "listen", "< 3.1.0"
+  gem "mixlib-install"
+
+  # For Delivery build node
+  gem "chef-sugar"
+  gem "opscode-pushy-client", github: "chef/opscode-pushy-client"
+  gem "knife-supermarket"
+  gem "mixlib-versioning"
+  gem "artifactory"
 
   # All of the following used to be software definitions we included:
   gem "knife-spork"
