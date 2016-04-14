@@ -44,7 +44,7 @@ group(:omnibus_package) do
   gem "chef-provisioning-vagrant", ">= 0.11.0"
   gem "chef-vault"
   # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "chef", github: "chef/chef", branch: "v12.9.38"
+  gem "chef", github: "chef/chef", branch: "v12.9.41"
   gem "cheffish", ">= 2.0.3"
   gem "chefspec"
   gem "fauxhai"
@@ -55,7 +55,7 @@ group(:omnibus_package) do
   gem "kitchen-vagrant"
   gem "knife-windows"
   gem "ohai", ">= 8.13.0"
-  gem "test-kitchen", ">= 1.6.0", github: "test-kitchen/test-kitchen" # until a release with relaxed cucumber in it
+  gem "test-kitchen"
 
   # All of the following used to be software definitions we included:
   gem "knife-spork"
