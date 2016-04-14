@@ -30,6 +30,9 @@ dependency "libiconv"
 dependency "liblzma"
 dependency "zlib"
 
+# For Delivery build nodes
+dependency "git"
+
 # For berkshelf
 dependency "libarchive"
 
