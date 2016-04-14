@@ -35,16 +35,16 @@ end
 group(:omnibus_package) do
   gem "appbundler", github: "chef/appbundler" # until next release with multiple-gem support
   gem "berkshelf"
-  # Chef 12.8.1 Gem includes some extra files which can break gem installation on
-  # windows. For now we are pulling chef from github at the tag as a workaround.
   gem "chef-provisioning", ">= 1.7.0"
   gem "chef-provisioning-aws", ">= 1.8.0"
   gem "chef-provisioning-azure", ">= 0.5.0"
   gem "chef-provisioning-fog", ">= 0.18.0"
   gem "chef-provisioning-vagrant", ">= 0.11.0"
   gem "chef-vault"
+  # Chef 12.8.1 Gem includes some extra files which can break gem installation on
+  # windows. For now we are pulling chef from github at the tag as a workaround.
   # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "chef", github: "chef/chef", branch: "v12.9.41"
+  gem "chef", github: "chef/chef", branch: "v12.10.3"
   gem "cheffish", ">= 2.0.3"
   gem "chefspec"
   gem "fauxhai"
@@ -55,7 +55,9 @@ group(:omnibus_package) do
   gem "kitchen-vagrant"
   gem "knife-windows"
   gem "ohai", ">= 8.13.0"
-  gem "test-kitchen"
+  gem "test-kitchen", ">= 1.6.0", github: "test-kitchen/test-kitchen" # until a release with relaxed cucumber in it
+  gem "mixlib-install", github: "chef/mixlib-install"
+  gem "chef-sugar"
 
   # All of the following used to be software definitions we included:
   gem "knife-spork"
