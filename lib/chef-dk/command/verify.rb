@@ -281,6 +281,7 @@ EOS
         end
       end
 
+
       add_component "chefspec" do |c|
         c.gem_base_dir = "chefspec"
         c.unit_test do
@@ -448,6 +449,18 @@ end
             end
             # TODO when we appbundle inspec, no longer `chef exec`
             sh("#{bin("chef")} exec #{bin("inspec")} exec .", cwd: cwd)
+          end
+        end
+      end
+
+      unless Gem.win_platform?
+        add_component "delivery-cli" do |c|
+          # We'll want to come back and revisit getting unit tests added -
+          # currently running the tests depends on cargo , which is not included
+          # in our package.
+
+          c.smoke_test do
+            sh!(bin("delivery-cli --help"))
           end
         end
       end
