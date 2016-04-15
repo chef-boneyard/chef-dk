@@ -44,6 +44,14 @@ dependency "preparation"
 # or removal of a dependency doesn't dirty the entire project file
 dependency "chef-dk-complete"
 
+unless windows?
+  # For now, Delivery CLI is *nix only.
+  dependency "delivery-cli"
+
+  # This is a build-time dependency, so we won't leave it behind:
+  dependency "rust-uninstall"
+end
+
 package :rpm do
   signing_passphrase ENV['OMNIBUS_RPM_SIGNING_PASSPHRASE']
 end
