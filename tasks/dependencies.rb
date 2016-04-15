@@ -29,7 +29,6 @@ namespace :dependencies do
                     dependencies:update_omnibus_overrides
                     dependencies:update_omnibus_gemfile_lock
                     dependencies:update_acceptance_gemfile_lock
-                    dependencies:update_omnibus_berksfile_lock
                   }
 
   desc "Update Gemfile.lock and all Gemfile.<platform>.locks. update_gemfile_lock[conservative] to update as little as possible."
@@ -51,20 +50,6 @@ namespace :dependencies do
     puts "Updating omnibus/Gemfile.lock#{conservative ? " (conservatively)" : ""} ..."
     puts "-------------------------------------------------------------------"
     bundle "install", cwd: "omnibus", delete_gemfile_lock: !conservative
-  end
-
-  desc "Update omnibus/Berksfile.lock. update_omnibus_berksfile_lock[conservative] to update as little as possible."
-  task :update_omnibus_berksfile_lock, [:conservative] do |t, rake_args|
-    extend BundleUtil
-    conservative = rake_args[:conservative]
-    puts ""
-    puts "-------------------------------------------------------------------"
-    puts "Updating omnibus/Berksfile.lock#{conservative ? " (conservatively)" : ""} ..."
-    puts "-------------------------------------------------------------------"
-    if !conservative && File.exist?("#{project_root}/omnibus/Berksfile.lock")
-      File.delete("#{project_root}/omnibus/Berksfile.lock")
-    end
-    bundle "exec berks install", cwd: "omnibus"
   end
 
   desc "Update acceptance/Gemfile.lock (or one or more gems via update[gem1,gem2,...]). update_acceptance_gemfile_lock[conservative] to update as little as possible."
