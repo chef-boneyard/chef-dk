@@ -8,12 +8,12 @@ GIT
 
 GIT
   remote: git://github.com/chef/chef.git
-  revision: ba9b8614e027b54babcb6741cedb1aac2e809ea8
-  ref: ba9b8614e027b54babcb6741cedb1aac2e809ea8
+  revision: 24b441b3db61fdb3640592f10b72eba610d8b762
+  ref: 24b441b3db61fdb3640592f10b72eba610d8b762
   specs:
-    chef (12.10.3-universal-mingw32)
+    chef (12.10.5-universal-mingw32)
       bundler (>= 1.10)
-      chef-config (= 12.10.3)
+      chef-config (= 12.10.5)
       chef-zero (~> 4.5)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -48,20 +48,20 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.10.3)
+    chef-config (12.10.5)
       fuzzyurl (~> 0.8.0)
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
 
 GIT
   remote: git://github.com/chef/mixlib-install.git
-  revision: 88006e666bc8d6014a81e443ec73c2dcec438605
-  ref: 88006e666bc8d6014a81e443ec73c2dcec438605
+  revision: 80cc86ad38ab96721223f9cedb781087d38260f4
+  ref: 80cc86ad38ab96721223f9cedb781087d38260f4
   specs:
-    mixlib-install (1.0.6)
-      artifactory (>= 2.3.0)
-      mixlib-shellout (>= 2.2.6)
-      mixlib-versioning (>= 1.1.0)
+    mixlib-install (1.0.7)
+      artifactory
+      mixlib-shellout
+      mixlib-versioning
 
 GIT
   remote: git://github.com/chef/opscode-pushy-client.git
@@ -194,13 +194,13 @@ GEM
       chef-provisioning
     chef-sugar (3.3.0)
     chef-vault (2.9.0)
-    chef-zero (4.5.0)
+    chef-zero (4.6.1)
       ffi-yajl (~> 2.2)
       hashie (>= 2.0, < 4.0)
       mixlib-log (~> 1.3)
       rack
       uuidtools (~> 2.1)
-    cheffish (2.0.3)
+    cheffish (2.0.4)
       chef-zero (~> 4.3)
       compat_resource
     chefspec (4.6.1)
@@ -234,7 +234,7 @@ GEM
     extlib (0.9.16)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
-    fauxhai (3.2.0)
+    fauxhai (3.3.0)
       net-ssh
     ffi (1.9.10-x86-mingw32)
     ffi-rzmq (2.0.4)
@@ -439,13 +439,13 @@ GEM
     inflecto (0.0.2)
     inifile (3.0.0)
     iniparse (1.4.2)
-    inspec (0.18.0)
+    inspec (0.19.1)
       json (~> 1.8)
       method_source (~> 0.8)
       pry (~> 0)
-      r-train (~> 0.10.4)
+      r-train (~> 0.10.5)
       rainbow (~> 2)
-      rspec (~> 3.3)
+      rspec (~> 3)
       rspec-its (~> 1.2)
       rubyzip (~> 1.1)
       thor (~> 0.19)
@@ -471,6 +471,8 @@ GEM
       chef (>= 11.0.0)
       diffy (>= 3.0.1)
       git (>= 1.2.5)
+    knife-supermarket (0.2.4)
+      chef (>= 0.10.10)
     knife-windows (1.4.0)
       winrm (~> 1.7)
     launchy (2.4.3)
@@ -571,7 +573,7 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    r-train (0.10.4)
+    r-train (0.10.5)
       docker-api (~> 1.26.2)
       json (~> 1.8)
       mixlib-shellout (~> 2.1)
@@ -769,8 +771,8 @@ DEPENDENCIES
   chef-provisioning-vagrant (= 0.11.0)
   chef-sugar (= 3.3.0)
   chef-vault (= 2.9.0)
-  chef-zero (= 4.5.0)
-  cheffish (= 2.0.3)
+  chef-zero (= 4.6.1)
+  cheffish (= 2.0.4)
   chefspec (= 4.6.1)
   childprocess (= 0.5.9)
   cleanroom (= 1.0.0)
@@ -790,7 +792,7 @@ DEPENDENCIES
   excon (= 0.49.0)
   extlib (= 0.9.16)
   faraday (= 0.9.2)
-  fauxhai (= 3.2.0)
+  fauxhai (= 3.3.0)
   ffi (= 1.9.10)
   ffi-rzmq (= 2.0.4)
   ffi-rzmq-core (= 1.0.4)
@@ -844,7 +846,7 @@ DEPENDENCIES
   inflecto (= 0.0.2)
   inifile (= 3.0.0)
   iniparse (= 1.4.2)
-  inspec (= 0.18.0)
+  inspec (= 0.19.1)
   ipaddress (= 0.8.3)
   jmespath (= 1.2.4)
   json (= 1.8.3)
@@ -854,6 +856,7 @@ DEPENDENCIES
   kitchen-inspec (= 0.12.5)
   kitchen-vagrant (= 0.20.0)
   knife-spork (= 1.6.1)
+  knife-supermarket (= 0.2.4)
   knife-windows (= 1.4.0)
   launchy (= 2.4.3)
   libyajl2 (= 1.2.0)
@@ -906,7 +909,7 @@ DEPENDENCIES
   pry-byebug (= 3.3.0)
   pry-remote (= 0.1.8)
   pry-stack_explorer (= 0.4.9.2)
-  r-train (= 0.10.4)
+  r-train (= 0.10.5)
   rack (= 1.6.4)
   rainbow (= 2.1.0)
   rake (= 11.1.2)

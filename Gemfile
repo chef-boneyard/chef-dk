@@ -44,7 +44,7 @@ group(:omnibus_package) do
   # Chef 12.8.1 Gem includes some extra files which can break gem installation on
   # windows. For now we are pulling chef from github at the tag as a workaround.
   # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "chef", github: "chef/chef", branch: "v12.10.3"
+  gem "chef", github: "chef/chef", branch: "v12.10.5"
   gem "cheffish", ">= 2.0.3"
   gem "chefspec"
   gem "fauxhai"
@@ -61,6 +61,9 @@ group(:omnibus_package) do
   # For Delivery build node
   gem "chef-sugar"
   gem "opscode-pushy-client", github: "chef/opscode-pushy-client"
+  gem "knife-supermarket"
+  gem "mixlib-versioning"
+  gem "artifactory"
 
   # All of the following used to be software definitions we included:
   gem "knife-spork"
