@@ -17,11 +17,7 @@
 
 namespace :version do
   desc "Bump patch version in lib/chef-dk/version.rb and update Gemfile*.lock conservatively to include the new version. If Gemfile has changed, this will update modified constraints as well."
-  task :bump => 'version:bump_patch' do
-    # We need to update our Gemfile.lock(s) to include the new version. But let's
-    # not upgrade other stuff at the same time ...
-    Rake.application.invoke_task("dependencies:update[conservative]")
-  end
+  task :bump => %w{version:bump_patch bundle:install}
 
   desc "Show the current version."
   task :show do
