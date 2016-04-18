@@ -1,4 +1,5 @@
-require 'shellwords'
+require "bundler"
+require "shellwords"
 
 module BundleUtil
   PLATFORMS = { "windows" => %w{ruby x86-mingw32} }
@@ -24,12 +25,12 @@ module BundleUtil
     result
   end
 
-  def with_bundle_unfrozen
-    bundle "config --delete frozen"
+  def with_bundle_unfrozen(cwd: nil, leave_frozen: false)
+    bundle "config --delete frozen", cwd: cwd
     begin
       yield
     ensure
-      bundle "config --local frozen 1"
+      bundle "config --local frozen 1", cwd: cwd unless leave_frozen
     end
   end
 
@@ -56,7 +57,7 @@ module BundleUtil
 
         # Run the bundle command
         ruby_platforms = platform ? PLATFORMS[platform].join(" ") : "ruby"
-        cmd = Shellwords.join([bundle_platform, ruby_platforms, *args])
+        cmd = Shellwords.join([Gem.ruby, "-S", bundle_platform, ruby_platforms, *args])
         puts "#{prefix}#{Shellwords.join(["bundle", *args])}#{platform ? " for #{platform} platform" : ""}:"
         with_gemfile(gemfile) do
           puts "#{prefix}BUNDLE_GEMFILE=#{gemfile}"

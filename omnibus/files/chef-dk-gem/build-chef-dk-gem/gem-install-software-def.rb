@@ -1,6 +1,7 @@
 require "bundler"
 require "omnibus"
 require_relative "../build-chef-dk-gem"
+require_relative "../../../../tasks/gemfile_util"
 
 module BuildChefDKGem
   class GemInstallSoftwareDef
@@ -34,16 +35,16 @@ module BuildChefDKGem
 
       gem_name = self.gem_name
       gem_version = self.gem_version
-      gemspec = self.gemspec
+      gem_metadata = self.gem_metadata
       lockfile_path = self.lockfile_path
 
       software.build do
         extend BuildChefDKGem
 
         if gem_version == "<skip>"
-          if gemspec
+          if gem_metadata
             block do
-              log.info(log_key) { "#{gem_name} has source #{gemspec.source.name} in #{lockfile_path}. We only cache rubygems.org installs in omnibus to keep things simple. The chef-dk step will build #{gem_name} ..." }
+              log.info(log_key) { "#{gem_name} has source #{gem_metadata} in #{lockfile_path}. We only cache rubygems.org installs in omnibus to keep things simple. The chef-dk step will build #{gem_name} ..." }
             end
           else
             block do
@@ -65,66 +66,49 @@ module BuildChefDKGem
     end
 
     def gemfile_path
-      # gemfile path could be relative to software filename (and often is)
-      @gemfile_path ||= begin
-        # Grab the version (and maybe source) from the lockfile so omnibus knows whether
-        # to toss the cache or not
-        gemfile_path = File.join(root_path, "Gemfile")
-        platform_gemfile_path = "#{gemfile_path}.#{Omnibus::Ohai["platform"]}"
-        if File.exist?(platform_gemfile_path)
-          gemfile_path = platform_gemfile_path
-        end
-        gemfile_path
-      end
-
+      File.join(root_path, "Gemfile")
     end
 
     def lockfile_path
-      @lockfile_path ||= "#{gemfile_path}.lock"
+      "#{gemfile_path}.lock"
     end
 
     def gem_name
       @gem_name ||= begin
-        # File must be named chef-dk-<gemname>.rb
-        # Will look at chef-dk/Gemfile.lock and install that version of the gem using "gem install"
+        # File must be named chef-<gemname>.rb
+        # Will look at chef/Gemfile.lock and install that version of the gem using "gem install"
         # (and only that version)
         if File.basename(software_filename) =~ /^chef-dk-gem-(.+)\.rb$/
           $1
         else
-          raise "#{software_filename} must be named chef-dk-<gemname>.rb to build a gem automatically"
+          raise "#{software_filename} must be named chef-<gemname>.rb to build a gem automatically"
         end
       end
     end
 
-    def gemspec
-      @gemspec ||= begin
-        old_frozen = Bundler.settings[:frozen]
-        Bundler.settings[:frozen] = true
-        begin
-          bundle = Bundler::Definition.build(gemfile_path, lockfile_path, nil)
-          without = without_groups
-          dependencies = bundle.dependencies.reject { |d| (d.groups & without).any? }
-          # This is sacrilege: figure out a way we can grab the list of dependencies *without*
-          # requiring everything to be installed or calling private methods ...
-          gemspec = bundle.resolve.for(bundle.send(:expand_dependencies, dependencies)).find { |s| s.name == gem_name }
-          if gemspec
-            log.info(software.name) { "Using #{gem_name} version #{gemspec.version} from #{gemfile_path}" }
-          elsif bundle.resolve.find { |s| s.name == gem_name }
-            log.info(software.name) { "#{gem_name} not loaded from #{gemfile_path}, skipping"}
+    def gem_metadata
+      @gem_metadata ||= begin
+        bundle = GemfileUtil::Bundle.parse(gemfile_path, lockfile_path)
+        result = bundle.gems[gem_name]
+        if result
+          if bundle.select_gems(without_groups: without_groups).include?(gem_name)
+            log.info(software.name) { "Using #{gem_name} version #{result[:version]} from #{gemfile_path}" }
+            result
           else
-            raise "#{gem_name} not found in #{gemfile_path} or #{lockfile_path}"
+            log.info(software.name) { "#{gem_name} not loaded from #{gemfile_path} because it was only in groups #{without_groups.join(", ")}. Skipping ..." }
+            nil
           end
-          gemspec
-        ensure
-          Bundler.settings[:frozen] = old_frozen
+        else
+          log.info(software.name) { "#{gem_name} was not found in #{lockfile_path}. Skipping ..." }
+          nil
         end
       end
     end
 
     def gem_version
       @gem_version ||= begin
-        if gemspec && gemspec.source.name == "rubygems repository https://rubygems.org/"
-          gemspec.version.to_s
+        if gem_metadata && URI(gem_metadata[:source]) == URI("https://rubygems.org/")
+          gem_metadata[:version]
         else
           "<skip>"
         end
