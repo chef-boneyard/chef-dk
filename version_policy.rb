@@ -18,27 +18,33 @@
 # Explicit omnibus overrides.
 OMNIBUS_OVERRIDES = {
   # Lower level library pins
-  libedit: "20130712-3.1",
   ## according to comment in omnibus-sw, latest versions don't work on solaris
   # https://github.com/chef/omnibus-software/blob/aefb7e79d29ca746c3f843673ef5e317fa3cba54/config/software/libtool.rb#L23
-  libtool: "2.4.2",
-  libxslt: "1.1.28",
-  makedepend: "1.0.5",
-  ruby: "2.1.8",
-  :"util-macros" => "1.19.0",
-  xproto: "7.0.28",
-  zlib: "1.2.8",
-  # libffi: "3.2.1",
-  # libiconv: "1.14",
-  # liblzma: "5.2.2",
-  # libxml2: "2.9.3",
-  # ncurses: "5.9",
-  # :"pkg-config-lite" => "0.28-1",
-  # libyaml: "0.1.6",
+  "libffi" => "3.2.1",
+  "libiconv" => "1.14",
+  "liblzma" => "5.2.2",
+  ## according to comment in omnibus-sw, the very latest versions don't work on solaris
+  # https://github.com/chef/omnibus-software/blob/aefb7e79d29ca746c3f843673ef5e317fa3cba54/config/software/libtool.rb#L23
+  "libtool" => "2.4.2",
+  "libxml2" => "2.9.3",
+  "libxslt" => "1.1.28",
+  "libyaml" => "0.1.6",
+  "makedepend" => "1.0.5",
+  "ncurses" => "5.9",
+  "pkg-config-lite" => "0.28-1",
+  "ruby" => "2.1.8",
+  # Leave dev-kit pinned to 4.5 on 32-bit, because 4.7 is 20MB larger and we don't want
+  # to unnecessarily make the client any fatter. (Since it's different between
+  # 32 and 64, we have to do it in the project file still.)
+  # "ruby-windows-devkit" => "4.5.2-20111229-1559",
+  "ruby-windows-devkit-bash" => "3.1.23-4-msys-1.0.18",
+  "util-macros" => "1.19.0",
+  "xproto" => "7.0.28",
+  "zlib" => "1.2.8",
 
   ## These can float as they are frequently updated in a way that works for us
-  #override cacerts: "???",
-  #override openssl: "???",
+  #override "cacerts" =>"???",
+  #override "openssl" =>"???",
 }
 
 #
@@ -50,7 +56,7 @@ OMNIBUS_OVERRIDES = {
 #
 OMNIBUS_RUBYGEMS_AT_LATEST_VERSION = {
   rubygems: "rubygems-update",
-  bundler: "bundler"
+  bundler: "bundler",
 }
 
 #
@@ -61,26 +67,24 @@ OMNIBUS_RUBYGEMS_AT_LATEST_VERSION = {
 # add gems to the output of bundle outdated here and we'll parse it to get the
 # list of outdated gems.
 #
-# We're starting with debt here, but don't want it to get worse.
-#
-ACCEPTABLE_OUTDATED_GEMS = %w{
-  celluloid
-  celluloid-io
-  docker-api
-  fog-cloudatcost
-  fog-google
-  gherkin
-  google-api-client
-  jwt
-  mime-types
-  mini_portile2
-  retriable
-  rubocop
-  slop
-  timers
-  unicode-display_width
-  varia_model
-}
+ACCEPTABLE_OUTDATED_GEMS = [
+  "celluloid",
+  "celluloid-io",
+  "docker-api",
+  "fog-cloudatcost",
+  "fog-google",
+  "gherkin", # fixed in cucumber-core > 1.4.0
+  "google-api-client",
+  "jwt", # fixed in oauth2 > 1.1.0
+  "mime-types",
+  "mini_portile2", # dep removed in nokogiri > 1.6.7.2
+  "retriable",
+  "rubocop",
+  "slop", # deo removed in pry > 0.10.3
+  "timers",
+  "unicode-display_width",
+  "varia_model",
+]
 
 #
 # Some gems are part of our bundle (must be installed) but not important
@@ -102,11 +106,15 @@ GEMS_ALLOWED_TO_FLOAT = [
 # have extra deps hiding in their Gemfiles.
 #
 INSTALL_WITHOUT_GROUPS = %w{
-  development
-  test
-  guard
-  maintenance
-  tools
-  integration
   changelog
+  compat_testing
+  development
+  docgen
+  guard
+  integration
+  maintenance
+  test
+  tools
+  travis
+  style
 }
