@@ -159,7 +159,7 @@ module ChefDK
 
     def component_path
       if base_dir
-        File.join(omnibus_apps_dir, base_dir)
+        File.join(omnibus_root, base_dir)
       elsif gem_base_dir
         gem_base_dir
       else
