@@ -4,7 +4,6 @@ license :project_license
 
 dependency "chef-dk"
 dependency "chef-dk-appbundle"
-
 if windows?
   dependency "chef-dk-env-customization"
   dependency "chef-dk-powershell-scripts"
@@ -12,11 +11,9 @@ if windows?
   # It would make caching better ...
   dependency "ruby-windows-devkit"
 end
-
 dependency "chef-dk-remove-docs"
 dependency "rubygems-customization"
 dependency "shebang-cleanup"
 dependency "version-manifest"
 dependency "openssl-customization"
-
 dependency "clean-static-libs"

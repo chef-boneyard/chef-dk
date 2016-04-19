@@ -19,12 +19,12 @@ module BuildChefDKAppbundle
       # times in the file.
       #
       distribution_gemfile = Pathname(shared_gemfile).relative_path_from(Pathname(installed_gemfile)).to_s
-      gemfile_text = <<-EOM.gsub(/^\s+/, "")
+      gemfile_text = IO.read(installed_gemfile)
+      gemfile_text << <<-EOM.gsub(/^\s+/, '')
         # Lock gems that are part of the distribution
         distribution_gemfile = File.expand_path(#{distribution_gemfile.inspect}, __FILE__)
         instance_eval(IO.read(distribution_gemfile), distribution_gemfile)
       EOM
-      gemfile_text << IO.read(installed_gemfile)
       create_file(installed_gemfile) { gemfile_text }
 
       # Remove the gemfile.lock
@@ -70,7 +70,7 @@ module BuildChefDKAppbundle
   # appbundler against the resulting file.
   #
   # Relocks the Gemfiles inside the specified gems (e.g. berkshelf, test-kitchen,
-  # chef) to use the distribution's chosen gems.
+  # chef) to use the chef-dk distribution's chosen gems.
   def appbundle_gem(gem_name)
     # First lock the gemfile down.
     lockdown_gem(gem_name)

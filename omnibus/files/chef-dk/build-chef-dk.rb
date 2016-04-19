@@ -8,7 +8,13 @@ require_relative "../../../version_policy"
 module BuildChefDK
   include BuildChefDKGem
 
-  def create_bundle_config(gemfile, without: without_groups, retries: nil, jobs: nil, frozen: nil)
+  def create_bundle_config(gemfile, without: [ "development" ], retries: nil, jobs: nil, frozen: nil)
+    if without
+      without = without.dup
+      # no_aix, no_windows groups
+      without << "no_#{Omnibus::Ohai["platform"]}"
+    end
+
     bundle_config = File.expand_path("../.bundle/config", gemfile)
 
     block "Put build config into #{bundle_config}: #{ { without: without, retries: retries, jobs: jobs, frozen: frozen } }" do
@@ -28,9 +34,17 @@ module BuildChefDK
 
   #
   # Get the (possibly platform-specific) path to the Gemfile.
+  # /var/omnibus/cache/src/chef-dk/Gemfile or
+  # /var/omnibus/cache/src/chef-dk/Gemfile.windows
   #
-  def project_gemfile
-    File.join(project_dir, "Gemfile")
+  def chefdk_gemfile
+    gemfile = File.join(project_dir, "Gemfile")
+    # Check for platform specific version
+    platform_gemfile = "#{gemfile}.#{Omnibus::Ohai["platform"]}"
+    if File.exist?(platform_gemfile)
+      gemfile = platform_gemfile
+    end
+    gemfile
   end
 
   #
@@ -41,12 +55,12 @@ module BuildChefDK
   # then delete the git cached versions.
   #
   # Once we finish with all this, we update the Gemfile that will end up in the
-  # top-level install so that it doesn't have git or path references anymore.
+  # chef-dk so that it doesn't have git or path references anymore.
   #
   def properly_reinstall_git_and_path_sourced_gems
     # Emit blank line to separate different tasks
     block { log.info(log_key) { "" } }
-    project_env = env.dup.merge("BUNDLE_GEMFILE" => project_gemfile)
+    chefdk_env = env.dup.merge("BUNDLE_GEMFILE" => chefdk_gemfile)
 
     # Reinstall git-sourced or path-sourced gems, and delete the originals
     block "Reinstall git-sourced gems properly" do
@@ -59,7 +73,7 @@ module BuildChefDK
       # or `gem :x, path: '.'` or `gemspec`). To do this, we just detect which ones
       # have properly-installed paths (in the `gems` directory that shows up when
       # you run `gem list`).
-      locally_installed_gems = shellout!("#{bundle_bin} list --paths", env: project_env, cwd: project_dir).
+      locally_installed_gems = shellout!("#{bundle_bin} list --paths", env: chefdk_env, cwd: project_dir).
         stdout.lines.select { |gem_path| !gem_path.start_with?(gem_install_dir) }
 
       # Install the gems for real using `rake install` in their directories
@@ -70,7 +84,7 @@ module BuildChefDK
         # Emit blank line to separate different tasks
         log.info(log_key) { "" }
         log.info(log_key) { "Properly installing git or path sourced gem #{gem_path} using rake install" }
-        shellout!("#{bundle_bin} exec #{rake_bin} install", env: project_env, cwd: gem_path)
+        shellout!("#{bundle_bin} exec #{rake_bin} install", env: chefdk_env, cwd: gem_path)
       end
     end
   end
@@ -80,38 +94,36 @@ module BuildChefDK
     block { log.info(log_key) { "" } }
 
     shared_gemfile = self.shared_gemfile
-    project_env = env.dup.merge("BUNDLE_GEMFILE" => project_gemfile)
+    chefdk_env = env.dup.merge("BUNDLE_GEMFILE" => chefdk_gemfile)
 
     # Show the config for good measure
-    bundle "config", env: project_env
+    bundle "config", env: chefdk_env
 
     # Make `Gemfile` point to these by removing path and git sources and pinning versions.
     block "Rewrite Gemfile using all properly-installed gems" do
       gem_pins = ""
       result = []
-      shellout!("#{bundle_bin} list", env: project_env).stdout.lines.map do |line|
+      shellout!("#{bundle_bin} list", env: chefdk_env).stdout.lines.map do |line|
         if line =~ /^\s*\*\s*(\S+)\s+\((\S+).*\)\s*$/
           name, version = $1, $2
           # rubocop is an exception, since different projects disagree
           next if GEMS_ALLOWED_TO_FLOAT.include?(name)
-          gem_pins << "gem #{name.inspect}, #{version.inspect}, override: true\n"
+          gem_pins << "override_gem #{name.inspect}, #{version.inspect}\n"
         end
       end
 
-      # Find the installed chef gem by looking for lib/chef.rb
-      chef_dk_gem = File.expand_path("../..", shellout!("#{gem_bin} which chef-dk", env: project_env).stdout.chomp)
-      # Figure out the path to gemfile_util from there
-      gemfile_util = Pathname.new(File.join(chef_dk_gem, "tasks", "gemfile_util"))
-      gemfile_util = gemfile_util.relative_path_from(Pathname.new(shared_gemfile).dirname)
-
       create_file(shared_gemfile) { <<-EOM }
-        # Meant to be included in component Gemfiles at the beginning with:
+        # Meant to be included in component Gemfiles at the end with:
         #
         #     instance_eval(IO.read("#{install_dir}/Gemfile"), "#{install_dir}/Gemfile")
         #
         # Override any existing gems with our own.
-        require_relative "#{gemfile_util}"
-        extend GemfileUtil
+        def override_gem(name, *args, &block)
+          # If the Gemfile re-specifies something in our lockfile, ignore it.
+          current = dependencies.find { |dep| dep.name == name }
+          dependencies.delete(current) if current
+          gem(name, *args, &block)
+        end
         #{gem_pins}
       EOM
     end
