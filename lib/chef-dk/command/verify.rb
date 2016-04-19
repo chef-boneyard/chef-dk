@@ -365,11 +365,10 @@ end
 
           if File.directory?(usr_bin_prefix)
             sh!("#{usr_bin_path("berks")} -v")
-
             sh!("#{usr_bin_path("chef")} -v")
-
             sh!("#{usr_bin_path("chef-client")} -v")
             sh!("#{usr_bin_path("chef-solo")} -v")
+            sh!("#{usr_bin_path("delivery")} -V") unless Chef::Platform.windows?
 
             # In `knife`, `knife -v` follows a different code path that skips
             # command/plugin loading; `knife -h` loads commands and plugins, but
@@ -387,7 +386,6 @@ end
             end
 
             sh!("#{usr_bin_path("ohai")} -v")
-
             sh!("#{usr_bin_path("foodcritic")} -V")
           end
 
@@ -453,14 +451,16 @@ end
         end
       end
 
-      unless Gem.win_platform?
+      unless Chef::Platform.windows?
         add_component "delivery-cli" do |c|
           # We'll want to come back and revisit getting unit tests added -
           # currently running the tests depends on cargo , which is not included
           # in our package.
           c.base_dir = "bin"
           c.smoke_test do
-            sh!("delivery --help")
+            tmpdir do |cwd|
+              sh!("delivery setup --user=shipit --server=delivery.shipit.io --ent=chef --org=squirrels", cwd: cwd)
+            end
           end
         end
       end
