@@ -19,17 +19,14 @@ install:
   - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
   - echo %PATH%
   - ruby --version
-  - gem update --system || gem update --system || gem update --system
-  - gem install bundler --quiet --no-ri --no-rdoc || gem install bundler --quiet --no-ri --no-rdoc || gem install bundler --quiet --no-ri --no-rdoc
-  - update_rubygems
+  - gem update --system
   - gem --version
+  - gem install bundler --no-ri --no-rdoc
+  - SET BUNDLE_GEMFILE=Gemfile.windows
   - bundler --version
-  - SET BUNDLE_IGNORE_CONFIG=true
-  - SET BUNDLE_FROZEN=1
-  - SET BUNDLE_WITHOUT=development:guard:maintenance:tools:integration:changelog:docgen:travis:style:omnibus_package:aix:bsd:linux:mac_os_x:solaris
 
 build_script:
-  - bundle install || bundle install || bundle install
+  - bundle install --without no_windows omnibus_package
 
 test_script:
   - bundle exec rspec
