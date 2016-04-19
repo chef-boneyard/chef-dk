@@ -16,6 +16,7 @@ build do
   appbundle_gem "foodcritic"
   appbundle_gem "ohai"
   appbundle_gem "test-kitchen"
+  appbundle_gem "rubocop"
 
   # These are not appbundled, but need to have their Gemfiles locked down so that their tests will run
 
