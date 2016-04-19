@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 6127be3af79941c32419228cbd9e63c4f061d76b
+  revision: c9df1d71eb8c70010d27a121c9021988b8886e9d
   specs:
     omnibus-software (4.0.0)
       omnibus (>= 5.2.0)
@@ -38,12 +38,12 @@ GEM
     addressable (2.4.0)
     artifactory (2.3.2)
     awesome_print (1.6.1)
-    aws-sdk (2.2.34)
-      aws-sdk-resources (= 2.2.34)
-    aws-sdk-core (2.2.34)
+    aws-sdk (2.2.35)
+      aws-sdk-resources (= 2.2.35)
+    aws-sdk-core (2.2.35)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.2.34)
-      aws-sdk-core (= 2.2.34)
+    aws-sdk-resources (2.2.35)
+      aws-sdk-core (= 2.2.35)
     berkshelf (4.3.2)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (~> 2.0, >= 2.0.2)
@@ -123,7 +123,7 @@ GEM
       rspec-mocks (~> 3.2)
     mixlib-cli (1.5.0)
     mixlib-config (2.2.1)
-    mixlib-install (1.0.7)
+    mixlib-install (1.0.9)
       artifactory
       mixlib-shellout
       mixlib-versioning
@@ -143,7 +143,7 @@ GEM
     nori (2.6.0)
     octokit (4.3.0)
       sawyer (~> 0.7.0, >= 0.5.3)
-    ohai (8.14.0)
+    ohai (8.15.0)
       chef-config (>= 12.5.0.alpha.1, < 13)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
