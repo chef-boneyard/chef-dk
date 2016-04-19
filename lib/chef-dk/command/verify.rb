@@ -458,9 +458,9 @@ end
           # We'll want to come back and revisit getting unit tests added -
           # currently running the tests depends on cargo , which is not included
           # in our package.
-
+          c.base_dir = "bin"
           c.smoke_test do
-            sh!(bin("delivery-cli --help"))
+            sh!("delivery --help")
           end
         end
       end

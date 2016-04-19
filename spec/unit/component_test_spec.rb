@@ -93,6 +93,8 @@ describe ChefDK::ComponentTest do
         # Have to set omnibus dir so command can run with correct cwd
         c.omnibus_root = omnibus_root
 
+        c.base_dir = "embedded/apps/berkshelf"
+
         c.unit_test { sh("true") }
 
         c.integration_test { sh("ruby -e 'puts Dir.pwd'", env: { "RUBYOPT" => "" }) }
