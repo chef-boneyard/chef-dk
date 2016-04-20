@@ -17,15 +17,12 @@
 
 source 'https://rubygems.org'
 
-# path is needed because when we attempt to load this gemspec to look at it from
-# another bundle, it will expand the path relative to the other bundle rather than
-# this file.
-gemspec path: File.dirname(__FILE__), name: "chef-dk"
+gemspec name: "chef-dk"
 
 # EXPERIMENTAL: ALL gems specified here will be installed in chef-dk omnibus.
 # This represents all gems that will be part of chef-dk.
 
-group(:omnibus_package, :development) do
+group(:omnibus_package, :development, :test) do
   gem "pry"
 end
 
@@ -44,7 +41,7 @@ group(:omnibus_package) do
   gem "chef-provisioning-vagrant", ">= 0.11.0"
   gem "chef-vault"
   # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "chef", github: "chef/chef", branch: "v12.9.41"
+  gem "chef", github: "chef/chef", branch: "v12.10.7"
   gem "cheffish", ">= 2.0.3"
   gem "chefspec"
   gem "fauxhai"
@@ -77,11 +74,7 @@ group(:omnibus_package) do
   gem "yard"
 end
 
-# NOTE this needs to be excluded from AIX too, but we don't support that on
-# ChefDK and putting a thing in multiple groups :no_windows, :no_aix won't work
-# because it --without no_aix will still install things in group :no_windows.
-# Need to specify groups positively; investigate.
-# http://stackoverflow.com/questions/8420414/how-to-add-mac-specific-gems-to-bundle-on-mac-but-not-on-linux
-group(:no_windows) do
+# Everything except AIX and Windows
+group(:linux, :bsd, :mac_os_x, :solaris) do
   gem "ruby-shadow"
 end

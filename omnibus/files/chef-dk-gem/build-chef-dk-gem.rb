@@ -4,25 +4,50 @@ require "bundler"
 require_relative "../../../version_policy"
 
 # Common definitions and helpers (like compile environment and binary
-# locations) for all chef-dk software definitions.
+# locations) for all software definitions.
 module BuildChefDKGem
+  PLATFORM_FAMILY_FAMILIES = {
+    "linux" => %w{wrlinux debian fedora rhel suse gentoo slackware arch exherbo alpine},
+    "bsd" => %w{dragonflybsd freebsd netbsd openbsd},
+    "solaris" => %w{smartos omnios openindiana opensolaris solaris2 nextentacore},
+    "aix" => %w{aix},
+    "windows" => %w{windows},
+    "mac_os_x" => %w{mac_os_x},
+  }
+  def platform_family_families
+    PLATFORM_FAMILY_FAMILIES.keys
+  end
+
+  def platform_family_family
+    PLATFORM_FAMILY_FAMILIES.
+      select { |key, families| families.include?(Omnibus::Ohai["platform_family"]) }.
+      first[0]
+  end
+
   def embedded_bin(binary)
     windows_safe_path("#{install_dir}/embedded/bin/#{binary}")
   end
+
   def appbundler_bin
     embedded_bin("appbundler")
   end
+
   def bundle_bin
     embedded_bin("bundle")
   end
+
   def gem_bin
     embedded_bin("gem")
   end
+
   def rake_bin
     embedded_bin("rake")
   end
+
   def without_groups
-    INSTALL_WITHOUT_GROUPS.map { |g| g.to_sym } + [ :"no_#{Omnibus::Ohai["platform"]}" ]
+    # Add --without for every known OS except the one we're in.
+    exclude_os_groups = platform_family_families - [ platform_family_family ]
+    (INSTALL_WITHOUT_GROUPS + exclude_os_groups).map { |g| g.to_sym }
   end
 
   #
@@ -71,7 +96,7 @@ module BuildChefDKGem
         --with-xslt-include=#{Shellwords.escape("#{install_dir}/embedded/include/libxslt")}
         --with-iconv-dir=#{Shellwords.escape("#{install_dir}/embedded")}
         --with-zlib-dir=#{Shellwords.escape("#{install_dir}/embedded")}
-      }.join(" ")
+      }.join(" "),
     }
   end
 
