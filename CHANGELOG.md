@@ -1,5 +1,30 @@
 # Change Log
 
+## [v0.13](https://github.com/chef/chef-dk/tree/v0.13.21) (2016-04-15)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.12.0...v0.13.21)
+
+**Implemented enhancements:**
+
+- Adds a bin stub for running rake dependencies on windows [\#795](https://github.com/chef/chef-dk/pull/795) ([mwrock](https://github.com/mwrock))
+- Updating test-kitchen pin to 1.7.3 [\#794](https://github.com/chef/chef-dk/pull/794) ([mwrock](https://github.com/mwrock))
+- Dependency bump to get the latest Chef release, 12.9.38 [\#791](https://github.com/chef/chef-dk/pull/791) ([tyler-ball](https://github.com/tyler-ball))
+- Update everything to latest, start updating rubygems [\#786](https://github.com/chef/chef-dk/pull/786) ([jkeiser](https://github.com/jkeiser))
+- Removing json from the Omnibus Gemfile because we worked around the bug [\#785](https://github.com/chef/chef-dk/pull/785) ([tyler-ball](https://github.com/tyler-ball))
+- Update copyright date [\#787](https://github.com/chef/chef-dk/pull/787) ([adamedx](https://github.com/adamedx))
+- Check in .bundle/config --without omnibus\_package --frozen [\#784](https://github.com/chef/chef-dk/pull/784) ([jkeiser](https://github.com/jkeiser))
+- Install chef-dk from one gemfile [\#765](https://github.com/chef/chef-dk/pull/765) ([jkeiser](https://github.com/jkeiser))
+- Add omnibus licensing metadata [\#777](https://github.com/chef/chef-dk/pull/777) ([patrick-wright](https://github.com/patrick-wright))
+- Add descriptions to rake tasks to see them in `rake -T` [\#776](https://github.com/chef/chef-dk/pull/776) ([danielsdeleo](https://github.com/danielsdeleo))
+- Set correct product and windows architecture for acceptance tests [\#752](https://github.com/chef/chef-dk/pull/752) ([mwrock](https://github.com/mwrock))
+- Add version:bump and version:show to chef-dk [\#756](https://github.com/chef/chef-dk/pull/756) ([jkeiser](https://github.com/jkeiser))
+- Use compiled ruby on windows [\#726](https://github.com/chef/chef-dk/pull/726) ([jkeiser](https://github.com/jkeiser))
+
+**Fixed bugs:**
+- Point to the right license file for chefdk. [\#781](https://github.com/chef/chef-dk/pull/781) ([sersut](https://github.com/sersut))
+- Fixes the winrm-fs for win2k8r2 [\#778](https://github.com/chef/chef-dk/pull/778) ([mwrock](https://github.com/mwrock))
+- Fix windows powershell command by prefixing run\_command with call operator [\#751](https://github.com/chef/chef-dk/pull/751) ([mwrock](https://github.com/mwrock))
+
+
 ## [0.12.0](https://github.com/chef/chef-dk/tree/0.12.0) (2016-03-14)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.11.2...0.12.0)
 
