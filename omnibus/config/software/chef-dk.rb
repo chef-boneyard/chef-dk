@@ -56,7 +56,7 @@ dependency "chef-dk-gem-byebug"
 dependency "chef-dk-gem-yajl-ruby"
 dependency "chef-dk-gem-hitimes"
 dependency "chef-dk-gem-debug_inspector"
-dependency "chef-dk-gem-libzmq"
+dependency "chef-dk-gem-ffi-rzmq"
 dependency "chef-dk-gem-binding_of_caller"
 
 # Now everyone else, in alphabetical order because we don't care THAT much
