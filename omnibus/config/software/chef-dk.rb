@@ -30,9 +30,6 @@ dependency "libiconv"
 dependency "liblzma"
 dependency "zlib"
 
-# For Delivery build nodes
-dependency "git"
-
 # For berkshelf
 dependency "libarchive"
 
@@ -58,6 +55,9 @@ dependency "chef-dk-gem-hitimes"
 dependency "chef-dk-gem-debug_inspector"
 dependency "chef-dk-gem-ffi-rzmq"
 dependency "chef-dk-gem-binding_of_caller"
+
+# Leave for last so system git is used for most of the build.
+dependency "git"
 
 # Now everyone else, in alphabetical order because we don't care THAT much
 Dir.entries(File.dirname(__FILE__)).sort.each do |gem_software|
