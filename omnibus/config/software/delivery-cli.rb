@@ -15,7 +15,7 @@
 #
 
 name "delivery-cli"
-default_version "mp/build-via-chefdk"
+default_version "master"
 
 source git: "https://github.com/chef/delivery-cli.git"
 
