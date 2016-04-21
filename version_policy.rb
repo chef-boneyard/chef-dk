@@ -41,6 +41,9 @@ OMNIBUS_OVERRIDES = {
   "util-macros" => "1.19.0",
   "xproto" => "7.0.28",
   "zlib" => "1.2.8",
+  # The windows dependency (libzmq4x-windows) only has 1 version so far in
+  # software def so we don't need to override that
+  "libzmq" => "4.0.5",
 
   ## These can float as they are frequently updated in a way that works for us
   #override "cacerts" =>"???",
