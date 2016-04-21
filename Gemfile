@@ -59,10 +59,12 @@ group(:omnibus_package) do
 
   # For Delivery build node
   gem "chef-sugar"
-  gem "opscode-pushy-client", github: "chef/opscode-pushy-client"
   gem "knife-supermarket"
   gem "mixlib-versioning"
   gem "artifactory"
+  # No rubygems release of this yet
+  gem "opscode-pushy-client", github: "chef/opscode-pushy-client"
+  gem "knife-push"
 
   # All of the following used to be software definitions we included:
   gem "knife-spork"
@@ -87,4 +89,19 @@ end
 # Everything except AIX and Windows
 group(:linux, :bsd, :mac_os_x, :solaris) do
   gem "ruby-shadow", platform: :ruby
+end
+
+# TODO delete this when we figure out how to include the pushy windows dependencies
+# correctly
+platforms :mswin, :mingw do
+  gem "ffi"
+  gem "rdp-ruby-wmi"
+  gem "windows-api"
+  gem "windows-pr"
+  gem "win32-api"
+  gem "win32-dir"
+  gem "win32-event"
+  gem "win32-mutex"
+  gem "win32-process", "~> 0.8.2"
+  gem "win32-service"
 end

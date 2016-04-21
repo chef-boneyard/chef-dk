@@ -28,6 +28,7 @@ module Gem
 end
 
 describe ChefDK::Command::Verify do
+
   let(:command_instance) { ChefDK::Command::Verify.new() }
 
   let(:command_options) { [] }
@@ -51,7 +52,9 @@ describe ChefDK::Command::Verify do
       "package installation",
       "openssl",
       "inspec",
-      "delivery-cli"
+      "chef-sugar",
+      "knife-supermarket",
+      "opscode-pushy-client",
     ]
   end
 
@@ -60,8 +63,13 @@ describe ChefDK::Command::Verify do
   end
 
   it "defines berks, tk, chef and chef-dk components by default" do
+    expected_components = default_components
+    unless Chef::Platform.windows?
+      expected_components << "git"
+      expected_components << "delivery-cli"
+    end
     expect(command_instance.components).not_to be_empty
-    expect(command_instance.components.map(&:name)).to match_array(default_components)
+    expect(command_instance.components.map(&:name)).to match_array(expected_components)
   end
 
   it "has a usage banner" do

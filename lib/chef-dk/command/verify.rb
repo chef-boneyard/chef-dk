@@ -463,6 +463,57 @@ end
             end
           end
         end
+
+        add_component "git" do |c|
+          c.base_dir = "embedded/bin"
+          c.smoke_test do
+            sh!("#{bin("git")} config -l")
+          end
+          c.integration_test do
+            tmpdir do |cwd|
+              sh!("#{bin("git")} clone git@github.com:chef/ffi-yajl.git", cwd: cwd)
+              sh!("#{bin("git")} clone https://github.com/chef/chef-provisioning", cwd: cwd)
+            end
+          end
+        end
+      end
+
+      add_component "opscode-pushy-client" do |c|
+        c.gem_base_dir = "opscode-pushy-client"
+        c.unit_test do
+          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
+          sh("#{bin("bundle")} exec rake spec")
+        end
+
+        c.smoke_test do
+          tmpdir do |cwd|
+            FileUtils.touch(File.join(cwd,"Berksfile"))
+            sh("#{bin("pushy-client")} -v -n DERPY -s http://33.33.33.10:10003", cwd: cwd)
+          end
+        end
+      end
+
+      # We try and use some chef-sugar code to make sure it loads correctly
+      add_component "chef-sugar" do |c|
+        c.gem_base_dir = "chef-sugar"
+        c.smoke_test do
+          tmpdir do |cwd|
+            with_file(File.join(cwd, 'foo.rb')) do |f|
+              f.write <<-EOF
+require 'chef/sugar'
+log 'something' do
+  not_if  { _64_bit? }
+end
+              EOF
+            end
+            sh("chef-apply foo.rb", cwd: cwd)
+          end
+        end
+      end
+
+      add_component "knife-supermarket" do |c|
+        c.gem_base_dir = "knife-supermarket"
+        c.smoke_test { sh("#{bin("knife")} supermarket search httpd")}
       end
 
       attr_reader :verification_threads

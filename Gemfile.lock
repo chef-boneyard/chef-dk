@@ -78,6 +78,16 @@ GIT
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
 
+GIT
+  remote: git://github.com/chef/opscode-pushy-client.git
+  revision: 903b5801b60911731ad0a75e4a10fa426225ea4f
+  specs:
+    opscode-pushy-client (2.0.2)
+      chef (>= 12.5)
+      ffi-rzmq
+      ohai
+      uuidtools
+
 PATH
   remote: .
   specs:
@@ -228,6 +238,10 @@ GEM
       net-ssh
     ffi (1.9.10)
     ffi (1.9.10-x86-mingw32)
+    ffi-rzmq (2.0.4)
+      ffi-rzmq-core (>= 1.0.1)
+    ffi-rzmq-core (1.0.4)
+      ffi (~> 1.9)
     ffi-yajl (2.2.3)
       libyajl2 (~> 1.2)
     fission (0.5.0)
@@ -454,6 +468,8 @@ GEM
       test-kitchen (~> 1.6)
     kitchen-vagrant (0.20.0)
       test-kitchen (~> 1.4)
+    knife-push (1.0.0)
+      chef (>= 11.10.4)
     knife-spork (1.6.1)
       app_conf (>= 0.4.0)
       chef (>= 11.0.0)
@@ -587,6 +603,7 @@ GEM
       trollop
     rdoc (4.2.2)
       json (~> 1.4)
+    rdp-ruby-wmi (0.3.1)
     retriable (1.4.1)
     retryable (2.0.3)
     ridley (4.5.0)
@@ -715,6 +732,9 @@ GEM
       ffi
     windows-api (0.4.4)
       win32-api (>= 1.4.5)
+    windows-pr (1.2.4)
+      win32-api (>= 1.4.5)
+      windows-api (>= 0.4.0)
     winrm (1.8.0)
       builder (>= 2.1.2)
       gssapi (~> 1.2)
@@ -753,6 +773,7 @@ DEPENDENCIES
   dep-selector-libgecode
   dep_selector
   fauxhai
+  ffi
   foodcritic (>= 6.1.1)
   github_changelog_generator
   guard
@@ -760,11 +781,13 @@ DEPENDENCIES
   kitchen-ec2
   kitchen-inspec
   kitchen-vagrant
+  knife-push
   knife-spork
   knife-windows
   listen (< 3.1.0)
   nokogiri
   ohai (>= 8.13.0)
+  opscode-pushy-client!
   pry
   pry-byebug
   pry-remote
@@ -772,6 +795,7 @@ DEPENDENCIES
   rake
   rb-readline
   rdoc
+  rdp-ruby-wmi
   rspec-core (~> 3.0)
   rspec-expectations (~> 3.0)
   rspec-mocks (~> 3.0)
@@ -779,6 +803,14 @@ DEPENDENCIES
   ruby-prof
   ruby-shadow
   test-kitchen
+  win32-api
+  win32-dir
+  win32-event
+  win32-mutex
+  win32-process (~> 0.8.2)
+  win32-service
+  windows-api
+  windows-pr
   winrm-fs
   yard
 
