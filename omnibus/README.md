@@ -94,7 +94,8 @@ Then login to the instance and build the project as described in the Usage
 section:
 
 ```shell
-$ bundle exec kitchen login chefdk-ubuntu-1204
+$ kitchen login chefdk-ubuntu-1204
+[vagrant@ubuntu...] $ source load-omnibus-toolchain.sh
 [vagrant@ubuntu...] $ cd chef-dk/omnibus
 [vagrant@ubuntu...] $ bundle install --without development # Don't install dev tools!
 [vagrant@ubuntu...] $ ...
@@ -112,13 +113,13 @@ Last login: Sat Sep 13 10:19:04 2014 from 172.16.27.1
 Microsoft Windows [Version 6.3.9600]
 (c) 2013 Microsoft Corporation. All rights reserved.
 
-C:\Users\vagrant>load-omnibus-toolchain.bat
+C:\>C:\vagrant\load-omnibus-toolchain.bat
 
-C:\Users\vagrant>cd C:\home\vagrant\chef-dk\omnibus
+C:\>cd C:\vagrant\code\chef-dk\omnibus
 
-C:\home\vagrant\chef-dk\omnibus>bundle install --without development
+C:\vagrant\code\chef-dk\omnibus>bundle install --without development
 
-C:\home\vagrant\chef-dk\omnibus>bundle exec omnibus build chefdk -l internal
+C:\vagrant\code\chef-dk\omnibus>bundle exec omnibus build chefdk -l internal
 ```
 
 For a complete list of all commands and platforms, run `kitchen list` or
