@@ -11,7 +11,9 @@ driver:
     cpus: 4
     memory: 4096
   synced_folders:
-    - ['../..', '/home/vagrant']
+    - ['..', '/home/vagrant/chef-dk']
+    - ['../../omnibus', '/home/vagrant/omnibus']
+    - ['../../omnibus-software', '/home/vagrant/omnibus-software']
 
 provisioner:
   name: chef_zero
@@ -59,6 +61,12 @@ platforms:
   - name: windows-2012r2-standard
     driver:
       box: chef/windows-server-2012r2-standard # private
+      synced_folders:
+      # We have to mount this repos enclosing folder as the Omnibus build
+      # gets cranky if the mounted ChefDK source folder is a symlink. This
+      # mounts at `C:\vagrant\code` and the ChefDK source folder is available
+      # at `C:\vagrant\code\chef-dk`
+      - ['../..', '/vagrant/code']
 
 attribute_defaults: &attribute_defaults
   build_user:          vagrant
