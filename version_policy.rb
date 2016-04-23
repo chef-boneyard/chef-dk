@@ -76,6 +76,7 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "gherkin", # fixed in cucumber-core > 1.4.0
   "google-api-client",
   "jwt", # fixed in oauth2 > 1.1.0
+  "listen",
   "mime-types",
   "mini_portile2", # dep removed in nokogiri > 1.6.7.2
   "retriable",
