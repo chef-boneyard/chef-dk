@@ -7,12 +7,12 @@ GIT
 
 GIT
   remote: git://github.com/chef/chef.git
-  revision: f57aba2e082f89036117013ecad5fdc9d223c6c2
-  branch: v12.10.7
+  revision: 2864ac87c3faf3fc8bbc206c09c5f2109b3ab518
+  branch: v12.10.13
   specs:
-    chef (12.10.7)
+    chef (12.10.13)
       bundler (>= 1.10)
-      chef-config (= 12.10.7)
+      chef-config (= 12.10.13)
       chef-zero (~> 4.5)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -36,9 +36,9 @@ GIT
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (12.10.7-universal-mingw32)
+    chef (12.10.13-universal-mingw32)
       bundler (>= 1.10)
-      chef-config (= 12.10.7)
+      chef-config (= 12.10.13)
       chef-zero (~> 4.5)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -73,7 +73,7 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.10.7)
+    chef-config (12.10.13)
       fuzzyurl (~> 0.8.0)
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
@@ -422,12 +422,12 @@ GEM
     highline (1.7.8)
     hitimes (1.2.3)
     hitimes (1.2.3-x86-mingw32)
-    httpclient (2.7.1)
+    httpclient (2.7.2)
     i18n (0.7.0)
     inflecto (0.0.2)
     inifile (3.0.0)
     iniparse (1.4.2)
-    inspec (0.19.2)
+    inspec (0.19.3)
       json (~> 1.8)
       method_source (~> 0.8)
       pry (~> 0)
@@ -762,6 +762,7 @@ DEPENDENCIES
   kitchen-vagrant
   knife-spork
   knife-windows
+  listen (< 3.1.0)
   nokogiri
   ohai (>= 8.13.0)
   pry
