@@ -88,6 +88,13 @@ GIT
       ohai
       uuidtools
 
+GIT
+  remote: git://github.com/tyler-ball/ffi-rzmq-core.git
+  revision: f9a09f8a8c17bf6d07343fe1991f118d5d1f0aaa
+  specs:
+    ffi-rzmq-core (1.0.4)
+      ffi (~> 1.9)
+
 PATH
   remote: .
   specs:
@@ -774,6 +781,7 @@ DEPENDENCIES
   dep_selector
   fauxhai
   ffi
+  ffi-rzmq-core!
   foodcritic (>= 6.1.1)
   github_changelog_generator
   guard

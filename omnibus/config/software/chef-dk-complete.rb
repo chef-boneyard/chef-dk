@@ -20,9 +20,8 @@ dependency "version-manifest"
 dependency "openssl-customization"
 
 unless windows?
-  # For now, Delivery CLI is *nix only.
+  # For the Delivery build nodes
   dependency "delivery-cli"
-
   # This is a build-time dependency, so we won't leave it behind:
   dependency "rust-uninstall"
 end

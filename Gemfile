@@ -64,6 +64,9 @@ group(:omnibus_package) do
   gem "artifactory"
   # No rubygems release of this yet
   gem "opscode-pushy-client", github: "chef/opscode-pushy-client"
+  # TODO once https://github.com/chuckremes/ffi-rzmq-core/pull/12 is merged and released
+  # we can go back to depending on the github release
+  gem "ffi-rzmq-core", github: "tyler-ball/ffi-rzmq-core"
   gem "knife-push"
 
   # All of the following used to be software definitions we included:
