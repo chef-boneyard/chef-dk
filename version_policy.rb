@@ -103,6 +103,7 @@ GEMS_ALLOWED_TO_FLOAT = [
   "rubocop", # different projects disagree in their dev dependencies
   "unicode-display_width", # dep of rubocop
   "powerpack", # dep of rubocop
+  "cookstyle", # has a runtime dep on rubocop
 ]
 
 #
