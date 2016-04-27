@@ -17,6 +17,7 @@ build do
   appbundle_gem "ohai"
   appbundle_gem "test-kitchen"
   appbundle_gem "opscode-pushy-client"
+  appbundle_gem "cookstyle"
 
   # These are not appbundled, but need to have their Gemfiles locked down so that their tests will run
 

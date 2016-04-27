@@ -75,7 +75,8 @@ group(:omnibus_package) do
   gem "pry-remote"
   gem "pry-stack_explorer"
   gem "rb-readline"
-  gem "rubocop", "~> 0.37.2"
+  gem "rubocop"
+  gem "cookstyle"
   gem "winrm-fs"
 
   # bundled or development dependencies we want to ship
