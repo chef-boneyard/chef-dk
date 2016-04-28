@@ -200,6 +200,7 @@ GEM
       retryable
     chef-provisioning-vagrant (0.11.0)
       chef-provisioning
+    chef-sugar (3.3.0)
     chef-vault (2.9.0)
     chef-zero (4.6.2)
       ffi-yajl (~> 2.2)
@@ -766,6 +767,7 @@ PLATFORMS
 
 DEPENDENCIES
   appbundler!
+  artifactory
   berkshelf
   chef!
   chef-dk!
@@ -774,6 +776,7 @@ DEPENDENCIES
   chef-provisioning-azure (>= 0.5.0)
   chef-provisioning-fog (>= 0.18.0)
   chef-provisioning-vagrant (>= 0.11.0)
+  chef-sugar
   chef-vault
   cheffish (>= 2.0.3)
   chefspec
@@ -791,8 +794,11 @@ DEPENDENCIES
   kitchen-vagrant
   knife-push
   knife-spork
+  knife-supermarket
   knife-windows
   listen (< 3.1.0)
+  mixlib-install
+  mixlib-versioning
   nokogiri
   ohai (>= 8.13.0)
   opscode-pushy-client!
