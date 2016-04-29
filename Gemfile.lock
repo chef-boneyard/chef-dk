@@ -88,13 +88,6 @@ GIT
       ohai
       uuidtools
 
-GIT
-  remote: git://github.com/tyler-ball/ffi-rzmq-core.git
-  revision: f9a09f8a8c17bf6d07343fe1991f118d5d1f0aaa
-  specs:
-    ffi-rzmq-core (1.0.4)
-      ffi (~> 1.9)
-
 PATH
   remote: .
   specs:
@@ -248,8 +241,8 @@ GEM
     ffi (1.9.10-x86-mingw32)
     ffi-rzmq (2.0.4)
       ffi-rzmq-core (>= 1.0.1)
-    ffi-rzmq-core (1.0.4)
-      ffi (~> 1.9)
+    ffi-rzmq-core (1.0.5)
+      ffi
     ffi-yajl (2.2.3)
       libyajl2 (~> 1.2)
     fission (0.5.0)
@@ -483,6 +476,8 @@ GEM
       chef (>= 11.0.0)
       diffy (>= 3.0.1)
       git (>= 1.2.5)
+    knife-supermarket (0.2.4)
+      chef (>= 0.10.10)
     knife-windows (1.4.0)
       winrm (~> 1.7)
     launchy (2.4.3)
@@ -784,7 +779,7 @@ DEPENDENCIES
   dep_selector
   fauxhai
   ffi
-  ffi-rzmq-core!
+  ffi-rzmq-core
   foodcritic (>= 6.1.1)
   github_changelog_generator
   guard
