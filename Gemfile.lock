@@ -7,12 +7,12 @@ GIT
 
 GIT
   remote: git://github.com/chef/chef.git
-  revision: 2864ac87c3faf3fc8bbc206c09c5f2109b3ab518
-  branch: v12.10.13
+  revision: 4c1b4b5fec14221a8dd85ee36213ad8770759582
+  branch: v12.10.24
   specs:
-    chef (12.10.13)
+    chef (12.10.24)
       bundler (>= 1.10)
-      chef-config (= 12.10.13)
+      chef-config (= 12.10.24)
       chef-zero (~> 4.5)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -36,9 +36,9 @@ GIT
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (12.10.13-universal-mingw32)
+    chef (12.10.24-universal-mingw32)
       bundler (>= 1.10)
-      chef-config (= 12.10.13)
+      chef-config (= 12.10.24)
       chef-zero (~> 4.5)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -73,7 +73,7 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.10.13)
+    chef-config (12.10.24)
       fuzzyurl (~> 0.8.0)
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
@@ -81,7 +81,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.13.23)
+    chef-dk (0.14.0)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -111,12 +111,12 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (2.2.36)
-      aws-sdk-resources (= 2.2.36)
-    aws-sdk-core (2.2.36)
+    aws-sdk (2.3.0)
+      aws-sdk-resources (= 2.3.0)
+    aws-sdk-core (2.3.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.2.36)
-      aws-sdk-core (= 2.2.36)
+    aws-sdk-resources (2.3.0)
+      aws-sdk-core (= 2.3.0)
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -152,7 +152,7 @@ GEM
     buff-shell_out (0.2.0)
       buff-ruby_engine (~> 0.1.0)
     builder (3.2.2)
-    byebug (8.2.4)
+    byebug (8.2.5)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     celluloid-io (0.16.2)
@@ -184,7 +184,7 @@ GEM
     chef-provisioning-vagrant (0.11.0)
       chef-provisioning
     chef-vault (2.9.0)
-    chef-zero (4.6.1)
+    chef-zero (4.6.2)
       ffi-yajl (~> 2.2)
       hashie (>= 2.0, < 4.0)
       mixlib-log (~> 1.3)
@@ -303,8 +303,8 @@ GEM
       multi_json (~> 1.10)
     fog-local (0.3.0)
       fog-core (~> 1.27)
-    fog-openstack (0.1.3)
-      fog-core (>= 1.37)
+    fog-openstack (0.1.4)
+      fog-core (>= 1.38)
       fog-json (>= 1.0)
       fog-xml (>= 0.1)
       ipaddress (>= 0.8)
@@ -359,7 +359,7 @@ GEM
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
-    foodcritic (6.1.1)
+    foodcritic (6.2.0)
       cucumber-core (>= 1.3)
       erubis
       nokogiri (>= 1.5, < 2.0)
@@ -418,7 +418,7 @@ GEM
       thor (>= 0.18.1)
     gyoku (1.3.1)
       builder (>= 2.1.2)
-    hashie (3.4.3)
+    hashie (3.4.4)
     highline (1.7.8)
     hitimes (1.2.3)
     hitimes (1.2.3-x86-mingw32)
@@ -427,11 +427,11 @@ GEM
     inflecto (0.0.2)
     inifile (3.0.0)
     iniparse (1.4.2)
-    inspec (0.19.3)
+    inspec (0.20.0)
       json (~> 1.8)
       method_source (~> 0.8)
       pry (~> 0)
-      r-train (~> 0.10.5)
+      r-train (~> 0.11)
       rainbow (~> 2)
       rspec (~> 3)
       rspec-its (~> 1.2)
@@ -487,7 +487,7 @@ GEM
       rspec-mocks (~> 3.2)
     mixlib-cli (1.5.0)
     mixlib-config (2.2.1)
-    mixlib-install (1.0.9)
+    mixlib-install (1.0.11)
       artifactory
       mixlib-shellout
       mixlib-versioning
@@ -498,7 +498,7 @@ GEM
       wmi-lite (~> 1.0)
     mixlib-versioning (1.1.0)
     molinillo (0.4.4)
-    multi_json (1.11.2)
+    multi_json (1.11.3)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nenv (0.3.0)
@@ -547,7 +547,7 @@ GEM
       childprocess (~> 0.5.8)
       iniparse (~> 1.4)
     paint (1.0.1)
-    parser (2.3.0.7)
+    parser (2.3.1.0)
       ast (~> 2.2)
     plist (3.2.0)
     polyglot (0.3.5)
@@ -566,10 +566,10 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    r-train (0.10.7)
+    r-train (0.11.1)
       docker-api (~> 1.26.2)
       json (~> 1.8)
-      mixlib-shellout (~> 2.1)
+      mixlib-shellout (~> 2.0)
       net-scp (~> 1.2)
       net-ssh (>= 2.9, < 4.0)
       winrm (~> 1.6)
@@ -633,7 +633,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 0.3)
     ruby-prof (0.15.9)
-    ruby-progressbar (1.7.5)
+    ruby-progressbar (1.8.0)
     ruby-shadow (2.5.0)
     rubyntlm (0.6.0)
     rubyzip (1.2.0)
@@ -643,7 +643,7 @@ GEM
       addressable (>= 2.3.5, < 2.5)
       faraday (~> 0.8, < 0.10)
     semverse (1.2.1)
-    serverspec (2.32.0)
+    serverspec (2.33.0)
       multi_json
       rspec (~> 3.0)
       rspec-its
@@ -659,7 +659,7 @@ GEM
     solve (2.0.3)
       molinillo (~> 0.4.2)
       semverse (~> 1.1)
-    specinfra (2.56.1)
+    specinfra (2.57.1)
       net-scp
       net-ssh (>= 2.7, < 4.0)
       net-telnet
@@ -715,7 +715,7 @@ GEM
       ffi
     windows-api (0.4.4)
       win32-api (>= 1.4.5)
-    winrm (1.7.3)
+    winrm (1.8.0)
       builder (>= 2.1.2)
       gssapi (~> 1.2)
       gyoku (~> 1.0)
