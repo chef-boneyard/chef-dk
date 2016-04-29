@@ -78,5 +78,5 @@ end
 
 # Everything except AIX and Windows
 group(:linux, :bsd, :mac_os_x, :solaris) do
-  gem "ruby-shadow"
+  gem "ruby-shadow", platform: :ruby
 end
