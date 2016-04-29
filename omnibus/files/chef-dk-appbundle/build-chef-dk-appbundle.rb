@@ -3,13 +3,22 @@ require_relative "../chef-dk-gem/build-chef-dk-gem"
 module BuildChefDKAppbundle
   include BuildChefDKGem
 
+  #
+  # Get the (possibly platform-specific) path to the Gemfile.
+  #
+  def chefdk_project_dir
+    File.join(project_dir, "..", "chef-dk")
+  end
+
   def lockdown_gem(gem_name)
+    chefdk_project_dir = self.chefdk_project_dir
     shared_gemfile = self.shared_gemfile
 
     # Update the Gemfile to restrict to built versions so that bundle installs
     # will do the right thing
     block "Lock down the #{gem_name} gem" do
-      installed_path = shellout!("#{bundle_bin} show #{gem_name}", env: env, cwd: install_dir).stdout.chomp
+
+      installed_path = shellout!("#{bundle_bin} show #{gem_name}", env: env, cwd: chefdk_project_dir).stdout.chomp
       installed_gemfile = File.join(installed_path, "Gemfile")
 
       #
@@ -31,7 +40,7 @@ module BuildChefDKAppbundle
       remove_file("#{installed_gemfile}.lock") if File.exist?("#{installed_gemfile}.lock")
 
       # If it's frozen, make it not be.
-      shellout!("#{bundle_bin} config --delete frozen")
+      shellout!("#{bundle_bin} config --delete frozen", cwd: installed_path)
 
       # This could be changed to `bundle install` if we wanted to actually
       # install extra deps out of their gemfile ...
@@ -75,14 +84,14 @@ module BuildChefDKAppbundle
     # First lock the gemfile down.
     lockdown_gem(gem_name)
 
-    shared_gemfile = self.shared_gemfile
-
     # Ensure the main bin dir exists
     bin_dir = File.join(install_dir, "bin")
     mkdir(bin_dir)
 
+    chefdk_project_dir = self.chefdk_project_dir
+
     block "Lock down the #{gem_name} gem" do
-      installed_path = shellout!("#{bundle_bin} show #{gem_name}", env: env, cwd: install_dir).stdout.chomp
+      installed_path = shellout!("#{bundle_bin} show #{gem_name}", env: env, cwd: chefdk_project_dir).stdout.chomp
 
       # appbundle the gem
       appbundler_args = [ installed_path, bin_dir, gem_name ]

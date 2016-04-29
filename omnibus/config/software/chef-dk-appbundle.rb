@@ -9,8 +9,8 @@ build do
   require_relative "../../files/chef-dk-appbundle/build-chef-dk-appbundle"
   extend BuildChefDKAppbundle
 
-  appbundle_gem "berkshelf"
   appbundle_gem "chef-dk"
+  appbundle_gem "berkshelf"
   appbundle_gem "chef-vault"
   appbundle_gem "chef"
   appbundle_gem "foodcritic"
