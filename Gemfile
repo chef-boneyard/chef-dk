@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2016 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -45,7 +45,7 @@ group(:omnibus_package) do
   gem "cheffish", ">= 2.0.3"
   gem "chefspec"
   gem "fauxhai"
-  gem "foodcritic", ">= 6.1.1"
+  gem "foodcritic", ">= 6.2.0"
   gem "inspec", ">= 0.17.1"
   gem "kitchen-ec2"
   gem "kitchen-inspec"

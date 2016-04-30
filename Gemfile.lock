@@ -753,7 +753,7 @@ DEPENDENCIES
   dep-selector-libgecode
   dep_selector
   fauxhai
-  foodcritic (>= 6.1.1)
+  foodcritic (>= 6.2.0)
   github_changelog_generator
   guard
   inspec (>= 0.17.1)
