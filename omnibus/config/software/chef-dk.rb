@@ -33,6 +33,13 @@ dependency "zlib"
 # For berkshelf
 dependency "libarchive"
 
+# For opscode-pushy-client
+if windows?
+  dependency "libzmq4x-windows"
+else
+  dependency "libzmq"
+end
+
 # ruby and bundler and friends
 dependency "ruby"
 dependency "rubygems"
@@ -41,6 +48,7 @@ dependency "bundler"
 # Install all the native gems separately
 # Worst offenders first to take best advantage of cache:
 dependency "chef-dk-gem-dep-selector-libgecode"
+dependency "chef-dk-gem-ffi-rzmq"
 dependency "chef-dk-gem-ffi-yajl"
 dependency "chef-dk-gem-json"
 dependency "chef-dk-gem-nokogiri"

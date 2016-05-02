@@ -281,6 +281,7 @@ EOS
         end
       end
 
+
       add_component "chefspec" do |c|
         c.gem_base_dir = "chefspec"
         c.unit_test do
@@ -364,11 +365,10 @@ end
 
           if File.directory?(usr_bin_prefix)
             sh!("#{usr_bin_path("berks")} -v")
-
             sh!("#{usr_bin_path("chef")} -v")
-
             sh!("#{usr_bin_path("chef-client")} -v")
             sh!("#{usr_bin_path("chef-solo")} -v")
+            sh!("#{usr_bin_path("delivery")} -V") unless Chef::Platform.windows?
 
             # In `knife`, `knife -v` follows a different code path that skips
             # command/plugin loading; `knife -h` loads commands and plugins, but
@@ -386,7 +386,6 @@ end
             end
 
             sh!("#{usr_bin_path("ohai")} -v")
-
             sh!("#{usr_bin_path("foodcritic")} -V")
           end
 
@@ -450,6 +449,71 @@ end
             sh("#{bin("chef")} exec #{bin("inspec")} exec .", cwd: cwd)
           end
         end
+      end
+
+      unless Chef::Platform.windows?
+        add_component "delivery-cli" do |c|
+          # We'll want to come back and revisit getting unit tests added -
+          # currently running the tests depends on cargo , which is not included
+          # in our package.
+          c.base_dir = "bin"
+          c.smoke_test do
+            tmpdir do |cwd|
+              sh!("delivery setup --user=shipit --server=delivery.shipit.io --ent=chef --org=squirrels", cwd: cwd)
+            end
+          end
+        end
+
+        add_component "git" do |c|
+          c.base_dir = "embedded/bin"
+          c.smoke_test do
+            sh!("#{bin("git")} config -l")
+          end
+          c.integration_test do
+            tmpdir do |cwd|
+              sh!("#{bin("git")} clone git@github.com:chef/ffi-yajl.git", cwd: cwd)
+              sh!("#{bin("git")} clone https://github.com/chef/chef-provisioning", cwd: cwd)
+            end
+          end
+        end
+      end
+
+      add_component "opscode-pushy-client" do |c|
+        c.gem_base_dir = "opscode-pushy-client"
+        # TODO the unit tests are currently failing in master
+        # c.unit_test do
+        #   bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
+        #   sh("#{bin("bundle")} exec rake spec")
+        # end
+
+        c.smoke_test do
+          tmpdir do |cwd|
+            sh("#{bin("pushy-client")} -v", cwd: cwd)
+          end
+        end
+      end
+
+      # We try and use some chef-sugar code to make sure it loads correctly
+      add_component "chef-sugar" do |c|
+        c.gem_base_dir = "chef-sugar"
+        c.smoke_test do
+          tmpdir do |cwd|
+            with_file(File.join(cwd, 'foo.rb')) do |f|
+              f.write <<-EOF
+require 'chef/sugar'
+log 'something' do
+  not_if  { _64_bit? }
+end
+              EOF
+            end
+            sh("chef-apply foo.rb", cwd: cwd)
+          end
+        end
+      end
+
+      add_component "knife-supermarket" do |c|
+        c.gem_base_dir = "knife-supermarket"
+        c.smoke_test { sh("#{bin("knife")} supermarket search httpd")}
       end
 
       attr_reader :verification_threads

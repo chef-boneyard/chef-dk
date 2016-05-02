@@ -25,7 +25,9 @@ else
 fi
 
 cleanup_symlinks() {
-  binaries="chef chef-solo chef-apply chef-shell knife ohai berks chef-zero fauxhai foodcritic kitchen rubocop strain strainer chef-client"
+  # Keep removed symlinks in this list, so that removal of upgraded packages still cleans up
+  # leftovers from older versions.
+  binaries="berks chef chef-apply chef-shell chef-solo chef-zero delivery fauxhai foodcritic kitchen knife ohai push-apply pushy-client pushy-service-manager rubocop chef-client"
   for binary in $binaries; do
     rm -f $PREFIX/bin/$binary
   done

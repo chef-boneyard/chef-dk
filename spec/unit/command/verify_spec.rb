@@ -28,6 +28,7 @@ module Gem
 end
 
 describe ChefDK::Command::Verify do
+
   let(:command_instance) { ChefDK::Command::Verify.new() }
 
   let(:command_options) { [] }
@@ -50,7 +51,10 @@ describe ChefDK::Command::Verify do
       "kitchen-vagrant",
       "package installation",
       "openssl",
-      "inspec"
+      "inspec",
+      "chef-sugar",
+      "knife-supermarket",
+      "opscode-pushy-client",
     ]
   end
 
@@ -59,8 +63,13 @@ describe ChefDK::Command::Verify do
   end
 
   it "defines berks, tk, chef and chef-dk components by default" do
+    expected_components = default_components
+    unless Chef::Platform.windows?
+      expected_components << "git"
+      expected_components << "delivery-cli"
+    end
     expect(command_instance.components).not_to be_empty
-    expect(command_instance.components.map(&:name)).to match_array(default_components)
+    expect(command_instance.components.map(&:name)).to match_array(expected_components)
   end
 
   it "has a usage banner" do
@@ -114,7 +123,7 @@ describe ChefDK::Command::Verify do
 
     let(:all_tests_ok) do
       ChefDK::ComponentTest.new("successful_comp").tap do |c|
-        c.base_dir = "berkshelf"
+        c.base_dir = "embedded/apps/berkshelf"
         c.unit_test(&run_unit_test)
         c.integration_test(&run_integration_test)
         c.smoke_test { sh("exit 0") }
@@ -123,7 +132,7 @@ describe ChefDK::Command::Verify do
 
     let(:all_tests_ok_2) do
       ChefDK::ComponentTest.new("successful_comp_2").tap do |c|
-        c.base_dir = "test-kitchen"
+        c.base_dir = "embedded/apps/test-kitchen"
         c.unit_test(&run_unit_test)
         c.smoke_test { sh("exit 0") }
       end
@@ -131,7 +140,7 @@ describe ChefDK::Command::Verify do
 
     let(:failing_unit_test) do
       ChefDK::ComponentTest.new("failing_comp").tap do |c|
-        c.base_dir = "chef"
+        c.base_dir = "embedded/apps/chef"
         c.unit_test(&run_unit_test)
         c.smoke_test { sh("exit 0") }
       end
@@ -151,7 +160,7 @@ describe ChefDK::Command::Verify do
 
     let(:component_without_integration_tests) do
       ChefDK::ComponentTest.new("successful_comp").tap do |c|
-        c.base_dir = "berkshelf"
+        c.base_dir = "embedded/apps/berkshelf"
         c.unit_test { sh("./verify_me") }
         c.smoke_test { sh("exit 0") }
       end
