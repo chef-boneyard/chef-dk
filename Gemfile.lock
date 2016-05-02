@@ -80,7 +80,7 @@ GIT
 
 GIT
   remote: git://github.com/chef/opscode-pushy-client.git
-  revision: 903b5801b60911731ad0a75e4a10fa426225ea4f
+  revision: 786d2986a7469f1ae0455cdffd0a529859d4c391
   specs:
     opscode-pushy-client (2.0.2)
       chef (>= 12.5)
@@ -655,7 +655,7 @@ GEM
     ruby-prof (0.15.9)
     ruby-progressbar (1.8.0)
     ruby-shadow (2.5.0)
-    ruby_dep (1.1.0)
+    ruby_dep (1.2.0)
     rubyntlm (0.6.0)
     rubyzip (1.2.0)
     rufus-lru (1.0.5)
