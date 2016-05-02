@@ -60,7 +60,9 @@ platforms:
   - name: macosx-10.11
     driver:
       box: chef/macosx-10.11 # private
-  - name: windows-2012r2-standard
+  # By adding an `i386` to the name the Omnibus cookbook's `load-omnibus-toolchain.bat`
+  # will load the 32-bit version of the MinGW toolchain.
+  - name: windows-2012r2-standard-i386
     driver:
       box: chef/windows-server-2012r2-standard # private
       synced_folders:
