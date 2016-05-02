@@ -104,9 +104,9 @@ namespace :dependencies do
       # TODO in some edge cases, stable will actually be the latest chef because
       # promotion *moves* the package out of current into stable rather than
       # copying
-      puts "Getting latest chef 'current' version from omnitruck ..."
+      puts "Getting latest chef 'stable' version from omnitruck ..."
       options = {
-        channel: :current,
+        channel: :stable,
         product_name: 'chef',
         product_version: :latest
       }
