@@ -77,17 +77,17 @@ module ChefDK
       #
       add_component "berkshelf" do |c|
         c.gem_base_dir = "berkshelf"
-        # For berks the real command to run is "#{bin("bundle")} exec thor spec:ci"
+        # For berks the real command to run is "#{embedded_bin("bundle")} exec thor spec:ci"
         # We can't run it right now since graphviz specs are included in the
         # test suite by default. We will be able to switch to that command when/if
         # Graphviz is added to omnibus.
         c.unit_test do
-          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
-          sh("#{bin("bundle")} exec #{bin("rspec")} --color --format progress spec/unit --tag ~graphviz")
+          bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
+          sh("#{embedded_bin("bundle")} exec #{embedded_bin("rspec")} --color --format progress spec/unit --tag ~graphviz")
         end
         c.integration_test do
-          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
-          sh("#{bin("bundle")} exec #{bin("cucumber")} --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict")
+          bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
+          sh("#{embedded_bin("bundle")} exec #{embedded_bin("cucumber")} --color --format progress --tags ~@no_run --tags ~@spawn --tags ~@graphviz --strict")
         end
 
         c.smoke_test do
@@ -101,12 +101,12 @@ module ChefDK
       add_component "test-kitchen" do |c|
         c.gem_base_dir = "test-kitchen"
         c.unit_test do
-          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
-          sh("#{bin("bundle")} exec rake unit")
+          bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
+          sh("#{embedded_bin("bundle")} exec rake unit")
         end
         c.integration_test do
-          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
-          sh("#{bin("bundle")} exec rake features")
+          bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
+          sh("#{embedded_bin("bundle")} exec rake features")
         end
 
         # NOTE: By default, kitchen tries to be helpful and install a driver
@@ -157,12 +157,12 @@ KITCHEN_YML
       add_component "chef-client" do |c|
         c.gem_base_dir = "chef"
         c.unit_test do
-          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
-          sh("#{bin("bundle")} exec #{bin("rspec")} -fp -t '~volatile_from_verify' spec/unit")
+          bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
+          sh("#{embedded_bin("bundle")} exec #{embedded_bin("rspec")} -fp -t '~volatile_from_verify' spec/unit")
         end
         c.integration_test do
-          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
-          sh("#{bin("bundle")} exec #{bin("rspec")} -fp spec/integration spec/functional")
+          bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
+          sh("#{embedded_bin("bundle")} exec #{embedded_bin("rspec")} -fp spec/integration spec/functional")
         end
 
         c.smoke_test do
@@ -176,8 +176,8 @@ KITCHEN_YML
       add_component "chef-dk" do |c|
         c.gem_base_dir = "chef-dk"
         c.unit_test do
-          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
-          sh("#{bin("bundle")} exec #{bin("rspec")}")
+          bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
+          sh("#{embedded_bin("bundle")} exec #{embedded_bin("rspec")}")
         end
         c.smoke_test do
           run_in_tmpdir("#{bin("chef")} generate cookbook example")
@@ -263,7 +263,7 @@ EOS
               end
 
               result = bundle_install_mutex.synchronize do
-                sh("#{bin("bundle")} install --local --quiet", cwd: cwd, env: {"BUNDLE_GEMFILE" => gemfile })
+                sh("#{embedded_bin("bundle")} install --local --quiet", cwd: cwd, env: {"BUNDLE_GEMFILE" => gemfile })
               end
 
               if result.exitstatus != 0
@@ -285,8 +285,8 @@ EOS
       add_component "chefspec" do |c|
         c.gem_base_dir = "chefspec"
         c.unit_test do
-          bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
-          sh("#{bin("bundle")} exec #{bin("rake")} unit")
+          bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
+          sh("#{embedded_bin("bundle")} exec #{embedded_bin("rake")} unit")
         end
         c.smoke_test do
           tmpdir do |cwd|
@@ -308,7 +308,7 @@ end
 require 'spec_helper'
               EOF
             end
-            sh(bin("rspec"), cwd: cwd)
+            sh(embedded_bin("rspec"), cwd: cwd)
           end
         end
       end
@@ -320,7 +320,7 @@ require 'spec_helper'
           tmpdir do |cwd|
             sh("#{bin("chef")} generate cookbook example", cwd: cwd)
             cb_cwd = File.join(cwd, "example")
-            sh(bin("rspec"), cwd: cb_cwd)
+            sh(embedded_bin("rspec"), cwd: cb_cwd)
           end
         end
       end
@@ -336,14 +336,14 @@ def foo
 end
               EOF
             end
-            sh("#{bin("rubocop")} foo.rb -l", cwd: cwd)
+            sh("#{embedded_bin("rubocop")} foo.rb -l", cwd: cwd)
           end
         end
       end
 
       add_component "fauxhai" do |c|
         c.gem_base_dir = "fauxhai"
-        c.smoke_test { sh("#{bin("gem")} list fauxhai") }
+        c.smoke_test { sh("#{embedded_bin("gem")} list fauxhai") }
       end
 
       add_component "knife-spork" do |c|
@@ -354,7 +354,7 @@ end
       add_component "kitchen-vagrant" do |c|
         c.gem_base_dir = "kitchen-vagrant"
         # The build is not passing in travis, so no tests
-        c.smoke_test { sh("#{bin("gem")} list kitchen-vagrant") }
+        c.smoke_test { sh("#{embedded_bin("gem")} list kitchen-vagrant") }
       end
 
       add_component "package installation" do |c|
@@ -425,9 +425,9 @@ end
 
         # Commenting out the unit and integration tests for now until we figure
         # out the bundler error
-        #c.unit_test { sh("#{bin("bundle")} exec rake test:isolated") }
+        #c.unit_test { sh("#{embedded_bin("bundle")} exec rake test:isolated") }
         # This runs Test Kitchen (using kitchen-inspec) with some inspec tests
-        #c.integration_test { sh("#{bin("bundle")} exec rake test:vm") }
+        #c.integration_test { sh("#{embedded_bin("bundle")} exec rake test:vm") }
 
         # It would be nice to use a chef generator to create these specs, but
         # we dont have that yet.  So we do it manually.
@@ -446,7 +446,7 @@ end
               INSPEC_TEST
             end
             # TODO when we appbundle inspec, no longer `chef exec`
-            sh("#{bin("chef")} exec #{bin("inspec")} exec .", cwd: cwd)
+            sh("#{bin("chef")} exec #{embedded_bin("inspec")} exec .", cwd: cwd)
           end
         end
       end
@@ -488,8 +488,8 @@ end
         c.gem_base_dir = "opscode-pushy-client"
         # TODO the unit tests are currently failing in master
         # c.unit_test do
-        #   bundle_install_mutex.synchronize { sh("#{bin("bundle")} install") }
-        #   sh("#{bin("bundle")} exec rake spec")
+        #   bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
+        #   sh("#{embedded_bin("bundle")} exec rake spec")
         # end
 
         c.smoke_test do
