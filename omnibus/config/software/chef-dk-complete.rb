@@ -5,6 +5,8 @@ license :project_license
 dependency "chef-dk"
 dependency "chef-dk-appbundle"
 
+dependency "gem-permissions"
+
 if windows?
   dependency "chef-dk-env-customization"
   dependency "chef-dk-powershell-scripts"
