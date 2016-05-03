@@ -1,13 +1,13 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: f44a32fac4fe05eab028d290249f8d4785f33dce
+  revision: b03a220058ff29b9522d7f3ebc335e396647680c
   specs:
     omnibus-software (4.0.0)
       omnibus (>= 5.2.0)
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: b4ea1b01e6b13fe4397053c292092bdfa03d9c82
+  revision: acebe9d9a85930422cda6077e93302e9392ef842
   specs:
     omnibus (5.4.0)
       aws-sdk (~> 2)
@@ -38,12 +38,12 @@ GEM
     addressable (2.4.0)
     artifactory (2.3.2)
     awesome_print (1.6.1)
-    aws-sdk (2.3.0)
-      aws-sdk-resources (= 2.3.0)
-    aws-sdk-core (2.3.0)
+    aws-sdk (2.3.1)
+      aws-sdk-resources (= 2.3.1)
+    aws-sdk-core (2.3.1)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.3.0)
-      aws-sdk-core (= 2.3.0)
+    aws-sdk-resources (2.3.1)
+      aws-sdk-core (= 2.3.1)
     berkshelf (4.3.2)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (~> 2.0, >= 2.0.2)
@@ -79,7 +79,7 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (12.9.38)
+    chef-config (12.9.41)
       fuzzyurl (~> 0.8.0)
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
