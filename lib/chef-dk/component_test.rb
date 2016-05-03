@@ -100,6 +100,10 @@ module ChefDK
     end
 
     def bin(binary)
+      File.join(omnibus_bin_dir, binary)
+    end
+
+    def embedded_bin(binary)
       File.join(omnibus_embedded_bin_dir, binary)
     end
 
