@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 02b070d484a1916953dbd5af66ea6d304887d2ff
+  revision: f44a32fac4fe05eab028d290249f8d4785f33dce
   specs:
     omnibus-software (4.0.0)
       omnibus (>= 5.2.0)
@@ -8,7 +8,6 @@ GIT
 GIT
   remote: https://github.com/chef/omnibus.git
   revision: b4ea1b01e6b13fe4397053c292092bdfa03d9c82
-  branch: openssl_catch
   specs:
     omnibus (5.4.0)
       aws-sdk (~> 2)
@@ -135,7 +134,7 @@ GEM
       wmi-lite (~> 1.0)
     mixlib-versioning (1.1.0)
     molinillo (0.4.5)
-    multi_json (1.11.3)
+    multi_json (1.12.0)
     multipart-post (1.2.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
