@@ -91,7 +91,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.14.3)
+    chef-dk (0.14.4)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -437,8 +437,8 @@ GEM
       builder (>= 2.1.2)
     hashie (3.4.4)
     highline (1.7.8)
-    hitimes (1.2.3)
-    hitimes (1.2.3-x86-mingw32)
+    hitimes (1.2.4)
+    hitimes (1.2.4-x86-mingw32)
     httpclient (2.7.2)
     i18n (0.7.0)
     inflecto (0.0.2)
@@ -682,7 +682,7 @@ GEM
     solve (2.0.3)
       molinillo (~> 0.4.2)
       semverse (~> 1.1)
-    specinfra (2.57.1)
+    specinfra (2.57.2)
       net-scp
       net-ssh (>= 2.7, < 4.0)
       net-telnet
