@@ -463,16 +463,22 @@ end
             end
           end
         end
+      end
 
+      if Chef::Platform.windows?
+        # TODO UW-6 - We haven't decided exactly where these binaries will live
+        # so we will write this test when we do this card
+        # add_component "git-windows"
+      else
         add_component "git" do |c|
           c.base_dir = "embedded/bin"
           c.smoke_test do
-            sh!("#{bin("git")} config -l")
+            sh!("#{embedded_bin("git")} config -l")
           end
           c.integration_test do
             tmpdir do |cwd|
-              sh!("#{bin("git")} clone git@github.com:chef/ffi-yajl.git", cwd: cwd)
-              sh!("#{bin("git")} clone https://github.com/chef/chef-provisioning", cwd: cwd)
+              sh!("#{embedded_bin("git")} clone git@github.com:chef/ffi-yajl.git", cwd: cwd)
+              sh!("#{embedded_bin("git")} clone https://github.com/chef/chef-provisioning", cwd: cwd)
             end
           end
         end
