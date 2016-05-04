@@ -8,27 +8,56 @@ module GemfileUtil
   # Adds `override: true`, which allows your statement to override any other
   # gem statement about the same gem in the Gemfile.
   #
+  # :path does likewise.
+  #
+  # :overrideable holds off on processing the 
+  #
+  def gemfile_parsing_done?
+    overridden_gems == :finished
+  end
+
+  def overridey_thing?(options)
+    options[:path] || options[:override] || options[:overrideable]
+  end
+
   def gem(name, *args)
     options = args[-1].is_a?(Hash) ? args[-1] : {}
 
     # Unless we're finished with everything, ignore gems that are being overridden
-    unless overridden_gems == :finished
+    if gemfile_parsing_done?
+      # Otherwise, add the gem normally
+      super
+    elsif overridey_thing?(options)
       # If it's a path or override gem, it overrides whatever else is there.
       if options[:path] || options[:override]
         options.delete(:override)
         warn_if_replacing(name, overridden_gems[name], args)
         overridden_gems[name] = args
-        return
 
-      # If there's an override gem, and we're *not* an override gem, don't do anything
-      elsif overridden_gems[name]
+      # if this can be overridden by a later `gem` line, don't do anything but save it for later.
+      elsif options[:overrideable]
+        # if you put a `gem` line before ours (which you're supposed to), let it be.
+        unless seen_gems[name]
+          options.delete(:overrideable)
+          overrideable_gems[name] = args
+        end
+      end
+
+      # This is a normal `gem` call. Check if it's overridden by something else.
+    else
+       # If there's an override gem, and we're *not* an override gem, don't do anything
+      if overridden_gems[name]
         warn_if_replacing(name, args, overridden_gems[name])
-        return
+
+      # ok, we found a `gem` definition to override it, so do that.
+      else
+        overrideable_gems.delete(name)
+        super
       end
     end
 
-    # Otherwise, add the gem normally
-    super
+    seen_gems[name] = true
+
   rescue
     puts $!.backtrace
     raise
@@ -38,11 +67,20 @@ module GemfileUtil
     @overridden_gems ||= {}
   end
 
+  def overrideable_gems
+    @overrideable_gems ||= {}
+  end
+
+  def seen_gems
+    @seen_gems ||= {}
+  end
+
   #
-  # Just before we finish the Gemfile, finish up the override gems
+  # Just before we finish the Gemfile, finish up the overridden and overrideable gems
   #
   def to_definition(*args)
     complete_overrides
+    complete_overrideables
     super
   end
 
@@ -53,6 +91,13 @@ module GemfileUtil
       to_override.each do |name, args|
         gem name, *args
       end
+    end
+  end
+
+  def complete_overrideables
+    # we're mostly done, we just have to process the overrideable gems that didn't get overridden.
+    overrideable_gems.each do |name, args|
+      gem name, *args
     end
   end
 
