@@ -27,7 +27,10 @@ unless windows?
 end
 
 # Leave for last so system git is used for most of the build.
-# TODO we have a card for getting git working on windows in the future
-dependency "git" unless windows?
+if windows?
+  dependency "git-windows"
+else
+  dependency "git"
+end
 
 dependency "clean-static-libs"
