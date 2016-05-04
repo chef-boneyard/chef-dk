@@ -465,22 +465,29 @@ end
         end
       end
 
-      if Chef::Platform.windows?
-        # TODO UW-6 - We haven't decided exactly where these binaries will live
-        # so we will write this test when we do this card
-        # add_component "git-windows"
-      else
-        add_component "git" do |c|
-          c.base_dir = "embedded/bin"
-          c.smoke_test do
+      add_component "git" do |c|
+        c.base_dir = "embedded/bin"
+        c.smoke_test do
+	  tmpdir do |cwd|
             sh!("#{embedded_bin("git")} config -l")
-          end
-          c.integration_test do
-            tmpdir do |cwd|
-              sh!("#{embedded_bin("git")} clone git@github.com:chef/ffi-yajl.git", cwd: cwd)
-              sh!("#{embedded_bin("git")} clone https://github.com/chef/chef-provisioning", cwd: cwd)
-            end
-          end
+	    sh!("#{embedded_bin("git")} clone https://github.com/chef/chef-provisioning", cwd: cwd)
+
+	    # # If /usr/bin/git is a symlink, fail the test.
+	    # # Note that this test cannot go last because it does not return a
+	    # # Mixlib::Shellout object in the windows case, which will break the tests.
+	    unless Chef::Platform.windows?
+             failure_str = "#{nix_platform_native_bin_dir}/git contains a symlink which might mean we accidentally overwrote system git via chefdk."
+             result = sh("readlink #{nix_platform_native_bin_dir}/git")
+             # if a symlink was found, test to see if it is in a chefdk install
+             if result.status.exitstatus == 0
+               raise failure_str if result.stdout =~ /chefdk/
+             end
+	    end
+
+	    # <chef_dk>/bin/ should not contain a git binary.
+	    failure_str = "`<chef_dk>/bin/git --help` should fail as git should be installed in embedded/bin"
+	    fail_if_exit_zero(bin("git --help"), failure_str)
+	  end
         end
       end
 

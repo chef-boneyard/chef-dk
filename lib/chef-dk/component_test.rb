@@ -128,6 +128,31 @@ module ChefDK
       sh(*args).tap { |result| result.error! }
     end
 
+    # Run a command, if the command returns zero, raise an error,
+    # otherwise, if it returns non-zero or doesn't exist,
+    # return a passing command so that the test parser doesn't
+    # crash.
+    def fail_if_exit_zero(cmd_string, failure_string='')
+      result = sh(cmd_string)
+      if result.status.exitstatus == 0
+	raise failure_string
+      else
+	sh('true')
+      end
+    rescue Errno::ENOENT
+      sh('true')
+    end
+
+    def nix_platform_native_bin_dir
+      if /sunos|solaris/ =~ RUBY_PLATFORM
+        "/opt/local/bin"
+      elsif /darwin/ =~ RUBY_PLATFORM
+        "/usr/local/bin"
+      else
+        "/usr/bin"
+      end
+    end
+
     def run_in_tmpdir(command, options={})
       tmpdir do |dir|
         options[:cwd] = dir
