@@ -33,11 +33,22 @@ module BuildChefDKAppbundle
         distribution_gemfile = File.expand_path(#{distribution_gemfile.inspect}, __FILE__)
         instance_eval(IO.read(distribution_gemfile), distribution_gemfile)
       EOM
-      gemfile_text << IO.read(installed_gemfile)
+
+      # not all gems ship a Gemfile. it's all right. we love them anyway.
+      gemfile_text << IO.read(installed_gemfile) if File.exists?(installed_gemfile)
       create_file(installed_gemfile) { gemfile_text }
 
       # Remove the gemfile.lock
       remove_file("#{installed_gemfile}.lock") if File.exist?("#{installed_gemfile}.lock")
+
+      installed_gemspec = File.join(installed_path, "#{gem_name}.gemspec")
+
+      # appbundler needs a Gemfile.lock, which furthermore has to contain the gem itself. and that only
+      # happens when the Gemfile includes a gemspec.
+      if !File.exists?(installed_gemspec)
+        shellout!("#{embedded_bin("gem")} specification --ruby #{gem_name} >> #{installed_gemspec}")
+        shellout!("echo gemspec >> #{installed_gemfile}")
+      end
 
       # If it's frozen, make it not be.
       shellout!("#{bundle_bin} config --delete frozen", cwd: installed_path)
