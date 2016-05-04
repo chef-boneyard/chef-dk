@@ -301,8 +301,8 @@ dpkg -P chefdk
 
 ## Building the ChefDK
 
-To build the chef-dk, we use the omnibus system. Go to the [omnibus
-README](omnibus/README.md) to find out how to build!
+To build the chef-dk, we use the omnibus system. Go to the
+[omnibus README](omnibus/README.md) to find out how to build!
 
 ## Updating Dependencies
 
@@ -456,12 +456,12 @@ are two distinct bits of code that control the versions of compilers,
 make, git, and other tools we use to build.
 
 First, the Jenkins machines that run the build are configured entirely
-by the [opscode-ci
-cookbook](https://github.com/chef-cookbooks/opscode-ci) cookbook. They
-install most of the tools we use via `build-essentials`, and standardize
-the build environment so we can tear down and bring up builders at will.
-These machines are kept alive long-running, are periodically updated by
-Chef to the latest opscode-ci, omnibus and build-essentials cookbooks.
+by the [opscode-ci cookbook](https://github.com/chef-cookbooks/opscode-ci)
+cookbook. They install most of the tools we use via `build-essentials`,
+and standardize the build environment so we can tear down and bring up
+builders at will.  These machines are kept alive long-running, are
+periodically updated by Chef to the latest opscode-ci, omnibus and
+build-essentials cookbooks.
 
 Second, the version of omnibus we use to build the chef-dk is governed
 by `omnibus/Gemfile`. When software definitions or the omnibus framework
@@ -473,11 +473,11 @@ dependencies`.
 
 ### Test Versions
 
-chef-dk is tested by the [chef-acceptance
-framework](https://github.com/chef/chef-acceptance), which contains
-suites that are run on the Jenkins test machines. The definitions of the
-tests are in the `acceptance` directory. The version of chef-acceptance
-and test-kitchen, are governed by `acceptance/Gemfile`.
+chef-dk is tested by the [chef-acceptance framework](https://github.com/chef/chef-acceptance),
+which contains suites that are run on the Jenkins test machines. The
+definitions of the tests are in the `acceptance` directory. The version
+of chef-acceptance and test-kitchen, are governed by
+`acceptance/Gemfile`.
 
 The test tooling versions are locked down with
 `acceptance/Gemfile.lock`, which can be updated by running `rake
@@ -499,11 +499,15 @@ The build is kicked off in Jenkins by running this on the machine (which
 is already the correct OS and already has the correct dependencies,
 loaded by the `omnibus` cookbook):
 
-``` load-omnibus-toolchain.bat cd chef-dk/omnibus bundle install bundle
-exec omnibus build chefdk ```
+```
+load-omnibus-toolchain.bat
+cd chef-dk/omnibus
+bundle install
+bundle exec omnibus build chefdk
+```
 
-This causes the [chefdk project
-definition](omnibus/config/projects/chefdk.rb) to load, which runs the
+This causes the [chefdk project definition](omnibus/config/projects/chefdk.rb)
+to load, which runs the
 [chef-dk-complete](omnibus/config/software/chef-dk-complete.rb) software
 definition, the primary software definition driving the whole build
 process. The reason we embed it all in a software definiton instead of
@@ -528,24 +532,22 @@ What it does:
 2. Installs all gems from the bundle:
    - Sets up a `.bundle/config`
      ([code](omnibus/files/chef-dk/build-chef-dk.rb#L17-L39)) with
---retries=4, --jobs=1, --without=development,no_<platform>, and
-`build.config.nokogiri` to pass.
+     --retries=4, --jobs=1, --without=development,no_<platform>, and
+     `build.config.nokogiri` to pass.
    - Sets up a common environment, standardizing the compilers and flags
-     we use, in
-[`env`](omnibus/files/chef-dk-gem/build-chef-dk-gem.rb#L32-L54).
-   - [Runs](omnibus/config/software/chef-dk.rb#L68) `bundle install
-     --verbose`
+     we use, in [`env`](omnibus/files/chef-dk-gem/build-chef-dk-gem.rb#L32-L54).
+   - [Runs](omnibus/config/software/chef-dk.rb#L68) `bundle install --verbose`
 3. Reinstalls any gems that were installed via path:
-   - [Runs](omnibus/files/chef-dk/build-chef-dk.rb#L80) `bundle list
-     --paths` to get the installed directories of all gems.
+   - [Runs](omnibus/files/chef-dk/build-chef-dk.rb#L80) `bundle list --paths`
+     to get the installed directories of all gems.
    - For each gem not installed in the main gem dir,
      [runs](omnibus/files/chef-dk/build-chef-dk.rb#L89) `rake install`
 from the installed gem directory.
    - [Deletes](omnibus/files/chef-dk/build-chef-dk.rb#L139-L143) the
      bundler git cache and path- and git-installed gems from the build.
 4. [Creates](omnibus/files/chef-dk/build-chef-dk.rb#L102-L152)
-`/opt/chefdk/Gemfile` and `/opt/chefdk/Gemfile.lock` with the gems that
-were installed in the build.
+   `/opt/chefdk/Gemfile` and `/opt/chefdk/Gemfile.lock` with the gems that
+   were installed in the build.
 
 #### Gems and Caching
 
@@ -591,9 +593,12 @@ keep the build slim.
 
 - - -
 
-[Berkshelf]: http://berkshelf.com "Berkshelf" [Chef]:
-https://www.chef.io "Chef" [ChefDK]: https://downloads.chef.io/chef-dk
-"Chef Development Kit" [Chef Documentation]: https://docs.chef.io "Chef
-Documentation" [ChefSpec]: http://chefspec.org "ChefSpec" [Foodcritic]:
-http://foodcritic.io "Foodcritic" [Learn Chef]: https://learn.chef.io
-"Learn Chef" [Test Kitchen]: http://kitchen.ci "Test Kitchen"
+[Berkshelf]: http://berkshelf.com "Berkshelf"
+[Chef]: https://www.chef.io "Chef"
+[ChefDK]: https://downloads.chef.io/chef-dk "Chef Development Kit"
+[Chef Documentation]: https://docs.chef.io "Chef Documentation"
+[ChefSpec]: http://chefspec.org "ChefSpec"
+[Foodcritic]: http://foodcritic.io "Foodcritic"
+[Learn Chef]: https://learn.chef.io "Learn Chef"
+[Test Kitchen]: http://kitchen.ci "Test Kitchen"
+
