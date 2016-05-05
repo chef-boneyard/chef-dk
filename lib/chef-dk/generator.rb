@@ -74,7 +74,7 @@ module ChefDK
         case license
         when 'all_rights'
           result = "Copyright (c) #{year} #{copyright_holder}, All Rights Reserved."
-        when 'apache2'
+        when 'apachev2'
           result = <<-EOH
 Copyright #{year} #{copyright_holder}
 
