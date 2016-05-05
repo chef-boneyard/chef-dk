@@ -106,7 +106,9 @@ describe ChefDK::Command::Base do
       expected = <<-E
 use me please
     -a, --arg ARG                    An option with a required argument
+    -h, --help                       Show this message
     -u, --user                       If the user exists
+    -v, --version                    Show chef version
 
 E
       expect(stdout).to eq(expected)
@@ -124,7 +126,9 @@ E
       expected = <<-E
 use me please
     -a, --arg ARG                    An option with a required argument
+    -h, --help                       Show this message
     -u, --user                       If the user exists
+    -v, --version                    Show chef version
 
 E
       expect(stdout).to eq(expected)
