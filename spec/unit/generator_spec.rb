@@ -71,8 +71,8 @@ describe ChefDK::Generator::TemplateHelper do
       end
     end
 
-    context "apache2" do
-      let(:license) { 'apache2' }
+    context "apachev2" do
+      let(:license) { 'apachev2' }
       it "should match the license" do
         expect(helper.license_description).to match(/Licensed under the Apache/)
       end
@@ -117,4 +117,3 @@ describe ChefDK::Generator::TemplateHelper do
   end
 
 end
-
