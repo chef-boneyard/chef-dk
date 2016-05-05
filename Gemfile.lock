@@ -91,7 +91,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.14.8)
+    chef-dk (0.14.9)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -471,7 +471,7 @@ GEM
       test-kitchen (~> 1.6)
     kitchen-vagrant (0.20.0)
       test-kitchen (~> 1.4)
-    knife-push (1.0.0)
+    knife-push (1.0.1)
       chef (>= 11.10.4)
     knife-spork (1.6.1)
       app_conf (>= 0.4.0)
@@ -506,7 +506,7 @@ GEM
       rspec-core (~> 3.2)
       rspec-expectations (~> 3.2)
       rspec-mocks (~> 3.2)
-    mixlib-cli (1.5.0)
+    mixlib-cli (1.6.0)
     mixlib-config (2.2.1)
     mixlib-install (1.0.11)
       artifactory
