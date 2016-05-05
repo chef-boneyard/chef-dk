@@ -38,7 +38,7 @@ module ChefDK
         :long => "--license LICENSE",
         :description => "all_rights, apachev2, mit, gplv2, gplv3 - defaults to all_rights",
         :proc => Proc.new { |l|
-          l.match(/apache.?2/) ? 'apache2' : l
+          l.match(/apache2/) ? 'apachev2' : l
         },
         :default => nil
 
