@@ -749,6 +749,9 @@ GEM
       logging (>= 1.6.1, < 3.0)
       nori (~> 2.0)
       rubyntlm (~> 0.6.0)
+    winrm-elevated (0.4.0)
+      winrm (~> 1.5)
+      winrm-fs (~> 0.4.2)
     winrm-fs (0.4.2)
       erubis (~> 2.7)
       logging (>= 1.6.1, < 3.0)
@@ -824,6 +827,7 @@ DEPENDENCIES
   win32-service
   windows-api
   windows-pr
+  winrm-elevated
   winrm-fs
   yard
 

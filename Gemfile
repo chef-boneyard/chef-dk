@@ -78,6 +78,7 @@ group(:omnibus_package) do
   gem "rubocop"
   gem "cookstyle"
   gem "winrm-fs"
+  gem "winrm-elevated"
 
   # bundled or development dependencies we want to ship
   gem "dep_selector"
