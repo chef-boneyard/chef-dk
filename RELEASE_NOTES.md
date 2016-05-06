@@ -14,11 +14,10 @@ We're adding some additional tools to the ChefDK to make it easier for cookbook 
   * [Mixlib Versioning](https://github.com/chef/mixlib-versioning)
 
 Because existing users may have a `git` client setup we do not put our
-bundled `git` executable on the path for most operating systems. Windows
-users commonly request that we include `git` so we _are_ adding our
-bundled executable to the path. There is an install-time flag you can
-use to disable this. If you run `chef shell-init` it will add our
-bundled `git` executable to your path.
+bundled `git` executable on the path automatically. However, Windows
+users commonly request that we include `git`. If you wish to use the
+`git` executable bundled with ChefDK, launch ChefDK via the desktop icon
+on Windows or run `chef shell-init` on other platforms.
 
 ## `cookstyle` added to ChefDK
 
