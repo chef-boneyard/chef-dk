@@ -19,4 +19,5 @@ group :development do
   gem "test-kitchen"
   gem "kitchen-vagrant"
   gem "winrm-fs"
+  gem "winrm-elevated"
 end
