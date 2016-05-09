@@ -83,7 +83,7 @@ namespace :dependencies do
   gemfile_lock_task :update_acceptance_gemfile_lock, dirs: %w{acceptance},
     other_platforms: false, leave_frozen: false
 
-  desc "Update current chef release in Gemfile."
+  desc "Update stable chef release in Gemfile."
   task :update_current_chef do |t, rake_args|
     extend BundleUtil
     unless false
@@ -104,19 +104,19 @@ namespace :dependencies do
       }
       version = Mixlib::Install.new(options).artifact_info.first.version
 
-      # Modify the gemfile to pin to current chef
+      # Modify the gemfile to pin to stable chef
       gemfile_path = File.join(project_root, "Gemfile")
       gemfile = IO.read(gemfile_path)
       found = gemfile.sub!(/^(\s*gem "chef", github: "chef\/chef", branch: ")([^"]*)(")$/m) do
         if $2 != "v#{version}"
           puts "Setting chef version in Gemfile to v#{version} (was #{$2})"
         else
-          puts "chef version in Gemfile already at latest current (#{$2})"
+          puts "chef version in Gemfile already at latest stable (#{$2})"
         end
         "#{$1}v#{version}#{$3}"
       end
       unless found
-        raise "Gemfile does not have a line of the form 'gem \"chef\", github: \"chef/chef\", branch: \"v<version>\"', so we didn't update it to latest current (v#{version}). Remove dependencies:update_current_chef from the `dependencies:update` rake task to prevent it from being run if this is intentional."
+        raise "Gemfile does not have a line of the form 'gem \"chef\", github: \"chef/chef\", branch: \"v<version>\"', so we didn't update it to latest stable (v#{version}). Remove dependencies:update_current_chef from the `dependencies:update` rake task to prevent it from being run if this is intentional."
       end
 
       if gemfile != IO.read(gemfile_path)
