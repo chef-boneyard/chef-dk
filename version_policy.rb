@@ -89,16 +89,17 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "unicode-display_width",
   "varia_model",
   "httpclient",
-  # We have a task called update_current_chef which scans and pins to the
-  # latest released chef/chef-config but it pulls from the chef repo
-  # instead of from rubygems. Bundler currently considers any git source
-  # at the same version (or lower) than one available from rubygems as
+  # We have a task called update_stable_channel_gems which scans and pins to the
+  # latest released chef/chef-config/opscode-pushy-client but it pulls from the
+  # chef repo instead of from rubygems. Bundler currently considers any git
+  # source at the same version (or lower) than one available from rubygems as
   # outdated and hence fails the outdated gem test, confusing Julia bot.
-  #
-  # Therefore..  turn checks on both of them off. If and when the rake
-  # task for update_current_chef changes, this exclusion can be revisited.
+  
+  # Therefore..  turn checks on both of them off. If and when the rake task for
+  # update_stable_channel_gems changes, this exclusion can be revisited.
   "chef",
   "chef-config",
+  "opscode-pushy-client",
 ]
 
 #

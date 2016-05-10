@@ -18,13 +18,14 @@
 require_relative "bundle_util"
 require_relative "bundle"
 require_relative "../version_policy"
+require_relative "helpers"
 
 desc "Tasks to update and check dependencies"
 namespace :dependencies do
   # Update all dependencies to the latest constraint-matching version
   desc "Update all dependencies."
   task :update => %w{
-                    dependencies:update_current_chef
+                    dependencies:update_stable_channel_gems
                     dependencies:update_gemfile_lock
                     dependencies:update_omnibus_overrides
                     dependencies:update_omnibus_gemfile_lock
@@ -79,44 +80,25 @@ namespace :dependencies do
     end
   end
 
+  include RakeDependenciesTaskHelpers
+
   gemfile_lock_task :update_omnibus_gemfile_lock, dirs: %w{omnibus}
   gemfile_lock_task :update_acceptance_gemfile_lock, dirs: %w{acceptance},
     other_platforms: false, leave_frozen: false
 
-  desc "Update stable chef release in Gemfile."
-  task :update_current_chef do |t, rake_args|
+  desc "Update gems to the versions specified by the stable channel."
+  task :update_stable_channel_gems do |t, rake_args|
     extend BundleUtil
     puts ""
     puts "-------------------------------------------------------------------"
     puts "Updating Gemfile ..."
     puts "-------------------------------------------------------------------"
 
-    require "mixlib/install"
-    # TODO in some edge cases, stable will actually be the latest chef because
-    # promotion *moves* the package out of current into stable rather than
-    # copying
-    puts "Getting latest chef 'stable' version from omnitruck ..."
-    options = {
-      channel: :stable,
-      product_name: 'chef',
-      product_version: :latest
-    }
-    version = Mixlib::Install.new(options).artifact_info.first.version
-
     # Modify the gemfile to pin to stable chef
     gemfile_path = File.join(project_root, "Gemfile")
     gemfile = IO.read(gemfile_path)
-    found = gemfile.sub!(/^(\s*gem "chef", github: "chef\/chef", branch: ")([^"]*)(")$/m) do
-      if $2 != "v#{version}"
-        puts "Setting chef version in Gemfile to v#{version} (was #{$2})"
-      else
-        puts "chef version in Gemfile already at latest stable (#{$2})"
-      end
-      "#{$1}v#{version}#{$3}"
-    end
-    unless found
-      raise "Gemfile does not have a line of the form 'gem \"chef\", github: \"chef/chef\", branch: \"v<version>\"', so we didn't update it to latest stable (v#{version}). Remove dependencies:update_current_chef from the `dependencies:update` rake task to prevent it from being run if this is intentional."
-    end
+    update_gemfile_from_stable(gemfile, "chef", "chef", "v")
+    update_gemfile_from_stable(gemfile, "push-jobs-client", "opscode-pushy-client")
 
     if gemfile != IO.read(gemfile_path)
       puts "Writing modified #{gemfile_path} ..."
