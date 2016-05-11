@@ -2,6 +2,20 @@ name "chef-dk-complete"
 
 license :project_license
 
+unless windows?
+  # For the Delivery build nodes
+  dependency "delivery-cli"
+  # This is a build-time dependency, so we won't leave it behind:
+  dependency "rust-uninstall"
+end
+
+# Leave for last so system git is used for most of the build.
+if windows?
+  dependency "git-windows"
+else
+  dependency "git"
+end
+
 dependency "chef-dk"
 dependency "chef-dk-appbundle"
 
@@ -20,19 +34,5 @@ dependency "rubygems-customization"
 dependency "shebang-cleanup"
 dependency "version-manifest"
 dependency "openssl-customization"
-
-unless windows?
-  # For the Delivery build nodes
-  dependency "delivery-cli"
-  # This is a build-time dependency, so we won't leave it behind:
-  dependency "rust-uninstall"
-end
-
-# Leave for last so system git is used for most of the build.
-if windows?
-  dependency "git-windows"
-else
-  dependency "git"
-end
 
 dependency "clean-static-libs"
