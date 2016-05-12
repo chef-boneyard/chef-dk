@@ -32,11 +32,11 @@ if [ "x$ACCEPTANCE" != "x" ]; then
 
   cd /opt/chefdk/embedded/lib/ruby/gems/*/gems/chef-[0-9]*/acceptance
   sudo env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID bundle install
-  sudo env KITCHEN_CHEF_PRODUCT=chefdk KITCHEN_CHEF_WIN_ARCHITECTURE=i386 PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID KITCHEN_DRIVER=ec2 bundle exec chef-acceptance test top-cookbooks --force-destroy
+  sudo env KITCHEN_CHEF_PRODUCT=chefdk KITCHEN_CHEF_WIN_ARCHITECTURE=i386 PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID KITCHEN_DRIVER=ec2 bundle exec chef-acceptance test top-cookbooks --force-destroy --data-path $WORKSPACE/chef-acceptance-data/chef
 
   cd /opt/$PROJECT_NAME/embedded/lib/ruby/gems/*/gems/chef-dk-[0-9]*/acceptance
   sudo env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID bundle install
-  sudo env KITCHEN_CHEF_PRODUCT=chefdk KITCHEN_CHEF_WIN_ARCHITECTURE=i386 PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID KITCHEN_DRIVER=ec2 bundle exec chef-acceptance test --force-destroy
+  sudo env KITCHEN_CHEF_PRODUCT=chefdk KITCHEN_CHEF_WIN_ARCHITECTURE=i386 PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID KITCHEN_DRIVER=ec2 bundle exec chef-acceptance test --force-destroy --data-path $WORKSPACE/chef-acceptance-data/chefdk
 else
   export PATH=/opt/chefdk/bin:$PATH
 
