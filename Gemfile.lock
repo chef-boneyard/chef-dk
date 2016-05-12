@@ -91,7 +91,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.14.17)
+    chef-dk (0.14.18)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -121,12 +121,12 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (2.3.3)
-      aws-sdk-resources (= 2.3.3)
-    aws-sdk-core (2.3.3)
+    aws-sdk (2.3.4)
+      aws-sdk-resources (= 2.3.4)
+    aws-sdk-core (2.3.4)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.3.3)
-      aws-sdk-core (= 2.3.3)
+    aws-sdk-resources (2.3.4)
+      aws-sdk-core (= 2.3.4)
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
