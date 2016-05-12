@@ -176,7 +176,7 @@ Announcements of releases are available on [Chef Blog](https://www.chef.io/blog/
 Chef is made possible by a strong community of developers and system administrators. If you have
   any questions or if you would like to get involved in the Chef community you can check out:
 
-* [chef](http://lists.opscode.com/sympa/info/chef) and [chef-dev](http://lists.opscode.com/sympa/info/chef-dev) mailing lists
+* [chef](https://discourse.chef.io/) and [chef-dev](https://discourse.chef.io/c/dev) mailing lists and mailing list [FAQ](https://discourse.chef.io/t/welcome-to-the-chef-mailing-list/7070)
 * [\#chef](https://botbot.me/freenode/chef) and [\#chef-hacking](https://botbot.me/freenode/chef-hacking) IRC channels on irc.freenode.net
 
 Also here are some additional pointers to some awesome Chef content:
