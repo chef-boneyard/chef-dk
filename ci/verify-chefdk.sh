@@ -30,13 +30,21 @@ if [ "x$ACCEPTANCE" != "x" ]; then
 
   set -e
 
-  cd /opt/chefdk/embedded/lib/ruby/gems/*/gems/chef-[0-9]*/acceptance
-  sudo env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID bundle install
-  sudo env KITCHEN_CHEF_PRODUCT=chefdk KITCHEN_CHEF_WIN_ARCHITECTURE=i386 PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID KITCHEN_DRIVER=ec2 KITCHEN_CHEF_CHANNEL=unstable bundle exec chef-acceptance test top-cookbooks --force-destroy --data-path $WORKSPACE/chef-acceptance-data/chef
+  for GEM_NAME in chef chef-dk
+  do
 
-  cd /opt/$PROJECT_NAME/embedded/lib/ruby/gems/*/gems/chef-dk-[0-9]*/acceptance
-  sudo env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID bundle install
-  sudo env KITCHEN_CHEF_PRODUCT=chefdk KITCHEN_CHEF_WIN_ARCHITECTURE=i386 PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID KITCHEN_DRIVER=ec2 KITCHEN_CHEF_CHANNEL=unstable bundle exec chef-acceptance test --force-destroy --data-path $WORKSPACE/chef-acceptance-data/chefdk
+    case "$GEM_NAME" in
+     chef) SUITE_NAMES="top-cookbooks" ;;
+        *) SUITE_NAMES="" ;;
+    esac
+
+    # Force `$WORKSPACE/.bundle/config` to be created so bundler doesn't
+    # attempt to create the file up in the `$CHEF_GEM/acceptance/`. This
+    # saves us from having to add a `sudo` to any of the `bundle` commands.
+    env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID bundle config --local gemfile /opt/chefdk/embedded/lib/ruby/gems/*/gems/$GEM_NAME-[0-9]*/acceptance/Gemfile
+    env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID bundle install --deployment
+    env KITCHEN_CHEF_PRODUCT=chefdk KITCHEN_CHEF_WIN_ARCHITECTURE=i386 PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID KITCHEN_DRIVER=ec2 KITCHEN_CHEF_CHANNEL=unstable bundle exec chef-acceptance test $SUITE_NAMES --force-destroy --data-path $WORKSPACE/chef-acceptance-data/$GEM_NAME
+  done
 else
   export PATH=/opt/chefdk/bin:$PATH
 
