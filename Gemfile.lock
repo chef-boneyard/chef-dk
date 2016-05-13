@@ -92,7 +92,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.14.21)
+    chef-dk (0.14.22)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -438,7 +438,7 @@ GEM
     i18n (0.7.0)
     inflecto (0.0.2)
     inifile (3.0.0)
-    inspec (0.21.4)
+    inspec (0.21.6)
       hashie (~> 3.4)
       json (~> 1.8)
       method_source (~> 0.8)
@@ -647,7 +647,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-prof (0.15.9)
-    ruby-progressbar (1.8.0)
+    ruby-progressbar (1.8.1)
     ruby-shadow (2.5.0)
     ruby_dep (1.3.1)
     rubyntlm (0.6.0)
