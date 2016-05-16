@@ -89,4 +89,23 @@ describe ChefDK::Helpers do
     end
 
   end
+
+  describe "omnibus_env" do
+    let(:git_partial_path) { File.join("embedded", "git", "usr", "bin") }
+    before do
+      allow(helpers).to receive(:omnibus_expand_path) {|*paths| File.expand_path(File.join(paths)) }
+      allow(Dir).to receive(:exists?).with(/#{git_partial_path}/).and_return false
+    end
+
+    it "does not include the git tools in the path" do
+      expect(helpers.omnibus_env['PATH']).to_not match(/#{git_partial_path}/)
+    end
+
+    context "when the git tools directory exists" do
+      it "includes them in the path" do
+        expect(Dir).to receive(:exists?).with(/#{git_partial_path}/).and_return true
+        expect(helpers.omnibus_env['PATH']).to match(/#{git_partial_path}/)
+      end
+    end
+  end
 end

@@ -98,6 +98,30 @@ module ChefDK
       File.join(usr_bin_prefix, command)
     end
 
+    # In our Windows ChefDK omnibus package we include Git For Windows, which
+    # has a bunch of helpful unix utilties (like ssh, scp, etc.) bundled with it
+    def git_windows_bin_dir
+      @git_windows_bin_dir ||= File.expand_path(File.join(omnibus_root, "embedded", "git", "usr", "bin"))
+    end
+
+    #
+    # environment vars for omnibus
+    #
+    def omnibus_env
+      @omnibus_env ||=
+        begin
+          user_bin_dir = File.expand_path(File.join(Gem.user_dir, 'bin'))
+          path = [ omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH'] ]
+          path << git_windows_bin_dir if Dir.exists?(git_windows_bin_dir)
+          {
+            'PATH' => path.join(File::PATH_SEPARATOR),
+            'GEM_ROOT' => Gem.default_dir,
+            'GEM_HOME' => Gem.user_dir,
+            'GEM_PATH' => Gem.path.join(File::PATH_SEPARATOR),
+          }
+        end
+    end
+
     private
 
     def omnibus_expand_path(*paths)
@@ -116,23 +140,6 @@ module ChefDK
       else
         File.expand_path('~/.chefdk')
       end
-    end
-
-    #
-    # environment vars for omnibus
-    #
-
-    def omnibus_env
-      @omnibus_env ||=
-        begin
-          user_bin_dir = File.expand_path(File.join(Gem.user_dir, 'bin'))
-          {
-            'PATH' => [ omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH'] ].join(File::PATH_SEPARATOR),
-            'GEM_ROOT' => Gem.default_dir,
-            'GEM_HOME' => Gem.user_dir,
-            'GEM_PATH' => Gem.path.join(File::PATH_SEPARATOR),
-          }
-        end
     end
 
     # Open a file. By default, the mode is for read+write,
