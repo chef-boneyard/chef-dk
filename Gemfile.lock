@@ -92,7 +92,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.14.22)
+    chef-dk (0.14.23)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -163,7 +163,7 @@ GEM
     buff-shell_out (0.2.0)
       buff-ruby_engine (~> 0.1.0)
     builder (3.2.2)
-    byebug (8.2.5)
+    byebug (9.0.3)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     celluloid-io (0.16.2)
@@ -205,7 +205,7 @@ GEM
     cheffish (2.0.4)
       chef-zero (~> 4.3)
       compat_resource
-    chefspec (4.6.1)
+    chefspec (4.7.0)
       chef (>= 11.14)
       fauxhai (~> 3.2)
       rspec (~> 3.0)
@@ -366,7 +366,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (0.6.4)
+    fog-vsphere (0.7.0)
       fog-core
       rbvmomi (~> 1.8)
     fog-xenserver (0.2.3)
@@ -438,12 +438,12 @@ GEM
     i18n (0.7.0)
     inflecto (0.0.2)
     inifile (3.0.0)
-    inspec (0.21.6)
+    inspec (0.22.0)
       hashie (~> 3.4)
       json (~> 1.8)
       method_source (~> 0.8)
       pry (~> 0)
-      r-train (~> 0.11)
+      r-train (~> 0.12)
       rainbow (~> 2)
       rspec (~> 3)
       rspec-its (~> 1.2)
@@ -570,8 +570,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-byebug (3.3.0)
-      byebug (~> 8.0)
+    pry-byebug (3.4.0)
+      byebug (~> 9.0)
       pry (~> 0.10)
     pry-remote (0.1.8)
       pry (~> 0.9)
@@ -579,7 +579,7 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    r-train (0.11.4)
+    r-train (0.12.0)
       docker-api (~> 1.26.2)
       json (~> 1.8)
       mixlib-shellout (~> 2.0)
@@ -658,7 +658,7 @@ GEM
       addressable (>= 2.3.5, < 2.5)
       faraday (~> 0.8, < 0.10)
     semverse (1.2.1)
-    serverspec (2.34.0)
+    serverspec (2.35.0)
       multi_json
       rspec (~> 3.0)
       rspec-its
