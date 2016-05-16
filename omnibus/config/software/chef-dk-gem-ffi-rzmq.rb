@@ -4,3 +4,6 @@
 # another gem's installation.
 require_relative "../../files/chef-dk-gem/build-chef-dk-gem/gem-install-software-def"
 BuildChefDKGem::GemInstallSoftwareDef.define(self, __FILE__)
+
+license "MIT"
+license_file "https://github.com/chuckremes/ffi-rzmq/blob/master/README.rdoc"
