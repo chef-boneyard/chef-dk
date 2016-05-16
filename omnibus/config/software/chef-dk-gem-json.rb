@@ -4,3 +4,7 @@
 # another gem's installation.
 require_relative "../../files/chef-dk-gem/build-chef-dk-gem/gem-install-software-def"
 BuildChefDKGem::GemInstallSoftwareDef.define(self, __FILE__)
+
+license "Ruby"
+license_file "https://github.com/flori/json/blob/master/README.md"
+license_file "https://www.ruby-lang.org/en/about/license.txt"

@@ -4,3 +4,8 @@
 # another gem's installation.
 require_relative "../../files/chef-dk-gem/build-chef-dk-gem/gem-install-software-def"
 BuildChefDKGem::GemInstallSoftwareDef.define(self, __FILE__)
+
+license "Apache-2.0"
+license_file "https://github.com/chef/dep-selector-libgecode/blob/master/CONTRIBUTING.md"
+license_file "https://github.com/chef/dep-selector-libgecode/blob/master/LICENSE.txt"
+license_file "https://github.com/chef/dep-selector-libgecode/blob/master/ext/libgecode3/vendor/gecode-3.7.3/LICENSE"

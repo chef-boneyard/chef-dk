@@ -4,3 +4,6 @@
 # another gem's installation.
 require_relative "../../files/chef-dk-gem/build-chef-dk-gem/gem-install-software-def"
 BuildChefDKGem::GemInstallSoftwareDef.define(self, __FILE__)
+
+license "Apache-2.0"
+license_file "https://github.com/chef/dep-selector/blob/master/LICENSE"

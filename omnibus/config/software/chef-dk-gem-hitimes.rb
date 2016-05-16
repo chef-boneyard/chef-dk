@@ -4,3 +4,6 @@
 # another gem's installation.
 require_relative "../../files/chef-dk-gem/build-chef-dk-gem/gem-install-software-def"
 BuildChefDKGem::GemInstallSoftwareDef.define(self, __FILE__)
+
+license "ISC"
+license_file "https://github.com/copiousfreetime/hitimes/blob/master/LICENSE"
