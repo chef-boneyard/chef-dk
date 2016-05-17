@@ -280,6 +280,7 @@ provisioner:
 # default verifier)
 # verifier:
 #   name: inspec
+#   format: doc
 
 platforms:
   - name: ubuntu-14.04
@@ -350,6 +351,7 @@ provisioner:
 # default verifier)
 # verifier:
 #   name: inspec
+#   format: doc
 
 platforms:
   - name: ubuntu-14.04
