@@ -26,25 +26,27 @@ done
 # ACCEPTANCE environment variable will be set on acceptance testers.
 # If is it set; we run the acceptance tests, otherwise run rspec tests.
 if [ "x$ACCEPTANCE" != "x" ]; then
-  export PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:$PATH
+  # export PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:$PATH
 
-  set -e
+  # set -e
 
-  for GEM_NAME in chef chef-dk
-  do
+  # for GEM_NAME in chef chef-dk
+  # do
 
-    case "$GEM_NAME" in
-     chef) SUITE_NAMES="top-cookbooks" ;;
-        *) SUITE_NAMES="" ;;
-    esac
+  #   case "$GEM_NAME" in
+  #    chef) SUITE_NAMES="top-cookbooks" ;;
+  #       *) SUITE_NAMES="" ;;
+  #   esac
 
-    # Force `$WORKSPACE/.bundle/config` to be created so bundler doesn't
-    # attempt to create the file up in the `$CHEF_GEM/acceptance/`. This
-    # saves us from having to add a `sudo` to any of the `bundle` commands.
-    env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID bundle config --local gemfile /opt/chefdk/embedded/lib/ruby/gems/*/gems/$GEM_NAME-[0-9]*/acceptance/Gemfile
-    env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID bundle install --deployment
-    env KITCHEN_CHEF_PRODUCT=chefdk KITCHEN_CHEF_WIN_ARCHITECTURE=i386 PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID KITCHEN_DRIVER=ec2 KITCHEN_CHEF_CHANNEL=unstable bundle exec chef-acceptance test $SUITE_NAMES --force-destroy --data-path $WORKSPACE/chef-acceptance-data/$GEM_NAME
-  done
+  #   # Force `$WORKSPACE/.bundle/config` to be created so bundler doesn't
+  #   # attempt to create the file up in the `$CHEF_GEM/acceptance/`. This
+  #   # saves us from having to add a `sudo` to any of the `bundle` commands.
+  #   env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID bundle config --local gemfile /opt/chefdk/embedded/lib/ruby/gems/*/gems/$GEM_NAME-[0-9]*/acceptance/Gemfile
+  #   env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID bundle install --deployment
+  #   env KITCHEN_CHEF_PRODUCT=chefdk KITCHEN_CHEF_WIN_ARCHITECTURE=i386 PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID KITCHEN_DRIVER=ec2 KITCHEN_CHEF_CHANNEL=unstable bundle exec chef-acceptance test $SUITE_NAMES --force-destroy --data-path $WORKSPACE/chef-acceptance-data/$GEM_NAME
+  # done
+
+  exit 0
 else
   export PATH=/opt/chefdk/bin:$PATH
 
