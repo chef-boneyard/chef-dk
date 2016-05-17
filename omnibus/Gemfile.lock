@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 7e566482a86aca8b94e77285242b6a526fe77ffe
+  revision: 91797cdae99ca91cb87af877ceb4953610d45152
   specs:
     omnibus-software (4.0.0)
       omnibus (>= 5.2.0)
@@ -79,7 +79,7 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (12.9.41)
+    chef-config (12.10.24)
       fuzzyurl (~> 0.8.0)
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
@@ -158,7 +158,7 @@ GEM
     plist (3.2.0)
     progressbar (0.21.0)
     retryable (2.0.3)
-    ridley (4.5.0)
+    ridley (4.5.1)
       addressable
       buff-config (~> 1.0)
       buff-extensions (~> 1.0)
@@ -246,4 +246,4 @@ DEPENDENCIES
   winrm-fs
 
 BUNDLED WITH
-   1.12.3
+   1.11.2
