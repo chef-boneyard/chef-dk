@@ -33,15 +33,19 @@ if [ "x$ACCEPTANCE" != "x" ]; then
   for GEM_NAME in chef chef-dk
   do
 
+    # copy acceptance suites into workspace
+    SUITE_PATH=$WORKSPACE/acceptance-$GEM_NAME
+    mkdir -p $SUITE_PATH
+    cp -R /opt/chefdk/embedded/lib/ruby/gems/*/gems/$GEM_NAME-[0-9]*/acceptance/. $SUITE_PATH
+    sudo chown -R $USER:$USER $SUITE_PATH
+
+    cd $SUITE_PATH
+
     case "$GEM_NAME" in
      chef) SUITE_NAMES="top-cookbooks" ;;
         *) SUITE_NAMES="" ;;
     esac
 
-    # Force `$WORKSPACE/.bundle/config` to be created so bundler doesn't
-    # attempt to create the file up in the `$CHEF_GEM/acceptance/`. This
-    # saves us from having to add a `sudo` to any of the `bundle` commands.
-    env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID bundle config --local gemfile /opt/chefdk/embedded/lib/ruby/gems/*/gems/$GEM_NAME-[0-9]*/acceptance/Gemfile
     env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID bundle install --deployment
     env KITCHEN_CHEF_PRODUCT=chefdk KITCHEN_CHEF_WIN_ARCHITECTURE=i386 PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID KITCHEN_DRIVER=ec2 KITCHEN_CHEF_CHANNEL=unstable bundle exec chef-acceptance test $SUITE_NAMES --force-destroy --data-path $WORKSPACE/chef-acceptance-data/$GEM_NAME
   done
