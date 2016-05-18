@@ -1,5 +1,24 @@
 # Change Log
 
+## [v0.14](https://github.com/chef/chef-dk/tree/v0.14.25) (2016-05-17) 
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.14.24...v0.14.25)
+
+**Fixed bugs:**
+
+- Test Kitchen does not apply my Policyfile-style cookbook on Windows Server [\#632](https://github.com/chef/chef-dk/issues/632)
+- Attributes ignored in kitchen.yml with policyfile\_zero provisioner [\#460](https://github.com/chef/chef-dk/issues/460)
+- Chef\_generator renames apache2 to apachev2 [\#822](https://github.com/chef/chef-dk/pull/822) ([charlesjohnson](https://github.com/charlesjohnson))
+- Rubocop not present at /opt/chefdk/bin/rubocop in 0.13.5 [\#789](https://github.com/chef/chef-dk/issues/789)
+
+**Implemented enhancements:**
+
+- bumping test-kitchen and adding winrm-elevated [\#827](https://github.com/chef/chef-dk/pull/827) ([mwrock](https://github.com/mwrock))
+- Include git on windows.  [\#814](https://github.com/chef/chef-dk/pull/814) ([tylercloke](https://github.com/tylercloke))
+- Add cookstyle to ChefDK's omnibus package [\#808](https://github.com/chef/chef-dk/pull/808) ([danielsdeleo](https://github.com/danielsdeleo))
+- Adding Delivery build node tools into the ChefDK [\#800](https://github.com/chef/chef-dk/pull/800) ([tyler-ball](https://github.com/tyler-ball))
+- add delivery-cli to chefdk [\#798](https://github.com/chef/chef-dk/pull/798) ([marcparadise](https://github.com/marcparadise))
+
+
 ## [v0.13](https://github.com/chef/chef-dk/tree/v0.13.21) (2016-04-15)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.12.0...v0.13.21)
 
