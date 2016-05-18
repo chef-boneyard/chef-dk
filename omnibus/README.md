@@ -108,7 +108,7 @@ Please note the mounted code directory is also at `C:\home\vagrant\chef-dk\omnib
 as opposed to `C:\Users\vagrant\chef-dk\omnibus`.
 
 ```shell
-$ bundle exec kitchen login chefdk-windows-81-professional
+$ bundle exec kitchen login chefdk-windows-2012r2-standard-i386
 Last login: Sat Sep 13 10:19:04 2014 from 172.16.27.1
 Microsoft Windows [Version 6.3.9600]
 (c) 2013 Microsoft Corporation. All rights reserved.
