@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -evx
+
 # Set up a custom tmpdir, and clean it up before and after the tests
 TMPDIR="${TMPDIR:-/tmp}/cheftest"
 export TMPDIR
@@ -27,8 +29,6 @@ done
 # If is it set; we run the acceptance tests, otherwise run rspec tests.
 if [ "x$ACCEPTANCE" != "x" ]; then
   export PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:$PATH
-
-  set -e
 
   for GEM_NAME in chef chef-dk
   do
