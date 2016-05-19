@@ -80,11 +80,11 @@ GIT
 
 GIT
   remote: git://github.com/chef/opscode-pushy-client.git
-  revision: 8265cc209370ec23d4072d4d8038d8c1f43546da
-  branch: 1.3.4
+  revision: 90822656ffd5e1ae5c700f75a06ad9fcf82f2076
+  branch: 2.1.0
   specs:
-    opscode-pushy-client (1.3.4)
-      chef (>= 12.0)
+    opscode-pushy-client (2.0.2)
+      chef (>= 12.5)
       ffi-rzmq
       ohai
       uuidtools

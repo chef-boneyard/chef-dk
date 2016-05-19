@@ -63,7 +63,7 @@ group(:omnibus_package) do
   gem "mixlib-versioning"
   gem "artifactory"
   # The opscode-pushy-client version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "opscode-pushy-client", github: "chef/opscode-pushy-client", branch: "1.3.4"
+  gem "opscode-pushy-client", github: "chef/opscode-pushy-client", branch: "2.1.0"
   gem "ffi-rzmq-core"
   gem "knife-push"
 
