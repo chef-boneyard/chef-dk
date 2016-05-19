@@ -20,7 +20,10 @@ require 'chef-dk/command/shell_init'
 
 describe ChefDK::Command::ShellInit do
 
-  let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(File::PATH_SEPARATOR) }
+  let(:expected_path) do
+    paths = [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir] + ENV['PATH'].split(File::PATH_SEPARATOR)
+    paths.uniq.join(File::PATH_SEPARATOR)
+  end
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
 
@@ -231,10 +234,10 @@ compdef _chef chef
   end
 
   context 'for fish' do
-    before do
-      stub_const('File::PATH_SEPARATOR', ':')
+    let(:expected_path) do
+      paths = [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir] + ENV['PATH'].split(File::PATH_SEPARATOR)
+      paths.uniq.join('" "')
     end
-    let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(':').split(':').join('" "') }
     let(:expected_environment_commands) do
       <<-EOH
 set -gx PATH "#{expected_path}" 2>/dev/null;
