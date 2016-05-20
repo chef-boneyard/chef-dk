@@ -32,11 +32,11 @@ Usage: chef export [ POLICY_FILE ] DESTINATION_DIRECTORY [options]
 
 `chef export` creates a Chef Zero compatible Chef repository containing the
 cookbooks described in a Policyfile.lock.json. The exported repository also
-contains a client.rb which configures chef to apply your policy. Once the
+contains a .chef/config.rb which configures chef to apply your policy. Once the
 exported repo is copied to the target machine, you can apply the policy to the
 machine with:
 
-`chef-client -c client.rb -z`.
+`chef-client -z`.
 
 See our detailed README for more information:
 
