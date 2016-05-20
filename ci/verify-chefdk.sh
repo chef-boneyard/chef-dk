@@ -2,6 +2,9 @@
 
 set -evx
 
+# Cleanning up some cruft from previous tests
+sudo find /tmp -name 'chef-dk*' | sudo xargs rm -rf
+
 # Set up a custom tmpdir, and clean it up before and after the tests
 TMPDIR="${TMPDIR:-/tmp}/cheftest"
 export TMPDIR
