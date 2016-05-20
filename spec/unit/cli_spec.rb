@@ -67,6 +67,16 @@ E
     cli.run
   end
 
+  def run_cli_and_validate_tool_versions
+    full_version_message = version_message
+    tools.each do |name, version|
+      expect(cli).to receive(:shell_out).with("#{name} --version").and_return(mock_shell_out(0, "#{version["version_output"]}", ''))
+      full_version_message += "#{name} version: #{version["expected_version"]}\n"
+    end
+    run_cli(0)
+    expect(stdout).to eq(full_version_message)
+  end
+
   def mock_shell_out(exitstatus, stdout, stderr)
     shell_out = double("mixlib_shell_out")
     allow(shell_out).to receive(:exitstatus).and_return(exitstatus)
@@ -113,12 +123,17 @@ E
 
   context "given -v" do
     let(:argv) { %w[-v] }
+    let(:delivery_version) { "master (454c3f37819ed508a49c971f38e42267ce8a47de)" }
 
     let(:tools) {
       {
         "chef-client" => {
           "version_output" => "Chef: 12.0.3",
           "expected_version" => "12.0.3"
+        },
+        "delivery" => {
+          "version_output" => "delivery #{delivery_version}",
+          "expected_version" => delivery_version
         },
         "berks" => {
           "version_output" => "3.2.3",
@@ -147,13 +162,15 @@ E
     end
 
     it "prints the version and versions of chef-dk tools" do
-      full_version_message = version_message
-      tools.each do |name, version|
-        expect(cli).to receive(:shell_out).with("#{name} --version").and_return(mock_shell_out(0, "#{version["version_output"]}", ''))
-        full_version_message += "#{name} version: #{version["expected_version"]}\n"
+      run_cli_and_validate_tool_versions
+    end
+
+    context "alternate Delivery CLI version format" do
+      let(:delivery_version) { "0.0.15 (454c3f37819ed508a49c971f38e42267ce8a47de)" }
+
+      it "prints the expected version of Delivery CLI" do
+        run_cli_and_validate_tool_versions
       end
-      run_cli(0)
-      expect(stdout).to eq(full_version_message)
     end
   end
 
