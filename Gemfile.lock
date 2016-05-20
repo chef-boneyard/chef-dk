@@ -92,7 +92,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.15.1)
+    chef-dk (0.15.2)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -212,7 +212,7 @@ GEM
     cleanroom (1.0.0)
     coderay (1.1.1)
     colorize (0.7.7)
-    compat_resource (12.9.1)
+    compat_resource (12.10.1)
     cookbook-omnifetch (0.2.2)
       minitar (~> 0.5.4)
     cookstyle (0.0.1)
@@ -418,9 +418,9 @@ GEM
       signet (~> 0.7)
     gssapi (1.2.0)
       ffi (>= 1.0.1)
-    guard (2.13.0)
+    guard (2.14.0)
       formatador (>= 0.2.4)
-      listen (>= 2.7, <= 4.0)
+      listen (>= 2.7, < 4.0)
       lumberjack (~> 1.0)
       nenv (~> 0.1)
       notiffany (~> 0.0)
@@ -657,7 +657,7 @@ GEM
       addressable (>= 2.3.5, < 2.5)
       faraday (~> 0.8, < 0.10)
     semverse (1.2.1)
-    serverspec (2.35.0)
+    serverspec (2.36.0)
       multi_json
       rspec (~> 3.0)
       rspec-its
@@ -673,7 +673,7 @@ GEM
     solve (2.0.3)
       molinillo (~> 0.4.2)
       semverse (~> 1.1)
-    specinfra (2.57.2)
+    specinfra (2.57.3)
       net-scp
       net-ssh (>= 2.7, < 4.0)
       net-telnet
