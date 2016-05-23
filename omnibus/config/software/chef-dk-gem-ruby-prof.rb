@@ -5,5 +5,5 @@
 require_relative "../../files/chef-dk-gem/build-chef-dk-gem/gem-install-software-def"
 BuildChefDKGem::GemInstallSoftwareDef.define(self, __FILE__)
 
-license "BSD-2-CLAUSE"
+license "BSD-2-Clause"
 license_file "https://github.com/ruby-prof/ruby-prof/blob/master/LICENSE"
