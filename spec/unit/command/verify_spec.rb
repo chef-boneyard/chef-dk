@@ -56,6 +56,7 @@ describe ChefDK::Command::Verify do
       "knife-supermarket",
       "opscode-pushy-client",
       "git",
+      "delivery-cli",
     ]
   end
 
@@ -65,9 +66,6 @@ describe ChefDK::Command::Verify do
 
   it "defines berks, tk, chef and chef-dk components by default" do
     expected_components = default_components
-    unless Chef::Platform.windows?
-      expected_components << "delivery-cli"
-    end
     expect(command_instance.components).not_to be_empty
     expect(command_instance.components.map(&:name)).to match_array(expected_components)
   end

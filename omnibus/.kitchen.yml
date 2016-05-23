@@ -21,6 +21,11 @@ provisioner:
   attributes:
     vagrant:
       this_key_exists_so_we_have_a_vagrant_key: true
+    omnibus:
+      build_user:          vagrant
+      build_user_group:    vagrant
+      build_user_password: vagrant
+      install_dir: /opt/chefdk
 
 platforms:
   - name: centos-6.7
@@ -63,6 +68,13 @@ platforms:
   # By adding an `i386` to the name the Omnibus cookbook's `load-omnibus-toolchain.bat`
   # will load the 32-bit version of the MinGW toolchain.
   - name: windows-2012r2-standard-i386
+    provisioner:
+      attributes:
+        omnibus:
+          build_user:          vagrant
+          build_user_group:    Administrators
+          build_user_password: vagrant
+          install_dir: /opscode/chefdk
     driver:
       box: chef/windows-server-2012r2-standard # private
       synced_folders:
@@ -72,16 +84,7 @@ platforms:
       # at `C:\vagrant\code\chef-dk`
       - ['../..', '/vagrant/code']
 
-attribute_defaults: &attribute_defaults
-  build_user:          vagrant
-  build_user_group:    vagrant
-  build_user_password: vagrant
-
 suites:
   - name: chefdk
-    attributes:
-      omnibus:
-        <<: *attribute_defaults
-        install_dir: /opt/chefdk
     run_list:
       - omnibus::default
