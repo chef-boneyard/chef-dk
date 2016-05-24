@@ -43,6 +43,7 @@ module BundleUtil
     cwd = File.expand_path(cwd || ".", project_root)
     Bundler.with_clean_env do
       Dir.chdir(cwd) do
+        default_platforms = platforms.join(" ") + " ruby"
         gemfile ||= "Gemfile"
         gemfile = File.expand_path(gemfile, cwd)
         raise "No platform #{platform} (supported: #{PLATFORMS.keys.join(", ")})" if platform && !PLATFORMS[platform]
@@ -52,11 +53,13 @@ module BundleUtil
           if File.exist?("#{gemfile}.lock")
             puts "Deleting #{gemfile}.lock ..."
             File.delete("#{gemfile}.lock")
+            default_platforms = "ruby"
           end
         end
 
         # Run the bundle command
-        ruby_platforms = platform ? PLATFORMS[platform].join(" ") : "ruby"
+        default_platforms = File.exist?("#{gemfile}.lock") ? Gem.platforms.join(" ") : "ruby"
+        ruby_platforms = platform ? PLATFORMS[platform].join(" ") : default_platforms
         cmd = Shellwords.join([Gem.ruby, "-S", bundle_platform, ruby_platforms, *args])
         puts "#{prefix}#{Shellwords.join(["bundle", *args])}#{platform ? " for #{platform} platform" : ""}:"
         with_gemfile(gemfile) do
