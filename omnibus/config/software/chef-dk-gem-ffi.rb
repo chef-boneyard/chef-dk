@@ -5,7 +5,7 @@
 require_relative "../../files/chef-dk-gem/build-chef-dk-gem/gem-install-software-def"
 BuildChefDKGem::GemInstallSoftwareDef.define(self, __FILE__)
 
-license "BSD-3-CLAUSE"
+license "BSD-3-Clause"
 license_file "https://github.com/ffi/ffi/blob/master/LICENSE"
 license_file "https://github.com/ffi/ffi/blob/master/COPYING"
 license_file "https://github.com/ffi/ffi/blob/master/LICENSE.SPECS"

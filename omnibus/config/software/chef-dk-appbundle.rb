@@ -1,4 +1,7 @@
 name "chef-dk-appbundle"
+
+license :project_license
+
 default_version "local_source"
 source path: project.files_path
 
