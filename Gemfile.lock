@@ -73,10 +73,6 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.10.24)
-      fuzzyurl (~> 0.8.0)
-      mixlib-config (~> 2.0)
-      mixlib-shellout (~> 2.0)
 
 GIT
   remote: git://github.com/chef/opscode-pushy-client.git
@@ -169,6 +165,10 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
+    chef-config (12.10.24)
+      fuzzyurl (~> 0.8.0)
+      mixlib-config (~> 2.0)
+      mixlib-shellout (~> 2.0)
     chef-provisioning (1.7.1)
       cheffish (>= 1.3.1, < 3.0)
       inifile (>= 2.0.2)
@@ -211,8 +211,7 @@ GEM
       rspec (~> 3.0)
     cleanroom (1.0.0)
     coderay (1.1.1)
-    colorize (0.7.7)
-    compat_resource (12.10.2)
+    compat_resource (12.10.4)
     cookbook-omnifetch (0.2.2)
       minitar (~> 0.5.4)
     cookstyle (0.0.1)
@@ -224,11 +223,9 @@ GEM
     dep_selector (1.0.3)
       dep-selector-libgecode (~> 1.0)
       ffi (~> 1.9)
-    descendants_tracker (0.0.4)
-      thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
     diffy (3.1.0)
-    docker-api (1.26.2)
+    docker-api (1.28.0)
       excon (>= 0.38.0)
       json
     erubis (2.7.0)
@@ -386,17 +383,6 @@ GEM
     fuzzyurl (0.8.0)
     gherkin (3.2.0)
     git (1.3.0)
-    github_api (0.13.1)
-      addressable (~> 2.4.0)
-      descendants_tracker (~> 0.0.4)
-      faraday (~> 0.8, < 0.10)
-      hashie (>= 3.4)
-      multi_json (>= 1.7.5, < 2.0)
-      oauth2
-    github_changelog_generator (1.12.1)
-      colorize (~> 0.7)
-      github_api (~> 0.12)
-      rake (>= 10.0)
     google-api-client (0.8.6)
       activesupport (>= 3.2)
       addressable (~> 2.3)
@@ -453,7 +439,7 @@ GEM
       json_pure (>= 1.8.1)
     json (1.8.3)
     json_pure (1.8.3)
-    jwt (1.5.1)
+    jwt (1.5.4)
     kitchen-ec2 (1.0.0)
       aws-sdk (~> 2)
       excon
@@ -491,7 +477,7 @@ GEM
       systemu (~> 2.6.2)
     memoist (0.14.0)
     method_source (0.8.2)
-    mime-types (2.99.1)
+    mime-types (2.99.2)
     mini_portile2 (2.0.0)
     minitar (0.5.4)
     minitest (5.9.0)
@@ -514,7 +500,6 @@ GEM
     mixlib-versioning (1.1.0)
     molinillo (0.4.5)
     multi_json (1.12.1)
-    multi_xml (0.5.5)
     multipart-post (2.0.0)
     nenv (0.3.0)
     net-scp (1.2.1)
@@ -537,12 +522,6 @@ GEM
     notiffany (0.1.0)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    oauth2 (1.1.0)
-      faraday (>= 0.8, < 0.10)
-      jwt (~> 1.0, < 1.5.2)
-      multi_json (~> 1.3)
-      multi_xml (~> 0.5)
-      rack (>= 1.2, < 3)
     octokit (4.3.0)
       sawyer (~> 0.7.0, >= 0.5.3)
     ohai (8.16.0)
@@ -578,8 +557,8 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    r-train (0.12.0)
-      docker-api (~> 1.26.2)
+    r-train (0.12.1)
+      docker-api (~> 1.26)
       json (~> 1.8)
       mixlib-shellout (~> 2.0)
       net-scp (~> 1.2)
@@ -673,7 +652,7 @@ GEM
     solve (2.0.3)
       molinillo (~> 0.4.2)
       semverse (~> 1.1)
-    specinfra (2.57.3)
+    specinfra (2.57.4)
       net-scp
       net-ssh (>= 2.7, < 4.0)
       net-telnet
@@ -779,7 +758,6 @@ DEPENDENCIES
   ffi
   ffi-rzmq-core
   foodcritic (>= 6.1.1)
-  github_changelog_generator
   guard
   inspec (>= 0.17.1)
   kitchen-ec2
@@ -803,9 +781,6 @@ DEPENDENCIES
   rb-readline
   rdoc
   rdp-ruby-wmi
-  rspec-core (~> 3.0)
-  rspec-expectations (~> 3.0)
-  rspec-mocks (~> 3.0)
   rubocop
   ruby-prof
   ruby-shadow
@@ -823,4 +798,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.11.2
+   1.12.4

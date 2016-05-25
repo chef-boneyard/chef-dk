@@ -17,7 +17,12 @@
 
 source 'https://rubygems.org'
 
-gemspec name: "chef-dk"
+# Note we do not use the gemspec DSL which restricts to the
+# gemspec for the current platform and filters out other platforms
+# during a bundle lock operation. We actually want dependencies from
+# both of our gemspecs. Also note this this mimics gemspec behavior
+# of bundler versions prior to 1.12.0 (https://github.com/bundler/bundler/commit/193a14fe5e0d56294c7b370a0e59f93b2c216eed)
+gem "chef-dk", path: "."
 
 # EXPERIMENTAL: ALL gems specified here will be installed in chef-dk omnibus.
 # This represents all gems that will be part of chef-dk.
