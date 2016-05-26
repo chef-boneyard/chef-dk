@@ -283,8 +283,8 @@ provisioner:
 #   format: doc
 
 platforms:
-  - name: ubuntu-14.04
-  - name: centos-7.1
+  - name: ubuntu-16.04
+  - name: centos-7.2
 
 suites:
   - name: default
