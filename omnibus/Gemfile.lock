@@ -1,13 +1,13 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 91797cdae99ca91cb87af877ceb4953610d45152
+  revision: 467b5c1c08a345af9e07070fbf9207fb3c3d72f6
   specs:
     omnibus-software (4.0.0)
       omnibus (>= 5.2.0)
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 7c98e2bbceb741711de408dceba7bd7c813713e4
+  revision: a36e70caedceadfcf0d85e2adef44ba0218a60a6
   specs:
     omnibus (5.4.0)
       aws-sdk (~> 2)
@@ -38,12 +38,12 @@ GEM
     addressable (2.4.0)
     artifactory (2.3.2)
     awesome_print (1.6.1)
-    aws-sdk (2.3.4)
-      aws-sdk-resources (= 2.3.4)
-    aws-sdk-core (2.3.4)
+    aws-sdk (2.3.8)
+      aws-sdk-resources (= 2.3.8)
+    aws-sdk-core (2.3.8)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.3.4)
-      aws-sdk-core (= 2.3.4)
+    aws-sdk-resources (2.3.8)
+      aws-sdk-core (= 2.3.8)
     berkshelf (4.3.3)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (~> 2.0, >= 2.0.2)
@@ -123,7 +123,7 @@ GEM
       rspec-mocks (~> 3.2)
     mixlib-cli (1.6.0)
     mixlib-config (2.2.1)
-    mixlib-install (1.0.11)
+    mixlib-install (1.0.12)
       artifactory
       mixlib-shellout
       mixlib-versioning
@@ -134,7 +134,7 @@ GEM
       wmi-lite (~> 1.0)
     mixlib-versioning (1.1.0)
     molinillo (0.4.5)
-    multi_json (1.12.0)
+    multi_json (1.12.1)
     multipart-post (1.2.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -246,4 +246,4 @@ DEPENDENCIES
   winrm-fs
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
