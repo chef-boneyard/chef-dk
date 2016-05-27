@@ -46,7 +46,9 @@ module BuildChefDKAppbundle
       # appbundler needs a Gemfile.lock, which furthermore has to contain the gem itself. and that only
       # happens when the Gemfile includes a gemspec.
       if !File.exists?(installed_gemspec)
-        shellout!("#{embedded_bin("gem")} specification --ruby #{gem_name} >> #{installed_gemspec}")
+        full_gem_name = File.basename(installed_path)
+        spec_path = File.expand_path("../../specifications", installed_path)
+        copy_file(windows_safe_path(File.join(spec_path, "#{full_gem_name}.gemspec")), installed_gemspec)
         shellout!("echo gemspec >> #{installed_gemfile}")
       end
 
