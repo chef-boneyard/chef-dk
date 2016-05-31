@@ -48,6 +48,13 @@ OMNIBUS_OVERRIDES = {
   ## These can float as they are frequently updated in a way that works for us
   #override "cacerts" =>"???",
   #override "openssl" =>"???",
+
+  # We manually pin Delivery CLI right now. In the future we should have the bump
+  # bot automatically update this to the latest delivered version. We cannot look
+  # in Artifactory because in the future we will only be building Delivery CLI
+  # from the ChefDK. We cannot look at the Github tags because those are committed
+  # in the Build phase, and we only want to send customers Delivered changes.
+  "delivery-cli" => "0.0.21",
 }
 
 #
@@ -94,7 +101,7 @@ ACCEPTABLE_OUTDATED_GEMS = [
   # chef repo instead of from rubygems. Bundler currently considers any git
   # source at the same version (or lower) than one available from rubygems as
   # outdated and hence fails the outdated gem test, confusing Julia bot.
-  
+
   # Therefore..  turn checks on both of them off. If and when the rake task for
   # update_stable_channel_gems changes, this exclusion can be revisited.
   "chef",
