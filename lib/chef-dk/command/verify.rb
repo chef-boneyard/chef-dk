@@ -336,7 +336,7 @@ def foo
 end
               EOF
             end
-            sh("#{embedded_bin("rubocop")} foo.rb -l", cwd: cwd)
+            sh("#{bin("rubocop")} foo.rb -l", cwd: cwd)
           end
         end
       end

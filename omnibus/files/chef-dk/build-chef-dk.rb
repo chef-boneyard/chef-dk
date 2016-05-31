@@ -93,8 +93,11 @@ module BuildChefDK
         if line =~ /^\s*\*\s*(\S+)\s+\((\S+).*\)\s*$/
           name, version = $1, $2
           # rubocop is an exception, since different projects disagree
-          next if GEMS_ALLOWED_TO_FLOAT.include?(name)
-          gem_pins << "gem #{name.inspect}, #{version.inspect}, override: true\n"
+          if GEMS_ALLOWED_TO_FLOAT.include?(name)
+            gem_pins << "gem #{name.inspect}, #{version.inspect}, overrideable: true unless being_included\n"
+          else
+            gem_pins << "gem #{name.inspect}, #{version.inspect}, override: true\n"
+          end
         end
       end
 
@@ -112,6 +115,8 @@ module BuildChefDK
         # Override any existing gems with our own.
         require_relative "#{gemfile_util}"
         extend GemfileUtil
+        being_included = (__FILE__ != Bundler.default_gemfile)
+
         #{gem_pins}
       EOM
     end
