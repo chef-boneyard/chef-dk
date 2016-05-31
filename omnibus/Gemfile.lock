@@ -123,7 +123,7 @@ GEM
       rspec-mocks (~> 3.2)
     mixlib-cli (1.6.0)
     mixlib-config (2.2.1)
-    mixlib-install (1.0.11)
+    mixlib-install (1.0.12)
       artifactory
       mixlib-shellout
       mixlib-versioning
@@ -134,7 +134,7 @@ GEM
       wmi-lite (~> 1.0)
     mixlib-versioning (1.1.0)
     molinillo (0.4.5)
-    multi_json (1.12.0)
+    multi_json (1.12.1)
     multipart-post (1.2.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -197,7 +197,7 @@ GEM
       molinillo (~> 0.4.2)
       semverse (~> 1.1)
     systemu (2.6.5)
-    test-kitchen (1.8.0)
+    test-kitchen (1.9.0)
       mixlib-install (~> 1.0, >= 1.0.4)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
