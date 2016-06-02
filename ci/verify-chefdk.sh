@@ -56,6 +56,7 @@ else
   export PATH=/opt/chefdk/bin:$PATH
 
   # This has to be the last thing we run so that we return the correct exit code
-  # to the Ci system.
-  sudo chef verify --unit
+  # to the Ci system. delivery-cli tests will cause a panic on some platforms
+  # unless we set the terminal colors just right
+  sudo TERM=xterm-256color chef verify --unit
 fi
