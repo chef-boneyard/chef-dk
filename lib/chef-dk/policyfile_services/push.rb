@@ -75,7 +75,6 @@ module ChefDK
         end
 
         validate_lockfile
-        write_updated_lockfile
         upload_policy
 
       end
@@ -111,4 +110,3 @@ module ChefDK
     end
   end
 end
-
