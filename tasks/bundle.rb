@@ -75,6 +75,16 @@ namespace :bundle do
       end
     end
   end
+
+  desc "Installs the version of bundler specified in omnibus_overrides.rb"
+  task :install_bundler do
+    extend BundleUtil
+    puts ""
+    puts "-------------------------------------------------------------------"
+    puts "Installing bundler version #{desired_bundler_version} if not present ..."
+    puts "-------------------------------------------------------------------"
+    Gem.install("bundler",desired_bundler_version)
+  end
 end
 
 desc "Run bundle with arbitrary args against the given platform; e.g. rake bundle[show]. No platform to run against the main bundle; bundle[show,windows] to run the windows one; bundle[show,*] to run against all non-default platforms."
