@@ -92,7 +92,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.15.6)
+    chef-dk (0.15.7)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -211,7 +211,7 @@ GEM
       rspec (~> 3.0)
     cleanroom (1.0.0)
     coderay (1.1.1)
-    compat_resource (12.10.4)
+    compat_resource (12.10.6)
     cookbook-omnifetch (0.2.3)
       minitar (~> 0.5.4)
     cookstyle (0.0.1)
@@ -423,7 +423,7 @@ GEM
     i18n (0.7.0)
     inflecto (0.0.2)
     inifile (3.0.0)
-    inspec (0.23)
+    inspec (0.24.0)
       hashie (~> 3.4)
       json (~> 1.8)
       method_source (~> 0.8)
@@ -652,7 +652,7 @@ GEM
     solve (2.0.3)
       molinillo (~> 0.4.2)
       semverse (~> 1.1)
-    specinfra (2.57.5)
+    specinfra (2.59.0)
       net-scp
       net-ssh (>= 2.7, < 4.0)
       net-telnet
