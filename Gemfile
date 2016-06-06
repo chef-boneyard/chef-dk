@@ -29,6 +29,12 @@ gem "chef-dk", path: "."
 
 group(:omnibus_package, :development, :test) do
   gem "pry"
+  gem "rake"
+  gem "rdoc"
+  gem "yard"
+  gem "dep_selector"
+  gem "guard"
+  gem "ruby-prof"
 end
 
 # All software we recognize needs to stay at the latest possible version. But
@@ -84,14 +90,6 @@ group(:omnibus_package) do
   gem "cookstyle"
   gem "winrm-fs"
   gem "winrm-elevated"
-
-  # bundled or development dependencies we want to ship
-  gem "dep_selector"
-  gem "guard"
-  gem "ruby-prof"
-  gem "rake"
-  gem "rdoc"
-  gem "yard"
 end
 
 # Everything except AIX and Windows
