@@ -91,12 +91,6 @@ module ChefDK
         raise PolicyfilePushError.new("Failed to upload policy to policy group #{policy_group}", error)
       end
 
-      def write_updated_lockfile
-        with_file(policyfile_lock_expanded_path) do |f|
-          f.print(FFI_Yajl::Encoder.encode(policyfile_lock.to_lock, pretty: true ))
-        end
-      end
-
       def validate_lockfile
         return @policyfile_lock if @policyfile_lock
         @policyfile_lock = ChefDK::PolicyfileLock.new(storage_config).build_from_lock_data(policy_data)
