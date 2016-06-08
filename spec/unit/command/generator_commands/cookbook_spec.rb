@@ -384,6 +384,15 @@ SPEC_HELPER
 
       let(:argv) { %w[new_cookbook --delivery] }
 
+      let(:dot_delivery) { File.join(tempdir, "new_cookbook", ".delivery") }
+
+      before do
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          cookbook_generator.run
+        end
+      end
+
       describe ".delivery/config.json" do
 
         let(:file) { File.join(tempdir, "new_cookbook", ".delivery", "config.json") }
@@ -403,15 +412,61 @@ SPEC_HELPER
 CONFIG_DOT_JSON
         end
 
-        before do
-          Dir.chdir(tempdir) do
-            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-            cookbook_generator.run
-          end
-        end
-
         it "configures delivery to use a local build cookbook" do
           expect(IO.read(file)).to eq(expected_content)
+        end
+
+      end
+
+      describe "build cookbook recipes" do
+
+        let(:file) do
+          File.join(dot_delivery, "build-cookbook", "recipes", "publish.rb")
+        end
+
+        let(:expected_content) do
+          <<-CONFIG_DOT_JSON
+include_recipe 'delivery-truck::publish'
+CONFIG_DOT_JSON
+        end
+
+        it "delegates functionality to delivery-truck" do
+          expect(IO.read(file)).to include(expected_content)
+        end
+
+      end
+
+      describe "build cookbook Berksfile" do
+
+        let(:file) do
+          File.join(dot_delivery, "build-cookbook", "Berksfile")
+        end
+
+        let(:expected_content) do
+          <<-CONFIG_DOT_JSON
+source 'https://supermarket.chef.io'
+
+metadata
+
+cookbook 'delivery-truck',
+  git: 'https://github.com/chef-cookbooks/delivery-truck.git',
+  branch: 'master'
+
+# This is so we know where to get delivery-truck's dependency
+cookbook 'delivery-sugar',
+  git: 'https://github.com/chef-cookbooks/delivery-sugar.git',
+  branch: 'master'
+
+group :delivery do
+  cookbook 'delivery_build', git: 'https://github.com/chef-cookbooks/delivery_build'
+  cookbook 'delivery-base', git: 'https://github.com/chef-cookbooks/delivery-base'
+  cookbook 'test', path: './test/fixtures/cookbooks/test'
+end
+CONFIG_DOT_JSON
+        end
+
+        it "sets the sources for delivery library cookbooks to github" do
+          expect(IO.read(file)).to include(expected_content)
         end
 
       end

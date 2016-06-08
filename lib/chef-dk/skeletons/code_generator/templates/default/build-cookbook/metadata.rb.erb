@@ -1,0 +1,9 @@
+name 'build-cookbook'
+maintainer '<%= copyright_holder %>'
+maintainer_email '<%= email %>'
+license '<%= license %>'
+version '0.1.0'
+<% if build_cookbook_parent_is_cookbook -%>
+
+depends 'delivery-truck'
+<% end -%>
