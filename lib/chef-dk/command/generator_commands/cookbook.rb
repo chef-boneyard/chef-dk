@@ -49,12 +49,21 @@ module ChefDK
           boolean:      true,
           default:      nil
 
+        option :delivery,
+          short:        "-d",
+          long:         "--delivery",
+          description:  "Generate cookbook with delivery integration",
+          boolean:      true,
+          default:      nil
+
+
         options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
           @params_valid = true
           @cookbook_name = nil
           @berks_mode = true
+          @enable_delivery = false
           super
         end
 
@@ -83,6 +92,8 @@ module ChefDK
           Generator.add_attr_to_context(:policy_name, policy_name)
           Generator.add_attr_to_context(:policy_run_list, policy_run_list)
           Generator.add_attr_to_context(:policy_local_cookbook, ".")
+
+          Generator.add_attr_to_context(:enable_delivery, enable_delivery?)
 
           Generator.add_attr_to_context(:use_berkshelf, berks_mode?)
         end
@@ -119,6 +130,10 @@ module ChefDK
           @berks_mode
         end
 
+        def enable_delivery?
+          @enable_delivery
+        end
+
         def read_and_validate_params
           arguments = parse_options(params)
           @cookbook_name_or_path = arguments[0]
@@ -133,6 +148,10 @@ module ChefDK
 
           if config[:policy]
             @berks_mode = false
+          end
+
+          if config[:delivery]
+            @enable_delivery = true
           end
         end
 

@@ -115,3 +115,9 @@ if context.have_git
     source "gitignore"
   end
 end
+
+if context.enable_delivery
+
+  include_recipe "code_generator::build_cookbook"
+
+end

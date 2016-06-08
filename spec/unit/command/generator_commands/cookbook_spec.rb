@@ -380,6 +380,43 @@ SPEC_HELPER
 
     end
 
+    context "when configured for delivery" do
+
+      let(:argv) { %w[new_cookbook --delivery] }
+
+      describe ".delivery/config.json" do
+
+        let(:file) { File.join(tempdir, "new_cookbook", ".delivery", "config.json") }
+
+        let(:expected_content) do
+          <<-CONFIG_DOT_JSON
+{
+  "version": "2",
+  "build_cookbook": {
+    "name": "build-cookbook",
+    "path": ".delivery/build-cookbook"
+  },
+  "skip_phases": [],
+  "build_nodes": {},
+  "dependencies": []
+}
+CONFIG_DOT_JSON
+        end
+
+        before do
+          Dir.chdir(tempdir) do
+            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+            cookbook_generator.run
+          end
+        end
+
+        it "configures delivery to use a local build cookbook" do
+          expect(IO.read(file)).to eq(expected_content)
+        end
+
+      end
+    end
+
     describe "metadata.rb" do
       let(:file) { File.join(tempdir, "new_cookbook", "metadata.rb") }
 
