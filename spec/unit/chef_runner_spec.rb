@@ -40,7 +40,7 @@ describe ChefDK::ChefRunner do
 
   it "sets up Chef::Config" do
     chef_runner.configure
-    expect(Chef::Config.solo).to be true
+    expect(Chef::Config.solo_legacy_mode).to be true
     expect(Chef::Config.cookbook_path).to eq(default_cookbook_path)
     expect(Chef::Config.color).to be true
     expect(Chef::Config.diff_disabled).to be true
