@@ -29,6 +29,7 @@ require 'chef-dk/command/generator_commands/template'
 require 'chef-dk/command/generator_commands/repo'
 require 'chef-dk/command/generator_commands/policyfile'
 require 'chef-dk/command/generator_commands/generator_generator'
+require 'chef-dk/command/generator_commands/build_cookbook'
 
 module ChefDK
   module Command
@@ -54,6 +55,7 @@ module ChefDK
       generator(:repo, :Repo, "Generate a Chef code repository")
       generator(:policyfile, :Policyfile, "Generate a Policyfile for use with the install/push commands")
       generator(:generator, :GeneratorGenerator, "Copy ChefDK's generator cookbook so you can customize it")
+      generator(:'build-cookbook', :BuildCookbook, "Generate a build cookbook for use with Delivery")
 
       def self.banner_headline
         <<-E
