@@ -2,12 +2,10 @@ name "chef-dk-complete"
 
 license :project_license
 
-unless windows?
-  # For the Delivery build nodes
-  dependency "delivery-cli"
-  # This is a build-time dependency, so we won't leave it behind:
-  dependency "rust-uninstall"
-end
+# For the Delivery build nodes
+dependency "delivery-cli"
+# This is a build-time dependency, so we won't leave it behind:
+dependency "rust-uninstall"
 
 # Leave for last so system git is used for most of the build.
 if windows?

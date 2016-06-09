@@ -451,16 +451,14 @@ end
         end
       end
 
-      unless Chef::Platform.windows?
-        add_component "delivery-cli" do |c|
-          # We'll want to come back and revisit getting unit tests added -
-          # currently running the tests depends on cargo , which is not included
-          # in our package.
-          c.base_dir = "bin"
-          c.smoke_test do
-            tmpdir do |cwd|
-              sh!("delivery setup --user=shipit --server=delivery.shipit.io --ent=chef --org=squirrels", cwd: cwd)
-            end
+      add_component "delivery-cli" do |c|
+        # We'll want to come back and revisit getting unit tests added -
+        # currently running the tests depends on cargo , which is not included
+        # in our package.
+        c.base_dir = "bin"
+        c.smoke_test do
+          tmpdir do |cwd|
+            sh!("delivery setup --user=shipit --server=delivery.shipit.io --ent=chef --org=squirrels", cwd: cwd)
           end
         end
       end
