@@ -184,7 +184,11 @@ GEM
       molinillo (~> 0.4.2)
       semverse (~> 1.1)
     systemu (2.6.5)
+<<<<<<< 004a9799b88232a9753d4265c70c210826f20454
     test-kitchen (1.9.1)
+=======
+    test-kitchen (1.9.2)
+>>>>>>> updates dependencies and pins to previous nokogiri
       mixlib-install (~> 1.0, >= 1.0.4)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
