@@ -55,11 +55,8 @@ if [ "x$ACCEPTANCE" != "x" ]; then
 else
   export PATH=/opt/chefdk/bin:$PATH
 
-  # temporary hack to fix a few chef-client unit tests
-  sudo rm /proc/sys/crypto/fips_enabled
-
   # This has to be the last thing we run so that we return the correct exit code
   # to the Ci system. delivery-cli tests will cause a panic on some platforms
   # unless we set the terminal colors just right
-  sudo TERM=xterm-256color chef verify --unit
+  sudo TERM=xterm-256color chef verify
 fi
