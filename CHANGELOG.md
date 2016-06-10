@@ -5,7 +5,7 @@
 
 **Implemented enhancements:**
 
-- Generate delivery config [\#891](https://github.com/chef/chef-dk/pull/891) ([danielsdeleo](https://github.com/danielsdeleo))
+- Add `build-cookbook` subcommand to `chef generate` and `--delivery` option to `chef generate cookbook` [\#891](https://github.com/chef/chef-dk/pull/891) ([danielsdeleo](https://github.com/danielsdeleo))
 - Generators support ubuntu 16.04 and centos 7.2 by default [\#869](https://github.com/chef/chef-dk/pull/869) ([lamont-granquist](https://github.com/lamont-granquist))
 - `chef --version` should print the Delivery CLI version [\#853](https://github.com/chef/chef-dk/pull/853) ([schisamo](https://github.com/schisamo))
 - Adding the Git for Windows tools to the path if they are present [\#841](https://github.com/chef/chef-dk/pull/841) ([tyler-ball](https://github.com/tyler-ball))
