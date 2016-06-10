@@ -1,5 +1,24 @@
 # Change Log
 
+## [v0.15.9](https://github.com/chef/chef-dk/tree/v0.15.9) (2016-06-10)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.15.8...v0.15.9)
+
+**Implemented enhancements:**
+
+- Add `build-cookbook` subcommand to `chef generate` and `--delivery` option to `chef generate cookbook` [\#891](https://github.com/chef/chef-dk/pull/891) ([danielsdeleo](https://github.com/danielsdeleo))
+- Generators support ubuntu 16.04 and centos 7.2 by default [\#869](https://github.com/chef/chef-dk/pull/869) ([lamont-granquist](https://github.com/lamont-granquist))
+- `chef --version` should print the Delivery CLI version [\#853](https://github.com/chef/chef-dk/pull/853) ([schisamo](https://github.com/schisamo))
+- Adding the Git for Windows tools to the path if they are present [\#841](https://github.com/chef/chef-dk/pull/841) ([tyler-ball](https://github.com/tyler-ball))
+- Generated .kitchen.yml defaults Inspec to doc format output [\#846](https://github.com/chef/chef-dk/pull/846) ([charlesjohnson](https://github.com/charlesjohnson))
+
+**Fixed bugs:**
+
+- Chef install does not use the embedded git [\#864](https://github.com/chef/chef-dk/issues/864)
+- Unable to activate knife-solo-0.5.1 [\#811](https://github.com/chef/chef-dk/issues/811)
+- Rubocop should install to chefdk/bin [\#865](https://github.com/chef/chef-dk/pull/865) ([PrajaktaPurohit](https://github.com/PrajaktaPurohit))
+- Correct chef export usage message [\#859](https://github.com/chef/chef-dk/pull/859) ([philoserf](https://github.com/philoserf))
+
+
 ## [v0.14](https://github.com/chef/chef-dk/tree/v0.14.25) (2016-05-17) 
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.14.24...v0.14.25)
 
