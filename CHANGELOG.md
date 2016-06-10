@@ -3,50 +3,21 @@
 ## [v0.15.9](https://github.com/chef/chef-dk/tree/v0.15.9) (2016-06-10)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.15.8...v0.15.9)
 
-**Closed issues:**
+**Implemented enhancements:**
 
-- Rubocop not present at /opt/chefdk/bin/rubocop in 0.13.21 [\#809](https://github.com/chef/chef-dk/issues/809)
-- Chefspec fails when using Policyfile and compat\_resource is in the cookbook dependency tree [\#714](https://github.com/chef/chef-dk/issues/714)
-- foodcritic can't run as UndefinedConversionError [\#868](https://github.com/chef/chef-dk/issues/868)
-- Chef install does not use the embedded git [\#864](https://github.com/chef/chef-dk/issues/864)
-- Unable to activate knife-solo-0.5.1 [\#811](https://github.com/chef/chef-dk/issues/811)
-- `brew doctor` warns about chefdk's \*-config files [\#745](https://github.com/chef/chef-dk/issues/745)
-
-**Merged pull requests:**
-
-- bump dk version [\#892](https://github.com/chef/chef-dk/pull/892) ([mwrock](https://github.com/mwrock))
 - Generate delivery config [\#891](https://github.com/chef/chef-dk/pull/891) ([danielsdeleo](https://github.com/danielsdeleo))
-- Get er green [\#890](https://github.com/chef/chef-dk/pull/890) ([mwrock](https://github.com/mwrock))
-- Build Delivery CLI on Windows using msys2 build toolchain [\#889](https://github.com/chef/chef-dk/pull/889) ([tyler-ball](https://github.com/tyler-ball))
-- Don't update .bundle/config [\#888](https://github.com/chef/chef-dk/pull/888) ([jkeiser](https://github.com/jkeiser))
-- Fix version show to only show the version [\#887](https://github.com/chef/chef-dk/pull/887) ([jkeiser](https://github.com/jkeiser))
-- Install fewer gems when bumping chef-dk. [\#886](https://github.com/chef/chef-dk/pull/886) ([jkeiser](https://github.com/jkeiser))
-- set TERM colors to fix delivery-cli unit tests on jenkins [\#879](https://github.com/chef/chef-dk/pull/879) ([mwrock](https://github.com/mwrock))
-- Use desired bundler to do the bundle install [\#878](https://github.com/chef/chef-dk/pull/878) ([jkeiser](https://github.com/jkeiser))
-- Add set -evx to all shell scripts [\#877](https://github.com/chef/chef-dk/pull/877) ([jkeiser](https://github.com/jkeiser))
-- making ci scripts executable [\#875](https://github.com/chef/chef-dk/pull/875) ([mwrock](https://github.com/mwrock))
-- adding shell scripts for the bump bot that will ensure the correct bundler version is installed [\#874](https://github.com/chef/chef-dk/pull/874) ([mwrock](https://github.com/mwrock))
-- Pinning the Delivery CLI omnibus definition because there isn't a good way to query for released versions [\#873](https://github.com/chef/chef-dk/pull/873) ([tyler-ball](https://github.com/tyler-ball))
-- Update deps to the latest [\#872](https://github.com/chef/chef-dk/pull/872) ([tas50](https://github.com/tas50))
-- Delivery CLI 1.8.0 compatibility [\#870](https://github.com/chef/chef-dk/pull/870) ([tylercloke](https://github.com/tylercloke))
-- ubuntu 16.04 and centos 7.2 by default [\#869](https://github.com/chef/chef-dk/pull/869) ([lamont-granquist](https://github.com/lamont-granquist))
-- Rubocop should install to chefdk/bin [\#865](https://github.com/chef/chef-dk/pull/865) ([PrajaktaPurohit](https://github.com/PrajaktaPurohit))
-- fix bundle locking on bundler 1.12 [\#863](https://github.com/chef/chef-dk/pull/863) ([mwrock](https://github.com/mwrock))
-- Fix auto dependency bumps, include appropriate license information where necessary [\#862](https://github.com/chef/chef-dk/pull/862) ([PrajaktaPurohit](https://github.com/PrajaktaPurohit))
-- Correct chef export usage message [\#859](https://github.com/chef/chef-dk/pull/859) ([philoserf](https://github.com/philoserf))
+- Generators support ubuntu 16.04 and centos 7.2 by default [\#869](https://github.com/chef/chef-dk/pull/869) ([lamont-granquist](https://github.com/lamont-granquist))
 - `chef --version` should print the Delivery CLI version [\#853](https://github.com/chef/chef-dk/pull/853) ([schisamo](https://github.com/schisamo))
-- clean up leftover test cruft [\#858](https://github.com/chef/chef-dk/pull/858) ([mwrock](https://github.com/mwrock))
-- Updating the version to 0.15 after release [\#855](https://github.com/chef/chef-dk/pull/855) ([PrajaktaPurohit](https://github.com/PrajaktaPurohit))
-- Move `set` to beginning of `verify-chefdk.sh` script [\#851](https://github.com/chef/chef-dk/pull/851) ([schisamo](https://github.com/schisamo))
-- Update naming of Windows instance to include `\*-i386` [\#842](https://github.com/chef/chef-dk/pull/842) ([schisamo](https://github.com/schisamo))
-- Updating the changelog for v 0.14 [\#850](https://github.com/chef/chef-dk/pull/850) ([PrajaktaPurohit](https://github.com/PrajaktaPurohit))
-- Re-enable and fix acceptance test [\#849](https://github.com/chef/chef-dk/pull/849) ([schisamo](https://github.com/schisamo))
 - Adding the Git for Windows tools to the path if they are present [\#841](https://github.com/chef/chef-dk/pull/841) ([tyler-ball](https://github.com/tyler-ball))
 - Generated .kitchen.yml defaults Inspec to doc format output [\#846](https://github.com/chef/chef-dk/pull/846) ([charlesjohnson](https://github.com/charlesjohnson))
 
 **Fixed bugs:**
 
-- PowerShell Wrappers not there! [\#882](https://github.com/chef/chef-dk/issues/882)
+- Chef install does not use the embedded git [\#864](https://github.com/chef/chef-dk/issues/864)
+- Unable to activate knife-solo-0.5.1 [\#811](https://github.com/chef/chef-dk/issues/811)
+- Rubocop should install to chefdk/bin [\#865](https://github.com/chef/chef-dk/pull/865) ([PrajaktaPurohit](https://github.com/PrajaktaPurohit))
+- Correct chef export usage message [\#859](https://github.com/chef/chef-dk/pull/859) ([philoserf](https://github.com/philoserf))
+
 
 ## [v0.14](https://github.com/chef/chef-dk/tree/v0.14.25) (2016-05-17) 
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.14.24...v0.14.25)
