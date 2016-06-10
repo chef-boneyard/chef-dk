@@ -107,6 +107,7 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "chef",
   "chef-config",
   "opscode-pushy-client",
+  "nokogiri",
 ]
 
 #
