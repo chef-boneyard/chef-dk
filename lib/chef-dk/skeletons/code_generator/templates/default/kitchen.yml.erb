@@ -5,11 +5,9 @@ driver:
 provisioner:
   name: chef_zero
 
-# Uncomment the following verifier to leverage Inspec instead of Busser (the
-# default verifier)
-# verifier:
-#   name: inspec
-#   format: doc
+verifier:
+  name: inspec
+  format: doc
 
 platforms:
   - name: ubuntu-16.04
