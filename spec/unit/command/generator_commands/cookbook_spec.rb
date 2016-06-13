@@ -129,7 +129,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
     it "creates a new cookbook" do
       Dir.chdir(tempdir) do
         allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-        cookbook_generator.run
+        expect(cookbook_generator.run).to eq(0)
       end
       generated_files = Dir.glob("#{tempdir}/new_cookbook/**/*", File::FNM_DOTMATCH)
       expected_cookbook_files.each do |expected_file|
@@ -141,7 +141,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       before do
         Dir.chdir(tempdir) do
           allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          cookbook_generator.run
+          expect(cookbook_generator.run).to eq(0)
         end
       end
 
@@ -164,17 +164,21 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
       describe "Generating Test Kitchen and integration testing files" do
 
-        before do
-          Dir.chdir(tempdir) do
-            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-            cookbook_generator.run
+        describe "generating kitchen config" do
+
+          before do
+            Dir.chdir(tempdir) do
+              allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+              expect(cookbook_generator.run).to eq(0)
+            end
           end
-        end
 
-        let(:file) { File.join(tempdir, "new_cookbook", ".kitchen.yml") }
+          let(:file) { File.join(tempdir, "new_cookbook", ".kitchen.yml") }
 
-        it "creates a .kitchen.yml with the expected content" do
-          expect(IO.read(file)).to eq(expected_kitchen_yml_content)
+          it "creates a .kitchen.yml with the expected content" do
+            expect(IO.read(file)).to eq(expected_kitchen_yml_content)
+          end
+
         end
 
         describe "test/integration/default/serverspec/default_spec.rb" do
@@ -196,7 +200,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
         before do
           Dir.chdir(tempdir) do
             allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-            cookbook_generator.run
+            expect(cookbook_generator.run).to eq(0)
           end
         end
 
@@ -242,7 +246,7 @@ POLICYFILE_RB
         before do
           Dir.chdir(tempdir) do
             allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-            cookbook_generator.run
+            expect(cookbook_generator.run).to eq(0)
           end
         end
 
@@ -326,7 +330,7 @@ POLICYFILE_RB
         before do
           Dir.chdir(tempdir) do
             allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-            cookbook_generator.run
+            expect(cookbook_generator.run).to eq(0)
           end
         end
 
@@ -389,7 +393,7 @@ SPEC_HELPER
       before do
         Dir.chdir(tempdir) do
           allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          cookbook_generator.run
+          expect(cookbook_generator.run).to eq(0)
         end
       end
 

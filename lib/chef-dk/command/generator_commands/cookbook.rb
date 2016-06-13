@@ -96,6 +96,7 @@ module ChefDK
           Generator.add_attr_to_context(:enable_delivery, enable_delivery?)
           Generator.add_attr_to_context(:delivery_project_dir, cookbook_full_path)
           Generator.add_attr_to_context(:build_cookbook_parent_is_cookbook, true)
+          Generator.add_attr_to_context(:delivery_project_git_initialized, have_git? && !cookbook_path_in_git_repo?)
 
           Generator.add_attr_to_context(:use_berkshelf, berks_mode?)
         end

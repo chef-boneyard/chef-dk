@@ -18,6 +18,7 @@
 require 'spec_helper'
 require 'shared/custom_generator_cookbook'
 require 'chef-dk/command/generator_commands/build_cookbook'
+require 'mixlib/shellout'
 
 describe ChefDK::Command::GeneratorCommands::BuildCookbook do
 
@@ -125,7 +126,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
     it "creates a build cookbook" do
       Dir.chdir(tempdir) do
         allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-        cookbook_generator.run
+        expect(cookbook_generator.run).to eq(0)
       end
       generated_files = Dir.glob("#{tempdir}/delivery_project/**/*", File::FNM_DOTMATCH)
       expected_cookbook_files.each do |expected_file|
@@ -137,7 +138,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
       before do
         Dir.chdir(tempdir) do
           allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          cookbook_generator.run
+          expect(cookbook_generator.run).to eq(0)
         end
       end
 
@@ -155,7 +156,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
         before do
           Dir.chdir(tempdir) do
             allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-            cookbook_generator.run
+            expect(cookbook_generator.run).to eq(0)
           end
         end
 
@@ -207,7 +208,7 @@ METADATA
         before do
           Dir.chdir(tempdir) do
             allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-            cookbook_generator.run
+            expect(cookbook_generator.run).to eq(0)
           end
         end
 
@@ -264,7 +265,7 @@ METADATA
         before do
           Dir.chdir(tempdir) do
             allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-            cookbook_generator.run
+            expect(cookbook_generator.run).to eq(0)
           end
         end
 
@@ -286,6 +287,36 @@ METADATA
           end
         end
 
+      end
+
+    end
+
+    context "when the delivery project is a git repo" do
+
+      let(:readme) { File.join(project_dir, "README.md") }
+
+      def git!(cmd)
+        Mixlib::ShellOut.new("git #{cmd}", cwd: project_dir).tap do |c|
+          c.run_command
+          c.error!
+        end
+      end
+
+      before do
+        FileUtils.touch(readme)
+
+        git!("init .")
+        git!("add .")
+        git!("commit -m 'initial commit'")
+
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          expect(cookbook_generator.run).to eq(0)
+        end
+      end
+
+      it "creates delivery config in a feature branch and merges it" do
+        expect(git!("log").stdout).to include("Merge branch 'add-delivery-configuration'")
       end
 
     end

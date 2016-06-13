@@ -86,3 +86,67 @@ cookbook_file "#{build_cookbook_dir}/test/fixtures/cookbooks/test/recipes/defaul
   source "build-cookbook/test-fixture-recipe.rb"
 end
 
+# Construct git history as if we did all the work in a feature branch which we
+# merged into master at the end, which looks like this:
+#
+# ```
+# git log --graph --oneline
+# *   5fec5bd Merge branch 'add-delivery-configuration'
+# |\
+# | * 967bb9f Add generated delivery build cookbook
+# | * 1558e0a Add generated delivery configuration
+# |/
+# * db22790 Add generated cookbook content
+# ```
+#
+if context.have_git && context.delivery_project_git_initialized && !context.skip_git_init
+
+  execute("git-create-feature-branch") do
+    command("git checkout -t -b add-delivery-configuration")
+    cwd delivery_project_dir
+  end
+
+  execute("git-add-delivery-config-json") do
+    command("git add .delivery/config.json")
+    cwd delivery_project_dir
+
+    only_if "git status --porcelain |grep '.'"
+  end
+
+  execute("git-commit-delivery-config") do
+    command("git commit -m 'Add generated delivery configuration'")
+    cwd delivery_project_dir
+
+    only_if "git status --porcelain |grep '.'"
+  end
+
+
+  execute("git-add-delivery-build-cookbook-files") do
+    command("git add .delivery")
+    cwd delivery_project_dir
+
+    only_if "git status --porcelain |grep '.'"
+  end
+
+  execute("git-commit-delivery-build-cookbook") do
+    command("git commit -m 'Add generated delivery build cookbook'")
+    cwd delivery_project_dir
+
+    only_if "git status --porcelain |grep '.'"
+  end
+
+  execute("git-return-to-master-branch") do
+    command("git checkout master")
+    cwd delivery_project_dir
+  end
+
+  execute("git-merge-delivery-config-branch") do
+    command("git merge --no-ff add-delivery-configuration")
+    cwd delivery_project_dir
+  end
+
+  execute("git-remove-delivery-config-branch") do
+    command("git branch -d add-delivery-configuration")
+    cwd delivery_project_dir
+  end
+end

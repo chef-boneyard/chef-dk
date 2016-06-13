@@ -56,6 +56,7 @@ module ChefDK
           super
           Generator.add_attr_to_context(:delivery_project_dir, delivery_project_dir)
 
+          Generator.add_attr_to_context(:delivery_project_git_initialized, delivery_project_git_initialized?)
           Generator.add_attr_to_context(:build_cookbook_parent_is_cookbook, build_cookbook_parent_is_cookbook?)
         end
 
@@ -89,6 +90,10 @@ module ChefDK
             end
           end
           project_dir
+        end
+
+        def delivery_project_git_initialized?
+          File.exist?(File.join(delivery_project_dir, ".git"))
         end
 
         def read_and_validate_params
