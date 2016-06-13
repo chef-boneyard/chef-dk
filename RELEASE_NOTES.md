@@ -1,6 +1,6 @@
 # ChefDK 0.15 Release notes
 
-## Improved generatior support for delivery
+## Improved generator support for delivery
 
 We have added a bit of added functionality around the generators to better support delivery users:
 
