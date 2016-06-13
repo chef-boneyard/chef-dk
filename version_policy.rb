@@ -54,7 +54,7 @@ OMNIBUS_OVERRIDES = {
   # in Artifactory because in the future we will only be building Delivery CLI
   # from the ChefDK. We cannot look at the Github tags because those are committed
   # in the Build phase, and we only want to send customers Delivered changes.
-  "delivery-cli" => "0.0.21",
+  "delivery-cli" => "0.0.22",
 }
 
 #
