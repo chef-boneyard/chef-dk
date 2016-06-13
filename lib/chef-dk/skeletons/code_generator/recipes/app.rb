@@ -21,10 +21,6 @@ directory "#{app_dir}/test/integration/default" do
   recursive true
 end
 
-directory "#{app_dir}/test/integration" do
-  recursive true
-end
-
 template "#{app_dir}/test/integration/default/default_spec.rb" do
   source 'inspec_default_spec.rb.erb'
   helpers(ChefDK::Generator::TemplateHelper)
