@@ -59,6 +59,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
   subject(:cookbook_generator) do
     g = described_class.new(argv)
     allow(g).to receive(:cookbook_path_in_git_repo?).and_return(false)
+    allow(g).to receive(:stdout).and_return(stdout_io)
     g
   end
 

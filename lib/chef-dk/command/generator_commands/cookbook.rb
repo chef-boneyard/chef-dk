@@ -72,6 +72,8 @@ module ChefDK
           if params_valid?
             setup_context
             chef_runner.converge
+            msg("")
+            msg("Your cookbook is ready. Type `cd #{cookbook_name_or_path}` to start working.")
             0
           else
             err(opt_parser)

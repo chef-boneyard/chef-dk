@@ -16,7 +16,13 @@ shared_examples_for "custom generator cookbook" do
 
     let(:argv) { [generator_arg, "--generator-cookbook", generator_cookbook_path] }
 
-    subject(:code_generator) { described_class.new(argv) }
+    let(:stdout_io) { StringIO.new }
+
+    subject(:code_generator) do
+      described_class.new(argv).tap do |gen|
+        allow(gen).to receive(:stdout).and_return(stdout_io)
+      end
+    end
 
     before do
       reset_tempdir
