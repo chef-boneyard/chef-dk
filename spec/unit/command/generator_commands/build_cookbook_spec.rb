@@ -17,10 +17,13 @@
 
 require 'spec_helper'
 require 'shared/custom_generator_cookbook'
+require 'shared/setup_git_committer_config'
 require 'chef-dk/command/generator_commands/build_cookbook'
 require 'mixlib/shellout'
 
 describe ChefDK::Command::GeneratorCommands::BuildCookbook do
+
+  include_context("setup_git_committer_config")
 
   let(:argv) { %w[delivery_project] }
 
@@ -307,7 +310,7 @@ METADATA
 
         git!("init .")
         git!("add .")
-        git!("commit -m 'initial commit'")
+        git!("commit -m \"initial commit\"")
 
         Dir.chdir(tempdir) do
           allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)

@@ -17,9 +17,12 @@
 
 require 'spec_helper'
 require 'shared/custom_generator_cookbook'
+require 'shared/setup_git_committer_config'
 require 'chef-dk/command/generator_commands/cookbook'
 
 describe ChefDK::Command::GeneratorCommands::Cookbook do
+
+  include_context("setup_git_committer_config")
 
   let(:argv) { %w[new_cookbook] }
 

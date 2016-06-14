@@ -124,7 +124,7 @@ if context.have_git
     end
 
     execute("git-commit-new-files") do
-      command("git commit -m 'Add generated cookbook content'")
+      command("git commit -m \"Add generated cookbook content\"")
       cwd cookbook_dir
     end
   end

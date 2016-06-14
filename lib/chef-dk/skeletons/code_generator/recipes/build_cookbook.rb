@@ -110,14 +110,14 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
     command("git add .delivery/config.json")
     cwd delivery_project_dir
 
-    only_if "git status --porcelain |grep '.'"
+    only_if "git status --porcelain |grep \".\""
   end
 
   execute("git-commit-delivery-config") do
-    command("git commit -m 'Add generated delivery configuration'")
+    command("git commit -m \"Add generated delivery configuration\"")
     cwd delivery_project_dir
 
-    only_if "git status --porcelain |grep '.'"
+    only_if "git status --porcelain |grep \".\""
   end
 
 
@@ -125,14 +125,14 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
     command("git add .delivery")
     cwd delivery_project_dir
 
-    only_if "git status --porcelain |grep '.'"
+    only_if "git status --porcelain |grep \".\""
   end
 
   execute("git-commit-delivery-build-cookbook") do
-    command("git commit -m 'Add generated delivery build cookbook'")
+    command("git commit -m \"Add generated delivery build cookbook\"")
     cwd delivery_project_dir
 
-    only_if "git status --porcelain |grep '.'"
+    only_if "git status --porcelain |grep \".\""
   end
 
   execute("git-return-to-master-branch") do
