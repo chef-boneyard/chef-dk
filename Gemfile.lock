@@ -94,7 +94,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.15.12)
+    chef-dk (0.15.13)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -350,7 +350,7 @@ GEM
     fog-serverlove (0.1.2)
       fog-core
       fog-json
-    fog-softlayer (1.1.1)
+    fog-softlayer (1.1.2)
       fog-core
       fog-json
     fog-storm_on_demand (0.1.1)
@@ -365,7 +365,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (0.7.0)
+    fog-vsphere (0.8.0)
       fog-core
       rbvmomi (~> 1.8)
     fog-xenserver (0.2.3)
