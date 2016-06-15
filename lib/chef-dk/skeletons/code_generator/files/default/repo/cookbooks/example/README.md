@@ -6,22 +6,22 @@ An example cookbook
 
 ### Platform:
 
-*No platforms defined*
+_No platforms defined_
 
 ### Cookbooks:
 
-*No dependencies defined*
+_No dependencies defined_
 
 ## Attributes
 
-* `node['example']['name']` -  Defaults to `Sam Doe`.
+- `node['example']['name']` - Defaults to `Sam Doe`.
 
 ## Recipes
 
-* example::default
+- example::default
 
 ## License and Maintainer
 
-Maintainer::  (<>)
+Maintainer:: (<>)
 
 License:: All rights reserved
