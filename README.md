@@ -10,6 +10,8 @@ Chef Development Kit (ChefDK) brings Chef and the development tools developed by
 * [Test Kitchen][]
 * [ChefSpec][]
 * [Foodcritic][]
+* [Delivery CLI][]
+* [Push Jobs Client][]
 
 This repository contains the code for the `chef` command. The full
 package is built with omnibus. Project and component build definitions
@@ -48,7 +50,7 @@ To download a specific version, append the `-version` flag.  EG, `-version 0.9.0
 
 ## Usage
 
-For help with [Berkshelf][], [Test Kitchen][], [ChefSpec][] or [Foodcritic][],
+For help with [Berkshelf][], [Test Kitchen][], [ChefSpec][], [Foodcritic][], [Delivery CLI][] or [Push Jobs Client][],
 visit those projects' homepages for documentation and guides. For help with
 `chef-client` and `knife`, visit the [Chef documentation][]
 and [Learn Chef][].
@@ -319,3 +321,5 @@ packaging, and building works.
 [Foodcritic]: http://foodcritic.io "Foodcritic"
 [Learn Chef]: https://learn.chef.io "Learn Chef"
 [Test Kitchen]: http://kitchen.ci "Test Kitchen"
+[Delivery CLI]: https://docs.chef.io/ctl_delivery.html "Delivery CLI"
+[Push Jobs Client]: https://docs.chef.io/push_jobs.html#push-jobs-client "Push Jobs Client"
