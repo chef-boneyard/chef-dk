@@ -3,11 +3,15 @@ context = ChefDK::Generator.context
 delivery_project_dir = context.delivery_project_dir
 dot_delivery_dir = File.join(delivery_project_dir, ".delivery")
 
+generator_desc("Ensuring delivery configuration")
+
 directory dot_delivery_dir
 
 cookbook_file File.join(dot_delivery_dir, "config.json") do
   source "delivery-config.json"
 end
+
+generator_desc("Ensuring correct delivery build cookbook content")
 
 build_cookbook_dir = File.join(dot_delivery_dir, "build-cookbook")
 
@@ -101,6 +105,8 @@ end
 #
 if context.have_git && context.delivery_project_git_initialized && !context.skip_git_init
 
+  generator_desc("Adding delivery configuration to feature branch")
+
   execute("git-create-feature-branch") do
     command("git checkout -t -b add-delivery-configuration")
     cwd delivery_project_dir
@@ -120,6 +126,7 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
     only_if "git status --porcelain |grep \".\""
   end
 
+  generator_desc("Adding build cookbook to feature branch")
 
   execute("git-add-delivery-build-cookbook-files") do
     command("git add .delivery")
@@ -139,6 +146,8 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
     command("git checkout master")
     cwd delivery_project_dir
   end
+
+  generator_desc("Merging delivery content feature branch to master")
 
   execute("git-merge-delivery-config-branch") do
     command("git merge --no-ff add-delivery-configuration")

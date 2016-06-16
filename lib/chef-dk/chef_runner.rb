@@ -20,7 +20,11 @@ require 'chef-dk/service_exceptions'
 require 'chef/policy_builder/dynamic'
 require 'chef'
 
+require 'chef-dk/command/generator_commands/chef_exts/quieter_doc_formatter'
+require 'chef-dk/command/generator_commands/chef_exts/recipe_dsl_ext'
+
 module ChefDK
+
   # An adapter to chef's APIs to kick off a chef-client run.
   class ChefRunner
 
@@ -51,7 +55,7 @@ module ChefDK
     def policy
       return @policy_builder if @policy_builder
 
-      @policy_builder = Chef::PolicyBuilder::Dynamic.new("chef-dk", ohai.data, {}, nil, formatter)
+      @policy_builder = Chef::PolicyBuilder::Dynamic.new("chef-dk", ohai.data, {}, nil, event_dispatcher)
       @policy_builder.load_node
       @policy_builder.build_node
       @policy_builder.node.run_list(*run_list)
@@ -59,11 +63,15 @@ module ChefDK
       @policy_builder
     end
 
-    def formatter
-      @formatter ||=
+    def event_dispatcher
+      @event_dispatcher ||=
         Chef::EventDispatch::Dispatcher.new.tap do |d|
-          d.register(Chef::Formatters.new(:doc, stdout, stderr))
+          d.register(doc_formatter)
         end
+    end
+
+    def doc_formatter
+      Chef::Formatters.new(:chefdk_doc, stdout, stderr)
     end
 
     def configure

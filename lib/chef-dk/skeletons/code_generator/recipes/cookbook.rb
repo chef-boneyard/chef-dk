@@ -2,6 +2,10 @@
 context = ChefDK::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
 
+silence_chef_formatter
+
+generator_desc("Ensuring correct cookbook file content")
+
 # cookbook root dir
 directory cookbook_dir
 
@@ -104,6 +108,8 @@ end
 # git
 if context.have_git
   unless context.skip_git_init
+
+    generator_desc("Committing cookbook files to git")
 
     execute("initialize-git") do
       command("git init .")

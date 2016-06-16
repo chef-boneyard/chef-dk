@@ -18,6 +18,9 @@
 require 'chef-dk/configurable'
 require 'chef-dk/command/generator_commands'
 
+require 'chef-dk/command/generator_commands/chef_exts/recipe_dsl_ext'
+require 'chef-dk/command/generator_commands/chef_exts/generator_desc_resource'
+
 module ChefDK
   module Command
     module GeneratorCommands

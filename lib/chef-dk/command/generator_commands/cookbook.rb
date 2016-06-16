@@ -71,6 +71,7 @@ module ChefDK
           read_and_validate_params
           if params_valid?
             setup_context
+            msg("Generating cookbook #{cookbook_name}")
             chef_runner.converge
             msg("")
             msg("Your cookbook is ready. Type `cd #{cookbook_name_or_path}` to start working.")

@@ -54,14 +54,16 @@ describe ChefDK::ChefRunner do
   end
 
   it "configures a formatter for the chef run" do
-    expect(chef_runner.formatter).to be_a(Chef::EventDispatch::Dispatcher)
+    expect(chef_runner.event_dispatcher).to be_a(Chef::EventDispatch::Dispatcher)
 
-    # TODO: Once https://github.com/chef/chef/pull/3340 is merged/released,
-    # just use `formatter.subscribers`
-    subscribers = chef_runner.formatter.instance_variable_get(:@subscribers)
+    subscribers = chef_runner.event_dispatcher.subscribers
 
     expect(subscribers.size).to eq(1)
-    expect(subscribers.first).to be_a(Chef::Formatters::Doc)
+    expect(subscribers.first).to be_a(ChefDK::QuieterDocFormatter)
+  end
+
+  it "extends the recipe DSL with ChefDK's extensions" do
+    expect(Chef::DSL::Recipe.included_modules).to include(ChefDK::RecipeDSLExt)
   end
 
   it "detects the platform with ohai" do

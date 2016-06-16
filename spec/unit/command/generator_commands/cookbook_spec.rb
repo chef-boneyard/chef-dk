@@ -141,6 +141,27 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       end
     end
 
+    it "emits concise output" do
+      Dir.chdir(tempdir) do
+        allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+        expect(cookbook_generator.run).to eq(0)
+      end
+
+      expected = <<-OUTPUT
+Generating cookbook new_cookbook
+- Ensuring correct cookbook file content
+- Committing cookbook files to git
+
+Your cookbook is ready. Type `cd new_cookbook` to start working.
+OUTPUT
+
+      actual = stdout_io.string
+
+      # the formatter will add escape sequences to turn off any colors
+      actual.gsub!("\e[0m", "")
+      expect(actual).to eq(expected)
+    end
+
     shared_examples_for "a generated file" do |context_var|
       before do
         Dir.chdir(tempdir) do
@@ -399,6 +420,27 @@ SPEC_HELPER
           allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
           expect(cookbook_generator.run).to eq(0)
         end
+      end
+
+      it "emits concise output" do
+        expected = <<-OUTPUT
+Generating cookbook new_cookbook
+- Ensuring correct cookbook file content
+- Committing cookbook files to git
+- Ensuring delivery configuration
+- Ensuring correct delivery build cookbook content
+- Adding delivery configuration to feature branch
+- Adding build cookbook to feature branch
+- Merging delivery content feature branch to master
+
+Your cookbook is ready. Type `cd new_cookbook` to start working.
+OUTPUT
+
+        actual = stdout_io.string
+
+        # the formatter will add escape sequences to turn off any colors
+        actual.gsub!("\e[0m", "")
+        expect(actual).to eq(expected)
       end
 
       describe ".delivery/config.json" do
