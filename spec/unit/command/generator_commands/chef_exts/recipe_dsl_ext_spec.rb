@@ -36,6 +36,8 @@ require 'chef-dk/command/generator_commands/chef_exts/quieter_doc_formatter'
 
 describe ChefDK::RecipeDSLExt do
 
+  before(:all) { Chef.reset! }
+
   let(:stdout) { StringIO.new }
 
   let(:stderr) { StringIO.new }
@@ -67,7 +69,12 @@ describe ChefDK::RecipeDSLExt do
     end
   end
 
-  let(:cookbook_name) { "example" }
+  # In some circumstances (not totally clear about what), compat resource gets
+  # loaded and it does some weird stuff to `Chef::Recipe.new` which can fail if
+  # you pass in a cookbook name that is bogus and not-falsey. Using `nil` for
+  # the cookbook name works around that.
+  # https://github.com/chef-cookbooks/compat_resource/blob/3d948a5a9cabccddc7cf5e48dfea796a6b557a44/files/lib/chef_compat/monkeypatches/chef/recipe.rb#L8-L15
+  let(:cookbook_name) { nil }
 
   let(:recipe_name) { "example" }
 
