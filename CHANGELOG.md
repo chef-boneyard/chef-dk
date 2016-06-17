@@ -1,10 +1,11 @@
 # Change Log
 
-## [v0.15.9](https://github.com/chef/chef-dk/tree/v0.15.9) (2016-06-10)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v0.15.8...v0.15.9)
+## [v0.15.15](https://github.com/chef/chef-dk/tree/v0.15.15) (2016-06-17)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.14.25...v0.15.15)
 
 **Implemented enhancements:**
 
+- Update test-kitchen to 1.10.0 [\#905](https://github.com/chef/chef-dk/pull/905) ([mwrock](https://github.com/mwrock))
 - Add `build-cookbook` subcommand to `chef generate` and `--delivery` option to `chef generate cookbook` [\#891](https://github.com/chef/chef-dk/pull/891) ([danielsdeleo](https://github.com/danielsdeleo))
 - Generators support ubuntu 16.04 and centos 7.2 by default [\#869](https://github.com/chef/chef-dk/pull/869) ([lamont-granquist](https://github.com/lamont-granquist))
 - `chef --version` should print the Delivery CLI version [\#853](https://github.com/chef/chef-dk/pull/853) ([schisamo](https://github.com/schisamo))
