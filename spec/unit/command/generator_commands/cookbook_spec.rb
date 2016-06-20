@@ -36,9 +36,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       test
       test/integration
       test/integration/default
-      test/integration/default/serverspec
-      test/integration/default/serverspec/default_spec.rb
-      test/integration/helpers/serverspec/spec_helper.rb
+      test/integration/default/default_spec.rb
       Berksfile
       chefignore
       metadata.rb
@@ -206,8 +204,8 @@ OUTPUT
 
         end
 
-        describe "test/integration/default/serverspec/default_spec.rb" do
-          let(:file) { File.join(tempdir, "new_cookbook", "test", "integration", "default", "serverspec", "default_spec.rb") }
+        describe "test/integration/default/default_spec.rb" do
+          let(:file) { File.join(tempdir, "new_cookbook", "test", "integration", "default", "default_spec.rb") }
 
           include_examples "a generated file", :cookbook_name do
             let(:line) { "describe 'new_cookbook::default' do" }
@@ -305,11 +303,9 @@ provisioner:
 
 #  require_chef_omnibus: 12.8.1
 
-# Uncomment the following verifier to leverage Inspec instead of Busser (the
-# default verifier)
-# verifier:
-#   name: inspec
-#   format: doc
+verifier:
+  name: inspec
+  format: doc
 
 platforms:
   - name: ubuntu-16.04
@@ -376,11 +372,9 @@ driver:
 provisioner:
   name: chef_zero
 
-# Uncomment the following verifier to leverage Inspec instead of Busser (the
-# default verifier)
-# verifier:
-#   name: inspec
-#   format: doc
+verifier:
+  name: inspec
+  format: doc
 
 platforms:
   - name: ubuntu-16.04
