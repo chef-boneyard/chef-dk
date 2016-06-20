@@ -482,7 +482,7 @@ GEM
     memoist (0.14.0)
     method_source (0.8.2)
     mime-types (2.99.2)
-    mini_portile2 (2.0.0)
+    mini_portile2 (2.1.0)
     minitar (0.5.4)
     minitest (5.9.0)
     mixlib-archive (0.1.0)
@@ -516,10 +516,12 @@ GEM
       net-ssh-gateway (>= 1.2.0)
     net-telnet (0.1.1)
     nio4r (1.2.1)
-    nokogiri (1.6.7.2)
-      mini_portile2 (~> 2.0.0.rc2)
-    nokogiri (1.6.7.2-x86-mingw32)
-      mini_portile2 (~> 2.0.0.rc2)
+    nokogiri (1.6.8)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
+    nokogiri (1.6.8-x86-mingw32)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
     nori (2.6.0)
     notiffany (0.1.0)
       nenv (~> 0.1)
@@ -542,6 +544,7 @@ GEM
     paint (1.0.1)
     parser (2.3.1.2)
       ast (~> 2.2)
+    pkg-config (1.1.7)
     plist (3.2.0)
     polyglot (0.3.5)
     powerpack (0.1.1)
@@ -772,7 +775,7 @@ DEPENDENCIES
   listen (< 3.1.0)
   mixlib-install
   mixlib-versioning
-  nokogiri (= 1.6.7.2)
+  nokogiri
   ohai (>= 8.13.0)
   opscode-pushy-client!
   pry
