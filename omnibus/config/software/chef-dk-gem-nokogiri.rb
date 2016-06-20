@@ -8,4 +8,5 @@ BuildChefDKGem::GemInstallSoftwareDef.define(self, __FILE__)
 license "MIT"
 license_file "https://github.com/ruby-prof/ruby-prof/blob/master/LICENSE"
 
+dependency "chef-dk-gem-pkg-config"
 dependency "chef-dk-gem-mini_portile2"
