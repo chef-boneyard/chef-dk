@@ -81,7 +81,7 @@ group(:omnibus_package) do
   # All of the following used to be software definitions we included:
   gem "knife-spork"
   gem "dep-selector-libgecode"
-  gem "nokogiri", "1.6.7.2"
+  gem "nokogiri"
   gem "pry-byebug"
   gem "pry-remote"
   gem "pry-stack_explorer"
