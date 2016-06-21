@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: b02adcace13c996c5808ad6317189b4552a13cd5
-  branch: nokogiri
+  revision: cb6f0afa1cd334f25aece7deeef3a9454cecc0e7
   specs:
     omnibus-software (4.0.0)
       omnibus (>= 5.2.0)
@@ -142,7 +141,7 @@ GEM
     nori (2.6.0)
     octokit (4.3.0)
       sawyer (~> 0.7.0, >= 0.5.3)
-    ohai (8.16.0)
+    ohai (8.17.0)
       chef-config (>= 12.5.0.alpha.1, < 13)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
