@@ -139,13 +139,22 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       end
     end
 
-    it "emits concise output" do
-      Dir.chdir(tempdir) do
-        allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-        expect(cookbook_generator.run).to eq(0)
+
+    context "when no delivery CLI configuration is present" do
+
+      it "detects no delivery config" do
+        Dir.chdir(tempdir) do
+          expect(cookbook_generator.have_delivery_config?).to be(false)
+        end
       end
 
-      expected = <<-OUTPUT
+      it "emits concise output" do
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          expect(cookbook_generator.run).to eq(0)
+        end
+
+        expected = <<-OUTPUT
 Generating cookbook new_cookbook
 - Ensuring correct cookbook file content
 - Committing cookbook files to git
@@ -153,11 +162,59 @@ Generating cookbook new_cookbook
 Your cookbook is ready. Type `cd new_cookbook` to start working.
 OUTPUT
 
-      actual = stdout_io.string
+        actual = stdout_io.string
 
-      # the formatter will add escape sequences to turn off any colors
-      actual.gsub!("\e[0m", "")
-      expect(actual).to eq(expected)
+        # the formatter will add escape sequences to turn off any colors
+        actual.gsub!("\e[0m", "")
+        expect(actual).to eq(expected)
+      end
+    end
+
+    context "when a delivery CLI config is present" do
+
+      # Setup a situation like this:
+      # there is a dir for the delivery organization with the
+      # `.delivery/cli.toml` in it. Inside that is another dir (maybe IRL this
+      # would be "cookbooks"), then we create the cookbook inside that.
+
+      let(:tempdir_subdir) { File.join(tempdir, "subdirectory") }
+
+      let(:dot_delivery_dir) { File.join(tempdir, ".delivery") }
+
+      let(:dot_delivery_cli_toml) { File.join(dot_delivery_dir, "cli.toml") }
+
+      before do
+        Dir.mkdir(tempdir_subdir)
+        Dir.mkdir(dot_delivery_dir)
+        FileUtils.touch(dot_delivery_cli_toml)
+      end
+
+      it "detects the delivery config" do
+        Dir.chdir(tempdir_subdir) do
+          expect(cookbook_generator.have_delivery_config?).to be(true)
+        end
+      end
+
+      it "emits concise output" do
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          expect(cookbook_generator.run).to eq(0)
+        end
+
+        expected = <<-OUTPUT
+Generating cookbook new_cookbook
+- Ensuring correct cookbook file content
+- Committing cookbook files to git
+
+Your cookbook is ready. To setup the pipeline, type `cd new_cookbook`, then run `delivery init`
+OUTPUT
+
+        actual = stdout_io.string
+
+        # the formatter will add escape sequences to turn off any colors
+        actual.gsub!("\e[0m", "")
+        expect(actual).to eq(expected)
+      end
     end
 
     shared_examples_for "a generated file" do |context_var|

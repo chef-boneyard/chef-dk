@@ -74,7 +74,7 @@ module ChefDK
             msg("Generating cookbook #{cookbook_name}")
             chef_runner.converge
             msg("")
-            msg("Your cookbook is ready. Type `cd #{cookbook_name_or_path}` to start working.")
+            emit_post_create_message
             0
           else
             err(opt_parser)
@@ -83,6 +83,14 @@ module ChefDK
         rescue ChefDK::ChefRunnerError => e
           err("ERROR: #{e}")
           1
+        end
+
+        def emit_post_create_message
+          if have_delivery_config?
+            msg("Your cookbook is ready. To setup the pipeline, type `cd #{cookbook_name_or_path}`, then run `delivery init`")
+          else
+            msg("Your cookbook is ready. Type `cd #{cookbook_name_or_path}` to start working.")
+          end
         end
 
         def setup_context
@@ -138,6 +146,29 @@ module ChefDK
 
         def enable_delivery?
           @enable_delivery
+        end
+
+        def have_delivery_config?
+          # delivery-cli's logic is to look recursively upward for
+          # .delivery/cli.toml starting from pwd:
+          # https://github.com/chef/delivery-cli/blob/22cbef3987ebd0aee98405b7e161a100edc87e49/src/delivery/config/mod.rs#L225-L247
+
+          path_to_check = File.expand_path(Dir.pwd)
+          result = false
+
+          Pathname.new(path_to_check).ascend do |path|
+            if contains_delivery_cli_toml?(path)
+              result = true
+              break
+            end
+          end
+
+          result
+        end
+
+        def contains_delivery_cli_toml?(path)
+          delivery_cli_path = path.join(".delivery/cli.toml")
+          delivery_cli_path.exist?
         end
 
         def read_and_validate_params
