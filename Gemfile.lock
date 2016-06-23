@@ -228,7 +228,7 @@ GEM
       ffi (~> 1.9)
     diff-lcs (1.2.5)
     diffy (3.1.0)
-    docker-api (1.28.0)
+    docker-api (1.29.0)
       excon (>= 0.38.0)
       json
     erubis (2.7.0)
@@ -462,7 +462,7 @@ GEM
       chef (>= 11.0.0)
       diffy (>= 3.0.1)
       git (>= 1.2.5)
-    knife-supermarket (0.2.4)
+    knife-supermarket (0.3.0)
       chef (>= 0.10.10)
     knife-windows (1.4.1)
       winrm (~> 1.7)
@@ -649,7 +649,7 @@ GEM
     solve (2.0.3)
       molinillo (~> 0.4.2)
       semverse (~> 1.1)
-    specinfra (2.59.1)
+    specinfra (2.59.2)
       net-scp
       net-ssh (>= 2.7, < 4.0)
       net-telnet
@@ -687,7 +687,7 @@ GEM
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     ubuntu_ami (0.4.1)
-    unicode-display_width (1.0.5)
+    unicode-display_width (1.1.0)
     uuid (2.3.8)
       macaddr (~> 1.0)
     uuidtools (2.1.5)
@@ -701,7 +701,7 @@ GEM
       win32-ipc (>= 0.6.0)
     win32-eventlog (0.6.3)
       ffi
-    win32-ipc (0.6.6)
+    win32-ipc (0.7.0)
       ffi
     win32-mmap (0.4.2)
       ffi
@@ -713,7 +713,7 @@ GEM
       ffi
     windows-api (0.4.4)
       win32-api (>= 1.4.5)
-    windows-pr (1.2.4)
+    windows-pr (1.2.5)
       win32-api (>= 1.4.5)
       windows-api (>= 0.4.0)
     winrm (1.8.1)

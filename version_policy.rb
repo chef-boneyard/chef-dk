@@ -89,6 +89,7 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "unicode-display_width",
   "varia_model",
   "httpclient",
+  "molinillo",
   # We have a task called update_stable_channel_gems which scans and pins to the
   # latest released chef/chef-config/opscode-pushy-client but it pulls from the
   # chef repo instead of from rubygems. Bundler currently considers any git
