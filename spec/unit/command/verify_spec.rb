@@ -53,7 +53,6 @@ describe ChefDK::Command::Verify do
       "openssl",
       "inspec",
       "chef-sugar",
-      "knife-supermarket",
       "opscode-pushy-client",
       "git",
       "delivery-cli",

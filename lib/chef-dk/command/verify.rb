@@ -532,11 +532,6 @@ end
         end
       end
 
-      add_component "knife-supermarket" do |c|
-        c.gem_base_dir = "knife-supermarket"
-        c.smoke_test { sh("#{bin("knife")} supermarket search httpd")}
-      end
-
       attr_reader :verification_threads
       attr_reader :verification_results
       attr_reader :verification_status
