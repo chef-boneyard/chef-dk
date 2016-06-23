@@ -96,7 +96,13 @@ module ChefDK
           if have_delivery_config?
             msg("Your cookbook is ready. To setup the pipeline, type `cd #{cookbook_name_or_path}`, then run `delivery init`")
           else
-            msg("Your cookbook is ready. Type `cd #{cookbook_name_or_path}` to start working.")
+            msg("Your cookbook is ready. Type `cd #{cookbook_name_or_path}` to enter it.")
+            msg("\nThere are several commands you can run to get started locally developing and testing your cookbook.")
+            msg("Type `delivery local --help` to see a full list.")
+            msg("\nWhy not start by writing a test? Tests for the default recipe are stored at:\n")
+            msg("test/integration/default/default_spec.rb")
+            msg("\nIf you'd prefer to dive right in, the default recipe can be found at:")
+            msg("\nrecipes/default.rb")
           end
         end
 
