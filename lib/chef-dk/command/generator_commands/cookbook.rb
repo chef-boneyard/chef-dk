@@ -96,13 +96,7 @@ module ChefDK
           if have_delivery_config?
             msg("Your cookbook is ready. To setup the pipeline, type `cd #{cookbook_name_or_path}`, then run `delivery init`")
           else
-            msg("Your cookbook is ready. Type `cd #{cookbook_name_or_path}` to enter it.")
-            msg("\nThere are several commands you can run to get started locally developing and testing your cookbook.")
-            msg("Type `delivery local --help` to see a full list.")
-            msg("\nWhy not start by writing a test? Tests for the default recipe are stored at:\n")
-            msg("test/integration/default/default_spec.rb")
-            msg("\nIf you'd prefer to dive right in, the default recipe can be found at:")
-            msg("\nrecipes/default.rb")
+            msg("Your cookbook is ready. Type `cd #{cookbook_name_or_path}` to start working.")
           end
         end
 
@@ -193,7 +187,10 @@ module ChefDK
         def read_and_validate_params
           arguments = parse_options(params)
           @cookbook_name_or_path = arguments[0]
-          unless @cookbook_name_or_path
+          if !@cookbook_name_or_path
+            @params_valid = false
+          elsif /-/ =~ File.basename(@cookbook_name_or_path)
+            err("Hyphens are not allowed in cookbook names. Please specify a cookbook name without hyphens.")
             @params_valid = false
           end
 
@@ -227,4 +224,3 @@ module ChefDK
     end
   end
 end
-
