@@ -56,6 +56,12 @@ module ChefDK
           boolean:      true,
           default:      nil
 
+        option :verbose,
+          short:        "-V",
+          long:         "--verbose",
+          description:  "Show detailed output from the generator",
+          boolean:      true,
+          default:      false
 
         options.merge!(SharedGeneratorOptions.options)
 
@@ -64,6 +70,7 @@ module ChefDK
           @cookbook_name = nil
           @berks_mode = true
           @enable_delivery = false
+          @verbose = false
           super
         end
 
@@ -109,6 +116,8 @@ module ChefDK
           Generator.add_attr_to_context(:build_cookbook_parent_is_cookbook, true)
           Generator.add_attr_to_context(:delivery_project_git_initialized, have_git? && !cookbook_path_in_git_repo?)
 
+          Generator.add_attr_to_context(:verbose, verbose?)
+
           Generator.add_attr_to_context(:use_berkshelf, berks_mode?)
         end
 
@@ -146,6 +155,10 @@ module ChefDK
 
         def enable_delivery?
           @enable_delivery
+        end
+
+        def verbose?
+          @verbose
         end
 
         def have_delivery_config?
@@ -190,6 +203,12 @@ module ChefDK
           if config[:delivery]
             @enable_delivery = true
           end
+
+          if config[:verbose]
+            @verbose = true
+          end
+
+          true
         end
 
         def params_valid?

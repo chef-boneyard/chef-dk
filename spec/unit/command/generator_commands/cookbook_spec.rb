@@ -126,6 +126,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       expect(generator_context.cookbook_root).to eq(Dir.pwd)
       expect(generator_context.cookbook_name).to eq("new_cookbook")
       expect(generator_context.recipe_name).to eq("default")
+      expect(generator_context.verbose).to be(false)
     end
 
     it "creates a new cookbook" do
@@ -139,6 +140,32 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       end
     end
 
+    context "when given the verbose flag" do
+
+      let(:argv) { %w[ new_cookbook --verbose ] }
+
+      it "configures the generator context with verbose mode enabled" do
+        cookbook_generator.read_and_validate_params
+        cookbook_generator.setup_context
+        expect(generator_context.verbose).to be(true)
+      end
+
+      it "emits verbose output" do
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          expect(cookbook_generator.run).to eq(0)
+        end
+
+        # The normal chef formatter puts a heading for each recipe like this.
+        # Full output is large and subject to change with minor changes in the
+        # generator cookbook, so we just look for this line
+        expected_line = "Recipe: code_generator::cookbook"
+
+        actual = stdout_io.string
+
+        expect(actual).to include(expected_line)
+      end
+    end
 
     context "when no delivery CLI configuration is present" do
 
