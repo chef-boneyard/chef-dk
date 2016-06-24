@@ -94,7 +94,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.16.4)
+    chef-dk (0.16.5)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -124,12 +124,12 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (2.3.15)
-      aws-sdk-resources (= 2.3.15)
-    aws-sdk-core (2.3.15)
+    aws-sdk (2.3.16)
+      aws-sdk-resources (= 2.3.16)
+    aws-sdk-core (2.3.16)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.3.15)
-      aws-sdk-core (= 2.3.15)
+    aws-sdk-resources (2.3.16)
+      aws-sdk-core (= 2.3.16)
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -649,7 +649,7 @@ GEM
     solve (2.0.3)
       molinillo (~> 0.4.2)
       semverse (~> 1.1)
-    specinfra (2.59.2)
+    specinfra (2.59.3)
       net-scp
       net-ssh (>= 2.7, < 4.0)
       net-telnet
@@ -662,7 +662,7 @@ GEM
       uuid (~> 2.0)
     syslog-logger (1.6.8)
     systemu (2.6.5)
-    test-kitchen (1.10.1)
+    test-kitchen (1.10.2)
       mixlib-install (~> 1.0, >= 1.0.4)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
