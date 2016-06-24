@@ -444,6 +444,9 @@ GEM
     json (1.8.3)
     json_pure (1.8.3)
     jwt (1.5.4)
+    kitchen-dokken (0.0.30)
+      docker-api (~> 1.28)
+      test-kitchen (~> 1.5)
     kitchen-ec2 (1.0.0)
       aws-sdk (~> 2)
       excon
@@ -765,6 +768,7 @@ DEPENDENCIES
   foodcritic (>= 6.1.1)
   guard
   inspec (>= 0.17.1)
+  kitchen-dokken
   kitchen-ec2
   kitchen-inspec
   kitchen-vagrant
