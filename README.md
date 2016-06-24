@@ -30,7 +30,8 @@ system bin directory, ready to use.
 
 ### Pre-release Candidates
 
-The following commands will download the latest ChefDK package from the `current` channel.  The `current` channel holds builds that have passed testing and are candidates for release.
+The following commands will download the latest ChefDK package from the `current` channel.  The `current` channel holds builds that have passed testing and are candidates for release.  
+More information about flags supported by install.sh available here: https://docs.chef.io/api_omnitruck.html
 
 #### Linux and OS/X:
 
