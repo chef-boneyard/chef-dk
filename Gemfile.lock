@@ -94,7 +94,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.16.7)
+    chef-dk (0.16.8)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -490,7 +490,7 @@ GEM
       mixlib-log
     mixlib-cli (1.6.0)
     mixlib-config (2.2.1)
-    mixlib-install (1.0.13)
+    mixlib-install (1.1.0)
       artifactory
       mixlib-shellout
       mixlib-versioning
