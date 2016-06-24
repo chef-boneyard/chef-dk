@@ -32,7 +32,7 @@ First, create a new branch for the changes.
 git checkout -b testing-build-cookbook
 ```
 
-Next, increment the version in the metadata.rb. This should be in the *parent*, not in this, the build-cookbook. If this is not done, the verify phase will fail.
+Next, increment the version in the metadata.rb. This should be in the _parent_, not in this, the build-cookbook. If this is not done, the verify phase will fail.
 
 ```
 % git diff
@@ -67,7 +67,7 @@ git add ../..
 git commit -m 'WIP: Testing changes'
 ```
 
-From *this* directory (`.delivery/build-cookbook`, relative to the parent cookbook project), run
+From _this_ directory (`.delivery/build-cookbook`, relative to the parent cookbook project), run
 
 ```
 cd .delivery/build-cookbook
@@ -129,7 +129,7 @@ delivery review
 
 ## FAQ
 
-### Why don't I just run rspec, foodcritic/rubocop, knife cookbook test on my local system?
+### Why don't I just run rspec and foodcritic/rubocop on my local system?
 
 An objection to the Test Kitchen approach is that it is much faster to run the unit, lint, and syntax commands for the project on the local system. That is totally true, and also totally valid. Do that for the really fast feedback loop. However, the dance we do with Test Kitchen brings a much higher degree of confidence in the changes we're making, that everything will run on the build nodes in Chef Delivery. We strongly encourage this approach before actually pushing the changes to Delivery.
 
