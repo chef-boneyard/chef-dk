@@ -27,9 +27,6 @@ Chef is built to last. We strive to ensure high quality throughout the Chef expe
   continuously on all the pull requests. We require the Travis runs to succeed on every pull
   request before being merged.
 
-In addition to this it would be nice to include the description of the problem you are solving
-  with your change. You can use [Chef Issue Template](#issuetemplate) in the description section
-  of the pull request.
 
 ### <a name="cr"></a> Chef Code Review Process
 
@@ -48,6 +45,7 @@ Once you a pull request, the **Chef Engineering Team** or **Chef Core Committers
 
 If you would like to learn about when your code will be available in a release of Chef, read more about
   [Chef Release Process](#release).
+
 
 ### Contributor License Agreement (CLA)
 Licensing is very important to open source projects. It helps ensure the
@@ -75,6 +73,7 @@ You can complete our
   If you're contributing on behalf of your employer and they retain the copyright for your works,
   have your employer fill out our
   [Corporate CLA](https://supermarket.chef.io/ccla-signatures/new) instead.
+
 
 ### Chef Obvious Fix Policy
 
@@ -109,6 +108,7 @@ Date:   Wed Sep 18 11:44:40 2013 -0700
 ------------------------------------------------------------------------
 ```
 
+
 ## <a name="issues"></a> Chef Issue Tracking
 
 Chef Issue Tracking is handled using Github Issues.
@@ -121,29 +121,6 @@ If you are familiar with Chef and know the component that is causing you a probl
 Otherwise you can file your issue in the [Chef project](https://github.com/chef/chef/issues)
   and we will make sure it gets filed against the appropriate project.
 
-In order to decrease the back and forth in issues, and to help us get to the bottom of them quickly
-  we use the below issue template. You can copy/paste this template into the issue you are opening and
-  edit it accordingly.
-
-<a name="issuetemplate"></a>
-```
-### Version:
-[Version of the project installed]
-
-### Environment: [Details about the environment such as the Operating System, cookbook details, etc...]
-
-### Scenario:
-[What you are trying to achieve and you can't?]
-
-### Steps to Reproduce:
-[If you are filing an issue what are the things we need to do in order to repro your problem?]
-
-### Expected Result:
-[What are you expecting to happen as the consequence of above reproduction steps?]
-
-### Actual Result:
-[What actually happens after the reproduction steps?]
-```
 
 ## <a name="release"></a> Chef Release Cycles
 
@@ -170,6 +147,7 @@ We do a `Minor` release approximately every 3 months and `Patch` releases on a w
 
 Announcements of releases are available on [Chef Blog](https://www.chef.io/blog/) when they are
   available.
+
 
 ## Chef Community
 
