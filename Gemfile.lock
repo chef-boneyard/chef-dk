@@ -94,7 +94,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.16.10)
+    chef-dk (0.16.11)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -446,8 +446,8 @@ GEM
     json (1.8.3)
     json_pure (1.8.3)
     jwt (1.5.4)
-    kitchen-dokken (0.0.30)
-      docker-api (~> 1.28)
+    kitchen-dokken (0.0.31)
+      docker-api (~> 1.29)
       test-kitchen (~> 1.5)
     kitchen-ec2 (1.0.0)
       aws-sdk (~> 2)
