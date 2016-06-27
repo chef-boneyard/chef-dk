@@ -94,7 +94,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.16.8)
+    chef-dk (0.16.9)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -244,6 +244,8 @@ GEM
       ffi-rzmq-core (>= 1.0.1)
     ffi-rzmq-core (1.0.5)
       ffi
+    ffi-win32-extensions (1.0.2)
+      ffi
     ffi-yajl (2.2.3)
       libyajl2 (~> 1.2)
     fission (0.5.0)
@@ -319,8 +321,8 @@ GEM
       multi_json (~> 1.10)
     fog-local (0.3.0)
       fog-core (~> 1.27)
-    fog-openstack (0.1.6)
-      fog-core (>= 1.39)
+    fog-openstack (0.1.7)
+      fog-core (>= 1.40)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
     fog-powerdns (0.1.1)
@@ -673,7 +675,7 @@ GEM
     thread_safe (0.3.5)
     timers (4.0.4)
       hitimes
-    train (0.13.1)
+    train (0.14.1)
       docker-api (~> 1.26)
       json (~> 1.8)
       mixlib-shellout (~> 2.0)
@@ -709,8 +711,9 @@ GEM
       win32-ipc (>= 0.6.0)
     win32-process (0.8.3)
       ffi (>= 1.0.0)
-    win32-service (0.8.7)
+    win32-service (0.8.9)
       ffi
+      ffi-win32-extensions
     windows-api (0.4.4)
       win32-api (>= 1.4.5)
     windows-pr (1.2.5)
