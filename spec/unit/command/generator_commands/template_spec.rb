@@ -24,7 +24,7 @@ describe ChefDK::Command::GeneratorCommands::Template do
   include_examples "a file generator" do
 
     let(:generator_name) { "template" }
-    let(:generated_files) { [ "templates/default/new_template.txt.erb" ] }
+    let(:generated_files) { [ "templates/new_template.txt.erb" ] }
     let(:new_file_name) { "new_template.txt" }
 
   end
