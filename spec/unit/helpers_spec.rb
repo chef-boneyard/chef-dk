@@ -91,20 +91,29 @@ describe ChefDK::Helpers do
   end
 
   describe "omnibus_env" do
-    let(:git_partial_path) { File.join("embedded", "git", "usr", "bin") }
+    let(:git_tools_path) { File.join("embedded", "git", "usr", "bin") }
+    let(:custom_gitbin_path) { File.join("gitbin") }
     before do
       allow(helpers).to receive(:omnibus_expand_path) {|*paths| File.expand_path(File.join(paths)) }
-      allow(Dir).to receive(:exists?).with(/#{git_partial_path}/).and_return false
+      allow(Dir).to receive(:exists?).with(/#{custom_gitbin_path}/).and_return false
+      allow(Dir).to receive(:exists?).with(/#{git_tools_path}/).and_return false
     end
 
     it "does not include the git tools in the path" do
-      expect(helpers.omnibus_env['PATH']).to_not match(/#{git_partial_path}/)
+      expect(helpers.omnibus_env['PATH']).to_not match(/#{git_tools_path}/)
+    end
+
+    context "when the custom gitbin directory exists" do
+      it "includes them in the path" do
+        expect(Dir).to receive(:exists?).with(/#{custom_gitbin_path}/).and_return true
+        expect(helpers.omnibus_env['PATH']).to match(/#{custom_gitbin_path}$/)
+      end
     end
 
     context "when the git tools directory exists" do
       it "includes them in the path" do
-        expect(Dir).to receive(:exists?).with(/#{git_partial_path}/).and_return true
-        expect(helpers.omnibus_env['PATH']).to match(/#{git_partial_path}/)
+        expect(Dir).to receive(:exists?).with(/#{git_tools_path}/).and_return true
+        expect(helpers.omnibus_env['PATH']).to match(/#{git_tools_path}$/)
       end
     end
   end
