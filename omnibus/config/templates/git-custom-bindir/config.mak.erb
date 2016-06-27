@@ -1,0 +1,31 @@
+<%- if cc -%>
+CC=<%= cc %>
+<%-  end -%>
+<%- if ld -%>
+LD=<%= ld %>
+<%-  end -%>
+<%- if cflags -%>
+CFLAGS=<%= cflags %>
+<%-  end -%>
+<%- if cppflags -%>
+CPPFLAGS=<%= cppflags %>
+<%-  end -%>
+<%- if ldflags -%>
+LDFLAGS=<%= ldflags %>
+<%-  end -%>
+<%- if install -%>
+INSTALL=<%= install %>
+<%-  end -%>
+<%- if shell_path -%>
+SHELL_PATH=<%= shell_path %>
+<%-  end -%>
+CURLDIR=<%= install_dir %>/embedded
+EXPATDIR=<%= install_dir %>/embedded
+ICONVDIR=<%= install_dir %>/embedded
+LIBPCREDIR=<%= install_dir %>/embedded
+OPENSSLDIR=<%= install_dir %>/embedded
+ZLIB_PATH=<%= install_dir %>/embedded
+
+<%- config_hash.each_pair do |k, v| -%>
+<%= k.to_s %>=<%= v %>
+<%- end -%>

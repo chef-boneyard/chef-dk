@@ -11,7 +11,7 @@ dependency "rust-uninstall"
 if windows?
   dependency "git-windows"
 else
-  dependency "git"
+  dependency "git-custom-bindir"
 end
 
 dependency "chef-dk"
