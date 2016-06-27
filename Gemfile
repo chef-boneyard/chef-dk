@@ -59,6 +59,7 @@ group(:omnibus_package) do
   gem "foodcritic", ">= 6.1.1"
   gem "inspec", ">= 0.17.1"
   gem "kitchen-ec2"
+  gem "kitchen-dokken"
   gem "kitchen-inspec"
   gem "kitchen-vagrant"
   gem "knife-windows"
