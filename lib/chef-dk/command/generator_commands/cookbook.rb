@@ -52,9 +52,9 @@ module ChefDK
         option :delivery,
           short:        "-d",
           long:         "--delivery",
-          description:  "Generate cookbook with delivery integration",
+          description:  "This option has no effect and exists only for compatibility with past releases",
           boolean:      true,
-          default:      nil
+          default:      true
 
         option :verbose,
           short:        "-V",
@@ -69,7 +69,7 @@ module ChefDK
           @params_valid = true
           @cookbook_name = nil
           @berks_mode = true
-          @enable_delivery = false
+          @enable_delivery = true
           @verbose = false
           super
         end
@@ -198,10 +198,6 @@ module ChefDK
 
           if config[:policy]
             @berks_mode = false
-          end
-
-          if config[:delivery]
-            @enable_delivery = true
           end
 
           if config[:verbose]
