@@ -187,7 +187,10 @@ module ChefDK
         def read_and_validate_params
           arguments = parse_options(params)
           @cookbook_name_or_path = arguments[0]
-          unless @cookbook_name_or_path
+          if !@cookbook_name_or_path
+            @params_valid = false
+          elsif /-/ =~ File.basename(@cookbook_name_or_path)
+            err("Hyphens are not allowed in cookbook names. Please specify a cookbook name without hyphens.")
             @params_valid = false
           end
 
@@ -221,4 +224,3 @@ module ChefDK
     end
   end
 end
-
