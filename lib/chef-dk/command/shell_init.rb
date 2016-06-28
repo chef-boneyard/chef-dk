@@ -166,7 +166,7 @@ HELP
         # /dev/null to avoid Fish's helpful warnings about nonexistent
         # PATH elements.
         if var == 'PATH'
-          emit_shell_cmd(%Q(set -gx #{var} "#{val.split(':').join('" "')}" 2>/dev/null;))
+          emit_shell_cmd(%Q(set -gx #{var} "#{val.split(File::PATH_SEPARATOR).join('" "')}" 2>/dev/null;))
         else
           emit_shell_cmd(%Q(set -gx #{var} "#{val}";))
         end

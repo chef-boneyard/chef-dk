@@ -111,10 +111,10 @@ module ChefDK
       @omnibus_env ||=
         begin
           user_bin_dir = File.expand_path(File.join(Gem.user_dir, 'bin'))
-          path = [ omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH'] ]
-          path << git_windows_bin_dir if Dir.exists?(git_windows_bin_dir)
+          paths = [ omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir ] + ENV['PATH'].split(File::PATH_SEPARATOR)
+          paths << git_windows_bin_dir if Dir.exists?(git_windows_bin_dir)
           {
-            'PATH' => path.join(File::PATH_SEPARATOR),
+            'PATH' => paths.uniq.join(File::PATH_SEPARATOR),
             'GEM_ROOT' => Gem.default_dir,
             'GEM_HOME' => Gem.user_dir,
             'GEM_PATH' => Gem.path.join(File::PATH_SEPARATOR),
