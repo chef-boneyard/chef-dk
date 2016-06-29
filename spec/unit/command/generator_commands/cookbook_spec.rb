@@ -57,6 +57,23 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
     end
   end
 
+    let(:non_delivery_breadcrumb) do
+<<-EOF
+Your cookbook is ready. Type `cd new_cookbook` to enter it.
+
+There are several commands you can run to get started locally developing and testing your cookbook.
+Type `delivery local --help` to see a full list.
+
+Why not start by writing a test? Tests for the default recipe are stored at:
+
+test/integration/default/default_spec.rb
+
+If you'd prefer to dive right in, the default recipe can be found at:
+
+recipes/default.rb
+EOF
+   end
+
   subject(:cookbook_generator) do
     g = described_class.new(argv)
     allow(g).to receive(:cookbook_path_in_git_repo?).and_return(false)
@@ -304,7 +321,7 @@ Generating cookbook new_cookbook
 - Adding build cookbook to feature branch
 - Merging delivery content feature branch to master
 
-Your cookbook is ready. Type `cd new_cookbook` to start working.
+#{non_delivery_breadcrumb}
 OUTPUT
 
         actual = stdout_io.string
