@@ -98,6 +98,15 @@ module ChefDK
       File.join(usr_bin_prefix, command)
     end
 
+    # Unix users do not want git on their path if they already have it installed.
+    # Because we put `embedded/bin` on the path we must move the git binaries
+    # somewhere else that we can append to the end of the path.
+    # This is only a temporary solution - see https://github.com/chef/chef-dk/issues/854
+    # for a better proposed solution.
+    def git_bin_dir
+      @git_bin_dir ||= File.expand_path(File.join(omnibus_root, "gitbin"))
+    end
+
     # In our Windows ChefDK omnibus package we include Git For Windows, which
     # has a bunch of helpful unix utilties (like ssh, scp, etc.) bundled with it
     def git_windows_bin_dir
@@ -112,6 +121,7 @@ module ChefDK
         begin
           user_bin_dir = File.expand_path(File.join(Gem.user_dir, 'bin'))
           path = [ omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH'] ]
+          path << git_bin_dir if Dir.exists?(git_bin_dir)
           path << git_windows_bin_dir if Dir.exists?(git_windows_bin_dir)
           {
             'PATH' => path.join(File::PATH_SEPARATOR),
