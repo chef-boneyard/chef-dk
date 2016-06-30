@@ -684,7 +684,7 @@ GEM
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     ubuntu_ami (0.4.1)
-    unicode-display_width (1.0.5)
+    unicode-display_width (1.1.0)
     uuid (2.3.8)
       macaddr (~> 1.0)
     uuidtools (2.1.5)
