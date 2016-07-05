@@ -130,6 +130,6 @@ end
 
 if context.enable_delivery
 
-  include_recipe "code_generator::build_cookbook"
+  include_recipe "::build_cookbook"
 
 end
