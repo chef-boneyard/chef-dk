@@ -1,4 +1,4 @@
-# build-cookbook
+# build_cookbook
 
 A build cookbook for running the parent project through Chef Delivery
 
@@ -6,13 +6,13 @@ This build cookbook should be customized to suit the needs of the parent project
 
 ## .delivery/config.json
 
-In the parent directory to this build-cookbook, the `config.json` can be modified as necessary. For example, phases can be skipped, publishing information can be added, and so on. Refer to customer support or the Chef Delivery documentation for assistance on what options are available for this configuration.
+In the parent directory to this build_cookbook, the `config.json` can be modified as necessary. For example, phases can be skipped, publishing information can be added, and so on. Refer to customer support or the Chef Delivery documentation for assistance on what options are available for this configuration.
 
 ## Test Kitchen - Local Verify Testing
 
 This cookbook also has a `.kitchen.yml` which can be used to create local build nodes with Test Kitchen to perform the verification phases, `unit`, `syntax`, and `lint`. When running `kitchen converge`, the instances will be set up like Chef Delivery "build nodes" with the [delivery_build cookbook](https://github.com/chef-cookbooks/delivery_build). The reason for this is to make sure that the same exact kind of nodes are used by this build cookbook are run on the local workstation as would run Delivery. It will run `delivery job verify PHASE` for the parent project.
 
-Modify the `.kitchen.yml` if necessary to change the platforms or other configuration to run the verify phases. After making changes in the parent project, `cd` into this directory (`.delivery/build-cookbook`), and run:
+Modify the `.kitchen.yml` if necessary to change the platforms or other configuration to run the verify phases. After making changes in the parent project, `cd` into this directory (`.delivery/build_cookbook`), and run:
 
 ```
 kitchen test
@@ -20,7 +20,7 @@ kitchen test
 
 ## Recipes
 
-Each of the recipes in this build-cookbook are run in the named phase during the Chef Delivery pipeline. The `unit`, `syntax`, and `lint` recipes are additionally run when using Test Kitchen for local testing as noted in the above section.
+Each of the recipes in this build_cookbook are run in the named phase during the Chef Delivery pipeline. The `unit`, `syntax`, and `lint` recipes are additionally run when using Test Kitchen for local testing as noted in the above section.
 
 ## Making Changes - Cookbook Example
 
@@ -32,7 +32,7 @@ First, create a new branch for the changes.
 git checkout -b testing-build-cookbook
 ```
 
-Next, increment the version in the metadata.rb. This should be in the _parent_, not in this, the build-cookbook. If this is not done, the verify phase will fail.
+Next, increment the version in the metadata.rb. This should be in the _parent_, not in this, the build_cookbook. If this is not done, the verify phase will fail.
 
 ```
 % git diff
@@ -67,10 +67,10 @@ git add ../..
 git commit -m 'WIP: Testing changes'
 ```
 
-From _this_ directory (`.delivery/build-cookbook`, relative to the parent cookbook project), run
+From _this_ directory (`.delivery/build_cookbook`, relative to the parent cookbook project), run
 
 ```
-cd .delivery/build-cookbook
+cd .delivery/build_cookbook
 kitchen converge
 ```
 
@@ -94,10 +94,10 @@ git add .
 git commit -m 'WIP: Install zsh in default recipe'
 ```
 
-Now rerun kitchen from the build-cookbook.
+Now rerun kitchen from the build_cookbook.
 
 ```
-cd .delivery/build-cookbook
+cd .delivery/build_cookbook
 kitchen converge
 ```
 
@@ -139,7 +139,7 @@ When running `delivery job`, it expects to merge the commit for the changeset ag
 
 ### What do I do next?
 
-Make changes in the cookbook project as required for organizational goals and needs. Modify the `build-cookbook` as necessary for the pipeline phases that the cookbook should go through.
+Make changes in the cookbook project as required for organizational goals and needs. Modify the `build_cookbook` as necessary for the pipeline phases that the cookbook should go through.
 
 ### What if I get stuck?
 
