@@ -377,7 +377,7 @@ GEM
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
-    foodcritic (7.0.0)
+    foodcritic (7.0.1)
       cucumber-core (>= 1.3)
       erubis
       nokogiri (>= 1.5, < 2.0)
@@ -771,7 +771,7 @@ DEPENDENCIES
   fauxhai
   ffi
   ffi-rzmq-core
-  foodcritic (>= 6.1.1)
+  foodcritic (>= 7.0.1)
   guard
   inspec (>= 0.17.1)
   kitchen-dokken
