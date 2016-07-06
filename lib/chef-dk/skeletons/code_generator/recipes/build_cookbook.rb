@@ -11,6 +11,11 @@ cookbook_file File.join(dot_delivery_dir, "config.json") do
   source "delivery-config.json"
 end
 
+# Adding a new prototype file for delivery-cli local commands
+cookbook_file File.join(dot_delivery_dir, "project.toml") do
+  source "delivery-project.toml"
+end
+
 generator_desc("Ensuring correct delivery build cookbook content")
 
 build_cookbook_dir = File.join(dot_delivery_dir, "build_cookbook")
@@ -114,6 +119,15 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
 
   execute("git-add-delivery-config-json") do
     command("git add .delivery/config.json")
+    cwd delivery_project_dir
+
+    only_if "git status --porcelain |grep \".\""
+  end
+
+  # Adding the new prototype file to the feature branch
+  # so it gets checked in with the delivery config commit
+  execute("git-add-delivery-project-toml") do
+    command("git add .delivery/project.toml")
     cwd delivery_project_dir
 
     only_if "git status --porcelain |grep \".\""
