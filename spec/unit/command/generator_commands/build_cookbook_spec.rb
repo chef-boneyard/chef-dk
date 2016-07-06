@@ -67,7 +67,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
 
   let(:expected_cookbook_files) do
     expected_cookbook_file_relpaths.map do |relpath|
-      File.join(tempdir, "delivery_project", ".delivery", "build-cookbook", relpath)
+      File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", relpath)
     end
   end
 
@@ -163,7 +163,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
           end
         end
 
-        let(:file) { File.join(tempdir, "delivery_project", ".delivery", "build-cookbook", ".kitchen.yml") }
+        let(:file) { File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", ".kitchen.yml") }
 
         it "creates a .kitchen.yml with the expected content" do
           expect(IO.read(file)).to eq(expected_kitchen_yml_content)
@@ -189,12 +189,12 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
       end
 
       describe "metadata.rb" do
-        let(:file) { File.join(tempdir, "delivery_project", ".delivery", "build-cookbook", "metadata.rb") }
+        let(:file) { File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", "metadata.rb") }
 
         include_examples "a generated file", :cookbook_name do
           let(:line) do
             <<-METADATA
-name 'build-cookbook'
+name 'build_cookbook'
 maintainer 'The Authors'
 maintainer_email 'you@example.com'
 license 'all_rights'
@@ -228,7 +228,7 @@ METADATA
             syntax.rb
             unit.rb
           ].each do |phase_recipe|
-            recipe_file = File.join(tempdir, "delivery_project", ".delivery", "build-cookbook", "recipes", phase_recipe)
+            recipe_file = File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", "recipes", phase_recipe)
             phase = File.basename(phase_recipe, ".rb")
             expected_content = %Q[include_recipe 'delivery-truck::#{phase}']
             expect(IO.read(recipe_file)).to include(expected_content)
@@ -248,12 +248,12 @@ METADATA
       end
 
       describe "metadata.rb" do
-        let(:file) { File.join(tempdir, "delivery_project", ".delivery", "build-cookbook", "metadata.rb") }
+        let(:file) { File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", "metadata.rb") }
 
         include_examples "a generated file", :cookbook_name do
           let(:line) do
             <<-METADATA
-name 'build-cookbook'
+name 'build_cookbook'
 maintainer 'The Authors'
 maintainer_email 'you@example.com'
 license 'all_rights'
@@ -285,7 +285,7 @@ METADATA
             syntax.rb
             unit.rb
           ].each do |phase_recipe|
-            recipe_file = File.join(tempdir, "delivery_project", ".delivery", "build-cookbook", "recipes", phase_recipe)
+            recipe_file = File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", "recipes", phase_recipe)
             expect(IO.read(recipe_file)).to_not include("include_recipe")
           end
         end
@@ -326,7 +326,7 @@ METADATA
   end
 
   context "when given a path including the .delivery directory" do
-    let(:argv) { [ File.join(tempdir, "delivery_project", ".delivery", "build-cookbook") ] }
+    let(:argv) { [ File.join(tempdir, "delivery_project", ".delivery", "build_cookbook") ] }
 
     before do
       reset_tempdir

@@ -183,8 +183,8 @@ EOF
 {
   "version": "2",
   "build_cookbook": {
-    "name": "build-cookbook",
-    "path": ".delivery/build-cookbook"
+    "name": "build_cookbook",
+    "path": ".delivery/build_cookbook"
   },
   "skip_phases": [],
   "build_nodes": {},
@@ -202,13 +202,13 @@ EOF
       describe "build cookbook recipes" do
 
         let(:file) do
-          File.join(dot_delivery, "build-cookbook", "recipes", "publish.rb")
+          File.join(dot_delivery, "build_cookbook", "recipes", "publish.rb")
         end
 
         let(:expected_content) do
           <<-CONFIG_DOT_JSON
 #
-# Cookbook Name:: build-cookbook
+# Cookbook Name:: build_cookbook
 # Recipe:: publish
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
@@ -225,7 +225,7 @@ include_recipe 'delivery-truck::publish'
       describe "build cookbook Berksfile" do
 
         let(:file) do
-          File.join(dot_delivery, "build-cookbook", "Berksfile")
+          File.join(dot_delivery, "build_cookbook", "Berksfile")
         end
 
         let(:expected_content) do

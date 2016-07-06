@@ -75,15 +75,15 @@ module ChefDK
           project_dir = File.expand_path(cookbook_name_or_path, Dir.pwd)
           # Detect if we were invoked with arguments like
           #
-          #     chef generate build-cookbook project/.delivery/build-cookbook
+          #     chef generate build-cookbook project/.delivery/build_cookbook
           #
           # If so, normalize paths so we don't make a directory structure like
-          # `.delivery/.delivery/build-cookbook`.
+          # `.delivery/.delivery/build_cookbook`.
           #
           # Note that we don't check the name of the build cookbook the user
-          # asked for and we hard-code to naming it "build-cookbook". We also
+          # asked for and we hard-code to naming it "build_cookbook". We also
           # don't catch the case that the user requested something like
-          # `project/.delivery/build-cookbook/extra-thing-that-shouldn't-be-here`
+          # `project/.delivery/build_cookbook/extra-thing-that-shouldn't-be-here`
           Pathname.new(project_dir).ascend do |dir|
             if File.basename(dir) == ".delivery"
               project_dir = File.dirname(dir)
