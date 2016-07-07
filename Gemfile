@@ -74,7 +74,6 @@ group(:omnibus_package) do
 
   # For Delivery build node
   gem "chef-sugar"
-  gem "knife-supermarket"
   gem "mixlib-versioning"
   gem "artifactory"
   # The opscode-pushy-client version is pinned by "rake dependencies", which grabs the current version from omnibus.
