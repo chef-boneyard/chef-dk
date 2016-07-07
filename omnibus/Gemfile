@@ -21,3 +21,6 @@ group :development do
   gem "winrm-fs"
   gem "winrm-elevated"
 end
+
+# TODO remove this when we update Chef to use the new api exposed in 3.5.1
+gem "rspec-core", "= 3.4.4"

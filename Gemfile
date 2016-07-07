@@ -27,6 +27,9 @@ gem "chef-dk", path: "."
 # EXPERIMENTAL: ALL gems specified here will be installed in chef-dk omnibus.
 # This represents all gems that will be part of chef-dk.
 
+# TODO remove this when we update Chef to use the new api exposed in 3.5.1
+gem "rspec-core", "= 3.4.4"
+
 group(:omnibus_package, :development, :test) do
   gem "pry"
   gem "rake"

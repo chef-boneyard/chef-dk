@@ -9,3 +9,6 @@ gem "windows_chef_zero"
 gem "winrm-fs"
 gem "winrm-elevated"
 gem "berkshelf"
+
+# TODO remove this when we update Chef to use the new api exposed in 3.5.1
+gem "rspec-core", "= 3.4.4"
