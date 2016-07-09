@@ -8,11 +8,11 @@ GIT
 GIT
   remote: git://github.com/chef/chef.git
   revision: f6f3a0d9b7fb6bd06fc03f9b9aa15f9f2e35939f
-  branch: v12.12.13
+  branch: v12.12.15
   specs:
-    chef (12.12.13)
+    chef (12.12.15)
       bundler (>= 1.10)
-      chef-config (= 12.12.13)
+      chef-config (= 12.12.15)
       chef-zero (~> 4.5)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -37,9 +37,9 @@ GIT
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (12.12.13-universal-mingw32)
+    chef (12.12.15-universal-mingw32)
       bundler (>= 1.10)
-      chef-config (= 12.12.13)
+      chef-config (= 12.12.15)
       chef-zero (~> 4.5)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -168,7 +168,7 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (12.12.13)
+    chef-config (12.12.15)
       fuzzyurl (~> 0.8.0)
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
