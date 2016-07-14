@@ -27,7 +27,7 @@ directory "#{cookbook_dir}/test/recipes" do
 end
 
 template inspec_path do
-  source 'inspec_default_spec.rb.erb'
+  source 'inspec_default_test.rb.erb'
   helpers(ChefDK::Generator::TemplateHelper)
   action :create_if_missing
 end

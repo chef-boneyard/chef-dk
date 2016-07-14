@@ -21,8 +21,8 @@ directory "#{app_dir}/test/recipes" do
   recursive true
 end
 
-template "#{app_dir}/test/recipes/default_spec.rb" do
-  source 'inspec_default_spec.rb.erb'
+template "#{app_dir}/test/recipes/default_test.rb" do
+  source 'inspec_default_test.rb.erb'
   helpers(ChefDK::Generator::TemplateHelper)
   action :create_if_missing
 end
