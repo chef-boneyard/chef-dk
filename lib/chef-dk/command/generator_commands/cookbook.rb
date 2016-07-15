@@ -100,7 +100,7 @@ module ChefDK
             msg("\nThere are several commands you can run to get started locally developing and testing your cookbook.")
             msg("Type `delivery local --help` to see a full list.")
             msg("\nWhy not start by writing a test? Tests for the default recipe are stored at:\n")
-            msg("test/integration/default/default_spec.rb")
+            msg("test/recipes/default_test.rb")
             msg("\nIf you'd prefer to dive right in, the default recipe can be found at:")
             msg("\nrecipes/default.rb\n")
           end

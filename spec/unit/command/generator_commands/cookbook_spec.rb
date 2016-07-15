@@ -34,9 +34,8 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       .gitignore
       .kitchen.yml
       test
-      test/integration
-      test/integration/default
-      test/integration/default/default_spec.rb
+      test/recipes
+      test/recipes/default_test.rb
       Berksfile
       chefignore
       metadata.rb
@@ -66,7 +65,7 @@ Type `delivery local --help` to see a full list.
 
 Why not start by writing a test? Tests for the default recipe are stored at:
 
-test/integration/default/default_spec.rb
+test/recipes/default_test.rb
 
 If you'd prefer to dive right in, the default recipe can be found at:
 
@@ -464,11 +463,11 @@ OUTPUT
 
         end
 
-        describe "test/integration/default/default_spec.rb" do
-          let(:file) { File.join(tempdir, "new_cookbook", "test", "integration", "default", "default_spec.rb") }
+        describe "test/recipes/default_test.rb" do
+          let(:file) { File.join(tempdir, "new_cookbook", "test", "recipes", "default_test.rb") }
 
           include_examples "a generated file", :cookbook_name do
-            let(:line) { "describe 'new_cookbook::default' do" }
+            let(:line) { "describe port" }
           end
         end
       end
@@ -565,7 +564,6 @@ provisioner:
 
 verifier:
   name: inspec
-  format: doc
 
 platforms:
   - name: ubuntu-16.04
@@ -634,7 +632,6 @@ provisioner:
 
 verifier:
   name: inspec
-  format: doc
 
 platforms:
   - name: ubuntu-16.04
@@ -683,7 +680,7 @@ SPEC_HELPER
       let(:file) { File.join(tempdir, "new_cookbook", "spec", "unit", "recipes", "default_spec.rb") }
 
       include_examples "a generated file", :cookbook_name do
-        let(:line) { "describe \'new_cookbook::default\' do" }
+        let(:line) { "describe 'new_cookbook::default' do" }
       end
     end
 

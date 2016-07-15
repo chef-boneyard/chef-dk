@@ -31,9 +31,8 @@ describe ChefDK::Command::GeneratorCommands::App do
       .gitignore
       .kitchen.yml
       test
-      test/integration
-      test/integration/default
-      test/integration/default/default_spec.rb
+      test/recipes
+      test/recipes/default_test.rb
       README.md
       cookbooks/new_app/Berksfile
       cookbooks/new_app/chefignore
@@ -129,11 +128,11 @@ describe ChefDK::Command::GeneratorCommands::App do
         end
       end
 
-      describe "test/integration/default/default_spec.rb" do
-        let(:file) { File.join(tempdir, "new_app", "test", "integration", "default", "default_spec.rb") }
+      describe "test/recipes/default_test.rb" do
+        let(:file) { File.join(tempdir, "new_app", "test", "recipes", "default_test.rb") }
 
         include_examples "a generated file", :cookbook_name do
-          let(:line) { "describe 'new_app::default' do" }
+          let(:line) { "describe port" }
         end
       end
 
