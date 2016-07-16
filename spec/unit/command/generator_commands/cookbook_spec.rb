@@ -190,12 +190,15 @@ EOF
 # By default these phases are configured for Cookbook Workflow only
 #
 # As this is still a prototype we are not modifying the current
-# config.json file and it will continue working as usual. 
+# config.json file and it will continue working as usual.
 
 [local_phases]
 unit = "rspec spec/"
 lint = "cookstyle"
-syntax = "foodcritic . --exclude spec -f any"
+# Foodcritic expects an `issues_url` and `source_url` in the metadata.rb
+# We turn this off by default because only cookbooks uploaded to the
+# Supermarket will have these added.
+syntax = "foodcritic . --exclude spec -f any -t \\\"~FC064\\\" -t \\\"~FC065\\\""
 provision = "chef exec kitchen create"
 deploy = "chef exec kitchen converge"
 smoke = "chef exec kitchen verify"
@@ -664,7 +667,7 @@ SPEC_HELPER
       let(:file) { File.join(tempdir, "new_cookbook", "metadata.rb") }
 
       include_examples "a generated file", :cookbook_name do
-        let(:line) { /name\s+'new_cookbook'/ }
+        let(:line) { /name\s+'new_cookbook'.+# issues_url.+# source_url/m }
       end
     end
 
