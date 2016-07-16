@@ -90,7 +90,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.16.28)
+    chef-dk (0.16.29)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -214,7 +214,7 @@ GEM
       rspec (~> 3.0)
     cleanroom (1.0.0)
     coderay (1.1.1)
-    compat_resource (12.10.6)
+    compat_resource (12.10.7)
     concurrent-ruby (1.0.2)
     cookbook-omnifetch (0.2.3)
       minitar (~> 0.5.4)
