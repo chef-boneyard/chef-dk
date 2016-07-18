@@ -1,12 +1,11 @@
 # Change Log
 
-## [v0.16.29](https://github.com/chef/chef-dk/tree/v0.16.29) (2016-07-16)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v0.15.15...v0.16.29)
+## [v0.16.28](https://github.com/chef/chef-dk/tree/v0.16.28) (2016-07-15)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.15.15...v0.16.28)
 
 **Implemented enhancements:**
 
 - ChefDK generate should use InSpec as default [\#834](https://github.com/chef/chef-dk/issues/834)
-- chef-server not supported in ChefDK for Polcyfiles [\#692](https://github.com/chef/chef-dk/issues/692)
 - Include knife-supermarket [\#652](https://github.com/chef/chef-dk/issues/652)
 - feature request: common kitchen cloud plugin gems should be included in the DK [\#651](https://github.com/chef/chef-dk/issues/651)
 - chef provision should use cookbook from ./cookbooks [\#397](https://github.com/chef/chef-dk/issues/397)
