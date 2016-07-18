@@ -1,5 +1,31 @@
 # Change Log
 
+## [v0.16.29](https://github.com/chef/chef-dk/tree/v0.16.29) (2016-07-16)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.15.15...v0.16.29)
+
+**Implemented enhancements:**
+
+- ChefDK generate should use InSpec as default [\#834](https://github.com/chef/chef-dk/issues/834)
+- chef-server not supported in ChefDK for Polcyfiles [\#692](https://github.com/chef/chef-dk/issues/692)
+- Include knife-supermarket [\#652](https://github.com/chef/chef-dk/issues/652)
+- feature request: common kitchen cloud plugin gems should be included in the DK [\#651](https://github.com/chef/chef-dk/issues/651)
+- chef provision should use cookbook from ./cookbooks [\#397](https://github.com/chef/chef-dk/issues/397)
+- Add support for chef-provisioning-docker [\#329](https://github.com/chef/chef-dk/issues/329)
+- Policyfile.rb Chef local mode [\#193](https://github.com/chef/chef-dk/issues/193)
+- Update generators for improved file specificity system [\#183](https://github.com/chef/chef-dk/issues/183)
+- Add support for kitchen-docker [\#108](https://github.com/chef/chef-dk/issues/108)
+- Implement chef test unit command that can run ChefSpec [\#18](https://github.com/chef/chef-dk/issues/18)
+
+**Fixed bugs:**
+
+- chefdk 0.10.0 emits a warning when loading berks [\#597](https://github.com/chef/chef-dk/issues/597)
+- OSX ruby executable has an invalid signature [\#258](https://github.com/chef/chef-dk/issues/258)
+- Deprecations in chefspec cause updated cookbooks to fail chef spec runs. [\#194](https://github.com/chef/chef-dk/issues/194)
+- Deprecations in chefspec cause updated cookbooks to fail chef spec runs. [\#194](https://github.com/chef/chef-dk/issues/194)
+- Include chef-zero binary in Chef DK by appbundling it [\#184](https://github.com/chef/chef-dk/issues/184)
+- With 'chef generate app', kitchen doesn't seem to find metada.rb [\#50](https://github.com/chef/chef-dk/issues/50)
+
+
 ## [v0.15.15](https://github.com/chef/chef-dk/tree/v0.15.15) (2016-06-17)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.14.25...v0.15.15)
 
