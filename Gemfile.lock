@@ -90,7 +90,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.16.29)
+    chef-dk (0.16.30)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -197,7 +197,7 @@ GEM
       retryable
     chef-provisioning-vagrant (0.11.0)
       chef-provisioning
-    chef-sugar (3.3.0)
+    chef-sugar (3.4.0)
     chef-vault (2.9.0)
     chef-zero (4.7.1)
       ffi-yajl (~> 2.2)
@@ -739,7 +739,7 @@ GEM
     wmi-lite (1.0.0)
     xml-simple (1.1.5)
     yajl-ruby (1.2.1)
-    yard (0.9.0)
+    yard (0.9.1)
 
 PLATFORMS
   ruby
