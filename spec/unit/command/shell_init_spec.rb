@@ -20,7 +20,7 @@ require 'chef-dk/command/shell_init'
 
 describe ChefDK::Command::ShellInit do
 
-  let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(File::PATH_SEPARATOR) }
+  let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH'], git_bin_dir].join(File::PATH_SEPARATOR) }
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
 
@@ -37,15 +37,22 @@ describe ChefDK::Command::ShellInit do
     let(:expected_gem_home) { Gem.user_dir }
     let(:expected_gem_path) { Gem.path.join(File::PATH_SEPARATOR) }
 
+    before do
+      allow(::Dir).to receive(:exists?).and_call_original
+    end
+
     context "with no explicit omnibus directory" do
 
       let(:omnibus_bin_dir) { "/foo/bin" }
       let(:omnibus_embedded_bin_dir) { "/foo/embedded/bin" }
+      let(:git_bin_dir) { "/foo/gitbin" }
       let(:argv) { [shell] }
 
       before do
         allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
         allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
+        allow(command_instance).to receive(:git_bin_dir).and_return(git_bin_dir)
+        allow(::Dir).to receive(:exists?).with(git_bin_dir).and_return(true)
       end
 
       it "emits a script to add ChefDK's ruby to the shell environment" do
@@ -66,8 +73,13 @@ describe ChefDK::Command::ShellInit do
       let(:omnibus_root) { File.join(fixtures_path, "eg_omnibus_dir/valid/") }
       let(:omnibus_bin_dir) { File.join(omnibus_root, "bin") }
       let(:omnibus_embedded_bin_dir) { File.join(omnibus_root, "embedded/bin") }
+      let(:git_bin_dir) { File.join(omnibus_root, "gitbin") }
 
       let(:argv) { [shell, "--omnibus-dir", omnibus_root] }
+
+      before do
+        allow(::Dir).to receive(:exists?).with(git_bin_dir).and_return(true)
+      end
 
       it "emits a script to add ChefDK's ruby to the shell environment" do
         command_instance.run(argv)
@@ -234,7 +246,7 @@ compdef _chef chef
     before do
       stub_const('File::PATH_SEPARATOR', ':')
     end
-    let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(':').split(':').join('" "') }
+    let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH'], git_bin_dir].join(':').split(':').join('" "') }
     let(:expected_environment_commands) do
       <<-EOH
 set -gx PATH "#{expected_path}" 2>/dev/null;
