@@ -90,7 +90,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.17.2)
+    chef-dk (0.17.3)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -120,12 +120,12 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (2.4.0)
-      aws-sdk-resources (= 2.4.0)
-    aws-sdk-core (2.4.0)
+    aws-sdk (2.4.1)
+      aws-sdk-resources (= 2.4.1)
+    aws-sdk-core (2.4.1)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.4.0)
-      aws-sdk-core (= 2.4.0)
+    aws-sdk-resources (2.4.1)
+      aws-sdk-core (= 2.4.1)
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -684,7 +684,7 @@ GEM
       net-ssh (>= 2.9, < 4.0)
       winrm (~> 1.6)
       winrm-fs (~> 0.3)
-    treetop (1.6.7)
+    treetop (1.6.8)
       polyglot (~> 0.3)
     trollop (2.1.2)
     tzinfo (1.2.2)
@@ -739,7 +739,7 @@ GEM
     wmi-lite (1.0.0)
     xml-simple (1.1.5)
     yajl-ruby (1.2.1)
-    yard (0.9.3)
+    yard (0.9.4)
 
 PLATFORMS
   ruby
