@@ -272,6 +272,28 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
       expect(cookbook_location_spec).to be_valid
     end
 
+  end
+
+  describe "when created with a chefserver source" do
+
+    let(:source_options) { { chefserver: "https://api.opscode.com/organizations/chef-oss-dev/cookbooks/my_cookbook/versions/2.0.0/download" } }
+
+    it "has a chefserver installer" do
+      expect(cookbook_location_spec.installer).to be_a_kind_of(CookbookOmnifetch::ChefserverLocation)
+    end
+
+    it "does not have a fixed version" do
+      expect(cookbook_location_spec.version_fixed?).to be false
+    end
+
+    it "is a mirror of a canonical upstream" do
+      expect(cookbook_location_spec.mirrors_canonical_upstream?).to be true
+    end
+
+    it "is valid" do
+      expect(cookbook_location_spec.errors.size).to eq(0)
+      expect(cookbook_location_spec).to be_valid
+    end
 
   end
 end

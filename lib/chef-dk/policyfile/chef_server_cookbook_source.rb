@@ -15,16 +15,20 @@
 # limitations under the License.
 #
 
+require 'ffi_yajl'
 require 'chef-dk/exceptions'
+require 'chef-dk/policyfile/source_uri'
+require 'chef-dk/authenticated_http'
 
 module ChefDK
   module Policyfile
     class ChefServerCookbookSource
-
       attr_reader :uri
 
       def initialize(uri)
-        @uri = uri
+        @uri = SourceURI.parse(uri)
+        @http_connections = {}
+        yield self if block_given?
       end
 
       def ==(other)
@@ -32,11 +36,24 @@ module ChefDK
       end
 
       def universe_graph
-        raise UnsupportedFeature, 'ChefDK does not support chef-server cookbook default sources at this time'
+        @universe_graph ||= begin
+          full_chef_server_graph.inject({}) do |normalized_graph, (cookbook_name, metadata_by_version)|
+            normalized_graph[cookbook_name] = metadata_by_version.inject({}) do |deps_by_version, (version, metadata)|
+              deps_by_version[version] = metadata["dependencies"]
+              deps_by_version
+            end
+            normalized_graph
+          end
+        end
       end
 
       def source_options_for(cookbook_name, cookbook_version)
-        raise UnsupportedFeature, 'ChefDK does not support chef-server cookbook default sources at this time'
+        base_uri = full_chef_server_graph[cookbook_name][cookbook_version]['download_url']
+        {
+          chefserver: base_uri,
+          version: cookbook_version,
+          http_client: http_connection_for(base_uri)
+        }
       end
 
       def null?
@@ -47,8 +64,19 @@ module ChefDK
         "chef_server(#{uri})"
       end
 
+      private
+
+      def http_connection_for(base_url)
+        @http_connections[base_url] ||= ChefDK::AuthenticatedHTTP::Simple.new(base_url)
+      end
+
+      def full_chef_server_graph
+        @full_chef_server_graph ||=
+          begin
+            graph_json = http_connection_for(uri.to_s).get('/universe')
+            FFI_Yajl::Parser.parse(graph_json)
+          end
+      end
     end
   end
 end
-
-

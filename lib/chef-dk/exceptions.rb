@@ -62,6 +62,16 @@ module ChefDK
   class PolicyfileError < StandardError
   end
 
+  class InvalidPolicyfileSourceURI < StandardError
+    def initialize(url, reason = nil)
+      @url = url
+      @reason = reason
+      msg = "'#{@url}' is not a valid Policy File Source URI"
+      msg << " #{@reason}." unless @reason.nil?
+      super(msg)
+    end
+  end
+
   class MissingCookbookLockData < StandardError
   end
 

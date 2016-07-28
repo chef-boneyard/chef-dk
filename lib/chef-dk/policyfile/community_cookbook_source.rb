@@ -94,4 +94,3 @@ module ChefDK
     end
   end
 end
-
