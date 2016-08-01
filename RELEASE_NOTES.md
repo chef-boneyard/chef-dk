@@ -1,6 +1,7 @@
 # ChefDK 0.16 Release notes
 
 ## Chef Generate Improvements.
+* Hyphens in cookbooks are no longer allowed.
 * `chef generate cookbook` now automatically creates files for Chef Automate's workflow features.
  * Files are located in `.delivery` folder in the generated cookbook.
 * `chef generate cookbook` has improved output formatting.
