@@ -5,6 +5,7 @@
 
 **Implemented enhancements:**
 
+- Do not allow hyphenated cookbook names to be generated [\#915](https://github.com/chef/chef-dk/pull/915)
 - ChefDK generate should use InSpec as default [\#834](https://github.com/chef/chef-dk/issues/834)
 - Include knife-supermarket [\#652](https://github.com/chef/chef-dk/issues/652)
 - feature request: common kitchen cloud plugin gems should be included in the DK [\#651](https://github.com/chef/chef-dk/issues/651)
