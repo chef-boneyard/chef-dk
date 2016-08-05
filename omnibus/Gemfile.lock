@@ -1,13 +1,16 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 5e767a6d220f024256439b0a8415eefe923967dc
+  revision: bea616217d9e0255ced8277d41c43070bcdc1a28
+  branch: ksubrama/ruby23
   specs:
     omnibus-software (4.0.0)
+      chef-sugar (>= 3.4.0)
       omnibus (>= 5.2.0)
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 29d390ec93709ceec2667038aed6769ee29a0646
+  revision: 45daf5afbef664bb1866561671ec94ccfe307bc6
+  branch: ksubrama/gcc_investigate
   specs:
     omnibus (5.4.0)
       aws-sdk (~> 2)
@@ -38,12 +41,12 @@ GEM
     addressable (2.4.0)
     artifactory (2.3.3)
     awesome_print (1.7.0)
-    aws-sdk (2.4.0)
-      aws-sdk-resources (= 2.4.0)
-    aws-sdk-core (2.4.0)
+    aws-sdk (2.5.0)
+      aws-sdk-resources (= 2.5.0)
+    aws-sdk-core (2.5.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.4.0)
-      aws-sdk-core (= 2.4.0)
+    aws-sdk-resources (2.5.0)
+      aws-sdk-core (= 2.5.0)
     berkshelf (4.3.5)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (~> 2.0, >= 2.0.2)
@@ -91,7 +94,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.14)
     ffi (1.9.14-x86-mingw32)
-    ffi-yajl (2.2.3)
+    ffi-yajl (2.3.0)
       libyajl2 (~> 1.2)
     fuzzyurl (0.8.0)
     gssapi (1.2.0)
@@ -124,7 +127,7 @@ GEM
       artifactory
       mixlib-shellout
       mixlib-versioning
-    mixlib-log (1.6.0)
+    mixlib-log (1.7.0)
     mixlib-shellout (2.2.6)
     mixlib-shellout (2.2.6-universal-mingw32)
       win32-process (~> 0.8.2)
@@ -140,7 +143,7 @@ GEM
     nori (2.6.0)
     octokit (4.3.0)
       sawyer (~> 0.7.0, >= 0.5.3)
-    ohai (8.17.1)
+    ohai (8.18.0)
       chef-config (>= 12.5.0.alpha.1, < 13)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
