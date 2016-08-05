@@ -97,7 +97,7 @@ PATH
       diff-lcs (~> 1.0)
       ffi-yajl (>= 1.0, < 3.0)
       minitar (~> 0.5.4)
-      mixlib-cli (~> 1.5, < 1.7)
+      mixlib-cli (~> 1.7)
       mixlib-shellout (~> 2.0)
       paint (~> 1.0)
       solve (~> 2.0, >= 2.0.1)
@@ -491,7 +491,7 @@ GEM
       mixlib-log
     mixlib-authentication (1.4.1)
       mixlib-log
-    mixlib-cli (1.6.0)
+    mixlib-cli (1.7.0)
     mixlib-config (2.2.1)
     mixlib-install (1.1.0)
       artifactory
