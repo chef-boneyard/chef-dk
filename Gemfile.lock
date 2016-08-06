@@ -767,7 +767,7 @@ DEPENDENCIES
   fauxhai
   ffi
   ffi-rzmq-core
-  foodcritic (>= 6.1.1)
+  foodcritic (>= 7.0.1)
   guard
   inspec (>= 0.17.1)
   kitchen-dokken
