@@ -27,9 +27,6 @@ gem "chef-dk", path: "."
 # EXPERIMENTAL: ALL gems specified here will be installed in chef-dk omnibus.
 # This represents all gems that will be part of chef-dk.
 
-# TODO remove this when we update Chef to use the new api exposed in 3.5.1
-gem "rspec-core", "= 3.4.4"
-
 group(:omnibus_package, :development, :test) do
   gem "pry"
   gem "rake"
@@ -55,7 +52,7 @@ group(:omnibus_package) do
   gem "chef-provisioning-vagrant", ">= 0.11.0"
   gem "chef-vault"
   # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "chef", github: "chef/chef", branch: "v12.12.15"
+  gem "chef", github: "chef/chef", branch: "v12.13.30"
   gem "cheffish", ">= 2.0.3"
   gem "chefspec"
   gem "fauxhai"
