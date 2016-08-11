@@ -565,6 +565,9 @@ platforms:
 
 suites:
   - name: default
+    verifier:
+      inspec_tests:
+        - test/recipes
     attributes:
 KITCHEN_YML
         end
@@ -635,6 +638,9 @@ suites:
   - name: default
     run_list:
       - recipe[new_cookbook::default]
+    verifier:
+      inspec_tests:
+        - test/recipes
     attributes:
 KITCHEN_YML
         end
