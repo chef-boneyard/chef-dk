@@ -16,4 +16,7 @@ suites:
   - name: default
     run_list:
       - recipe[<%= cookbook_name %>::default]
+    verifier:
+      inspec_tests:
+        - test/recipes
     attributes:
