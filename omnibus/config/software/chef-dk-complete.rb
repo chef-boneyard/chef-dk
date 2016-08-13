@@ -32,5 +32,3 @@ dependency "rubygems-customization"
 dependency "shebang-cleanup"
 dependency "version-manifest"
 dependency "openssl-customization"
-
-dependency "clean-static-libs"
