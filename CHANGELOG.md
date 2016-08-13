@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.17.14](https://github.com/chef/chef-dk/tree/v0.17.14) (2016-08-12)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.16.28...v0.17.14)
+
+**Implemented enhancements:**
+
+- Add .kitchen.yml to find generated inspec tests. [\#971](https://github.com/chef/chef-dk/pull/971) ([jkeiser](https://github.com/jkeiser))
+
 ## [v0.16.28](https://github.com/chef/chef-dk/tree/v0.16.28) (2016-07-15)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.15.15...v0.16.28)
 
