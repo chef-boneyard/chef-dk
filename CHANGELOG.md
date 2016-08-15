@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.17.17](https://github.com/chef/chef-dk/tree/v0.17.17) (2016-08-15)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.17.14...v0.17.17)
+
+**Implemented enhancements:**
+
+- Bump test-kitchen to 1.11.1. [\#976](https://github.com/chef/chef-dk/pull/976) ([mwrock](https://github.com/mwrock))
+
 ## [v0.17.14](https://github.com/chef/chef-dk/tree/v0.17.14) (2016-08-12)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.16.28...v0.17.14)
 
