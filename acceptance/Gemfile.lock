@@ -181,7 +181,7 @@ GEM
     solve (2.0.3)
       molinillo (~> 0.4.2)
       semverse (~> 1.1)
-    test-kitchen (1.11.0)
+    test-kitchen (1.11.1)
       mixlib-install (~> 1.0, >= 1.0.4)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
