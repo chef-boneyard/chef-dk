@@ -58,7 +58,7 @@ OMNIBUS_OVERRIDES = {
 # name of the rubygem (gem list -re <rubygem name> gets us the latest version).
 #
 OMNIBUS_RUBYGEMS_AT_LATEST_VERSION = {
-  rubygems: "rubygems-update",
+  #rubygems: "rubygems-update", # pinned to 2.6.4 because https://github.com/chef/chef-dk/issues/966
   bundler: "bundler",
 }
 
