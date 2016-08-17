@@ -87,8 +87,7 @@ directory "#{build_cookbook_dir}/test/fixtures/cookbooks/test/recipes" do
 end
 
 file "#{build_cookbook_dir}/test/fixtures/cookbooks/test/metadata.rb" do
-  content %(name 'test'
-version '0.1.0')
+  content %(name 'test'\nversion '0.1.0'\n)
 end
 
 cookbook_file "#{build_cookbook_dir}/test/fixtures/cookbooks/test/recipes/default.rb" do
