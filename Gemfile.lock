@@ -92,7 +92,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.18.1)
+    chef-dk (0.18.2)
       chef (~> 12.5)
       chef-provisioning (~> 1.2)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -521,12 +521,8 @@ GEM
       net-ssh-gateway (>= 1.2.0)
     net-telnet (0.1.1)
     nio4r (1.2.1)
-    nokogiri (1.6.8)
-      mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
-    nokogiri (1.6.8-x86-mingw32)
-      mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
+    nokogiri (1.5.11)
+    nokogiri (1.5.11-x86-mingw32)
     nori (2.6.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
@@ -574,10 +570,11 @@ GEM
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     rb-readline (0.5.3)
-    rbvmomi (1.8.2)
-      builder
-      nokogiri (>= 1.4.1)
-      trollop
+    rbvmomi (1.9.0)
+      builder (~> 3.2)
+      json (~> 1.8)
+      nokogiri (~> 1.5.11)
+      trollop (~> 2.1)
     rdoc (4.2.2)
       json (~> 1.4)
     rdp-ruby-wmi (0.3.1)
