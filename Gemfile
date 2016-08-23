@@ -65,8 +65,7 @@ group(:omnibus_package) do
   gem "knife-windows"
   gem "ohai", ">= 8.13.0"
   gem "test-kitchen"
-  # Until listen supports Ruby 2.0 and 2.1
-  gem "listen", "< 3.1.0"
+  gem "listen"
   gem "mixlib-install"
 
   # until dk runs on ruby 2.2.2+

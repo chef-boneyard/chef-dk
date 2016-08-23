@@ -71,19 +71,18 @@ OMNIBUS_RUBYGEMS_AT_LATEST_VERSION = {
 # list of outdated gems.
 #
 ACCEPTABLE_OUTDATED_GEMS = [
-  "activesupport",     # activesupport 5 requires Ruby 2.2
+  "activesupport",     # anchored by outdated google-api-client
   "celluloid",         # ridley requires 0.16.x
   "celluloid-io",      # ridley requires 0.16.x
   "fog-cloudatcost",   # fog restricts this for probably no good reason
   "fog-google",        # fog-google 0.2+ requires Ruby 2.0+, fog 2.0.0 will include it
   "google-api-client", # chef-provisioning-fog restricts to < 0.9 for presently unknown reasons
-  "json",              # aws-sdk-v1 disallows JSON 2.x (no fix pending yet)
-  "listen",            # listen 2.1+ requires Ruby 2.2
-  "rack",              # Rack 2.0+ requires Ruby 2.2
-  "retriable",         # will update to 2.0+ after google-api-client is updated
-  "rubocop",           # chef-style pins to 0.39.0 in 0.3.1
+  "json",              # inspec pins this because Ruby 2.0, no eta on fix
+  "rack",              # chef-zero pins this because Ruby 2.0, no eta on fix
+  "retriable",         # anchored by outdated google-api-client
+  "rubocop",           # cookstyle pins to 0.39.0 in 0.0.1
   "slop",              # expected to disappear with pry 0.11
-  "timers",            # required by older celluloid
+  "timers",            # anchored by outdated celluloid
 
   # We have a task called update_stable_channel_gems which scans and pins to the
   # latest released chef/chef-config/opscode-pushy-client but it pulls from the

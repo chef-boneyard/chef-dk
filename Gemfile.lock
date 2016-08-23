@@ -476,9 +476,10 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     libyajl2 (1.2.0)
-    listen (3.0.8)
+    listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+      ruby_dep (~> 1.2)
     little-plugger (1.1.4)
     logging (2.1.0)
       little-plugger (~> 1.1)
@@ -787,7 +788,7 @@ DEPENDENCIES
   knife-push
   knife-spork
   knife-windows
-  listen (< 3.1.0)
+  listen
   mixlib-install
   mixlib-versioning
   nokogiri
