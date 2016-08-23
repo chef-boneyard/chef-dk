@@ -1,7 +1,6 @@
 GIT
   remote: git://github.com/berkshelf/berkshelf.git
-  revision: 0976bb18a47b79dbacc8919e184e10b512792537
-  branch: jk/not-required
+  revision: b904eecda1fa46cc343109d787ac7e298d0888c6
   specs:
     berkshelf (5.0.0)
       addressable (~> 2.3, >= 2.3.4)
@@ -760,7 +759,7 @@ DEPENDENCIES
   activesupport (< 5.0)
   appbundler!
   artifactory
-  berkshelf!
+  berkshelf (>= 5.0)!
   chef!
   chef-dk!
   chef-provisioning (>= 1.7.0)
