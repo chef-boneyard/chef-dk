@@ -25,7 +25,11 @@ namespace :version do
   end
 
   def version
-    ChefDK::VERSION
+    if IO.read(version_rb_path) =~ /^\s*VERSION\s*=\s*"([^"]+)"\s*$/
+      $1
+    else
+      raise "Could not read version from #{version_rb_path}. Contents:\n#{IO.read(version_rb_path)}"
+    end
   end
 
   def version_rb_path
