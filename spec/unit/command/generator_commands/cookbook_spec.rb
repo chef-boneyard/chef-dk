@@ -626,6 +626,7 @@ driver:
 
 provisioner:
   name: chef_zero
+  always_update_cookbooks: true
 
 verifier:
   name: inspec
