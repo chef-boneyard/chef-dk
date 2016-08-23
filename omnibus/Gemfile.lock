@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 9f2e15f0fc2e18cada821ad82b3730a8ac31f162
+  revision: 1a72ccaefe16c2265fd3d1a641fb4b0e35a1bea2
   branch: ksubrama/gcc_investigate
   specs:
     omnibus (5.5.0)
