@@ -56,6 +56,8 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "chef-provisioning", "~> 1.2"
 
+  gem.add_dependency "highline", "~> 1.6", ">= 1.6.9"
+
   gem.add_development_dependency "github_changelog_generator"
   gem.add_development_dependency "rake"
 

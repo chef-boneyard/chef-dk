@@ -16,6 +16,7 @@
 #
 
 require 'chef-dk/command/generator_commands/base'
+require 'highline/import'
 
 module ChefDK
   module Command
@@ -56,6 +57,13 @@ module ChefDK
           boolean:      true,
           default:      true
 
+        option :skip_prompt,
+          short:        "-y",
+          long:         "--yes",
+          description:  "Answer \"yes\" to warning prompt about hyphens in cookbook names.",
+          boolean:      true,
+          default:      false
+
         option :verbose,
           short:        "-V",
           long:         "--verbose",
@@ -77,6 +85,7 @@ module ChefDK
         def run
           read_and_validate_params
           if params_valid?
+            return 1 unless valid_cookbook_name?
             setup_context
             msg("Generating cookbook #{cookbook_name}")
             chef_runner.converge
@@ -193,10 +202,7 @@ module ChefDK
         def read_and_validate_params
           arguments = parse_options(params)
           @cookbook_name_or_path = arguments[0]
-          if !@cookbook_name_or_path
-            @params_valid = false
-          elsif /-/ =~ File.basename(@cookbook_name_or_path)
-            err("Hyphens are not allowed in cookbook names. Please specify a cookbook name without hyphens.")
+          unless @cookbook_name_or_path
             @params_valid = false
           end
 
@@ -226,6 +232,16 @@ module ChefDK
           end
           false
         end
+
+        def valid_cookbook_name?
+          if /-/ =~ File.basename(cookbook_name) && config[:skip_prompt] == false
+            msg("Hyphens can cause problems in cookbooks names, and are not recommended.")
+            HighLine.agree("Do you wish to create the cookbook with the name \"#{File.basename(@cookbook_name_or_path)}\": [yes/no] ")
+          else
+            true
+          end
+        end
+
       end
     end
   end
