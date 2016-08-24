@@ -71,25 +71,19 @@ OMNIBUS_RUBYGEMS_AT_LATEST_VERSION = {
 # list of outdated gems.
 #
 ACCEPTABLE_OUTDATED_GEMS = [
-  "celluloid",
-  "celluloid-io",
-  "docker-api",
-  "fog-cloudatcost",
-  "fog-google",
-  "gherkin", # fixed in cucumber-core > 1.4.0
-  "google-api-client",
-  "jwt", # fixed in oauth2 > 1.1.0
-  "listen",
-  "mime-types",
-  "mini_portile2", # dep removed in nokogiri > 1.6.7.2
-  "retriable",
-  "rubocop",
-  "slop", # deo removed in pry > 0.10.3
-  "timers",
-  "unicode-display_width",
-  "varia_model",
-  "httpclient",
-  "molinillo",
+  "activesupport",     # anchored by outdated google-api-client
+  "celluloid",         # ridley requires 0.16.x
+  "celluloid-io",      # ridley requires 0.16.x
+  "fog-cloudatcost",   # fog restricts this for probably no good reason
+  "fog-google",        # fog-google 0.2+ requires Ruby 2.0+, fog 2.0.0 will include it
+  "google-api-client", # chef-provisioning-fog restricts to < 0.9 for presently unknown reasons
+  "json",              # inspec pins this because Ruby 2.0, no eta on fix
+  "rack",              # chef-zero pins this because Ruby 2.0, no eta on fix
+  "retriable",         # anchored by outdated google-api-client
+  "rubocop",           # cookstyle pins to 0.39.0 in 0.0.1
+  "slop",              # expected to disappear with pry 0.11
+  "timers",            # anchored by outdated celluloid
+
   # We have a task called update_stable_channel_gems which scans and pins to the
   # latest released chef/chef-config/opscode-pushy-client but it pulls from the
   # chef repo instead of from rubygems. Bundler currently considers any git
@@ -102,6 +96,7 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "chef-config",
   "opscode-pushy-client",
   "mixlib-cli"
+
 ]
 
 #

@@ -52,7 +52,7 @@ group(:omnibus_package) do
   gem "chef-provisioning-vagrant", ">= 0.11.0"
   gem "chef-vault"
   # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "chef", github: "chef/chef", branch: "v12.14.12"
+  gem "chef", github: "chef/chef", branch: "v12.14.16"
   gem "cheffish", ">= 2.0.3"
   gem "chefspec"
   gem "fauxhai"
@@ -65,8 +65,7 @@ group(:omnibus_package) do
   gem "knife-windows"
   gem "ohai", ">= 8.13.0"
   gem "test-kitchen"
-  # Until listen supports Ruby 2.0 and 2.1
-  gem "listen", "< 3.1.0"
+  gem "listen"
   gem "mixlib-install"
 
   # until dk runs on ruby 2.2.2+
