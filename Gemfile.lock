@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: git://github.com/chef/appbundler.git
-  revision: a8376ff735ec63d6f4e3cffe971223516890239c
+  revision: 379a06cc58e0d150fb966b49a16df4c70bb9d4d4
   specs:
     appbundler (0.9.0)
       mixlib-cli (~> 1.4)
@@ -147,12 +147,12 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (2.5.5)
-      aws-sdk-resources (= 2.5.5)
-    aws-sdk-core (2.5.5)
+    aws-sdk (2.5.6)
+      aws-sdk-resources (= 2.5.6)
+    aws-sdk-core (2.5.6)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.5.5)
-      aws-sdk-core (= 2.5.5)
+    aws-sdk-resources (2.5.6)
+      aws-sdk-core (= 2.5.6)
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -210,12 +210,12 @@ GEM
       mixlib-log (~> 1.3)
       rack (< 2)
       uuidtools (~> 2.1)
-    cheffish (3.0.0)
+    cheffish (3.0.1)
       chef-zero (~> 4.3)
       net-ssh
-    chefspec (4.7.0)
-      chef (>= 11.14)
-      fauxhai (~> 3.2)
+    chefspec (5.0.0)
+      chef (>= 12.0)
+      fauxhai (~> 3.6)
       rspec (~> 3.0)
     cleanroom (1.0.0)
     coderay (1.1.1)
@@ -371,9 +371,9 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (1.0.0)
+    fog-vsphere (1.0.1)
       fog-core
-      rbvmomi (~> 1.8)
+      rbvmomi (~> 1.8.0)
     fog-xenserver (0.2.3)
       fog-core
       fog-xml
@@ -580,11 +580,10 @@ GEM
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     rb-readline (0.5.3)
-    rbvmomi (1.9.1)
-      builder (~> 3.2)
-      json (>= 1.8)
-      nokogiri (~> 1.5)
-      trollop (~> 2.1)
+    rbvmomi (1.8.2)
+      builder
+      nokogiri (>= 1.4.1)
+      trollop
     rdoc (4.2.2)
       json (~> 1.4)
     rdp-ruby-wmi (0.3.1)
@@ -633,7 +632,7 @@ GEM
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
-    ruby-prof (0.15.9)
+    ruby-prof (0.16.2)
     ruby-progressbar (1.8.1)
     ruby-shadow (2.5.0)
     ruby_dep (1.4.0)
@@ -661,7 +660,7 @@ GEM
     solve (3.0.1)
       molinillo (~> 0.4)
       semverse (>= 1.1, < 3.0)
-    specinfra (2.61.1)
+    specinfra (2.61.2)
       net-scp
       net-ssh (>= 2.7, < 4.0)
       net-telnet
