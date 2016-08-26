@@ -123,6 +123,7 @@ PATH
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
       diff-lcs (~> 1.0)
       ffi-yajl (>= 1.0, < 3.0)
+      highline (~> 1.6, >= 1.6.9)
       minitar (~> 0.5.4)
       mixlib-cli (~> 1.7)
       mixlib-shellout (~> 2.0)
@@ -779,6 +780,7 @@ DEPENDENCIES
   ffi-rzmq-core
   foodcritic (>= 6.1.1)
   guard
+  highline (~> 1.6, >= 1.6.9)
   inspec (>= 0.17.1)
   kitchen-dokken
   kitchen-ec2

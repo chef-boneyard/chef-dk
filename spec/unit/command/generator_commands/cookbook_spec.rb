@@ -101,6 +101,29 @@ EOF
     expect(cookbook_generator.chef_runner.cookbook_path).to eq(File.expand_path('lib/chef-dk/skeletons', project_root))
   end
 
+  context "when provided a cookbook name containing one or more hyphens" do
+    let(:argv) { ["cookbook-name"] }
+
+    before do
+      allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+    end
+
+    it "prompts the user to accept warning" do
+      Dir.chdir(tempdir) do
+        expect(HighLine).to receive(:agree).and_return(true)
+        expect(cookbook_generator.run).to eq(0)
+      end
+    end
+
+    it "exits with a non-zero status when a user does not accept." do
+      Dir.chdir(tempdir) do
+        expect(HighLine).to receive(:agree).and_return(false)
+        expect(cookbook_generator.run).to eq(1)
+      end
+    end
+
+  end
+
   context "when given invalid/incomplete arguments" do
 
     let(:expected_help_message) do
@@ -123,12 +146,6 @@ EOF
     it "errors if both berks and policyfiles are requested" do
       expect(with_argv(%w{my_cookbook --berks --policy}).run).to eq(1)
       message = "Berkshelf and Policyfiles are mutually exclusive. Please specify only one."
-      expect(stderr_io.string).to include(message)
-    end
-
-    it "errors if a hyphenated cookbook name is passed" do
-      expect(with_argv(%w{my-cookbook}).run).to eq(1)
-      message = "Hyphens are not allowed in cookbook names. Please specify a cookbook name without hyphens."
       expect(stderr_io.string).to include(message)
     end
 
