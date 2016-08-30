@@ -42,19 +42,13 @@ Gem::Specification.new do |gem|
   gem.add_dependency "mixlib-cli", "~> 1.7"
   gem.add_dependency "mixlib-shellout", "~> 2.0"
   gem.add_dependency "ffi-yajl", ">= 1.0", "< 3.0"
-
   gem.add_dependency "minitar", "~> 0.5.4"
-
   gem.add_dependency "chef", "~> 12.5"
-
   gem.add_dependency "solve", ">= 2.0.1"
-
   gem.add_dependency "cookbook-omnifetch", "~> 0.2", ">= 0.2.2"
-
   gem.add_dependency "diff-lcs", "~> 1.0"
   gem.add_dependency "paint", "~> 1.0"
-
-  gem.add_dependency "chef-provisioning", "~> 1.2"
+  gem.add_dependency "chef-provisioning", "~> 2.0"
 
   gem.add_development_dependency "github_changelog_generator"
   gem.add_development_dependency "rake"
