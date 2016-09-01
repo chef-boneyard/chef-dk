@@ -18,8 +18,7 @@ group :development do
   # Use Test Kitchen with Vagrant for converging the build environment
   gem "test-kitchen"
   gem "kitchen-vagrant"
-  gem "winrm-fs"
-  gem "winrm-elevated"
+  gem "winrm-elevated", "< 1.0"
 end
 
 # TODO remove this when we update Chef to use the new api exposed in 3.5.1
