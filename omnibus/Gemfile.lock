@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: d042e24fa3053ab926bb6a7c066c80e76ad72c94
-  branch: ksubrama/ruby23
+  revision: 676b89e48a213f34567f847c1c2aa20f08d5a2b7
+  branch: sersut/ff-ksubrama/ruby23
   specs:
     omnibus-software (4.0.0)
       chef-sugar (>= 3.4.0)
@@ -9,8 +9,8 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 61b50f5a20f0930ee977e54cabaff8fe02d3b731
-  branch: ksubrama/gcc_investigate
+  revision: 96d4695285c9530ff3b6b8160bc46e3ac6b19dd0
+  branch: sersut/ff-ksubrama/gcc_investigate
   specs:
     omnibus (5.5.0)
       aws-sdk (~> 2)
@@ -242,8 +242,7 @@ DEPENDENCIES
   pedump!
   rspec-core (= 3.4.4)
   test-kitchen
-  winrm-elevated
-  winrm-fs
+  winrm-elevated (< 1.0)
 
 BUNDLED WITH
    1.12.5
