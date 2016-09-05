@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/chef/chef.git
-  revision: 848cfcefd7565a274364fc2bbc455a50b6562fff
+  revision: 471d72df4746cd69d853a8bccc06ae1e695baec0
   branch: v12.14.49
   specs:
     chef (12.14.49)
