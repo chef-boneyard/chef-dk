@@ -17,6 +17,8 @@
 
 # Explicit omnibus overrides.
 OMNIBUS_OVERRIDES = {
+  # Until 1.13.0 is released
+  :bundler => "1.12.5",
   # Lower level library pins
   ## according to comment in omnibus-sw, latest versions don't work on solaris
   # https://github.com/chef/omnibus-software/blob/aefb7e79d29ca746c3f843673ef5e317fa3cba54/config/software/libtool.rb#L23
@@ -58,8 +60,8 @@ OMNIBUS_OVERRIDES = {
 # name of the rubygem (gem list -re <rubygem name> gets us the latest version).
 #
 OMNIBUS_RUBYGEMS_AT_LATEST_VERSION = {
-  #rubygems: "rubygems-update", # pinned to 2.6.4 because https://github.com/chef/chef-dk/issues/966
-  bundler: "bundler",
+  #rubygems: "rubygems-update", # pinned to 2.6.4 until https://github.com/rubygems/rubygems/pull/1683 is released
+  # bundler: "bundler", # pinned to 1.12.5 until we figure out how we're failing on 1.13.0
 }
 
 #
