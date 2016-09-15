@@ -1,6 +1,7 @@
 
 context = ChefDK::Generator.context
 delivery_project_dir = context.delivery_project_dir
+pipeline = context.pipeline
 dot_delivery_dir = File.join(delivery_project_dir, ".delivery")
 
 generator_desc("Ensuring delivery configuration")
@@ -156,8 +157,8 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
     only_if "git status --porcelain |grep \".\""
   end
 
-  execute("git-return-to-master-branch") do
-    command("git checkout master")
+  execute("git-return-to-#{pipeline}-branch") do
+    command("git checkout #{pipeline}")
     cwd delivery_project_dir
   end
 
@@ -169,7 +170,7 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
   end
 
   execute("git-remove-delivery-config-branch") do
-    command("git branch -d add-delivery-configuration")
+    command("git branch -D add-delivery-configuration")
     cwd delivery_project_dir
   end
 end
