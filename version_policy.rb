@@ -76,11 +76,14 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "activesupport",     # anchored by outdated google-api-client
   "celluloid",         # ridley requires 0.16.x
   "celluloid-io",      # ridley requires 0.16.x
+  "cucumber-core", # Until cucumber 2.0
   "fog-cloudatcost",   # fog restricts this for probably no good reason
+  "fog-dynect",        # fog restricts this for probably no good reason
   "fog-google",        # fog-google 0.2+ requires Ruby 2.0+, fog 2.0.0 will include it
   "google-api-client", # chef-provisioning-fog restricts to < 0.9 for presently unknown reasons
   "json",              # inspec pins this because Ruby 2.0, no eta on fix
   "rack",              # chef-zero pins this because Ruby 2.0, no eta on fix
+  "rbvmomi",           # fog-vsphere restricts this to a patch version, not sure why
   "retriable",         # anchored by outdated google-api-client
   "rubocop",           # cookstyle pins to 0.39.0 in 0.0.1
   "slop",              # expected to disappear with pry 0.11
