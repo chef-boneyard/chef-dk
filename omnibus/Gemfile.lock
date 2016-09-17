@@ -212,22 +212,23 @@ GEM
       hashie (>= 2.0.2, < 4.0.0)
     win32-process (0.8.3)
       ffi (>= 1.0.0)
-    winrm (1.8.1)
+    winrm (2.0.2)
       builder (>= 2.1.2)
+      erubis (~> 2.7)
       gssapi (~> 1.2)
       gyoku (~> 1.0)
       httpclient (~> 2.2, >= 2.2.0.2)
       logging (>= 1.6.1, < 3.0)
       nori (~> 2.0)
-      rubyntlm (~> 0.6.0)
-    winrm-elevated (0.4.0)
-      winrm (~> 1.5)
-      winrm-fs (~> 0.4.2)
-    winrm-fs (0.4.3)
+      rubyntlm (~> 0.6.0, >= 0.6.1)
+    winrm-elevated (1.0.0)
+      winrm (~> 2.0)
+      winrm-fs (~> 1.0)
+    winrm-fs (1.0.0)
       erubis (~> 2.7)
       logging (>= 1.6.1, < 3.0)
       rubyzip (~> 1.1)
-      winrm (~> 1.5)
+      winrm (~> 2.0)
     wmi-lite (1.0.0)
     zhexdump (0.0.2)
 
@@ -243,7 +244,7 @@ DEPENDENCIES
   pedump!
   rspec-core (= 3.4.4)
   test-kitchen
-  winrm-elevated (< 1.0)
+  winrm-elevated
 
 BUNDLED WITH
    1.12.5

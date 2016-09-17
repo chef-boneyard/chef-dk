@@ -52,7 +52,7 @@ group(:omnibus_package) do
   gem "chef-provisioning-vagrant", ">= 0.11.0"
   gem "chef-vault"
   # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "chef", github: "chef/chef", branch: "v12.14.60"
+  gem "chef", github: "chef/chef", branch: "v12.14.75"
   gem "cheffish", ">= 4.0"
   gem "chefspec"
   gem "fauxhai"
@@ -73,7 +73,7 @@ group(:omnibus_package) do
   gem "mixlib-versioning"
   gem "artifactory"
   # The opscode-pushy-client version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "opscode-pushy-client", github: "chef/opscode-pushy-client", branch: "2.1.1"
+  gem "opscode-pushy-client", github: "chef/opscode-pushy-client", branch: "2.1.2"
   gem "ffi-rzmq-core"
   gem "knife-push"
 

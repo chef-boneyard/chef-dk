@@ -7,13 +7,13 @@ GIT
 
 GIT
   remote: git://github.com/chef/chef.git
-  revision: 96ee2f933adcb98bcbc9723b2280afb3e0ee18d4
-  branch: v12.14.60
+  revision: 37c17dfe86a5e07305cbe2a244350ee02d6e9390
+  branch: v12.14.75
   specs:
-    chef (12.14.60)
+    chef (12.14.75)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.14.60)
+      chef-config (= 12.14.75)
       chef-zero (>= 4.8)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -39,10 +39,10 @@ GIT
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (12.14.60-universal-mingw32)
+    chef (12.14.75-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.14.60)
+      chef-config (= 12.14.75)
       chef-zero (>= 4.8)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -79,7 +79,7 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.14.60)
+    chef-config (12.14.75)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -87,10 +87,10 @@ GIT
 
 GIT
   remote: git://github.com/chef/opscode-pushy-client.git
-  revision: ae7bd646eb0390b3c1c6f7ae06de5dae7fc92336
-  branch: 2.1.1
+  revision: 960147934b353e73f7cb7601fb2ac9143fa93f4d
+  branch: 2.1.2
   specs:
-    opscode-pushy-client (2.1.1)
+    opscode-pushy-client (2.1.2)
       chef (>= 12.5)
       ffi-rzmq
       ohai
@@ -446,7 +446,7 @@ GEM
     inflecto (0.0.2)
     inifile (3.0.0)
     iniparse (1.4.2)
-    inspec (0.34.1)
+    inspec (0.35.0)
       hashie (~> 3.4)
       json (>= 1.8, < 3.0)
       method_source (~> 0.8)
@@ -463,7 +463,7 @@ GEM
     ipaddress (0.8.3)
     jmespath (1.3.1)
     json (1.8.3)
-    jwt (1.5.4)
+    jwt (1.5.5)
     kitchen-dokken (1.0.0)
       docker-api (~> 1.29)
       test-kitchen (~> 1.5)
