@@ -503,7 +503,7 @@ OUTPUT
 # Policyfile.rb - Describe how you want Chef to build your system.
 #
 # For more information on the Policyfile feature, visit
-# https://github.com/chef/chef-dk/blob/master/POLICYFILE_README.md
+# https://docs.chef.io/policyfile.html
 
 # A name that describes what the system you're building with Chef does.
 name "new_cookbook"
