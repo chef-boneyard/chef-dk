@@ -333,7 +333,7 @@ For example, in this directory you'll find an example role file called `example.
 
 For more information on roles, see the Chef wiki page:
 
-https://docs.chef.io/essentials_roles.html
+https://docs.chef.io/roles.html
 README
             end
 
