@@ -27,7 +27,7 @@ if windows?
   dependency "ruby-windows-devkit"
 end
 
-dependency "chef-dk-remove-docs"
+dependency "chef-dk-cleanup"
 dependency "rubygems-customization"
 dependency "shebang-cleanup"
 dependency "version-manifest"
