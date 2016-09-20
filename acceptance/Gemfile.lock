@@ -51,7 +51,7 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (12.14.60)
+    chef-config (12.14.77)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -113,7 +113,7 @@ GEM
     mixlib-authentication (1.4.1)
       mixlib-log
     mixlib-config (2.2.4)
-    mixlib-install (1.2.0)
+    mixlib-install (1.2.1)
       artifactory
       mixlib-shellout
       mixlib-versioning
@@ -243,4 +243,4 @@ DEPENDENCIES
   winrm-fs
 
 BUNDLED WITH
-   1.12.5
+   1.13.1
