@@ -7,13 +7,13 @@ GIT
 
 GIT
   remote: git://github.com/chef/chef.git
-  revision: 37c17dfe86a5e07305cbe2a244350ee02d6e9390
-  branch: v12.14.75
+  revision: af7b595d1a4bf7598ff746435febb05d144800a6
+  branch: v12.14.77
   specs:
-    chef (12.14.75)
+    chef (12.14.77)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.14.75)
+      chef-config (= 12.14.77)
       chef-zero (>= 4.8)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -39,10 +39,10 @@ GIT
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (12.14.75-universal-mingw32)
+    chef (12.14.77-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.14.75)
+      chef-config (= 12.14.77)
       chef-zero (>= 4.8)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -79,7 +79,7 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.14.75)
+    chef-config (12.14.77)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -138,7 +138,6 @@ GEM
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
-    backports (3.6.8)
     berkshelf (5.1.0)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (>= 2.0.2, < 4.0)
@@ -463,7 +462,7 @@ GEM
     ipaddress (0.8.3)
     jmespath (1.3.1)
     json (1.8.3)
-    jwt (1.5.5)
+    jwt (1.5.6)
     kitchen-dokken (1.0.0)
       docker-api (~> 1.29)
       test-kitchen (~> 1.5)
@@ -515,7 +514,7 @@ GEM
       mixlib-log
     mixlib-cli (1.7.0)
     mixlib-config (2.2.4)
-    mixlib-install (1.2.0)
+    mixlib-install (1.2.1)
       artifactory
       mixlib-shellout
       mixlib-versioning
@@ -569,7 +568,7 @@ GEM
     os (0.9.6)
     paint (1.0.1)
     parallel (1.9.0)
-    parser (2.3.1.2)
+    parser (2.3.1.4)
       ast (~> 2.2)
     pkg-config (1.1.7)
     plist (3.2.0)
@@ -835,4 +834,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.12.5
+   1.13.1
