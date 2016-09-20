@@ -113,7 +113,7 @@ GEM
     mixlib-authentication (1.4.1)
       mixlib-log
     mixlib-config (2.2.4)
-    mixlib-install (1.2.1)
+    mixlib-install (1.2.2)
       artifactory
       mixlib-shellout
       mixlib-versioning

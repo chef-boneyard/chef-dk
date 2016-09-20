@@ -515,7 +515,7 @@ GEM
       mixlib-log
     mixlib-cli (1.7.0)
     mixlib-config (2.2.4)
-    mixlib-install (1.2.1)
+    mixlib-install (1.2.2)
       artifactory
       mixlib-shellout
       mixlib-versioning
