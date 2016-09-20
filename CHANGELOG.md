@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.18.22](https://github.com/chef/chef-dk/tree/v0.18.22) (2016-09-20)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.17.17...v0.18.22)
+
+**Implemented enhancements:**
+
+- Warn instead of erroring when generating a cookbook with a hyphen in the name. [\#955](https://github.com/chef/chef-dk/pull/955) ([tonyflint](https://github.com/tonyflint))
+- Upgrade to Ruby 2.3.1 [\#980](https://github.com/chef/chef-dk/pull/980) ([jkeiser](https://github.com/jkeiser))
+
 ## [v0.17.17](https://github.com/chef/chef-dk/tree/v0.17.17) (2016-08-15)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.17.14...v0.17.17)
 
