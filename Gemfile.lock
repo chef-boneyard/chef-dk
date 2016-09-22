@@ -7,13 +7,13 @@ GIT
 
 GIT
   remote: git://github.com/chef/chef.git
-  revision: af7b595d1a4bf7598ff746435febb05d144800a6
-  branch: v12.14.77
+  revision: cfb054c7b78660659c47cb8c85f1cb3f9bf02544
+  branch: v12.14.89
   specs:
-    chef (12.14.77)
+    chef (12.14.89)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.14.77)
+      chef-config (= 12.14.89)
       chef-zero (>= 4.8)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -39,10 +39,10 @@ GIT
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (12.14.77-universal-mingw32)
+    chef (12.14.89-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.14.77)
+      chef-config (= 12.14.89)
       chef-zero (>= 4.8)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -79,7 +79,7 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.14.77)
+    chef-config (12.14.89)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -755,7 +755,7 @@ GEM
       logging (>= 1.6.1, < 3.0)
       nori (~> 2.0)
       rubyntlm (~> 0.6.0, >= 0.6.1)
-    winrm-elevated (1.0.0)
+    winrm-elevated (1.0.1)
       winrm (~> 2.0)
       winrm-fs (~> 1.0)
     winrm-fs (1.0.0)
