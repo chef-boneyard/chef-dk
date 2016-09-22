@@ -1,10 +1,11 @@
 # Change Log
 
-## [v0.18.22](https://github.com/chef/chef-dk/tree/v0.18.22) (2016-09-20)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v0.17.17...v0.18.22)
+## [v0.18.26](https://github.com/chef/chef-dk/tree/v0.18.26) (2016-09-22)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.17.17...v0.18.26)
 
 **Implemented enhancements:**
 
+- Added option --for to build\_cookbook generator to use branch other than master [\#1013](https://github.com/chef/chef-dk/pull/1013) ([Sgtpluck](https://github.com/Sgtpluck))
 - Warn instead of erroring when generating a cookbook with a hyphen in the name. [\#955](https://github.com/chef/chef-dk/pull/955) ([tonyflint](https://github.com/tonyflint))
 - Upgrade to Ruby 2.3.1 [\#980](https://github.com/chef/chef-dk/pull/980) ([jkeiser](https://github.com/jkeiser))
 
