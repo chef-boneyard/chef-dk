@@ -24,18 +24,6 @@ GIT
       ruby-progressbar (~> 1.7)
       thor (~> 0.18)
 
-GIT
-  remote: https://github.com/ksubrama/pedump.git
-  revision: b4319556e18c80d2cba064ffe57fe0dea549dfe2
-  branch: patch-1
-  specs:
-    pedump (0.5.0)
-      awesome_print
-      iostruct (>= 0.0.4)
-      multipart-post (~> 1.2)
-      progressbar
-      zhexdump (>= 0.0.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -82,7 +70,7 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (12.14.77)
+    chef-config (12.14.89)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -126,7 +114,7 @@ GEM
       mixlib-log
     mixlib-cli (1.7.0)
     mixlib-config (2.2.4)
-    mixlib-install (1.2.2)
+    mixlib-install (1.2.3)
       artifactory
       mixlib-shellout
       mixlib-versioning
@@ -138,7 +126,7 @@ GEM
     mixlib-versioning (1.1.0)
     molinillo (0.5.1)
     multi_json (1.12.1)
-    multipart-post (1.2.0)
+    multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
@@ -160,6 +148,12 @@ GEM
       plist (~> 3.1)
       systemu (~> 2.6.4)
       wmi-lite (~> 1.0)
+    pedump (0.5.2)
+      awesome_print
+      iostruct (>= 0.0.4)
+      multipart-post (~> 2.0.0)
+      progressbar
+      zhexdump (>= 0.0.2)
     plist (3.2.0)
     progressbar (0.21.0)
     retryable (2.0.4)
@@ -241,7 +235,7 @@ DEPENDENCIES
   kitchen-vagrant
   omnibus!
   omnibus-software!
-  pedump!
+  pedump
   rspec-core (= 3.4.4)
   test-kitchen
   winrm-elevated
