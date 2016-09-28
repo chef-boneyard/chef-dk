@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.18.30](https://github.com/chef/chef-dk/tree/v0.18.30) (2016-09-28)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.18.26...v0.18.30)
+
+**Implemented enhancements:**
+
+- updating inspec and kitchen [\#1030](https://github.com/chef/chef-dk/pull/1030) ([mwrock](https://github.com/mwrock))
+
 ## [v0.18.26](https://github.com/chef/chef-dk/tree/v0.18.26) (2016-09-22)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.17.17...v0.18.26)
 
