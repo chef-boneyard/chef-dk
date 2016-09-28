@@ -136,4 +136,5 @@ INSTALL_WITHOUT_GROUPS = %w{
   tools
   travis
   style
+  simulator
 }
