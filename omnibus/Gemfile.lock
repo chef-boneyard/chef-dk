@@ -30,12 +30,12 @@ GEM
     addressable (2.4.0)
     artifactory (2.5.0)
     awesome_print (1.7.0)
-    aws-sdk (2.6.3)
-      aws-sdk-resources (= 2.6.3)
-    aws-sdk-core (2.6.3)
+    aws-sdk (2.6.4)
+      aws-sdk-resources (= 2.6.4)
+    aws-sdk-core (2.6.4)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.6.3)
-      aws-sdk-core (= 2.6.3)
+    aws-sdk-resources (2.6.4)
+      aws-sdk-core (= 2.6.4)
     berkshelf (5.1.0)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (>= 2.0.2, < 4.0)
@@ -114,7 +114,7 @@ GEM
       mixlib-log
     mixlib-cli (1.7.0)
     mixlib-config (2.2.4)
-    mixlib-install (2.0.0)
+    mixlib-install (2.0.1)
       artifactory
       mixlib-shellout
       mixlib-versioning
@@ -206,7 +206,7 @@ GEM
       hashie (>= 2.0.2, < 4.0.0)
     win32-process (0.8.3)
       ffi (>= 1.0.0)
-    winrm (2.0.2)
+    winrm (2.0.3)
       builder (>= 2.1.2)
       erubis (~> 2.7)
       gssapi (~> 1.2)
