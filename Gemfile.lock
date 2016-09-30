@@ -7,13 +7,13 @@ GIT
 
 GIT
   remote: git://github.com/chef/chef.git
-  revision: cfb054c7b78660659c47cb8c85f1cb3f9bf02544
-  branch: v12.14.89
+  revision: baa90bfaf06f886981ba8273ced55da0e6f17df8
+  branch: v12.15.7
   specs:
-    chef (12.14.89)
+    chef (12.15.7)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.14.89)
+      chef-config (= 12.15.7)
       chef-zero (>= 4.8)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -39,10 +39,10 @@ GIT
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (12.14.89-universal-mingw32)
+    chef (12.15.7-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.14.89)
+      chef-config (= 12.15.7)
       chef-zero (>= 4.8)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -79,7 +79,7 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.14.89)
+    chef-config (12.15.7)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -99,7 +99,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (0.18.32)
+    chef-dk (0.19.0)
       chef (~> 12.5)
       chef-provisioning (~> 2.0)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -129,12 +129,12 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (2.6.4)
-      aws-sdk-resources (= 2.6.4)
-    aws-sdk-core (2.6.4)
+    aws-sdk (2.6.5)
+      aws-sdk-resources (= 2.6.5)
+    aws-sdk-core (2.6.5)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.6.4)
-      aws-sdk-core (= 2.6.4)
+    aws-sdk-resources (2.6.5)
+      aws-sdk-core (= 2.6.5)
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -169,7 +169,7 @@ GEM
     buff-shell_out (1.1.0)
       buff-ruby_engine (~> 1.0)
     builder (3.2.2)
-    byebug (9.0.5)
+    byebug (9.0.6)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     celluloid-io (0.16.2)
@@ -514,7 +514,7 @@ GEM
       mixlib-log
     mixlib-cli (1.7.0)
     mixlib-config (2.2.4)
-    mixlib-install (2.0.1)
+    mixlib-install (2.0.2)
       artifactory
       mixlib-shellout
       mixlib-versioning
