@@ -121,7 +121,7 @@ GEMS_ALLOWED_TO_FLOAT = [
 
 #
 # The list of groups we install without: this drives both the `bundle install`
-# we do in chef-dk, and the `bundle check` we do to ensure installed gems don't
+# we do in chef-dk, and the `bundle check` we do to ensure installed gems dont
 # have extra deps hiding in their Gemfiles.
 #
 INSTALL_WITHOUT_GROUPS = %w{
