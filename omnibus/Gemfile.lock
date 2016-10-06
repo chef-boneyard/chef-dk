@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/chef/omnibus.git
-  revision: f834133d8bb5e24776eca6ae835dcbaad11e0918
+  revision: 1b5c7a20da006403d5aac2ddc754e43fb97cb540
   branch: rhass/COOL-502_with_gcc_investigate
   specs:
     omnibus (5.5.0)
@@ -114,7 +114,7 @@ GEM
       mixlib-log
     mixlib-cli (1.7.0)
     mixlib-config (2.2.4)
-    mixlib-install (2.0.3)
+    mixlib-install (2.1.0)
       artifactory
       mixlib-shellout
       mixlib-versioning

@@ -1,19 +1,19 @@
 GIT
   remote: git://github.com/chef/appbundler.git
-  revision: 379a06cc58e0d150fb966b49a16df4c70bb9d4d4
+  revision: 76cb17280186ba314d31cd5751e674025ec93c79
   specs:
     appbundler (0.9.0)
       mixlib-cli (~> 1.4)
 
 GIT
   remote: git://github.com/chef/chef.git
-  revision: baa90bfaf06f886981ba8273ced55da0e6f17df8
-  branch: v12.15.7
+  revision: 3ee61f162cdde307e8f0ed011fb831d47fa9a720
+  branch: v12.15.14
   specs:
-    chef (12.15.7)
+    chef (12.15.14)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.15.7)
+      chef-config (= 12.15.14)
       chef-zero (>= 4.8)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -39,10 +39,10 @@ GIT
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (12.15.7-universal-mingw32)
+    chef (12.15.14-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.15.7)
+      chef-config (= 12.15.14)
       chef-zero (>= 4.8)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -79,7 +79,7 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.15.7)
+    chef-config (12.15.14)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -240,7 +240,7 @@ GEM
       ffi (~> 1.9)
     diff-lcs (1.2.5)
     diffy (3.1.0)
-    docker-api (1.31.0)
+    docker-api (1.32.1)
       excon (>= 0.38.0)
       json
     erubis (2.7.0)
@@ -338,7 +338,7 @@ GEM
       multi_json (~> 1.10)
     fog-local (0.3.0)
       fog-core (~> 1.27)
-    fog-openstack (0.1.12)
+    fog-openstack (0.1.14)
       fog-core (>= 1.40)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
@@ -445,7 +445,7 @@ GEM
     inflecto (0.0.2)
     inifile (3.0.0)
     iniparse (1.4.2)
-    inspec (1.0.0)
+    inspec (1.1.0)
       hashie (~> 3.4)
       json (>= 1.8, < 3.0)
       method_source (~> 0.8)
@@ -463,7 +463,7 @@ GEM
     jmespath (1.3.1)
     json (1.8.3)
     jwt (1.5.6)
-    kitchen-dokken (1.0.0)
+    kitchen-dokken (1.0.1)
       docker-api (~> 1.29)
       test-kitchen (~> 1.5)
     kitchen-ec2 (1.2.0)
@@ -514,7 +514,7 @@ GEM
       mixlib-log
     mixlib-cli (1.7.0)
     mixlib-config (2.2.4)
-    mixlib-install (2.0.2)
+    mixlib-install (2.1.0)
       artifactory
       mixlib-shellout
       mixlib-versioning
@@ -541,12 +541,10 @@ GEM
       net-ssh-gateway (>= 1.2.0)
     net-telnet (0.1.1)
     nio4r (1.2.1)
-    nokogiri (1.6.8)
+    nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
-    nokogiri (1.6.8-x86-mingw32)
+    nokogiri (1.6.8.1-x86-mingw32)
       mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
     nori (2.6.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
@@ -570,7 +568,6 @@ GEM
     parallel (1.9.0)
     parser (2.3.1.4)
       ast (~> 2.2)
-    pkg-config (1.1.7)
     plist (3.2.0)
     polyglot (0.3.5)
     powerpack (0.1.1)
@@ -626,7 +623,7 @@ GEM
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
       rspec-mocks (~> 3.5.0)
-    rspec-core (3.5.3)
+    rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -664,7 +661,7 @@ GEM
       rspec (~> 3.0)
       rspec-its
       specinfra (~> 2.53)
-    sfl (2.2)
+    sfl (2.3)
     shellany (0.0.1)
     signet (0.7.3)
       addressable (~> 2.3)
@@ -675,7 +672,7 @@ GEM
     solve (3.0.1)
       molinillo (~> 0.4)
       semverse (>= 1.1, < 3.0)
-    specinfra (2.63.1)
+    specinfra (2.63.2)
       net-scp
       net-ssh (>= 2.7, < 4.0)
       net-telnet
