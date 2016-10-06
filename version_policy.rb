@@ -127,6 +127,7 @@ GEMS_ALLOWED_TO_FLOAT = [
 INSTALL_WITHOUT_GROUPS = %w{
   changelog
   compat_testing
+  deploy
   development
   docgen
   guard
