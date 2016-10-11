@@ -17,15 +17,27 @@
 
 namespace :version do
   desc "Bump patch version in lib/chef-dk/version.rb and update Gemfile*.lock conservatively to include the new version. If Gemfile has changed, this will update modified constraints as well."
-  task :bump => %w{version:bump_patch bundle:install}
+  task :bump => %w{version:bump_patch version:update_gemfile_lock}
 
   desc "Show the current version."
   task :show do
-    puts ChefDK::VERSION
+    puts version
+  end
+
+  def version
+    if IO.read(version_rb_path) =~ /^\s*VERSION\s*=\s*"([^"]+)"\s*$/
+      $1
+    else
+      raise "Could not read version from #{version_rb_path}. Contents:\n#{IO.read(version_rb_path)}"
+    end
   end
 
   def version_rb_path
     File.expand_path("../../lib/chef-dk/version.rb", __FILE__)
+  end
+
+  def gemfile_lock_path
+    File.expand_path("../../Gemfile.lock", __FILE__)
   end
 
   # Add 1 to the current patch version in the VERSION file, and write it back out.
@@ -37,8 +49,21 @@ namespace :version do
       new_version = "#{$2}#{$3.to_i + 1}"
       "#{$1}#{new_version}"
     end
-    puts "Updating version in #{version_rb_path} from #{ChefDK::VERSION} to #{new_version.chomp}"
+    puts "Updating version in #{version_rb_path} from #{version} to #{new_version.chomp}"
     IO.write(version_rb_path, new_version_file)
   end
+
+  desc "Update the Gemfile.lock to include the current chef-dk version"
+  task :update_gemfile_lock do
+    if File.exist?(gemfile_lock_path)
+      puts "Updating #{gemfile_lock_path} to include version #{version} ..."
+      contents = IO.read(gemfile_lock_path)
+      contents.gsub!(/^\s*(chef-dk)\s*\((= )?\S+\)\s*$/) do |line|
+        line.gsub(/\((= )?\d+(\.\d+)+/) { "(#{$1}#{version}" }
+      end
+      IO.write(gemfile_lock_path, contents)
+    end
+  end
+
 
 end

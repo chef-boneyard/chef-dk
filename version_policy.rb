@@ -17,6 +17,8 @@
 
 # Explicit omnibus overrides.
 OMNIBUS_OVERRIDES = {
+  # Until 1.13.0 is released
+  :bundler => "1.12.5",
   # Lower level library pins
   ## according to comment in omnibus-sw, latest versions don't work on solaris
   # https://github.com/chef/omnibus-software/blob/aefb7e79d29ca746c3f843673ef5e317fa3cba54/config/software/libtool.rb#L23
@@ -32,7 +34,7 @@ OMNIBUS_OVERRIDES = {
   "makedepend" => "1.0.5",
   "ncurses" => "5.9",
   "pkg-config-lite" => "0.28-1",
-  "ruby" => "2.1.8",
+  "ruby" => "2.3.1",
   # Leave dev-kit pinned to 4.5 on 32-bit, because 4.7 is 20MB larger and we don't want
   # to unnecessarily make the client any fatter. (Since it's different between
   # 32 and 64, we have to do it in the project file still.)
@@ -58,8 +60,8 @@ OMNIBUS_OVERRIDES = {
 # name of the rubygem (gem list -re <rubygem name> gets us the latest version).
 #
 OMNIBUS_RUBYGEMS_AT_LATEST_VERSION = {
-  #rubygems: "rubygems-update", # pinned to 2.6.4 because https://github.com/chef/chef-dk/issues/966
-  bundler: "bundler",
+  #rubygems: "rubygems-update", # pinned to 2.6.4 until https://github.com/rubygems/rubygems/pull/1683 is released
+  # bundler: "bundler", # pinned to 1.12.5 until we figure out how we're failing on 1.13.0
 }
 
 #
@@ -71,25 +73,22 @@ OMNIBUS_RUBYGEMS_AT_LATEST_VERSION = {
 # list of outdated gems.
 #
 ACCEPTABLE_OUTDATED_GEMS = [
-  "celluloid",
-  "celluloid-io",
-  "docker-api",
-  "fog-cloudatcost",
-  "fog-google",
-  "gherkin", # fixed in cucumber-core > 1.4.0
-  "google-api-client",
-  "jwt", # fixed in oauth2 > 1.1.0
-  "listen",
-  "mime-types",
-  "mini_portile2", # dep removed in nokogiri > 1.6.7.2
-  "retriable",
-  "rubocop",
-  "slop", # deo removed in pry > 0.10.3
-  "timers",
-  "unicode-display_width",
-  "varia_model",
-  "httpclient",
-  "molinillo",
+  "activesupport",     # anchored by outdated google-api-client
+  "celluloid",         # ridley requires 0.16.x
+  "celluloid-io",      # ridley requires 0.16.x
+  "cucumber-core", # Until cucumber 2.0
+  "fog-cloudatcost",   # fog restricts this for probably no good reason
+  "fog-dynect",        # fog restricts this for probably no good reason
+  "fog-google",        # fog-google 0.2+ requires Ruby 2.0+, fog 2.0.0 will include it
+  "google-api-client", # chef-provisioning-fog restricts to < 0.9 for presently unknown reasons
+  "json",              # inspec pins this because Ruby 2.0, no eta on fix
+  "rack",              # chef-zero pins this because Ruby 2.0, no eta on fix
+  "rbvmomi",           # fog-vsphere restricts this to a patch version, not sure why
+  "retriable",         # anchored by outdated google-api-client
+  "rubocop",           # cookstyle pins to 0.39.0 in 0.0.1
+  "slop",              # expected to disappear with pry 0.11
+  "timers",            # anchored by outdated celluloid
+
   # We have a task called update_stable_channel_gems which scans and pins to the
   # latest released chef/chef-config/opscode-pushy-client but it pulls from the
   # chef repo instead of from rubygems. Bundler currently considers any git
@@ -102,6 +101,7 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "chef-config",
   "opscode-pushy-client",
   "mixlib-cli"
+
 ]
 
 #
@@ -121,12 +121,13 @@ GEMS_ALLOWED_TO_FLOAT = [
 
 #
 # The list of groups we install without: this drives both the `bundle install`
-# we do in chef-dk, and the `bundle check` we do to ensure installed gems don't
+# we do in chef-dk, and the `bundle check` we do to ensure installed gems dont
 # have extra deps hiding in their Gemfiles.
 #
 INSTALL_WITHOUT_GROUPS = %w{
   changelog
   compat_testing
+  deploy
   development
   docgen
   guard
@@ -136,4 +137,5 @@ INSTALL_WITHOUT_GROUPS = %w{
   tools
   travis
   style
+  simulator
 }

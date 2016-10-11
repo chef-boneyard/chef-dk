@@ -126,10 +126,10 @@ EOF
       expect(stderr_io.string).to include(message)
     end
 
-    it "errors if a hyphenated cookbook name is passed" do
-      expect(with_argv(%w{my-cookbook}).run).to eq(1)
-      message = "Hyphens are not allowed in cookbook names. Please specify a cookbook name without hyphens."
-      expect(stderr_io.string).to include(message)
+    it "warns if a hyphenated cookbook name is passed" do
+      expect(with_argv(%w{my-cookbook}).run).to eq(0)
+      message = "Hyphens are discouraged in cookbook names as they may cause problems with custom resources. See https://docs.chef.io/ctl_chef.html#chef-generate-cookbook for more information."
+      expect(stdout_io.string).to include(message)
     end
 
   end
@@ -503,7 +503,7 @@ OUTPUT
 # Policyfile.rb - Describe how you want Chef to build your system.
 #
 # For more information on the Policyfile feature, visit
-# https://github.com/chef/chef-dk/blob/master/POLICYFILE_README.md
+# https://docs.chef.io/policyfile.html
 
 # A name that describes what the system you're building with Chef does.
 name "new_cookbook"

@@ -20,17 +20,21 @@ cache: bundler
 
 before_install:
   - gem update --system $(grep rubygems omnibus_overrides.rb | cut -d'"' -f2)
-  - gem install bundler -v $(grep bundler omnibus_overrides.rb | cut -d'"' -f2)
   - gem --version
   - bundle --version
   - rm -f .bundle/config
 
 bundler_args: --without changelog development docgen guard maintenance omnibus_package tools aix bsd mac_os_x solaris windows --frozen
 
+env:
+  global:
+    # To force us to load the version of bundler we want.
+    BUNDLE_ENABLE_TRAMPOLINE: 1
+
 matrix:
   include:
-    - rvm: 2.2
-    - rvm: 2.1
+    - rvm: 2.3.1
+    - rvm: 2.2.5
 
 branches:
   only:

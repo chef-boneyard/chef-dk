@@ -12,3 +12,6 @@ gem "berkshelf"
 
 # TODO remove this when we update Chef to use the new api exposed in 3.5.1
 gem "rspec-core", "= 3.4.4"
+
+# until 2.0.0 is fixed for unstable packages
+gem "mixlib-install", "1.2.3"

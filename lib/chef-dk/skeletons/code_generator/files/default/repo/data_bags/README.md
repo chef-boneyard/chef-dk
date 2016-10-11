@@ -14,7 +14,7 @@ Then we can upload the items in the data bag's directory to the Chef Server.
 
 For more information on data bags, see the Chef wiki page:
 
-https://docs.chef.io/essentials_data_bags.html
+https://docs.chef.io/data_bags.html
 
 # Encrypted Data Bags
 
@@ -53,4 +53,4 @@ Use the secret_key to view the contents.
 
 For more information on encrypted data bags, see the Chef wiki page:
 
-https://docs.chef.io/essentials_data_bags.html
+https://docs.chef.io/data_bags.html

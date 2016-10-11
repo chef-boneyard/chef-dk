@@ -6,7 +6,8 @@ platform:
 
 environment:
   matrix:
-    - ruby_version: "21"
+    - ruby_version: "23-x64"
+    - ruby_version: "23"
 
 clone_folder: c:\projects\chefdk
 clone_depth: 1

@@ -29,6 +29,11 @@ module ChefDK
 
         attr_reader :cookbook_name_or_path
 
+        option :pipeline,
+          :long  => "--pipeline PIPELINE",
+          :description => "Use PIPELINE to set target branch to something other than master for the build_cookbook",
+          :default => "master"
+
         options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
@@ -58,6 +63,12 @@ module ChefDK
 
           Generator.add_attr_to_context(:delivery_project_git_initialized, delivery_project_git_initialized?)
           Generator.add_attr_to_context(:build_cookbook_parent_is_cookbook, build_cookbook_parent_is_cookbook?)
+
+          Generator.add_attr_to_context(:pipeline, pipeline)
+        end
+
+        def pipeline
+          config[:pipeline]
         end
 
         def recipe
@@ -112,4 +123,3 @@ module ChefDK
     end
   end
 end
-

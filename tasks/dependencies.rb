@@ -24,8 +24,9 @@ desc "Tasks to update and check dependencies"
 namespace :dependencies do
   # Update all dependencies to the latest constraint-matching version
   desc "Update all dependencies."
+  # Until 12.14 is released we've removed this first task from update
+  # dependencies:update_stable_channel_gems
   task :update => %w{
-                    dependencies:update_stable_channel_gems
                     dependencies:update_gemfile_lock
                     dependencies:update_omnibus_overrides
                     dependencies:update_omnibus_gemfile_lock

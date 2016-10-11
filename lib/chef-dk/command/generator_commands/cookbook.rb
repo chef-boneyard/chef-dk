@@ -63,6 +63,11 @@ module ChefDK
           boolean:      true,
           default:      false
 
+        option :pipeline,
+          :long  => "--pipeline PIPELINE",
+          :description => "Use PIPELINE to set target branch to something other than master for the build_cookbook",
+          :default => "master"
+
         options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
@@ -125,6 +130,11 @@ module ChefDK
           Generator.add_attr_to_context(:verbose, verbose?)
 
           Generator.add_attr_to_context(:use_berkshelf, berks_mode?)
+          Generator.add_attr_to_context(:pipeline, pipeline)
+        end
+
+        def pipeline
+          config[:pipeline]
         end
 
         def policy_name
@@ -196,8 +206,7 @@ module ChefDK
           if !@cookbook_name_or_path
             @params_valid = false
           elsif /-/ =~ File.basename(@cookbook_name_or_path)
-            err("Hyphens are not allowed in cookbook names. Please specify a cookbook name without hyphens.")
-            @params_valid = false
+            msg("Hyphens are discouraged in cookbook names as they may cause problems with custom resources. See https://docs.chef.io/ctl_chef.html#chef-generate-cookbook for more information.")
           end
 
           if config[:berks] && config[:policy]
