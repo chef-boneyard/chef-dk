@@ -258,8 +258,10 @@ EOS
 
               # write out the gemfile for this chef-provisioning version, and see if Bundler can make it go.
               with_file(File.join(cwd, gemfile)) do |f|
+                f.puts "platforms :ruby do"
                 f.puts %Q(gem "chef-provisioning", "= #{provisioning_version}")
                 drivers.each { |d| f.puts %Q(gem "#{d}") }
+                f.puts "end"
               end
 
               result = bundle_install_mutex.synchronize do
