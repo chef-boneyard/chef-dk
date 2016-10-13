@@ -48,7 +48,7 @@ build do
 
   # We do a distclean so we ensure that the autoconf files are not trying to be
   # clever.
-  make "distclean"
+  make "distclean", env: env
 
   # AIX needs /opt/freeware/bin only for patch
   if aix?
