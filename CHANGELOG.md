@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.19.6](https://github.com/chef/chef-dk/tree/v0.18.30) (2016-10-17)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.18.30...v0.19.6)
+
+**Implemented enhancements:**
+
+- Set the always\_update\_cookbooks flag by default. [\#988](https://github.com/chef/chef-dk/pull/988) ([coderanger](https://github.com/coderanger))
+
 ## [v0.18.30](https://github.com/chef/chef-dk/tree/v0.18.30) (2016-09-28)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.18.26...v0.18.30)
 
