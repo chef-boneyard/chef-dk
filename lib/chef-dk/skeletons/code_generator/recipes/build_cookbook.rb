@@ -122,7 +122,14 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
     command("git add .delivery/config.json")
     cwd delivery_project_dir
 
-    only_if "git status --porcelain |grep \".\""
+    only_if (
+	    case [:os_family]
+	    when 'linux'
+	      "git status --porcelain |grep \".\""
+	    when 'windows'
+  	    "git status --porcelain | find \".\""
+	    end
+	  )
   end
 
   # Adding the new prototype file to the feature branch
