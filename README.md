@@ -306,6 +306,10 @@ dpkg --list | grep chefdk # or dpkg --status chefdk
 dpkg -P chefdk
 ```
 
+## Contributing
+
+For information on contributing to this project see <https://github.com/chef/chef/blob/master/CONTRIBUTING.md>
+
 # For ChefDK Developers
 
 See the [Development Guide](DEVELOPMENT.md) for how to get started with
