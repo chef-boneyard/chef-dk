@@ -124,12 +124,12 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
 
     only_if (
 	    case [:os_family]
-	    when 'linux'
-	      "git status --porcelain |grep \".\""
-	    when 'windows'
-  	    "git status --porcelain | find \".\""
-	    end
-	  )
+      when 'linux'
+        "git status --porcelain |grep \".\""
+      when 'windows'
+        "git status --porcelain | find \".\""
+      end
+    )
   end
 
   # Adding the new prototype file to the feature branch
