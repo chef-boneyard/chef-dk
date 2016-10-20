@@ -30,7 +30,7 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = '>= 2.2'
 
-  gem.files = %w{Rakefile LICENSE README.md CONTRIBUTING.md warning.txt} +
+  gem.files = %w{Rakefile LICENSE README.md warning.txt} +
       %w{version_policy.rb omnibus_overrides.rb} +
       Dir.glob("Gemfile*") + # Includes Gemfile and locks
       Dir.glob("*.gemspec") +
