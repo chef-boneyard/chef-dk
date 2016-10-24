@@ -42,6 +42,9 @@ matrix:
       - /opt/chefdk/embedded/bin/chef --version
       - /opt/chefdk/embedded/bin/cookstyle --version
       - /opt/chefdk/embedded/bin/foodcritic --version
-    - script:
-      - /opt/chefdk/bin/chef exec rake
-      env: UNIT_AND_LINT=1
+    - script: /opt/chefdk/embedded/bin/cookstyle
+      env:  COOKSTYLE=1
+    - script: /opt/chefdk/embedded/bin/foodcritic . --exclude spec -f any -P
+    env:  FOODCRITIC=1
+    - script: /opt/chefdk/embedded/bin/rspec
+      env:  CHEFSPEC=1
