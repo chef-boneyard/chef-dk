@@ -128,6 +128,21 @@ if context.have_git
   end
 end
 
+# travis
+template "#{cookbook_dir}/.travis.yml" do
+  source 'travis.yml.erb'
+  helpers(ChefDK::Generator::TemplateHelper)
+  action :create_if_missing
+end
+
+# kitchen-docker.yml
+template "#{cookbook_dir}/.kitchen-docker.yml" do
+  source 'kitchen-docker.yml.erb'
+  helpers(ChefDK::Generator::TemplateHelper)
+  action :create_if_missing
+end
+
+
 if context.enable_delivery
 
   include_recipe "::build_cookbook"
