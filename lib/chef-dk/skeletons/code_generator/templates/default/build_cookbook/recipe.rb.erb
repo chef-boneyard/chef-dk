@@ -1,8 +1,0 @@
-#
-# Cookbook Name:: build_cookbook
-# Recipe:: <%= @phase %>
-#
-<%= license_description('#') %>
-<% if build_cookbook_parent_is_cookbook -%>
-include_recipe 'delivery-truck::<%= @phase %>'
-<% end -%>
