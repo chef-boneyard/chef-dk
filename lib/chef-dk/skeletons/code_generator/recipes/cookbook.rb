@@ -136,8 +136,8 @@ template "#{cookbook_dir}/.travis.yml" do
 end
 
 # kitchen-docker.yml
-template "#{cookbook_dir}/.kitchen-docker.yml" do
-  source 'kitchen.docker.yml.erb'
+template "#{cookbook_dir}/.kitchen-dokken.yml" do
+  source 'kitchen.dokken.yml.erb'
   helpers(ChefDK::Generator::TemplateHelper)
   action :create_if_missing
 end
