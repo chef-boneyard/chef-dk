@@ -133,4 +133,49 @@ describe ChefDK::Command::GeneratorCommands::Base do
       end
     end
   end
+
+  describe '#have_git?' do
+    let(:cmd) { described_class.new([]) }
+    let(:path) { 'bin_path' }
+
+    before do
+      allow(File).to receive(:exist?)
+      allow(ENV).to receive(:[]).with('PATH').and_return(path)
+      allow(ENV).to receive(:[]).with('PATHEXT').and_return(nil)
+      allow(RbConfig::CONFIG).to receive(:[]).with('EXEEXT').and_return('')
+    end
+
+    describe 'when git executable exists' do
+      it 'returns true' do
+        allow(File).to receive(:exist?).and_return(true)
+        expect(cmd.have_git?).to eq(true)
+      end
+    end
+
+    describe 'when git executable does not exist' do
+      it 'returns false' do
+        allow(File).to receive(:exist?).and_return(false)
+        expect(cmd.have_git?).to eq(false)
+      end
+    end
+
+    it 'checks PATH for git executable' do
+      expect(File).to receive(:exist?).with(File.join(path, 'git'))
+      cmd.have_git?
+    end
+
+    describe 'when on Windows' do
+      before do
+        allow(ENV).to receive(:[]).with('PATHEXT').and_return('.com;.exe;.bat')
+        allow(RbConfig::CONFIG).to receive(:[]).with('EXEEXT').and_return('.exe')
+      end
+
+      it 'checks PATH for git executable with an extension found in PATHEXT' do
+        expect(File).to receive(:exist?).with(File.join(path, 'git.com'))
+        expect(File).to receive(:exist?).with(File.join(path, 'git.exe'))
+        expect(File).to receive(:exist?).with(File.join(path, 'git.bat'))
+        cmd.have_git?
+      end
+    end
+  end
 end
