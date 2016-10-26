@@ -137,15 +137,29 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
   execute("git-add-delivery-project-toml") do
     command("git add .delivery/project.toml")
     cwd delivery_project_dir
-
-    only_if "git status --porcelain |grep \".\""
+    
+    only_if (
+	    case [:os_family]
+      when 'linux'
+        "git status --porcelain |grep \".\""
+      when 'windows'
+        "git status --porcelain | find \".\""
+      end
+    )
   end
 
   execute("git-commit-delivery-config") do
     command("git commit -m \"Add generated delivery configuration\"")
     cwd delivery_project_dir
 
-    only_if "git status --porcelain |grep \".\""
+    only_if (
+	    case [:os_family]
+      when 'linux'
+        "git status --porcelain |grep \".\""
+      when 'windows'
+        "git status --porcelain | find \".\""
+      end
+    )
   end
 
   generator_desc("Adding build cookbook to feature branch")
@@ -154,14 +168,28 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
     command("git add .delivery")
     cwd delivery_project_dir
 
-    only_if "git status --porcelain |grep \".\""
+    only_if (
+	    case [:os_family]
+      when 'linux'
+        "git status --porcelain |grep \".\""
+      when 'windows'
+        "git status --porcelain | find \".\""
+      end
+    )
   end
 
   execute("git-commit-delivery-build-cookbook") do
     command("git commit -m \"Add generated delivery build cookbook\"")
     cwd delivery_project_dir
 
-    only_if "git status --porcelain |grep \".\""
+    only_if (
+	    case [:os_family]
+      when 'linux'
+        "git status --porcelain |grep \".\""
+      when 'windows'
+        "git status --porcelain | find \".\""
+      end
+    )
   end
 
   execute("git-return-to-#{pipeline}-branch") do
