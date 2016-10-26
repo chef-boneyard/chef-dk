@@ -14,10 +14,11 @@
 [local_phases]
 unit = "rspec spec/"
 lint = "cookstyle"
-# Foodcritic expects an `issues_url` and `source_url` in the metadata.rb
-# We turn this off by default because only cookbooks uploaded to the
-# Supermarket will have these added.
-syntax = "foodcritic . --exclude spec -f any -t \"~FC064\" -t \"~FC065\""
+# Foodcritic includes rules only appropriate for community cookbooks
+# uploaded to Supermarket. We turn off any rules tagged "supermarket"
+# by default. If you plan to share this cookbook you should remove
+# '-t ~supermarket' below to enable supermarket rules.
+syntax = "foodcritic . --exclude spec -f any -t ~supermarket"
 provision = "chef exec kitchen create"
 deploy = "chef exec kitchen converge"
 smoke = "chef exec kitchen verify"
