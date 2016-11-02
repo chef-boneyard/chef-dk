@@ -85,7 +85,13 @@ module ChefDK
         def have_git?
           path = ENV["PATH"] || ""
           paths = path.split(File::PATH_SEPARATOR)
-          paths.any? {|bin_path| File.exist?(File.join(bin_path, "git#{RbConfig::CONFIG['EXEEXT']}"))}
+          exts = [RbConfig::CONFIG['EXEEXT']]
+          exts.concat(ENV["PATHEXT"].split(";")) unless ENV["PATHEXT"].nil?
+          paths.any? do |bin_path|
+            exts.any? do |ext|
+              File.exist?(File.join(bin_path, "git#{ext}"))
+            end
+          end
         end
 
         private
