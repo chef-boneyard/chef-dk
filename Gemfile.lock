@@ -79,11 +79,6 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.15.19)
-      addressable
-      fuzzyurl
-      mixlib-config (~> 2.0)
-      mixlib-shellout (~> 2.0)
 
 GIT
   remote: git://github.com/chef/opscode-pushy-client.git
@@ -138,8 +133,7 @@ GEM
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
-    backports (3.6.8)
-    berkshelf (5.1.0)
+    berkshelf (5.2.0)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (>= 2.0.2, < 4.0)
       buff-config (~> 2.0)
@@ -176,6 +170,11 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
+    chef-config (12.15.19)
+      addressable
+      fuzzyurl
+      mixlib-config (~> 2.0)
+      mixlib-shellout (~> 2.0)
     chef-provisioning (2.0.2)
       cheffish (~> 4.0)
       inifile (>= 2.0.2)
@@ -527,7 +526,7 @@ GEM
       win32-process (~> 0.8.2)
       wmi-lite (~> 1.0)
     mixlib-versioning (1.1.0)
-    molinillo (0.5.2)
+    molinillo (0.5.3)
     multi_json (1.12.1)
     multi_test (0.1.2)
     multipart-post (2.0.0)
