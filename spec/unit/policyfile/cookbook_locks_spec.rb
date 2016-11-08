@@ -283,6 +283,18 @@ describe ChefDK::Policyfile::LocalCookbook do
           expect(cookbook_lock.scm_profiler).to be_an_instance_of(ChefDK::CookbookProfiler::Git)
         end
 
+        context "when the cookbook opts out of detecting git repos" do
+
+          before do
+            allow(cookbook_lock).to receive(:cookbook_in_git_repo).and_return(false)
+          end
+
+          it "selects the null profiler" do
+            expect(cookbook_lock.scm_profiler).to be_an_instance_of(ChefDK::CookbookProfiler::NullSCM)
+          end
+
+        end
+
       end
 
       context "when the cookbook is a subdirectory of a git repo" do
