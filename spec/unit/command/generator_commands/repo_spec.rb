@@ -167,7 +167,7 @@ describe ChefDK::Command::GeneratorCommands::Repo do
         context "gplv3" do
           let(:argv) { ["new_repo", "-I", "gplv3" ] }
 
-          it "is the GPL version 2 license" do
+          it "is the GPL version 3 license" do
             expect(file_contents).to match(/GNU GENERAL PUBLIC LICENSE/)
             expect(file_contents).to match(/Version 3, 29 June 2007/)
           end
