@@ -53,6 +53,34 @@ namespace :version do
     IO.write(version_rb_path, new_version_file)
   end
 
+  desc "Bump the minor version in lib/chef-dk/version.rb"
+  task :bump_minor do
+    current_version_file = IO.read(version_rb_path)
+    new_version = nil
+    new_version_file = current_version_file.sub(/^(\s*VERSION\s*=\s*")(\d+)\.(\d+)\.(\d+)/) do
+      new_version = "#{$2}.#{$3.to_i + 1}.0"
+      "#{$1}#{new_version}"
+    end
+    puts "Updating version in #{version_rb_path} from #{version} to #{new_version.chomp}"
+    IO.write(version_rb_path, new_version_file)
+    Rake::Task["version:update_gemfile_lock"].invoke
+    Rake::Task["bundle:install"].invoke
+  end
+
+  desc "Bump the major version in lib/chef-dk/version.rb"
+  task :bump_major do
+    current_version_file = IO.read(version_rb_path)
+    new_version = nil
+    new_version_file = current_version_file.sub(/^(\s*VERSION\s*=\s*")(\d+)\.(\d+)\.(\d+)/) do
+      new_version = "#{$2.to_i + 1}.0.0"
+      "#{$1}#{new_version}"
+    end
+    puts "Updating version in #{version_rb_path} from #{version} to #{new_version.chomp}"
+    IO.write(version_rb_path, new_version_file)
+    Rake::Task["version:update_gemfile_lock"].invoke
+    Rake::Task["bundle:install"].invoke
+  end
+
   desc "Update the Gemfile.lock to include the current chef-dk version"
   task :update_gemfile_lock do
     if File.exist?(gemfile_lock_path)
@@ -64,6 +92,5 @@ namespace :version do
       IO.write(gemfile_lock_path, contents)
     end
   end
-
 
 end
