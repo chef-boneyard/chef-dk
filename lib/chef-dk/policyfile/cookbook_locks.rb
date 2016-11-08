@@ -281,7 +281,7 @@ module ChefDK
       # Whether this cookbook is part of a git repo. If nil, it is dynamically
       # computed. If true/false, then no checking is performed
       attr_accessor :cookbook_in_git_repo
-      
+
       def initialize(name, storage_config)
         @name = name
         @identifier = nil
@@ -395,20 +395,12 @@ module ChefDK
       end
 
       def cookbook_in_git_repo?
-        return @cookbook_in_git_repo unless @cookbook_in_git_repo.nil?
+        return cookbook_in_git_repo unless cookbook_in_git_repo.nil?
 
-        @cookbook_in_git_repo = false
-
-        dot_git = Pathname.new(".git")
-        Pathname.new(cookbook_path).ascend do |parent_dir|
-          possbile_git_dir = parent_dir + dot_git
-          if possbile_git_dir.exist?
-            @cookbook_in_git_repo = true
-            break
-          end
+        @cookbook_in_git_repo = begin
+          dot_git = Pathname.new('.git')
+          Pathname.new(cookbook_path).ascend.map { |parent_dir| parent_dir + dot_git }.any?(&:exist?)
         end
-
-        @cookbook_in_git_repo
       end
 
     end
