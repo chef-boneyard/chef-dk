@@ -278,6 +278,10 @@ module ChefDK
       # given, it is resolved relative to #relative_paths_root
       attr_accessor :source
 
+      # Whether this cookbook is part of a git repo. If nil, it is dynamically
+      # computed. If true/false, then no checking is performed
+      attr_accessor :cookbook_in_git_repo
+      
       def initialize(name, storage_config)
         @name = name
         @identifier = nil
