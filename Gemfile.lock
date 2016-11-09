@@ -480,6 +480,7 @@ GEM
       test-kitchen (~> 1.6)
     kitchen-vagrant (0.20.0)
       test-kitchen (~> 1.4)
+    knife-opc (0.3.2)
     knife-push (1.0.2)
       chef (>= 12.7.2)
     knife-spork (1.6.2)
@@ -803,6 +804,7 @@ DEPENDENCIES
   kitchen-ec2
   kitchen-inspec
   kitchen-vagrant
+  knife-opc (>= 0.3.2)
   knife-push
   knife-spork
   knife-windows
@@ -837,4 +839,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.12.5
+   1.13.3
