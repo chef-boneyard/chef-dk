@@ -63,6 +63,7 @@ group(:omnibus_package) do
   gem "kitchen-inspec"
   gem "kitchen-vagrant"
   gem "knife-windows"
+  gem "knife-opc", ">= 0.3.2"
   gem "ohai", ">= 8.13.0"
   gem "test-kitchen"
   gem "listen"
