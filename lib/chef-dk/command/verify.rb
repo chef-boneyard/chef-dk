@@ -387,6 +387,7 @@ end
 
             sh!("#{usr_bin_path("ohai")} -v")
             sh!("#{usr_bin_path("foodcritic")} -V")
+            sh!("#{usr_bin_path("inspec")} version")
           end
 
           # Test blocks are expected to return a Mixlib::ShellOut compatible
