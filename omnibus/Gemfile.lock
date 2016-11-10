@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 1b5c7a20da006403d5aac2ddc754e43fb97cb540
+  revision: 0612bf6333b2a7b125e599228ec6c46cbaa3ed3d
   branch: rhass/COOL-502_with_gcc_investigate
   specs:
     omnibus (5.5.0)
@@ -27,16 +27,17 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.4.0)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     artifactory (2.5.0)
     awesome_print (1.7.0)
-    aws-sdk (2.6.9)
-      aws-sdk-resources (= 2.6.9)
-    aws-sdk-core (2.6.9)
+    aws-sdk (2.6.18)
+      aws-sdk-resources (= 2.6.18)
+    aws-sdk-core (2.6.18)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.6.9)
-      aws-sdk-core (= 2.6.9)
-    berkshelf (5.1.0)
+    aws-sdk-resources (2.6.18)
+      aws-sdk-core (= 2.6.18)
+    berkshelf (5.2.0)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (>= 2.0.2, < 4.0)
       buff-config (~> 2.0)
@@ -70,7 +71,7 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (12.15.19)
+    chef-config (12.16.42)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -114,7 +115,7 @@ GEM
       mixlib-log
     mixlib-cli (1.7.0)
     mixlib-config (2.2.4)
-    mixlib-install (2.1.1)
+    mixlib-install (2.1.6)
       artifactory
       mixlib-shellout
       mixlib-versioning
@@ -125,7 +126,7 @@ GEM
       win32-process (~> 0.8.2)
       wmi-lite (~> 1.0)
     mixlib-versioning (1.1.0)
-    molinillo (0.5.1)
+    molinillo (0.5.3)
     multi_json (1.12.1)
     multipart-post (2.0.0)
     net-scp (1.2.1)
@@ -135,9 +136,9 @@ GEM
       net-ssh (>= 2.6.5)
     nio4r (1.2.1)
     nori (2.6.0)
-    octokit (4.3.0)
-      sawyer (~> 0.7.0, >= 0.5.3)
-    ohai (8.20.0)
+    octokit (4.6.0)
+      sawyer (~> 0.8.0, >= 0.5.3)
+    ohai (8.21.0)
       chef-config (>= 12.5.0.alpha.1, < 13)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
@@ -157,6 +158,7 @@ GEM
       zhexdump (>= 0.0.2)
     plist (3.2.0)
     progressbar (0.21.0)
+    public_suffix (2.0.4)
     retryable (2.0.4)
     ridley (5.1.0)
       addressable
@@ -183,8 +185,8 @@ GEM
     rubyntlm (0.6.1)
     rubyzip (1.2.0)
     safe_yaml (1.0.4)
-    sawyer (0.7.0)
-      addressable (>= 2.3.5, < 2.5)
+    sawyer (0.8.0)
+      addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 0.10)
     semverse (2.0.0)
     solve (3.0.1)
@@ -242,4 +244,4 @@ DEPENDENCIES
   winrm-elevated
 
 BUNDLED WITH
-   1.13.2
+   1.12.5

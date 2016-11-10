@@ -7,13 +7,13 @@ GIT
 
 GIT
   remote: git://github.com/chef/chef.git
-  revision: e9dac28637133e7f4fb3403a65074165052de73f
-  branch: v12.15.19
+  revision: fecaf2fc865e215c95154f353d5d9b3c81b2ff7c
+  branch: v12.16.42
   specs:
-    chef (12.15.19)
+    chef (12.16.42)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.15.19)
+      chef-config (= 12.16.42)
       chef-zero (>= 4.8)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -39,10 +39,10 @@ GIT
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (12.15.19-universal-mingw32)
+    chef (12.16.42-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.15.19)
+      chef-config (= 12.16.42)
       chef-zero (>= 4.8)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -79,6 +79,11 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
+    chef-config (12.16.42)
+      addressable
+      fuzzyurl
+      mixlib-config (~> 2.0)
+      mixlib-shellout (~> 2.0)
 
 GIT
   remote: git://github.com/chef/opscode-pushy-client.git
@@ -116,7 +121,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.4.0)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     app_conf (0.4.2)
     artifactory (2.5.0)
     ast (2.3.0)
@@ -124,15 +130,16 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (2.6.14)
-      aws-sdk-resources (= 2.6.14)
-    aws-sdk-core (2.6.14)
+    aws-sdk (2.6.18)
+      aws-sdk-resources (= 2.6.18)
+    aws-sdk-core (2.6.18)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.6.14)
-      aws-sdk-core (= 2.6.14)
+    aws-sdk-resources (2.6.18)
+      aws-sdk-core (= 2.6.18)
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
+    backports (3.6.8)
     berkshelf (5.2.0)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (>= 2.0.2, < 4.0)
@@ -170,11 +177,6 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (12.15.19)
-      addressable
-      fuzzyurl
-      mixlib-config (~> 2.0)
-      mixlib-shellout (~> 2.0)
     chef-provisioning (2.0.2)
       cheffish (~> 4.0)
       inifile (>= 2.0.2)
@@ -349,7 +351,7 @@ GEM
     fog-profitbricks (2.0.1)
       fog-core (~> 1.42)
       fog-json (~> 1.0)
-    fog-rackspace (0.1.1)
+    fog-rackspace (0.1.2)
       fog-core (>= 1.35)
       fog-json (>= 1.0)
       fog-xml (>= 0.1)
@@ -383,7 +385,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (1.5.0)
+    fog-vsphere (1.5.1)
       fog-core
       rbvmomi (~> 1.9)
     fog-xenserver (0.2.3)
@@ -445,7 +447,7 @@ GEM
     inflecto (0.0.2)
     inifile (3.0.0)
     iniparse (1.4.2)
-    inspec (1.3.0)
+    inspec (1.4.1)
       hashie (~> 3.4)
       json (>= 1.8, < 3.0)
       method_source (~> 0.8)
@@ -463,7 +465,7 @@ GEM
     jmespath (1.3.1)
     json (1.8.3)
     jwt (1.5.6)
-    kitchen-dokken (1.0.3)
+    kitchen-dokken (1.0.4)
       docker-api (~> 1.29)
       test-kitchen (~> 1.5)
     kitchen-ec2 (1.2.0)
@@ -472,7 +474,8 @@ GEM
       multi_json
       retryable (~> 2.0)
       test-kitchen (~> 1.4, >= 1.4.1)
-    kitchen-inspec (0.15.2)
+    kitchen-inspec (0.16.0)
+      hashie (~> 3.4)
       inspec (>= 0.22.0, < 2.0.0)
       test-kitchen (~> 1.6)
     kitchen-vagrant (0.20.0)
@@ -551,8 +554,8 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    octokit (4.4.1)
-      sawyer (~> 0.7.0, >= 0.5.3)
+    octokit (4.6.0)
+      sawyer (~> 0.8.0, >= 0.5.3)
     ohai (8.21.0)
       chef-config (>= 12.5.0.alpha.1, < 13)
       ffi (~> 1.9)
@@ -587,6 +590,7 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
+    public_suffix (2.0.4)
     rack (2.0.1)
     rainbow (2.1.0)
     rake (11.3.0)
@@ -599,8 +603,7 @@ GEM
       json (>= 1.8)
       nokogiri (~> 1.5)
       trollop (~> 2.1)
-    rdoc (4.2.2)
-      json (~> 1.4)
+    rdoc (5.0.0)
     rdp-ruby-wmi (0.3.1)
     retriable (1.4.1)
     retryable (2.0.4)
@@ -655,8 +658,8 @@ GEM
     rubyzip (1.2.0)
     rufus-lru (1.1.0)
     safe_yaml (1.0.4)
-    sawyer (0.7.0)
-      addressable (>= 2.3.5, < 2.5)
+    sawyer (0.8.0)
+      addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 0.10)
     semverse (2.0.0)
     serverspec (2.37.2)
@@ -675,7 +678,7 @@ GEM
     solve (3.0.1)
       molinillo (~> 0.4)
       semverse (>= 1.1, < 3.0)
-    specinfra (2.64.0)
+    specinfra (2.66.0)
       net-scp
       net-ssh (>= 2.7, < 4.0)
       net-telnet
@@ -701,7 +704,7 @@ GEM
     thread_safe (0.3.5)
     timers (4.0.4)
       hitimes
-    train (0.20.1)
+    train (0.21.1)
       docker-api (~> 1.26)
       json (>= 1.8, < 3.0)
       mixlib-shellout (~> 2.0)
@@ -764,7 +767,7 @@ GEM
       winrm (~> 2.0)
     wmi-lite (1.0.0)
     xml-simple (1.1.5)
-    yajl-ruby (1.2.1)
+    yajl-ruby (1.3.0)
     yard (0.9.5)
 
 PLATFORMS
