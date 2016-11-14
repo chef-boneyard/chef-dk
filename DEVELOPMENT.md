@@ -55,8 +55,8 @@ that actually drive the build:
   the rake task handles both the windows and non-windows lockfiles and
 updates them in sync.
 
-To perform a full update of all dependencies everywhere, run `rake
-dependencies`. This will update the `Gemfile.lock`,
+To perform a full update of all dependencies everywhere, run `./ci/dependency_update.sh`.
+This will update the `Gemfile.lock`,
 `Gemfile.windows.lock`, `omnibus/Gemfile.lock`,
 `acceptance/Gemfile.lock`, `omnibus/Berksfile.lock`, and
 `omnibus_overrides.rb`.  It will also show you any outdated dependencies
