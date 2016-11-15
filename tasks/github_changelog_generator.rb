@@ -18,16 +18,30 @@
 begin
   require "github_changelog_generator/task"
 
-  GitHubChangelogGenerator::RakeTask.new :changelog do |config|
-    config.user = "chef"
-    config.project = "chef-dk"
-    config.future_release = ChefDK::VERSION
-    config.enhancement_labels = "enhancement,Enhancement,New Feature,Feature".split(",")
-    config.bug_labels = "bug,Bug,Improvement,Upstream Bug".split(",")
-    config.exclude_labels = "duplicate,question,invalid,wontfix,no_changelog,Exclude From Changelog,Question,Discussion".split(",")
-#    Makes life easier by only generating changelogs between said tags.
-#    config.between_tags = "v0.15.15,v0.16.28".split(",")
+  namespace :changelog do
+    # Take the current changelog and move it to HISTORY.md. Removes lines that
+    # would get duplicated the next time we pull HISTORY into the CHANGELOG.
+    task :archive do
+      changelog = File.readlines("CHANGELOG.md")
+      File.open("HISTORY.md", "w+") { |f| f.write(changelog[2..-4].join("")) }
+    end
+
+    # Run this to just update the changelog for the current release. This will
+    # take what is in History and generate a changelog of PRs between the most
+    # recent tag in HISTORY.md and HEAD.
+    GitHubChangelogGenerator::RakeTask.new :update do |config|
+      config.since_tag = "v0.19.6"
+      config.between_tags = []
+      config.future_release = "v1.0.3"
+      config.max_issues = 0
+      config.add_issues_wo_labels = false
+      config.enhancement_labels = "enhancement,Enhancement,New Feature,Feature".split(",")
+      config.bug_labels = "bug,Bug,Improvement,Upstream Bug".split(",")
+      config.exclude_labels = "duplicate,question,invalid,wontfix,no_changelog,Exclude From Changelog,Question,Discussion".split(",")
+    end
   end
+
+  task :changelog => "changelog:update"
 rescue LoadError
   puts "github_changelog_generator is not available. gem install github_changelog_generator to generate changelogs"
 end
