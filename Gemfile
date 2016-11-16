@@ -112,3 +112,11 @@ platforms :mswin, :mingw do
   gem "win32-process", "~> 0.8.2"
   gem "win32-service"
 end
+
+group(:maintenance) do
+  gem "tomlrb"
+
+  # To sync maintainers with github
+  gem "octokit"
+  gem "netrc"
+end

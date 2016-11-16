@@ -139,7 +139,6 @@ GEM
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
-    backports (3.6.8)
     berkshelf (5.2.0)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (>= 2.0.2, < 4.0)
@@ -546,6 +545,7 @@ GEM
       net-ssh (>= 2.6.5)
       net-ssh-gateway (>= 1.2.0)
     net-telnet (0.1.1)
+    netrc (0.11.0)
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
@@ -705,6 +705,7 @@ GEM
     thread_safe (0.3.5)
     timers (4.0.4)
       hitimes
+    tomlrb (1.2.3)
     train (0.21.1)
       docker-api (~> 1.26)
       json (>= 1.8, < 3.0)
@@ -811,7 +812,9 @@ DEPENDENCIES
   listen
   mixlib-install
   mixlib-versioning
+  netrc
   nokogiri
+  octokit
   ohai (>= 8.13.0)
   opscode-pushy-client!
   pry
@@ -826,6 +829,7 @@ DEPENDENCIES
   ruby-prof
   ruby-shadow
   test-kitchen
+  tomlrb
   win32-api
   win32-dir
   win32-event
@@ -839,4 +843,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.13.3
+   1.12.5
