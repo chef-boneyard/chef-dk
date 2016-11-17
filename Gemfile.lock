@@ -79,11 +79,6 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.16.42)
-      addressable
-      fuzzyurl
-      mixlib-config (~> 2.0)
-      mixlib-shellout (~> 2.0)
 
 GIT
   remote: git://github.com/chef/opscode-pushy-client.git
@@ -99,7 +94,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (1.0.5)
+    chef-dk (1.1.0)
       chef (~> 12.5)
       chef-provisioning (~> 2.0)
       cookbook-omnifetch (~> 0.2, >= 0.2.2)
@@ -130,15 +125,17 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (2.6.19)
-      aws-sdk-resources (= 2.6.19)
-    aws-sdk-core (2.6.19)
+    aws-sdk (2.6.23)
+      aws-sdk-resources (= 2.6.23)
+    aws-sdk-core (2.6.23)
+      aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.6.19)
-      aws-sdk-core (= 2.6.19)
+    aws-sdk-resources (2.6.23)
+      aws-sdk-core (= 2.6.23)
     aws-sdk-v1 (1.66.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
+    aws-sigv4 (1.0.0)
     backports (3.6.8)
     berkshelf (5.2.0)
       addressable (~> 2.3, >= 2.3.4)
@@ -177,6 +174,11 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
+    chef-config (12.16.42)
+      addressable
+      fuzzyurl
+      mixlib-config (~> 2.0)
+      mixlib-shellout (~> 2.0)
     chef-provisioning (2.0.2)
       cheffish (~> 4.0)
       inifile (>= 2.0.2)
@@ -488,7 +490,7 @@ GEM
       chef (>= 11.0.0)
       diffy (>= 3.0.1)
       git (>= 1.2.5)
-    knife-windows (1.7.0)
+    knife-windows (1.7.1)
       winrm (~> 2.1)
       winrm-elevated (~> 1.0)
     launchy (2.4.3)
