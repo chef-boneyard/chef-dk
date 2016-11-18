@@ -40,6 +40,10 @@ namespace :version do
     File.expand_path("../../Gemfile.lock", __FILE__)
   end
 
+  def release_notes_path
+    File.expand_path("../../RELEASE_NOTES.md", __FILE__)
+  end
+
   # Add 1 to the current patch version in the VERSION file, and write it back out.
   desc "Bump the patch version in lib/chef-dk/version.rb."
   task :bump_patch do
@@ -63,6 +67,7 @@ namespace :version do
     end
     puts "Updating version in #{version_rb_path} from #{version} to #{new_version.chomp}"
     IO.write(version_rb_path, new_version_file)
+    IO.write(release_notes_path, "# ChefDK #{$2}.#{$3.to_i + 1} Release Notes")
     Rake::Task["version:update_gemfile_lock"].invoke
     Rake::Task["bundle:install"].invoke
   end
@@ -77,6 +82,7 @@ namespace :version do
     end
     puts "Updating version in #{version_rb_path} from #{version} to #{new_version.chomp}"
     IO.write(version_rb_path, new_version_file)
+    IO.write(release_notes_path, "# ChefDK #{$2.to_i + 1}.0 Release Notes")
     Rake::Task["version:update_gemfile_lock"].invoke
     Rake::Task["bundle:install"].invoke
   end
