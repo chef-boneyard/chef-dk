@@ -1,15 +1,16 @@
-FROM ruby:2.3.1
-MAINTAINER Kevin Reedy <kreedy@chef.io>
+FROM ubuntu:16.04
+MAINTAINER Chef Software, Inc. <docker@chef.io>
 
-RUN apt-get update && apt-get install -y fakeroot
+ARG CHANNEL=stable
+ARG VERSION=latest
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-ADD . /opt/chefdk-build
+RUN apt-get update && \
+    apt-get install -y wget ssh && \
+    wget --content-disposition "https://omnitruck.chef.io/${CHANNEL}/chefdk/download?p=ubuntu&pv=16.04&m=x86_64&v=${VERSION}" -O /tmp/chefdk.deb && \
+    dpkg -i /tmp/chefdk.deb && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-WORKDIR /opt/chefdk-build/omnibus
-RUN bundle install --without development
-RUN git config --global user.email "nobody@chef.io" && git config --global user.name "Chef"
-RUN bundle exec omnibus build chefdk && bundle exec omnibus clean chefdk
-
-WORKDIR /root
-RUN echo 'eval "$(/opt/chefdk/bin/chef shell-init bash)"' >> /root/.bashrc
-CMD /bin/bash
+CMD ["/bin/bash"]
