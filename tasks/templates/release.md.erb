@@ -1,0 +1,34 @@
+Ohai Chefs!
+
+We're happy to announce the release of ChefDK v<%= @maj_minor %>!
+
+# Release Highlights
+
+<%= @release_notes %>
+
+Please see the [CHANGELOG](https://github.com/chef/chef-dk/blob/master/CHANGELOG.md) for the complete list of changes.
+
+# Get the Build
+As always, you can download binaries directly from [downloads.chef.io](https://downloads.chef.io/chef-dk) or by using the new `milib-install` command line utility available in ChefDK 0.19.6 or greater.
+
+```shell
+$ mixlib-install download chefdk -v <%= @version %>
+```
+
+Alternatively, you can install ChefDK using one of the following command options:
+
+```shell
+# In Shell
+$ curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chefdk -v <%= @version %>
+
+# In Windows Powershell
+. { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -project chefdk -version <%= @version %>
+```
+
+If you want to give this version a spin in Test Kitchen, create or add the following to a `.kitchen.local.yml` file:
+
+```yaml
+provisioner:
+  product_name: chefdk
+  product_version: <%= @version %>
+```
