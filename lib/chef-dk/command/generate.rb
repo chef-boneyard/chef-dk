@@ -24,6 +24,7 @@ require 'chef-dk/command/generator_commands/app'
 require 'chef-dk/command/generator_commands/attribute'
 require 'chef-dk/command/generator_commands/cookbook_file'
 require 'chef-dk/command/generator_commands/lwrp'
+require 'chef-dk/command/generator_commands/helpers'
 require 'chef-dk/command/generator_commands/recipe'
 require 'chef-dk/command/generator_commands/template'
 require 'chef-dk/command/generator_commands/repo'
@@ -52,6 +53,7 @@ module ChefDK
       generator(:template, :Template, "Generate a file template")
       generator(:file, :CookbookFile, "Generate a cookbook file")
       generator(:lwrp, :LWRP, "Generate a lightweight resource/provider")
+      generator(:helpers, :Helpers, "Generate a cookbook helper file in libraries")
       generator(:repo, :Repo, "Generate a Chef code repository")
       generator(:policyfile, :Policyfile, "Generate a Policyfile for use with the install/push commands")
       generator(:generator, :GeneratorGenerator, "Copy ChefDK's generator cookbook so you can customize it")
