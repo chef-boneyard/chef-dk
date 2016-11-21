@@ -226,7 +226,7 @@ cleanup = "chef exec kitchen destroy"
     "path": ".delivery/build_cookbook"
   },
   "skip_phases": [],
-  "job-dispatch": {
+  "job_dispatch": {
     "version": "v2"
   },
   "dependencies": []
