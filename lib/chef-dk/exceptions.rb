@@ -81,6 +81,12 @@ module ChefDK
     end
   end
 
+  class PolicyfileBadCookbookMetadata < StandardError
+    def initialize(cookbook_root, e)
+      super("Cookbook metadata for cookbook at #{cookbook_root} could not be parsed:\n    Original Exception: #{e}")
+    end
+  end
+
   class InvalidLockfile < StandardError
   end
 

@@ -142,7 +142,11 @@ module ChefDK
         unless File.exist?(File.join(cookbook_root, "metadata.rb")) || File.exist?(File.join(cookbook_root, "metadata.json"))
           raise PolicyfileMissingCookbookMetadata
         end
-        cookbook_name = CookbookMetadata.from_path(cookbook_root).cookbook_name
+        begin
+          cookbook_name = CookbookMetadata.from_path(cookbook_root).cookbook_name
+        rescue Exception => e
+          raise PolicyfileBadCookbookMetadata.new(cookbook_root, e)
+        end
         name cookbook_name if name.nil?
         cookbook(cookbook_name, path: ".")
       end
