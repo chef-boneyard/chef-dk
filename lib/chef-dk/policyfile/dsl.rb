@@ -137,6 +137,12 @@ module ChefDK
         end
       end
 
+      def metadata
+        cookbook_name = CookbookMetadata.from_path(".").cookbook_name
+        name cookbook_name if name.nil?
+        cookbook(cookbook_name, path: ".")
+      end
+
       def default
         @node_attributes.default
       end
