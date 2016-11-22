@@ -75,6 +75,12 @@ module ChefDK
   class MissingCookbookLockData < StandardError
   end
 
+  class PolicyfileMissingCookbookMetadata < StandardError
+    def initialize()
+      super("Policyfile specified to use cookbook metadata, but no metadata.rb or metadata.json was found.")
+    end
+  end
+
   class InvalidLockfile < StandardError
   end
 
