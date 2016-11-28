@@ -73,10 +73,10 @@ module ChefDK
       def license_description(comment=nil)
         case license
         when 'all_rights'
-          result = "Copyright (c) #{year} #{copyright_holder}, All Rights Reserved."
+          result = "Copyright:: #{year}, #{copyright_holder}, All Rights Reserved."
         when 'apachev2'
           result = <<-EOH
-Copyright #{year} #{copyright_holder}
+Copyright:: #{year}, #{copyright_holder}
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -94,7 +94,7 @@ EOH
           result = <<-EOH
 The MIT License (MIT)
 
-Copyright (c) #{year} #{copyright_holder}
+Copyright:: #{year}, #{copyright_holder}
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -116,7 +116,7 @@ THE SOFTWARE.
 EOH
         when 'gplv2'
           result = <<-EOH
-Copyright (C) #{year}  #{copyright_holder}
+Copyright:: #{year},  #{copyright_holder}
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -134,7 +134,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 EOH
         when 'gplv3'
           result = <<-EOH
-Copyright (C) #{year}  #{copyright_holder}
+Copyright:: #{year},  #{copyright_holder}
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

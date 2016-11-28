@@ -63,7 +63,7 @@ describe ChefDK::Generator::TemplateHelper do
     let(:license) { "all_rights" }
     context "all_rights" do
       it "should match the license" do
-        expect(helper.license_description).to match(/^Copyright \(c\)/)
+        expect(helper.license_description).to match(/^Copyright:: /)
       end
 
       it "should comment if requested" do
