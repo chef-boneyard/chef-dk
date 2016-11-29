@@ -6,8 +6,12 @@ helpers_path = File.join(cookbook_dir, "libraries", "#{context.new_file_basename
 
 directory libraries_dir
 
-cookbook_class_name = context.cookbook_name.split(/[^a-zA-Z]/).map {|i| i.capitalize }.join
-helper_class_name = "#{context.new_file_basename.capitalize}Helpers"
+def camelize(name)
+  name.to_s.split(/[^a-zA-Z]/).map {|i| i.capitalize }.join
+end
+
+cookbook_class_name = camelize(context.cookbook_name)
+helper_class_name = "#{camelize(context.new_file_basename)}Helpers"
 
 template helpers_path do
   source "helpers.rb.erb"
