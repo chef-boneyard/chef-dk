@@ -21,8 +21,19 @@ module <%= @cookbook_class_name %>
 end
 
 #
-# The module you have defined above may be included into ALL OF YOUR RECIPES by
-# including the following line here or within your recipes.
+# The module you have defined may be extended within the recipe to grant the
+# recipe the helper methods you define.
 #
-# Chef::Recipe.include <%= @cookbook_class_name %>::<%= @helper_class_name %>
+# Within your recipe you would write:
+#
+#     extend <%= @cookbook_class_name %>::<%= @helper_class_name %>
+#
+#     my_helper_method
+#
+# You may also add this to a single resource within a recipe:
+#
+#     template '/etc/app.conf' do
+#       extend <%= @cookbook_class_name %>::<%= @helper_class_name %>
+#       variables specific_key: my_helper_method
+#     end
 #
