@@ -23,6 +23,7 @@ build do
   appbundle_gem "cookstyle"
   appbundle_gem "rubocop"
   appbundle_gem "inspec"
+  appbundle_gem "dco"
 
   # These are not appbundled, but need to have their Gemfiles locked down so that their tests will run
 
