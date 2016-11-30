@@ -68,6 +68,7 @@ group(:omnibus_package) do
   gem "test-kitchen"
   gem "listen"
   gem "mixlib-install"
+  gem "dco"
 
   # For Delivery build node
   gem "chef-sugar"
