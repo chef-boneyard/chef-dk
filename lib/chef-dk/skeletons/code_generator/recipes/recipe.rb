@@ -3,11 +3,13 @@ context = ChefDK::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
 recipe_path = File.join(cookbook_dir, "recipes", "#{context.new_file_basename}.rb")
 spec_helper_path = File.join(cookbook_dir, "spec", "spec_helper.rb")
-spec_path = File.join(cookbook_dir, "spec", "unit", "recipes", "#{context.new_file_basename}_spec.rb")
-inspec_path = File.join(cookbook_dir, "test", "smoke", "default", "#{context.new_file_basename}.rb")
+spec_dir = File.join(cookbook_dir, "spec", "unit", "recipes")
+spec_path = File.join(spec_dir, "#{context.new_file_basename}_spec.rb")
+inspec_dir = File.join(cookbook_dir, "test", "smoke", "default")
+inspec_path = File.join(inspec_dir, "#{context.new_file_basename}.rb")
 
 # Chefspec
-directory "#{cookbook_dir}/spec/unit/recipes" do
+directory spec_dir do
   recursive true
 end
 
@@ -22,7 +24,7 @@ template spec_path do
 end
 
 # Inspec
-directory "#{cookbook_dir}/test/smoke/default" do
+directory inspec_dir do
   recursive true
 end
 
