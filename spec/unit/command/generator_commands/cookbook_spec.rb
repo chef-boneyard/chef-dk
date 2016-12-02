@@ -34,8 +34,8 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       .gitignore
       .kitchen.yml
       test
-      test/recipes
-      test/recipes/default_test.rb
+      test/smoke
+      test/smoke/default/default_test.rb
       Berksfile
       chefignore
       metadata.rb
@@ -65,7 +65,7 @@ Type `delivery local --help` to see a full list.
 
 Why not start by writing a test? Tests for the default recipe are stored at:
 
-test/recipes/default_test.rb
+test/smoke/default/default_test.rb
 
 If you'd prefer to dive right in, the default recipe can be found at:
 
@@ -460,8 +460,8 @@ OUTPUT
 
         end
 
-        describe "test/recipes/default_test.rb" do
-          let(:file) { File.join(tempdir, "new_cookbook", "test", "recipes", "default_test.rb") }
+        describe "test/smoke/default/default_test.rb" do
+          let(:file) { File.join(tempdir, "new_cookbook", "test", "smoke", "default", "default_test.rb") }
 
           include_examples "a generated file", :cookbook_name do
             let(:line) { "describe port" }
@@ -570,7 +570,7 @@ suites:
   - name: default
     verifier:
       inspec_tests:
-        - test/recipes
+        - test/smoke/default
     attributes:
 KITCHEN_YML
         end
@@ -647,7 +647,7 @@ suites:
       - recipe[new_cookbook::default]
     verifier:
       inspec_tests:
-        - test/recipes
+        - test/smoke/default
     attributes:
 KITCHEN_YML
         end

@@ -17,11 +17,11 @@ template "#{app_dir}/.kitchen.yml" do
 end
 
 # Inspec
-directory "#{app_dir}/test/recipes" do
+directory "#{app_dir}/test/smoke/default" do
   recursive true
 end
 
-template "#{app_dir}/test/recipes/default_test.rb" do
+template "#{app_dir}/test/smoke/default/default_test.rb" do
   source 'inspec_default_test.rb.erb'
   helpers(ChefDK::Generator::TemplateHelper)
   action :create_if_missing
