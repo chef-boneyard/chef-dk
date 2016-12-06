@@ -1,3 +1,17 @@
+## [v1.0.3](https://github.com/chef/chef-dk/tree/v1.0.3) (2016-11-14)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.19.6...v1.0.3)
+
+**Implemented enhancements:**
+
+- chef: Expose `inspec` binary in ChefDK PATH [\#1074](https://github.com/chef/chef-dk/pull/1074) ([schisamo](https://github.com/schisamo))
+- knife: Distribute `knife-opc` with ChefDK [\#1072](https://github.com/chef/chef-dk/pull/1072) ([srenatus](https://github.com/srenatus))
+- gems: Update mixlib-install to 2.1.6 and berkshelf to 5.2.0 [\#1066](https://github.com/chef/chef-dk/pull/1066) ([schisamo](https://github.com/schisamo))
+- gems: Include foodcritic 8 [\#1063](https://github.com/chef/chef-dk/pull/1063) ([tas50](https://github.com/tas50))
+
+**Fixed bugs:**
+
+- windows: Correctly find Git installation included with ChefDK [\#1060](https://github.com/chef/chef-dk/pull/1060) ([scottopherson](https://github.com/scottopherson))
+
 ## [v0.19.6](https://github.com/chef/chef-dk/tree/v0.18.30) (2016-10-17)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.18.30...v0.19.6)
 
@@ -81,7 +95,7 @@
 - Correct chef export usage message [\#859](https://github.com/chef/chef-dk/pull/859) ([philoserf](https://github.com/philoserf))
 
 
-## [v0.14](https://github.com/chef/chef-dk/tree/v0.14.25) (2016-05-17) 
+## [v0.14](https://github.com/chef/chef-dk/tree/v0.14.25) (2016-05-17)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.14.24...v0.14.25)
 
 **Fixed bugs:**
@@ -999,4 +1013,3 @@
 - Rework the command loader to be as lazy as possible [\#3](https://github.com/chef/chef-dk/pull/3) ([danielsdeleo](https://github.com/danielsdeleo))
 - Add a simple gem command to install to the bundled gems [\#2](https://github.com/chef/chef-dk/pull/2) ([danielsdeleo](https://github.com/danielsdeleo))
 - CC-14: Create chef-dk gem [\#1](https://github.com/chef/chef-dk/pull/1) ([sersut](https://github.com/sersut))
-
