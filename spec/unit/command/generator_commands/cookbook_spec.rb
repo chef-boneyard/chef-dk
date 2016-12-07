@@ -249,10 +249,10 @@ cleanup = "chef exec kitchen destroy"
         let(:expected_content) do
           <<-CONFIG_DOT_JSON
 #
-# Cookbook Name:: build_cookbook
+# Cookbook:: build_cookbook
 # Recipe:: publish
 #
-# Copyright (c) 2016 The Authors, All Rights Reserved.
+# Copyright:: 2016, The Authors, All Rights Reserved.
 include_recipe 'delivery-truck::publish'
   CONFIG_DOT_JSON
         end
@@ -679,7 +679,7 @@ SPEC_HELPER
       let(:file) { File.join(tempdir, "new_cookbook", "recipes", "default.rb") }
 
       include_examples "a generated file", :cookbook_name do
-        let(:line) { "# Cookbook Name:: new_cookbook" }
+        let(:line) { "# Cookbook:: new_cookbook" }
       end
     end
 

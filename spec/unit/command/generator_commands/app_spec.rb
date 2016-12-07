@@ -149,7 +149,7 @@ describe ChefDK::Command::GeneratorCommands::App do
         let(:file) { File.join(tempdir, "new_app", "cookbooks", "new_app", "recipes", "default.rb") }
 
         include_examples "a generated file", :cookbook_name do
-          let(:line) { "# Cookbook Name:: new_app" }
+          let(:line) { "# Cookbook:: new_app" }
         end
       end
 
