@@ -96,6 +96,20 @@ GIT
       ohai
       uuidtools
 
+GIT
+  remote: https://github.com/tduffield/github-changelog-generator
+  revision: 8effcdd6988617b453669965fedc1280aa84bd7a
+  branch: adjust-tag-section-mapping
+  specs:
+    github_changelog_generator (1.14.2)
+      activesupport
+      faraday-http-cache
+      multi_json
+      octokit (~> 4.6)
+      rainbow (>= 2.1)
+      rake (>= 10.0)
+      retriable (>= 1.4)
+
 PATH
   remote: .
   specs:
@@ -255,6 +269,8 @@ GEM
     extlib (0.9.16)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
+    faraday-http-cache (2.0.0)
+      faraday (~> 0.8)
     fauxhai (3.10.0)
       net-ssh
     ffi (1.9.14)
@@ -805,6 +821,7 @@ DEPENDENCIES
   ffi
   ffi-rzmq-core
   foodcritic (>= 8.0)
+  github_changelog_generator!
   guard
   inspec (>= 0.17.1)
   kitchen-dokken
@@ -846,4 +863,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.13.3
+   1.12.5
