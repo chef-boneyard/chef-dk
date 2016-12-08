@@ -67,7 +67,6 @@ group(:omnibus_package) do
   gem "ohai", ">= 8.13.0"
   gem "test-kitchen"
   gem "listen"
-  gem "mixlib-install"
   gem "dco"
 
   # For Delivery build node
@@ -102,6 +101,9 @@ end
 group(:changelog) do
   gem "github_changelog_generator", git: "https://github.com/tduffield/github-changelog-generator", branch: "adjust-tag-section-mapping"
 end
+
+# mixlib-install is used by two groups
+gem 'mixlib-install', :group => [:changelog, :omnibus_package]
 
 # TODO delete this when we figure out how to include the pushy windows dependencies
 # correctly
