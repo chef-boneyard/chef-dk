@@ -101,7 +101,6 @@ end
 
 group(:changelog) do
   gem "github_changelog_generator", git: "https://github.com/tduffield/github-changelog-generator", branch: "adjust-tag-section-mapping"
-  gem "mixlib-install"
 end
 
 # TODO delete this when we figure out how to include the pushy windows dependencies
