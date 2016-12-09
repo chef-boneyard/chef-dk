@@ -1,10 +1,11 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.1.12](https://github.com/chef/chef-dk/tree/v1.1.12) (2016-12-08)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.0.3...v1.1.12)
+## [v1.1.13](https://github.com/chef/chef-dk/tree/v1.1.13) (2016-12-09)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.0.3...v1.1.13)
 
 **Implemented enhancements:**
 
+- kitchen-dokken: Default to official `chef/chef` image [\#1103](https://github.com/chef/chef-dk/pull/1103) ([tduffield](https://github.com/tduffield))
 - Add `dco` command line utility to easier management of DCO sign-offs [\#1093](https://github.com/chef/chef-dk/pull/1093) ([tduffield](https://github.com/tduffield))
 
 **Fixed bugs:**
