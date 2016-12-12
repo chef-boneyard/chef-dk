@@ -7,13 +7,13 @@ GIT
 
 GIT
   remote: git://github.com/chef/chef.git
-  revision: fecaf2fc865e215c95154f353d5d9b3c81b2ff7c
-  branch: v12.16.42
+  revision: 066935169905ad96b553520160b3678497c0284b
+  branch: v12.17.44
   specs:
-    chef (12.16.42)
+    chef (12.17.44)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.16.42)
+      chef-config (= 12.17.44)
       chef-zero (>= 4.8)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -39,10 +39,10 @@ GIT
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (12.16.42-universal-mingw32)
+    chef (12.17.44-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.16.42)
+      chef-config (= 12.17.44)
       chef-zero (>= 4.8)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -79,7 +79,7 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.16.42)
+    chef-config (12.17.44)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -763,7 +763,7 @@ GEM
       win32-ipc (>= 0.6.0)
     win32-process (0.8.3)
       ffi (>= 1.0.0)
-    win32-service (0.8.9)
+    win32-service (0.8.10)
       ffi
       ffi-win32-extensions
     windows-api (0.4.4)
