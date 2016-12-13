@@ -79,6 +79,11 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
+    chef-config (12.17.44)
+      addressable
+      fuzzyurl
+      mixlib-config (~> 2.0)
+      mixlib-shellout (~> 2.0)
 
 GIT
   remote: git://github.com/chef/opscode-pushy-client.git
@@ -188,11 +193,6 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (12.17.44)
-      addressable
-      fuzzyurl
-      mixlib-config (~> 2.0)
-      mixlib-shellout (~> 2.0)
     chef-provisioning (2.0.2)
       cheffish (~> 4.0)
       inifile (>= 2.0.2)
@@ -238,7 +238,7 @@ GEM
     coderay (1.1.1)
     cookbook-omnifetch (0.2.3)
       minitar (~> 0.5.4)
-    cookstyle (1.0.1)
+    cookstyle (1.1.0)
       rubocop (= 0.46.0)
     cucumber (2.4.0)
       builder (>= 2.1.2)
