@@ -71,7 +71,7 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (12.16.42)
+    chef-config (12.17.44)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -138,7 +138,7 @@ GEM
     nori (2.6.0)
     octokit (4.6.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (8.21.0)
+    ohai (8.22.1)
       chef-config (>= 12.5.0.alpha.1, < 13)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
