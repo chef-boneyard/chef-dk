@@ -1,7 +1,7 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.1.15](https://github.com/chef/chef-dk/tree/v1.1.15) (2016-12-13)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.0.3...v1.1.15)
+## [v1.1.16](https://github.com/chef/chef-dk/tree/v1.1.16) (2016-12-14)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.0.3...v1.1.16)
 
 **Implemented enhancements:**
 
@@ -15,10 +15,6 @@ This changelog reflects the current state of chef-dk's master branch on github a
 **Fixed bugs:**
 
 - chef: Use `test/smoke/default` instead of `test/recipes` for generated cookbooks/recipes [\#1096](https://github.com/chef/chef-dk/pull/1096) ([tduffield](https://github.com/tduffield))
-
-**Merged pull requests:**
-
-- Dont fail the version bump if changelog fails [\#1106](https://github.com/chef/chef-dk/pull/1106) ([afiune](https://github.com/afiune))
 
 ## [v1.0.3](https://github.com/chef/chef-dk/tree/v1.0.3) (2016-11-14)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.19.6...v1.0.3)
