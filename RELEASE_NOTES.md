@@ -15,3 +15,9 @@
 - Fix that will update the remote of projects based on relevant `cli.toml` or settings passed through the command-line.
 - Honor project name from project config (`cli.toml`) or options provided through the command-line.
 - Added FIPS options to `cli.toml` to communicate to Automate Server when FIPS mode is enabled.
+
+## [Workflow] Adopt new job dispatch system on cookbook generation
+The `chef generate cookbook` command now defaults to using the configuration for the new job
+dispatch system that replaces the previous push jobs based implementation with the SSH based
+implementation. For more details on this new system and how to use it, see:
+https://docs.chef.io/job_dispatch.html
