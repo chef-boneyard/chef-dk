@@ -87,6 +87,22 @@ describe ChefDK::PolicyfileServices::Push do
 
   end
 
+  context "when given a path to a Policyfile.lock.json instead of an rb" do
+
+    let(:policyfile_rb_name) { "MyPolicy.rb" }
+
+    let(:policyfile_lock_name) { "MyPolicy.lock.json" }
+
+    let(:push_service) { described_class.new(policyfile: policyfile_lock_name, policy_group: policy_group, ui: ui, config: config, root_dir: working_dir) }
+
+    it "loads the correct policyfile" do
+      storage_config = push_service.storage_config
+      expect(storage_config.policyfile_lock_filename).to eq(policyfile_lock_path)
+      expect(storage_config.policyfile_filename).to eq(policyfile_rb_path)
+    end
+
+  end
+
   context "when no lockfile is present" do
 
     it "errors out" do
