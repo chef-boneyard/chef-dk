@@ -207,7 +207,15 @@ smoke = "chef exec kitchen verify"
 # the line below and running the command: `delivery local functional`
 # functional = ""
 cleanup = "chef exec kitchen destroy"
-  PROJECT_DOT_TOML
+
+# Remote project.toml file
+#
+# Specify a remote URI location for the `project.toml` file.
+# This is useful for teams that wish to centrally manage the behavior
+# of the `delivery local` command across many different projects.
+#
+# remote_file = "https://url/project.toml"
+PROJECT_DOT_TOML
         end
 
         it "exists with default config for Cookbook Workflow" do
