@@ -203,6 +203,9 @@ syntax = "foodcritic . --exclude spec -f any -t ~supermarket"
 provision = "chef exec kitchen create"
 deploy = "chef exec kitchen converge"
 smoke = "chef exec kitchen verify"
+# The functional phase is optional, you can define it by uncommenting
+# the line below and running the command: `delivery local functional`
+# functional = ""
 cleanup = "chef exec kitchen destroy"
   PROJECT_DOT_TOML
         end
