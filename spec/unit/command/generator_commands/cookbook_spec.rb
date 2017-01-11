@@ -203,8 +203,19 @@ syntax = "foodcritic . --exclude spec -f any -t ~supermarket"
 provision = "chef exec kitchen create"
 deploy = "chef exec kitchen converge"
 smoke = "chef exec kitchen verify"
+# The functional phase is optional, you can define it by uncommenting
+# the line below and running the command: `delivery local functional`
+# functional = ""
 cleanup = "chef exec kitchen destroy"
-  PROJECT_DOT_TOML
+
+# Remote project.toml file
+#
+# Specify a remote URI location for the `project.toml` file.
+# This is useful for teams that wish to centrally manage the behavior
+# of the `delivery local` command across many different projects.
+#
+# remote_file = "https://url/project.toml"
+PROJECT_DOT_TOML
         end
 
         it "exists with default config for Cookbook Workflow" do
@@ -252,7 +263,7 @@ cleanup = "chef exec kitchen destroy"
 # Cookbook:: build_cookbook
 # Recipe:: publish
 #
-# Copyright:: 2016, The Authors, All Rights Reserved.
+# Copyright:: 2017, The Authors, All Rights Reserved.
 include_recipe 'delivery-truck::publish'
   CONFIG_DOT_JSON
         end
