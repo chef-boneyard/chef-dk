@@ -1,21 +1,5 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.1.16](https://github.com/chef/chef-dk/tree/v1.1.16) (2016-12-14)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.0.3...v1.1.16)
-
-**Implemented enhancements:**
-
-- Update cookstyle and knife-spork to the latest versions [\#1113](https://github.com/chef/chef-dk/pull/1113) ([afiune](https://github.com/afiune))
-- Include Chef 12.17.44 [\#1111](https://github.com/chef/chef-dk/pull/1111) ([tas50](https://github.com/tas50))
-- Update gems to get test-kitchen 1.4.2 [\#1109](https://github.com/chef/chef-dk/pull/1109) ([afiune](https://github.com/afiune))
-- kitchen-dokken: Default to official `chef/chef` image [\#1103](https://github.com/chef/chef-dk/pull/1103) ([tduffield](https://github.com/tduffield))
-- Use 8.22.1 of Ohai [\#1102](https://github.com/chef/chef-dk/pull/1102) ([tduffield](https://github.com/tduffield))
-- Add `dco` command line utility to easier management of DCO sign-offs [\#1093](https://github.com/chef/chef-dk/pull/1093) ([tduffield](https://github.com/tduffield))
-
-**Fixed bugs:**
-
-- chef: Use `test/smoke/default` instead of `test/recipes` for generated cookbooks/recipes [\#1096](https://github.com/chef/chef-dk/pull/1096) ([tduffield](https://github.com/tduffield))
-
 ## [v1.0.3](https://github.com/chef/chef-dk/tree/v1.0.3) (2016-11-14)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.19.6...v1.0.3)
 
