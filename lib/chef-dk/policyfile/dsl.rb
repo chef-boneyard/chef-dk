@@ -140,7 +140,7 @@ module ChefDK
       def metadata
         cookbook_root = storage_config.relative_paths_root
         unless File.exist?(File.join(cookbook_root, "metadata.rb")) || File.exist?(File.join(cookbook_root, "metadata.json"))
-          raise PolicyfileMissingCookbookMetadata
+          raise PolicyfileMissingCookbookMetadata.new(cookbook_root)
         end
         begin
           cookbook_name = CookbookMetadata.from_path(cookbook_root).cookbook_name
