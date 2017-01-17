@@ -116,6 +116,8 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
   execute("git-create-feature-branch") do
     command("git checkout -t -b add-delivery-configuration")
     cwd delivery_project_dir
+    
+    not_if "git branch |grep \"add-delivery-configuration\""
   end
 
   execute("git-add-delivery-config-json") do
