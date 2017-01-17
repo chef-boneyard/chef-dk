@@ -1,11 +1,128 @@
-.rake_test_cache
+## Below are example of common git excludes.
+## Please note that /cookbooks folder is ignored. This allows users to
+## clone individual cookbooks into the /cookbook folder of the chef repo
+## and work on them in parallel. This pattern also allows for chef-workstation
+## pattern, where base repo also builds out a dynamic chef workstation.
+## Examples of workstation cookbooks:
+##    https://github.com/mwrock/chef_workstation
+##    https://github.com/Nordstrom/chefdk_bootstrap
 
-###
-# Ignore Chef key files and secrets
-###
+
+## Ignore Chef related files and secrets
+.chef
 .chef/*.pem
 .chef/encrypted_data_bag_secret
 <%- if policy_only -%>
 cookbooks/**
 !cookbooks/README.md
 <%- end -%>
+
+## Ignore Chef-Zero files
+clients
+nodes
+
+# ## OS junk files
+# [Tt]humbs.db
+# *.DS_Store
+
+# ## Example of the workstation pattern.
+# !/cookbooks/chef_workstation/files/default/bundler/Gemfile
+# !/cookbooks/chef_workstation/files/default/bundler/Gemfile.lock
+# cookbooks/*
+# !cookbooks/chef_workstation
+
+# ##Chef
+# .kitchen/
+# .vagrant
+# nodes
+# metadata.json
+
+# ##ruby
+# *.gem
+# Gemfile
+# Gemfile.lock
+.rake_test_cache
+
+# ## Rails Heroku and other bits to ignore
+# *.log
+# *.sqlite3
+# db/*.sqlite3
+# .bundle
+# log/*
+# tmp/*
+# public/system/*
+
+# ##nodejs
+# node_modules
+
+# # Nuget (exclude all exes except for the one in the global build folder)
+# nuget.exe
+# !build/nuget/nuget.exe
+# *.nupkg
+# # NuGet packages (based on default naming convention)
+# [Bb]uild/[Pp]ackages/
+
+# # Build System # common build output folders
+# build-common/
+# output/
+
+# ## Probably not a good idea to be keeing VM inages in source control
+# *.vhd
+# *.vhdx
+
+# ## Pester Test summary
+# Test.xml
+
+# ##Webstorm files
+# *.idea
+# .idea
+# .idea/
+
+# ##Mono (or something?) files
+# *.pidb
+# *.userprefs
+
+# ## Visual Studio files
+# *.docstates
+# *.[Oo]bj
+# *.dat
+# *.crc
+# *.dbmdl
+# *.pdb
+# *.user
+# *.aps
+# *.pch
+# *.vspscc
+# *.vssscc
+# *_i.c
+# *_p.c
+# *.ncb
+# *.suo
+# *.tlb
+# *.tlh
+# *.bak
+# *.[Cc]ache
+# *.ilk
+# *.log
+# *.lib
+# *.sbr
+# *.schemaview
+# ipch/
+# [Oo]bj/
+# [Bb]in/*
+# [Dd]ebug*/
+# [Rr]elease*/
+# Ankh.NoLoad
+
+# ##Tooling
+# _ReSharper*/
+# *.[Rr]e[Ss]harper
+# [Tt]est[Rr]esult*
+# .[Jj]ust[Cc]ode
+# *ncrunch*
+
+# ##Subversion files
+# .svn
+
+# ## Office Temp Files
+# ~$*
