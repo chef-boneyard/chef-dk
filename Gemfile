@@ -27,9 +27,12 @@ gem "chef-dk", path: "."
 # EXPERIMENTAL: ALL gems specified here will be installed in chef-dk omnibus.
 # This represents all gems that will be part of chef-dk.
 
+# Ensure that we can always install rake, regardless of gem groups
+# Including the travis group to address https://github.com/sickill/rainbow/issues/44
+gem "rake", group: [ :omnibus_package, :development, :test, :travis ]
+
 group(:omnibus_package, :development, :test) do
   gem "pry"
-  gem "rake"
   gem "rdoc"
   gem "yard"
   gem "dep_selector"
