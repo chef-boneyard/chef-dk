@@ -24,15 +24,31 @@ module ChefDK
   module Policyfile
     class ChefServerCookbookSource
       attr_reader :uri
+      attr_reader :preferred_cookbooks
+      attr_reader :chef_config
 
-      def initialize(uri)
+      def initialize(uri, chef_config: nil)
         @uri = SourceURI.parse(uri)
         @http_connections = {}
+        @chef_config = chef_config
+        @preferred_cookbooks = []
         yield self if block_given?
       end
 
+      def default_source_args
+        [:chef_server, uri]
+      end
+
       def ==(other)
-        other.kind_of?(self.class) && other.uri == uri
+        other.kind_of?(self.class) && other.uri == uri && other.preferred_cookbooks == preferred_cookbooks
+      end
+
+      def preferred_for(*cookbook_names)
+        preferred_cookbooks.concat(cookbook_names)
+      end
+
+      def preferred_source_for?(cookbook_name)
+        preferred_cookbooks.include?(cookbook_name)
       end
 
       def universe_graph
@@ -48,11 +64,10 @@ module ChefDK
       end
 
       def source_options_for(cookbook_name, cookbook_version)
-        base_uri = full_chef_server_graph[cookbook_name][cookbook_version]['download_url']
         {
-          chefserver: base_uri,
+          chef_server: uri.to_s,
           version: cookbook_version,
-          http_client: http_connection_for(base_uri)
+          http_client: http_connection_for(uri.to_s)
         }
       end
 
@@ -67,14 +82,15 @@ module ChefDK
       private
 
       def http_connection_for(base_url)
-        @http_connections[base_url] ||= ChefDK::AuthenticatedHTTP::Simple.new(base_url)
+        @http_connections[base_url] ||= ChefDK::AuthenticatedHTTP.new(base_url,
+                                                       signing_key_filename: chef_config.client_key,
+                                                       client_name: chef_config.node_name)
       end
 
       def full_chef_server_graph
         @full_chef_server_graph ||=
           begin
-            graph_json = http_connection_for(uri.to_s).get('/universe')
-            FFI_Yajl::Parser.parse(graph_json)
+            http_connection_for(uri.to_s).get('/universe')
           end
       end
     end

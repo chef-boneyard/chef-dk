@@ -274,12 +274,12 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
 
   end
 
-  describe "when created with a chefserver source" do
+  describe "when created with a chef_server source" do
 
-    let(:source_options) { { chefserver: "https://api.opscode.com/organizations/chef-oss-dev/cookbooks/my_cookbook/versions/2.0.0/download" } }
+    let(:source_options) { { chef_server: "https://api.opscode.com/organizations/chef-oss-dev/cookbooks/my_cookbook/versions/2.0.0/download" } }
 
-    it "has a chefserver installer" do
-      expect(cookbook_location_spec.installer).to be_a_kind_of(CookbookOmnifetch::ChefserverLocation)
+    it "has a chef_server installer" do
+      expect(cookbook_location_spec.installer).to be_a_kind_of(CookbookOmnifetch::ChefServerLocation)
     end
 
     it "does not have a fixed version" do

@@ -16,7 +16,6 @@
 #
 
 require 'spec_helper'
-
 require 'chef-dk/policyfile/chef_server_cookbook_source'
 
 describe ChefDK::Policyfile::ChefServerCookbookSource do
@@ -24,20 +23,20 @@ describe ChefDK::Policyfile::ChefServerCookbookSource do
 
   let(:cookbook_source) { 'https://chef.example.com/organizations/example' }
 
-  let(:http_connection) { double('Chef::HTTP::Simple') }
+  let(:http_connection) { double('ChefDK::AuthenticatedHTTP') }
 
-  let(:universe_response_encoded) { IO.read(File.join(fixtures_path, 'cookbooks_api/small_universe.json')) }
+  let(:universe_response_encoded) { JSON.parse(IO.read(File.join(fixtures_path, 'cookbooks_api/chef_server_universe.json'))) }
 
-  let(:pruned_universe) { JSON.parse(IO.read(File.join(fixtures_path, "cookbooks_api/pruned_small_universe.json"))) }
+  let(:pruned_universe) { JSON.parse(IO.read(File.join(fixtures_path, "cookbooks_api/pruned_chef_server_universe.json"))) }
 
-  describe 'fetching the Universe graph over HTTP' do
+  describe 'fetching the Universe graph' do
 
     before do
-      expect(Chef::HTTP::Simple).to receive(:new).with(cookbook_source).and_return(http_connection)
-      expect(http_connection).to receive(:get).with('/universe').and_return(universe_response_encoded)
+      expect(subject).to receive(:http_connection_for).with(cookbook_source).and_return(http_connection)
     end
 
     it 'fetches the universe graph' do
+      expect(http_connection).to receive(:get).with('/universe').and_return(universe_response_encoded)
       actual_universe = subject.universe_graph
       expect(actual_universe).to have_key('apt')
       expect(actual_universe['apt']).to eq(pruned_universe['apt'])
@@ -45,8 +44,12 @@ describe ChefDK::Policyfile::ChefServerCookbookSource do
     end
 
     it 'generates location options for a cookbook from the given graph' do
-      expected_opts = { artifactserver: 'https://supermarket.chef.io/api/v1/cookbooks/apache2/versions/1.10.4/download', version: '1.10.4' }
-      expect(subject.source_options_for('apache2', '1.10.4')).to eq(expected_opts)
+      expected_opts = {
+        chef_server: "https://chef.example.com/organizations/example",
+        http_client: http_connection,
+        version: "4.2.3"
+      }
+      expect(subject.source_options_for('ohai', '4.2.3')).to eq(expected_opts)
     end
   end
 end

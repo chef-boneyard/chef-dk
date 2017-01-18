@@ -4,6 +4,9 @@
   - A `functional` phase that will be optional for implementation.
   - New `remote_file` option to specify a remote project.toml.
 
+- Add Chef Server policyfile resolution.
+  - Adds a `chef_server` default source option to Policyfiles
+
 ### delivery-cli Changes
 
 - New `remote_file` option to load `project.toml` from URL.

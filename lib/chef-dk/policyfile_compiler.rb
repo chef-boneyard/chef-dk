@@ -38,8 +38,8 @@ module ChefDK
     # Cookbooks from these sources lock that cookbook to exactly one version
     SOURCE_TYPES_WITH_FIXED_VERSIONS = [:git, :path].freeze
 
-    def self.evaluate(policyfile_string, policyfile_filename, ui: nil)
-      compiler = new(ui: ui)
+    def self.evaluate(policyfile_string, policyfile_filename, ui: nil, chef_config: nil)
+      compiler = new(ui: ui, chef_config: chef_config)
       compiler.evaluate_policyfile(policyfile_string, policyfile_filename)
       compiler
     end
@@ -56,9 +56,9 @@ module ChefDK
     attr_reader :storage_config
     attr_reader :install_report
 
-    def initialize(ui: nil)
+    def initialize(ui: nil, chef_config: nil)
       @storage_config = Policyfile::StorageConfig.new
-      @dsl = Policyfile::DSL.new(storage_config)
+      @dsl = Policyfile::DSL.new(storage_config, chef_config: chef_config)
       @artifact_server_cookbook_location_specs = {}
 
       @merged_graph = nil
