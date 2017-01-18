@@ -3,6 +3,7 @@
 - Updated the project.toml file generator with:
   - A `functional` phase that will be optional for implementation.
   - New `remote_file` option to specify a remote project.toml.
+- Bundle the Stunnel tool and FIPS OpenSSL module for users who need to enforce FIPS compliance.
 
 - Add Chef Server policyfile resolution.
   - Adds a `chef_server` default source option to Policyfiles
