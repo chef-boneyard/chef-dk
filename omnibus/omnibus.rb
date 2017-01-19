@@ -29,6 +29,10 @@
 windows_arch   %w{x86 x64}.include?((ENV['OMNIBUS_WINDOWS_ARCH'] || '').downcase) ?
                 ENV['OMNIBUS_WINDOWS_ARCH'].downcase.to_sym : :x86
 
+# Build in FIPS compatability mode
+# ------------------------------
+fips_mode (ENV['OMNIBUS_FIPS_MODE'] || '').downcase == "true"
+
 # Disable git caching
 # ------------------------------
 # use_git_caching false

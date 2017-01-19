@@ -84,7 +84,7 @@ group(:omnibus_package) do
   # All of the following used to be software definitions we included:
   gem "knife-spork"
   gem "dep-selector-libgecode"
-  gem "nokogiri"
+  # gem "nokogiri"
   gem "pry-byebug"
   gem "pry-remote"
   gem "pry-stack_explorer"
@@ -94,6 +94,11 @@ group(:omnibus_package) do
   gem "winrm-fs"
   gem "winrm-elevated"
   gem "cucumber"
+
+  # TODO Pinning these for now because github_changelog_generator has a bunch
+  # of different versions across our products
+  gem "nokogiri", "~> 1.6.3"
+  gem "addressable", "~> 2.4.0"
 end
 
 # Everything except AIX and Windows

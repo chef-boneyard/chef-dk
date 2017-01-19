@@ -136,8 +136,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.5.0)
-      public_suffix (~> 2.0, >= 2.0.2)
+    addressable (2.4.0)
     app_conf (0.4.2)
     artifactory (2.5.1)
     ast (2.3.0)
@@ -569,9 +568,7 @@ GEM
       net-ssh-gateway (>= 1.2.0)
     net-telnet (0.1.1)
     nio4r (2.0.0)
-    nokogiri (1.7.0.1)
-      mini_portile2 (~> 2.1.0)
-    nokogiri (1.7.0.1-x86-mingw32)
+    nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     nori (2.6.0)
     notiffany (0.1.1)
@@ -613,7 +610,6 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    public_suffix (2.0.5)
     rack (2.0.1)
     rainbow (2.2.1)
     rake (12.0.0)
@@ -798,6 +794,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  addressable (~> 2.4.0)
   appbundler!
   artifactory
   berkshelf (>= 5.0)
@@ -835,7 +832,7 @@ DEPENDENCIES
   listen
   mixlib-install
   mixlib-versioning
-  nokogiri
+  nokogiri (~> 1.6.3)
   ohai (>= 8.13.0)
   opscode-pushy-client!
   pry
@@ -863,4 +860,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.13.7
+   1.12.5
