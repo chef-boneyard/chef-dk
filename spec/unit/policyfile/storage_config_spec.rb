@@ -115,6 +115,18 @@ describe ChefDK::Policyfile::StorageConfig do
 
     end
 
+    context "when the policyfile file name is actually a lockfile" do
+
+      before do
+        storage_config.use_policyfile("foo.lock.json")
+      end
+
+      it "uses the policyfile .rb file instead" do
+        expect(storage_config.policyfile_filename).to eq("foo.rb")
+      end
+
+    end
+
   end
 
 
