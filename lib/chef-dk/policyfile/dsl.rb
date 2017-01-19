@@ -42,7 +42,8 @@ module ChefDK
 
       attr_reader :storage_config
 
-      def initialize(storage_config)
+      attr_reader :chef_config
+      def initialize(storage_config, chef_config: nil)
         @name = nil
         @errors = []
         @run_list = []
@@ -50,6 +51,7 @@ module ChefDK
         @default_source = [ NullCookbookSource.new ]
         @cookbook_location_specs = {}
         @storage_config = storage_config
+        @chef_config = chef_config
 
         @node_attributes = Chef::Node::Attribute.new({}, {}, {}, {})
       end
@@ -168,7 +170,7 @@ module ChefDK
         if source_uri.nil?
           @errors << "You must specify the server's URI when using a default_source :chef_server"
         else
-          set_default_source(ChefServerCookbookSource.new(source_uri))
+          set_default_source(ChefServerCookbookSource.new(source_uri, chef_config: chef_config, &block))
         end
       end
 
