@@ -155,7 +155,8 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     aws-sigv4 (1.0.0)
-    berkshelf (5.3.0)
+    backports (3.6.8)
+    berkshelf (5.4.0)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (>= 2.0.2, < 4.0)
       buff-config (~> 2.0)
@@ -219,7 +220,7 @@ GEM
     chef-provisioning-vagrant (0.11.0)
       chef-provisioning
     chef-sugar (3.4.0)
-    chef-vault (2.9.0)
+    chef-vault (2.9.1)
     chef-zero (5.1.1)
       ffi-yajl (~> 2.2)
       hashie (>= 2.0, < 4.0)
@@ -237,7 +238,7 @@ GEM
     coderay (1.1.1)
     cookbook-omnifetch (0.5.0)
       mixlib-archive (~> 0.2)
-    cookstyle (1.1.1)
+    cookstyle (1.2.0)
       rubocop (= 0.46.0)
     cucumber (2.4.0)
       builder (>= 2.1.2)
@@ -405,7 +406,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (1.6.0)
+    fog-vsphere (1.7.0)
       fog-core
       rbvmomi (~> 1.9)
     fog-xenserver (0.2.3)
@@ -534,7 +535,7 @@ GEM
     mini_portile2 (2.1.0)
     minitar (0.5.4)
     minitest (5.10.1)
-    mixlib-archive (0.2.0)
+    mixlib-archive (0.3.0)
       mixlib-log
     mixlib-authentication (1.4.1)
       mixlib-log
@@ -569,6 +570,8 @@ GEM
     net-telnet (0.1.1)
     nio4r (2.0.0)
     nokogiri (1.6.8.1)
+      mini_portile2 (~> 2.1.0)
+    nokogiri (1.6.8.1-x86-mingw32)
       mini_portile2 (~> 2.1.0)
     nori (2.6.0)
     notiffany (0.1.1)

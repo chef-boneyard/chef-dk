@@ -10,6 +10,9 @@ gem "winrm-fs"
 gem "winrm-elevated"
 gem "berkshelf"
 
+# Workaround to address https://github.com/sickill/rainbow/issues/44
+gem "rainbow", ">= 2.1.0", "< 2.2"
+
 # TODO remove this when we update Chef to use the new api exposed in 3.5.1
 gem "rspec-core", "= 3.4.4"
 
