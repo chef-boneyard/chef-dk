@@ -60,7 +60,7 @@ OMNIBUS_OVERRIDES = {
 # name of the rubygem (gem list -re <rubygem name> gets us the latest version).
 #
 OMNIBUS_RUBYGEMS_AT_LATEST_VERSION = {
-  #rubygems: "rubygems-update", # pinned to 2.6.4 until https://github.com/rubygems/rubygems/pull/1683 is released
+  rubygems: "rubygems-update",
   # bundler: "bundler", # pinned to 1.12.5 until we figure out how we're failing on 1.13.0
 }
 
