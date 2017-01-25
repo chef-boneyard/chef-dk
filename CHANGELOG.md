@@ -1,10 +1,11 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.2.11](https://github.com/chef/chef-dk/tree/v1.2.11) (2017-01-19)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.16...v1.2.11)
+## [v1.2.14](https://github.com/chef/chef-dk/tree/v1.2.14) (2017-01-25)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.16...v1.2.14)
 
 **Implemented enhancements:**
 
+- Update Chef to 12.18.31 [\#1137](https://github.com/chef/chef-dk/pull/1137) ([tduffield](https://github.com/tduffield))
 - Ensure rake is installed via the CI tools [\#1132](https://github.com/chef/chef-dk/pull/1132) ([tduffield](https://github.com/tduffield))
 - Add new options to project.toml generator [\#1127](https://github.com/chef/chef-dk/pull/1127) ([afiune](https://github.com/afiune))
 - Document chefignore [\#1110](https://github.com/chef/chef-dk/pull/1110) ([vinyar](https://github.com/vinyar))
