@@ -47,9 +47,9 @@ OMNIBUS_OVERRIDES = {
   # software def so we don't need to override that
   "libzmq" => "4.0.5",
 
-  ## These can float as they are frequently updated in a way that works for us
-  #override "cacerts" =>"???",
-  #override "openssl" =>"???",
+  # For 1.2 stable release only, pin to 1.1.0 of kitchen-dokken. After the 1.2
+  # release, unpin and bring in kitchen-dokken 2.x.
+  "kitchen-dokken" => "1.1.0"
 }
 
 #
@@ -76,7 +76,7 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "activesupport",     # anchored by outdated google-api-client
   "celluloid",         # ridley requires 0.16.x
   "celluloid-io",      # ridley requires 0.16.x
-  "cucumber-core", # Until cucumber 2.0
+  "cucumber-core",     # Until cucumber 2.0
   "fog-cloudatcost",   # fog restricts this for probably no good reason
   "fog-dynect",        # fog restricts this for probably no good reason
   "fog-google",        # fog-google 0.2+ requires Ruby 2.0+, fog 2.0.0 will include it
@@ -88,6 +88,10 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "rubocop",           # cookstyle pins to 0.39.0 in 0.0.1
   "slop",              # expected to disappear with pry 0.11
   "timers",            # anchored by outdated celluloid
+  "github_changelog_generator", # we use a forked version that differs from rubygems
+  "addressable",       # sawyer limits to < 2.6
+  "faraday",           # ridely restrcits this 0.9.x
+  "thor",              # berkshelf restricts this to < 0.19.2
 
   # We have a task called update_stable_channel_gems which scans and pins to the
   # latest released chef/chef-config/opscode-pushy-client but it pulls from the
