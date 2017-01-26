@@ -46,6 +46,10 @@ OMNIBUS_OVERRIDES = {
   # The windows dependency (libzmq4x-windows) only has 1 version so far in
   # software def so we don't need to override that
   "libzmq" => "4.0.5",
+
+  # For 1.2 stable release only, pin to 1.1.0 of kitchen-dokken. After the 1.2
+  # release, unpin and bring in kitchen-dokken 2.x.
+  "kitchen-dokken" => "1.1.0"
 }
 
 #
