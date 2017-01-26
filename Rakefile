@@ -21,3 +21,12 @@ require_relative "tasks/bundle"
 require_relative "tasks/dependencies"
 require_relative "tasks/github_changelog_generator"
 require_relative "tasks/announce"
+
+desc "Keep the Dockerfile up-to-date"
+task :update_dockerfile do
+  require "mixlib/install"
+  latest_stable_version = Mixlib::Install.available_versions("chefdk", "stable").last
+  text = File.read("Dockerfile")
+  new_text = text.gsub(/^ARG VERSION=[\d\.]+$/, "ARG VERSION=#{latest_stable_version}")
+  File.open("Dockerfile", "w+") { |f| f.write(new_text) }
+end
