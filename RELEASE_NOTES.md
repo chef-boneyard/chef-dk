@@ -17,7 +17,7 @@ dispatch system that replaces the previous push jobs based implementation with t
 implementation. For more details on this new system and how to use it, see:
 https://docs.chef.io/job_dispatch.html
 
-## FIPS
+## FIPS (Windows and RHEL only)
 - ChefDK now comes bundled with the Stunnel tool and the FIPS OpenSSL module for users who need to enforce FIPS compliance.
 - Support for FIPS options in `delivery` CLI's `cli.toml` were added to handle communication with the Automate Server when FIPS mode is enabled.
 
