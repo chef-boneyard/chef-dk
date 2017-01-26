@@ -33,7 +33,9 @@ done
 if [ "x$ACCEPTANCE" != "x" ]; then
   export PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:$PATH
 
-  for GEM_NAME in chef chef-dk
+  # Don't run the chef acceptance tests in chef-dk (until rainbow gem debacle is over)
+  # for GEM_NAME in chef chef-dk
+  for GEM_NAME in chef-dk
   do
 
     # copy acceptance suites into workspace
