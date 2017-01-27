@@ -5,6 +5,7 @@
   - An optional `functional` phase.
   - New `remote_file` option to specify a remote project.toml.
   - The ability to run stages (collection of phases).
+- Fixed bug where the generated `project.toml` file didn't include the prefix `chef exec` for some phases.
 - Project git remotes will now be updated automatically, if applicable, based on the values in the `cli.toml` or options provided through the command-line.
 - Project names specified in project config (`cli.toml`) or options provided through the command-line will now be honored.
 
