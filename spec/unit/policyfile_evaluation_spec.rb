@@ -533,6 +533,19 @@ MESSAGE
 
     end
 
+    describe "the metadata sugar keyword" do
+      let(:policyfile_rb) do
+        <<-EOH
+          run_list "foo"
+          metadata
+        EOH
+      end
+      it "reads the metadata from the current cookbook" do
+        puts Dir.pwd
+        expect(policyfile.errors).to eq([])
+      end
+    end
+
     describe "assigning a cookbook to conflicting sources" do
       let(:policyfile_rb) do
         <<-EOH
