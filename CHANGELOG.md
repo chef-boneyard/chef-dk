@@ -1,7 +1,7 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.2.19](https://github.com/chef/chef-dk/tree/v1.2.19) (2017-01-27)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.16...v1.2.19)
+## [v1.2.20](https://github.com/chef/chef-dk/tree/v1.2.20) (2017-01-27)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.16...v1.2.20)
 
 **Implemented enhancements:**
 
@@ -13,6 +13,10 @@ This changelog reflects the current state of chef-dk's master branch on github a
 - Document chefignore [\#1110](https://github.com/chef/chef-dk/pull/1110) ([vinyar](https://github.com/vinyar))
 - Adding maintainer and email fields to example [\#1107](https://github.com/chef/chef-dk/pull/1107) ([jjasghar](https://github.com/jjasghar))
 - Accept foo.lock.json as well as foo.rb when loading a policyfile [\#1087](https://github.com/chef/chef-dk/pull/1087) ([mivok](https://github.com/mivok))
+
+**Fixed bugs:**
+
+- Fix `delivery local` failures by adding 'chef exec' prefix to all commands in project.toml [\#1145](https://github.com/chef/chef-dk/pull/1145) ([afiune](https://github.com/afiune))
 
 ## [v1.1.16](https://github.com/chef/chef-dk/tree/v1.1.16) (2016-12-14)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v1.0.3...v1.1.16)
