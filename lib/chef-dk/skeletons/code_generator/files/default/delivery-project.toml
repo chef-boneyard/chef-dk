@@ -12,13 +12,13 @@
 # config.json file and it will continue working as usual.
 
 [local_phases]
-unit = "rspec spec/"
-lint = "cookstyle"
+unit = "chef exec rspec spec/"
+lint = "chef exec cookstyle"
 # Foodcritic includes rules only appropriate for community cookbooks
 # uploaded to Supermarket. We turn off any rules tagged "supermarket"
 # by default. If you plan to share this cookbook you should remove
 # '-t ~supermarket' below to enable supermarket rules.
-syntax = "foodcritic . --exclude spec -f any -t ~supermarket"
+syntax = "chef exec foodcritic . --exclude spec -f any -t ~supermarket"
 provision = "chef exec kitchen create"
 deploy = "chef exec kitchen converge"
 smoke = "chef exec kitchen verify"
