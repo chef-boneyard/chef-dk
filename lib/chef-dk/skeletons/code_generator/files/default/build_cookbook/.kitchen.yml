@@ -8,6 +8,7 @@ provisioner:
   name: chef_zero
   encrypted_data_bag_secret_key_path: 'secrets/fakey-mcfakerton'
   data_bags_path: './data_bags'
+  product_name: chefdk
 
 platforms:
   - name: ubuntu-16.04
@@ -16,6 +17,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[delivery_build::default]
       - recipe[test]
     attributes:
