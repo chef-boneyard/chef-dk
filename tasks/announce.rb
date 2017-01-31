@@ -41,7 +41,7 @@ class ReleaseAnnouncement
   end
 
   def release_notes_from_file
-    File.read("RELEASE_NOTES.md").match(/^# ChefDK #{@maj_minor} Release notes\n\n(.*)/m)[1]
+    File.read("RELEASE_NOTES.md").match(/^# ChefDK #{@maj_minor} Release Notes\n\n(.*)/m)[1]
   end
 end
 
