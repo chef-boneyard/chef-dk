@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 MAINTAINER Chef Software, Inc. <docker@chef.io>
 
 ARG CHANNEL=stable
-ARG VERSION=1.1.16
+ARG VERSION=1.2.20
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
