@@ -1,3 +1,21 @@
+## [v1.2.20](https://github.com/chef/chef-dk/tree/v1.2.20) (2017-01-27)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.16...v1.2.20)
+
+**Implemented enhancements:**
+
+- Update Inspec to 1.10.0 \(adds HTTP resource request\) [\#1142](https://github.com/chef/chef-dk/pull/1142) ([tduffield](https://github.com/tduffield))
+- Update Chef to 12.18.31 [\#1137](https://github.com/chef/chef-dk/pull/1137) ([tduffield](https://github.com/tduffield))
+- Ensure rake is installed via the CI tools [\#1132](https://github.com/chef/chef-dk/pull/1132) ([tduffield](https://github.com/tduffield))
+- Add new options to project.toml generator [\#1127](https://github.com/chef/chef-dk/pull/1127) ([afiune](https://github.com/afiune))
+- Add in rhel and windows FIPS override [\#1124](https://github.com/chef/chef-dk/pull/1124) ([rmoshier](https://github.com/rmoshier))
+- Document chefignore [\#1110](https://github.com/chef/chef-dk/pull/1110) ([vinyar](https://github.com/vinyar))
+- Adding maintainer and email fields to example [\#1107](https://github.com/chef/chef-dk/pull/1107) ([jjasghar](https://github.com/jjasghar))
+- Accept foo.lock.json as well as foo.rb when loading a policyfile [\#1087](https://github.com/chef/chef-dk/pull/1087) ([mivok](https://github.com/mivok))
+
+**Fixed bugs:**
+
+- Fix `delivery local` failures by adding 'chef exec' prefix to all commands in project.toml [\#1145](https://github.com/chef/chef-dk/pull/1145) ([afiune](https://github.com/afiune))
+
 ## [v1.1.16](https://github.com/chef/chef-dk/tree/v1.1.16) (2016-12-14)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v1.0.3...v1.1.16)
 
