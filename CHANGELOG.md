@@ -1,5 +1,12 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
+## [v1.2.22](https://github.com/chef/chef-dk/tree/v1.2.22) (2017-02-02)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.20...v1.2.22)
+
+**Fixed bugs:**
+
+- Update to mixlib-archive 0.4.1 to address security vulnerability [\#1154](https://github.com/chef/chef-dk/pull/1154) ([tduffield](https://github.com/tduffield))
+
 ## [v1.2.20](https://github.com/chef/chef-dk/tree/v1.2.20) (2017-01-27)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.16...v1.2.20)
 
@@ -17,9 +24,6 @@ This changelog reflects the current state of chef-dk's master branch on github a
 **Fixed bugs:**
 
 - Fix `delivery local` failures by adding 'chef exec' prefix to all commands in project.toml [\#1145](https://github.com/chef/chef-dk/pull/1145) ([afiune](https://github.com/afiune))
-
-## [v1.1.16](https://github.com/chef/chef-dk/tree/v1.1.16) (2016-12-14)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.0.3...v1.1.16)
 
 **Implemented enhancements:**
 
