@@ -1,10 +1,12 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.3.4](https://github.com/chef/chef-dk/tree/v1.3.4) (2017-02-01)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.20...v1.3.4)
+## [v1.3.6](https://github.com/chef/chef-dk/tree/v1.3.6) (2017-02-02)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.20...v1.3.6)
 
-**Implemented enhancements:**
+**Merged pull requests:**
 
+- Update to mixlib-archive 0.4.1 to address security vulnerability [\#1154](https://github.com/chef/chef-dk/pull/1154) ([tduffield](https://github.com/tduffield))
+- Properly skip generated skeleton Inspec tests [\#1153](https://github.com/chef/chef-dk/pull/1153) ([tduffield](https://github.com/tduffield))
 - Use ChefDK, rather than Chef Client, as build-cookbook Test Kitchen base [\#1150](https://github.com/chef/chef-dk/pull/1150) ([tduffield](https://github.com/tduffield))
 - \[knife\] Update knife-windows to 1.9.0 with support for concurrent WinRM connections [\#1147](https://github.com/chef/chef-dk/pull/1147) ([tduffield](https://github.com/tduffield))
 
