@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/command_with_ui_object'
-require 'chef-dk/command/undelete'
+require "spec_helper"
+require "shared/command_with_ui_object"
+require "chef-dk/command/undelete"
 
 describe ChefDK::Command::Undelete do
 
@@ -53,7 +53,7 @@ describe ChefDK::Command::Undelete do
 
     context "when given a path to the config" do
 
-      let(:params) { %w[ -c ~/otherstuff/config.rb ] }
+      let(:params) { %w{ -c ~/otherstuff/config.rb } }
 
       let(:config_arg) { "~/otherstuff/config.rb" }
 
@@ -99,7 +99,7 @@ describe ChefDK::Command::Undelete do
 
       context "when --last is given" do
 
-        let(:params) { %w[ -l ] }
+        let(:params) { %w{ -l } }
 
         it "disables list mode" do
           expect(command.list_undo_records?).to be(false)
@@ -131,7 +131,7 @@ describe ChefDK::Command::Undelete do
 
       context "when exclusive options --last and --id are given" do
 
-        let(:params) { %w[ --last --id foo ] }
+        let(:params) { %w{ --last --id foo } }
 
         it "emits an error message saying they are exclusive and exits" do
           expect(ui.output).to include("Error: options --last and --id cannot both be given.")
@@ -142,7 +142,6 @@ describe ChefDK::Command::Undelete do
 
     end
   end
-
 
   describe "running the command" do
 
@@ -155,7 +154,7 @@ describe ChefDK::Command::Undelete do
 
     context "when given too many arguments" do
 
-      let(:params) { %w[ extra-thing ] }
+      let(:params) { %w{ extra-thing } }
 
       it "shows usage and exits" do
         expect(command.run(params)).to eq(1)
@@ -176,7 +175,7 @@ describe ChefDK::Command::Undelete do
 
     context "when the undelete service raises an exception" do
 
-      let(:params) { %w[ --last ] }
+      let(:params) { %w{ --last } }
 
       let(:backtrace) { caller[0...3] }
 
@@ -197,7 +196,7 @@ describe ChefDK::Command::Undelete do
       it "prints a debugging message and exits non-zero" do
         expect(command.run(params)).to eq(1)
 
-        expected_output=<<-E
+        expected_output = <<-E
 Error: Failed to undelete.
 Reason: (StandardError) some operation failed
 
@@ -210,9 +209,9 @@ E
 
         it "includes the backtrace in the error" do
 
-          command.run(params + %w[ -D ])
+          command.run(params + %w{ -D })
 
-        expected_output=<<-E
+          expected_output = <<-E
 Error: Failed to undelete.
 Reason: (StandardError) some operation failed
 
@@ -229,7 +228,7 @@ E
 
     context "when the undelete service executes successfully" do
 
-      let(:params) { %w[ --last ] }
+      let(:params) { %w{ --last } }
 
       before do
         expect(command.undelete_service).to receive(:run)
@@ -243,4 +242,3 @@ E
 
   end
 end
-

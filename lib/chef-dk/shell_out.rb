@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'mixlib/shellout'
+require "mixlib/shellout"
 
 module ChefDK
 

@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'net/http'
-require 'chef/monkey_patches/net_http'
-require 'chef-dk/service_exception_inspectors/http'
+require "spec_helper"
+require "net/http"
+require "chef/monkey_patches/net_http"
+require "chef-dk/service_exception_inspectors/http"
 
 describe ChefDK::ServiceExceptionInspectors::HTTP do
 
@@ -29,7 +29,7 @@ describe ChefDK::ServiceExceptionInspectors::HTTP do
   let(:request_headers) do
     {
       "content-type" => "application/json",
-      "accept" => "application/json"
+      "accept" => "application/json",
     }
   end
 
@@ -42,14 +42,14 @@ describe ChefDK::ServiceExceptionInspectors::HTTP do
                         path: "/organizations/chef-oss-dev/cookbooks",
                         body: request_body)
     stub = allow(r).to(receive(:each_header))
-    request_headers.each { |k,v| stub.and_yield(k,v) }
+    request_headers.each { |k, v| stub.and_yield(k, v) }
     r
   end
 
   let(:response_headers) do
     {
       "server" => "ngx_openresty",
-      "date" => "Wed, 29 Oct 2014 22:27:47 GMT"
+      "date" => "Wed, 29 Oct 2014 22:27:47 GMT",
     }
   end
 
@@ -59,14 +59,13 @@ describe ChefDK::ServiceExceptionInspectors::HTTP do
                     message: "Bad Request",
                     body: response_body)
     stub = allow(r).to(receive(:each_header))
-    response_headers.each { |k,v| stub.and_yield(k,v) }
+    response_headers.each { |k, v| stub.and_yield(k, v) }
     r
   end
 
   let(:exception) do
-    Net::HTTPServerException.new(message, response).tap {|e| e.chef_rest_request = request }
+    Net::HTTPServerException.new(message, response).tap { |e| e.chef_rest_request = request }
   end
-
 
   subject(:inspector) { described_class.new(exception) }
 
@@ -137,4 +136,3 @@ E
   end
 
 end
-

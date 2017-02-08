@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef-dk/exceptions'
+require "chef-dk/exceptions"
 
 module ChefDK
   module Policyfile
@@ -35,7 +35,7 @@ module ChefDK
           {
             "policy_name" => policy_name,
             "policy_group" => policy_group,
-            "data" => data
+            "data" => data,
           }
         end
 
@@ -71,7 +71,7 @@ module ChefDK
         unless data.kind_of?(Hash)
           raise InvalidUndoRecord, "Undo data is incorrectly formatted. Must be a Hash, got '#{data}'."
         end
-        missing_fields = %w[ format_version description backup_data ].select { |key| !data.key?(key) }
+        missing_fields = %w{ format_version description backup_data }.select { |key| !data.key?(key) }
         unless missing_fields.empty?
           raise InvalidUndoRecord, "Undo data is missing mandatory field(s) #{missing_fields.join(', ')}. Undo data: '#{data}'"
         end
@@ -82,7 +82,7 @@ module ChefDK
         unless policy_data.kind_of?(Hash)
           raise InvalidUndoRecord, "'backup_data' in the undo record is incorrectly formatted. Must be a Hash, got '#{policy_data}'"
         end
-        missing_policy_data_fields = %w[ policy_groups policy_revisions ].select { |key| !policy_data.key?(key) }
+        missing_policy_data_fields = %w{ policy_groups policy_revisions }.select { |key| !policy_data.key?(key) }
         unless missing_policy_data_fields.empty?
           raise InvalidUndoRecord,
             "'backup_data' in the undo record is missing mandatory field(s) #{missing_policy_data_fields.join(', ')}. Backup data: #{policy_data}"
@@ -121,8 +121,8 @@ module ChefDK
           "description" => description,
           "backup_data" => {
             "policy_groups" => policy_groups,
-            "policy_revisions" => policy_revisions.map(&:for_serialization)
-          }
+            "policy_revisions" => policy_revisions.map(&:for_serialization),
+          },
         }
       end
 
@@ -137,6 +137,3 @@ module ChefDK
     end
   end
 end
-
-
-

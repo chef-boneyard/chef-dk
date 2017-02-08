@@ -15,13 +15,13 @@
 # limitations under the License.
 #
 
-require 'zlib'
-require 'archive/tar/minitar'
+require "zlib"
+require "archive/tar/minitar"
 
-require 'chef-dk/service_exceptions'
-require 'chef-dk/policyfile_lock'
-require 'chef-dk/authenticated_http'
-require 'chef-dk/policyfile/uploader'
+require "chef-dk/service_exceptions"
+require "chef-dk/policyfile_lock"
+require "chef-dk/authenticated_http"
+require "chef-dk/policyfile/uploader"
 
 module ChefDK
   module PolicyfileServices
@@ -36,7 +36,6 @@ module ChefDK
       attr_reader :config
 
       attr_reader :policyfile_lock
-
 
       def initialize(archive_file: nil, policy_group: nil, root_dir: nil, ui: nil, config: nil)
         @archive_file = archive_file
@@ -104,7 +103,6 @@ MESSAGE
           raise InvalidPolicyArchive, "Archive does not contain a cookbook_artifacts directory"
         end
 
-
         policy_data = load_policy_data(policyfile_lock_path)
         storage_config = Policyfile::StorageConfig.new.use_policyfile_lock(policyfile_lock_path)
         @policyfile_lock = ChefDK::PolicyfileLock.new(storage_config).build_from_archive(policy_data)
@@ -118,7 +116,6 @@ MESSAGE
             "Missing cookbooks: '#{missing_cookbooks.keys.join('", "')}'."
           raise InvalidPolicyArchive, message
         end
-
       end
 
       def load_policy_data(policyfile_lock_path)
@@ -132,7 +129,6 @@ MESSAGE
           unpack_to(staging_dir)
           yield staging_dir
         end
-
       end
 
       def unpack_to(staging_dir)

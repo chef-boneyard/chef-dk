@@ -15,12 +15,12 @@
 # limitations under the License.
 #
 
-require 'pry'
-require 'spec_helper'
-require 'chef-dk/command/generator_commands/base'
+require "pry"
+require "spec_helper"
+require "chef-dk/command/generator_commands/base"
 
 describe ChefDK::Command::GeneratorCommands::Base do
-  describe 'parsing Chef configuration' do
+  describe "parsing Chef configuration" do
     let(:cli_args) do
       [
         "-C", "Business Man",
@@ -33,7 +33,7 @@ describe ChefDK::Command::GeneratorCommands::Base do
       Chef::Config.reset
     end
 
-    context 'when generator configuration is defined' do
+    context "when generator configuration is defined" do
       before do
         Chef::Config.reset
         Chef::Config.chefdk.generator.copyright_holder = "This Guy"
@@ -41,17 +41,17 @@ describe ChefDK::Command::GeneratorCommands::Base do
         Chef::Config.chefdk.generator.license = "Two Thumbs License"
       end
 
-      it 'uses the defined values' do
+      it "uses the defined values" do
         cmd = ChefDK::Command::GeneratorCommands::Base.new([])
         cmd.parse_options
         cmd.setup_context
         cfg = cmd.config
-        expect(cfg[:copyright_holder]).to eq('This Guy')
-        expect(cfg[:email]).to eq('this.guy@twothumbs.net')
-        expect(cfg[:license]).to eq('Two Thumbs License')
+        expect(cfg[:copyright_holder]).to eq("This Guy")
+        expect(cfg[:email]).to eq("this.guy@twothumbs.net")
+        expect(cfg[:license]).to eq("Two Thumbs License")
       end
 
-      context 'when cli overrides are provided' do
+      context "when cli overrides are provided" do
         before do
           Chef::Config.reset
           Chef::Config.chefdk.generator.copyright_holder = "This Guy"
@@ -59,18 +59,18 @@ describe ChefDK::Command::GeneratorCommands::Base do
           Chef::Config.chefdk.generator.license = "Two Thumbs License"
         end
 
-        it 'uses the cli args' do
+        it "uses the cli args" do
           cmd = ChefDK::Command::GeneratorCommands::Base.new(cli_args)
           cmd.parse_options(cli_args)
           cmd.setup_context
           cfg = cmd.config
-          expect(cfg[:copyright_holder]).to eq('Business Man')
-          expect(cfg[:email]).to eq('business.man@corporation.com')
-          expect(cfg[:license]).to eq('Serious Business')
+          expect(cfg[:copyright_holder]).to eq("Business Man")
+          expect(cfg[:email]).to eq("business.man@corporation.com")
+          expect(cfg[:license]).to eq("Serious Business")
         end
       end
 
-      context 'when knife configuration is also defined' do
+      context "when knife configuration is also defined" do
 
         before do
           Chef::Config.reset
@@ -82,19 +82,19 @@ describe ChefDK::Command::GeneratorCommands::Base do
           Chef::Config.knife.cookbook_license = "GPLv9000"
         end
 
-        it 'uses the generator configuration' do
+        it "uses the generator configuration" do
           cmd = ChefDK::Command::GeneratorCommands::Base.new([])
           cmd.parse_options
           cmd.setup_context
           cfg = cmd.config
-          expect(cfg[:copyright_holder]).to eq('This Guy')
-          expect(cfg[:email]).to eq('this.guy@twothumbs.net')
-          expect(cfg[:license]).to eq('Two Thumbs License')
+          expect(cfg[:copyright_holder]).to eq("This Guy")
+          expect(cfg[:email]).to eq("this.guy@twothumbs.net")
+          expect(cfg[:license]).to eq("Two Thumbs License")
         end
       end
     end
 
-    context 'when knife configuration is defined' do
+    context "when knife configuration is defined" do
       before do
         Chef::Config.reset
         Chef::Config.knife.cookbook_copyright = "Knife User"
@@ -102,17 +102,17 @@ describe ChefDK::Command::GeneratorCommands::Base do
         Chef::Config.knife.cookbook_license = "GPLv9000"
       end
 
-      it 'uses the defined values' do
+      it "uses the defined values" do
         cmd = ChefDK::Command::GeneratorCommands::Base.new([])
         cmd.parse_options
         cmd.setup_context
         cfg = cmd.config
-        expect(cfg[:copyright_holder]).to eq('Knife User')
-        expect(cfg[:email]).to eq('knife.user@example.com')
-        expect(cfg[:license]).to eq('GPLv9000')
+        expect(cfg[:copyright_holder]).to eq("Knife User")
+        expect(cfg[:email]).to eq("knife.user@example.com")
+        expect(cfg[:license]).to eq("GPLv9000")
       end
 
-      context 'when cli overrides are provided' do
+      context "when cli overrides are provided" do
 
         before do
           Chef::Config.reset
@@ -121,14 +121,14 @@ describe ChefDK::Command::GeneratorCommands::Base do
           Chef::Config.knife.cookbook_license = "GPLv9000"
         end
 
-        it 'uses the cli args' do
+        it "uses the cli args" do
           cmd = ChefDK::Command::GeneratorCommands::Base.new(cli_args)
           cmd.parse_options(cli_args)
           cmd.setup_context
           cfg = cmd.config
-          expect(cfg[:copyright_holder]).to eq('Business Man')
-          expect(cfg[:email]).to eq('business.man@corporation.com')
-          expect(cfg[:license]).to eq('Serious Business')
+          expect(cfg[:copyright_holder]).to eq("Business Man")
+          expect(cfg[:email]).to eq("business.man@corporation.com")
+          expect(cfg[:license]).to eq("Serious Business")
         end
       end
     end
@@ -136,44 +136,44 @@ describe ChefDK::Command::GeneratorCommands::Base do
 
   describe '#have_git?' do
     let(:cmd) { described_class.new([]) }
-    let(:path) { 'bin_path' }
+    let(:path) { "bin_path" }
 
     before do
       allow(File).to receive(:exist?)
-      allow(ENV).to receive(:[]).with('PATH').and_return(path)
-      allow(ENV).to receive(:[]).with('PATHEXT').and_return(nil)
-      allow(RbConfig::CONFIG).to receive(:[]).with('EXEEXT').and_return('')
+      allow(ENV).to receive(:[]).with("PATH").and_return(path)
+      allow(ENV).to receive(:[]).with("PATHEXT").and_return(nil)
+      allow(RbConfig::CONFIG).to receive(:[]).with("EXEEXT").and_return("")
     end
 
-    describe 'when git executable exists' do
-      it 'returns true' do
+    describe "when git executable exists" do
+      it "returns true" do
         allow(File).to receive(:exist?).and_return(true)
         expect(cmd.have_git?).to eq(true)
       end
     end
 
-    describe 'when git executable does not exist' do
-      it 'returns false' do
+    describe "when git executable does not exist" do
+      it "returns false" do
         allow(File).to receive(:exist?).and_return(false)
         expect(cmd.have_git?).to eq(false)
       end
     end
 
-    it 'checks PATH for git executable' do
-      expect(File).to receive(:exist?).with(File.join(path, 'git'))
+    it "checks PATH for git executable" do
+      expect(File).to receive(:exist?).with(File.join(path, "git"))
       cmd.have_git?
     end
 
-    describe 'when on Windows' do
+    describe "when on Windows" do
       before do
-        allow(ENV).to receive(:[]).with('PATHEXT').and_return('.com;.exe;.bat')
-        allow(RbConfig::CONFIG).to receive(:[]).with('EXEEXT').and_return('.exe')
+        allow(ENV).to receive(:[]).with("PATHEXT").and_return(".com;.exe;.bat")
+        allow(RbConfig::CONFIG).to receive(:[]).with("EXEEXT").and_return(".exe")
       end
 
-      it 'checks PATH for git executable with an extension found in PATHEXT' do
-        expect(File).to receive(:exist?).with(File.join(path, 'git.com'))
-        expect(File).to receive(:exist?).with(File.join(path, 'git.exe'))
-        expect(File).to receive(:exist?).with(File.join(path, 'git.bat'))
+      it "checks PATH for git executable with an extension found in PATHEXT" do
+        expect(File).to receive(:exist?).with(File.join(path, "git.com"))
+        expect(File).to receive(:exist?).with(File.join(path, "git.exe"))
+        expect(File).to receive(:exist?).with(File.join(path, "git.bat"))
         cmd.have_git?
       end
     end

@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'set'
+require "set"
 
-require 'chef-dk/authenticated_http'
-require 'chef-dk/service_exceptions'
+require "chef-dk/authenticated_http"
+require "chef-dk/service_exceptions"
 
 module ChefDK
   module Policyfile
@@ -32,7 +32,6 @@ module ChefDK
         @policy_name = policy_name
         @lock_info_by_rev_id = lock_info_by_rev_id
       end
-
 
       def cb_info_for(rev_id, cookbook_name)
         lock = lock_info_by_rev_id[rev_id]
@@ -228,5 +227,3 @@ module ChefDK
     end
   end
 end
-
-

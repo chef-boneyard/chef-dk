@@ -15,13 +15,13 @@
 # limitations under the License.
 #
 
-require 'ffi_yajl'
+require "ffi_yajl"
 
-require 'chef-dk/service_exceptions'
-require 'chef-dk/authenticated_http'
-require 'chef-dk/policyfile_compiler'
-require 'chef-dk/policyfile/uploader'
-require 'chef-dk/policyfile/storage_config'
+require "chef-dk/service_exceptions"
+require "chef-dk/authenticated_http"
+require "chef-dk/policyfile_compiler"
+require "chef-dk/policyfile/uploader"
+require "chef-dk/policyfile/storage_config"
 
 module ChefDK
   module PolicyfileServices
@@ -77,7 +77,6 @@ module ChefDK
         validate_lockfile
         write_updated_lockfile
         upload_policy
-
       end
 
       def policyfile_lock
@@ -111,4 +110,3 @@ module ChefDK
     end
   end
 end
-

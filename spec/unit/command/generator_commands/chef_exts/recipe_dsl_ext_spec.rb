@@ -15,24 +15,24 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'stringio'
+require "spec_helper"
+require "stringio"
 
-require 'chef/config'
-require 'chef/recipe'
-require 'chef/run_context'
-require 'chef/event_dispatch/dispatcher'
-require 'chef/policy_builder'
-require 'chef/formatters/doc'
-require 'chef/cookbook/file_vendor'
-require 'chef/cookbook/file_system_file_vendor'
-require 'chef/cookbook/cookbook_collection'
-require 'chef/cookbook_loader'
+require "chef/config"
+require "chef/recipe"
+require "chef/run_context"
+require "chef/event_dispatch/dispatcher"
+require "chef/policy_builder"
+require "chef/formatters/doc"
+require "chef/cookbook/file_vendor"
+require "chef/cookbook/file_system_file_vendor"
+require "chef/cookbook/cookbook_collection"
+require "chef/cookbook_loader"
 
-require 'ohai/system'
+require "ohai/system"
 
-require 'chef-dk/command/generator_commands/chef_exts/recipe_dsl_ext'
-require 'chef-dk/command/generator_commands/chef_exts/quieter_doc_formatter'
+require "chef-dk/command/generator_commands/chef_exts/recipe_dsl_ext"
+require "chef-dk/command/generator_commands/chef_exts/quieter_doc_formatter"
 
 describe ChefDK::RecipeDSLExt do
 
@@ -56,7 +56,7 @@ describe ChefDK::RecipeDSLExt do
 
   let(:ohai) do
     Ohai::System.new.tap do |o|
-      o.all_plugins(["platform", "platform_version"])
+      o.all_plugins(%w{platform platform_version})
     end
   end
 

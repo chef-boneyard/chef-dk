@@ -15,17 +15,17 @@
 # limitations under the License.
 #
 
-require 'forwardable'
+require "forwardable"
 
-require 'chef-dk/exceptions'
+require "chef-dk/exceptions"
 
-require 'chef-dk/cookbook_profiler/null_scm'
-require 'chef-dk/cookbook_profiler/git'
+require "chef-dk/cookbook_profiler/null_scm"
+require "chef-dk/cookbook_profiler/git"
 
-require 'chef-dk/cookbook_profiler/identifiers'
-require 'chef-dk/policyfile/storage_config'
+require "chef-dk/cookbook_profiler/identifiers"
+require "chef-dk/policyfile/storage_config"
 
-require 'chef-dk/policyfile/cookbook_location_specification'
+require "chef-dk/policyfile/cookbook_location_specification"
 
 module ChefDK
 
@@ -164,7 +164,7 @@ module ChefDK
       private
 
       def assert_required_keys_valid!(lock_data)
-        missing_keys = REQUIRED_LOCK_DATA_KEYS.reject {|key| lock_data.key?(key) }
+        missing_keys = REQUIRED_LOCK_DATA_KEYS.reject { |key| lock_data.key?(key) }
         unless missing_keys.empty?
           raise InvalidLockfile, "Lockfile cookbook_lock for #{name} missing required attributes `#{missing_keys.join("', `")}'"
         end
@@ -241,7 +241,7 @@ module ChefDK
           "dotted_decimal_identifier" => dotted_decimal_identifier,
           "cache_key" => cache_key,
           "origin" => origin,
-          "source_options" => source_options
+          "source_options" => source_options,
         }
       end
 
@@ -261,7 +261,7 @@ module ChefDK
         # This behavior fits better with the intent of the #validate! method,
         # but we cannot check for modifications there because the user may be
         # setting custom identifiers.
-        if @identifier and identifiers.content_identifier != @identifier
+        if @identifier && identifiers.content_identifier != @identifier
           message = "Cached cookbook `#{name}' (#{version}) has been modified since the lockfile was generated. " +
             "Cached cookbooks cannot be modified. (full path: `#{cookbook_path}')"
           raise CachedCookbookModified, message
@@ -318,7 +318,7 @@ module ChefDK
           "source" => source,
           "cache_key" => nil,
           "scm_info" => scm_info,
-          "source_options" => source_options
+          "source_options" => source_options,
         }
       end
 

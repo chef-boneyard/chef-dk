@@ -63,7 +63,7 @@ module BundleUtil
           bundle_platform,
           ruby_platforms,
           "_#{desired_bundler_version}_",
-          *args
+          *args,
         ])
         puts "#{prefix}#{Shellwords.join(["bundle", *args])}#{platform ? " for #{platform} platform" : ""}:"
         with_gemfile(gemfile) do

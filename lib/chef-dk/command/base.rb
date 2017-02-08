@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'mixlib/cli'
-require 'chef-dk/helpers'
-require 'chef-dk/version'
-require 'chef/exceptions'
+require "mixlib/cli"
+require "chef-dk/helpers"
+require "chef-dk/version"
+require "chef/exceptions"
 
 module ChefDK
   module Command

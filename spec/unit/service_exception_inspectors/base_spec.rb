@@ -15,9 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/service_exception_inspectors/base'
-
+require "spec_helper"
+require "chef-dk/service_exception_inspectors/base"
 
 describe ChefDK::ServiceExceptionInspectors::Base do
 
@@ -40,4 +39,3 @@ describe ChefDK::ServiceExceptionInspectors::Base do
   end
 
 end
-

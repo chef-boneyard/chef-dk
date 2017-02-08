@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'semverse'
-require 'chef-dk/cookbook_omnifetch'
-require 'chef-dk/policyfile/storage_config'
+require "semverse"
+require "chef-dk/cookbook_omnifetch"
+require "chef-dk/policyfile/storage_config"
 
 module ChefDK
   module Policyfile
@@ -54,9 +54,9 @@ module ChefDK
       end
 
       def ==(other)
-        other.kind_of?(self.class) and
-          other.name == name and
-          other.version_constraint == version_constraint and
+        other.kind_of?(self.class) &&
+          other.name == name &&
+          other.version_constraint == version_constraint &&
           other.source_options == source_options
       end
 

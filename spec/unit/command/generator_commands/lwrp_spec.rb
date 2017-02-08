@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/a_file_generator'
-require 'chef-dk/command/generator_commands/lwrp'
+require "spec_helper"
+require "shared/a_file_generator"
+require "chef-dk/command/generator_commands/lwrp"
 
 describe ChefDK::Command::GeneratorCommands::LWRP do
 
@@ -29,4 +29,3 @@ describe ChefDK::Command::GeneratorCommands::LWRP do
 
   end
 end
-

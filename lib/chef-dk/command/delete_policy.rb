@@ -15,14 +15,13 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'chef-dk/ui'
-require 'chef-dk/configurable'
-require 'chef-dk/policyfile_services/rm_policy'
+require "chef-dk/command/base"
+require "chef-dk/ui"
+require "chef-dk/configurable"
+require "chef-dk/policyfile_services/rm_policy"
 
 module ChefDK
   module Command
-
 
     class DeletePolicy < Base
 
@@ -119,4 +118,3 @@ BANNER
     end
   end
 end
-

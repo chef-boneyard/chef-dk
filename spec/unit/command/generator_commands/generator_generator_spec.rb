@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'pathname'
-require 'chef-dk/command/generator_commands/generator_generator'
+require "spec_helper"
+require "pathname"
+require "chef-dk/command/generator_commands/generator_generator"
 
 describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
 
@@ -40,7 +40,6 @@ describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
   let(:ui) { TestHelpers::TestUI.new }
 
   subject(:generator_generator) { described_class.new(argv) }
-
 
   before do
     # This has to be the very first thing we do for any tests
@@ -212,7 +211,7 @@ METADATA
 
   context "with too many arguments" do
 
-    let(:argv) { %w[ one extra ] }
+    let(:argv) { %w{ one extra } }
 
     it "fails" do
       expect(generator_generator.run).to eq(1)
@@ -226,4 +225,3 @@ METADATA
   end
 
 end
-

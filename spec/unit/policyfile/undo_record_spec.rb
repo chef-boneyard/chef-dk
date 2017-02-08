@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/undo_record'
+require "spec_helper"
+require "chef-dk/policyfile/undo_record"
 
 describe ChefDK::Policyfile::UndoRecord do
 
@@ -25,7 +25,7 @@ describe ChefDK::Policyfile::UndoRecord do
   let(:policy_revision) do
     {
       "name" => "appserver",
-      "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111"
+      "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111",
     }
   end
 
@@ -49,8 +49,8 @@ describe ChefDK::Policyfile::UndoRecord do
         "description" => "",
         "backup_data" => {
           "policy_groups" => [],
-          "policy_revisions" => []
-        }
+          "policy_revisions" => [],
+        },
       }
       expect(undo_record.for_serialization).to eq(expected)
     end
@@ -90,10 +90,10 @@ describe ChefDK::Policyfile::UndoRecord do
             {
               "policy_name" => "appserver",
               "policy_group" => "preprod",
-              "data" => policy_revision
-            }
-          ]
-        }
+              "data" => policy_revision,
+            },
+          ],
+        },
       }
       expect(undo_record.for_serialization).to eq(expected)
     end
@@ -130,7 +130,7 @@ describe ChefDK::Policyfile::UndoRecord do
           {
             "format_version" => 1,
             "description" => "delete-policy-group preprod",
-            "backup_data" => []
+            "backup_data" => [],
           }
         end
 
@@ -146,7 +146,7 @@ describe ChefDK::Policyfile::UndoRecord do
           {
             "format_version" => 1,
             "description" => "delete-policy-group preprod",
-            "backup_data" => {}
+            "backup_data" => {},
           }
         end
 
@@ -164,8 +164,8 @@ describe ChefDK::Policyfile::UndoRecord do
             "description" => "delete-policy-group preprod",
             "backup_data" => {
               "policy_groups" => nil,
-              "policy_revisions" => []
-            }
+              "policy_revisions" => [],
+            },
           }
         end
 
@@ -183,8 +183,8 @@ describe ChefDK::Policyfile::UndoRecord do
             "description" => "delete-policy-group preprod",
             "backup_data" => {
               "policy_groups" => [],
-              "policy_revisions" => nil
-            }
+              "policy_revisions" => nil,
+            },
           }
         end
 
@@ -202,8 +202,8 @@ describe ChefDK::Policyfile::UndoRecord do
             "description" => "delete-policy-group preprod",
             "backup_data" => {
               "policy_groups" => [],
-              "policy_revisions" => [ nil ]
-            }
+              "policy_revisions" => [ nil ],
+            },
           }
         end
 
@@ -225,10 +225,10 @@ describe ChefDK::Policyfile::UndoRecord do
               {
                 "policy_name" => "appserver",
                 "policy_group" => "preprod",
-                "data" => policy_revision
-              }
-            ]
-          }
+                "data" => policy_revision,
+              },
+            ],
+          },
         }
       end
 
@@ -252,9 +252,7 @@ describe ChefDK::Policyfile::UndoRecord do
         expect(undo_record.for_serialization).to eq(serialized_data)
       end
 
-
     end
   end
 
 end
-

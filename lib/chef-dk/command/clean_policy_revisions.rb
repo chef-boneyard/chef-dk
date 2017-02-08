@@ -15,14 +15,13 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'chef-dk/ui'
-require 'chef-dk/configurable'
-require 'chef-dk/policyfile_services/clean_policies'
+require "chef-dk/command/base"
+require "chef-dk/ui"
+require "chef-dk/configurable"
+require "chef-dk/policyfile_services/clean_policies"
 
 module ChefDK
   module Command
-
 
     class CleanPolicyRevisions < Base
 
@@ -110,4 +109,3 @@ BANNER
     end
   end
 end
-

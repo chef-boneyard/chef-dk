@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/pager'
+require "spec_helper"
+require "chef-dk/pager"
 
 describe ChefDK::Pager do
 
@@ -34,7 +34,7 @@ describe ChefDK::Pager do
     end
 
     it "enables paging" do
-      expect(pager).to receive(:env).and_return({"PAGER" => "less"})
+      expect(pager).to receive(:env).and_return({ "PAGER" => "less" })
       expect(pager).to receive(:have_tty?).and_return(true)
       expect(pager.pager_enabled?).to be(true)
     end
@@ -44,7 +44,7 @@ describe ChefDK::Pager do
 
     subject(:pager) do
       ChefDK::Pager.new(enable_pager: true).tap do |p|
-        allow(p).to receive(:env).and_return({"PAGER" => "less"})
+        allow(p).to receive(:env).and_return({ "PAGER" => "less" })
         allow(p).to receive(:have_tty?).and_return(true)
       end
     end
@@ -85,7 +85,7 @@ describe ChefDK::Pager do
 
     subject(:pager) do
       ChefDK::Pager.new(enable_pager: false).tap do |p|
-        allow(p).to receive(:env).and_return({"PAGER" => "less"})
+        allow(p).to receive(:env).and_return({ "PAGER" => "less" })
         allow(p).to receive(:have_tty?).and_return(true)
       end
     end
@@ -93,7 +93,6 @@ describe ChefDK::Pager do
     before do
       expect(IO).to_not receive(:pipe)
     end
-
 
     it "provides a UI with stdout set to stdout" do
       expect(pager.ui.out_stream).to eq($stdout)
@@ -116,4 +115,3 @@ describe ChefDK::Pager do
 
   end
 end
-

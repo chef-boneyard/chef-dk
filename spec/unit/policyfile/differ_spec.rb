@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/differ'
+require "spec_helper"
+require "chef-dk/policyfile/differ"
 
 describe ChefDK::Policyfile::Differ do
 
@@ -469,8 +469,8 @@ E
         "origin" => "https://supermarket.chef.io/api/v1/cookbooks/bluepill/versions/2.3.2/download",
         "source_options" => {
           "artifactserver" => "https://supermarket.chef.io/api/v1/cookbooks/bluepill/versions/2.3.2/download",
-          "version" => "2.3.2"
-        }
+          "version" => "2.3.2",
+        },
       }
     end
 
@@ -684,4 +684,3 @@ E
   end
 
 end
-

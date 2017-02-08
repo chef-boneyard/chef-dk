@@ -15,12 +15,12 @@
 # limitations under the License.
 #
 
-require 'fileutils'
+require "fileutils"
 
-require 'ffi_yajl'
+require "ffi_yajl"
 
-require 'chef-dk/helpers'
-require 'chef-dk/policyfile/undo_record'
+require "chef-dk/helpers"
+require "chef-dk/policyfile/undo_record"
 
 module ChefDK
   module Policyfile
@@ -114,12 +114,11 @@ module ChefDK
       end
 
       def undo_record_files
-        Dir[File.join(undo_dir, '*')].sort
+        Dir[File.join(undo_dir, "*")].sort
       end
 
       def ensure_undo_dir_exists
         return false if File.directory?(undo_dir)
-
 
         FileUtils.mkdir_p(undo_dir)
       end
@@ -127,4 +126,3 @@ module ChefDK
 
   end
 end
-

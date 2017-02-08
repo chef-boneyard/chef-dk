@@ -10,7 +10,7 @@ module GemfileUtil
   #
   # :path does likewise.
   #
-  # :overrideable holds off on processing the 
+  # :overrideable holds off on processing the
   #
   def gemfile_parsing_done?
     overridden_gems == :finished

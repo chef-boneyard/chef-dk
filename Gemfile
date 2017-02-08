@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 # Note we do not use the gemspec DSL which restricts to the
 # gemspec for the current platform and filters out other platforms
@@ -27,17 +27,17 @@ gem "chef-dk", path: "."
 # EXPERIMENTAL: ALL gems specified here will be installed in chef-dk omnibus.
 # This represents all gems that will be part of chef-dk.
 
-# Ensure that we can always install rake, regardless of gem groups
-# Including the travis group to address https://github.com/sickill/rainbow/issues/44
-gem "rake", group: [ :omnibus_package, :development, :test, :travis ]
-
 group(:omnibus_package, :development, :test) do
+  gem "rake"
   gem "pry"
   gem "rdoc"
   gem "yard"
   gem "dep_selector"
   gem "guard"
   gem "ruby-prof"
+  gem "cookstyle"
+  gem "chefstyle"
+  gem "foodcritic", ">= 8.0"
 end
 
 # All software we recognize needs to stay at the latest possible version. But
@@ -59,7 +59,6 @@ group(:omnibus_package) do
   gem "cheffish", ">= 4.0"
   gem "chefspec"
   gem "fauxhai"
-  gem "foodcritic", ">= 8.0"
   gem "inspec", ">= 0.17.1"
   gem "kitchen-ec2"
   gem "kitchen-dokken", "= 1.1.0"
@@ -90,7 +89,6 @@ group(:omnibus_package) do
   gem "pry-stack_explorer"
   gem "rb-readline"
   gem "rubocop"
-  gem "cookstyle"
   gem "winrm-fs"
   gem "winrm-elevated"
   gem "cucumber"
@@ -111,7 +109,7 @@ group(:changelog) do
 end
 
 # mixlib-install is used by two groups
-gem 'mixlib-install', :group => [:changelog, :omnibus_package]
+gem "mixlib-install", :group => [:changelog, :omnibus_package]
 
 # TODO delete this when we figure out how to include the pushy windows dependencies
 # correctly

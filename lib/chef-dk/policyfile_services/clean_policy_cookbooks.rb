@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'set'
+require "set"
 
-require 'chef-dk/authenticated_http'
-require 'chef-dk/service_exceptions'
+require "chef-dk/authenticated_http"
+require "chef-dk/service_exceptions"
 
 module ChefDK
   module PolicyfileServices
@@ -58,7 +58,6 @@ module ChefDK
           end
         end
       end
-
 
       def all_cookbooks
         cookbook_list = http_client.get("/cookbook_artifacts")
@@ -122,4 +121,3 @@ module ChefDK
     end
   end
 end
-

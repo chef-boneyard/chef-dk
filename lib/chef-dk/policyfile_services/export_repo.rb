@@ -15,18 +15,18 @@
 # limitations under the License.
 #
 
-require 'pathname'
-require 'fileutils'
-require 'tmpdir'
-require 'zlib'
+require "pathname"
+require "fileutils"
+require "tmpdir"
+require "zlib"
 
-require 'archive/tar/minitar'
+require "archive/tar/minitar"
 
-require 'chef/cookbook/chefignore'
+require "chef/cookbook/chefignore"
 
-require 'chef-dk/service_exceptions'
-require 'chef-dk/policyfile_lock'
-require 'chef-dk/policyfile/storage_config'
+require "chef-dk/service_exceptions"
+require "chef-dk/policyfile_lock"
+require "chef-dk/policyfile/storage_config"
 
 module ChefDK
   module PolicyfileServices
@@ -37,7 +37,7 @@ module ChefDK
       # have multiple active iterations of a policy at once, but we don't need
       # this when serving a single exported policy via Chef Zero, so hardcode
       # it to a "well known" value:
-      POLICY_GROUP = 'local'.freeze
+      POLICY_GROUP = "local".freeze
 
       include Policyfile::StorageConfigDelegation
 
@@ -211,9 +211,9 @@ module ChefDK
         data = {
           "policies" => {
             policyfile_lock.name => {
-              "revision_id" => policyfile_lock.revision_id
-            }
-          }
+              "revision_id" => policyfile_lock.revision_id,
+            },
+          },
         }
 
         File.open(policy_group_repo_item_path, "wb+") do |f|
@@ -418,4 +418,3 @@ README
 
   end
 end
-

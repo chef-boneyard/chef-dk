@@ -1,4 +1,4 @@
-require 'unit/fixtures/configurable/test_config_loader'
+require "unit/fixtures/configurable/test_config_loader"
 
 class TestConfigurable
   include ChefDK::Configurable

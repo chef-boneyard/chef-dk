@@ -21,7 +21,7 @@ require "kitchen/provisioner/chef_base"
 # TODO: chef-dk and kitchen can only co-exist if kitchen and chef-dk agree on
 # the version of mixlib-shellout to use. Kitchen currently locked at 1.4,
 # chef-dk is on 2.x
-require 'chef-dk/policyfile_services/export_repo'
+require "chef-dk/policyfile_services/export_repo"
 
 module Kitchen
 
@@ -69,13 +69,13 @@ module Kitchen
 
       default_config :chef_client_path do |provisioner|
         provisioner.
-          remote_path_join(%W[#{provisioner[:chef_omnibus_root]} bin chef-client]).
+          remote_path_join(%W{#{provisioner[:chef_omnibus_root]} bin chef-client}).
           tap { |path| path.concat(".bat") if provisioner.windows_os? }
       end
 
       default_config :ruby_bindir do |provisioner|
         provisioner.
-          remote_path_join(%W[#{provisioner[:chef_omnibus_root]} embedded bin])
+          remote_path_join(%W{#{provisioner[:chef_omnibus_root]} embedded bin})
       end
 
       # (see Base#finalize_config!)
@@ -96,7 +96,7 @@ module Kitchen
       # (see Base#run_command)
       def run_command
         level = config[:log_level] == :info ? :auto : config[:log_level]
-        
+
         cmd = "#{sudo(config[:chef_client_path])} --local-mode".
           tap { |str| str.insert(0, "& ") if powershell_shell? }
 
@@ -104,10 +104,10 @@ module Kitchen
           "--config #{config[:root_path]}/client.rb",
           "--log_level #{level}",
           "--force-formatter",
-          "--no-color"
+          "--no-color",
         ]
         if config[:chef_zero_port]
-          args <<  "--chef-zero-port #{config[:chef_zero_port]}"
+          args << "--chef-zero-port #{config[:chef_zero_port]}"
         end
         if config[:log_file]
           args << "--logfile #{config[:log_file]}"
@@ -166,7 +166,7 @@ module Kitchen
         info("Preparing validation.pem")
         debug("Using a dummy validation.pem")
 
-        source = File.join(Kitchen.source_root, %w[support dummy-validation.pem])
+        source = File.join(Kitchen.source_root, %w{support dummy-validation.pem})
         FileUtils.cp(source, File.join(sandbox_path, "validation.pem"))
       end
 

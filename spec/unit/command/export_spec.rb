@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/command_with_ui_object'
-require 'chef-dk/command/export'
+require "spec_helper"
+require "shared/command_with_ui_object"
+require "chef-dk/command/export"
 
 describe ChefDK::Command::Export do
 
@@ -164,7 +164,7 @@ MESSAGE
       end
 
       it "displays the exception and cause" do
-        expected_error_text=<<-E
+        expected_error_text = <<-E
 Error: export failed
 Reason: (StandardError) some operation failed
 
@@ -179,7 +179,7 @@ E
         let(:params) { [ "path/to/export", "-D"] }
 
         it "displays the exception and cause with backtrace" do
-          expected_error_text=<<-E
+          expected_error_text = <<-E
 Error: export failed
 Reason: (StandardError) some operation failed
 
@@ -197,4 +197,3 @@ E
 
   end
 end
-

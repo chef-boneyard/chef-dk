@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'chef-dk/policyfile/comparison_base'
-require 'chef-dk/policyfile/lister'
-require 'chef-dk/pager'
+require "chef-dk/policyfile/comparison_base"
+require "chef-dk/policyfile/lister"
+require "chef-dk/pager"
 
 module ChefDK
   module PolicyfileServices
@@ -214,7 +214,7 @@ module ChefDK
       end
 
       def shorten_rev_id(revision_id)
-        revision_id[0,10]
+        revision_id[0, 10]
       end
 
       def http_client
@@ -227,10 +227,9 @@ module ChefDK
 
       def format_rev_ids_for_report(rev_id_by_group)
         rev_id_by_group.format_revision_ids do |rev_id|
-          rev_id ? rev_id[0,10] : "*NOT APPLIED*"
+          rev_id ? rev_id[0, 10] : "*NOT APPLIED*"
         end
       end
-
 
     end
   end

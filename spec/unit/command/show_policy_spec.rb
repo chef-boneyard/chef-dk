@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/command_with_ui_object'
-require 'chef-dk/command/show_policy'
+require "spec_helper"
+require "shared/command_with_ui_object"
+require "chef-dk/command/show_policy"
 
 describe ChefDK::Command::ShowPolicy do
 
@@ -50,7 +50,7 @@ describe ChefDK::Command::ShowPolicy do
 
     context "when given a path to the config" do
 
-      let(:params) { %w[ -c ~/otherstuff/config.rb ] }
+      let(:params) { %w{ -c ~/otherstuff/config.rb } }
 
       let(:config_arg) { "~/otherstuff/config.rb" }
 
@@ -101,7 +101,7 @@ describe ChefDK::Command::ShowPolicy do
 
       context "when --show-orphans is given" do
 
-        let(:params) { %w[ -o ] }
+        let(:params) { %w{ -o } }
 
         it "enables displaying orphans" do
           expect(command.show_orphans?).to be(true)
@@ -112,7 +112,7 @@ describe ChefDK::Command::ShowPolicy do
 
       context "when given a policy name" do
 
-        let(:params) { %w[ appserver ] }
+        let(:params) { %w{ appserver } }
 
         it "is not configured to show all policies" do
           expect(show_policy_service.show_all_policies?).to be(false)
@@ -127,7 +127,7 @@ describe ChefDK::Command::ShowPolicy do
 
       context "when given a policy name and a policy group name" do
 
-        let(:params) { %w[ appserver production ] }
+        let(:params) { %w{ appserver production } }
 
         it "is not configured to show all policies" do
           expect(show_policy_service.show_all_policies?).to be(false)
@@ -159,7 +159,7 @@ describe ChefDK::Command::ShowPolicy do
 
     context "when given too many arguments" do
 
-      let(:params) { %w[ appserver policygroup wut-is-this ] }
+      let(:params) { %w{ appserver policygroup wut-is-this } }
 
       it "shows usage and exits" do
         expect(command.run(params)).to eq(1)
@@ -188,7 +188,7 @@ describe ChefDK::Command::ShowPolicy do
       it "prints a debugging message and exits non-zero" do
         expect(command.run([])).to eq(1)
 
-        expected_output=<<-E
+        expected_output = <<-E
 Error: Failed to list policies
 Reason: (StandardError) some operation failed
 
@@ -201,9 +201,9 @@ E
 
         it "includes the backtrace in the error" do
 
-          command.run(%w[ -D ])
+          command.run(%w{ -D })
 
-          expected_output=<<-E
+          expected_output = <<-E
 Error: Failed to list policies
 Reason: (StandardError) some operation failed
 
@@ -232,4 +232,3 @@ E
 
   end
 end
-

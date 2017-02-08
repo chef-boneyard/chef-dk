@@ -15,12 +15,12 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/command/shell_init'
+require "spec_helper"
+require "chef-dk/command/shell_init"
 
 describe ChefDK::Command::ShellInit do
 
-  let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH'], git_bin_dir].join(File::PATH_SEPARATOR) }
+  let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV["PATH"], git_bin_dir].join(File::PATH_SEPARATOR) }
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
 
@@ -32,7 +32,7 @@ describe ChefDK::Command::ShellInit do
   end
 
   shared_context "shell init script" do |shell|
-    let(:user_bin_dir) { File.expand_path(File.join(Gem.user_dir, 'bin')) }
+    let(:user_bin_dir) { File.expand_path(File.join(Gem.user_dir, "bin")) }
     let(:expected_gem_root) { Gem.default_dir.to_s }
     let(:expected_gem_home) { Gem.user_dir }
     let(:expected_gem_path) { Gem.path.join(File::PATH_SEPARATOR) }
@@ -60,7 +60,7 @@ describe ChefDK::Command::ShellInit do
         expect(stdout_io.string).to include(expected_environment_commands)
       end
 
-      it "does not emit any empty lines", :if => ["powershell", "posh"].include?(shell) do
+      it "does not emit any empty lines", :if => %w{powershell posh}.include?(shell) do
         command_instance.run(argv)
         stdout_io.string.each_line do |s|
           expect(s.strip).not_to be_empty
@@ -86,7 +86,7 @@ describe ChefDK::Command::ShellInit do
         expect(stdout_io.string).to include(expected_environment_commands)
       end
 
-      it "does not emit any empty lines", :if => ["powershell", "posh"].include?(shell) do
+      it "does not emit any empty lines", :if => %w{powershell posh}.include?(shell) do
         command_instance.run(argv)
         stdout_io.string.each_line do |s|
           expect(s.strip).not_to be_empty
@@ -97,7 +97,7 @@ describe ChefDK::Command::ShellInit do
 
   shared_examples "a posix shell script" do |shell|
     before do
-      stub_const("File::PATH_SEPARATOR", ':')
+      stub_const("File::PATH_SEPARATOR", ":")
     end
 
     let(:expected_environment_commands) do
@@ -113,7 +113,7 @@ EOH
 
   shared_examples "a powershell script" do |shell|
     before do
-      stub_const("File::PATH_SEPARATOR", ';')
+      stub_const("File::PATH_SEPARATOR", ";")
     end
 
     let(:expected_environment_commands) do
@@ -141,7 +141,7 @@ EOH
           "exec" => "Runs the command in context of the embedded ruby",
           "env" => "Prints environment variables used by ChefDK",
           "gem" => "Runs the `gem` command in context of the embedded ruby",
-          "generate" => "Generate a new app, cookbook, or component"
+          "generate" => "Generate a new app, cookbook, or component",
         }
       end
 
@@ -189,7 +189,7 @@ END_COMPLETION
           "exec" => "Runs the command in context of the embedded ruby",
           "env" => "Prints environment variables used by ChefDK",
           "gem" => "Runs the `gem` command in context of the embedded ruby",
-          "generate" => "Generate a new app, cookbook, or component"
+          "generate" => "Generate a new app, cookbook, or component",
         }
       end
 
@@ -242,11 +242,11 @@ compdef _chef chef
     end
   end
 
-  context 'for fish' do
+  context "for fish" do
     before do
-      stub_const('File::PATH_SEPARATOR', ':')
+      stub_const("File::PATH_SEPARATOR", ":")
     end
-    let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH'], git_bin_dir].join(':').split(':').join('" "') }
+    let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV["PATH"], git_bin_dir].join(":").split(":").join('" "') }
     let(:expected_environment_commands) do
       <<-EOH
 set -gx PATH "#{expected_path}" 2>/dev/null;
@@ -256,7 +256,7 @@ set -gx GEM_PATH "#{expected_gem_path}";
 EOH
     end
 
-    include_context 'shell init script', 'fish'
+    include_context "shell init script", "fish"
 
     describe "generating auto-complete" do
 
@@ -265,7 +265,7 @@ EOH
           "exec" => "Runs the command in context of the embedded ruby",
           "env" => "Prints environment variables used by ChefDK",
           "gem" => "Runs the `gem` command in context of the embedded ruby",
-          "generate" => "Generate a new app, cookbook, or component"
+          "generate" => "Generate a new app, cookbook, or component",
         }
       end
 
@@ -307,7 +307,7 @@ END_COMPLETION
     end
   end
 
-  ['powershell', 'posh'].each do |shell|
+  %w{powershell posh}.each do |shell|
     context "for #{shell}" do
       it_behaves_like "a powershell script", shell
     end
@@ -326,7 +326,7 @@ END_COMPLETION
 
   context "when an unsupported shell is specified" do
 
-    let(:argv) { ['nosuchsh'] }
+    let(:argv) { ["nosuchsh"] }
 
     it "exits with an error message" do
       expect(command_instance.run(argv)).to eq(1)
@@ -336,6 +336,4 @@ END_COMPLETION
 
   end
 
-
 end
-

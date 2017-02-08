@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/commands_map'
-require 'stringio'
+require "spec_helper"
+require "chef-dk/commands_map"
+require "stringio"
 
 describe ChefDK::CommandsMap do
 
@@ -43,7 +43,7 @@ describe ChefDK::CommandsMap do
   end
 
   it "lists the available commands" do
-    expect(mapping.command_names).to match_array(%w[example hypenated-example explicit-path-example documented-example])
+    expect(mapping.command_names).to match_array(%w{example hypenated-example explicit-path-example documented-example})
   end
 
   it "keeps the docstring of a command" do

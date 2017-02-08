@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'yaml'
-require 'chef-dk/command/env'
+require "spec_helper"
+require "yaml"
+require "chef-dk/command/env"
 
 describe ChefDK::Command::Env do
   let(:ui) { TestHelpers::TestUI.new }
@@ -25,7 +25,7 @@ describe ChefDK::Command::Env do
 
   let(:command_options) { [] }
 
-  let(:user_bin_dir) { File.expand_path(File.join(Gem.user_dir, 'bin')) }
+  let(:user_bin_dir) { File.expand_path(File.join(Gem.user_dir, "bin")) }
   let(:omnibus_embedded_bin_dir) { "/foo/embedded/bin" }
   let(:omnibus_bin_dir) { "/foo/bin" }
 
@@ -46,7 +46,7 @@ describe ChefDK::Command::Env do
   describe "when running env command" do
     it "should return valid yaml" do
       run_command
-      expect{ YAML.load(ui.output) }.not_to raise_error
+      expect { YAML.load(ui.output) }.not_to raise_error
     end
   end
 end

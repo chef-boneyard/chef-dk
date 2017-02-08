@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/undo_stack'
+require "spec_helper"
+require "chef-dk/policyfile/undo_stack"
 
 describe ChefDK::Policyfile::UndoStack do
 
@@ -25,7 +25,7 @@ describe ChefDK::Policyfile::UndoStack do
   let(:policy_revision) do
     {
       "name" => "appserver",
-      "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111"
+      "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111",
     }
   end
 
@@ -180,7 +180,6 @@ describe ChefDK::Policyfile::UndoStack do
 
   end
 
-
   context "when the stack is at the maximum configured size" do
     # `Time.new` is stubbed later on, need to force it to be evaluated before
     # then.
@@ -196,7 +195,7 @@ describe ChefDK::Policyfile::UndoStack do
     def incremented_undo_record(i)
       record = {
         "name" => "appserver",
-        "revision_id" => i.to_s * 64
+        "revision_id" => i.to_s * 64,
       }
 
       ChefDK::Policyfile::UndoRecord.new.tap do |undo_record|
@@ -241,7 +240,7 @@ describe ChefDK::Policyfile::UndoStack do
 
       before do
         FileUtils.touch(older_record_path)
-      expect(undo_stack_files.size).to eq(11)
+        expect(undo_stack_files.size).to eq(11)
       end
 
       describe "pushing a new undo record" do

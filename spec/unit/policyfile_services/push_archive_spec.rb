@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile_services/push_archive'
+require "spec_helper"
+require "chef-dk/policyfile_services/push_archive"
 
 describe ChefDK::PolicyfileServices::PushArchive do
 
@@ -25,7 +25,6 @@ describe ChefDK::PolicyfileServices::PushArchive do
   def create_archive
     Zlib::GzipWriter.open(archive_file_path) do |gz_file|
       Archive::Tar::Minitar::Writer.open(gz_file) do |tar|
-
 
         archive_dirs.each do |dir|
           tar.mkdir(dir, mode: 0755)
@@ -184,7 +183,6 @@ E
         end
       end
 
-
       context "when the archive is a gzip file of a very malformed tar archive" do
 
         before do
@@ -254,7 +252,7 @@ E
 
         context "when the lockfile is semantically invalid" do
 
-          let(:lockfile_content) { '{ }' }
+          let(:lockfile_content) { "{ }" }
 
           it "errors out" do
             expect(exception).to_not be_nil
@@ -263,7 +261,6 @@ E
           end
 
         end
-
 
         context "when the archive does not have all the necessary cookbooks" do
 
@@ -335,7 +332,7 @@ MESSAGE
       [
         FileToTar.new("Policyfile.lock.json", lockfile_content),
         FileToTar.new(File.join(cookbook_artifact_dir, "metadata.rb"), "name 'local-cookbook'"),
-        FileToTar.new(File.join(recipes_dir, "default.rb"), "puts 'hello'")
+        FileToTar.new(File.join(recipes_dir, "default.rb"), "puts 'hello'"),
       ]
     end
 
@@ -375,4 +372,3 @@ MESSAGE
   end
 
 end
-

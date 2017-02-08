@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/fixture_cookbook_checksums'
-require 'chef-dk/policyfile_lock.rb'
+require "spec_helper"
+require "shared/fixture_cookbook_checksums"
+require "chef-dk/policyfile_lock.rb"
 
 describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
 
@@ -33,7 +33,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
 
   let(:name) { "application-server" }
 
-  let(:run_list) { [ 'recipe[erlang::default]', 'recipe[erchef::prereqs]', 'recipe[erchef::app]' ] }
+  let(:run_list) { [ "recipe[erlang::default]", "recipe[erchef::prereqs]", "recipe[erchef::app]" ] }
 
   let(:storage_config) do
     ChefDK::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: local_cookbooks_root )
@@ -122,9 +122,8 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
       location_spec = local_cookbook_lock.cookbook_location_spec
       expect(location_spec).to be_an_instance_of(ChefDK::Policyfile::CookbookLocationSpecification)
 
-      expect(location_spec.relative_path).to eq('local-cookbook')
+      expect(location_spec.relative_path).to eq("local-cookbook")
     end
-
 
     it "ensures the cookbooks are installed" do
       expect(remote_cookbook_lock.cookbook_location_spec).to receive(:ensure_cached)

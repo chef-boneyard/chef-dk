@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'chef-dk/service_exceptions'
-require 'chef-dk/authenticated_http'
-require 'chef-dk/policyfile/undo_stack'
-require 'chef-dk/policyfile/undo_record'
+require "chef-dk/service_exceptions"
+require "chef-dk/authenticated_http"
+require "chef-dk/policyfile/undo_stack"
+require "chef-dk/policyfile/undo_record"
 
 module ChefDK
   module PolicyfileServices
@@ -83,4 +83,3 @@ module ChefDK
     end
   end
 end
-

@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'diff/lcs'
-require 'diff/lcs/hunk'
-require 'paint'
-require 'ffi_yajl'
+require "diff/lcs"
+require "diff/lcs/hunk"
+require "paint"
+require "ffi_yajl"
 
 module ChefDK
   module Policyfile
@@ -28,7 +28,6 @@ module ChefDK
       LINES_OF_CONTEXT = 3
       INITIAL_FILE_LENGTH_DIFFERENCE = 0
       FORMAT = :unified
-
 
       attr_reader :old_lock
       attr_reader :old_name
@@ -88,7 +87,7 @@ module ChefDK
       end
 
       def report_rev_id_changes
-        h1('REVISION ID CHANGED')
+        h1("REVISION ID CHANGED")
         old_rev = old_lock["revision_id"]
         new_rev = new_lock["revision_id"]
         diff_lines([ old_rev ], [ new_rev ])
@@ -179,12 +178,12 @@ module ChefDK
 
       def h1(str)
         ui.msg(str)
-        ui.msg('=' * str.size)
+        ui.msg("=" * str.size)
       end
 
       def h2(str)
         ui.msg(str)
-        ui.msg('-' * str.size)
+        ui.msg("-" * str.size)
       end
 
       def diff_lines(old_lines, new_lines)
@@ -259,8 +258,6 @@ module ChefDK
         end
       end
 
-
     end
   end
 end
-

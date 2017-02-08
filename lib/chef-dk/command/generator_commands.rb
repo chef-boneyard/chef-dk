@@ -15,12 +15,12 @@
 # limitations under the License.
 #
 
-require 'mixlib/cli'
-require 'rbconfig'
-require 'pathname'
-require 'chef-dk/command/base'
-require 'chef-dk/chef_runner'
-require 'chef-dk/generator'
+require "mixlib/cli"
+require "rbconfig"
+require "pathname"
+require "chef-dk/command/base"
+require "chef-dk/chef_runner"
+require "chef-dk/generator"
 
 module ChefDK
   module Command
@@ -38,7 +38,7 @@ module ChefDK
         :long => "--license LICENSE",
         :description => "all_rights, apachev2, mit, gplv2, gplv3 - defaults to all_rights",
         :proc => Proc.new { |l|
-          l.match(/apache2/) ? 'apachev2' : l
+          l =~ /apache2/ ? "apachev2" : l
         },
         :default => nil
 
@@ -68,7 +68,7 @@ module ChefDK
         :long  => "--generator-arg KEY=VALUE",
         :description => "Use to set arbitrary attribute KEY to VALUE in the code_generator cookbook",
         :default => [],
-        :proc => Proc.new { |s| generator_args <<  s.split("=").map(&:strip) }
+        :proc => Proc.new { |s| generator_args << s.split("=").map(&:strip) }
     end
 
     # ## GeneratorCommands

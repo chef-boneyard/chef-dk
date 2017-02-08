@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/command_with_ui_object'
-require 'chef-dk/command/push_archive'
+require "spec_helper"
+require "shared/command_with_ui_object"
+require "chef-dk/command/push_archive"
 
 describe ChefDK::Command::PushArchive do
 

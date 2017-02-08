@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef-dk/policyfile/reports/table_printer'
+require "chef-dk/policyfile/reports/table_printer"
 
 module ChefDK
   module Policyfile
@@ -38,18 +38,18 @@ module ChefDK
         def show
           reused_cbs.each do |cb_with_lock|
             lock = cb_with_lock.lock
-            table.print_row("Using", lock.name, lock.version, "(#{lock.identifier[0,8]})")
+            table.print_row("Using", lock.name, lock.version, "(#{lock.identifier[0, 8]})")
           end
 
           uploaded_cbs.each do |cb_with_lock|
             lock = cb_with_lock.lock
-            table.print_row("Uploaded", lock.name, lock.version, "(#{lock.identifier[0,8]})")
+            table.print_row("Uploaded", lock.name, lock.version, "(#{lock.identifier[0, 8]})")
           end
         end
 
         def table
           @table ||= TablePrinter.new(ui) do |t|
-            t.column(%w[ Using Uploaded ])
+            t.column(%w{ Using Uploaded })
             t.column(cookbook_names)
             t.column(cookbook_version_numbers)
             t.column

@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'chef-dk/exceptions'
-require 'chef-dk/service_exceptions'
-require 'chef-dk/policyfile/lister'
+require "chef-dk/exceptions"
+require "chef-dk/service_exceptions"
+require "chef-dk/policyfile/lister"
 
 module ChefDK
   module PolicyfileServices

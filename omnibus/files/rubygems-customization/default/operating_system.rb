@@ -17,11 +17,10 @@ module Gem
     remove_method :user_dir
 
     def user_dir
-      parts = [Gem.user_home, '.chefdk', 'gem', ruby_engine]
-      parts << RbConfig::CONFIG['ruby_version'] unless RbConfig::CONFIG['ruby_version'].empty?
+      parts = [Gem.user_home, ".chefdk", "gem", ruby_engine]
+      parts << RbConfig::CONFIG["ruby_version"] unless RbConfig::CONFIG["ruby_version"].empty?
       File.join parts
     end
   end
 
 end
-

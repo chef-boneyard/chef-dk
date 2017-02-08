@@ -16,12 +16,12 @@
 # limitations under the License.
 #
 
-require 'digest/sha2'
+require "digest/sha2"
 
-require 'chef-dk/policyfile/storage_config'
-require 'chef-dk/policyfile/cookbook_locks'
-require 'chef-dk/policyfile/solution_dependencies'
-require 'chef-dk/ui'
+require "chef-dk/policyfile/storage_config"
+require "chef-dk/policyfile/cookbook_locks"
+require "chef-dk/policyfile/solution_dependencies"
+require "chef-dk/ui"
 
 module ChefDK
 
@@ -65,7 +65,7 @@ module ChefDK
       end
     end
 
-    RUN_LIST_ITEM_FORMAT = /\Arecipe\[[^\s]+::[^\s]+\]\Z/.freeze
+    RUN_LIST_ITEM_FORMAT = /\Arecipe\[[^\s]+::[^\s]+\]\Z/
 
     def self.build(storage_config)
       lock = new(storage_config)
@@ -319,7 +319,7 @@ module ChefDK
         # keys to UTF-8 first so that the sort order uses the UTF-8 strings.
         item_with_normalized_keys = item.inject({}) do |normalized_item, (key, value)|
           validate_attr_key(key)
-          normalized_item[key.encode('utf-8')] = value
+          normalized_item[key.encode("utf-8")] = value
           normalized_item
         end
         elements = item_with_normalized_keys.keys.sort.map do |key|
@@ -327,12 +327,12 @@ module ChefDK
           v = canonicalize_elements(item_with_normalized_keys[key])
           k << v
         end
-        "{" << elements.join(',') << "}"
+        "{" << elements.join(",") << "}"
       when String
-        '"' << item.encode('utf-8') << '"'
+        '"' << item.encode("utf-8") << '"'
       when Array
         elements = item.map { |i| canonicalize_elements(i) }
-        '[' << elements.join(',') << ']'
+        "[" << elements.join(",") << "]"
       when Integer
         item.to_s
       when Float
@@ -396,7 +396,6 @@ module ChefDK
       end
 
       @name = name_attribute
-
     end
 
     def set_run_list_from_lock_data(lock_data)

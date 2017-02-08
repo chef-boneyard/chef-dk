@@ -16,9 +16,9 @@
 #
 
 # This fixes a missing require in chef/digester:
-require 'singleton'
-require 'chef/cookbook/cookbook_version_loader'
-require 'chef/cookbook/chefignore'
+require "singleton"
+require "chef/cookbook/cookbook_version_loader"
+require "chef/cookbook/chefignore"
 
 module ChefDK
   module Policyfile

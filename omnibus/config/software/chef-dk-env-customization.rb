@@ -31,7 +31,7 @@ build do
 
     site_ruby = Bundler.with_clean_env do
       ruby = windows_safe_path("#{install_dir}/embedded/bin/ruby")
-      %x|#{ruby} -rrbconfig -e "puts RbConfig::CONFIG['sitelibdir']"|.strip
+      `#{ruby} -rrbconfig -e "puts RbConfig::CONFIG['sitelibdir']"`.strip
     end
 
     if site_ruby.nil? || site_ruby.empty?

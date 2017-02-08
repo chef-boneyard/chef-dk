@@ -15,14 +15,14 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'chef-dk/ui'
-require 'chef-dk/pager'
-require 'chef-dk/policyfile/differ'
-require 'chef-dk/policyfile/comparison_base'
-require 'chef-dk/policyfile/storage_config'
-require 'chef-dk/configurable'
-require 'chef-dk/authenticated_http'
+require "chef-dk/command/base"
+require "chef-dk/ui"
+require "chef-dk/pager"
+require "chef-dk/policyfile/differ"
+require "chef-dk/policyfile/comparison_base"
+require "chef-dk/policyfile/storage_config"
+require "chef-dk/configurable"
+require "chef-dk/authenticated_http"
 
 module ChefDK
   module Command
@@ -152,7 +152,7 @@ BANNER
         end
       end
 
-      def differ(ui = ui())
+      def differ(ui = self.ui())
         Policyfile::Differ.new(old_name: old_base.name,
                                old_lock: old_lock,
                                new_name: new_base.name,
@@ -313,4 +313,3 @@ BANNER
 
   end
 end
-

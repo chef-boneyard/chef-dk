@@ -15,15 +15,15 @@
 # limitations under the License.
 #
 
-require 'mixlib/cli'
-require 'chef-dk/version'
-require 'chef-dk/commands_map'
-require 'chef-dk/builtin_commands'
-require 'chef-dk/helpers'
-require 'chef-dk/ui'
-require 'chef/util/path_helper'
-require 'chef/mixin/shell_out'
-require 'bundler'
+require "mixlib/cli"
+require "chef-dk/version"
+require "chef-dk/commands_map"
+require "chef-dk/builtin_commands"
+require "chef-dk/helpers"
+require "chef-dk/ui"
+require "chef/util/path_helper"
+require "chef/mixin/shell_out"
+require "bundler"
 
 module ChefDK
   class CLI
@@ -149,7 +149,7 @@ BANNER
     private
 
     def normalized_exit_code(maybe_integer)
-      if maybe_integer.kind_of?(Integer) and (0..255).include?(maybe_integer)
+      if maybe_integer.kind_of?(Integer) && (0..255).cover?(maybe_integer)
         maybe_integer
       else
         0
@@ -163,7 +163,7 @@ BANNER
 
     # upcase drive letters for comparison since ruby has a String#capitalize function
     def drive_upcase(path)
-      if Chef::Platform.windows? && path[0] =~ /^[A-Za-z]$/ && path[1,2] == ":\\"
+      if Chef::Platform.windows? && path[0] =~ /^[A-Za-z]$/ && path[1, 2] == ":\\"
         path.capitalize
       else
         path

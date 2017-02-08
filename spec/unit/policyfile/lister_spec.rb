@@ -15,15 +15,14 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/lister'
+require "spec_helper"
+require "chef-dk/policyfile/lister"
 
 describe ChefDK::Policyfile::Lister do
 
   def api_url(org_specific_path)
     "https://chef.example/organizations/myorg/#{org_specific_path}"
   end
-
 
   let(:config) do
     double("Chef::Config",
@@ -44,7 +43,6 @@ describe ChefDK::Policyfile::Lister do
                                                        client_name: "deuce")
     info_fetcher.http_client
   end
-
 
   context "when the data is fetched successfully from the server" do
 
@@ -89,8 +87,8 @@ describe ChefDK::Policyfile::Lister do
               "1111111111111111111111111111111111111111" => {},
               "2222222222222222222222222222222222222222" => {},
               "3333333333333333333333333333333333333333" => {},
-              "4444444444444444444444444444444444444444" => {}
-            }
+              "4444444444444444444444444444444444444444" => {},
+            },
           },
           "db" => {
             "uri" => api_url("policies/db"),
@@ -98,16 +96,16 @@ describe ChefDK::Policyfile::Lister do
               "6666666666666666666666666666666666666666" => {},
               "7777777777777777777777777777777777777777" => {},
               "8888888888888888888888888888888888888888" => {},
-              "9999999999999999999999999999999999999999" => {}
-            }
+              "9999999999999999999999999999999999999999" => {},
+            },
           },
           "cache" => {
             "uri" => api_url("policies/cache"),
             "revisions" => {
               "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {},
-              "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" => {}
-            }
-          }
+              "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" => {},
+            },
+          },
         }
       end
 
@@ -117,8 +115,8 @@ describe ChefDK::Policyfile::Lister do
           "policies" => {
             "db" => { "revision_id" => "6666666666666666666666666666666666666666" },
             "appserver" => { "revision_id" => "1111111111111111111111111111111111111111" },
-            "cache" => { "revision_id" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
-          }
+            "cache" => { "revision_id" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+          },
         }
       end
 
@@ -128,8 +126,8 @@ describe ChefDK::Policyfile::Lister do
           "policies" => {
             "db" => { "revision_id" => "7777777777777777777777777777777777777777" },
             "appserver" => { "revision_id" => "2222222222222222222222222222222222222222" },
-            "cache" => { "revision_id" => "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" }
-          }
+            "cache" => { "revision_id" => "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" },
+          },
         }
       end
 
@@ -138,8 +136,8 @@ describe ChefDK::Policyfile::Lister do
           "uri" => api_url("policy_groups/prod"),
           "policies" => {
             "db" => { "revision_id" => "8888888888888888888888888888888888888888" },
-            "appserver" => { "revision_id" => "3333333333333333333333333333333333333333" }
-          }
+            "appserver" => { "revision_id" => "3333333333333333333333333333333333333333" },
+          },
         }
       end
 
@@ -147,7 +145,7 @@ describe ChefDK::Policyfile::Lister do
         {
           "dev" => dev_group_data,
           "test" => test_group_data,
-          "prod" => prod_group_data
+          "prod" => prod_group_data,
         }
       end
 
@@ -157,18 +155,18 @@ describe ChefDK::Policyfile::Lister do
             "1111111111111111111111111111111111111111" => {},
             "2222222222222222222222222222222222222222" => {},
             "3333333333333333333333333333333333333333" => {},
-            "4444444444444444444444444444444444444444" => {}
+            "4444444444444444444444444444444444444444" => {},
           },
           "db" => {
             "6666666666666666666666666666666666666666" => {},
             "7777777777777777777777777777777777777777" => {},
             "8888888888888888888888888888888888888888" => {},
-            "9999999999999999999999999999999999999999" => {}
+            "9999999999999999999999999999999999999999" => {},
           },
           "cache" => {
             "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {},
-            "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" => {}
-          }
+            "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" => {},
+          },
         }
       end
 
@@ -177,20 +175,19 @@ describe ChefDK::Policyfile::Lister do
           "dev" => {
             "db" => "6666666666666666666666666666666666666666",
             "appserver" => "1111111111111111111111111111111111111111",
-            "cache" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            "cache" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           },
           "test" => {
             "db" => "7777777777777777777777777777777777777777",
             "appserver" => "2222222222222222222222222222222222222222",
-            "cache" => "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+            "cache" => "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
           },
           "prod" => {
-            "db" =>"8888888888888888888888888888888888888888",
-            "appserver" => "3333333333333333333333333333333333333333"
-          }
+            "db" => "8888888888888888888888888888888888888888",
+            "appserver" => "3333333333333333333333333333333333333333",
+          },
         }
       end
-
 
       it "gives a Hash of policy revisions by policy name" do
         expect(info_fetcher.policies_by_name).to eq(expected_policy_list)
@@ -212,8 +209,8 @@ describe ChefDK::Policyfile::Lister do
       end
 
       it "lists orphaned revisions for a given policy" do
-        expect(info_fetcher.orphaned_revisions("db")).to eq(%w[ 9999999999999999999999999999999999999999 ])
-        expect(info_fetcher.orphaned_revisions("appserver")).to eq(%w[ 4444444444444444444444444444444444444444 ])
+        expect(info_fetcher.orphaned_revisions("db")).to eq(%w{ 9999999999999999999999999999999999999999 })
+        expect(info_fetcher.orphaned_revisions("appserver")).to eq(%w{ 4444444444444444444444444444444444444444 })
         expect(info_fetcher.orphaned_revisions("cache")).to eq([])
       end
 
@@ -227,7 +224,7 @@ describe ChefDK::Policyfile::Lister do
         appserver_rev_ids = {
           "dev" => "1111111111111111111111111111111111111111",
           "test" => "2222222222222222222222222222222222222222",
-          "prod" => "3333333333333333333333333333333333333333"
+          "prod" => "3333333333333333333333333333333333333333",
         }
 
         expect(map["appserver"].revision_ids_by_group).to eq(appserver_rev_ids)
@@ -235,7 +232,7 @@ describe ChefDK::Policyfile::Lister do
         db_rev_ids = {
           "dev" => "6666666666666666666666666666666666666666",
           "test" => "7777777777777777777777777777777777777777",
-          "prod" => "8888888888888888888888888888888888888888"
+          "prod" => "8888888888888888888888888888888888888888",
         }
 
         expect(map["db"].revision_ids_by_group).to eq(db_rev_ids)
@@ -243,7 +240,7 @@ describe ChefDK::Policyfile::Lister do
         cache_rev_ids = {
           "dev" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
           "test" => "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-          "prod" => nil
+          "prod" => nil,
         }
         expect(map["cache"].revision_ids_by_group).to eq(cache_rev_ids)
       end
@@ -252,7 +249,7 @@ describe ChefDK::Policyfile::Lister do
 
         let(:dev_group_data) do
           {
-            "uri" => api_url("policy_groups/dev")
+            "uri" => api_url("policy_groups/dev"),
           }
         end
 
@@ -269,4 +266,3 @@ describe ChefDK::Policyfile::Lister do
   end
 
 end
-

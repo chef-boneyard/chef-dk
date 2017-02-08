@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/community_cookbook_source'
+require "spec_helper"
+require "chef-dk/policyfile/community_cookbook_source"
 
 describe ChefDK::Policyfile::CommunityCookbookSource do
 
@@ -68,7 +68,7 @@ describe ChefDK::Policyfile::CommunityCookbookSource do
     end
 
     it "sets the source preferences as given" do
-      expect(cookbook_source.preferred_cookbooks).to eq( %w[ foo bar baz ] )
+      expect(cookbook_source.preferred_cookbooks).to eq( %w{ foo bar baz } )
     end
 
     it "is the preferred source for the requested cookbooks" do
@@ -81,4 +81,3 @@ describe ChefDK::Policyfile::CommunityCookbookSource do
   end
 
 end
-

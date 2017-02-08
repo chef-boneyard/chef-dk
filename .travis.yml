@@ -37,23 +37,27 @@ env:
 
 matrix:
   include:
-    - rvm: 2.3.1
     - rvm: 2.2.5
+      env:
+        RSPEC: 1
+      script: $(which bundle) exec rspec
+    - rvm: 2.3.1
+      env:
+        RSPEC: 1
+      script: $(which bundle) exec rspec
+    - rvm: 2.3.1
+      env:
+        COOKSTYLE: 1
+      script: $(which bundle) exec rake style:cookstyle
+    - rvm: 2.3.1
+      env:
+        CHEFSTYLE: 1
+      script: $(which bundle) exec rake style:chefstyle
+    - rvm: 2.3.1
+      env:
+        FOODCRITIC: 1
+      script: $(which bundle) exec rake style:foodcritic
 
 branches:
   only:
     - master
-
-script: bundle exec rspec
-
-notifications:
-  hipchat:
-    on_change: true
-    on_failure: true
-    on_success: false
-    on_pull_requests: false
-    rooms:
-      # Build Statuses
-      - secure: Y3WXFEuXPnUvJJPrQPSzkSzAZwI+SxSp7O5crSU24tMqFJWQNyqCqSYGGcBstQWkJLq5lDD05qIT0LR2Hsi4fsj1/7g4EFKDWk9QaJp6LVzoMz5aTQDlNBR0WzyG7eCuOWmHmFurEYR/72UW24Zm3vZAp1xoomDVDgQnPPYpjRQ=
-      # chef-dk
-      - secure: Q9mOh4fjH4/acPvW0Q4g+L/QsUzw3maVN402paHvbiAhAOT8tM44ilUFXJg7wTzOL+trtm5QxfhPSqNrU+7r1I79w1bw741EpbuU4nkzbGFe9PGizSqwyJFM+yQ+HwZ7zR++OeHZmhbtTZ7Awv8MAUkuWk84KkEwiRTJpqpxiCs=

@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'ffi_yajl'
-require 'mixlib/shellout'
-require 'chef-dk/service_exceptions'
+require "ffi_yajl"
+require "mixlib/shellout"
+require "chef-dk/service_exceptions"
 
 module ChefDK
   module Policyfile
@@ -121,4 +121,3 @@ module ChefDK
     end
   end
 end
-
