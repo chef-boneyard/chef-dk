@@ -44,7 +44,10 @@ branches:
   only:
     - master
 
-script: bundle exec rspec
+script:
+  - bundle exec rspec
+  - bundle exec cookstyle lib/chef-dk/skeletons/code_generator
+  - bundle exec foodcritic . --exclude spec -f any -t ~FC007 -t ~FC011 -t ~supermarket lib/chef-dk/skeletons/code_generator
 
 notifications:
   hipchat:
