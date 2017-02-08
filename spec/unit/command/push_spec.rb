@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/command_with_ui_object'
-require 'chef-dk/command/push'
+require "spec_helper"
+require "shared/command_with_ui_object"
+require "chef-dk/command/push"
 
 describe ChefDK::Command::Push do
 
@@ -158,7 +158,7 @@ describe ChefDK::Command::Push do
         it "describes the error" do
           command.run(params)
 
-          expected_output=<<-E
+          expected_output = <<-E
 Error: push failed
 Reason: (StandardError) some operation failed
 
@@ -177,7 +177,7 @@ E
 
             command.run(params)
 
-            expected_output=<<-E
+            expected_output = <<-E
 Error: push failed
 Reason: (StandardError) some operation failed
 
@@ -196,4 +196,3 @@ E
   end
 
 end
-

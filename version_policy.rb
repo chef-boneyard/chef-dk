@@ -49,7 +49,7 @@ OMNIBUS_OVERRIDES = {
 
   # For 1.2 stable release only, pin to 1.1.0 of kitchen-dokken. After the 1.2
   # release, unpin and bring in kitchen-dokken 2.x.
-  "kitchen-dokken" => "1.1.0"
+  "kitchen-dokken" => "1.1.0",
 }
 
 #
@@ -104,7 +104,7 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "chef",
   "chef-config",
   "opscode-pushy-client",
-  "mixlib-cli"
+  "mixlib-cli",
 
 ]
 

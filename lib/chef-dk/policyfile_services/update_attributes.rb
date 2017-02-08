@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'chef-dk/helpers'
-require 'chef-dk/policyfile/storage_config'
-require 'chef-dk/service_exceptions'
-require 'chef-dk/policyfile_compiler'
+require "chef-dk/helpers"
+require "chef-dk/policyfile/storage_config"
+require "chef-dk/service_exceptions"
+require "chef-dk/policyfile_compiler"
 
 module ChefDK
   module PolicyfileServices
@@ -88,7 +88,6 @@ module ChefDK
         end
       end
 
-
       def assert_policy_and_lock_present!
         unless File.exist?(policyfile_expanded_path)
           raise PolicyfileNotFound, "Policyfile not found at path #{policyfile_expanded_path}"
@@ -101,4 +100,3 @@ module ChefDK
     end
   end
 end
-

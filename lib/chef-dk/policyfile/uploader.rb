@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-require 'chef/cookbook_uploader'
-require 'chef-dk/policyfile/read_cookbook_for_compat_mode_upload'
+require "chef/cookbook_uploader"
+require "chef-dk/policyfile/read_cookbook_for_compat_mode_upload"
 
-require 'chef-dk/ui'
-require 'chef-dk/policyfile/reports/upload'
+require "chef-dk/ui"
+require "chef-dk/policyfile/reports/upload"
 
 module ChefDK
   module Policyfile
@@ -77,7 +77,7 @@ DRAGONS
       end
 
       def data_bag_create
-        http_client.post("data", {"name" => COMPAT_MODE_DATA_BAG_NAME})
+        http_client.post("data", { "name" => COMPAT_MODE_DATA_BAG_NAME })
       rescue Net::HTTPServerException => e
         raise e unless e.response.code == "409"
       end
@@ -95,7 +95,7 @@ DRAGONS
           "raw_data" => lock_data,
           # we'd prefer to leave this out, but the "compatibility mode"
           # implementation in chef-client relies on magical class inflation
-          "json_class" => "Chef::DataBagItem"
+          "json_class" => "Chef::DataBagItem",
         }
 
         upload_lockfile_as_data_bag_item(policy_id, data_item)
@@ -182,9 +182,9 @@ DRAGONS
 
       def list_cookbooks_url
         if using_policy_document_native_api?
-          'cookbook_artifacts?num_versions=all'
+          "cookbook_artifacts?num_versions=all"
         else
-          'cookbooks?num_versions=all'
+          "cookbooks?num_versions=all"
         end
       end
 

@@ -15,18 +15,18 @@
 # limitations under the License.
 #
 
-require 'chef-dk/policyfile/cookbook_sources'
-require 'chef-dk/policyfile/cookbook_location_specification'
-require 'chef-dk/policyfile/storage_config'
+require "chef-dk/policyfile/cookbook_sources"
+require "chef-dk/policyfile/cookbook_location_specification"
+require "chef-dk/policyfile/storage_config"
 
-require 'chef/node/attribute'
-require 'chef/run_list/run_list_item'
+require "chef/node/attribute"
+require "chef/run_list/run_list_item"
 
 module ChefDK
   module Policyfile
     class DSL
 
-      RUN_LIST_ITEM_COMPONENT = %r/^[.[:alnum:]_-]+$/.freeze
+      RUN_LIST_ITEM_COMPONENT = %r{^[.[:alnum:]_-]+$}
 
       include StorageConfigDelegation
 
@@ -108,7 +108,6 @@ module ChefDK
         constraint = version_and_source_opts.first || ">= 0.0.0"
         spec = CookbookLocationSpecification.new(name, constraint, source_options, storage_config)
 
-
         if existing_source = @cookbook_location_specs[name]
           err = "Cookbook '#{name}' assigned to conflicting sources\n\n"
           err << "Previous source: #{existing_source.source_options.inspect}\n"
@@ -140,7 +139,7 @@ module ChefDK
         raise
       rescue Exception => e
         error_message = "Evaluation of policyfile '#{policyfile_filename}' raised an exception\n"
-        error_message << "  Exception: #{e.class.name} \"#{e.to_s}\"\n\n"
+        error_message << "  Exception: #{e.class.name} \"#{e}\"\n\n"
         trace = filtered_bt(policyfile_filename, e)
         error_message << "  Relevant Code:\n"
         error_message << "    #{error_context(policyfile_string, policyfile_filename, e)}\n\n"
@@ -201,7 +200,7 @@ module ChefDK
           run_list_desc = run_list_name.nil? ? "Run List Item '#{item}'" : "Named Run List '#{run_list_name}' Item '#{item}'"
 
           item_name = Chef::RunList::RunListItem.new(item).name
-          cookbook, separator, recipe = item_name.partition('::')
+          cookbook, separator, recipe = item_name.partition("::")
 
           if RUN_LIST_ITEM_COMPONENT.match(cookbook).nil?
             message = "#{run_list_desc} has invalid cookbook name '#{cookbook}'.\nCookbook names can only contain alphanumerics, hyphens, and underscores."
@@ -247,7 +246,7 @@ module ChefDK
 
       def culprit_line_number(policyfile_filename, exception)
         if most_proximate_backtrace_line = filtered_bt(policyfile_filename, exception).first
-          most_proximate_backtrace_line[/^(?:.\:)?[^:]+:([\d]+)/,1].to_i
+          most_proximate_backtrace_line[/^(?:.\:)?[^:]+:([\d]+)/, 1].to_i
         else
           nil
         end
@@ -255,7 +254,7 @@ module ChefDK
 
       def filtered_bt(policyfile_filename, exception)
         policyfile_filename_matcher = /^#{Regexp.escape(policyfile_filename)}/
-        exception.backtrace.select {|line| line =~ policyfile_filename_matcher }
+        exception.backtrace.select { |line| line =~ policyfile_filename_matcher }
       end
 
     end

@@ -15,18 +15,17 @@
 # limitations under the License.
 #
 
-require 'cookbook-omnifetch'
-require 'chef-dk/shell_out'
-require 'chef-dk/cookbook_metadata'
-require 'chef-dk/helpers'
+require "cookbook-omnifetch"
+require "chef-dk/shell_out"
+require "chef-dk/cookbook_metadata"
+require "chef-dk/helpers"
 
-require 'chef/http/simple'
+require "chef/http/simple"
 
 # Configure CookbookOmnifetch's dependency injection settings to use our classes and config.
 CookbookOmnifetch.configure do |c|
-  c.cache_path = File.expand_path(File.join(ChefDK::Helpers.chefdk_home, 'cache'))
-  c.storage_path = Pathname.new(File.expand_path(File.join(ChefDK::Helpers.chefdk_home, 'cache', 'cookbooks')))
+  c.cache_path = File.expand_path(File.join(ChefDK::Helpers.chefdk_home, "cache"))
+  c.storage_path = Pathname.new(File.expand_path(File.join(ChefDK::Helpers.chefdk_home, "cache", "cookbooks")))
   c.shell_out_class = ChefDK::ShellOut
   c.cached_cookbook_class = ChefDK::CookbookMetadata
 end
-

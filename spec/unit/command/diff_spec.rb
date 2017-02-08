@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/command_with_ui_object'
-require 'chef-dk/command/diff'
-require 'chef-dk/service_exceptions'
+require "spec_helper"
+require "shared/command_with_ui_object"
+require "chef-dk/command/diff"
+require "chef-dk/service_exceptions"
 
 describe ChefDK::Command::Diff do
 
@@ -239,7 +239,7 @@ describe ChefDK::Command::Diff do
 
       context "when the local lockfile can be read and parsed" do
         before do
-          allow(local_lock_comparison_base).to receive(:lock).and_return({"name" => "example-policy"})
+          allow(local_lock_comparison_base).to receive(:lock).and_return({ "name" => "example-policy" })
           allow(command).to receive(:differ).and_return(differ)
           command.ui = ui
         end
@@ -309,4 +309,3 @@ describe ChefDK::Command::Diff do
     end
   end
 end
-

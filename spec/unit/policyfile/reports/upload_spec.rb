@@ -15,14 +15,14 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/reports/upload'
+require "spec_helper"
+require "chef-dk/policyfile/reports/upload"
 
 # For the LockedCookbookForUpload class:
-require 'chef-dk/policyfile/uploader'
+require "chef-dk/policyfile/uploader"
 
 # Used for verifying doubles
-require 'chef-dk/policyfile/cookbook_locks'
+require "chef-dk/policyfile/cookbook_locks"
 
 describe ChefDK::Policyfile::Reports::Upload do
 
@@ -92,5 +92,3 @@ E
   end
 
 end
-
-

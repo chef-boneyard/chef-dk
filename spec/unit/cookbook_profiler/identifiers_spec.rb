@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/cookbook_profiler/identifiers'
-require 'chef-dk/policyfile/read_cookbook_for_compat_mode_upload'
+require "spec_helper"
+require "chef-dk/cookbook_profiler/identifiers"
+require "chef-dk/policyfile/read_cookbook_for_compat_mode_upload"
 
 describe ChefDK::CookbookProfiler::Identifiers do
 
@@ -36,7 +36,6 @@ describe ChefDK::CookbookProfiler::Identifiers do
     cbvl.cookbook_version
   end
 
-
   let(:identifiers) do
     ChefDK::CookbookProfiler::Identifiers.new(cookbook_version)
   end
@@ -48,7 +47,7 @@ describe ChefDK::CookbookProfiler::Identifiers do
       "README.md" => "0f15038071e5a131bef176cbe2a956d1",
       "chefignore" => "03485640b005eb1083c76518764053dd",
       "metadata.rb" => "4879d0004b177546cfbcfb2fd26df7c8",
-      "recipes/default.rb" => "9a0f27d741deaca21461073f7452474f"
+      "recipes/default.rb" => "9a0f27d741deaca21461073f7452474f",
     }
   end
 
@@ -67,7 +66,7 @@ describe ChefDK::CookbookProfiler::Identifiers do
     # Verify that the keys are sorted in our expected data, otherwise our test
     # is wrong.
     expect(cookbook_files_with_cksums.keys).to eq(cookbook_files_with_cksums.keys.sort)
-    expected = cookbook_files_with_cksums.map { |path,cksum| "#{path}:#{cksum}\n" }.join("")
+    expected = cookbook_files_with_cksums.map { |path, cksum| "#{path}:#{cksum}\n" }.join("")
     expect(identifiers.fingerprint_text).to eq(expected)
   end
 
@@ -80,4 +79,3 @@ describe ChefDK::CookbookProfiler::Identifiers do
   end
 
 end
-

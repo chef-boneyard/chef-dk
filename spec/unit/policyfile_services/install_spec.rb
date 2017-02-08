@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile_services/install'
+require "spec_helper"
+require "chef-dk/policyfile_services/install"
 
 describe ChefDK::PolicyfileServices::Install do
 
@@ -107,7 +107,7 @@ E
       it "solves the Policyfile demands, installs cookbooks, emits a lockfile" do
         install_service.run
         generated_lock = result_policyfile_lock
-        expect(generated_lock.name).to eq('install-example')
+        expect(generated_lock.name).to eq("install-example")
         expect(generated_lock.cookbook_locks).to have_key("local-cookbook")
       end
 
@@ -144,7 +144,7 @@ E
       it "solves the Policyfile demands, installs cookbooks, emits a lockfile" do
         install_service.run
         generated_lock = result_policyfile_lock
-        expect(generated_lock.name).to eq('install-example')
+        expect(generated_lock.name).to eq("install-example")
         expect(generated_lock.cookbook_locks).to have_key("local-cookbook")
       end
 
@@ -159,7 +159,7 @@ E
       it "reads the policyfile lock from disk" do
         lock = install_service.policyfile_lock
         expect(lock).to be_an_instance_of(ChefDK::PolicyfileLock)
-        expect(lock.name).to eq('install-example')
+        expect(lock.name).to eq("install-example")
         expect(lock.cookbook_locks).to have_key("local-cookbook")
       end
 
@@ -177,7 +177,6 @@ E
         it "raises a PolicyfileInstallError" do
           expect { install_service.run }.to raise_error(ChefDK::PolicyfileInstallError)
         end
-
 
       end
 
@@ -208,4 +207,3 @@ E
   end
 
 end
-

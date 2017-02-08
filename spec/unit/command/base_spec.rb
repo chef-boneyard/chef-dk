@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/command/verify'
+require "spec_helper"
+require "chef-dk/command/verify"
 
 describe ChefDK::Command::Base do
   class TestCommand < ChefDK::Command::Base
@@ -55,7 +55,6 @@ describe ChefDK::Command::Base do
     allow(command_instance).to receive(:stdout).and_return(stdout_io)
     allow(command_instance).to receive(:stderr).and_return(stderr_io)
   end
-
 
   def run_command(options)
     command_instance.run_with_default_options(options)
@@ -99,7 +98,7 @@ describe ChefDK::Command::Base do
   describe "when given invalid options" do
 
     it "prints the help banner and exits gracefully" do
-      expect(run_command(%w[-foo])).to eq(1)
+      expect(run_command(%w{-foo})).to eq(1)
 
       expect(stderr).to eq("ERROR: invalid option: -foo\n\n")
 
@@ -119,7 +118,7 @@ E
   describe "when given an option that requires an argument with no argument" do
 
     it "prints the help banner and exits gracefully" do
-      expect(run_command(%w[-a])).to eq(1)
+      expect(run_command(%w{-a})).to eq(1)
 
       expect(stderr).to eq("ERROR: missing argument: -a\n\n")
 

@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile_services/rm_policy'
+require "spec_helper"
+require "chef-dk/policyfile_services/rm_policy"
 
 describe ChefDK::PolicyfileServices::RmPolicy do
 
@@ -28,7 +28,7 @@ describe ChefDK::PolicyfileServices::RmPolicy do
     {
       "revisions" => {
         "2222222222222222222222222222222222222222222222222222222222222222" => {},
-      }
+      },
     }
   end
 
@@ -52,7 +52,6 @@ describe ChefDK::PolicyfileServices::RmPolicy do
   let(:undo_stack) do
     rm_policy_service.undo_stack
   end
-
 
   it "configures an HTTP client" do
     expect(ChefDK::AuthenticatedHTTP).to receive(:new).with("https://localhost:10443",
@@ -95,7 +94,6 @@ describe ChefDK::PolicyfileServices::RmPolicy do
       end
 
     end
-
 
   end
 
@@ -163,18 +161,18 @@ describe ChefDK::PolicyfileServices::RmPolicy do
     let(:policy_appserver_2) do
       {
         "name" => "appserver",
-        "revision_id" => "2222222222222222222222222222222222222222222222222222222222222222"
+        "revision_id" => "2222222222222222222222222222222222222222222222222222222222222222",
       }
     end
 
     let(:policy_group_data) do
       {
         "dev" => {
-          "uri" => "https://chef.example/organizations/testorg/policy_groups/dev"
+          "uri" => "https://chef.example/organizations/testorg/policy_groups/dev",
         },
         "preprod" => {
-          "uri" => "https://chef.example/organizations/testorg/policy_groups/preprod"
-        }
+          "uri" => "https://chef.example/organizations/testorg/policy_groups/preprod",
+        },
       }
     end
 
@@ -218,25 +216,25 @@ describe ChefDK::PolicyfileServices::RmPolicy do
             "policies" => {
               "appserver" => { "revision_id" => "2222222222222222222222222222222222222222222222222222222222222222" },
               "load-balancer" => { "revision_id" => "5555555555555555555555555555555555555555555555555555555555555555" },
-              "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" }
-            }
+              "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" },
+            },
           },
           "preprod" => {
             "uri" => "https://chef.example/organizations/testorg/policy_groups/preprod",
             "policies" => {
               "appserver" => { "revision_id" => "2222222222222222222222222222222222222222222222222222222222222222" },
               "load-balancer" => { "revision_id" => "5555555555555555555555555555555555555555555555555555555555555555" },
-              "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" }
-            }
+              "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" },
+            },
           },
           "prod" => {
             "uri" => "https://chef.example/organizations/testorg/policy_groups/prod",
             "policies" => {
               "appserver" => { "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111" },
               "load-balancer" => { "revision_id" => "5555555555555555555555555555555555555555555555555555555555555555" },
-              "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" }
-            }
-          }
+              "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" },
+            },
+          },
         }
       end
 
@@ -263,4 +261,3 @@ describe ChefDK::PolicyfileServices::RmPolicy do
   end
 
 end
-

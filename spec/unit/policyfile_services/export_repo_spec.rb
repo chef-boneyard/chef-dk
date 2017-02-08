@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile_services/export_repo'
+require "spec_helper"
+require "chef-dk/policyfile_services/export_repo"
 
 describe ChefDK::PolicyfileServices::ExportRepo do
 
@@ -94,7 +94,7 @@ describe ChefDK::PolicyfileServices::ExportRepo do
 
     context "and the lockfile is semantically invalid" do
 
-      let(:lockfile_content) { '{ }' }
+      let(:lockfile_content) { "{ }" }
 
       it "errors out" do
         expect { export_service.run }.to raise_error(ChefDK::PolicyfileExportRepoError, /Invalid lockfile data/)
@@ -475,7 +475,4 @@ CONFIG
 
   end
 
-
-
 end
-

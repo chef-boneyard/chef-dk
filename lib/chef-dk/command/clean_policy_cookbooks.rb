@@ -15,14 +15,13 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'chef-dk/ui'
-require 'chef-dk/configurable'
-require 'chef-dk/policyfile_services/clean_policy_cookbooks'
+require "chef-dk/command/base"
+require "chef-dk/ui"
+require "chef-dk/configurable"
+require "chef-dk/policyfile_services/clean_policy_cookbooks"
 
 module ChefDK
   module Command
-
 
     class CleanPolicyCookbooks < Base
 

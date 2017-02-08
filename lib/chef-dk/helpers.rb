@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'mixlib/shellout'
-require 'chef-dk/exceptions'
+require "mixlib/shellout"
+require "chef-dk/exceptions"
 
 module ChefDK
   module Helpers
@@ -72,14 +72,14 @@ module ChefDK
     end
 
     def omnibus_chefdk_location
-      @omnibus_chefdk_location ||= File.expand_path('embedded/apps/chef-dk', expected_omnibus_root)
+      @omnibus_chefdk_location ||= File.expand_path("embedded/apps/chef-dk", expected_omnibus_root)
     end
 
     def chefdk_home
       @chefdk_home ||= begin
-                         chefdk_home_set = !([nil, ''].include? ENV['CHEFDK_HOME'])
+                         chefdk_home_set = !([nil, ""].include? ENV["CHEFDK_HOME"])
                          if chefdk_home_set
-                           ENV['CHEFDK_HOME']
+                           ENV["CHEFDK_HOME"]
                          else
                            default_chefdk_home
                          end
@@ -119,15 +119,15 @@ module ChefDK
     def omnibus_env
       @omnibus_env ||=
         begin
-          user_bin_dir = File.expand_path(File.join(Gem.user_dir, 'bin'))
-          path = [ omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV['PATH'] ]
+          user_bin_dir = File.expand_path(File.join(Gem.user_dir, "bin"))
+          path = [ omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV["PATH"] ]
           path << git_bin_dir if Dir.exists?(git_bin_dir)
           path << git_windows_bin_dir if Dir.exists?(git_windows_bin_dir)
           {
-            'PATH' => path.join(File::PATH_SEPARATOR),
-            'GEM_ROOT' => Gem.default_dir,
-            'GEM_HOME' => Gem.user_dir,
-            'GEM_PATH' => Gem.path.join(File::PATH_SEPARATOR),
+            "PATH" => path.join(File::PATH_SEPARATOR),
+            "GEM_ROOT" => Gem.default_dir,
+            "GEM_HOME" => Gem.user_dir,
+            "GEM_PATH" => Gem.path.join(File::PATH_SEPARATOR),
           }
         end
     end
@@ -136,7 +136,7 @@ module ChefDK
 
     def omnibus_expand_path(*paths)
       dir = File.expand_path(File.join(paths))
-      raise OmnibusInstallNotFound.new() unless ( dir and File.directory?(dir) )
+      raise OmnibusInstallNotFound.new() unless dir && File.directory?(dir)
       dir
     end
 
@@ -146,16 +146,16 @@ module ChefDK
 
     def default_chefdk_home
       if Chef::Platform.windows?
-        File.join(ENV['LOCALAPPDATA'], 'chefdk')
+        File.join(ENV["LOCALAPPDATA"], "chefdk")
       else
-        File.expand_path('~/.chefdk')
+        File.expand_path("~/.chefdk")
       end
     end
 
     # Open a file. By default, the mode is for read+write,
     # and binary so that windows writes out what we tell it,
     # as this is the most common case we have.
-    def with_file(path, mode='wb+', &block)
+    def with_file(path, mode = "wb+", &block)
       File.open(path, mode, &block)
     end
 

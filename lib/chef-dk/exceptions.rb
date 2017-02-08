@@ -116,7 +116,7 @@ module ChefDK
           source_a.universe_graph.key?(cookbook_name) && source_b.universe_graph.key?(cookbook_name)
         end
         "Source #{source_a.desc} and #{source_b.desc} contain conflicting cookbooks:\n" +
-          overlapping_cookbooks.sort.map {|c| "- #{c}"}.join("\n") + "\n\n" +
+          overlapping_cookbooks.sort.map { |c| "- #{c}" }.join("\n") + "\n\n" +
           resolution_message(overlapping_cookbooks)
       end
       conflicting_cookbook_sets.join("\n")

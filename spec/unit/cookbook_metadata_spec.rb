@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/cookbook_metadata'
+require "spec_helper"
+require "chef-dk/cookbook_metadata"
 
 describe ChefDK::CookbookMetadata do
 
@@ -40,12 +40,11 @@ describe ChefDK::CookbookMetadata do
 
   describe "when a cookbook is loaded" do
 
-
     let(:cookbook) { described_class.from_path(cookbook_root) }
 
     context "and the cookbook has only a metadata.rb" do
 
-      let(:cookbook_root) { File.join(fixtures_path, 'example_cookbook') }
+      let(:cookbook_root) { File.join(fixtures_path, "example_cookbook") }
 
       it "has a name" do
         expect(cookbook.name).to eq("example_cookbook")
@@ -64,7 +63,7 @@ describe ChefDK::CookbookMetadata do
 
     context "and the cookbook has only a metadata.json" do
 
-      let(:cookbook_root) { File.join(fixtures_path, 'example_cookbook_metadata_json_only') }
+      let(:cookbook_root) { File.join(fixtures_path, "example_cookbook_metadata_json_only") }
 
       it "has a name" do
         expect(cookbook.name).to eq("example_cookbook")
@@ -83,7 +82,7 @@ describe ChefDK::CookbookMetadata do
 
     context "and the cookbook has no metadata" do
 
-      let(:cookbook_root) { File.join(fixtures_path, 'example_cookbook_no_metadata') }
+      let(:cookbook_root) { File.join(fixtures_path, "example_cookbook_no_metadata") }
 
       it "raises a MalformedCookbook error" do
         msg = "Cookbook at #{cookbook_root} has neither metadata.json or metadata.rb"
@@ -95,4 +94,3 @@ describe ChefDK::CookbookMetadata do
 
   end
 end
-

@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile_services/clean_policy_cookbooks'
+require "spec_helper"
+require "chef-dk/policyfile_services/clean_policy_cookbooks"
 
 describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
 
@@ -25,27 +25,27 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
       "mysql" => {
         "versions" => [
           {
-            "identifier" => "6b506252cae939c874bd59b560c339b01c31326b"
-          }
-        ]
+            "identifier" => "6b506252cae939c874bd59b560c339b01c31326b",
+          },
+        ],
       },
       "build-essential" => {
         "versions" => [
           {
-            "identifier" => "2db3df121028894f45497f847de91b91fbf76824"
+            "identifier" => "2db3df121028894f45497f847de91b91fbf76824",
           },
           {
-            "identifier" => "d8ce58401d154378599b0fead81d2c390615602b"
-          }
-        ]
-      }
+            "identifier" => "d8ce58401d154378599b0fead81d2c390615602b",
+          },
+        ],
+      },
     }
   end
 
   let(:cookbook_ids_by_name) do
     {
       "mysql" => [ "6b506252cae939c874bd59b560c339b01c31326b" ],
-      "build-essential" => [ "2db3df121028894f45497f847de91b91fbf76824", "d8ce58401d154378599b0fead81d2c390615602b" ]
+      "build-essential" => %w{2db3df121028894f45497f847de91b91fbf76824 d8ce58401d154378599b0fead81d2c390615602b},
     }
   end
 
@@ -60,15 +60,15 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
     {
       "aar" => {
         "revisions" => {
-          "37f9b658cdd1d9319bac8920581723efcc2014304b5f3827ee0779e10ffbdcc9" => { }
-        }
+          "37f9b658cdd1d9319bac8920581723efcc2014304b5f3827ee0779e10ffbdcc9" => {},
+        },
       },
       "jenkins" => {
         "revisions" => {
-          "613f803bdd035d574df7fa6da525b38df45a74ca82b38b79655efed8a189e073" => { },
-          "6fe753184c8946052d3231bb4212116df28d89a3a5f7ae52832ad408419dd5eb" => { }
-        }
-      }
+          "613f803bdd035d574df7fa6da525b38df45a74ca82b38b79655efed8a189e073" => {},
+          "6fe753184c8946052d3231bb4212116df28d89a3a5f7ae52832ad408419dd5eb" => {},
+        },
+      },
     }
   end
 
@@ -86,7 +86,6 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
   subject(:clean_policy_cookbooks_service) do
     described_class.new(ui: ui, config: chef_config)
   end
-
 
   it "configures an HTTP client with the user's credentials" do
     expect(ChefDK::AuthenticatedHTTP).to receive(:new).with("https://localhost:10443",
@@ -160,8 +159,8 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
       let(:policy_aar_37f9b65) do
         {
           "cookbook_locks" => {
-            "mysql" => { "identifier" => "6b506252cae939c874bd59b560c339b01c31326b" }
-          }
+            "mysql" => { "identifier" => "6b506252cae939c874bd59b560c339b01c31326b" },
+          },
         }
       end
 
@@ -169,8 +168,8 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
         {
           "cookbook_locks" => {
             "mysql" => { "identifier" => "6b506252cae939c874bd59b560c339b01c31326b" },
-            "build-essential" => { "identifier" => "2db3df121028894f45497f847de91b91fbf76824" }
-          }
+            "build-essential" => { "identifier" => "2db3df121028894f45497f847de91b91fbf76824" },
+          },
         }
       end
 
@@ -178,8 +177,8 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
         {
           "cookbook_locks" => {
             "mysql" => { "identifier" => "6b506252cae939c874bd59b560c339b01c31326b" },
-            "build-essential" => { "identifier" => "d8ce58401d154378599b0fead81d2c390615602b" }
-          }
+            "build-essential" => { "identifier" => "d8ce58401d154378599b0fead81d2c390615602b" },
+          },
         }
       end
 
@@ -194,7 +193,6 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
           with("/policies/jenkins/revisions/6fe753184c8946052d3231bb4212116df28d89a3a5f7ae52832ad408419dd5eb").
           and_return(policy_jenkins_6fe7531)
       end
-
 
       context "and all cookbooks are active" do
 
@@ -223,15 +221,15 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
             "cookbook_locks" => {
               "mysql" => { "identifier" => "6b506252cae939c874bd59b560c339b01c31326b" },
               # this is changed to reference the same cookbook as policy_jenkins_613f803
-              "build-essential" => { "identifier" => "2db3df121028894f45497f847de91b91fbf76824" }
-            }
+              "build-essential" => { "identifier" => "2db3df121028894f45497f847de91b91fbf76824" },
+            },
           }
         end
 
         let(:expected_active_cookbooks) do
           {
             "mysql" => Set.new([ "6b506252cae939c874bd59b560c339b01c31326b" ]),
-            "build-essential" => Set.new([ "2db3df121028894f45497f847de91b91fbf76824" ])
+            "build-essential" => Set.new([ "2db3df121028894f45497f847de91b91fbf76824" ]),
           }
         end
 
@@ -272,4 +270,3 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
   end
 
 end
-

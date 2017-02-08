@@ -15,14 +15,13 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'chef-dk/ui'
-require 'chef-dk/configurable'
-require 'chef-dk/policyfile_services/rm_policy_group'
+require "chef-dk/command/base"
+require "chef-dk/ui"
+require "chef-dk/configurable"
+require "chef-dk/policyfile_services/rm_policy_group"
 
 module ChefDK
   module Command
-
 
     class DeletePolicyGroup < Base
 
@@ -79,8 +78,8 @@ BANNER
       def rm_policy_group_service
         @rm_policy_group_service ||=
           PolicyfileServices::RmPolicyGroup.new(config: chef_config,
-                                             ui: ui,
-                                             policy_group: policy_group)
+                                                ui: ui,
+                                                policy_group: policy_group)
       end
 
       def debug?
@@ -119,4 +118,3 @@ BANNER
     end
   end
 end
-

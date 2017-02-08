@@ -7,12 +7,12 @@ shared_examples_for "custom generator cookbook" do
 
   context "when given a generator-cookbook path" do
 
-    let(:default_generator_cookbook_path) { File.expand_path('lib/chef-dk/skeletons/code_generator', project_root) }
+    let(:default_generator_cookbook_path) { File.expand_path("lib/chef-dk/skeletons/code_generator", project_root) }
 
-    let(:generator_cookbook_path) { File.join(tempdir, 'a_generator_cookbook') }
-    let(:generator_copyright_holder) { 'Chef' }
-    let(:generator_email) { 'mail@chef.io' }
-    let(:generator_license) { 'Free as in Beer'}
+    let(:generator_cookbook_path) { File.join(tempdir, "a_generator_cookbook") }
+    let(:generator_copyright_holder) { "Chef" }
+    let(:generator_email) { "mail@chef.io" }
+    let(:generator_license) { "Free as in Beer" }
 
     let(:argv) { [generator_arg, "--generator-cookbook", generator_cookbook_path] }
 
@@ -76,7 +76,7 @@ shared_examples_for "custom generator cookbook" do
         end
 
         cookbook_path = File.dirname(generator_cookbook_path)
-        expected_msg = %Q(ERROR: Could not find cookbook(s) to satisfy run list ["recipe[a_generator_cookbook::#{generator_name}]"] in #{cookbook_path})
+        expected_msg = %Q{ERROR: Could not find cookbook(s) to satisfy run list ["recipe[a_generator_cookbook::#{generator_name}]"] in #{cookbook_path}}
 
         expect(stderr_io.string).to include(expected_msg)
       end

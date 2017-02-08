@@ -15,12 +15,12 @@
 # limitations under the License.
 #
 
-require 'chef/http'
-require 'chef/http/authenticator'
-require 'chef/http/json_input'
-require 'chef/http/json_output'
-require 'chef/http/decompressor'
-require 'chef/http/validate_content_length'
+require "chef/http"
+require "chef/http/authenticator"
+require "chef/http/json_input"
+require "chef/http/json_output"
+require "chef/http/decompressor"
+require "chef/http/validate_content_length"
 
 module ChefDK
   class AuthenticatedHTTP < Chef::HTTP
@@ -37,4 +37,3 @@ module ChefDK
 
   end
 end
-

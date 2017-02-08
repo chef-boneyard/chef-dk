@@ -15,13 +15,13 @@
 # limitations under the License.
 #
 
-require 'rubygems'
-require 'rspec/mocks'
-require 'test_helpers'
+require "rubygems"
+require "rspec/mocks"
+require "test_helpers"
 
 # needed since we stub it for every test
-require 'chef/workstation_config_loader'
-require 'chef/config'
+require "chef/workstation_config_loader"
+require "chef/config"
 
 RSpec.configure do |c|
   running_on_windows = (RUBY_PLATFORM =~ /mswin|mingw|windows/)

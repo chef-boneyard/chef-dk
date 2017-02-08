@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'ffi_yajl'
-require 'chef-dk/exceptions'
-require 'chef-dk/policyfile/source_uri'
-require 'chef-dk/authenticated_http'
+require "ffi_yajl"
+require "chef-dk/exceptions"
+require "chef-dk/policyfile/source_uri"
+require "chef-dk/authenticated_http"
 
 module ChefDK
   module Policyfile
@@ -67,7 +67,7 @@ module ChefDK
         {
           chef_server: uri.to_s,
           version: cookbook_version,
-          http_client: http_connection_for(uri.to_s)
+          http_client: http_connection_for(uri.to_s),
         }
       end
 
@@ -90,7 +90,7 @@ module ChefDK
       def full_chef_server_graph
         @full_chef_server_graph ||=
           begin
-            http_connection_for(uri.to_s).get('/universe')
+            http_connection_for(uri.to_s).get("/universe")
           end
       end
     end

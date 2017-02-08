@@ -15,14 +15,14 @@
 # limitations under the License.
 #
 
-require 'ostruct'
+require "ostruct"
 
-require 'chef-dk/command/base'
-require 'chef-dk/configurable'
-require 'chef-dk/chef_runner'
-require 'chef-dk/policyfile_services/push'
+require "chef-dk/command/base"
+require "chef-dk/configurable"
+require "chef-dk/chef_runner"
+require "chef-dk/policyfile_services/push"
 
-require 'chef/provisioning'
+require "chef/provisioning"
 
 module ChefDK
 
@@ -66,18 +66,18 @@ module ChefDK
       def convergence_options
         {
           chef_server: Chef::Config.chef_server_url,
-          chef_config: chef_config
+          chef_config: chef_config,
         }
       end
 
       def chef_config
-        config=<<-CONFIG
+        config = <<-CONFIG
 # SSL Settings:
 ssl_verify_mode #{Chef::Config.ssl_verify_mode.inspect}
 
 CONFIG
         if enable_policyfile
-          policyfile_config=<<-CONFIG
+          policyfile_config = <<-CONFIG
 # Policyfile Settings:
 use_policyfile true
 policy_document_native_api true
@@ -185,14 +185,14 @@ E
         long:         "--target REMOTE_HOST",
         description:  "Set hostname or IP of the host to converge (may be overriden by provisioning cookbook)"
 
-      OPT_SEPARATOR = /[=\s]+/.freeze
+      OPT_SEPARATOR = /[=\s]+/
 
       def self.split_opt(key_value)
         key, _separator, value = key_value.partition(OPT_SEPARATOR)
         [key, value]
       end
 
-      opts={}
+      opts = {}
 
       option :opts,
         short:        "-o OPT=VALUE",
@@ -206,7 +206,6 @@ E
         long:        "--debug",
         description: "Enable stacktraces and other debug output",
         default:     false
-
 
       attr_reader :params
       attr_reader :policyfile_relative_path
@@ -371,7 +370,7 @@ E
       end
 
       def provisioning_recipe_path
-        File.join(cookbook_expanded_path, 'recipes', "#{recipe}.rb")
+        File.join(cookbook_expanded_path, "recipes", "#{recipe}.rb")
       end
 
       def cookbook_expanded_path
@@ -435,4 +434,3 @@ E
     end
   end
 end
-

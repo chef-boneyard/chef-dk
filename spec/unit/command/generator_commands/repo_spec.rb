@@ -15,21 +15,21 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/a_generated_file'
-require 'chef-dk/command/generator_commands/repo'
+require "spec_helper"
+require "shared/a_generated_file"
+require "chef-dk/command/generator_commands/repo"
 
 describe ChefDK::Command::GeneratorCommands::Repo do
 
-  let(:argv) { %w[new_repo] }
+  let(:argv) { %w{new_repo} }
 
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
 
   let(:expected_cookbook_file_relpaths) do
-    %w[
+    %w{
       LICENSE
-    ]
+    }
   end
 
   let(:file) { "" }
@@ -62,7 +62,7 @@ describe ChefDK::Command::GeneratorCommands::Repo do
 
     context "when conflicting --roles and --policy are given" do
 
-      let(:argv) { %w[ new-repo --roles --policy ] }
+      let(:argv) { %w{ new-repo --roles --policy } }
 
       it "emits an error saying that the options are exclusive" do
         expected_message = "Roles and Policyfiles are exclusive. Please only select one."
@@ -281,7 +281,7 @@ describe ChefDK::Command::GeneratorCommands::Repo do
 
       context "when Policyfiles are enabled" do
 
-        let(:argv) { %w[ new_repo --policy ] }
+        let(:argv) { %w{ new_repo --policy } }
 
         it "does not create a roles directory" do
           expect(File).to_not exist(File.join(repo_path, "roles"))
@@ -313,7 +313,7 @@ README
 
       context "when roles/environments are enabled" do
 
-        let(:argv) { %w[new_repo --roles] }
+        let(:argv) { %w{new_repo --roles} }
 
         it "does not create a policies directory" do
           expect(File).to_not exist(File.join(repo_path, "policies"))

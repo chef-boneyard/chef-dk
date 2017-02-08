@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef-dk/helpers'
+require "chef-dk/helpers"
 
 module ChefDK
   module CookbookProfiler
@@ -42,7 +42,7 @@ module ChefDK
           "revision" => revision,
           "working_tree_clean" => clean?,
           "published" => !unpublished_commits?,
-          "synchronized_remote_branches" => synchronized_remotes
+          "synchronized_remote_branches" => synchronized_remotes,
         }
       end
 
@@ -60,7 +60,7 @@ module ChefDK
       end
 
       def clean?
-        git!("diff-files --quiet", returns: [0,1]).exitstatus == 0
+        git!("diff-files --quiet", returns: [0, 1]).exitstatus == 0
       end
 
       def unpublished_commits?
@@ -90,11 +90,11 @@ module ChefDK
       end
 
       def remote_name
-        @remote_name ||= git!("config --get branch.#{current_branch}.remote", returns: [0,1]).stdout.strip
+        @remote_name ||= git!("config --get branch.#{current_branch}.remote", returns: [0, 1]).stdout.strip
       end
 
       def have_remote?
-        !remote_name.empty? && remote_name != '.'
+        !remote_name.empty? && remote_name != "."
       end
 
       def current_branch
@@ -103,19 +103,19 @@ module ChefDK
 
       private
 
-      def git!(subcommand, options={})
+      def git!(subcommand, options = {})
         cmd = git(subcommand, options)
         cmd.error!
         cmd
       end
 
-      def git(subcommand, options={})
+      def git(subcommand, options = {})
         options = { cwd: cookbook_path }.merge(options)
         system_command("git #{subcommand}", options)
       end
 
       def detect_current_branch
-        branch = git!('rev-parse --abbrev-ref HEAD').stdout.strip
+        branch = git!("rev-parse --abbrev-ref HEAD").stdout.strip
         @unborn_branch = false
         branch
       rescue Mixlib::ShellOut::ShellCommandFailed => e

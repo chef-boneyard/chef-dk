@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'json'
-require 'chef-dk/cookbook_omnifetch'
-require 'chef-dk/exceptions'
-require 'chef/http/simple'
+require "json"
+require "chef-dk/cookbook_omnifetch"
+require "chef-dk/exceptions"
+require "chef/http/simple"
 
 module ChefDK
   module Policyfile
@@ -81,7 +81,6 @@ module ChefDK
       def http_connection_for(base_url)
         @http_connections[base_url] ||= Chef::HTTP::Simple.new(base_url)
       end
-
 
       def full_community_graph
         @full_community_graph ||=

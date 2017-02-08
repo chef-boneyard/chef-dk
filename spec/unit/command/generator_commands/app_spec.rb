@@ -15,19 +15,19 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/custom_generator_cookbook'
-require 'chef-dk/command/generator_commands/app'
+require "spec_helper"
+require "shared/custom_generator_cookbook"
+require "chef-dk/command/generator_commands/app"
 
 describe ChefDK::Command::GeneratorCommands::App do
 
-  let(:argv) { %w[new_app] }
+  let(:argv) { %w{new_app} }
 
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
 
   let(:expected_cookbook_file_relpaths) do
-    %w[
+    %w{
       .gitignore
       .kitchen.yml
       test
@@ -45,7 +45,7 @@ describe ChefDK::Command::GeneratorCommands::App do
       cookbooks/new_app/spec/unit
       cookbooks/new_app/spec/unit/recipes
       cookbooks/new_app/spec/unit/recipes/default_spec.rb
-    ]
+    }
   end
 
   let(:expected_cookbook_files) do

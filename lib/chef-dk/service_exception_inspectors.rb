@@ -15,11 +15,10 @@
 # limitations under the License.
 #
 
-require 'chef-dk/service_exception_inspectors/base'
-require 'chef-dk/service_exception_inspectors/http'
+require "chef-dk/service_exception_inspectors/base"
+require "chef-dk/service_exception_inspectors/http"
 
 module ChefDK
   module ServiceExceptionInspectors
   end
 end
-

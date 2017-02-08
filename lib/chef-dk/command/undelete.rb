@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'chef-dk/ui'
-require 'chef-dk/configurable'
-require 'chef-dk/policyfile_services/undelete'
+require "chef-dk/command/base"
+require "chef-dk/ui"
+require "chef-dk/configurable"
+require "chef-dk/policyfile_services/undelete"
 
 module ChefDK
   module Command
@@ -102,8 +102,8 @@ BANNER
       def undelete_service
         @undelete_service ||=
           PolicyfileServices::Undelete.new(config: chef_config,
-                                             ui: ui,
-                                             undo_record_id: undo_record_id)
+                                           ui: ui,
+                                           undo_record_id: undo_record_id)
       end
 
       def debug?
@@ -152,4 +152,3 @@ BANNER
     end
   end
 end
-

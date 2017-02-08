@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 # Note we do not use the gemspec DSL which restricts to the
 # gemspec for the current platform and filters out other platforms
@@ -109,7 +109,7 @@ group(:changelog) do
 end
 
 # mixlib-install is used by two groups
-gem 'mixlib-install', :group => [:changelog, :omnibus_package]
+gem "mixlib-install", :group => [:changelog, :omnibus_package]
 
 # TODO delete this when we figure out how to include the pushy windows dependencies
 # correctly

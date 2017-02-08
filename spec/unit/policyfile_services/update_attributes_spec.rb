@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/helpers'
-require 'chef-dk/policyfile_services/update_attributes'
+require "spec_helper"
+require "chef-dk/helpers"
+require "chef-dk/policyfile_services/update_attributes"
 
 describe ChefDK::PolicyfileServices::UpdateAttributes do
 
@@ -115,25 +115,25 @@ E
         "revision_id" => "522d740beba4c4e5857bd8bccdb2d7ffd0bbd45ac4350f92b26e4e3b8f68d530",
         "name" => "install-example",
         "run_list" => ["recipe[local-cookbook::default]"],
-        "cookbook_locks"=> {
-          "local-cookbook"=> {
-            "version"=>"2.3.4",
-            "identifier"=>"fab501cfaf747901bd82c1bc706beae7dc3a350c",
-            "dotted_decimal_identifier"=> "70567763561641081.489844270461035.258281553147148",
-            "source"=>"cookbooks/local-cookbook",
-            "cache_key"=>nil,
+        "cookbook_locks" => {
+          "local-cookbook" => {
+            "version" => "2.3.4",
+            "identifier" => "fab501cfaf747901bd82c1bc706beae7dc3a350c",
+            "dotted_decimal_identifier" => "70567763561641081.489844270461035.258281553147148",
+            "source" => "cookbooks/local-cookbook",
+            "cache_key" => nil,
             "scm_info" => nil,
-            "source_options"=> {
-              "path"=>"cookbooks/local-cookbook"
-            }
-          }
+            "source_options" => {
+              "path" => "cookbooks/local-cookbook",
+            },
+          },
         },
-        "default_attributes" => {"default_attr"=>"new_value_default"},
-        "override_attributes" => {"override_attr"=>"new_value_override"},
+        "default_attributes" => { "default_attr" => "new_value_default" },
+        "override_attributes" => { "override_attr" => "new_value_override" },
         "solution_dependencies" => {
-          "Policyfile"=>[["local-cookbook", ">= 0.0.0"]],
-          "dependencies"=>{"local-cookbook (2.3.4)"=>[]}
-        }
+          "Policyfile" => [["local-cookbook", ">= 0.0.0"]],
+          "dependencies" => { "local-cookbook (2.3.4)" => [] },
+        },
       }
     end
 
@@ -177,25 +177,25 @@ E
           "revision_id" => "522d740beba4c4e5857bd8bccdb2d7ffd0bbd45ac4350f92b26e4e3b8f68d530",
           "name" => "install-example",
           "run_list" => ["recipe[local-cookbook::default]"],
-          "cookbook_locks"=> {
-            "local-cookbook"=> {
-              "version"=>"2.3.4",
-              "identifier"=>"fab501cfaf747901bd82c1bc706beae7dc3a350c",
-              "dotted_decimal_identifier"=> "70567763561641081.489844270461035.258281553147148",
-              "source"=>"cookbooks/local-cookbook",
+          "cookbook_locks" => {
+            "local-cookbook" => {
+              "version" => "2.3.4",
+              "identifier" => "fab501cfaf747901bd82c1bc706beae7dc3a350c",
+              "dotted_decimal_identifier" => "70567763561641081.489844270461035.258281553147148",
+              "source" => "cookbooks/local-cookbook",
               "cache_key" => nil,
               "scm_info" => nil,
-              "source_options"=> {
-                "path"=>"cookbooks/local-cookbook"
-              }
-            }
+              "source_options" => {
+                "path" => "cookbooks/local-cookbook",
+              },
+            },
           },
-          "default_attributes" => {"default_attr"=>"old_value_default"},
-          "override_attributes" => {"override_attr"=>"old_value_override"},
+          "default_attributes" => { "default_attr" => "old_value_default" },
+          "override_attributes" => { "override_attr" => "old_value_override" },
           "solution_dependencies" => {
-            "Policyfile"=>[["local-cookbook", ">= 0.0.0"]],
-            "dependencies"=>{"local-cookbook (2.3.4)"=>[]}
-          }
+            "Policyfile" => [["local-cookbook", ">= 0.0.0"]],
+            "dependencies" => { "local-cookbook (2.3.4)" => [] },
+          },
         }
       end
 
@@ -214,4 +214,3 @@ E
   end
 
 end
-

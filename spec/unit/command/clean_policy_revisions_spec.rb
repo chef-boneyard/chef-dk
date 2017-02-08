@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/command_with_ui_object'
-require 'chef-dk/command/clean_policy_revisions'
+require "spec_helper"
+require "shared/command_with_ui_object"
+require "chef-dk/command/clean_policy_revisions"
 
 describe ChefDK::Command::CleanPolicyRevisions do
 
@@ -50,7 +50,7 @@ describe ChefDK::Command::CleanPolicyRevisions do
 
     context "when given a path to the config" do
 
-      let(:params) { %w[ -c ~/otherstuff/config.rb ] }
+      let(:params) { %w{ -c ~/otherstuff/config.rb } }
 
       let(:config_arg) { "~/otherstuff/config.rb" }
 
@@ -105,7 +105,7 @@ describe ChefDK::Command::CleanPolicyRevisions do
 
     context "when given too many arguments" do
 
-      let(:params) { %w[ wut-is-this ] }
+      let(:params) { %w{ wut-is-this } }
 
       it "shows usage and exits" do
         expect(command.run(params)).to eq(1)
@@ -134,7 +134,7 @@ describe ChefDK::Command::CleanPolicyRevisions do
       it "prints a debugging message and exits non-zero" do
         expect(command.run([])).to eq(1)
 
-        expected_output=<<-E
+        expected_output = <<-E
 Error: Failed to delete some policy revisions.
 Reason: (StandardError) some operation failed
 
@@ -147,9 +147,9 @@ E
 
         it "includes the backtrace in the error" do
 
-          command.run(%w[ -D ])
+          command.run(%w{ -D })
 
-          expected_output=<<-E
+          expected_output = <<-E
 Error: Failed to delete some policy revisions.
 Reason: (StandardError) some operation failed
 
@@ -178,4 +178,3 @@ E
 
   end
 end
-

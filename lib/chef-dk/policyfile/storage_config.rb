@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'chef-dk/cookbook_omnifetch'
-require 'chef-dk/exceptions'
+require "chef-dk/cookbook_omnifetch"
+require "chef-dk/exceptions"
 
 module ChefDK
   module Policyfile
@@ -45,14 +45,14 @@ module ChefDK
           raise InvalidPolicyfileFilename, "Policyfile filenames must end with `.rb' extension (you gave: `#{policyfile_filename}')"
         end
         @policyfile_filename = policyfile_filename
-        @policyfile_lock_filename = policyfile_filename.sub(/\.rb\Z/, '.lock.json')
+        @policyfile_lock_filename = policyfile_filename.sub(/\.rb\Z/, ".lock.json")
         @relative_paths_root = File.dirname(policyfile_filename)
         self
       end
 
       def use_policyfile_lock(policyfile_lock_filename)
         @policyfile_lock_filename = policyfile_lock_filename
-        @policyfile_filename = policyfile_lock_filename.sub(/\.lock\.json\Z/, '.rb')
+        @policyfile_filename = policyfile_lock_filename.sub(/\.lock\.json\Z/, ".rb")
         @relative_paths_root = File.dirname(policyfile_lock_filename)
         self
       end
@@ -100,4 +100,3 @@ module ChefDK
 
   end
 end
-

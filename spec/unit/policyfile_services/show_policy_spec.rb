@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile_services/show_policy'
+require "spec_helper"
+require "chef-dk/policyfile_services/show_policy"
 
 describe ChefDK::PolicyfileServices::ShowPolicy do
 
@@ -116,7 +116,7 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
           {
             "appserver" => {
               "1111111111111111111111111111111111111111111111111111111111111111" => {},
-              "2222222222222222222222222222222222222222222222222222222222222222" => {}
+              "2222222222222222222222222222222222222222222222222222222222222222" => {},
             },
             "load-balancer" => {
               "5555555555555555555555555555555555555555555555555555555555555555" => {},
@@ -124,8 +124,8 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
             },
             "db" => {
               "9999999999999999999999999999999999999999999999999999999999999999" => {},
-              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {}
-            }
+              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {},
+            },
           }
         end
 
@@ -202,7 +202,7 @@ OUTPUT
           {
             "dev" => {},
             "staging" => {},
-            "prod" => {}
+            "prod" => {},
           }
         end
 
@@ -218,7 +218,7 @@ OUTPUT
           {
             "appserver" => {
               "1111111111111111111111111111111111111111111111111111111111111111" => {},
-              "2222222222222222222222222222222222222222222222222222222222222222" => {}
+              "2222222222222222222222222222222222222222222222222222222222222222" => {},
             },
             "load-balancer" => {
               "5555555555555555555555555555555555555555555555555555555555555555" => {},
@@ -226,8 +226,8 @@ OUTPUT
             },
             "db" => {
               "9999999999999999999999999999999999999999999999999999999999999999" => {},
-              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {}
-            }
+              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {},
+            },
           }
         end
 
@@ -236,18 +236,18 @@ OUTPUT
             "dev" => {
               "appserver" => "1111111111111111111111111111111111111111111111111111111111111111",
               "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
-              "db" => "9999999999999999999999999999999999999999999999999999999999999999"
+              "db" => "9999999999999999999999999999999999999999999999999999999999999999",
             },
             "staging" => {
               "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
               "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
-              "db" => "9999999999999999999999999999999999999999999999999999999999999999"
+              "db" => "9999999999999999999999999999999999999999999999999999999999999999",
             },
             "prod" => {
               "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
               "load-balancer" => "6666666666666666666666666666666666666666666666666666666666666666",
-              "db" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-            }
+              "db" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            },
           }
         end
 
@@ -286,18 +286,18 @@ OUTPUT
             "appserver" => {
               "1111111111111111111111111111111111111111111111111111111111111111" => {},
               "2222222222222222222222222222222222222222222222222222222222222222" => {},
-              "3333333333333333333333333333333333333333333333333333333333333333" => {}
+              "3333333333333333333333333333333333333333333333333333333333333333" => {},
             },
             "load-balancer" => {
               "5555555555555555555555555555555555555555555555555555555555555555" => {},
               "6666666666666666666666666666666666666666666666666666666666666666" => {},
-              "7777777777777777777777777777777777777777777777777777777777777777" => {}
+              "7777777777777777777777777777777777777777777777777777777777777777" => {},
             },
             "db" => {
               "9999999999999999999999999999999999999999999999999999999999999999" => {},
               "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {},
-              "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" => {}
-            }
+              "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" => {},
+            },
           }
         end
 
@@ -306,18 +306,18 @@ OUTPUT
             "dev" => {
               "appserver" => "1111111111111111111111111111111111111111111111111111111111111111",
               "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
-              "db" => "9999999999999999999999999999999999999999999999999999999999999999"
+              "db" => "9999999999999999999999999999999999999999999999999999999999999999",
             },
             "staging" => {
               "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
               "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
-              "db" => "9999999999999999999999999999999999999999999999999999999999999999"
+              "db" => "9999999999999999999999999999999999999999999999999999999999999999",
             },
             "prod" => {
               "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
               "load-balancer" => "6666666666666666666666666666666666666666666666666666666666666666",
-              "db" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-            }
+              "db" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            },
           }
         end
 
@@ -402,7 +402,7 @@ OUTPUT
           {
             "appserver" => {
               "1111111111111111111111111111111111111111111111111111111111111111" => {},
-              "2222222222222222222222222222222222222222222222222222222222222222" => {}
+              "2222222222222222222222222222222222222222222222222222222222222222" => {},
             },
             "load-balancer" => {
               "5555555555555555555555555555555555555555555555555555555555555555" => {},
@@ -410,11 +410,11 @@ OUTPUT
             },
             "db" => {
               "9999999999999999999999999999999999999999999999999999999999999999" => {},
-              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {}
+              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {},
             },
             "memcache" => {
-              "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" => {}
-            }
+              "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" => {},
+            },
           }
         end
 
@@ -424,22 +424,21 @@ OUTPUT
               "appserver" => "1111111111111111111111111111111111111111111111111111111111111111",
               "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
               "db" => "9999999999999999999999999999999999999999999999999999999999999999",
-              "memcache" => "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+              "memcache" => "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
             },
             "staging" => {
               "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
               "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
               "db" => "9999999999999999999999999999999999999999999999999999999999999999",
-              "memcache" => "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+              "memcache" => "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
             },
             "prod" => {
               "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
               "load-balancer" => "6666666666666666666666666666666666666666666666666666666666666666",
-              "db" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-            }
+              "db" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            },
           }
         end
-
 
         it "shows each policy name, followed by a list of group_name -> revision, omitting groups that don't have that policy" do
           expected_output = <<-OUTPUT
@@ -532,11 +531,11 @@ OUTPUT
             },
             "db" => {
               "9999999999999999999999999999999999999999999999999999999999999999" => {},
-              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {}
+              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" => {},
             },
             "memcache" => {
-              "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" => {}
-            }
+              "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" => {},
+            },
           }
         end
 
@@ -545,17 +544,17 @@ OUTPUT
             "dev" => {
               "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
               "db" => "9999999999999999999999999999999999999999999999999999999999999999",
-              "memcache" => "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+              "memcache" => "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
             },
             "staging" => {
               "load-balancer" => "5555555555555555555555555555555555555555555555555555555555555555",
               "db" => "9999999999999999999999999999999999999999999999999999999999999999",
-              "memcache" => "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+              "memcache" => "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
             },
             "prod" => {
               "load-balancer" => "6666666666666666666666666666666666666666666666666666666666666666",
-              "db" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-            }
+              "db" => "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            },
           }
         end
 
@@ -579,8 +578,8 @@ OUTPUT
             "appserver" => {
               "1111111111111111111111111111111111111111111111111111111111111111" => {},
               "2222222222222222222222222222222222222222222222222222222222222222" => {},
-              "3333333333333333333333333333333333333333333333333333333333333333" => {}
-            }
+              "3333333333333333333333333333333333333333333333333333333333333333" => {},
+            },
           }
 
         end
@@ -609,8 +608,8 @@ OUTPUT
             "appserver" => {
               "1111111111111111111111111111111111111111111111111111111111111111" => {},
               "2222222222222222222222222222222222222222222222222222222222222222" => {},
-              "3333333333333333333333333333333333333333333333333333333333333333" => {}
-            }
+              "3333333333333333333333333333333333333333333333333333333333333333" => {},
+            },
           }
 
         end
@@ -618,14 +617,14 @@ OUTPUT
         let(:policies_by_group) do
           {
             "dev" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
+              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
             },
             "staging" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
+              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
             },
             "prod" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
-            }
+              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
+            },
           }
         end
         it "lists each of the groups with the associated revision" do
@@ -650,8 +649,8 @@ OUTPUT
             "appserver" => {
               "1111111111111111111111111111111111111111111111111111111111111111" => {},
               "2222222222222222222222222222222222222222222222222222222222222222" => {},
-              "3333333333333333333333333333333333333333333333333333333333333333" => {}
-            }
+              "3333333333333333333333333333333333333333333333333333333333333333" => {},
+            },
           }
 
         end
@@ -659,14 +658,14 @@ OUTPUT
         let(:policies_by_group) do
           {
             "dev" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
+              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
             },
             "staging" => {
-              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222"
+              "appserver" => "2222222222222222222222222222222222222222222222222222222222222222",
             },
             "prod" => {
-              "appserver" => "1111111111111111111111111111111111111111111111111111111111111111"
-            }
+              "appserver" => "1111111111111111111111111111111111111111111111111111111111111111",
+            },
           }
         end
 
@@ -690,18 +689,18 @@ OUTPUT
               "cookbook_locks" => {
                 "apache2" => {
                   "version" => "2.1.3",
-                  "identifier" => "abcdef" + ("0" * 34)
+                  "identifier" => "abcdef" + ("0" * 34),
                 },
                 "yum" => {
                   "version" => "4.5.6",
-                  "identifier" => "123abc" + ("0" * 34)
+                  "identifier" => "123abc" + ("0" * 34),
                 },
                 "apt" => {
                   "version" => "10.0.0",
-                  "identifier" => "ffffff" + ("0" * 34)
-                }
+                  "identifier" => "ffffff" + ("0" * 34),
+                },
 
-              }
+              },
             }
           end
 
@@ -710,21 +709,21 @@ OUTPUT
               "cookbook_locks" => {
                 "apache2" => {
                   "version" => "2.0.5",
-                  "identifier" => "aaa123" + ("0" * 34)
+                  "identifier" => "aaa123" + ("0" * 34),
                 },
                 "yum" => {
                   "version" => "4.5.2",
-                  "identifier" => "867530" + ("9" * 34)
+                  "identifier" => "867530" + ("9" * 34),
                 },
                 "apt" => {
                   "version" => "10.0.0",
-                  "identifier" => "ffffff" + ("0" * 34)
+                  "identifier" => "ffffff" + ("0" * 34),
                 },
                 "other_cookbook" => {
                   "version" => "9.8.7",
-                  "identifier" => "113113" + ("0" * 34)
-                }
-              }
+                  "identifier" => "113113" + ("0" * 34),
+                },
+              },
             }
           end
 
@@ -733,7 +732,7 @@ OUTPUT
               "appserver" => {
                 "1111111111111111111111111111111111111111111111111111111111111111" => appserver_lock_contents_111,
                 "2222222222222222222222222222222222222222222222222222222222222222" => appserver_lock_contents_222,
-              }
+              },
             }
           end
 
@@ -847,22 +846,22 @@ OUTPUT
       let(:policyfile_lock_data) do
         {
           "revision_id" => "cf5b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b",
-          "name"=> "example",
-          "run_list"=> [ "recipe[omnibus::default]" ],
-          "cookbook_locks"=> {
-            "omnibus"=> {
-              "version"=> "2.2.0",
-              "identifier"=> "64b3e64306cff223206348e46af545b19032b170",
-              "dotted_decimal_identifier"=> "28345299219435506.9887234981653237.76628930769264",
-              "cache_key"=> "omnibus-2cf98f9797cacce9c8688fc4e74858b858e2bc14",
-              "origin"=> "git@github.com:opscode-cookbooks/omnibus.git",
-              "source_options"=> {
-                "git"=> "git@github.com:opscode-cookbooks/omnibus.git",
-                "revision"=> "2cf98f9797cacce9c8688fc4e74858b858e2bc14",
-                "branch"=> "master"
-              }
-            }
-          }
+          "name" => "example",
+          "run_list" => [ "recipe[omnibus::default]" ],
+          "cookbook_locks" => {
+            "omnibus" => {
+              "version" => "2.2.0",
+              "identifier" => "64b3e64306cff223206348e46af545b19032b170",
+              "dotted_decimal_identifier" => "28345299219435506.9887234981653237.76628930769264",
+              "cache_key" => "omnibus-2cf98f9797cacce9c8688fc4e74858b858e2bc14",
+              "origin" => "git@github.com:opscode-cookbooks/omnibus.git",
+              "source_options" => {
+                "git" => "git@github.com:opscode-cookbooks/omnibus.git",
+                "revision" => "2cf98f9797cacce9c8688fc4e74858b858e2bc14",
+                "branch" => "master",
+              },
+            },
+          },
         }
       end
 
@@ -886,4 +885,3 @@ OUTPUT
   end
 
 end
-

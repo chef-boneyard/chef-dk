@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'mixlib/shellout'
+require "chef-dk/command/base"
+require "mixlib/shellout"
 
 module ChefDK
   module Command
@@ -26,9 +26,9 @@ module ChefDK
       def run(params)
         # Set ENV directly on the "parent" process (us) before running #exec to
         # ensure the custom PATH is honored when finding the command to exec
-        omnibus_env.each {|var, value| ENV[var] = value }
+        omnibus_env.each { |var, value| ENV[var] = value }
         exec(*params)
-        raise "Exec failed without an exception, your ruby is buggy"  # should never get here
+        raise "Exec failed without an exception, your ruby is buggy" # should never get here
       end
 
       def needs_version?(params)
@@ -37,9 +37,8 @@ module ChefDK
       end
 
       def needs_help?(params)
-        ['-h', '--help'].include? params[0]
+        ["-h", "--help"].include? params[0]
       end
     end
   end
 end
-

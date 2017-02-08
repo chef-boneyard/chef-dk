@@ -15,18 +15,18 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'stringio'
+require "spec_helper"
+require "stringio"
 
-require 'chef/run_context'
-require 'chef/cookbook/cookbook_collection'
-require 'chef/node'
-require 'chef/event_dispatch/dispatcher'
-require 'chef/formatters/base'
+require "chef/run_context"
+require "chef/cookbook/cookbook_collection"
+require "chef/node"
+require "chef/event_dispatch/dispatcher"
+require "chef/formatters/base"
 
-require 'ohai/system'
+require "ohai/system"
 
-require 'chef-dk/command/generator_commands/chef_exts/generator_desc_resource'
+require "chef-dk/command/generator_commands/chef_exts/generator_desc_resource"
 
 describe ChefDK::ChefResource::GeneratorDesc do
 

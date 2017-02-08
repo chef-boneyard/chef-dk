@@ -15,27 +15,27 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/configurable'
-require 'unit/fixtures/configurable/test_configurable'
+require "spec_helper"
+require "chef-dk/configurable"
+require "unit/fixtures/configurable/test_configurable"
 
 describe ChefDK::Configurable do
 
   let(:includer) { TestConfigurable.new }
 
-  it 'provides chef_config' do
+  it "provides chef_config" do
     expect(includer.chef_config).to eq Chef::Config
   end
 
-  it 'provides chefdk_config' do
+  it "provides chefdk_config" do
     expect(includer.chefdk_config).to eq Chef::Config.chefdk
   end
 
-  it 'provides knife_config' do
+  it "provides knife_config" do
     expect(includer.knife_config).to eq Chef::Config.knife
   end
 
-  it 'provides generator_config' do
+  it "provides generator_config" do
     expect(includer.generator_config).to eq Chef::Config.chefdk.generator
   end
 end

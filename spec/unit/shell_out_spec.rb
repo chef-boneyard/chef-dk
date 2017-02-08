@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/shell_out'
+require "spec_helper"
+require "chef-dk/shell_out"
 
 describe ChefDK::ShellOut do
 

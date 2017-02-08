@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef/dsl/recipe'
+require "chef/dsl/recipe"
 
 module ChefDK
 
@@ -37,4 +37,3 @@ module ChefDK
 end
 
 Chef::DSL::Recipe.send(:include, ChefDK::RecipeDSLExt)
-

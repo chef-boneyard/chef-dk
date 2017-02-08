@@ -17,7 +17,7 @@
 
 # Putting this method in a module so it is easier to test
 module RakeDependenciesTaskHelpers
-  def update_gemfile_from_stable(gemfile, product_name, gemfile_name, version_prefix="")
+  def update_gemfile_from_stable(gemfile, product_name, gemfile_name, version_prefix = "")
     version = get_latest_version_for(product_name)
     version = "#{version_prefix}#{version}"
     found = gemfile.sub!(/^(\s*gem "#{gemfile_name}", github: "chef\/#{gemfile_name}", branch: ")([^"]*)(")$/m) do
@@ -35,7 +35,7 @@ module RakeDependenciesTaskHelpers
   end
 
   def get_latest_version_for(product_name, channel_name = :stable)
-    require 'mixlib/install'
+    require "mixlib/install"
     puts "Getting latest '#{channel_name}' channel #{product_name} version ..."
     options = {
       channel: channel_name.to_sym,

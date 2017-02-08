@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/delivery_supermarket_source'
+require "spec_helper"
+require "chef-dk/policyfile/delivery_supermarket_source"
 
 describe ChefDK::Policyfile::DeliverySupermarketSource do
 
@@ -37,16 +37,16 @@ describe ChefDK::Policyfile::DeliverySupermarketSource do
           "build-essential" => "~> 2.0.0",
           "ohai" => "~> 2.0.0",
           "runit" => "~> 1.2.0",
-          "yum-epel" => "~> 0.3.0"
-        }
+          "yum-epel" => "~> 0.3.0",
+        },
       },
       "mysql" => {
         "5.3.6" => {
-          "yum-mysql-community" => ">= 0.0.0"
-        }
+          "yum-mysql-community" => ">= 0.0.0",
+        },
       },
       "application" => {
-        "4.1.4" => {}
+        "4.1.4" => {},
       },
       "database" => {
         "2.2.0" => {
@@ -54,25 +54,25 @@ describe ChefDK::Policyfile::DeliverySupermarketSource do
           "postgresql" => ">= 1.0.0",
           "aws" => ">= 0.0.0",
           "xfs" => ">= 0.0.0",
-          "mysql-chef_gem" => ">= 0.0.0"
-        }
+          "mysql-chef_gem" => ">= 0.0.0",
+        },
       },
       "postgresql" => {
         "3.4.1" => {
           "apt" => ">= 1.9.0",
           "build-essential" => ">= 0.0.0",
-          "openssl" => ">= 0.0.0"
-        }
+          "openssl" => ">= 0.0.0",
+        },
       },
       "apache2" => {
         "1.10.4" => {
           "iptables" => ">= 0.0.0",
           "logrotate" => ">= 0.0.0",
-          "pacman" => ">= 0.0.0"
-        }
+          "pacman" => ">= 0.0.0",
+        },
       },
-      "apt" => { "2.4.0" => {}},
-      "yum" => { "3.2.2" => {}}
+      "apt" => { "2.4.0" => {} },
+      "yum" => { "3.2.2" => {} },
     }
   end
 
@@ -114,7 +114,7 @@ describe ChefDK::Policyfile::DeliverySupermarketSource do
     end
 
     it "sets the source preferences as given" do
-      expect(cookbook_source.preferred_cookbooks).to eq( %w[ foo bar baz ] )
+      expect(cookbook_source.preferred_cookbooks).to eq( %w{ foo bar baz } )
     end
 
     it "is the preferred source for the requested cookbooks" do
@@ -127,4 +127,3 @@ describe ChefDK::Policyfile::DeliverySupermarketSource do
   end
 
 end
-

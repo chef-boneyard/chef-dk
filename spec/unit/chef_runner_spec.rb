@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'stringio'
-require 'chef-dk/chef_runner'
+require "spec_helper"
+require "stringio"
+require "chef-dk/chef_runner"
 
 describe ChefDK::ChefRunner do
 
@@ -79,8 +79,8 @@ describe ChefDK::ChefRunner do
 
   it "runs a chef converge" do
     chef_runner.converge
-    expect(test_state[:loaded_recipes]).to eq([ "recipe_one", "recipe_two" ])
-    expect(test_state[:converged_recipes]).to eq([ "recipe_one", "recipe_two" ])
+    expect(test_state[:loaded_recipes]).to eq(%w{recipe_one recipe_two})
+    expect(test_state[:converged_recipes]).to eq(%w{recipe_one recipe_two})
   end
 
   context "when policyfile options are set in the workstation config" do
@@ -137,5 +137,3 @@ describe ChefDK::ChefRunner do
   end
 
 end
-
-

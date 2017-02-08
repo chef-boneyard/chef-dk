@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/command/verify'
+require "spec_helper"
+require "chef-dk/command/verify"
 
 module Gem
 
@@ -80,13 +80,13 @@ describe ChefDK::Command::Verify do
     end
 
     it "should raise OmnibusInstallNotFound if directory is not looking like omnibus" do
-      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path,".rbenv/versions/2.1.1/bin/ruby"))
-      expect{command_instance.omnibus_apps_dir}.to raise_error(ChefDK::OmnibusInstallNotFound)
+      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, ".rbenv/versions/2.1.1/bin/ruby"))
+      expect { command_instance.omnibus_apps_dir }.to raise_error(ChefDK::OmnibusInstallNotFound)
     end
 
     it "raises OmnibusInstallNotFound if omnibus directory doesn't exist" do
-      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path,"eg_omnibus_dir/missing_apps/embedded/bin/ruby"))
-      expect{command_instance.omnibus_apps_dir}.to raise_error(ChefDK::OmnibusInstallNotFound)
+      allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/missing_apps/embedded/bin/ruby"))
+      expect { command_instance.omnibus_apps_dir }.to raise_error(ChefDK::OmnibusInstallNotFound)
     end
 
     context "and a component's gem is not installed" do
@@ -98,8 +98,8 @@ describe ChefDK::Command::Verify do
       end
 
       it "raises MissingComponentError when a component doesn't exist" do
-        allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path,"eg_omnibus_dir/missing_component/embedded/bin/ruby"))
-        expect{command_instance.validate_components!}.to raise_error(ChefDK::MissingComponentError)
+        allow(Gem).to receive(:ruby).and_return(File.join(fixtures_path, "eg_omnibus_dir/missing_component/embedded/bin/ruby"))
+        expect { command_instance.validate_components! }.to raise_error(ChefDK::MissingComponentError)
       end
     end
   end
@@ -111,11 +111,11 @@ describe ChefDK::Command::Verify do
     def run_unit_test
       # Set rubyopt to empty to prevent bundler from infecting the ruby
       # subcommands (and loading a bunch of extra gems).
-      lambda { |_self| sh("#{Gem.real_ruby} verify_me", env: { "RUBYOPT" => ""}) }
+      lambda { |_self| sh("#{Gem.real_ruby} verify_me", env: { "RUBYOPT" => "" }) }
     end
 
     def run_integration_test
-      lambda { |_self| sh("#{Gem.real_ruby} integration_test", env: { "RUBYOPT" => ""}) }
+      lambda { |_self| sh("#{Gem.real_ruby} integration_test", env: { "RUBYOPT" => "" }) }
     end
 
     let(:all_tests_ok) do

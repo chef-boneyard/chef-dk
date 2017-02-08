@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/cookbook_location_specification'
+require "spec_helper"
+require "chef-dk/policyfile/cookbook_location_specification"
 
 describe ChefDK::Policyfile::CookbookLocationSpecification do
 
@@ -64,7 +64,7 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
     different_constraint = described_class.new(cookbook_name, ">= 1.0.0", source_options, storage_config)
     expect(cookbook_location_spec).to_not eq(different_constraint)
 
-    different_opts = described_class.new(cookbook_name, version_constraint, {git: "git://example.com/wat.git"}, storage_config)
+    different_opts = described_class.new(cookbook_name, version_constraint, { git: "git://example.com/wat.git" }, storage_config)
     expect(cookbook_location_spec).to_not eq(different_opts)
   end
 

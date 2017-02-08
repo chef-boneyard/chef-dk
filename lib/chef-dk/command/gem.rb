@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'rubygems'
-require 'rubygems/gem_runner'
-require 'rubygems/exceptions'
-require 'pp'
+require "chef-dk/command/base"
+require "rubygems"
+require "rubygems/gem_runner"
+require "rubygems/exceptions"
+require "pp"
 
 module ChefDK
   module Command

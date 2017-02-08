@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/generator_commands/cookbook_code_file'
+require "chef-dk/command/generator_commands/cookbook_code_file"
 
 module ChefDK
   module Command
@@ -28,10 +28,9 @@ module ChefDK
         options.merge!(SharedGeneratorOptions.options)
 
         def recipe
-          'attribute'
+          "attribute"
         end
       end
     end
   end
 end
-

@@ -20,7 +20,7 @@ require "mixlib/shellout"
 RSpec.shared_context("setup_git_committer_config") do
 
   def _have_git_config_key?(key)
-    cmd = Mixlib::ShellOut.new("git config --global #{key}", returns: [0,1])
+    cmd = Mixlib::ShellOut.new("git config --global #{key}", returns: [0, 1])
     cmd.run_command
     cmd.error!
     cmd.status.success?

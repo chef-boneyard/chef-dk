@@ -15,18 +15,18 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
+require "spec_helper"
 
-require 'chef-dk/policyfile/source_uri'
+require "chef-dk/policyfile/source_uri"
 
 describe ChefDK::Policyfile::SourceURI do
   subject { described_class.parse(source_uri) }
 
   describe '#validate' do
-    context 'when the scheme is not https' do
-      let(:source_uri) { 'ftp://chef.example.com' }
+    context "when the scheme is not https" do
+      let(:source_uri) { "ftp://chef.example.com" }
 
-      it 'raises ChefDK::InvalidPolicyfileSourceURI' do
+      it "raises ChefDK::InvalidPolicyfileSourceURI" do
         expect do
           subject.validate
         end.to raise_error(ChefDK::InvalidPolicyfileSourceURI)

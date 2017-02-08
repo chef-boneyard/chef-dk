@@ -85,7 +85,7 @@ namespace :dependencies do
 
   gemfile_lock_task :update_omnibus_gemfile_lock, dirs: %w{omnibus}
   gemfile_lock_task :update_acceptance_gemfile_lock, dirs: %w{acceptance},
-    other_platforms: false, leave_frozen: false
+                                                     other_platforms: false, leave_frozen: false
 
   desc "Update gems to the versions specified by the stable channel."
   task :update_stable_channel_gems do |t, rake_args|

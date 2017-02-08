@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef-dk/ui'
+require "chef-dk/ui"
 
 module ChefDK
   class Pager
@@ -98,9 +98,8 @@ module ChefDK
     end
 
     def pager_env
-      {"LESS" => "-FRX", "LV" => "-c"}
+      { "LESS" => "-FRX", "LV" => "-c" }
     end
 
   end
 end
-

@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile_compiler'
+require "spec_helper"
+require "chef-dk/policyfile_compiler"
 
 describe ChefDK::PolicyfileCompiler do
 
@@ -52,7 +52,7 @@ describe ChefDK::PolicyfileCompiler do
         let(:policyfile_rb) { "{{{{::::{{::" }
 
         it "has a syntax error message" do
-          expected_error=<<-E
+          expected_error = <<-E
 Invalid ruby syntax in policyfile 'TestPolicyfile.rb':
 
 TestPolicyfile.rb:1: syntax error, unexpected :: at EXPR_BEG, expecting tCONSTANT
@@ -248,11 +248,11 @@ E
       end
 
       it "has a run_list" do
-        expect(policyfile.run_list).to eq(%w[foo bar])
+        expect(policyfile.run_list).to eq(%w{foo bar})
       end
 
       it "gives the run_list as the expanded run_list" do
-        expect(policyfile.expanded_run_list).to eq(%w[foo bar])
+        expect(policyfile.expanded_run_list).to eq(%w{foo bar})
       end
 
       it "has no default cookbook source" do
@@ -452,11 +452,11 @@ E
             expect(policyfile.default_source.size).to eq(2)
 
             public_supermarket = policyfile.default_source.first
-            expect(public_supermarket.preferred_cookbooks).to eq(%w[ foo ])
+            expect(public_supermarket.preferred_cookbooks).to eq(%w{ foo })
 
             private_supermarket = policyfile.default_source.last
             expect(private_supermarket.uri).to eq("https://mart.example")
-            expect(private_supermarket.preferred_cookbooks).to eq(%w[ bar baz ])
+            expect(private_supermarket.preferred_cookbooks).to eq(%w{ bar baz })
           end
 
         end
@@ -507,7 +507,7 @@ MESSAGE
         end
 
         it "sets the source of the cookbook to the local path" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", {path: "local_cookbooks/foo"}, storage_config)
+          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", { path: "local_cookbooks/foo" }, storage_config)
           expect(policyfile.cookbook_location_specs).to eq("foo" => expected_cb_spec)
         end
 
@@ -522,7 +522,7 @@ MESSAGE
         end
 
         it "sets the source of the cookbook to the git URL" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", {git: "git://example.com:me/foo-cookbook.git"}, storage_config)
+          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", { git: "git://example.com:me/foo-cookbook.git" }, storage_config)
           expect(policyfile.cookbook_location_specs).to eq("foo" => expected_cb_spec)
         end
 
@@ -539,7 +539,7 @@ MESSAGE
         # Chef server isn't yet supported in cookbook-omnifetch (pending /universe endpoint in Chef Server)
         # We have to skip at the example definition level or else we fail in the before block
         skip "sets the source of the cookbook to the git URL" do
-          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", {chef_server: "https://mychefserver.example.com"}, storage_config)
+          expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", { chef_server: "https://mychefserver.example.com" }, storage_config)
           expect(policyfile.cookbook_location_specs).to eq("foo" => expected_cb_spec)
         end
 
@@ -610,8 +610,8 @@ EOH
           "abc" => { "def" => { "ghi" => "xyz" } },
           "baz" => {
             "more_nested_stuff" => "yup",
-            "an_array" => ["a", "b", "c"]
-          }
+            "an_array" => %w{a b c},
+          },
         }
       end
 
@@ -621,8 +621,8 @@ EOH
           "abc" => { "def" => { "ghi" => "xyz" } },
           "baz_override" => {
             "more_nested_stuff" => "yup",
-            "an_array" => ["a", "b", "c"]
-          }
+            "an_array" => %w{a b c},
+          },
         }
       end
 

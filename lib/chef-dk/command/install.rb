@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'chef-dk/ui'
-require 'chef-dk/policyfile_services/install'
-require 'chef-dk/configurable'
+require "chef-dk/command/base"
+require "chef-dk/ui"
+require "chef-dk/policyfile_services/install"
+require "chef-dk/configurable"
 
 module ChefDK
   module Command
@@ -118,4 +118,3 @@ E
     end
   end
 end
-

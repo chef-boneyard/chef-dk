@@ -15,15 +15,14 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'chef-dk/ui'
-require 'chef-dk/configurable'
-require 'chef-dk/policyfile/lister'
-require 'chef-dk/policyfile_services/show_policy'
+require "chef-dk/command/base"
+require "chef-dk/ui"
+require "chef-dk/configurable"
+require "chef-dk/policyfile/lister"
+require "chef-dk/policyfile_services/show_policy"
 
 module ChefDK
   module Command
-
 
     class ShowPolicy < Base
 
@@ -162,4 +161,3 @@ BANNER
     end
   end
 end
-
