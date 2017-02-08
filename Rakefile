@@ -42,35 +42,45 @@ namespace :style do
       t.options = ["--display-cop-names"]
     end
   rescue LoadError => e
-    puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV['CI']
+    puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV["CI"]
   end
 
   begin
     require "rubocop/rake_task"
 
+    ignore_dirs = Regexp.union(%w{
+      lib/chef-dk/skeletons/code_generator
+      spec/unit/fixtures/chef-runner-cookbooks
+      spec/unit/fixtures/cookbook_cache
+      spec/unit/fixtures/example_cookbook
+      spec/unit/fixtures/example_cookbook_metadata_json_only
+      spec/unit/fixtures/example_cookbook_no_metadata
+      spec/unit/fixtures/local_path_cookbooks
+    })
+
     desc "Run Chef Ruby style checks"
     RuboCop::RakeTask.new(:chefstyle) do |t|
       t.requires = ["chefstyle"]
-      t.patterns = `rubocop --list-target-files`.split("\n").reject { |f| f =~ /lib\/chef-dk\/skeletons\/code_generator/ }
+      t.patterns = `rubocop --list-target-files`.split("\n").reject { |f| f =~ ignore_dirs }
       t.options = ["--display-cop-names"]
     end
   rescue LoadError => e
-    puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV['CI']
+    puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV["CI"]
   end
 
   begin
-    require 'foodcritic'
+    require "foodcritic"
 
-    desc 'Run Chef Cookbook (Foodcritic) style checks'
+    desc "Run Chef Cookbook (Foodcritic) style checks"
     FoodCritic::Rake::LintTask.new(:foodcritic) do |t|
       t.options = {
         fail_tags: ["any"],
-        tags: ["~FC007", "~FC011", "~supermarket"],
-        cookbook_paths: ["./lib/chef-dk/skeletons/code_generator"],
+        tags: ["~FC007", "~FC011", "~FC031", "~FC045", "~supermarket"],
+        cookbook_paths: ["lib/chef-dk/skeletons/code_generator"],
         progress: true,
       }
     end
   rescue LoadError => e
-    puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV['CI']
+    puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV["CI"]
   end
 end
