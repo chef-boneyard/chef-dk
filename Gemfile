@@ -35,9 +35,8 @@ group(:omnibus_package, :development, :test) do
   gem "dep_selector"
   gem "guard"
   gem "ruby-prof"
-  gem "cookstyle"
-  gem "chefstyle"
-  gem "foodcritic", ">= 8.0"
+  gem "cookstyle", ">= 1.3.0"
+  gem "foodcritic", ">= 9.0"
 end
 
 # All software we recognize needs to stay at the latest possible version. But
