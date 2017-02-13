@@ -1,14 +1,12 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.3.6](https://github.com/chef/chef-dk/tree/v1.3.6) (2017-02-02)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.20...v1.3.6)
+## [v1.3.9](https://github.com/chef/chef-dk/tree/v1.3.9) (2017-02-13)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.9)
 
 **Merged pull requests:**
 
-- Update to mixlib-archive 0.4.1 to address security vulnerability [\#1154](https://github.com/chef/chef-dk/pull/1154) ([tduffield](https://github.com/tduffield))
-- Properly skip generated skeleton Inspec tests [\#1153](https://github.com/chef/chef-dk/pull/1153) ([tduffield](https://github.com/tduffield))
-- Use ChefDK, rather than Chef Client, as build-cookbook Test Kitchen base [\#1150](https://github.com/chef/chef-dk/pull/1150) ([tduffield](https://github.com/tduffield))
-- \[knife\] Update knife-windows to 1.9.0 with support for concurrent WinRM connections [\#1147](https://github.com/chef/chef-dk/pull/1147) ([tduffield](https://github.com/tduffield))
+- Bring in the latest chefspec, kitchen-vagrant, kitchen-ec2, inspec [\#1167](https://github.com/chef/chef-dk/pull/1167) ([tas50](https://github.com/tas50))
+- Add cookstyle/chefstyle/foodcritic tests to Travis [\#1160](https://github.com/chef/chef-dk/pull/1160) ([tduffield](https://github.com/tduffield))
 
 ## [v1.2.20](https://github.com/chef/chef-dk/tree/v1.2.20) (2017-01-27)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.16...v1.2.20)
