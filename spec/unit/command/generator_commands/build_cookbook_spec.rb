@@ -322,6 +322,40 @@ METADATA
       end
 
     end
+
+    context "when the delivery project has already a config.json and project.toml" do
+
+      let(:dot_delivery) { File.join(project_dir, ".delivery") }
+      let(:config_json) { File.join(dot_delivery, "config.json") }
+      let(:project_toml) { File.join(dot_delivery, "project.toml") }
+
+      def git!(cmd)
+        Mixlib::ShellOut.new("git #{cmd}", cwd: project_dir).tap do |c|
+          c.run_command
+          c.error!
+        end
+      end
+
+      before do
+        FileUtils.mkdir_p(dot_delivery)
+        FileUtils.touch(config_json)
+        FileUtils.touch(project_toml)
+
+        git!("init .")
+        git!("add .")
+        git!("commit -m \"initial commit\"")
+
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          expect(cookbook_generator.run).to eq(0)
+        end
+      end
+
+      it "does not overwrite the delivery config" do
+        expect(git!("log").stdout).to_not include("Add generated delivery configuration")
+      end
+
+    end
   end
 
   context "when given a path including the .delivery directory" do
