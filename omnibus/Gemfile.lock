@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 53d09127b3a9d86a2f06d96a7e845a9085bcb909
+  revision: 35bf714ba17f7a2d7f7ddcacd9080701315a36cb
   branch: sersut/ff-ksubrama/ruby23
   specs:
     omnibus-software (4.0.0)
