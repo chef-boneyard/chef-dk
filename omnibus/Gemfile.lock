@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 5c139ff9d3b03050b982273f125d854ff6b9284c
+  revision: 53d09127b3a9d86a2f06d96a7e845a9085bcb909
   branch: sersut/ff-ksubrama/ruby23
   specs:
     omnibus-software (4.0.0)
@@ -31,13 +31,13 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     artifactory (2.6.0)
     awesome_print (1.7.0)
-    aws-sdk (2.7.4)
-      aws-sdk-resources (= 2.7.4)
-    aws-sdk-core (2.7.4)
+    aws-sdk (2.7.11)
+      aws-sdk-resources (= 2.7.11)
+    aws-sdk-core (2.7.11)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.7.4)
-      aws-sdk-core (= 2.7.4)
+    aws-sdk-resources (2.7.11)
+      aws-sdk-core (= 2.7.11)
     aws-sigv4 (1.0.0)
     berkshelf (5.6.2)
       addressable (~> 2.3, >= 2.3.4)
@@ -92,7 +92,7 @@ GEM
       ffi (>= 1.0.1)
     gyoku (1.3.1)
       builder (>= 2.1.2)
-    hashie (3.5.1)
+    hashie (3.5.3)
     hitimes (1.2.4)
     hitimes (1.2.4-x86-mingw32)
     httpclient (2.8.3)
@@ -100,7 +100,7 @@ GEM
     ipaddress (0.8.3)
     jmespath (1.3.1)
     json (2.0.3)
-    kitchen-vagrant (1.0.0)
+    kitchen-vagrant (1.0.2)
       test-kitchen (~> 1.4)
     libyajl2 (1.2.0)
     license_scout (0.1.3)
