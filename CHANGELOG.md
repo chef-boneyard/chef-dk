@@ -1,10 +1,11 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.3.12](https://github.com/chef/chef-dk/tree/v1.3.12) (2017-02-17)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.12)
+## [v1.3.13](https://github.com/chef/chef-dk/tree/v1.3.13) (2017-02-18)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.13)
 
 **Merged pull requests:**
 
+- Update omnibus-software to pull in openssl patch fixes [\#1173](https://github.com/chef/chef-dk/pull/1173) ([tduffield](https://github.com/tduffield))
 - Update dependencies to update omnibus-software [\#1172](https://github.com/chef/chef-dk/pull/1172) ([tduffield](https://github.com/tduffield))
 - Update OpenSSL to 1.0.2j to match chef-client [\#1171](https://github.com/chef/chef-dk/pull/1171) ([tduffield](https://github.com/tduffield))
 - Bring in the latest chefspec, kitchen-vagrant, kitchen-ec2, inspec [\#1167](https://github.com/chef/chef-dk/pull/1167) ([tas50](https://github.com/tas50))
