@@ -60,7 +60,7 @@ group(:omnibus_package) do
   gem "fauxhai"
   gem "inspec", ">= 0.17.1"
   gem "kitchen-ec2"
-  gem "kitchen-dokken", "= 1.1.0"
+  gem "kitchen-dokken", ">= 2.1.0"
   gem "kitchen-inspec"
   gem "kitchen-vagrant"
   gem "knife-windows"
