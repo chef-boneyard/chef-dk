@@ -47,10 +47,6 @@ OMNIBUS_OVERRIDES = {
   # software def so we don't need to override that
   "libzmq" => "4.0.5",
 
-  # For 1.2 stable release only, pin to 1.1.0 of kitchen-dokken. After the 1.2
-  # release, unpin and bring in kitchen-dokken 2.x.
-  "kitchen-dokken" => "1.1.0",
-
   # Match what is in Chef Client
   "openssl" => "1.0.2j",
 }
@@ -95,6 +91,7 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "addressable",       # sawyer limits to < 2.6
   "faraday",           # ridely restrcits this 0.9.x
   "thor",              # berkshelf restricts this to < 0.19.2
+  "nokogiri",          # fog limits to ~> 1.5
 
   # We have a task called update_stable_channel_gems which scans and pins to the
   # latest released chef/chef-config/opscode-pushy-client but it pulls from the
