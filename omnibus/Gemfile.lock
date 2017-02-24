@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 35bf714ba17f7a2d7f7ddcacd9080701315a36cb
+  revision: 5da3e92bd334ff6ce97d6f07c007ca7278e506d8
   branch: sersut/ff-ksubrama/ruby23
   specs:
     omnibus-software (4.0.0)
@@ -31,13 +31,13 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     artifactory (2.7.0)
     awesome_print (1.7.0)
-    aws-sdk (2.7.13)
-      aws-sdk-resources (= 2.7.13)
-    aws-sdk-core (2.7.13)
+    aws-sdk (2.7.14)
+      aws-sdk-resources (= 2.7.14)
+    aws-sdk-core (2.7.14)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.7.13)
-      aws-sdk-core (= 2.7.13)
+    aws-sdk-resources (2.7.14)
+      aws-sdk-core (= 2.7.14)
     aws-sigv4 (1.0.0)
     berkshelf (5.6.3)
       addressable (~> 2.3, >= 2.3.4)
@@ -73,7 +73,7 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (12.19.33)
+    chef-config (12.19.36)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
