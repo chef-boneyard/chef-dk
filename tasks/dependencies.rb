@@ -24,9 +24,8 @@ desc "Tasks to update and check dependencies"
 namespace :dependencies do
   # Update all dependencies to the latest constraint-matching version
   desc "Update all dependencies."
-  # Until 12.14 is released we've removed this first task from update
-  # dependencies:update_stable_channel_gems
   task :update => %w{
+                    dependencies:update_stable_channel_gems
                     dependencies:update_gemfile_lock
                     dependencies:update_omnibus_overrides
                     dependencies:update_omnibus_gemfile_lock
@@ -99,7 +98,10 @@ namespace :dependencies do
     gemfile_path = File.join(project_root, "Gemfile")
     gemfile = IO.read(gemfile_path)
     update_gemfile_from_stable(gemfile, "chef", "chef", "v")
-    update_gemfile_from_stable(gemfile, "push-jobs-client", "opscode-pushy-client")
+    # TODO: Uncomment this when push-job-client builds are passing again.
+    # Right now, the latest version is pinned to a super old version of Chef
+    # so it could be build standalone.
+    # update_gemfile_from_stable(gemfile, "push-jobs-client", "opscode-pushy-client")
 
     if gemfile != IO.read(gemfile_path)
       puts "Writing modified #{gemfile_path} ..."
