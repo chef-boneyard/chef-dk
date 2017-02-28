@@ -22,9 +22,23 @@ require_relative "helpers"
 
 desc "Tasks to update and check dependencies"
 namespace :dependencies do
-  # Update all dependencies to the latest constraint-matching version
+
+  # Running update_ci on your local system wont' work. The best way to update
+  # dependencies locally is by running the dependency update script.
   desc "Update all dependencies."
-  task :update => %w{
+  task :update do |t, rake_args|
+    system("#{File.join(Dir.pwd, "ci", "dependency_update.sh")}")
+  end
+
+  desc "Force update (when adding new gems to Gemfiles)"
+  task :force_update do |t, rake_args|
+    FileUtils.rm_f(File.join(Dir.pwd, ".bundle", "config"))
+    system("#{File.join(Dir.pwd, "ci", "dependency_update.sh")}")
+  end
+
+  # Update all dependencies to the latest constraint-matching version
+  desc "Update all dependencies. (CI Only)"
+  task :update_ci => %w{
                     dependencies:update_stable_channel_gems
                     dependencies:update_gemfile_lock
                     dependencies:update_omnibus_overrides
@@ -149,5 +163,6 @@ namespace :dependencies do
   end
 end
 desc "Update all dependencies and check for outdated gems."
-task :dependencies => [ "dependencies:update", "bundle:outdated" ]
-task :update => [ "dependencies:update", "bundle:outdated"]
+task :dependencies_ci => [ "dependencies:update_ci", "bundle:outdated" ]
+task :dependencies => [ "dependencies:update" ]
+task :update => [ "dependencies:update", "bundle:outdated" ]
