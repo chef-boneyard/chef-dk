@@ -121,6 +121,20 @@ module ChefDK
         end.sort.to_h
       end
 
+      def transitive_deps(names)
+        require 'set'
+        deps = Set.new
+        to_explore = names.dup
+        until to_explore.empty?
+          ck_name = to_explore.shift
+          next unless deps.add?(ck_name) # explore each ck only once
+          my_deps = find_cookbook_dep_by_name(ck_name)
+          dep_names = my_deps[1].map(&:first)
+          to_explore += dep_names
+        end
+        deps.to_a.sort
+      end
+
       private
 
       def add_cookbook_obj_dep(cookbook, dependency_map)

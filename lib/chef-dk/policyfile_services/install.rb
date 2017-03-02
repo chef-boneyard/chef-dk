@@ -49,7 +49,7 @@ module ChefDK
         @policyfile_compiler = nil
       end
 
-      def run
+      def run(cookbooks_to_update = [])
         unless File.exist?(policyfile_expanded_path)
           # TODO: suggest next step. Add a generator/init command? Specify path to Policyfile.rb?
           # See card CC-232
@@ -58,8 +58,10 @@ module ChefDK
 
         if installing_from_lock?
           install_from_lock
-        else
+        elsif cookbooks_to_update.empty? # means update everything
           generate_lock_and_install
+        else
+          update_lock_and_install(cookbooks_to_update)
         end
       end
 
@@ -109,6 +111,32 @@ module ChefDK
         ui.msg "Policy revision id: #{policyfile_lock.revision_id}"
       rescue => error
         raise PolicyfileInstallError.new("Failed to generate Policyfile.lock", error)
+      end
+
+      def update_lock_and_install(cookbooks_to_update)
+        ui.msg "Updating #{cookbooks_to_update.join(',')} cookbooks"
+
+        to_update = policyfile_lock.solution_dependencies.transitive_deps(cookbooks_to_update)
+        prepare_constraints_for_update(to_update)
+        generate_lock_and_install
+      end
+
+      def prepare_constraints_for_update(to_update)
+        ui.msg "Will relax constraints on:"
+        to_update.each do |ck|
+          ui.msg " - #{ck}"
+        end
+
+        policyfile_lock.cookbook_locks.each do |ck_name, location_spec|
+          next if to_update.include?(ck_name)
+          # we need to feed policyfile_compiler.cookbook_location_spec_for with a CookbookLocationSpecification
+          policyfile_compiler.dsl.cookbook_location_specs[ck_name] = Policyfile::CookbookLocationSpecification.new(
+            ck_name,
+            Semverse::Constraint.new("=#{location_spec.version}"),
+            location_spec.source_options,
+            location_spec.storage_config
+          )
+        end
       end
 
       def install_from_lock
