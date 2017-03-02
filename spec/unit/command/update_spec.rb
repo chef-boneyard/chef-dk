@@ -77,7 +77,7 @@ describe ChefDK::Command::Update do
     let(:params) { ["-a"] }
 
     it "enables attributes update mode" do
-      expect(command.update_attributes?).to be(true)
+      expect(command.update_attributes_only?).to be(true)
     end
 
     it "creates an attributes update service object" do
@@ -132,6 +132,10 @@ describe ChefDK::Command::Update do
     context "when the command is successful" do
       before do
         expect(install_service).to receive(:run)
+        expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new).
+          with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd).
+          and_return(update_attrs_service)
+        expect(update_attrs_service).to receive(:run)
       end
 
       it "returns 0" do
@@ -155,6 +159,10 @@ describe ChefDK::Command::Update do
 
       before do
         expect(install_service).to receive(:run).and_raise(exception)
+        expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new).
+          with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd).
+          and_return(update_attrs_service)
+        expect(update_attrs_service).to receive(:run)
       end
 
       it "returns 1" do
