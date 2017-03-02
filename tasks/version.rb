@@ -15,9 +15,32 @@
 # limitations under the License.
 #
 
+task :ci_version_bump do
+  begin
+    require "rake"
+
+    Rake::Task["version:bump_patch"].invoke
+    Rake::Task["version:update_gemfile_lock"].invoke
+
+    begin
+      Rake::Task["changelog:update"].invoke
+    rescue Exception => e
+      puts "There was an error updating the CHANGELOG"
+      puts e
+    end
+
+    begin
+      Rake::Task["update_dockerfile"].invoke
+    rescue Exception => e
+      puts "There was an error updating the Dockerfile"
+      puts e
+    end
+  end
+end
+
 namespace :version do
   desc "Bump patch version in lib/chef-dk/version.rb and update Gemfile*.lock conservatively to include the new version. If Gemfile has changed, this will update modified constraints as well."
-  task :bump => %w{version:bump_patch version:update_gemfile_lock}
+  task :bump => "ci_version_bump"
 
   desc "Show the current version."
   task :show do
