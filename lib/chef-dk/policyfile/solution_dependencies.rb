@@ -109,7 +109,7 @@ module ChefDK
       def policyfile_dependencies_for_lock
         policyfile_dependencies.map do |name, constraint|
           [ name, constraint.to_s ]
-        end
+        end.sort
       end
 
       def cookbook_deps_for_lock
@@ -118,7 +118,7 @@ module ChefDK
             [ name, constraint.to_s ]
           end
           map
-        end
+        end.sort.to_h
       end
 
       private

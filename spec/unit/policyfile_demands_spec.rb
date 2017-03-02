@@ -861,11 +861,12 @@ MESSAGE
 
     it "includes the policyfile constraint in the solution dependencies" do
       expected_solution_deps = {
-        "Policyfile" => [ [ "remote-cb", "~> 0.1" ], [ "local-cookbook", ">= 0.0.0"] ],
+        "Policyfile" => [ [ "local-cookbook", ">= 0.0.0" ], [ "remote-cb", "~> 0.1" ] ],
         "dependencies" => {
           "local-cookbook (2.3.4)" => [],
           "remote-cb (0.1.0)" => [],
         },
+
 
       }
       expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
