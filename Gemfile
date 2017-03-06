@@ -37,6 +37,8 @@ group(:omnibus_package, :development, :test) do
   gem "ruby-prof"
   gem "cookstyle", ">= 1.3.0"
   gem "foodcritic", ">= 9.0"
+  # This is here temporarily until we can get oc-chef-pedant fixed
+  gem "veil", git: "https://github.com/chef/chef_secrets.git"
 end
 
 # All software we recognize needs to stay at the latest possible version. But
