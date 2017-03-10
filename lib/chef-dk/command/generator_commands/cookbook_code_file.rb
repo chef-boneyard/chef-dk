@@ -85,7 +85,7 @@ module ChefDK
         end
 
         def validate_cookbook_path
-          unless File.directory?(File.join(cookbook_path, "recipes"))
+          unless File.file?(File.join(cookbook_path, "metadata.rb"))
             @errors << "Directory #{cookbook_path} is not a cookbook"
             @params_valid = false
           end
