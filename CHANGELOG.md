@@ -1,7 +1,14 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.3.21](https://github.com/chef/chef-dk/tree/v1.3.21) (2017-03-07)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.21)
+## [v1.3.22](https://github.com/chef/chef-dk/tree/v1.3.22) (2017-03-10)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.3.22...v1.3.22)
+
+**Merged pull requests:**
+
+- Bump deps for Chefspec 6.1 [\#1192](https://github.com/chef/chef-dk/pull/1192) ([tas50](https://github.com/tas50))
+
+## [v1.3.22](https://github.com/chef/chef-dk/tree/v1.3.22) (2017-03-10)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.22)
 
 **Merged pull requests:**
 
