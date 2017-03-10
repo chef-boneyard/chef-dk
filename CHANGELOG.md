@@ -1,10 +1,11 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.3.19](https://github.com/chef/chef-dk/tree/v1.3.19) (2017-03-02)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.19)
+## [v1.3.21](https://github.com/chef/chef-dk/tree/v1.3.21) (2017-03-07)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.21)
 
 **Merged pull requests:**
 
+- Remove veil gem [\#1189](https://github.com/chef/chef-dk/pull/1189) ([tduffield](https://github.com/tduffield))
 - Update RELEASE NOTES [\#1183](https://github.com/chef/chef-dk/pull/1183) ([tduffield](https://github.com/tduffield))
 - Fix the dependency updater so Chef Client is updated [\#1178](https://github.com/chef/chef-dk/pull/1178) ([tduffield](https://github.com/tduffield))
 - Updating dependencies [\#1177](https://github.com/chef/chef-dk/pull/1177) ([afiune](https://github.com/afiune))
