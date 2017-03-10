@@ -12,13 +12,13 @@ GEM
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
     artifactory (2.7.0)
-    aws-sdk (2.8.0)
-      aws-sdk-resources (= 2.8.0)
-    aws-sdk-core (2.8.0)
+    aws-sdk (2.8.4)
+      aws-sdk-resources (= 2.8.4)
+    aws-sdk-core (2.8.4)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.8.0)
-      aws-sdk-core (= 2.8.0)
+    aws-sdk-resources (2.8.4)
+      aws-sdk-core (= 2.8.4)
     aws-sigv4 (1.0.0)
     berkshelf (5.6.3)
       addressable (~> 2.3, >= 2.3.4)
@@ -79,7 +79,7 @@ GEM
     hashie (3.5.5)
     hitimes (1.2.4)
     httpclient (2.8.3)
-    inspec (1.16.0)
+    inspec (1.16.1)
       faraday (>= 0.9.0)
       hashie (~> 3.4)
       json (>= 1.8, < 3.0)
@@ -111,7 +111,7 @@ GEM
     kitchen-vagrant (1.0.2)
       test-kitchen (~> 1.4)
     little-plugger (1.1.4)
-    logging (2.1.0)
+    logging (2.2.0)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
     method_source (0.8.2)
@@ -261,4 +261,4 @@ DEPENDENCIES
   winrm-fs
 
 BUNDLED WITH
-   1.14.6
+   1.12.5
