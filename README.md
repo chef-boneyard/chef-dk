@@ -30,7 +30,7 @@ system bin directory, ready to use.
 
 ### Pre-release Candidates
 
-The following commands will download the latest ChefDK package from the `current` channel.  The `current` channel holds builds that have passed testing and are candidates for release.  
+The following commands will download the latest ChefDK package from the `current` channel.  The `current` channel holds builds that have passed testing and are candidates for release.
 More information about flags supported by install.sh available here: https://docs.chef.io/api_omnitruck.html
 
 #### Linux and OS/X:
@@ -318,11 +318,11 @@ packaging, and building works.
 
 - - -
 
-[Berkshelf]: http://berkshelf.com "Berkshelf"
+[Berkshelf]: https://docs.chef.io/berkshelf.html "Berkshelf"
 [Chef]: https://www.chef.io "Chef"
 [ChefDK]: https://downloads.chef.io/chef-dk "Chef Development Kit"
 [Chef Documentation]: https://docs.chef.io "Chef Documentation"
-[ChefSpec]: http://chefspec.org "ChefSpec"
+[ChefSpec]: http://sethvargo.github.io/chefspec/ "ChefSpec"
 [Foodcritic]: http://foodcritic.io "Foodcritic"
 [Learn Chef]: https://learn.chef.io "Learn Chef"
 [Test Kitchen]: http://kitchen.ci "Test Kitchen"
