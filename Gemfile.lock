@@ -1,12 +1,12 @@
 GIT
-  remote: https://github.com/chef/appbundler.git
+  remote: https://github.com/chef/appbundler
   revision: 6582b68884453b5ca5c962458a0c08046c719558
   specs:
     appbundler (0.10.0)
       mixlib-cli (~> 1.4)
 
 GIT
-  remote: https://github.com/chef/chef.git
+  remote: https://github.com/chef/chef
   revision: 7b8ceacf4fe474587a485b5ad23713a5c0096145
   branch: v12.19.36
   specs:
@@ -86,7 +86,7 @@ GIT
       mixlib-shellout (~> 2.0)
 
 GIT
-  remote: https://github.com/chef/opscode-pushy-client.git
+  remote: https://github.com/chef/opscode-pushy-client
   revision: 960147934b353e73f7cb7601fb2ac9143fa93f4d
   branch: 2.1.2
   specs:
