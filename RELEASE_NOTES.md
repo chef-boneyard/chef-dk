@@ -42,12 +42,12 @@ ChefSpec has been updated to use Fauxhai 4.0 Ohai data mocks. This includes seve
   * chef-zero 5.2.0 -> 5.3.0 ([Changelog](https://github.com/chef/chef-zero/blob/master/CHANGELOG.md))
   * chef 12.18.31 -> 12.19.36 ([Changelog](https://github.com/chef/chef/blob/master/CHANGELOG.md))
   * cheffish 4.1.0 -> 4.1.1 ([Changelog](https://github.com/chef/cheffish/blob/master/CHANGELOG.md))
-  * chefspec 5.3.0 -> 6.0.1 ([Changelog](https://github.com/sethvargo/chefspec/blob/master/CHANGELOG.md))
+  * chefspec 5.3.0 -> 6.1.0 ([Changelog](https://github.com/sethvargo/chefspec/blob/master/CHANGELOG.md))
   * cookstyle 1.2.0 -> 1.3.0 ([Changelog](https://github.com/chef/cookstyle/blob/master/CHANGELOG.md))
-  * inspec 1.11.0 -> 1.16.0 ([Changelog](https://github.com/chef/inspec/blob/master/CHANGELOG.md))
+  * inspec 1.11.0 -> 1.16.1 ([Changelog](https://github.com/chef/inspec/blob/master/CHANGELOG.md))
   * kitchen-dokken 1.1.0 -> 2.1.2
   * kitchen-ec2 1.2.0 -> 1.3.2 ([Changelog](https://github.com/test-kitchen/kitchen-ec2/blob/master/CHANGELOG.md))
   * kitchen-vagrant 1.0.0 -> 1.0.2 ([Changelog](https://github.com/test-kitchen/kitchen-vagrant/blob/master/CHANGELOG.md))
   * mixlib-install 2.1.11 -> 2.1.12 ([Changelog](https://github.com/chef/mixlib-install/blob/master/CHANGELOG.md))
   * specinfra 2.66.7 -> 2.67.1
-  * test-kitchen 1.15.0 -> 1.16.0 ([Changelog](omnibus_package:test:aix:bsd:linux:mac_os_x:solaris:windows:default))
+  * test-kitchen 1.15.0 -> 1.16.0 ([Changelog](https://github.com/test-kitchen/test-kitchen/blob/master/CHANGELOG.md))
