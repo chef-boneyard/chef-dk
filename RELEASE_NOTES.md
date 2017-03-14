@@ -2,16 +2,16 @@
 
 ## Chef Client 12.19
 
-Check out https://docs.chef.io/release_notes.html for all the details.
+ChefDK now ships with Chef 12.19. Check out https://docs.chef.io/release_notes.html for all the details of this new release.
 
 ## Workflow Build Cookbooks
 Build cookbooks generated via `chef generate build-cookbook` will no longer depend on the delivery_build or delivery-base cookbook. Instead, the Test Kitchen instance will use ChefDK as per the standard Workflow Runner setup.
 
 Also the build cookbook generator will not overwrite your `config.json` or `project.toml` if they exist already on your project.
 
-## ChefSpec
+## ChefSpec 6.0
 
-With the 6.0 release of ChefSpec, rather than creating a ChefZero instance per ServerRunner test context, a single ChefZero instance is created that all ServerRunner test contexts will leverage. The ChefZero instance is reset between each test case, emulating the existing behavior without needing a monotonically increasing number of ChefZero instances.
+ChefDK includes the new ChefSpec 6.0 release with improvements to the ServerRunner behavior. Rather than creating a ChefZero instance per ServerRunner test context, a single ChefZero instance is created that all ServerRunner test contexts will leverage. The ChefZero instance is reset between each test case, emulating the existing behavior without needing a monotonically increasing number of ChefZero instances.
 
 Additionally, if you are using ChefSpec to test a pre-defined set of Cookbooks, there is now an option to upload those cookbooks only once, rather than before every test case. To take advantage of this performance enhancer, simply set the `server_runner_clear_cookbooks` RSpec configuration value to `false` in your `spec_helper.rb`.
 
@@ -21,19 +21,20 @@ Additionally, if you are using ChefSpec to test a pre-defined set of Cookbooks, 
 
 Setting this value to `false` has been shown to increase the ServerRunner performance by 75%, improve stability on Windows, and make the ServerRunner as fast as SoloRunner.
 
-Also included are three new matchers: `dnf_package`, `msu_package`, and `cab_package`
+This new release also includes three new matchers: `dnf_package`, `msu_package`, and `cab_package` and utilizes the new Fauxhai 4.0 release. This includes several new platforms and removes many older end of life platforms. See <https://github.com/customink/fauxhai/blob/master/PLATFORMS.md> for a list of all supported platforms for use in ChefSpec.
 
-ChefSpec has been updated to use Fauxhai 4.0 Ohai data mocks. This includes several new platforms and removes many older end of life platforms. See <https://github.com/customink/fauxhai/blob/master/PLATFORMS.md> for a list of all supported platforms for use in ChefSpec.
+## InSpec
 
-## Inspec
+InSpec has been updated to 1.16.1 with the following new functionality:
 
  * Better filter support for the [`processes` resource](http://inspec.io/docs/reference/resources/processes/).
  * New `packages` and `crontab` resources
  * New `inspec habitat profile create` command to create a Habitat artifact for a given Inspec profile.
+ * Functional JUnit reporting
 
 ## Kitchen EC2 Driver
 
- * Adds support for Windows 2016 instances
+Kitchen-ec2 has been updated to 1.3.2 with support for Windows 2016 instances
 
 ## Notable Updated Gems
 
@@ -45,7 +46,7 @@ ChefSpec has been updated to use Fauxhai 4.0 Ohai data mocks. This includes seve
   * chefspec 5.3.0 -> 6.1.0 ([Changelog](https://github.com/sethvargo/chefspec/blob/master/CHANGELOG.md))
   * cookstyle 1.2.0 -> 1.3.0 ([Changelog](https://github.com/chef/cookstyle/blob/master/CHANGELOG.md))
   * inspec 1.11.0 -> 1.16.1 ([Changelog](https://github.com/chef/inspec/blob/master/CHANGELOG.md))
-  * kitchen-dokken 1.1.0 -> 2.1.2
+  * kitchen-dokken 1.1.0 -> 2.1.2 ([Changelog](https://github.com/someara/kitchen-dokken/blob/master/CHANGELOG.md))
   * kitchen-ec2 1.2.0 -> 1.3.2 ([Changelog](https://github.com/test-kitchen/kitchen-ec2/blob/master/CHANGELOG.md))
   * kitchen-vagrant 1.0.0 -> 1.0.2 ([Changelog](https://github.com/test-kitchen/kitchen-vagrant/blob/master/CHANGELOG.md))
   * mixlib-install 2.1.11 -> 2.1.12 ([Changelog](https://github.com/chef/mixlib-install/blob/master/CHANGELOG.md))
