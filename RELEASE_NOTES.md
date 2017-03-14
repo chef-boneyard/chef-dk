@@ -23,6 +23,8 @@ Setting this value to `false` has been shown to increase the ServerRunner perfor
 
 Also included are three new matchers: `dnf_package`, `msu_package`, and `cab_package`
 
+ChefSpec has been updated to use Fauxhai 4.0 Ohai data mocks. This includes several new platforms and removes many older end of life platforms. See <https://github.com/customink/fauxhai/blob/master/PLATFORMS.md> for a list of all supported platforms for use in ChefSpec.
+
 ## Inspec
 
  * Better filter support for the [`processes` resource](http://inspec.io/docs/reference/resources/processes/).
