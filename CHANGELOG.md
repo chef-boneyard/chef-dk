@@ -1,7 +1,14 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.3.27](https://github.com/chef/chef-dk/tree/v1.3.27) (2017-03-15)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.27)
+## [v1.3.28](https://github.com/chef/chef-dk/tree/v1.3.28) (2017-03-17)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.3.28...v1.3.28)
+
+**Merged pull requests:**
+
+- Point omnibus and omnibus-software at master branches [\#1206](https://github.com/chef/chef-dk/pull/1206) ([tduffield](https://github.com/tduffield))
+
+## [v1.3.28](https://github.com/chef/chef-dk/tree/v1.3.28) (2017-03-17)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.28)
 
 **Merged pull requests:**
 
