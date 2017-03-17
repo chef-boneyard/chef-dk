@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 5da3e92bd334ff6ce97d6f07c007ca7278e506d8
-  branch: sersut/ff-ksubrama/ruby23
+  revision: c51e6d9010889f307706b70d87139bc32abfd6a8
   specs:
     omnibus-software (4.0.0)
       chef-sugar (>= 3.4.0)
@@ -9,8 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: dce5283a85a44484a66a8a84991beba92e46fd12
-  branch: rhass/COOL-502_with_gcc_investigate
+  revision: 76d907f4fe92a28c5f7ab11779341e1d773c358d
   specs:
     omnibus (5.5.0)
       aws-sdk (~> 2)
@@ -246,4 +244,4 @@ DEPENDENCIES
   winrm-elevated
 
 BUNDLED WITH
-   1.12.5
+   1.14.6
