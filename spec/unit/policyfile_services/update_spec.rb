@@ -16,128 +16,128 @@
 #
 
 require 'spec_helper'
+require "chef-dk/policyfile_services/install"
+require "chef-dk/policyfile/cookbook_sources"
 
-# TODO: change this from string to const when class definition exists
-describe "ChefDK::PolicyfileServices::Update" do
+
+describe ChefDK::PolicyfileServices::Install do
+
+  include ChefDK::Helpers
+
+  let(:working_dir) do
+    path = File.join(tempdir, "policyfile_services_test_working_dir")
+    Dir.mkdir(path)
+    path
+  end
+
+  let(:policyfile_rb_explicit_name) { nil }
+
+  let(:policyfile_rb_name) { policyfile_rb_explicit_name || "Policyfile.rb" }
+
+  let(:policyfile_rb_path) { File.join(working_dir, policyfile_rb_name) }
+
+  let(:policyfile_lock_name) { "Policyfile.lock.json" }
+
+  let(:policyfile_lock_path) { File.join(working_dir, policyfile_lock_name) }
+
+  let(:ui) { TestHelpers::TestUI.new }
+
+  let(:install_service) { described_class.new(policyfile: policyfile_rb_name, ui: ui, root_dir: working_dir, overwrite: true) }
+
+  let(:storage_config) do
+    ChefDK::Policyfile::StorageConfig.new( cache_path: nil, relative_paths_root: local_cookbooks_root )
+  end
+
+  let(:policyfile_content) do
+    <<-EOH
+default_source :community
+name 'install-example'
+
+run_list 'top-level'
+
+cookbook 'top-level'
+cookbook 'top-level-bis'
+cookbook 'b', '>= 1.2.3'
+EOH
+  end
+
+  def cookbook_lock(name, version)
+    {
+      "version" => version,
+      "identifier" => Digest::SHA256.new.hexdigest(version),
+      "dotted_decimal_identifier" => "55385045718000942.66835911167097593.12604218968062",
+      "cache_key" => "#{name}-#{version}-supermarket.chef.io",
+      "origin" => "https://supermarket.chef.io:443/api/v1/cookbooks/#{name}/versions/#{version}/download",
+      "source_options" => {
+        "artifactserver" => "https://supermarket.chef.io:443/api/v1/cookbooks/#{name}/versions/#{version}/download",
+        "version" => version
+      }
+    }
+  end
+
+  let(:policyfile_lock_content) do
+    {
+      "revision_id" => "b33cb73a52bee7254eb53138ee44",
+      "name" => "install-example",
+      "run_list" => [ "recipe[top-level::default]" ],
+      "cookbook_locks" => {
+        "top-level" => cookbook_lock("top-level", "1.2.0"),
+        "a" => cookbook_lock("a", "2.1.0"),
+        "b" => cookbook_lock("b", "1.2.3"),
+        "top-level-bis" => cookbook_lock("top-level-bis", "1.0.0")
+      },
+      "default_attributes" => {},
+      "override_attributes" => {},
+      "solution_dependencies" => {
+        "Policyfile" => [
+          [ "top-level", "= 1.2.0" ],
+          [ "a", "= 2.1.0" ],
+          [ "b", "= 1.2.3" ],
+          [ "top-level-bis", "= 1.0.0" ],
+        ],
+        "dependencies" => {
+          "top-level (1.2.0)" => [ [ "a", "~> 2.1" ], [ "b", "~> 1.0" ] ],
+          "a (2.1.0)" => [],
+          "b (1.2.3)" => [],
+          "top-level-bis (1.0.0)" => []
+        }
+      }
+    }.to_json
+  end
+
 
   context "when given one cookbook to update" do
+    before(:each) do
+      # stub access to Policyfile.rb and Policyfile.lock.json
+      expect(File).to receive(:exist?).at_least(:once).with(policyfile_rb_path).and_return(true)
+      expect(File).to receive(:exist?).at_least(:once).with(policyfile_lock_path).and_return(true)
 
-    context "and there is not a newer version available" do
+      expect(IO).to receive(:read).with(policyfile_rb_path).and_return(policyfile_content)
+      expect(IO).to receive(:read).with(policyfile_lock_path).and_return(policyfile_lock_content)
 
-      it "does not update the cookbook"
 
-      it "explains that no newer version is available"
+      # lock generation is a no-op. Its behavior is already tested
+      # elsewhere. We only check constraints changes
+      expect(install_service).to receive(:generate_lock_and_install)
 
+      expect { install_service.run(["top-level"]) }.not_to raise_error
+    end
+    it "allows update on cookbook to update" do
+      expect(install_service.policyfile_compiler.dsl.cookbook_location_specs["top-level"].version_constraint.to_s).to eq(">= 0.0.0")
     end
 
-    context "and a newer version is available" do
-
-      context "and the cookbook has no deps and is not a dep of another cookbook" do
-
-        it "updates the cookbook"
-
-      end
-
-      context "and there is a version contraint in the policyfile that is satisfied by the new version" do
-
-        it "updates the cookbook"
-
-      end
-
-      context "and there is a version contraint in the policyfile that is not satisfied by the new version" do
-
-        it "does not update the cookbook"
-
-        it "explains why dependency conflicts prevented the update"
-
-      end
-
-      context "and the cookbook has deps that are not shared with other cookbooks" do
-
-        it "updates the cookbook"
-
-        context "and the cookbook's deps have a newer version available" do
-
-          it "updates the cookbook's dependency"
-
-        end
-
-        context "and the updated cookbook removed a dependency" do
-
-          it "removes the dependent cookbook"
-
-        end
-
-      end
-
-      context "and the cookbook has deps that are shared with other cookbooks" do
-
-        context "and the updated dep satisfies the other cookbook's constraints" do
-
-          it "updates the cookbook"
-
-          it "updates the dependency"
-
-        end
-
-        context "and the updated dep doesn't satisfy the other cookbook's contstraints" do
-
-          context "and the updated cookbook requires the updated dependency" do
-
-            it "does not update the cookbook"
-
-            it "explains why dependency conflicts prevented the update"
-
-          end
-
-          context "and the updated cookbook does not require the updated dependency" do
-
-            it "updates the cookbook"
-
-            it "does not update the dependency"
-
-          end
-
-        end
-
-        context "and the updated cookbook removes the dependency" do
-
-          it "updates the cookbook"
-
-          # NOTE: the ideal behavior here is probably not updating the
-          # dependency, because we update dependencies only to make the update
-          # of the depending cookbook less likely to fail, which is irrelevant
-          # in this scenario. That said, it is expected that it would be very
-          # difficult to implement this behavior and this is something of an
-          # edge case, so we can tolerate it.
-          it "updates the dependency"
-
-        end
-
-      end
-
-      context "and the cookbook is a dep of another cookbook" do
-
-        context "and there is a newer version that matches the other cookbook's constraint" do
-
-          it "updates the cookbook"
-
-        end
-
-        context "and there is a newer version but it doesn't match the other cookbook's constraint" do
-
-          it "does not update the cookbook"
-
-          it "explains why dependency conflicts prevented the update"
-
-        end
-
-      end
-
+    it "does not update unrelated cookbooks" do
+      expect(install_service.policyfile_compiler.dsl.cookbook_location_specs["top-level-bis"].version_constraint.to_s).to eq("= 1.0.0")
     end
 
+    it "allows update on dependencies" do
+      expect(install_service.policyfile_compiler.dsl.cookbook_location_specs["a"]).to be_nil
+    end
+
+    it "preserves existing constraints from Policyfile" do
+      expect(install_service.policyfile_compiler.dsl.cookbook_location_specs["b"].version_constraint.to_s).to eq(">= 1.2.3")
+    end
 
   end
 
 end
-
