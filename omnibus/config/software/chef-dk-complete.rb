@@ -22,9 +22,6 @@ dependency "gem-permissions"
 if windows?
   dependency "chef-dk-env-customization"
   dependency "chef-dk-powershell-scripts"
-  # TODO can this be safely moved to before the chef-dk?
-  # It would make caching better ...
-  dependency "ruby-windows-devkit"
 end
 
 dependency "chef-dk-cleanup"
@@ -34,3 +31,7 @@ dependency "version-manifest"
 dependency "openssl-customization"
 
 dependency "stunnel" if fips_mode?
+
+# This *has* to be last, as it mutates the build environment and causes all
+# compilations that use ./configure et all (the msys env) to break
+dependency "ruby-windows-devkit"
