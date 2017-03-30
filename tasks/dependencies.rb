@@ -112,10 +112,7 @@ namespace :dependencies do
     gemfile_path = File.join(project_root, "Gemfile")
     gemfile = IO.read(gemfile_path)
     update_gemfile_from_stable(gemfile, "chef", "chef", "v")
-    # TODO: Uncomment this when push-job-client builds are passing again.
-    # Right now, the latest version is pinned to a super old version of Chef
-    # so it could be build standalone.
-    # update_gemfile_from_stable(gemfile, "push-jobs-client", "opscode-pushy-client")
+    update_gemfile_from_stable(gemfile, "push-jobs-client", "opscode-pushy-client")
 
     if gemfile != IO.read(gemfile_path)
       puts "Writing modified #{gemfile_path} ..."
