@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/chef/chef-acceptance.git
-  revision: e92ddae46d2126864698b9c8e4fc4ec2dcc46c55
+  revision: 3877c344098021ac66134e8edb5eb805d14d4643
   specs:
     chef-acceptance (0.2.0)
       mixlib-shellout (~> 2.0)
@@ -9,7 +9,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.5.0)
+    addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     artifactory (2.8.1)
     aws-sdk (2.8.14)
@@ -79,7 +79,8 @@ GEM
     hashie (3.5.5)
     hitimes (1.2.4)
     httpclient (2.8.3)
-    inspec (1.17.0)
+    inspec (1.18.0)
+      addressable (~> 2.5)
       faraday (>= 0.9.0)
       hashie (~> 3.4)
       json (>= 1.8, < 3.0)
@@ -212,7 +213,7 @@ GEM
       hitimes
     toml (0.1.2)
       parslet (~> 1.5.0)
-    train (0.22.1)
+    train (0.23.0)
       docker-api (~> 1.26)
       json (>= 1.8, < 3.0)
       mixlib-shellout (~> 2.0)
@@ -261,4 +262,4 @@ DEPENDENCIES
   winrm-fs
 
 BUNDLED WITH
-   1.14.6
+   1.12.5

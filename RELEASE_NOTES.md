@@ -56,5 +56,7 @@ Kitchen-ec2 has been updated to 1.3.2 with support for Windows 2016 instances
 - kitchen-ec2 1.2.0 -> 1.3.2 ([Changelog](https://github.com/test-kitchen/kitchen-ec2/blob/master/CHANGELOG.md))
 - kitchen-vagrant 1.0.0 -> 1.0.2 ([Changelog](https://github.com/test-kitchen/kitchen-vagrant/blob/master/CHANGELOG.md))
 - mixlib-install 2.1.11 -> 2.1.12 ([Changelog](https://github.com/chef/mixlib-install/blob/master/CHANGELOG.md))
-- specinfra 2.66.7 -> 2.67.6
+- opscode-pushy-client 2.1.2 -> 2.2.0 ([Changelog](https://github.com/chef/opscode-pushy-client/blob/master/CHANGELOG.md))
+- specinfra 2.66.7 -> 2.67.7
 - test-kitchen 1.15.0 -> 1.16.0 ([Changelog](https://github.com/test-kitchen/test-kitchen/blob/master/CHANGELOG.md))
+- train 0.22.1 -> 0.23.0 ([Changelog](https://github.com/chef/train/blob/master/CHANGELOG.md))
