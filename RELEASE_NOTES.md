@@ -36,6 +36,15 @@ InSpec has been updated to 1.18 with the following new functionality:
 - Functional JUnit reporting
 - A new command for generating profiles has been added
 
+## Foodcritic
+
+Foodcritic has been updated to 10.2.1\. This release includes the following new functionality
+
+- FC003, which required gating certain code when running on Chef Solo has been removed
+- FC023, which preferred conditional (only_if / not_if) code within resources has been removed as many disagreed with this coding style
+- False positives in FC007 and FC016 have been resolved
+- New rules have been added requiring the license (FC068), supports (FC067), and chef_version (FC066) metadata properties in cookbooks
+
 ## Kitchen EC2 Driver
 
 Kitchen-ec2 has been updated to 1.3.2 with support for Windows 2016 instances
@@ -51,7 +60,7 @@ Kitchen-ec2 has been updated to 1.3.2 with support for Windows 2016 instances
 - chefspec 5.3.0 -> 6.2.0 ([Changelog](https://github.com/sethvargo/chefspec/blob/master/CHANGELOG.md))
 - cookstyle 1.2.0 -> 1.3.0 ([Changelog](https://github.com/chef/cookstyle/blob/master/CHANGELOG.md))
 - fauxhai 3.10.0 -> 4.1.0 ([Changelog](https://github.com/customink/fauxhai/blob/master/CHANGELOG.md)
-- foodcritic 9.0.0 -> 10.1.1 ([Changelog](https://github.com/acrmp/foodcritic/blob/master/CHANGELOG.md)
+- foodcritic 9.0.0 -> 10.2.1 ([Changelog](https://github.com/acrmp/foodcritic/blob/master/CHANGELOG.md)
 - inspec 1.11.0 -> 1.18.0 ([Changelog](https://github.com/chef/inspec/blob/master/CHANGELOG.md))
 - kitchen-dokken 1.1.0 -> 2.1.2 ([Changelog](https://github.com/someara/kitchen-dokken/blob/master/CHANGELOG.md))
 - kitchen-ec2 1.2.0 -> 1.3.2 ([Changelog](https://github.com/test-kitchen/kitchen-ec2/blob/master/CHANGELOG.md))
