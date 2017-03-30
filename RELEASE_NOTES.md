@@ -28,12 +28,13 @@ This new release also includes three new matchers: `dnf_package`, `msu_package`,
 
 ## InSpec
 
-InSpec has been updated to 1.16.1 with the following new functionality:
+InSpec has been updated to 1.18 with the following new functionality:
 
 - Better filter support for the [`processes` resource](http://inspec.io/docs/reference/resources/processes/).
-- New `packages` and `crontab` resources
-- New `inspec habitat profile create` command to create a Habitat artifact for a given Inspec profile.
+- New `packages`, `crontab`, `x509_certificate`, and `x509_private_key` resources
+- New `inspec habitat profile create` command to create a Habitat artifact for a given InSpec profile.
 - Functional JUnit reporting
+- A new command for generating profiles has been added
 
 ## Kitchen EC2 Driver
 
@@ -51,7 +52,7 @@ Kitchen-ec2 has been updated to 1.3.2 with support for Windows 2016 instances
 - cookstyle 1.2.0 -> 1.3.0 ([Changelog](https://github.com/chef/cookstyle/blob/master/CHANGELOG.md))
 - fauxhai 3.10.0 -> 4.1.0 ([Changelog](https://github.com/customink/fauxhai/blob/master/CHANGELOG.md)
 - foodcritic 9.0.0 -> 10.1.1 ([Changelog](https://github.com/acrmp/foodcritic/blob/master/CHANGELOG.md)
-- inspec 1.11.0 -> 1.17.0 ([Changelog](https://github.com/chef/inspec/blob/master/CHANGELOG.md))
+- inspec 1.11.0 -> 1.18.0 ([Changelog](https://github.com/chef/inspec/blob/master/CHANGELOG.md))
 - kitchen-dokken 1.1.0 -> 2.1.2 ([Changelog](https://github.com/someara/kitchen-dokken/blob/master/CHANGELOG.md))
 - kitchen-ec2 1.2.0 -> 1.3.2 ([Changelog](https://github.com/test-kitchen/kitchen-ec2/blob/master/CHANGELOG.md))
 - kitchen-vagrant 1.0.0 -> 1.0.2 ([Changelog](https://github.com/test-kitchen/kitchen-vagrant/blob/master/CHANGELOG.md))
