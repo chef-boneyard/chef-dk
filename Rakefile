@@ -75,7 +75,7 @@ namespace :style do
     FoodCritic::Rake::LintTask.new(:foodcritic) do |t|
       t.options = {
         fail_tags: ["any"],
-        tags: ["~FC011", "~FC064", "~FC065", "~FC066", "~FC067"],
+        tags: ["~FC011", "~FC066", "~supermarket"],
         cookbook_paths: ["lib/chef-dk/skeletons/code_generator"],
         progress: true,
       }
