@@ -1,7 +1,14 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.3.32](https://github.com/chef/chef-dk/tree/v1.3.32) (2017-03-30)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.32)
+## [v1.3.33](https://github.com/chef/chef-dk/tree/v1.3.33) (2017-04-03)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.3.33...v1.3.33)
+
+**Merged pull requests:**
+
+- Use CentOS 7.3 in the Test Kitchen configs [\#1214](https://github.com/chef/chef-dk/pull/1214) ([tas50](https://github.com/tas50))
+
+## [v1.3.33](https://github.com/chef/chef-dk/tree/v1.3.33) (2017-04-03)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.33)
 
 **Merged pull requests:**
 
