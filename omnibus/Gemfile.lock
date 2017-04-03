@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: bc08deef668865990bde3a0f0dc1ef3c3f5be735
+  revision: fee8dea479123a3b19b14244eeee0f8e36579107
   specs:
     omnibus-software (4.0.0)
       chef-sugar (>= 3.4.0)
@@ -99,7 +99,7 @@ GEM
     ipaddress (0.8.3)
     jmespath (1.3.1)
     json (2.0.3)
-    kitchen-vagrant (1.0.2)
+    kitchen-vagrant (1.1.0)
       test-kitchen (~> 1.4)
     libyajl2 (1.2.0)
     license_scout (0.1.3)
