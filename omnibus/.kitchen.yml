@@ -30,7 +30,7 @@ provisioner:
 platforms:
   - name: centos-6.7
     run_list: yum-epel::default
-  - name: centos-7.2
+  - name: centos-7.3
     run_list: yum-epel::default
   - name: debian-7.9
     run_list: apt::default
