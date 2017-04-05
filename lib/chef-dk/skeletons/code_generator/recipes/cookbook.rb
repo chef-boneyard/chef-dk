@@ -10,18 +10,18 @@ generator_desc('Ensuring correct cookbook file content')
 directory cookbook_dir
 
 # metadata.rb
-case context.license
-  when "apachev2"
-    spdx_license = "Apache-2.0"
-  when "mit"
-    spdx_license = "MIT"
-  when "gplv2"
-    spdx_license = "GPL-2.0"
-  when "gplv3"
-    spdx_license = "GPL-3.0"
-  else
-    spdx_license = "All Rights Reserved"
-end
+spdx_license =  case context.license
+                when 'apachev2'
+                  'Apache-2.0'
+                when 'mit'
+                  'MIT'
+                when 'gplv2'
+                  'GPL-2.0'
+                when 'gplv3'
+                  'GPL-3.0'
+                else
+                  'All Rights Reserved'
+                end
 
 template "#{cookbook_dir}/metadata.rb" do
   helpers(ChefDK::Generator::TemplateHelper)
