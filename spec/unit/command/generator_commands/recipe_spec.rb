@@ -27,7 +27,7 @@ describe ChefDK::Command::GeneratorCommands::Recipe do
     let(:generated_files) { [ "recipes/new_recipe.rb",
                               "spec/spec_helper.rb",
                               "spec/unit/recipes/new_recipe_spec.rb",
-                              "test/smoke/default/new_recipe.rb",
+                              "test/smoke/default/new_recipe_test.rb",
                             ] }
     let(:new_file_name) { "new_recipe" }
 
