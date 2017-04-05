@@ -1,19 +1,22 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.3.33](https://github.com/chef/chef-dk/tree/v1.3.33) (2017-04-03)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.3.33...v1.3.33)
+## [v1.3.34](https://github.com/chef/chef-dk/tree/v1.3.34) (2017-04-03)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.34)
 
 **Merged pull requests:**
 
 - Use CentOS 7.3 in the Test Kitchen configs [\#1214](https://github.com/chef/chef-dk/pull/1214) ([tas50](https://github.com/tas50))
-
-## [v1.3.33](https://github.com/chef/chef-dk/tree/v1.3.33) (2017-04-03)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.33)
-
-**Merged pull requests:**
-
+- "build" devkit last [\#1212](https://github.com/chef/chef-dk/pull/1212) ([scotthain](https://github.com/scotthain))
+- Use latest Foodcritic, Inspec, Chefspec, and Fauxhai [\#1211](https://github.com/chef/chef-dk/pull/1211) ([tas50](https://github.com/tas50))
+- Bump deps to the latest for Fauxhai 4.0.2 [\#1208](https://github.com/chef/chef-dk/pull/1208) ([tas50](https://github.com/tas50))
 - Point omnibus and omnibus-software at master branches [\#1206](https://github.com/chef/chef-dk/pull/1206) ([tduffield](https://github.com/tduffield))
+- Bump deps to bring in Foodcritic 10 and Cheffish 5 [\#1205](https://github.com/chef/chef-dk/pull/1205) ([tas50](https://github.com/tas50))
 - Add release policy to README [\#1204](https://github.com/chef/chef-dk/pull/1204) ([tduffield](https://github.com/tduffield))
+- Generate better example ChefSpec code [\#1202](https://github.com/chef/chef-dk/pull/1202) ([tas50](https://github.com/tas50))
+- More release notes updates for the next release [\#1200](https://github.com/chef/chef-dk/pull/1200) ([tas50](https://github.com/tas50))
+- Update Chefspec release notes [\#1199](https://github.com/chef/chef-dk/pull/1199) ([tas50](https://github.com/tas50))
+- Update cookbook validation check to not fail if a cookbook lacks a recipe [\#1195](https://github.com/chef/chef-dk/pull/1195) ([thommay](https://github.com/thommay))
+- Fix links to the Chefspec and Berkshelf site [\#1193](https://github.com/chef/chef-dk/pull/1193) ([tas50](https://github.com/tas50))
 - Bump deps for Chefspec 6.1 [\#1192](https://github.com/chef/chef-dk/pull/1192) ([tas50](https://github.com/tas50))
 - Remove veil gem [\#1189](https://github.com/chef/chef-dk/pull/1189) ([tduffield](https://github.com/tduffield))
 - Update RELEASE NOTES [\#1183](https://github.com/chef/chef-dk/pull/1183) ([tduffield](https://github.com/tduffield))
