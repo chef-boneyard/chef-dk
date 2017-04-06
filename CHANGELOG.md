@@ -1,10 +1,11 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.3.36](https://github.com/chef/chef-dk/tree/v1.3.36) (2017-04-05)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.36)
+## [v1.3.37](https://github.com/chef/chef-dk/tree/v1.3.37) (2017-04-06)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.37)
 
 **Merged pull requests:**
 
+- Bump LZMA to latest [\#1220](https://github.com/chef/chef-dk/pull/1220) ([thommay](https://github.com/thommay))
 - Use CentOS 7.3 in the Test Kitchen configs [\#1214](https://github.com/chef/chef-dk/pull/1214) ([tas50](https://github.com/tas50))
 - "build" devkit last [\#1212](https://github.com/chef/chef-dk/pull/1212) ([scotthain](https://github.com/scotthain))
 - Use latest Foodcritic, Inspec, Chefspec, and Fauxhai [\#1211](https://github.com/chef/chef-dk/pull/1211) ([tas50](https://github.com/tas50))
