@@ -2,7 +2,7 @@
 
 ## Note
 
-There is a known issue on the Windows platform with FIPS usage. If this would affect you, please continue to use ChefDK 1.2.22 until we resolve this issue with a patch release.
+There is a known issue on the Windows platform that prevents FIPS usage. If this would affect you, please continue to use ChefDK 1.2.22 until we resolve this issue with a patch release.
 
 ## Chef Client 12.19
 
