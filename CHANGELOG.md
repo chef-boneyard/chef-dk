@@ -1,7 +1,7 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.3.38](https://github.com/chef/chef-dk/tree/v1.3.38) (2017-04-06)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.38)
+## [v1.3.39](https://github.com/chef/chef-dk/tree/v1.3.39) (2017-04-07)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.2.22...v1.3.39)
 
 **Merged pull requests:**
 
