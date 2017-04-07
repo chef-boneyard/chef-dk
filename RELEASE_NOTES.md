@@ -1,5 +1,9 @@
 # ChefDK 1.3 Release Notes
 
+## Note
+
+There is a known issue on the Windows platform that prevents FIPS usage. If this would affect you, please continue to use ChefDK 1.2.22 until we resolve this issue with a patch release.
+
 ## Chef Client 12.19
 
 ChefDK now ships with Chef 12.19\. Check out <https://docs.chef.io/release_notes.html> for all the details of this new release.
