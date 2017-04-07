@@ -19,7 +19,7 @@ gem install bundler -v $omnibus_bundler --user-install --conservative
 bundle install
 
 # Run a rake command that will update various files in chef/chef-dk with the new VERSION
-bundle exec rake version:update_gemfile_lock
+bundle exec rake version:update
 
 # Run the following commands to update the changelog and dockerfile, but ignore errors.
 bundle exec rake changelog:update || true
