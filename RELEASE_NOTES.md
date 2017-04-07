@@ -51,7 +51,7 @@ Kitchen-ec2 has been updated to 1.3.2 with support for Windows 2016 instances
 
 ## Cookbook generator improvements
 
-Chef generate cookbook has been updated to better generate cookbooks for sharing with the Chef community. Generated cookbooks now require Chef client 12.1+, include the chef_version metadata, and use SPDX standard license strings.
+`chef generate cookbook` has been updated to better generate cookbooks for sharing with the Chef community. Generated cookbooks now require Chef client 12.1+, include the chef_version metadata, and use SPDX standard license strings.
 
 ## Notable Updated Gems
 
