@@ -37,10 +37,6 @@ env:
 
 matrix:
   include:
-    - rvm: 2.2.5
-      env:
-        RSPEC: 1
-      script: $(which bundle) exec rspec
     - rvm: 2.3.1
       env:
         RSPEC: 1
