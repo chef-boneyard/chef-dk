@@ -16,6 +16,9 @@
 #
 
 ChefDK.commands do |c|
+  c.builtin "dco", :DcoForwarder, require_path: "chef-dk/command/dco",
+    desc: "Manage Developer Certificate of Origin workflow"
+
   c.builtin "exec", :Exec, require_path: "chef-dk/command/exec",
                            desc: "Runs the command in context of the embedded ruby"
 
