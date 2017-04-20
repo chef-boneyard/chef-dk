@@ -1,5 +1,5 @@
 #
-# Copyright 2014 Chef Software, Inc.
+# Copyright 2014-2017, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ dependency "curl"
 dependency "zlib"
 dependency "openssl"
 dependency "pcre"
-dependency "libiconv"
+dependency "libiconv"  # FIXME: can we figure out how to remove this?
 dependency "expat"
 
 relative_path "git-#{version}"

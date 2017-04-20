@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 35ccd6f45c2c876947e134573eac403ca11312f8
+  revision: 4e3a4599e66d85f64a91fe5586e3d2760988aea2
   specs:
     omnibus-software (4.0.0)
       chef-sugar (>= 3.4.0)
@@ -30,13 +30,13 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     artifactory (2.8.1)
     awesome_print (1.7.0)
-    aws-sdk (2.9.7)
-      aws-sdk-resources (= 2.9.7)
-    aws-sdk-core (2.9.7)
+    aws-sdk (2.9.9)
+      aws-sdk-resources (= 2.9.9)
+    aws-sdk-core (2.9.9)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.9.7)
-      aws-sdk-core (= 2.9.7)
+    aws-sdk-resources (2.9.9)
+      aws-sdk-core (= 2.9.9)
     aws-sigv4 (1.0.0)
     berkshelf (5.6.4)
       addressable (~> 2.3, >= 2.3.4)
@@ -98,7 +98,7 @@ GEM
     iostruct (0.0.4)
     ipaddress (0.8.3)
     jmespath (1.3.1)
-    json (2.0.4)
+    json (2.1.0)
     kitchen-vagrant (1.1.0)
       test-kitchen (~> 1.4)
     libyajl2 (1.2.0)
@@ -210,7 +210,7 @@ GEM
       hashie (>= 2.0.2, < 4.0.0)
     win32-process (0.8.3)
       ffi (>= 1.0.0)
-    winrm (2.2.1)
+    winrm (2.2.2)
       builder (>= 2.1.2)
       erubis (~> 2.7)
       gssapi (~> 1.2)
@@ -245,4 +245,4 @@ DEPENDENCIES
   winrm-elevated
 
 BUNDLED WITH
-   1.12.5
+   1.14.6
