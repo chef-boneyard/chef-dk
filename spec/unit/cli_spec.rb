@@ -143,6 +143,10 @@ E
           "version_output" => "Test Kitchen version 1.3.1",
           "expected_version" => "1.3.1",
         },
+        "inspec" => {
+          "version_output" => "1.19.1\n\nYour version of InSpec is out of date! The latest version is 1.21.0.",
+          "expected_version" => "1.19.1"
+        }
       }
     }
 
