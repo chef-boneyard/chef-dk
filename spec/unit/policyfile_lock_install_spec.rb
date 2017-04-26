@@ -96,8 +96,8 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
       cookbook_lock = policyfile_lock.cookbook_locks["local-cookbook"]
       expect(cookbook_lock.name).to eq("local-cookbook")
       expect(cookbook_lock.version).to eq("2.3.4")
-      expect(cookbook_lock.identifier).to eq("fab501cfaf747901bd82c1bc706beae7dc3a350c")
-      expect(cookbook_lock.dotted_decimal_identifier).to eq("70567763561641081.489844270461035.258281553147148")
+      expect(cookbook_lock.identifier).to eq("1e9dfd1134735385b425c056cb5decef9081b92c")
+      expect(cookbook_lock.dotted_decimal_identifier).to eq("8617959542256467.37634246136220509.260513665759532")
       expect(cookbook_lock.source).to eq("local-cookbook")
       expect(cookbook_lock.source_options).to eq({ path: "local-cookbook" })
       expect(cookbook_lock.cookbook_location_spec.version_constraint).to eq(Semverse::Constraint.new("= 2.3.4"))

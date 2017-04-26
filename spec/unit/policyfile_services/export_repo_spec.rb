@@ -106,7 +106,7 @@ describe ChefDK::PolicyfileServices::ExportRepo do
 
       let(:local_cookbook_path) { File.join(fixtures_path, "local_path_cookbooks/local-cookbook") }
 
-      let(:revision_id) { "60e5ad638dce219d8f87d589463ec4a9884007ba5e2adbb4c0a7021d67204f1a" }
+      let(:revision_id) { "7da81d2c7bb97f904637f97e7f8b487fa4bb1ed682edea7087743dec84c254ec" }
 
       let(:lockfile_content) do
         <<-E
@@ -119,8 +119,8 @@ describe ChefDK::PolicyfileServices::ExportRepo do
   "cookbook_locks": {
     "local-cookbook": {
       "version": "2.3.4",
-      "identifier": "fab501cfaf747901bd82c1bc706beae7dc3a350c",
-      "dotted_decimal_identifier": "70567763561641081.489844270461035.258281553147148",
+      "identifier": "1e9dfd1134735385b425c056cb5decef9081b92c",
+      "dotted_decimal_identifier": "42704157235437826.6970356709321892.63549625984142",
       "source": "#{local_cookbook_path}",
       "cache_key": null,
       "scm_info": null,
@@ -168,7 +168,7 @@ E
         context "when the given 'export_dir' is a directory" do
 
           it "sets the archive file location to $policy_name-$revision.tgz" do
-            expected = File.join(export_dir, "install-example-60e5ad638dce219d8f87d589463ec4a9884007ba5e2adbb4c0a7021d67204f1a.tgz")
+            expected = File.join(export_dir, "install-example-7da81d2c7bb97f904637f97e7f8b487fa4bb1ed682edea7087743dec84c254ec.tgz")
             expect(export_service.archive_file_location).to eq(expected)
           end
 
@@ -215,7 +215,7 @@ E
             expected << Pathname.new("metadata.json")
           end
 
-          let(:cookbook_with_version) { "local-cookbook-fab501cfaf747901bd82c1bc706beae7dc3a350c" }
+          let(:cookbook_with_version) { "local-cookbook-1e9dfd1134735385b425c056cb5decef9081b92c" }
 
           let(:exported_cookbook_root) { Pathname.new(File.join(export_dir, "cookbook_artifacts", cookbook_with_version)) }
 
@@ -422,7 +422,7 @@ CONFIG
           let(:archive) { true }
 
           let(:expected_archive_path) do
-            File.join(export_dir, "install-example-60e5ad638dce219d8f87d589463ec4a9884007ba5e2adbb4c0a7021d67204f1a.tgz")
+            File.join(export_dir, "install-example-7da81d2c7bb97f904637f97e7f8b487fa4bb1ed682edea7087743dec84c254ec.tgz")
           end
 
           it "exports the repo as a tgz archive" do

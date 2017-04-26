@@ -199,7 +199,7 @@ E
       it "updates the content identifier" do
         old_id = lock_generator.lock_data_for("local-cookbook").identifier
         expect(cookbook_lock_data.identifier).to_not eq(old_id)
-        expect(cookbook_lock_data.identifier).to eq("d71622904ed89b1e0066bb4ae823b2a7b49a615a")
+        expect(cookbook_lock_data.identifier).to eq("5a2b09f9d5e6e8a1a2d811c41d58ed200599adbe")
       end
 
       it "has an updated version and identifier" do
@@ -267,7 +267,7 @@ E
         old_id = lock_generator.lock_data_for("local-cookbook").identifier
 
         expect(cookbook_lock_data.identifier).to_not eq(old_id)
-        expect(cookbook_lock_data.identifier).to eq("08a96e3afbd1eaa1183a2dde8687ca29dbddc94b")
+        expect(cookbook_lock_data.identifier).to eq("0f62422f744d173c35a3e74f1a8c76c8b92908c2")
       end
 
       it "has an updated identifier but not an updated version" do
@@ -305,7 +305,7 @@ E
         old_id = lock_generator.lock_data_for("local-cookbook").identifier
 
         expect(cookbook_lock_data.identifier).to_not eq(old_id)
-        expect(cookbook_lock_data.identifier).to eq("da6a1c0f8791df713b7ff8c27285fbe7923901cc")
+        expect(cookbook_lock_data.identifier).to eq("af5e1252307bdf99b878ca5ede3c40e24ee9e45a")
       end
 
       it "has an updated identifier but not an updated version" do

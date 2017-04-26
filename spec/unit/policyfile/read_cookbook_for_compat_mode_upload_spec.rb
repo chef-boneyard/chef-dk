@@ -85,7 +85,7 @@ describe ChefDK::Policyfile::ReadCookbookForCompatModeUpload do
     end
 
     it "excludes ignored files from the list of cookbook files" do
-      expect(reader_with_ignored_files.cookbook_version.root_filenames).to_not include(chefignored_file)
+      expect(reader_with_ignored_files.cookbook_version.files_for("root_files")).to_not include(chefignored_file)
     end
 
   end

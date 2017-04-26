@@ -128,7 +128,7 @@ E
 
       it "prints the lockfile's revision id" do
         install_service.run
-        expect(ui.output).to include("Policy revision id: 60e5ad638dce219d8f87d589463ec4a9884007ba5e2adbb4c0a7021d67204f1a")
+        expect(ui.output).to include("Policy revision id: 7da81d2c7bb97f904637f97e7f8b487fa4bb1ed682edea7087743dec84c254ec")
       end
 
     end
