@@ -37,15 +37,15 @@ env:
 
 matrix:
   include:
-    - rvm: 2.3.1
+    - rvm: 2.4.1
       env:
         RSPEC: 1
       script: $(which bundle) exec rspec
-    - rvm: 2.3.1
+    - rvm: 2.4.1
       env:
         COOKSTYLE: 1
       script: $(which bundle) exec rake style:cookstyle
-    - rvm: 2.3.1
+    - rvm: 2.4.1
       env:
         FOODCRITIC: 1
       script: $(which bundle) exec rake style:foodcritic
