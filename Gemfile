@@ -94,7 +94,7 @@ group(:omnibus_package) do
 
   # TODO Pinning these for now because github_changelog_generator has a bunch
   # of different versions across our products
-  gem "nokogiri", "~> 1.6.3"
+  gem "nokogiri", "~> 1.7"
 end
 
 # Everything except AIX and Windows
