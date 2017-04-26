@@ -82,6 +82,8 @@ group(:omnibus_package) do
 
   # All of the following used to be software definitions we included:
   gem "knife-spork"
+  # Enable Artifactory support for cookbook share upload and download
+  gem "knife-art"
   gem "dep-selector-libgecode"
   # gem "nokogiri"
   gem "pry-byebug"
