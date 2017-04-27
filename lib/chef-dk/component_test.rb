@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'chef-dk/exceptions'
-require 'chef-dk/helpers'
+require "chef-dk/exceptions"
+require "chef-dk/helpers"
 
 # https://github.com/bundler/bundler/issues/4368
 # As of rubygems 2.6.2, Rubygems will call Bundler::SpecSet#size, which does
@@ -107,7 +107,7 @@ module ChefDK
       File.join(omnibus_embedded_bin_dir, binary)
     end
 
-    def sh(command, options={})
+    def sh(command, options = {})
       combined_opts = default_command_options.merge(options)
 
       # Env is a hash, so it needs to be merged separately
@@ -132,15 +132,15 @@ module ChefDK
     # otherwise, if it returns non-zero or doesn't exist,
     # return a passing command so that the test parser doesn't
     # crash.
-    def fail_if_exit_zero(cmd_string, failure_string='')
+    def fail_if_exit_zero(cmd_string, failure_string = "")
       result = sh(cmd_string)
       if result.status.exitstatus == 0
-	raise failure_string
+        raise failure_string
       else
-	sh('true')
+        sh("true")
       end
     rescue Errno::ENOENT
-      sh('true')
+      sh("true")
     end
 
     def nix_platform_native_bin_dir
@@ -153,7 +153,7 @@ module ChefDK
       end
     end
 
-    def run_in_tmpdir(command, options={})
+    def run_in_tmpdir(command, options = {})
       tmpdir do |dir|
         options[:cwd] = dir
         sh(command, options)
@@ -180,9 +180,9 @@ module ChefDK
         :env => {
           # Add the embedded/bin to the PATH so that bundle executable can
           # be found while running the tests.
-          path_variable_key => omnibus_path
+          path_variable_key => omnibus_path,
         },
-        :timeout => 3600
+        :timeout => 3600,
       }
     end
 
@@ -203,7 +203,7 @@ module ChefDK
       # is a prerelease version.  ">= 0.a" is how we ask for a prerelease version, because a
       # prerelease version is defined as "any version with a letter in it."
       gem = Gem::Specification.find_by_name(@gem_name_for_base_dir)
-      gem ||= Gem::Specification.find_by_name(@gem_name_for_base_dir, '>= 0.a')
+      gem ||= Gem::Specification.find_by_name(@gem_name_for_base_dir, ">= 0.a")
       gem.gem_dir
     end
 
@@ -212,11 +212,11 @@ module ChefDK
     end
 
     def omnibus_root
-      @omnibus_root or raise "`omnibus_root` must be set before running tests"
+      @omnibus_root || raise("`omnibus_root` must be set before running tests")
     end
 
     def omnibus_path
-      [omnibus_bin_dir, omnibus_embedded_bin_dir, ENV['PATH']].join(File::PATH_SEPARATOR)
+      [omnibus_bin_dir, omnibus_embedded_bin_dir, ENV["PATH"]].join(File::PATH_SEPARATOR)
     end
 
     def path_variable_key

@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014 Chef Software Inc.
+# Copyright:: Copyright (c) 2016 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,21 +15,21 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/generator_commands/cookbook_code_file'
+require "spec_helper"
 
-module ChefDK
-  module Command
-    module GeneratorCommands
-      # chef generate lwrp [path/to/cookbook_root] NAME
-      class LWRP < CookbookCodeFile
+require "chef-dk/policyfile/source_uri"
 
-        banner "Usage: chef generate lwrp [path/to/cookbook] NAME [options]"
+describe ChefDK::Policyfile::SourceURI do
+  subject { described_class.parse(source_uri) }
 
-        options.merge!(SharedGeneratorOptions.options)
+  describe '#validate' do
+    context "when the scheme is not https" do
+      let(:source_uri) { "ftp://chef.example.com" }
 
-        def recipe
-          'lwrp'
-        end
+      it "raises ChefDK::InvalidPolicyfileSourceURI" do
+        expect do
+          subject.validate
+        end.to raise_error(ChefDK::InvalidPolicyfileSourceURI)
       end
     end
   end

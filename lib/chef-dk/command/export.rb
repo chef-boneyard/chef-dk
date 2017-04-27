@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'chef-dk/ui'
-require 'chef-dk/policyfile_services/export_repo'
-require 'chef-dk/configurable'
+require "chef-dk/command/base"
+require "chef-dk/ui"
+require "chef-dk/policyfile_services/export_repo"
+require "chef-dk/configurable"
 
 module ChefDK
   module Command
@@ -119,10 +119,10 @@ E
 
       def export_service
         @export_service ||= PolicyfileServices::ExportRepo.new(policyfile: policyfile_relative_path,
-                                                       export_dir: export_dir,
-                                                       root_dir: Dir.pwd,
-                                                       archive: archive?,
-                                                       force: config[:force])
+                                                               export_dir: export_dir,
+                                                               root_dir: Dir.pwd,
+                                                               archive: archive?,
+                                                               force: config[:force])
       end
 
       def handle_error(error)
@@ -153,5 +153,3 @@ E
     end
   end
 end
-
-

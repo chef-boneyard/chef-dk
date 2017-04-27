@@ -73,9 +73,9 @@ shared_examples_for "a file generator" do
         recipe_generator.run
       end
 
-        generated_files.each do |expected_file|
-          expect(File).to exist(File.join(cookbook_path, expected_file))
-        end
+      generated_files.each do |expected_file|
+        expect(File).to exist(File.join(cookbook_path, expected_file))
+      end
     end
 
   end

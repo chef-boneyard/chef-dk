@@ -15,18 +15,17 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/a_file_generator'
-require 'chef-dk/command/generator_commands/lwrp'
+require "spec_helper"
+require "shared/a_file_generator"
+require "chef-dk/command/generator_commands/resource"
 
-describe ChefDK::Command::GeneratorCommands::LWRP do
+describe ChefDK::Command::GeneratorCommands::Resource do
 
   include_examples "a file generator" do
 
-    let(:generator_name) { "lwrp" }
-    let(:generated_files) { [ "resources/new_lwrp.rb", "providers/new_lwrp.rb" ] }
-    let(:new_file_name) { "new_lwrp" }
+    let(:generator_name) { "resource" }
+    let(:generated_files) { [ "resources/new_resource.rb" ] }
+    let(:new_file_name) { "new_resource" }
 
   end
 end
-

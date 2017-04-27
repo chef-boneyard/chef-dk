@@ -26,7 +26,7 @@ describe "Rake 'dependencies' task" do
   let(:rake_mock) { Class.new { include RakeDependenciesTaskHelpers }.new }
   let(:product_name) { "chef" }
   let(:gemfile_name) { "chef" }
-  let(:gemfile) {'gem "chef", github: "chef/chef", branch: "0.0.0"'}
+  let(:gemfile) { 'gem "chef", github: "chef/chef", branch: "0.0.0"' }
   let(:expected_version) { "0.0.1" }
 
   before do
@@ -45,7 +45,7 @@ describe "Rake 'dependencies' task" do
 
     context "when gemfile does contain the expected string" do
       let(:prefix) { "" }
-      let(:expected_output) {"gem \"chef\", github: \"chef/chef\", branch: \"#{prefix}#{expected_version}\""}
+      let(:expected_output) { "gem \"chef\", github: \"chef/chef\", branch: \"#{prefix}#{expected_version}\"" }
 
       context "and the version string does not have a prefix" do
         it "updates the gemfile entry to the newer version" do

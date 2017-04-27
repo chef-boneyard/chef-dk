@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'chef-dk/ui'
-require 'chef-dk/policyfile_services/push'
-require 'chef-dk/configurable'
+require "chef-dk/command/base"
+require "chef-dk/ui"
+require "chef-dk/policyfile_services/push"
+require "chef-dk/configurable"
 
 module ChefDK
   module Command
@@ -102,7 +102,7 @@ E
 
       def apply_params!(params)
         remaining_args = parse_options(params)
-        if remaining_args.size < 1 or remaining_args.size > 2
+        if remaining_args.size < 1 || remaining_args.size > 2
           ui.err(opt_parser)
           return false
         else
@@ -115,4 +115,3 @@ E
     end
   end
 end
-

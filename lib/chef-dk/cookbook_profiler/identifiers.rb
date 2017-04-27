@@ -16,13 +16,13 @@
 #
 
 # TODO: Chef should require its dependency correctly.
-require 'singleton'
-require 'chef/cookbook/cookbook_version_loader'
-require 'digest/sha1'
+require "singleton"
+require "chef/cookbook/cookbook_version_loader"
+require "digest/sha1"
 
-require 'chef/digester'
+require "chef/digester"
 
-require 'chef-dk/exceptions'
+require "chef-dk/exceptions"
 
 module ChefDK
   module CookbookProfiler
@@ -47,12 +47,12 @@ module ChefDK
         major = hex_id[0...14]
         minor = hex_id[14...28]
         patch = hex_id[28..40]
-        decimal_integers =[major, minor, patch].map {|hex| hex.to_i(16) }
+        decimal_integers = [major, minor, patch].map { |hex| hex.to_i(16) }
         decimal_integers.join(".")
       end
 
       def fingerprint_text
-        files_with_checksums.sort {|a,b| a[0] <=> b[0]}.inject("") do |fingerprint, file_spec|
+        files_with_checksums.sort { |a, b| a[0] <=> b[0] }.inject("") do |fingerprint, file_spec|
           fingerprint << "#{file_spec[0]}:#{file_spec[1]}\n"
         end
       end

@@ -15,24 +15,25 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/custom_generator_cookbook'
-require 'chef-dk/command/generator_commands/app'
+require "spec_helper"
+require "shared/custom_generator_cookbook"
+require "chef-dk/command/generator_commands/app"
 
 describe ChefDK::Command::GeneratorCommands::App do
 
-  let(:argv) { %w[new_app] }
+  let(:argv) { %w{new_app} }
 
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
 
   let(:expected_cookbook_file_relpaths) do
-    %w[
+    %w{
       .gitignore
       .kitchen.yml
       test
-      test/recipes
-      test/recipes/default_test.rb
+      test/smoke
+      test/smoke/default
+      test/smoke/default/default_test.rb
       README.md
       cookbooks/new_app/Berksfile
       cookbooks/new_app/chefignore
@@ -44,7 +45,7 @@ describe ChefDK::Command::GeneratorCommands::App do
       cookbooks/new_app/spec/unit
       cookbooks/new_app/spec/unit/recipes
       cookbooks/new_app/spec/unit/recipes/default_spec.rb
-    ]
+    }
   end
 
   let(:expected_cookbook_files) do
@@ -128,8 +129,8 @@ describe ChefDK::Command::GeneratorCommands::App do
         end
       end
 
-      describe "test/recipes/default_test.rb" do
-        let(:file) { File.join(tempdir, "new_app", "test", "recipes", "default_test.rb") }
+      describe "test/smoke/default/default_test.rb" do
+        let(:file) { File.join(tempdir, "new_app", "test", "smoke", "default", "default_test.rb") }
 
         include_examples "a generated file", :cookbook_name do
           let(:line) { "describe port" }
@@ -148,7 +149,7 @@ describe ChefDK::Command::GeneratorCommands::App do
         let(:file) { File.join(tempdir, "new_app", "cookbooks", "new_app", "recipes", "default.rb") }
 
         include_examples "a generated file", :cookbook_name do
-          let(:line) { "# Cookbook Name:: new_app" }
+          let(:line) { "# Cookbook:: new_app" }
         end
       end
 
@@ -163,4 +164,3 @@ describe ChefDK::Command::GeneratorCommands::App do
     end
   end
 end
-

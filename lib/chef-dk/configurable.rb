@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'chef/config'
-require 'chef/workstation_config_loader'
+require "chef/config"
+require "chef/workstation_config_loader"
 
 # Define a config context for ChefDK
 class Chef::Config

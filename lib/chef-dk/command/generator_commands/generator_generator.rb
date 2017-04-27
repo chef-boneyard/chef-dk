@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-require 'fileutils'
+require "fileutils"
 
-require 'chef-dk/configurable'
-require 'chef-dk/ui'
-require 'chef-dk/command/generator_commands/base'
+require "chef-dk/configurable"
+require "chef-dk/ui"
+require "chef-dk/command/generator_commands/base"
 
 module ChefDK
   module Command
@@ -115,7 +115,6 @@ version          '0.1.0'
 METADATA
         end
 
-
         def custom_cookbook_name?
           @custom_cookbook_name
         end
@@ -170,8 +169,6 @@ METADATA
 
       end
 
-
     end
   end
 end
-

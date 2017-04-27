@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/command_with_ui_object'
-require 'chef-dk/command/install'
+require "spec_helper"
+require "shared/command_with_ui_object"
+require "chef-dk/command/install"
 
 describe ChefDK::Command::Install do
 
@@ -52,7 +52,7 @@ describe ChefDK::Command::Install do
 
   context "when an explicit config file path is given" do
 
-    let(:params) { %w[ -c ~/.chef/alternate_config.rb ] }
+    let(:params) { %w{ -c ~/.chef/alternate_config.rb } }
 
     let(:chef_config_loader) { instance_double("Chef::WorkstationConfigLoader") }
 
@@ -78,7 +78,7 @@ describe ChefDK::Command::Install do
 
     it "creates the installer service with a `nil` policyfile path" do
       expect(ChefDK::PolicyfileServices::Install).to receive(:new).
-        with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd).
+        with(hash_including(policyfile: nil, ui: command.ui, root_dir: Dir.pwd)).
         and_return(install_service)
       expect(command.installer).to eq(install_service)
     end
@@ -95,7 +95,7 @@ describe ChefDK::Command::Install do
 
     it "creates the installer service with the specified policyfile path" do
       expect(ChefDK::PolicyfileServices::Install).to receive(:new).
-        with(policyfile: "MyPolicy.rb", ui: command.ui, root_dir: Dir.pwd).
+        with(hash_including(policyfile: "MyPolicy.rb", ui: command.ui, root_dir: Dir.pwd)).
         and_return(install_service)
       expect(command.installer).to eq(install_service)
     end
@@ -144,7 +144,7 @@ describe ChefDK::Command::Install do
       end
 
       it "displays the exception and cause" do
-        expected_error_text=<<-E
+        expected_error_text = <<-E
 Error: install failed
 Reason: (StandardError) some operation failed
 
@@ -159,7 +159,7 @@ E
         let(:params) { ["-D"] }
 
         it "displays the exception and cause with backtrace" do
-          expected_error_text=<<-E
+          expected_error_text = <<-E
 Error: install failed
 Reason: (StandardError) some operation failed
 

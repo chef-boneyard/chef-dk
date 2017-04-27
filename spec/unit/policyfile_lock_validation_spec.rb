@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile_lock.rb'
+require "spec_helper"
+require "chef-dk/policyfile_lock.rb"
 
 describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
 
@@ -42,7 +42,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
 
   let(:name) { "application-server" }
 
-  let(:run_list) { [ 'recipe[erlang::default]', 'recipe[erchef::prereqs]', 'recipe[erchef::app]' ] }
+  let(:run_list) { [ "recipe[erlang::default]", "recipe[erchef::prereqs]", "recipe[erchef::app]" ] }
 
   let(:storage_config) do
     ChefDK::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: local_cookbooks_root )
@@ -53,8 +53,8 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
       "Policyfile" => [],
       "dependencies" => {
         "foo (1.0.0)" => [],
-        "local-cookbook (2.3.4)" => []
-      }
+        "local-cookbook (2.3.4)" => [],
+      },
     }
   end
 
@@ -114,7 +114,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
     # Validate the metadata is correct, so we know the test setup code
     # hasn't done something wrong.
     def ensure_metadata_as_expected!
-      expected_metadata_rb=<<-E
+      expected_metadata_rb = <<-E
 name             'local-cookbook'
 maintainer       ''
 maintainer_email ''
@@ -156,7 +156,6 @@ version          '2.3.4'
 
 E
       end
-
 
       before do
         ensure_metadata_as_expected!
@@ -200,7 +199,7 @@ E
       it "updates the content identifier" do
         old_id = lock_generator.lock_data_for("local-cookbook").identifier
         expect(cookbook_lock_data.identifier).to_not eq(old_id)
-        expect(cookbook_lock_data.identifier).to eq("d71622904ed89b1e0066bb4ae823b2a7b49a615a")
+        expect(cookbook_lock_data.identifier).to eq("5a2b09f9d5e6e8a1a2d811c41d58ed200599adbe")
       end
 
       it "has an updated version and identifier" do
@@ -216,8 +215,8 @@ E
         {
           "Policyfile" => [],
           "dependencies" => {
-            "foo (1.0.0)" => [ [ "local-cookbook", "~> 2.0" ] ]
-          }
+            "foo (1.0.0)" => [ [ "local-cookbook", "~> 2.0" ] ],
+          },
         }
       end
 
@@ -268,7 +267,7 @@ E
         old_id = lock_generator.lock_data_for("local-cookbook").identifier
 
         expect(cookbook_lock_data.identifier).to_not eq(old_id)
-        expect(cookbook_lock_data.identifier).to eq("08a96e3afbd1eaa1183a2dde8687ca29dbddc94b")
+        expect(cookbook_lock_data.identifier).to eq("0f62422f744d173c35a3e74f1a8c76c8b92908c2")
       end
 
       it "has an updated identifier but not an updated version" do
@@ -306,7 +305,7 @@ E
         old_id = lock_generator.lock_data_for("local-cookbook").identifier
 
         expect(cookbook_lock_data.identifier).to_not eq(old_id)
-        expect(cookbook_lock_data.identifier).to eq("da6a1c0f8791df713b7ff8c27285fbe7923901cc")
+        expect(cookbook_lock_data.identifier).to eq("af5e1252307bdf99b878ca5ede3c40e24ee9e45a")
       end
 
       it "has an updated identifier but not an updated version" do
@@ -319,7 +318,7 @@ E
         actual = policyfile_lock.solution_dependencies.to_lock["dependencies"]
         expected = {
           "local-cookbook (2.3.4)" => [ ["foo", "= 1.0.0"] ],
-          "foo (1.0.0)" => []
+          "foo (1.0.0)" => [],
         }
         expect(actual).to eq(expected)
       end
@@ -363,8 +362,8 @@ E
           "Policyfile" => [],
           "dependencies" => {
             "foo (1.0.0)" => [],
-            "local-cookbook (2.3.4)" => [ ["foo", ">= 0.0.0"] ]
-          }
+            "local-cookbook (2.3.4)" => [ ["foo", ">= 0.0.0"] ],
+          },
         }
       end
 
@@ -393,7 +392,7 @@ E
         actual = policyfile_lock.solution_dependencies.to_lock["dependencies"]
         expected = {
           "local-cookbook (2.3.4)" => [ ["foo", ">= 1.0.0"] ],
-          "foo (1.0.0)" => []
+          "foo (1.0.0)" => [],
         }
         expect(actual).to eq(expected)
       end
@@ -427,7 +426,6 @@ E
           "Dependency on foo ~> 2.0 conflicts with existing version foo (1.0.0)"
         expect { policyfile_lock.validate_cookbooks! }.to raise_error(ChefDK::DependencyConflict, error_message)
       end
-
 
     end
 
@@ -471,8 +469,8 @@ E
           "dependencies" => {
             "foo (1.0.0)" => [],
             "local-cookbook (2.3.4)" => [ ],
-            "another-local-cookbook (0.1.0)" => [ ["local-cookbook", "= 2.3.4"] ]
-          }
+            "another-local-cookbook (0.1.0)" => [ ["local-cookbook", "= 2.3.4"] ],
+          },
         }
       end
 
@@ -505,7 +503,7 @@ E
       end
 
       let(:metadata_path_another_local_cookbook) do
-        File.join(local_cookbooks_root, 'another-local-cookbook', 'metadata.rb')
+        File.join(local_cookbooks_root, "another-local-cookbook", "metadata.rb")
       end
 
       before do
@@ -522,7 +520,7 @@ E
           expected = {
             "local-cookbook (3.0.0)" => [ ],
             "another-local-cookbook (0.1.0)" => [ [ "local-cookbook", "= 3.0.0" ] ],
-            "foo (1.0.0)" => []
+            "foo (1.0.0)" => [],
           }
           expect(actual).to eq(expected)
         end
@@ -543,7 +541,7 @@ E
     # Validate the metadata is correct, so we know the test setup code
     # hasn't done something wrong.
     def ensure_metadata_as_expected!
-      expected_metadata_rb=<<-E
+      expected_metadata_rb = <<-E
 name             'foo'
 maintainer       ''
 maintainer_email ''
@@ -608,4 +606,3 @@ E
     end
   end
 end
-

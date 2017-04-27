@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'semverse'
-require 'chef-dk/cookbook_omnifetch'
-require 'chef-dk/policyfile/storage_config'
+require "semverse"
+require "chef-dk/cookbook_omnifetch"
+require "chef-dk/policyfile/storage_config"
 
 module ChefDK
   module Policyfile
@@ -29,7 +29,7 @@ module ChefDK
       # API contract
       include StorageConfigDelegation
 
-      SOURCE_TYPES = [:git, :github, :path, :artifactserver]
+      SOURCE_TYPES = [:git, :github, :path, :artifactserver, :chef_server]
 
       #--
       # Required by CookbookOmnifetch API contract
@@ -54,9 +54,9 @@ module ChefDK
       end
 
       def ==(other)
-        other.kind_of?(self.class) and
-          other.name == name and
-          other.version_constraint == version_constraint and
+        other.kind_of?(self.class) &&
+          other.name == name &&
+          other.version_constraint == version_constraint &&
           other.source_options == source_options
       end
 
@@ -69,7 +69,7 @@ module ChefDK
       end
 
       def mirrors_canonical_upstream?
-        [:git, :github, :artifactserver].include?(source_type)
+        [:git, :github, :artifactserver, :chef_server].include?(source_type)
       end
 
       def installed?

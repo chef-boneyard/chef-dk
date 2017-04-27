@@ -94,7 +94,7 @@ module BuildChefDKGem
         --with-xml2-include=#{Shellwords.escape("#{install_dir}/embedded/include/libxml2")}
         --with-xslt-lib=#{Shellwords.escape("#{install_dir}/embedded/lib")}
         --with-xslt-include=#{Shellwords.escape("#{install_dir}/embedded/include/libxslt")}
-        --with-iconv-dir=#{Shellwords.escape("#{install_dir}/embedded")}
+        --without-iconv-dir
         --with-zlib-dir=#{Shellwords.escape("#{install_dir}/embedded")}
       }.join(" "),
     }

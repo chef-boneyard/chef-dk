@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/setup_git_cookbooks'
-require 'fileutils'
-require 'chef-dk/helpers'
-require 'chef-dk/cookbook_profiler/git'
+require "spec_helper"
+require "shared/setup_git_cookbooks"
+require "fileutils"
+require "chef-dk/helpers"
+require "chef-dk/cookbook_profiler/git"
 
 describe ChefDK::CookbookProfiler::Git do
 
@@ -96,7 +96,7 @@ describe ChefDK::CookbookProfiler::Git do
         end
 
         it "lists the remotes that commits are published to" do
-          expect(git_profiler.synchronized_remotes).to eq(%w[origin/master])
+          expect(git_profiler.synchronized_remotes).to eq(%w{origin/master})
         end
 
       end
@@ -173,4 +173,3 @@ describe ChefDK::CookbookProfiler::Git do
   end
 
 end
-

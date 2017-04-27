@@ -15,13 +15,13 @@
 # limitations under the License.
 #
 
-require 'chef-dk/exceptions'
-require 'chef-dk/service_exceptions'
-require 'chef/policy_builder/dynamic'
-require 'chef'
+require "chef-dk/exceptions"
+require "chef-dk/service_exceptions"
+require "chef/policy_builder/dynamic"
+require "chef"
 
-require 'chef-dk/command/generator_commands/chef_exts/quieter_doc_formatter'
-require 'chef-dk/command/generator_commands/chef_exts/recipe_dsl_ext'
+require "chef-dk/command/generator_commands/chef_exts/quieter_doc_formatter"
+require "chef-dk/command/generator_commands/chef_exts/recipe_dsl_ext"
 
 module ChefDK
 
@@ -98,7 +98,7 @@ module ChefDK
       return @ohai if @ohai
 
       @ohai = Ohai::System.new
-      @ohai.all_plugins(["platform", "platform_version"])
+      @ohai.all_plugins(%w{platform platform_version})
       @ohai
     end
 
@@ -112,4 +112,3 @@ module ChefDK
 
   end
 end
-

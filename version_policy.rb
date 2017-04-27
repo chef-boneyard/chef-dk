@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2016 Chef Software Inc.
+# Copyright:: Copyright (c) 2016-2017, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,7 +34,7 @@ OMNIBUS_OVERRIDES = {
   "makedepend" => "1.0.5",
   "ncurses" => "5.9",
   "pkg-config-lite" => "0.28-1",
-  "ruby" => "2.3.1",
+  "ruby" => "2.4.1",
   # Leave dev-kit pinned to 4.5 on 32-bit, because 4.7 is 20MB larger and we don't want
   # to unnecessarily make the client any fatter. (Since it's different between
   # 32 and 64, we have to do it in the project file still.)
@@ -47,9 +47,8 @@ OMNIBUS_OVERRIDES = {
   # software def so we don't need to override that
   "libzmq" => "4.0.5",
 
-  ## These can float as they are frequently updated in a way that works for us
-  #override "cacerts" =>"???",
-  #override "openssl" =>"???",
+  # Match what is in Chef Client
+  "openssl" => "1.0.2j",
 }
 
 #
@@ -60,7 +59,7 @@ OMNIBUS_OVERRIDES = {
 # name of the rubygem (gem list -re <rubygem name> gets us the latest version).
 #
 OMNIBUS_RUBYGEMS_AT_LATEST_VERSION = {
-  #rubygems: "rubygems-update", # pinned to 2.6.4 until https://github.com/rubygems/rubygems/pull/1683 is released
+  rubygems: "rubygems-update",
   # bundler: "bundler", # pinned to 1.12.5 until we figure out how we're failing on 1.13.0
 }
 
@@ -76,18 +75,23 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "activesupport",     # anchored by outdated google-api-client
   "celluloid",         # ridley requires 0.16.x
   "celluloid-io",      # ridley requires 0.16.x
-  "cucumber-core", # Until cucumber 2.0
+  "cucumber-core",     # Until cucumber 2.0
   "fog-cloudatcost",   # fog restricts this for probably no good reason
   "fog-dynect",        # fog restricts this for probably no good reason
   "fog-google",        # fog-google 0.2+ requires Ruby 2.0+, fog 2.0.0 will include it
   "google-api-client", # chef-provisioning-fog restricts to < 0.9 for presently unknown reasons
   "json",              # inspec pins this because Ruby 2.0, no eta on fix
-  "rack",              # chef-zero pins this because Ruby 2.0, no eta on fix
   "rbvmomi",           # fog-vsphere restricts this to a patch version, not sure why
   "retriable",         # anchored by outdated google-api-client
-  "rubocop",           # cookstyle pins to 0.39.0 in 0.0.1
+  "rubocop",           # cookstyle pins older releases by design
   "slop",              # expected to disappear with pry 0.11
   "timers",            # anchored by outdated celluloid
+  "github_changelog_generator", # we use a forked version that differs from rubygems
+  "addressable",       # sawyer limits to < 2.6
+  "faraday",           # ridely restrcits this 0.9.x
+  "thor",              # berkshelf restricts this to < 0.19.2
+  "nokogiri",          # fog limits to ~> 1.5
+  "mixlib-install",    # test kitchen limits to less than 3.x
 
   # We have a task called update_stable_channel_gems which scans and pins to the
   # latest released chef/chef-config/opscode-pushy-client but it pulls from the
@@ -100,7 +104,7 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "chef",
   "chef-config",
   "opscode-pushy-client",
-  "mixlib-cli"
+  "mixlib-cli",
 
 ]
 

@@ -2,6 +2,7 @@
 
 [![Build Status Master](https://travis-ci.org/chef/chef-dk.svg?branch=master)](https://travis-ci.org/chef/chef-dk)
 [![Build Status Master](https://ci.appveyor.com/api/projects/status/github/chef/chef-dk?branch=master&svg=true&passingText=master%20-%20Ok&pendingText=master%20-%20Pending&failingText=master%20-%20Failing)](https://ci.appveyor.com/project/Chef/chef-dk/branch/master)
+[![](https://img.shields.io/badge/Release%20Policy-Cadence%20Release-brightgreen.svg)](https://github.com/chef/chef-rfc/blob/master/rfc086-chef-oss-project-policies.md#cadence-release)
 
 Chef Development Kit (ChefDK) brings Chef and the development tools developed by the Chef Community together and acts as the consistent interface to this awesomeness. This awesomeness is composed of:
 
@@ -21,7 +22,7 @@ are in the omnibus directory in this repository.
 
 You can get the [latest release of ChefDK from the downloads page][ChefDK].
 
-On Mac OS X, you can also use [homebrew-cask](http://caskroom.io)
+On Mac OS X, you can also use [homebrew-cask](https://caskroom.github.io/)
 to `brew cask install chefdk`.
 
 Once you install the package, the `chef-client` suite, `berks`,
@@ -30,7 +31,7 @@ system bin directory, ready to use.
 
 ### Pre-release Candidates
 
-The following commands will download the latest ChefDK package from the `current` channel.  The `current` channel holds builds that have passed testing and are candidates for release.  
+The following commands will download the latest ChefDK package from the `current` channel.  The `current` channel holds builds that have passed testing and are candidates for release.
 More information about flags supported by install.sh available here: https://docs.chef.io/api_omnitruck.html
 
 #### Linux and OS/X:
@@ -318,11 +319,11 @@ packaging, and building works.
 
 - - -
 
-[Berkshelf]: http://berkshelf.com "Berkshelf"
+[Berkshelf]: https://docs.chef.io/berkshelf.html "Berkshelf"
 [Chef]: https://www.chef.io "Chef"
-[ChefDK]: https://downloads.chef.io/chef-dk "Chef Development Kit"
+[ChefDK]: https://downloads.chef.io/chefdk "Chef Development Kit"
 [Chef Documentation]: https://docs.chef.io "Chef Documentation"
-[ChefSpec]: http://chefspec.org "ChefSpec"
+[ChefSpec]: http://sethvargo.github.io/chefspec/ "ChefSpec"
 [Foodcritic]: http://foodcritic.io "Foodcritic"
 [Learn Chef]: https://learn.chef.io "Learn Chef"
 [Test Kitchen]: http://kitchen.ci "Test Kitchen"

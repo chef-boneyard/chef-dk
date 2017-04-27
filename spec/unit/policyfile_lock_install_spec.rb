@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/fixture_cookbook_checksums'
-require 'chef-dk/policyfile_lock.rb'
+require "spec_helper"
+require "shared/fixture_cookbook_checksums"
+require "chef-dk/policyfile_lock.rb"
 
 describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
 
@@ -33,7 +33,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
 
   let(:name) { "application-server" }
 
-  let(:run_list) { [ 'recipe[erlang::default]', 'recipe[erchef::prereqs]', 'recipe[erchef::app]' ] }
+  let(:run_list) { [ "recipe[erlang::default]", "recipe[erchef::prereqs]", "recipe[erchef::app]" ] }
 
   let(:storage_config) do
     ChefDK::Policyfile::StorageConfig.new( cache_path: cache_path, relative_paths_root: local_cookbooks_root )
@@ -96,8 +96,8 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
       cookbook_lock = policyfile_lock.cookbook_locks["local-cookbook"]
       expect(cookbook_lock.name).to eq("local-cookbook")
       expect(cookbook_lock.version).to eq("2.3.4")
-      expect(cookbook_lock.identifier).to eq("fab501cfaf747901bd82c1bc706beae7dc3a350c")
-      expect(cookbook_lock.dotted_decimal_identifier).to eq("70567763561641081.489844270461035.258281553147148")
+      expect(cookbook_lock.identifier).to eq("1e9dfd1134735385b425c056cb5decef9081b92c")
+      expect(cookbook_lock.dotted_decimal_identifier).to eq("8617959542256467.37634246136220509.260513665759532")
       expect(cookbook_lock.source).to eq("local-cookbook")
       expect(cookbook_lock.source_options).to eq({ path: "local-cookbook" })
       expect(cookbook_lock.cookbook_location_spec.version_constraint).to eq(Semverse::Constraint.new("= 2.3.4"))
@@ -122,9 +122,8 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from a lockfile" do
       location_spec = local_cookbook_lock.cookbook_location_spec
       expect(location_spec).to be_an_instance_of(ChefDK::Policyfile::CookbookLocationSpecification)
 
-      expect(location_spec.relative_path).to eq('local-cookbook')
+      expect(location_spec.relative_path).to eq("local-cookbook")
     end
-
 
     it "ensures the cookbooks are installed" do
       expect(remote_cookbook_lock.cookbook_location_spec).to receive(:ensure_cached)

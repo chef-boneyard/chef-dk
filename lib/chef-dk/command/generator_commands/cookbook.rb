@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/generator_commands/base'
+require "chef-dk/command/generator_commands/base"
 
 module ChefDK
   module Command
@@ -64,7 +64,7 @@ module ChefDK
           default:      false
 
         option :pipeline,
-          :long  => "--pipeline PIPELINE",
+          :long => "--pipeline PIPELINE",
           :description => "Use PIPELINE to set target branch to something other than master for the build_cookbook",
           :default => "master"
 
@@ -105,7 +105,7 @@ module ChefDK
             msg("\nThere are several commands you can run to get started locally developing and testing your cookbook.")
             msg("Type `delivery local --help` to see a full list.")
             msg("\nWhy not start by writing a test? Tests for the default recipe are stored at:\n")
-            msg("test/recipes/default_test.rb")
+            msg("test/smoke/default/default_test.rb")
             msg("\nIf you'd prefer to dive right in, the default recipe can be found at:")
             msg("\nrecipes/default.rb\n")
           end

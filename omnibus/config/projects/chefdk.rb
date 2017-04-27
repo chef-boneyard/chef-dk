@@ -45,7 +45,7 @@ dependency "preparation"
 dependency "chef-dk-complete"
 
 package :rpm do
-  signing_passphrase ENV['OMNIBUS_RPM_SIGNING_PASSPHRASE']
+  signing_passphrase ENV["OMNIBUS_RPM_SIGNING_PASSPHRASE"]
 end
 
 package :pkg do
@@ -54,7 +54,7 @@ package :pkg do
 end
 
 package :msi do
-  fast_msi  true
+  fast_msi true
   upgrade_code "AB1D6FBD-F9DC-4395-BDAD-26C4541168E7"
   signing_identity "F74E1A68005E8A9C465C3D2FF7B41F3988F0EA09", machine_store: true
   wix_light_extension "WixUtilExtension"

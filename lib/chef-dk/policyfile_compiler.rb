@@ -15,17 +15,17 @@
 # limitations under the License.
 #
 
-require 'set'
-require 'forwardable'
+require "set"
+require "forwardable"
 
-require 'solve'
-require 'chef/run_list'
+require "solve"
+require "chef/run_list"
 
-require 'chef-dk/policyfile/dsl'
-require 'chef-dk/policyfile_lock'
-require 'chef-dk/ui'
-require 'chef-dk/policyfile/reports/install'
-require 'chef-dk/exceptions'
+require "chef-dk/policyfile/dsl"
+require "chef-dk/policyfile_lock"
+require "chef-dk/ui"
+require "chef-dk/policyfile/reports/install"
+require "chef-dk/exceptions"
 
 module ChefDK
 
@@ -33,13 +33,13 @@ module ChefDK
 
     extend Forwardable
 
-    DEFAULT_DEMAND_CONSTRAINT = '>= 0.0.0'.freeze
+    DEFAULT_DEMAND_CONSTRAINT = ">= 0.0.0".freeze
 
     # Cookbooks from these sources lock that cookbook to exactly one version
     SOURCE_TYPES_WITH_FIXED_VERSIONS = [:git, :path].freeze
 
-    def self.evaluate(policyfile_string, policyfile_filename, ui: nil)
-      compiler = new(ui: ui)
+    def self.evaluate(policyfile_string, policyfile_filename, ui: nil, chef_config: nil)
+      compiler = new(ui: ui, chef_config: chef_config)
       compiler.evaluate_policyfile(policyfile_string, policyfile_filename)
       compiler
     end
@@ -56,9 +56,9 @@ module ChefDK
     attr_reader :storage_config
     attr_reader :install_report
 
-    def initialize(ui: nil)
+    def initialize(ui: nil, chef_config: nil)
       @storage_config = Policyfile::StorageConfig.new
-      @dsl = Policyfile::DSL.new(storage_config)
+      @dsl = Policyfile::DSL.new(storage_config, chef_config: chef_config)
       @artifact_server_cookbook_location_specs = {}
 
       @merged_graph = nil
@@ -95,7 +95,7 @@ module ChefDK
     end
 
     def normalized_named_run_lists
-      expanded_named_run_lists.inject({}) do |normalized,(name, run_list)|
+      expanded_named_run_lists.inject({}) do |normalized, (name, run_list)|
         normalized[name] = run_list.map { |i| normalize_recipe(i) }
         normalized
       end
@@ -126,14 +126,14 @@ module ChefDK
 
       graph_solution.each do |cookbook_name, version|
         spec = cookbook_location_spec_for(cookbook_name)
-        if spec.nil? or !spec.version_fixed?
+        if spec.nil? || !spec.version_fixed?
           spec = create_spec_for_cookbook(cookbook_name, version)
           install_report.installing_cookbook(spec)
           spec.ensure_cached
         end
 
         required_recipes = cookbook_and_recipe_list.select { |cb_name, _recipe| cb_name == spec.name }
-        missing_recipes = required_recipes.select {|_cb_name, recipe| !spec.cookbook_has_recipe?(recipe) }
+        missing_recipes = required_recipes.select { |_cb_name, recipe| !spec.cookbook_has_recipe?(recipe) }
 
         unless missing_recipes.empty?
           missing_recipes_by_cb_spec[spec] = missing_recipes
@@ -143,7 +143,7 @@ module ChefDK
       unless missing_recipes_by_cb_spec.empty?
         message = "The installed cookbooks do not contain all the recipes required by your run list(s):\n"
         missing_recipes_by_cb_spec.each do |spec, missing_items|
-          message << "#{spec.to_s}\nis missing the following required recipes:\n"
+          message << "#{spec}\nis missing the following required recipes:\n"
           missing_items.each { |_cb, recipe| message << "* #{recipe}\n" }
         end
 
@@ -152,8 +152,6 @@ module ChefDK
 
         raise CookbookDoesNotContainRequiredRecipe, message
       end
-
-
     end
 
     def create_spec_for_cookbook(cookbook_name, version)
@@ -265,7 +263,7 @@ module ChefDK
     end
 
     def version_constraint_for(cookbook_name)
-      if (cookbook_location_spec = cookbook_location_spec_for(cookbook_name)) and cookbook_location_spec.version_fixed?
+      if (cookbook_location_spec = cookbook_location_spec_for(cookbook_name)) && cookbook_location_spec.version_fixed?
         version = cookbook_location_spec.version
         "= #{version}"
       else
@@ -282,7 +280,7 @@ module ChefDK
     end
 
     def cookbooks_in_run_list
-      recipes = combined_run_lists.map {|recipe| recipe.name }
+      recipes = combined_run_lists.map { |recipe| recipe.name }
       recipes.map { |r| r[/^([^:]+)/, 1] }
     end
 
@@ -297,7 +295,6 @@ module ChefDK
         by_name_accum
       end
     end
-
 
     def build
       yield @dsl
@@ -357,7 +354,6 @@ module ChefDK
         preferred
       end
     end
-
 
     def preferred_source_for_cookbook(conflicting_cb_name)
       default_source.find { |s| s.preferred_source_for?(conflicting_cb_name) }

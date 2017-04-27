@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/generator_commands/base'
+require "chef-dk/command/generator_commands/base"
 
 module ChefDK
   module Command
@@ -46,7 +46,7 @@ module ChefDK
             setup_context
             chef_runner.converge
           else
-            errors.each {|error| err("Error: #{error}") }
+            errors.each { |error| err("Error: #{error}") }
             parse_options(params)
             msg(opt_parser)
             1
@@ -85,7 +85,7 @@ module ChefDK
         end
 
         def validate_cookbook_path
-          unless File.directory?(File.join(cookbook_path, "recipes"))
+          unless File.file?(File.join(cookbook_path, "metadata.rb"))
             @errors << "Directory #{cookbook_path} is not a cookbook"
             @params_valid = false
           end

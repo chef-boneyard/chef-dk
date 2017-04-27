@@ -16,11 +16,11 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/setup_git_cookbooks'
-require 'shared/fixture_cookbook_checksums'
-require 'chef-dk/policyfile/storage_config'
-require 'chef-dk/policyfile_lock.rb'
+require "spec_helper"
+require "shared/setup_git_cookbooks"
+require "shared/fixture_cookbook_checksums"
+require "chef-dk/policyfile/storage_config"
+require "chef-dk/policyfile_lock.rb"
 
 describe ChefDK::PolicyfileLock, "building a lockfile" do
 
@@ -150,7 +150,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
     context "invalid floats - infinity" do
 
-      let(:default_attributes) { {"infinity" => Float::INFINITY} }
+      let(:default_attributes) { { "infinity" => Float::INFINITY } }
 
       it "raises a descriptive error" do
         expect { policyfile_lock.to_lock }.to raise_error(ChefDK::InvalidPolicyfileAttribute)
@@ -159,7 +159,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
     context "invalid floats - nan" do
 
-      let(:default_attributes) { {"infinity" => Float::NAN} }
+      let(:default_attributes) { { "infinity" => Float::NAN } }
 
       it "raises a descriptive error" do
         expect { policyfile_lock.to_lock }.to raise_error(ChefDK::InvalidPolicyfileAttribute)
@@ -168,7 +168,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
     context "non-string hash/object keys" do
 
-      let(:default_attributes) { {1906 => "lol nope"} }
+      let(:default_attributes) { { 1906 => "lol nope" } }
 
       it "raises a descriptive error" do
         expect { policyfile_lock.to_lock }.to raise_error(ChefDK::InvalidPolicyfileAttribute)
@@ -231,13 +231,13 @@ REVISION_STRING
             "dotted_decimal_identifier" => cookbook_foo_cksum_dotted,
             "cache_key" => "foo-1.0.0",
             "origin" => nil,
-            "source_options" => nil
+            "source_options" => nil,
           },
         },
         "default_attributes" => {},
         "override_attributes" => {},
 
-        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
+        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
       }
     end
 
@@ -273,14 +273,14 @@ REVISION_STRING
 
         p.default_attributes = {
           "foo" => "bar",
-          "aaa".encode('utf-16') => "aaa".encode('utf-16'),
+          "aaa".encode("utf-16") => "aaa".encode("utf-16"),
           "ddd" => true,
           "ccc" => false,
           "bbb" => nil,
           "e"   => 1.2,
           "f"   => 5,
           "g"   => 1_000_000_000_000_000.0,
-          "nested" => { "a" => "b" }
+          "nested" => { "a" => "b" },
         }
         p.override_attributes = { "foo2" => "baz" }
 
@@ -317,23 +317,23 @@ REVISION_STRING
             "dotted_decimal_identifier" => cookbook_foo_cksum_dotted,
             "cache_key" => "foo-1.0.0",
             "origin" => nil,
-            "source_options" => nil
+            "source_options" => nil,
           },
         },
         "default_attributes" => {
           "foo" => "bar",
-          "aaa".encode('utf-16') => "aaa".encode('utf-16'),
+          "aaa".encode("utf-16") => "aaa".encode("utf-16"),
           "ddd" => true,
           "ccc" => false,
           "bbb" => nil,
           "e"   => 1.2,
           "f"   => 5,
           "g"   => 1_000_000_000_000_000.0,
-          "nested" => { "a" => "b" }
+          "nested" => { "a" => "b" },
         },
         "override_attributes" => { "foo2" => "baz" },
 
-        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
+        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
       }
     end
 
@@ -415,16 +415,16 @@ REVISION_STRING
               "revision" => current_rev,
               "working_tree_clean" => true,
               "published" => true,
-              "synchronized_remote_branches"=>["origin/master"]
+              "synchronized_remote_branches" => ["origin/master"],
             },
-            "source_options" => nil
+            "source_options" => nil,
           },
         },
 
         "default_attributes" => {},
         "override_attributes" => {},
 
-        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
+        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
       }
     end
 
@@ -464,7 +464,7 @@ REVISION_STRING
           # Explicitly set the identifier and dotted decimal identifiers to the
           # version number (but it could be anything).
           cb.identifier = "1.0.0"
-          cb.dotted_decimal_identifier ="1.0.0"
+          cb.dotted_decimal_identifier = "1.0.0"
         end
 
         p.local_cookbook("bar") do |cb|
@@ -508,7 +508,7 @@ REVISION_STRING
             "dotted_decimal_identifier" => "1.0.0",
             "cache_key" => "foo-1.0.0",
             "origin" => nil,
-            "source_options" => nil
+            "source_options" => nil,
           },
 
           "bar" => {
@@ -524,16 +524,16 @@ REVISION_STRING
               "revision" => current_rev,
               "working_tree_clean" => true,
               "published" => false,
-              "synchronized_remote_branches"=>[]
+              "synchronized_remote_branches" => [],
             },
-            "source_options" => nil
+            "source_options" => nil,
           },
         },
 
         "default_attributes" => {},
         "override_attributes" => {},
 
-        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
+        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
       }
     end
 
@@ -633,7 +633,7 @@ REVISION_STRING
             "dotted_decimal_identifier" => cookbook_foo_cksum_dotted,
             "origin" => "https://community.chef.io/api/cookbooks/foo/1.0.0",
             "cache_key" => "foo-1.0.0",
-            "source_options" => nil
+            "source_options" => nil,
           },
 
           "bar" => {
@@ -649,18 +649,18 @@ REVISION_STRING
               "revision" => current_rev,
               "working_tree_clean" => true,
               "published" => false,
-              "synchronized_remote_branches"=>[]
+              "synchronized_remote_branches" => [],
             },
-            "source_options" => nil
+            "source_options" => nil,
           },
 
           "baz" => {
             "version" => "1.2.3",
-            "identifier"=> cookbook_baz_cksum,
+            "identifier" => cookbook_baz_cksum,
             "dotted_decimal_identifier" => cookbook_baz_cksum_dotted,
             "cache_key" => "baz-f59ee7a5bca6a4e606b67f7f856b768d847c39bb",
             "origin" => "git://github.com/chef-cookbooks/bar.git",
-            "source_options" => nil
+            "source_options" => nil,
           },
 
           "dep_of_bar" => {
@@ -669,7 +669,7 @@ REVISION_STRING
             "dotted_decimal_identifier" => cookbook_dep_of_bar_cksum_dotted,
             "origin" => "https://chef-server.example.com/cookbooks/dep_of_bar/1.2.3",
             "cache_key" => "dep_of_bar-1.2.3",
-            "source_options" => nil
+            "source_options" => nil,
 
           },
 
@@ -678,24 +678,24 @@ REVISION_STRING
         "default_attributes" => {},
         "override_attributes" => {},
 
-        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
+        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
 
       }
     end
 
     it "generates a lockfile with the relevant profile data for each cookbook" do
       generated = policyfile_lock.to_lock
-      expect(generated['name']).to eq(compiled_policyfile['name'])
-      expect(generated['run_list']).to eq(compiled_policyfile['run_list'])
+      expect(generated["name"]).to eq(compiled_policyfile["name"])
+      expect(generated["run_list"]).to eq(compiled_policyfile["run_list"])
 
-      generated_locks = generated['cookbook_locks']
-      expected_locks = compiled_policyfile['cookbook_locks']
+      generated_locks = generated["cookbook_locks"]
+      expected_locks = compiled_policyfile["cookbook_locks"]
 
       # test individually so failures are easier to read
-      expect(generated_locks['foo']).to eq(expected_locks['foo'])
-      expect(generated_locks['bar']).to eq(expected_locks['bar'])
-      expect(generated_locks['baz']).to eq(expected_locks['baz'])
-      expect(generated_locks['dep_of_bar']).to eq(expected_locks['dep_of_bar'])
+      expect(generated_locks["foo"]).to eq(expected_locks["foo"])
+      expect(generated_locks["bar"]).to eq(expected_locks["bar"])
+      expect(generated_locks["baz"]).to eq(expected_locks["baz"])
+      expect(generated_locks["dep_of_bar"]).to eq(expected_locks["dep_of_bar"])
 
       expect(policyfile_lock.to_lock).to eq(compiled_policyfile)
     end
@@ -760,7 +760,7 @@ REVISION_STRING
             "dotted_decimal_identifier" => cookbook_foo_cksum_dotted,
             "cache_key" => "foo-1.0.0",
             "origin" => nil,
-            "source_options" => nil
+            "source_options" => nil,
           },
         },
 
@@ -769,8 +769,8 @@ REVISION_STRING
 
         "solution_dependencies" => {
           "Policyfile" => [],
-          "dependencies" => {"foo (1.0.0)" => []}
-        }
+          "dependencies" => { "foo (1.0.0)" => [] },
+        },
       }
     end
 
@@ -832,14 +832,14 @@ REVISION_STRING
             "dotted_decimal_identifier" => cookbook_foo_cksum_dotted,
             "cache_key" => "foo-1.0.0",
             "origin" => nil,
-            "source_options" => nil
+            "source_options" => nil,
           },
         },
 
         "default_attributes" => {},
         "override_attributes" => {},
 
-        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} }
+        "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
       }
     end
 
@@ -897,8 +897,8 @@ REVISION_STRING
         "abc" => { "def" => { "ghi" => "xyz" } },
         "baz" => {
           "more_nested_stuff" => "yup",
-          "an_array" => ["a", "b", "c"]
-        }
+          "an_array" => %w{a b c},
+        },
       }
     end
 
@@ -906,9 +906,9 @@ REVISION_STRING
       elements = [
         %q{"abc":{"def":{"ghi":"xyz"}}},
         %q{"baz":{"an_array":["a","b","c"],"more_nested_stuff":"yup"}},
-        %q{"foo":"bar"}
+        %q{"foo":"bar"},
       ]
-      "{" + elements.join(',') + "}"
+      "{" + elements.join(",") + "}"
     end
 
     let(:policyfile_override_attrs) do
@@ -917,8 +917,8 @@ REVISION_STRING
         "abc" => { "def" => { "ghi" => "xyz" } },
         "baz" => {
           "more_nested_stuff" => "yup",
-          "an_array" => ["a", "b", "c"]
-        }
+          "an_array" => %w{a b c},
+        },
       }
     end
 
@@ -927,9 +927,9 @@ REVISION_STRING
     let(:policyfile_compiler) do
       double( "ChefDK::PolicyfileCompiler",
               name: "my-policyfile",
-              normalized_run_list: %w[recipe[foo::default] recipe[bar::default]],
-              normalized_named_run_lists: { "rl2" => %w[recipe[bar::default]] },
-              all_cookbook_location_specs: {"foo" => cached_location_spec, "bar" => local_location_spec},
+              normalized_run_list: %w{recipe[foo::default] recipe[bar::default]},
+              normalized_named_run_lists: { "rl2" => %w{recipe[bar::default]} },
+              all_cookbook_location_specs: { "foo" => cached_location_spec, "bar" => local_location_spec },
               solution_dependencies: policyfile_solution_dependencies,
               default_attributes: policyfile_default_attrs,
               override_attributes: policyfile_override_attrs )
@@ -938,7 +938,6 @@ REVISION_STRING
     let(:policyfile_lock) do
       ChefDK::PolicyfileLock.build_from_compiler(policyfile_compiler, storage_config)
     end
-
 
     let(:expected_canonical_revision_string) do
       <<-REVISION_STRING
@@ -976,7 +975,7 @@ REVISION_STRING
             "dotted_decimal_identifier" => cookbook_foo_cksum_dotted,
             "cache_key" => "foo-1.0.0",
             "origin" => cached_cookbook_uri,
-            "source_options" => { "artifactserver" => cached_cookbook_uri, "version" => "1.0.0" }
+            "source_options" => { "artifactserver" => cached_cookbook_uri, "version" => "1.0.0" },
           },
 
           "bar" => {
@@ -992,10 +991,10 @@ REVISION_STRING
               "revision" => current_rev,
               "working_tree_clean" => true,
               "published" => false,
-              "synchronized_remote_branches"=>[]
+              "synchronized_remote_branches" => [],
             },
-            "source_options" => { "path" => "bar" }
-          }
+            "source_options" => { "path" => "bar" },
+          },
         },
 
         "default_attributes" => {
@@ -1003,8 +1002,8 @@ REVISION_STRING
           "abc" => { "def" => { "ghi" => "xyz" } },
           "baz" => {
             "more_nested_stuff" => "yup",
-            "an_array" => ["a", "b", "c"]
-          }
+            "an_array" => %w{a b c},
+          },
         },
 
         "override_attributes" => {
@@ -1012,13 +1011,13 @@ REVISION_STRING
           "abc" => { "def" => { "ghi" => "xyz" } },
           "baz" => {
             "more_nested_stuff" => "yup",
-            "an_array" => ["a", "b", "c"]
-          }
+            "an_array" => %w{a b c},
+          },
         },
         "solution_dependencies" => {
           "Policyfile" => [ [ "foo", "~> 1.0" ] ],
-          "dependencies" => { "foo (1.0.0)" => [], "bar (0.1.0)" => [] }
-        }
+          "dependencies" => { "foo (1.0.0)" => [], "bar (0.1.0)" => [] },
+        },
       }
     end
 
@@ -1036,7 +1035,7 @@ REVISION_STRING
     end
 
     it "sets named run lists on the policyfile lock" do
-      expect(policyfile_lock.named_run_lists).to eq("rl2" => %w[recipe[bar::default]])
+      expect(policyfile_lock.named_run_lists).to eq("rl2" => %w{recipe[bar::default]})
     end
 
     it "generates a lockfile data structure" do

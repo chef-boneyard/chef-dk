@@ -20,7 +20,7 @@
 # dependencies, so they are split into their own file here.
 ##
 
-require 'chef-dk/service_exception_inspectors'
+require "chef-dk/service_exception_inspectors"
 
 module ChefDK
 
@@ -140,4 +140,3 @@ module ChefDK
   class ChefConvergeError < ChefRunnerError; end
 
 end
-

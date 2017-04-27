@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/chef_repo_cookbook_source'
+require "spec_helper"
+require "chef-dk/policyfile/chef_repo_cookbook_source"
 
 describe ChefDK::Policyfile::ChefRepoCookbookSource do
 
@@ -28,17 +28,17 @@ describe ChefDK::Policyfile::ChefRepoCookbookSource do
 
   let(:local_repo_universe) {
     {
-      "another-local-cookbook"=>{
-        "0.1.0"=>[],
+      "another-local-cookbook" => {
+        "0.1.0" => [],
       },
-      "local-cookbook"=>{
-        "2.3.4"=>[],
+      "local-cookbook" => {
+        "2.3.4" => [],
       },
-      "cookbook-with-a-dep"=>{
-        "9.9.9"=>[["another-local-cookbook", "~> 0.1"]],
+      "cookbook-with-a-dep" => {
+        "9.9.9" => [["another-local-cookbook", "~> 0.1"]],
       },
-      "noignore"=>{
-        "0.1.0"=>[],
+      "noignore" => {
+        "0.1.0" => [],
       },
     }
   }
@@ -78,7 +78,7 @@ describe ChefDK::Policyfile::ChefRepoCookbookSource do
     end
 
     it "sets the source preferences as given" do
-      expect(cookbook_source.preferred_cookbooks).to eq( %w[ foo bar baz ] )
+      expect(cookbook_source.preferred_cookbooks).to eq( %w{ foo bar baz } )
     end
 
     it "is the preferred source for the requested cookbooks" do

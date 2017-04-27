@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 6ed1dfb907a813cd9637d8187c976dad797d5bf2
-  branch: sersut/ff-ksubrama/ruby23
+  revision: 4e3a4599e66d85f64a91fe5586e3d2760988aea2
   specs:
     omnibus-software (4.0.0)
       chef-sugar (>= 3.4.0)
@@ -9,8 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 0612bf6333b2a7b125e599228ec6c46cbaa3ed3d
-  branch: rhass/COOL-502_with_gcc_investigate
+  revision: ffbda9ad7d37ddb485342505ff4407c6ff23d95f
   specs:
     omnibus (5.5.0)
       aws-sdk (~> 2)
@@ -21,23 +19,26 @@ GIT
       mixlib-shellout (~> 2.0)
       mixlib-versioning
       ohai (~> 8.0)
+      pedump
       ruby-progressbar (~> 1.7)
       thor (~> 0.18)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.5.0)
+    addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
-    artifactory (2.5.1)
+    artifactory (2.8.1)
     awesome_print (1.7.0)
-    aws-sdk (2.6.19)
-      aws-sdk-resources (= 2.6.19)
-    aws-sdk-core (2.6.19)
+    aws-sdk (2.9.9)
+      aws-sdk-resources (= 2.9.9)
+    aws-sdk-core (2.9.9)
+      aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.6.19)
-      aws-sdk-core (= 2.6.19)
-    berkshelf (5.2.0)
+    aws-sdk-resources (2.9.9)
+      aws-sdk-core (= 2.9.9)
+    aws-sigv4 (1.0.0)
+    berkshelf (5.6.4)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (>= 2.0.2, < 4.0)
       buff-config (~> 2.0)
@@ -47,12 +48,12 @@ GEM
       faraday (~> 0.9)
       httpclient (~> 2.7)
       minitar (~> 0.5, >= 0.5.4)
-      mixlib-archive (~> 0.1)
+      mixlib-archive (~> 0.4)
       octokit (~> 4.0)
       retryable (~> 2.0)
       ridley (~> 5.0)
       solve (> 2.0, < 4.0)
-      thor (~> 0.19)
+      thor (~> 0.19, < 0.19.2)
     berkshelf-api-client (3.0.0)
       faraday (~> 0.9)
       httpclient (~> 2.7)
@@ -65,13 +66,13 @@ GEM
     buff-ruby_engine (1.0.0)
     buff-shell_out (1.1.0)
       buff-ruby_engine (~> 1.0)
-    builder (3.2.2)
+    builder (3.2.3)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (12.16.42)
+    chef-config (12.19.36)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -81,8 +82,8 @@ GEM
     erubis (2.7.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
-    ffi (1.9.14)
-    ffi (1.9.14-x86-mingw32)
+    ffi (1.9.18)
+    ffi (1.9.18-x86-mingw32)
     ffi-yajl (2.3.0)
       libyajl2 (~> 1.2)
     fuzzyurl (0.9.0)
@@ -90,32 +91,32 @@ GEM
       ffi (>= 1.0.1)
     gyoku (1.3.1)
       builder (>= 2.1.2)
-    hashie (3.4.6)
+    hashie (3.5.5)
     hitimes (1.2.4)
     hitimes (1.2.4-x86-mingw32)
-    httpclient (2.8.2.4)
+    httpclient (2.8.3)
     iostruct (0.0.4)
     ipaddress (0.8.3)
     jmespath (1.3.1)
-    json (2.0.2)
-    kitchen-vagrant (0.20.0)
+    json (2.1.0)
+    kitchen-vagrant (1.1.0)
       test-kitchen (~> 1.4)
     libyajl2 (1.2.0)
     license_scout (0.1.3)
       ffi-yajl (~> 2.2)
       mixlib-shellout (~> 2.2)
     little-plugger (1.1.4)
-    logging (2.1.0)
+    logging (2.2.2)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
-    minitar (0.5.4)
-    mixlib-archive (0.2.0)
+    minitar (0.6.1)
+    mixlib-archive (0.4.1)
       mixlib-log
     mixlib-authentication (1.4.1)
       mixlib-log
     mixlib-cli (1.7.0)
     mixlib-config (2.2.4)
-    mixlib-install (2.1.6)
+    mixlib-install (2.1.12)
       artifactory
       mixlib-shellout
       mixlib-versioning
@@ -126,19 +127,19 @@ GEM
       win32-process (~> 0.8.2)
       wmi-lite (~> 1.0)
     mixlib-versioning (1.1.0)
-    molinillo (0.5.4)
+    molinillo (0.5.7)
     multi_json (1.12.1)
     multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (3.2.0)
-    net-ssh-gateway (1.2.0)
+    net-ssh (4.1.0)
+    net-ssh-gateway (1.3.0)
       net-ssh (>= 2.6.5)
-    nio4r (1.2.1)
+    nio4r (2.0.0)
     nori (2.6.0)
-    octokit (4.6.0)
+    octokit (4.7.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (8.21.0)
+    ohai (8.23.0)
       chef-config (>= 12.5.0.alpha.1, < 13)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
@@ -157,8 +158,8 @@ GEM
       progressbar
       zhexdump (>= 0.0.2)
     plist (3.2.0)
-    progressbar (0.21.0)
-    public_suffix (2.0.4)
+    progressbar (1.8.2)
+    public_suffix (2.0.5)
     retryable (2.0.4)
     ridley (5.1.0)
       addressable
@@ -183,24 +184,24 @@ GEM
     rspec-support (3.4.1)
     ruby-progressbar (1.8.1)
     rubyntlm (0.6.1)
-    rubyzip (1.2.0)
+    rubyzip (1.2.1)
     safe_yaml (1.0.4)
-    sawyer (0.8.0)
+    sawyer (0.8.1)
       addressable (>= 2.3.5, < 2.6)
-      faraday (~> 0.8, < 0.10)
+      faraday (~> 0.8, < 1.0)
     semverse (2.0.0)
-    solve (3.0.1)
-      molinillo (~> 0.4)
+    solve (3.1.0)
+      molinillo (>= 0.5)
       semverse (>= 1.1, < 3.0)
     systemu (2.6.5)
-    test-kitchen (1.13.2)
+    test-kitchen (1.16.0)
       mixlib-install (>= 1.2, < 3.0)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
-      net-ssh (>= 2.9, < 4.0)
-      net-ssh-gateway (~> 1.2.0)
+      net-ssh (>= 2.9, < 5.0)
+      net-ssh-gateway (~> 1.2)
       safe_yaml (~> 1.0)
-      thor (~> 0.18)
+      thor (~> 0.19, < 0.19.2)
     thor (0.19.1)
     timers (4.0.4)
       hitimes
@@ -209,7 +210,7 @@ GEM
       hashie (>= 2.0.2, < 4.0.0)
     win32-process (0.8.3)
       ffi (>= 1.0.0)
-    winrm (2.1.0)
+    winrm (2.2.2)
       builder (>= 2.1.2)
       erubis (~> 2.7)
       gssapi (~> 1.2)
@@ -218,10 +219,10 @@ GEM
       logging (>= 1.6.1, < 3.0)
       nori (~> 2.0)
       rubyntlm (~> 0.6.0, >= 0.6.1)
-    winrm-elevated (1.0.1)
+    winrm-elevated (1.1.0)
       winrm (~> 2.0)
       winrm-fs (~> 1.0)
-    winrm-fs (1.0.0)
+    winrm-fs (1.0.1)
       erubis (~> 2.7)
       logging (>= 1.6.1, < 3.0)
       rubyzip (~> 1.1)
@@ -244,4 +245,4 @@ DEPENDENCIES
   winrm-elevated
 
 BUNDLED WITH
-   1.12.5
+   1.14.6

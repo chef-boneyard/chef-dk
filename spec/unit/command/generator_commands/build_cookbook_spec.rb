@@ -15,23 +15,23 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/custom_generator_cookbook'
-require 'shared/setup_git_committer_config'
-require 'chef-dk/command/generator_commands/build_cookbook'
-require 'mixlib/shellout'
+require "spec_helper"
+require "shared/custom_generator_cookbook"
+require "shared/setup_git_committer_config"
+require "chef-dk/command/generator_commands/build_cookbook"
+require "mixlib/shellout"
 
 describe ChefDK::Command::GeneratorCommands::BuildCookbook do
 
   include_context("setup_git_committer_config")
 
-  let(:argv) { %w[delivery_project] }
+  let(:argv) { %w{delivery_project} }
 
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
 
   let(:expected_cookbook_file_relpaths) do
-    %w[
+    %w{
       .kitchen.yml
       data_bags
       data_bags/keys
@@ -62,7 +62,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
       recipes/unit.rb
       secrets
       secrets/fakey-mcfakerton
-    ]
+    }
   end
 
   let(:expected_cookbook_files) do
@@ -85,7 +85,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
 
   it "configures the chef runner" do
     expect(cookbook_generator.chef_runner).to be_a(ChefDK::ChefRunner)
-    expect(cookbook_generator.chef_runner.cookbook_path).to eq(File.expand_path('lib/chef-dk/skeletons', project_root))
+    expect(cookbook_generator.chef_runner.cookbook_path).to eq(File.expand_path("lib/chef-dk/skeletons", project_root))
   end
 
   context "when given invalid/incomplete arguments" do
@@ -93,7 +93,6 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
     let(:expected_help_message) do
       "Usage: chef generate build-cookbook NAME [options]\n"
     end
-
 
     def with_argv(argv)
       generator = described_class.new(argv)
@@ -111,7 +110,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
 
   context "when given the name of the delivery project" do
 
-    let(:argv) { %w[delivery_project] }
+    let(:argv) { %w{delivery_project} }
 
     let(:project_dir) { File.join(tempdir, "delivery_project") }
 
@@ -199,6 +198,7 @@ maintainer 'The Authors'
 maintainer_email 'you@example.com'
 license 'all_rights'
 version '0.1.0'
+chef_version '>= 12.1' if respond_to?(:chef_version)
 
 depends 'delivery-truck'
 METADATA
@@ -216,7 +216,7 @@ METADATA
         end
 
         it "generates phase recipes which include the corresponding delivery truck recipe" do
-          %w[
+          %w{
             deploy.rb
             functional.rb
             lint.rb
@@ -227,10 +227,10 @@ METADATA
             smoke.rb
             syntax.rb
             unit.rb
-          ].each do |phase_recipe|
+          }.each do |phase_recipe|
             recipe_file = File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", "recipes", phase_recipe)
             phase = File.basename(phase_recipe, ".rb")
-            expected_content = %Q[include_recipe 'delivery-truck::#{phase}']
+            expected_content = %Q{include_recipe 'delivery-truck::#{phase}'}
             expect(IO.read(recipe_file)).to include(expected_content)
           end
         end
@@ -273,7 +273,7 @@ METADATA
         end
 
         it "generates phase recipes that are empty" do
-          %w[
+          %w{
             deploy.rb
             functional.rb
             lint.rb
@@ -284,7 +284,7 @@ METADATA
             smoke.rb
             syntax.rb
             unit.rb
-          ].each do |phase_recipe|
+          }.each do |phase_recipe|
             recipe_file = File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", "recipes", phase_recipe)
             expect(IO.read(recipe_file)).to_not include("include_recipe")
           end
@@ -320,6 +320,40 @@ METADATA
 
       it "creates delivery config in a feature branch and merges it" do
         expect(git!("log").stdout).to include("Merge branch 'add-delivery-configuration'")
+      end
+
+    end
+
+    context "when the delivery project has already a config.json and project.toml" do
+
+      let(:dot_delivery) { File.join(project_dir, ".delivery") }
+      let(:config_json) { File.join(dot_delivery, "config.json") }
+      let(:project_toml) { File.join(dot_delivery, "project.toml") }
+
+      def git!(cmd)
+        Mixlib::ShellOut.new("git #{cmd}", cwd: project_dir).tap do |c|
+          c.run_command
+          c.error!
+        end
+      end
+
+      before do
+        FileUtils.mkdir_p(dot_delivery)
+        FileUtils.touch(config_json)
+        FileUtils.touch(project_toml)
+
+        git!("init .")
+        git!("add .")
+        git!("commit -m \"initial commit\"")
+
+        Dir.chdir(tempdir) do
+          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+          expect(cookbook_generator.run).to eq(0)
+        end
+      end
+
+      it "does not overwrite the delivery config" do
+        expect(git!("log").stdout).to_not include("Add generated delivery configuration")
       end
 
     end

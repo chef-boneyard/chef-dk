@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/storage_config'
+require "spec_helper"
+require "chef-dk/policyfile/storage_config"
 
 describe ChefDK::Policyfile::StorageConfig do
 
@@ -79,7 +79,7 @@ describe ChefDK::Policyfile::StorageConfig do
     end
 
     it "gives the expanded path to the policyfile" do
-      expect(storage_config.policyfile_expanded_path).to eq(File.expand_path('/path/to/Policyfile.rb'))
+      expect(storage_config.policyfile_expanded_path).to eq(File.expand_path("/path/to/Policyfile.rb"))
     end
 
     context "when the policyfile is given as a relative path" do
@@ -115,8 +115,19 @@ describe ChefDK::Policyfile::StorageConfig do
 
     end
 
-  end
+    context "when the policyfile file name is actually a lockfile" do
 
+      before do
+        storage_config.use_policyfile("foo.lock.json")
+      end
+
+      it "uses the policyfile .rb file instead" do
+        expect(storage_config.policyfile_filename).to eq("foo.rb")
+      end
+
+    end
+
+  end
 
   describe "updating storage config for policyfile lock location" do
 
@@ -162,11 +173,8 @@ describe ChefDK::Policyfile::StorageConfig do
         expect(storage_config.policyfile_lock_expanded_path).to eq(File.expand_path("Policyfile.lock.json", "."))
       end
 
-
     end
 
   end
 
-
 end
-

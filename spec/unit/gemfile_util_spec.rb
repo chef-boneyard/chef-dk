@@ -1,5 +1,5 @@
-require 'spec_helper'
-require_relative '../../tasks/gemfile_util'
+require "spec_helper"
+require_relative "../../tasks/gemfile_util"
 
 class GemfileSuper
   def gem(*args)
@@ -31,7 +31,7 @@ describe GemfileUtil do
     it "overrides gems with :override" do
       expect(gemfile_util).to receive(:warn_if_replacing)
       expect(gemfile_util.gem(gem_name, override: true)).to be_nil
-      expect(gemfile_util.overridden_gems).to eq({ gem_name => [{ }] })
+      expect(gemfile_util.overridden_gems).to eq({ gem_name => [{}] })
     end
 
     it "does not override gems with :overrideable" do

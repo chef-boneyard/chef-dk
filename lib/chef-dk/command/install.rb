@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'chef-dk/ui'
-require 'chef-dk/policyfile_services/install'
-require 'chef-dk/configurable'
+require "chef-dk/command/base"
+require "chef-dk/ui"
+require "chef-dk/policyfile_services/install"
+require "chef-dk/configurable"
 
 module ChefDK
   module Command
@@ -83,7 +83,7 @@ E
       end
 
       def installer
-        @installer ||= PolicyfileServices::Install.new(policyfile: policyfile_relative_path, ui: ui, root_dir: Dir.pwd)
+        @installer ||= PolicyfileServices::Install.new(policyfile: policyfile_relative_path, ui: ui, root_dir: Dir.pwd, config: chef_config)
       end
 
       def debug?
@@ -118,4 +118,3 @@ E
     end
   end
 end
-

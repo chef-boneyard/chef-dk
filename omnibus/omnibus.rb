@@ -26,8 +26,12 @@
 
 # Windows architecture defaults - set to x86 unless otherwise specified.
 # ------------------------------
-windows_arch   %w{x86 x64}.include?((ENV['OMNIBUS_WINDOWS_ARCH'] || '').downcase) ?
-                ENV['OMNIBUS_WINDOWS_ARCH'].downcase.to_sym : :x86
+windows_arch %w{x86 x64}.include?((ENV["OMNIBUS_WINDOWS_ARCH"] || "").downcase) ?
+                ENV["OMNIBUS_WINDOWS_ARCH"].downcase.to_sym : :x86
+
+# Build in FIPS compatability mode
+# ------------------------------
+fips_mode (ENV["OMNIBUS_FIPS_MODE"] || "").downcase == "true"
 
 # Disable git caching
 # ------------------------------
@@ -36,9 +40,9 @@ windows_arch   %w{x86 x64}.include?((ENV['OMNIBUS_WINDOWS_ARCH'] || '').downcase
 # Enable S3 asset caching
 # ------------------------------
 use_s3_caching true
-s3_access_key  ENV['AWS_ACCESS_KEY_ID']
-s3_secret_key  ENV['AWS_SECRET_ACCESS_KEY']
-s3_bucket      'opscode-omnibus-cache'
+s3_access_key  ENV["AWS_ACCESS_KEY_ID"]
+s3_secret_key  ENV["AWS_SECRET_ACCESS_KEY"]
+s3_bucket      "opscode-omnibus-cache"
 
 build_retries 0
 fetcher_retries 3

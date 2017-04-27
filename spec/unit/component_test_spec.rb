@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/component_test'
-require 'pathname'
+require "spec_helper"
+require "chef-dk/component_test"
+require "pathname"
 
 describe ChefDK::ComponentTest do
 

@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/base'
-require 'chef-dk/exceptions'
-require 'chef-dk/component_test'
+require "chef-dk/command/base"
+require "chef-dk/exceptions"
+require "chef-dk/component_test"
 
 module ChefDK
   module Command
@@ -44,7 +44,7 @@ module ChefDK
         :description  => "Display all test output, not just failing tests"
 
       class << self
-        def add_component(name, _delete_me=nil)
+        def add_component(name, _delete_me = nil)
           component = ComponentTest.new(name)
           yield component if block_given? #delete this conditional
           component_map[name] = component
@@ -92,7 +92,7 @@ module ChefDK
 
         c.smoke_test do
           tmpdir do |cwd|
-            FileUtils.touch(File.join(cwd,"Berksfile"))
+            FileUtils.touch(File.join(cwd, "Berksfile"))
             sh("#{bin("berks")} install", cwd: cwd)
           end
         end
@@ -215,7 +215,7 @@ KITCHEN_YML
           def format_gem_failure(name, versions)
             <<-EOS
 #{name} has multiple versions installed:
-#{versions.sort.map { |gv| "    #{gv.to_s}" }.join("\n")}
+#{versions.sort.map { |gv| "    #{gv}" }.join("\n")}
             EOS
           end
 
@@ -237,7 +237,7 @@ EOS
           # ------------
           # load the core gem and all of the drivers (ignoring versions).
           require "chef/provisioning"
-          drivers.map { |d| "#{d.gsub('-', '/')}_driver" }.each do |driver_gem|
+          drivers.map { |d| "#{d.tr('-', '/')}_driver" }.each do |driver_gem|
             begin
               begin
                 require driver_gem
@@ -258,18 +258,18 @@ EOS
 
               # write out the gemfile for this chef-provisioning version, and see if Bundler can make it go.
               with_file(File.join(cwd, gemfile)) do |f|
-                f.puts %Q(gem "chef-provisioning", "= #{provisioning_version}")
-                drivers.each { |d| f.puts %Q(gem "#{d}") }
+                f.puts %Q{gem "chef-provisioning", "= #{provisioning_version}"}
+                drivers.each { |d| f.puts %Q{gem "#{d}"} }
               end
 
               result = bundle_install_mutex.synchronize do
-                sh("#{embedded_bin("bundle")} install --local --quiet", cwd: cwd, env: {"BUNDLE_GEMFILE" => gemfile })
+                sh("#{embedded_bin("bundle")} install --local --quiet", cwd: cwd, env: { "BUNDLE_GEMFILE" => gemfile })
               end
 
               if result.exitstatus != 0
                 failures << result.stdout
               end
-            end  # end provisioning versions.
+            end # end provisioning versions.
 
             failures.each { |fail| puts fail }
 
@@ -280,7 +280,6 @@ EOS
           end
         end
       end
-
 
       add_component "chefspec" do |c|
         c.gem_base_dir = "chefspec"
@@ -329,7 +328,7 @@ require 'spec_helper'
         c.gem_base_dir = "rubocop"
         c.smoke_test do
           tmpdir do |cwd|
-            with_file(File.join(cwd, 'foo.rb')) do |f|
+            with_file(File.join(cwd, "foo.rb")) do |f|
               f.write <<-EOF
 def foo
   puts 'foo'
@@ -348,7 +347,7 @@ end
 
       add_component "knife-spork" do |c|
         c.gem_base_dir = "knife-spork"
-        c.smoke_test { sh("#{bin("knife")} spork info")}
+        c.smoke_test { sh("#{bin("knife")} spork info") }
       end
 
       add_component "kitchen-vagrant" do |c|
@@ -468,34 +467,34 @@ end
         add_component "git" do |c|
           c.base_dir = "embedded/bin"
           c.smoke_test do
-        	  tmpdir do |cwd|
+            tmpdir do |cwd|
               sh!("#{embedded_bin("git")} config -l")
-        	    sh!("#{embedded_bin("git")} clone https://github.com/chef/chef-provisioning", cwd: cwd)
-        	  end
+              sh!("#{embedded_bin("git")} clone https://github.com/chef/chef-provisioning", cwd: cwd)
+            end
           end
         end
       else
         add_component "git" do |c|
           c.base_dir = "gitbin"
           c.smoke_test do
-        	  tmpdir do |cwd|
+            tmpdir do |cwd|
               sh!("#{File.join(omnibus_root, "gitbin", "git")} config -l")
-        	    sh!("#{File.join(omnibus_root, "gitbin", "git")} clone https://github.com/chef/chef-provisioning", cwd: cwd)
+              sh!("#{File.join(omnibus_root, "gitbin", "git")} clone https://github.com/chef/chef-provisioning", cwd: cwd)
 
-        	    # If /usr/bin/git is a symlink, fail the test.
-        	    # Note that this test cannot go last because it does not return a
-        	    # Mixlib::Shellout object in the windows case, which will break the tests.
+              # If /usr/bin/git is a symlink, fail the test.
+              # Note that this test cannot go last because it does not return a
+              # Mixlib::Shellout object in the windows case, which will break the tests.
               failure_str = "#{nix_platform_native_bin_dir}/git contains a symlink which might mean we accidentally overwrote system git via chefdk."
               result = sh("readlink #{nix_platform_native_bin_dir}/git")
               # if a symlink was found, test to see if it is in a chefdk install
               if result.status.exitstatus == 0
-               raise failure_str if result.stdout =~ /chefdk/
+                raise failure_str if result.stdout =~ /chefdk/
               end
 
-        	    # <chef_dk>/bin/ should not contain a git binary.
-        	    failure_str = "`<chef_dk>/bin/git --help` should fail as git should be installed in gitbin"
-        	    fail_if_exit_zero("#{bin("git")} --help", failure_str)
-        	  end
+              # <chef_dk>/bin/ should not contain a git binary.
+              failure_str = "`<chef_dk>/bin/git --help` should fail as git should be installed in gitbin"
+              fail_if_exit_zero("#{bin("git")} --help", failure_str)
+            end
           end
         end
       end
@@ -520,7 +519,7 @@ end
         c.gem_base_dir = "chef-sugar"
         c.smoke_test do
           tmpdir do |cwd|
-            with_file(File.join(cwd, 'foo.rb')) do |f|
+            with_file(File.join(cwd, "foo.rb")) do |f|
               f.write <<-EOF
 require 'chef/sugar'
 log 'something' do
@@ -593,7 +592,7 @@ end
               results << component.run_integration_test
             end
 
-            if results.any? {|r| r.exitstatus != 0 }
+            if results.any? { |r| r.exitstatus != 0 }
               component_status = 1
               @verification_status = 1
             else
@@ -603,7 +602,7 @@ end
             {
               :component => component,
               :results => results,
-              :component_status => component_status
+              :component_status => component_status,
             }
           end
 
@@ -612,7 +611,7 @@ end
       end
 
       def wait_for_tests
-        while !verification_threads.empty?
+        until verification_threads.empty?
           verification_threads.each do |t|
             if t.join(1)
               verification_threads.delete t

@@ -15,12 +15,12 @@
 # limitations under the License.
 #
 
-require 'erb'
+require "erb"
 
-require 'chef-dk/commands_map'
-require 'chef-dk/builtin_commands'
-require 'chef-dk/command/base'
-require 'mixlib/shellout'
+require "chef-dk/commands_map"
+require "chef-dk/builtin_commands"
+require "chef-dk/command/base"
+require "mixlib/shellout"
 
 module ChefDK
 
@@ -41,7 +41,7 @@ module ChefDK
   module Command
     class ShellInit < ChefDK::Command::Base
 
-      SUPPORTED_SHELLS = %w[ bash fish zsh sh powershell posh].map(&:freeze).freeze
+      SUPPORTED_SHELLS = %w{ bash fish zsh sh powershell posh}.map(&:freeze).freeze
 
       banner(<<-HELP)
 Usage: chef shell-init
@@ -117,7 +117,7 @@ HELP
       def completion_for(shell)
         return "" unless (completion_template_basename = completion_template_for(shell))
         completion_template_path = expand_completion_template_path(completion_template_basename)
-        erb = ERB.new(File.read(completion_template_path), nil, '-')
+        erb = ERB.new(File.read(completion_template_path), nil, "-")
         context_binding = shell_completion_template_context.get_binding
         erb.result(context_binding)
       end
@@ -134,7 +134,6 @@ HELP
           # Pull requests accepted!
           nil
         end
-
       end
 
       def expand_completion_template_path(basename)
@@ -147,17 +146,17 @@ HELP
 
       def export(shell, var, val)
         case shell
-        when 'sh', 'bash', 'zsh'
+        when "sh", "bash", "zsh"
           posix_shell_export(var, val)
-        when 'fish'
+        when "fish"
           fish_shell_export(var, val)
-        when 'powershell', 'posh'
+        when "powershell", "posh"
           powershell_export(var, val)
         end
       end
 
       def posix_shell_export(var, val)
-        emit_shell_cmd(%Q(export #{var}="#{val}"))
+        emit_shell_cmd(%Q{export #{var}="#{val}"})
       end
 
       def fish_shell_export(var, val)
@@ -165,15 +164,15 @@ HELP
         # divided by spaces (instead of colons). We also send STDERR to
         # /dev/null to avoid Fish's helpful warnings about nonexistent
         # PATH elements.
-        if var == 'PATH'
-          emit_shell_cmd(%Q(set -gx #{var} "#{val.split(':').join('" "')}" 2>/dev/null;))
+        if var == "PATH"
+          emit_shell_cmd(%Q{set -gx #{var} "#{val.split(':').join('" "')}" 2>/dev/null;})
         else
-          emit_shell_cmd(%Q(set -gx #{var} "#{val}";))
+          emit_shell_cmd(%Q{set -gx #{var} "#{val}";})
         end
       end
 
       def powershell_export(var, val)
-        emit_shell_cmd(%Q($env:#{var}="#{val}"))
+        emit_shell_cmd(%Q{$env:#{var}="#{val}"})
       end
     end
   end

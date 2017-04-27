@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef/formatters/doc'
+require "chef/formatters/doc"
 
 module ChefDK
 
@@ -36,4 +36,3 @@ module ChefDK
     end
   end
 end
-

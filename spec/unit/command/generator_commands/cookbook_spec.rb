@@ -15,27 +15,27 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/custom_generator_cookbook'
-require 'shared/setup_git_committer_config'
-require 'chef-dk/command/generator_commands/cookbook'
+require "spec_helper"
+require "shared/custom_generator_cookbook"
+require "shared/setup_git_committer_config"
+require "chef-dk/command/generator_commands/cookbook"
 
 describe ChefDK::Command::GeneratorCommands::Cookbook do
 
   include_context("setup_git_committer_config")
 
-  let(:argv) { %w[new_cookbook] }
+  let(:argv) { %w{new_cookbook} }
 
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
 
   let(:expected_cookbook_file_relpaths) do
-    %w[
+    %w{
       .gitignore
       .kitchen.yml
       test
-      test/recipes
-      test/recipes/default_test.rb
+      test/smoke
+      test/smoke/default/default_test.rb
       Berksfile
       chefignore
       metadata.rb
@@ -47,7 +47,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       spec/unit
       spec/unit/recipes
       spec/unit/recipes/default_spec.rb
-    ]
+    }
   end
 
   let(:expected_cookbook_files) do
@@ -56,8 +56,8 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
     end
   end
 
-    let(:non_delivery_breadcrumb) do
-<<-EOF
+  let(:non_delivery_breadcrumb) do
+    <<-EOF
 Your cookbook is ready. Type `cd new_cookbook` to enter it.
 
 There are several commands you can run to get started locally developing and testing your cookbook.
@@ -65,13 +65,13 @@ Type `delivery local --help` to see a full list.
 
 Why not start by writing a test? Tests for the default recipe are stored at:
 
-test/recipes/default_test.rb
+test/smoke/default/default_test.rb
 
 If you'd prefer to dive right in, the default recipe can be found at:
 
 recipes/default.rb
 EOF
-   end
+  end
 
   subject(:cookbook_generator) do
     g = described_class.new(argv)
@@ -98,7 +98,7 @@ EOF
 
   it "configures the chef runner" do
     expect(cookbook_generator.chef_runner).to be_a(ChefDK::ChefRunner)
-    expect(cookbook_generator.chef_runner.cookbook_path).to eq(File.expand_path('lib/chef-dk/skeletons', project_root))
+    expect(cookbook_generator.chef_runner.cookbook_path).to eq(File.expand_path("lib/chef-dk/skeletons", project_root))
   end
 
   context "when given invalid/incomplete arguments" do
@@ -106,7 +106,6 @@ EOF
     let(:expected_help_message) do
       "Usage: chef generate cookbook NAME [options]\n"
     end
-
 
     def with_argv(argv)
       generator = described_class.new(argv)
@@ -136,7 +135,7 @@ EOF
 
   context "when given the name of the cookbook to generate" do
 
-    let(:argv) { %w[new_cookbook] }
+    let(:argv) { %w{new_cookbook} }
 
     before do
       reset_tempdir
@@ -193,18 +192,29 @@ EOF
 # config.json file and it will continue working as usual.
 
 [local_phases]
-unit = "rspec spec/"
-lint = "cookstyle"
+unit = "chef exec rspec spec/"
+lint = "chef exec cookstyle"
 # Foodcritic includes rules only appropriate for community cookbooks
 # uploaded to Supermarket. We turn off any rules tagged "supermarket"
 # by default. If you plan to share this cookbook you should remove
 # '-t ~supermarket' below to enable supermarket rules.
-syntax = "foodcritic . --exclude spec -f any -t ~supermarket"
+syntax = "chef exec foodcritic . -t ~supermarket"
 provision = "chef exec kitchen create"
 deploy = "chef exec kitchen converge"
 smoke = "chef exec kitchen verify"
+# The functional phase is optional, you can define it by uncommenting
+# the line below and running the command: `delivery local functional`
+# functional = ""
 cleanup = "chef exec kitchen destroy"
-  PROJECT_DOT_TOML
+
+# Remote project.toml file
+#
+# Specify a remote URI location for the `project.toml` file.
+# This is useful for teams that wish to centrally manage the behavior
+# of the `delivery local` command across many different projects.
+#
+# remote_file = "https://url/project.toml"
+PROJECT_DOT_TOML
         end
 
         it "exists with default config for Cookbook Workflow" do
@@ -226,7 +236,7 @@ cleanup = "chef exec kitchen destroy"
     "path": ".delivery/build_cookbook"
   },
   "skip_phases": [],
-  "job-dispatch": {
+  "job_dispatch": {
     "version": "v2"
   },
   "dependencies": []
@@ -249,10 +259,10 @@ cleanup = "chef exec kitchen destroy"
         let(:expected_content) do
           <<-CONFIG_DOT_JSON
 #
-# Cookbook Name:: build_cookbook
+# Cookbook:: build_cookbook
 # Recipe:: publish
 #
-# Copyright (c) 2016 The Authors, All Rights Reserved.
+# Copyright:: 2017, The Authors, All Rights Reserved.
 include_recipe 'delivery-truck::publish'
   CONFIG_DOT_JSON
         end
@@ -276,15 +286,13 @@ source 'https://supermarket.chef.io'
 metadata
 
 group :delivery do
-  cookbook 'delivery_build', git: 'https://github.com/chef-cookbooks/delivery_build'
-  cookbook 'delivery-base', git: 'https://github.com/chef-cookbooks/delivery-base'
   cookbook 'test', path: './test/fixtures/cookbooks/test'
 end
   CONFIG_DOT_JSON
         end
 
         it "sets the sources for delivery library cookbooks to github" do
-         expect(IO.read(file)).to include(expected_content)
+          expect(IO.read(file)).to include(expected_content)
         end
 
       end
@@ -292,9 +300,9 @@ end
 
     context "when passed delivery option" do
 
-      let(:argv) { %w[new_cookbook --delivery] }
+      let(:argv) { %w{new_cookbook --delivery} }
 
-      it 'still works with no action' do
+      it "still works with no action" do
         Dir.chdir(tempdir) do
           allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
           expect(cookbook_generator.run).to eq(0)
@@ -304,7 +312,7 @@ end
 
     context "when given the verbose flag" do
 
-      let(:argv) { %w[ new_cookbook --verbose ] }
+      let(:argv) { %w{ new_cookbook --verbose } }
 
       it "configures the generator context with verbose mode enabled" do
         cookbook_generator.read_and_validate_params
@@ -460,8 +468,8 @@ OUTPUT
 
         end
 
-        describe "test/recipes/default_test.rb" do
-          let(:file) { File.join(tempdir, "new_cookbook", "test", "recipes", "default_test.rb") }
+        describe "test/smoke/default/default_test.rb" do
+          let(:file) { File.join(tempdir, "new_cookbook", "test", "smoke", "default", "default_test.rb") }
 
           include_examples "a generated file", :cookbook_name do
             let(:line) { "describe port" }
@@ -495,7 +503,7 @@ OUTPUT
 
     context "when configured for Policyfiles" do
 
-      let(:argv) { %w[new_cookbook --policy] }
+      let(:argv) { %w{new_cookbook --policy} }
 
       describe "Policyfile.rb" do
 
@@ -564,13 +572,13 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
-  - name: centos-7.2
+  - name: centos-7.3
 
 suites:
   - name: default
     verifier:
       inspec_tests:
-        - test/recipes
+        - test/smoke/default
     attributes:
 KITCHEN_YML
         end
@@ -592,7 +600,7 @@ SPEC_HELPER
 
     context "when configured for Berkshelf" do
 
-      let(:argv) { %w[new_cookbook --berks] }
+      let(:argv) { %w{new_cookbook --berks} }
 
       describe "Berksfile" do
 
@@ -639,7 +647,7 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
-  - name: centos-7.2
+  - name: centos-7.3
 
 suites:
   - name: default
@@ -647,7 +655,7 @@ suites:
       - recipe[new_cookbook::default]
     verifier:
       inspec_tests:
-        - test/recipes
+        - test/smoke/default
     attributes:
 KITCHEN_YML
         end
@@ -679,7 +687,7 @@ SPEC_HELPER
       let(:file) { File.join(tempdir, "new_cookbook", "recipes", "default.rb") }
 
       include_examples "a generated file", :cookbook_name do
-        let(:line) { "# Cookbook Name:: new_cookbook" }
+        let(:line) { "# Cookbook:: new_cookbook" }
       end
     end
 
@@ -719,19 +727,19 @@ SPEC_HELPER
     it "configures the generator context for long form option key1" do
       cookbook_generator.read_and_validate_params
       cookbook_generator.setup_context
-      expect(generator_context.key1).to eq('value1')
+      expect(generator_context.key1).to eq("value1")
     end
 
     it "configures the generator context for short form option key2" do
       cookbook_generator.read_and_validate_params
       cookbook_generator.setup_context
-      expect(generator_context.key2).to eq('value2')
+      expect(generator_context.key2).to eq("value2")
     end
 
     it "configures the generator context for key3 containing additional spaces" do
       cookbook_generator.read_and_validate_params
       cookbook_generator.setup_context
-      expect(generator_context.key3).to eq('value3')
+      expect(generator_context.key3).to eq("value3")
     end
 
   end

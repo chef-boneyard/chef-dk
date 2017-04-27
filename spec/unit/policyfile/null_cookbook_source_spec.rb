@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
+require "spec_helper"
 
-require 'chef-dk/policyfile/null_cookbook_source'
+require "chef-dk/policyfile/null_cookbook_source"
 
 describe ChefDK::Policyfile::NullCookbookSource do
 
@@ -32,4 +32,3 @@ describe ChefDK::Policyfile::NullCookbookSource do
   end
 
 end
-

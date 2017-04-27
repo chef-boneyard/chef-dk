@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/generator'
+require "spec_helper"
+require "chef-dk/generator"
 
 describe ChefDK::Generator do
 
@@ -49,21 +49,21 @@ class TmplTest
 end
 
 describe ChefDK::Generator::TemplateHelper do
-  let(:license) { 'all_rights' }
-  let(:copyright_holder) { 'Adam Jacob' }
+  let(:license) { "all_rights" }
+  let(:copyright_holder) { "Adam Jacob" }
   let(:helper) { TmplTest.new }
 
   before(:each) do
     ChefDK::Generator.reset
     ChefDK::Generator.add_attr_to_context(:license, license)
-    ChefDK::Generator.add_attr_to_context(:copyright_holder, 'Adam Jacob')
+    ChefDK::Generator.add_attr_to_context(:copyright_holder, "Adam Jacob")
   end
 
-  describe 'license_description' do
+  describe "license_description" do
     let(:license) { "all_rights" }
     context "all_rights" do
       it "should match the license" do
-        expect(helper.license_description).to match(/^Copyright \(c\)/)
+        expect(helper.license_description).to match(/^Copyright:: /)
       end
 
       it "should comment if requested" do
@@ -72,7 +72,7 @@ describe ChefDK::Generator::TemplateHelper do
     end
 
     context "apachev2" do
-      let(:license) { 'apachev2' }
+      let(:license) { "apachev2" }
       it "should match the license" do
         expect(helper.license_description).to match(/Licensed under the Apache/)
       end
@@ -83,7 +83,7 @@ describe ChefDK::Generator::TemplateHelper do
     end
 
     context "mit" do
-      let(:license) { 'mit' }
+      let(:license) { "mit" }
       it "should match the license" do
         expect(helper.license_description).to match(/Permission is hereby granted/)
       end
@@ -94,7 +94,7 @@ describe ChefDK::Generator::TemplateHelper do
     end
 
     context "gplv2" do
-      let(:license) { 'gplv2' }
+      let(:license) { "gplv2" }
       it "should match the license" do
         expect(helper.license_description).to match(/This program is free software;/)
       end
@@ -105,7 +105,7 @@ describe ChefDK::Generator::TemplateHelper do
     end
 
     context "gplv3" do
-      let(:license) { 'gplv3' }
+      let(:license) { "gplv3" }
       it "should match the license" do
         expect(helper.license_description).to match(/This program is free software:/)
       end

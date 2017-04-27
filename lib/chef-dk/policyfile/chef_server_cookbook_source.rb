@@ -15,28 +15,60 @@
 # limitations under the License.
 #
 
-require 'chef-dk/exceptions'
+require "ffi_yajl"
+require "chef-dk/exceptions"
+require "chef-dk/policyfile/source_uri"
+require "chef-dk/authenticated_http"
 
 module ChefDK
   module Policyfile
     class ChefServerCookbookSource
-
       attr_reader :uri
+      attr_reader :preferred_cookbooks
+      attr_reader :chef_config
 
-      def initialize(uri)
-        @uri = uri
+      def initialize(uri, chef_config: nil)
+        @uri = SourceURI.parse(uri)
+        @http_connections = {}
+        @chef_config = chef_config
+        @preferred_cookbooks = []
+        yield self if block_given?
+      end
+
+      def default_source_args
+        [:chef_server, uri]
       end
 
       def ==(other)
-        other.kind_of?(self.class) && other.uri == uri
+        other.kind_of?(self.class) && other.uri == uri && other.preferred_cookbooks == preferred_cookbooks
+      end
+
+      def preferred_for(*cookbook_names)
+        preferred_cookbooks.concat(cookbook_names)
+      end
+
+      def preferred_source_for?(cookbook_name)
+        preferred_cookbooks.include?(cookbook_name)
       end
 
       def universe_graph
-        raise UnsupportedFeature, 'ChefDK does not support chef-server cookbook default sources at this time'
+        @universe_graph ||= begin
+          full_chef_server_graph.inject({}) do |normalized_graph, (cookbook_name, metadata_by_version)|
+            normalized_graph[cookbook_name] = metadata_by_version.inject({}) do |deps_by_version, (version, metadata)|
+              deps_by_version[version] = metadata["dependencies"]
+              deps_by_version
+            end
+            normalized_graph
+          end
+        end
       end
 
       def source_options_for(cookbook_name, cookbook_version)
-        raise UnsupportedFeature, 'ChefDK does not support chef-server cookbook default sources at this time'
+        {
+          chef_server: uri.to_s,
+          version: cookbook_version,
+          http_client: http_connection_for(uri.to_s),
+        }
       end
 
       def null?
@@ -47,8 +79,20 @@ module ChefDK
         "chef_server(#{uri})"
       end
 
+      private
+
+      def http_connection_for(base_url)
+        @http_connections[base_url] ||= ChefDK::AuthenticatedHTTP.new(base_url,
+                                                       signing_key_filename: chef_config.client_key,
+                                                       client_name: chef_config.node_name)
+      end
+
+      def full_chef_server_graph
+        @full_chef_server_graph ||=
+          begin
+            http_connection_for(uri.to_s).get("/universe")
+          end
+      end
     end
   end
 end
-
-

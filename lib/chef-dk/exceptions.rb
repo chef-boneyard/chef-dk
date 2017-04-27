@@ -62,6 +62,16 @@ module ChefDK
   class PolicyfileError < StandardError
   end
 
+  class InvalidPolicyfileSourceURI < StandardError
+    def initialize(url, reason = nil)
+      @url = url
+      @reason = reason
+      msg = "'#{@url}' is not a valid Policy File Source URI"
+      msg << " #{@reason}." unless @reason.nil?
+      super(msg)
+    end
+  end
+
   class MissingCookbookLockData < StandardError
   end
 
@@ -106,7 +116,7 @@ module ChefDK
           source_a.universe_graph.key?(cookbook_name) && source_b.universe_graph.key?(cookbook_name)
         end
         "Source #{source_a.desc} and #{source_b.desc} contain conflicting cookbooks:\n" +
-          overlapping_cookbooks.sort.map {|c| "- #{c}"}.join("\n") + "\n\n" +
+          overlapping_cookbooks.sort.map { |c| "- #{c}" }.join("\n") + "\n\n" +
           resolution_message(overlapping_cookbooks)
       end
       conflicting_cookbook_sets.join("\n")

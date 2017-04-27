@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'ffi_yajl'
+require "ffi_yajl"
 
 module ChefDK
   module ServiceExceptionInspectors
@@ -117,5 +117,3 @@ END
     end
   end
 end
-
-

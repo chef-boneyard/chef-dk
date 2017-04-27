@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile_lock'
+require "spec_helper"
+require "chef-dk/policyfile_lock"
 
 describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
 
@@ -25,7 +25,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
       "name" => "example",
       "run_list" => [ "recipe[cookbook::recipe_name]" ],
       "named_run_lists" => {
-        "fast-deploy" => [ "recipe[cookbook::deployit]" ]
+        "fast-deploy" => [ "recipe[cookbook::deployit]" ],
       },
       "cookbook_locks" => {
         # TODO: add some valid locks
@@ -34,8 +34,8 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
       "override_attributes" => { "override_foo" => "override_bar" },
       "solution_dependencies" => {
         "Policyfile" => [],
-        "dependencies" => {}
-      }
+        "dependencies" => {},
+      },
     }
   end
 
@@ -62,8 +62,8 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
     end
 
     it "includes the attributes" do
-      expect(lockfile.default_attributes).to eq({"foo" => "bar"})
-      expect(lockfile.override_attributes).to eq({"override_foo" => "override_bar"})
+      expect(lockfile.default_attributes).to eq({ "foo" => "bar" })
+      expect(lockfile.override_attributes).to eq({ "override_foo" => "override_bar" })
     end
 
   end
@@ -197,7 +197,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
         expect { lockfile.build_from_lock_data(missing_keys_soln_deps) }.to raise_error(ChefDK::InvalidLockfile)
 
         missing_policyfile_key = valid_lock_data.dup
-        missing_policyfile_key["solution_dependencies"] = {"dependencies" => {} }
+        missing_policyfile_key["solution_dependencies"] = { "dependencies" => {} }
         expect { lockfile.build_from_lock_data(missing_policyfile_key) }.to raise_error(ChefDK::InvalidLockfile)
 
         missing_dependencies_key = valid_lock_data.dup
@@ -207,11 +207,11 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
 
       it "requires the Policyfile dependencies be an Array" do
         invalid_policyfile_deps = valid_lock_data.dup
-        invalid_policyfile_deps["solution_dependencies"] = {"Policyfile" => 42, "dependencies" => {} }
+        invalid_policyfile_deps["solution_dependencies"] = { "Policyfile" => 42, "dependencies" => {} }
         expect { lockfile.build_from_lock_data(invalid_policyfile_deps) }.to raise_error(ChefDK::InvalidLockfile)
       end
 
-      it %q(requires the Policyfile dependencies be formatted like [ "COOKBOOK_NAME", "CONSTRAINT" ]) do
+      it %q{requires the Policyfile dependencies be formatted like [ "COOKBOOK_NAME", "CONSTRAINT" ]} do
         invalid_policyfile_deps_content = valid_lock_data.dup
         invalid_policyfile_deps_content["solution_dependencies"] = { "Policyfile" => [ "bad" ], "dependencies" => {} }
         expect { lockfile.build_from_lock_data(invalid_policyfile_deps_content) }.to raise_error(ChefDK::InvalidLockfile)
@@ -221,7 +221,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
         expect { lockfile.build_from_lock_data(invalid_policyfile_deps_content2) }.to raise_error(ChefDK::InvalidLockfile)
 
         invalid_policyfile_deps_content3 = valid_lock_data.dup
-        invalid_policyfile_deps_content3["solution_dependencies"] = { "Policyfile" => [ ["cookbook_name", "bad"] ], "dependencies" => {} }
+        invalid_policyfile_deps_content3["solution_dependencies"] = { "Policyfile" => [ %w{cookbook_name bad} ], "dependencies" => {} }
         expect { lockfile.build_from_lock_data(invalid_policyfile_deps_content3) }.to raise_error(ChefDK::InvalidLockfile)
       end
 
@@ -263,7 +263,7 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
           "identifier" => "68c13b136a49b4e66cfe9d8aa2b5a85167b5bf9b",
           "dotted_decimal_identifier" => "111.222.333",
           "cache_key" => "foo-1.0.0",
-          "source_options" => {}
+          "source_options" => {},
         }
       end
 
@@ -386,8 +386,8 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
         "dotted_decimal_identifier" => "111.222.333",
         "cache_key" => nil,
         "source" => "path/to/foo",
-        "source_options" => { path: "path/to/foo"},
-        "scm_info" => nil
+        "source_options" => { path: "path/to/foo" },
+        "scm_info" => nil,
       }
     end
 
@@ -418,7 +418,6 @@ describe ChefDK::PolicyfileLock, "when reading a Policyfile.lock" do
       expect(cb_foo.dotted_decimal_identifier).to eq("111.222.333")
       expect(locks["foo"].to_lock).to eq(valid_cookbook_lock)
     end
-
 
   end
 

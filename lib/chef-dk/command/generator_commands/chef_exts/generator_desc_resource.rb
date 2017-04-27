@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'chef/resource'
-require 'chef/provider'
+require "chef/resource"
+require "chef/provider"
 
 module ChefDK
   module ChefResource

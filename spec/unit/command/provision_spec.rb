@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/command_with_ui_object'
-require 'chef-dk/command/provision'
+require "spec_helper"
+require "shared/command_with_ui_object"
+require "chef-dk/command/provision"
 
 describe ChefDK::Command::Provision do
 
@@ -65,7 +65,7 @@ describe ChefDK::Command::Provision do
 
       context "when --no-policy is combined with policy arguments" do
 
-        let(:params) { %w[ --no-policy some-policy-group ] }
+        let(:params) { %w{ --no-policy some-policy-group } }
 
         it "prints usage and exits non-zero" do
           expect(command.run(params)).to eq(1)
@@ -76,7 +76,7 @@ describe ChefDK::Command::Provision do
 
       context "when a POLICY_GROUP is given but neither of --sync or --policy-name are given" do
 
-        let(:params) { %w[ some-policy-group ] }
+        let(:params) { %w{ some-policy-group } }
 
         it "prints usage and exits non-zero" do
           expect(command.run(params)).to eq(1)
@@ -87,7 +87,7 @@ describe ChefDK::Command::Provision do
 
       context "when both --sync and --policy-name are given" do
 
-        let(:params) { %w[ some-policy-group --policy-name foo --sync] }
+        let(:params) { %w{ some-policy-group --policy-name foo --sync} }
 
         it "prints usage and exits non-zero" do
           expect(command.run(params)).to eq(1)
@@ -98,7 +98,7 @@ describe ChefDK::Command::Provision do
 
       context "when too many arguments are given" do
 
-        let(:params) { %w[ policygroup extraneous-argument --sync ] }
+        let(:params) { %w{ policygroup extraneous-argument --sync } }
 
         it "prints usage and exits non-zero" do
           expect(command.run(params)).to eq(1)
@@ -112,7 +112,7 @@ describe ChefDK::Command::Provision do
 
       let(:context) { ChefDK::ProvisioningData.context }
 
-      shared_examples  "common_optional_options" do
+      shared_examples "common_optional_options" do
 
         context "with default option values" do
 
@@ -127,7 +127,7 @@ describe ChefDK::Command::Provision do
           end
 
           it "sets the cookbook name to 'provision'" do
-            expect(command.provisioning_cookbook_name).to eq('provision')
+            expect(command.provisioning_cookbook_name).to eq("provision")
           end
 
           it "sets the recipe to 'default'" do
@@ -144,7 +144,7 @@ describe ChefDK::Command::Provision do
 
         context "with -n NODE_NAME" do
 
-          let(:extra_params) { %w[ -n example-node ] }
+          let(:extra_params) { %w{ -n example-node } }
 
           it "sets the default requested node name" do
             expect(command.node_name).to eq("example-node")
@@ -155,7 +155,7 @@ describe ChefDK::Command::Provision do
 
         context "with --cookbook COOKBOOK_PATH" do
 
-          let(:extra_params) { %w[ --cookbook ~/mystuff/my-provision-cookbook ] }
+          let(:extra_params) { %w{ --cookbook ~/mystuff/my-provision-cookbook } }
 
           let(:expected_cookbook_path) { File.expand_path("~/mystuff") }
           let(:expected_cookbook_name) { "my-provision-cookbook" }
@@ -186,7 +186,7 @@ describe ChefDK::Command::Provision do
 
         context "with -r MACHINE_RECIPE" do
 
-          let(:extra_params) { %w[ -r ec2cluster ] }
+          let(:extra_params) { %w{ -r ec2cluster } }
 
           it "sets the recipe to run as specified" do
             expect(command.recipe).to eq("ec2cluster")
@@ -197,7 +197,7 @@ describe ChefDK::Command::Provision do
 
         context "with --target" do
 
-          let(:extra_params) { %w[ -t 192.168.255.123 ] }
+          let(:extra_params) { %w{ -t 192.168.255.123 } }
 
           it "sets the target host to the given value" do
             expect(context.target).to eq("192.168.255.123")
@@ -207,7 +207,7 @@ describe ChefDK::Command::Provision do
 
         context "with --opt" do
           context "with one user-specified option" do
-            let(:extra_params) { %w[ --opt color=ebfg ] }
+            let(:extra_params) { %w{ --opt color=ebfg } }
 
             it "sets the given option name to the given value" do
               expect(context.opts.color).to eq("ebfg")
@@ -216,7 +216,7 @@ describe ChefDK::Command::Provision do
 
           context "with an option given as a quoted arg with spaces" do
 
-            let(:extra_params) { [ '--opt', 'color = ebfg' ] }
+            let(:extra_params) { [ "--opt", "color = ebfg" ] }
 
             it "sets the given option name to the given value" do
               expect(context.opts.color).to eq("ebfg")
@@ -225,7 +225,7 @@ describe ChefDK::Command::Provision do
 
           context "with an option with an '=' in it" do
 
-            let(:extra_params) { [ '--opt', 'api_key=abcdef==' ] }
+            let(:extra_params) { [ "--opt", "api_key=abcdef==" ] }
 
             it "sets the given option name to the given value" do
               expect(context.opts.api_key).to eq("abcdef==")
@@ -234,7 +234,7 @@ describe ChefDK::Command::Provision do
 
           context "with an option with a space in it" do
 
-            let(:extra_params) { [ '--opt', 'full_name=Bobo T. Clown' ] }
+            let(:extra_params) { [ "--opt", "full_name=Bobo T. Clown" ] }
 
             it "sets the given option name to the given value" do
               expect(context.opts.full_name).to eq("Bobo T. Clown")
@@ -242,7 +242,7 @@ describe ChefDK::Command::Provision do
           end
 
           context "with multiple options given" do
-            let(:extra_params) { %w[ --opt color=ebfg --opt nope=seppb ] }
+            let(:extra_params) { %w{ --opt color=ebfg --opt nope=seppb } }
 
             it "sets the given option name to the given value" do
               expect(context.opts.color).to eq("ebfg")
@@ -253,7 +253,7 @@ describe ChefDK::Command::Provision do
 
         context "with -d" do
 
-          let(:extra_params) { %w[ -d ] }
+          let(:extra_params) { %w{ -d } }
 
           it "sets the default action to destroy" do
             expect(command.default_action).to eq(:destroy)
@@ -277,7 +277,7 @@ describe ChefDK::Command::Provision do
         end
 
         let(:extra_params) { [] }
-        let(:params) { %w[ --no-policy ] + extra_params }
+        let(:params) { %w{ --no-policy } + extra_params }
 
         it "disables policyfile integration" do
           expect(command.enable_policyfile?).to be(false)
@@ -319,7 +319,7 @@ CONFIG
 
           let(:given_policy_group) { "some-policy-group" }
 
-          let(:params) { [ given_policy_group, '--sync', given_policyfile_path ] }
+          let(:params) { [ given_policy_group, "--sync", given_policyfile_path ] }
 
           it "sets policy group" do
             expect(command.policy_group).to eq(given_policy_group)
@@ -341,7 +341,7 @@ CONFIG
 
           let(:extra_params) { [] }
 
-          let(:params) { [ given_policy_group, '--sync' ] + extra_params }
+          let(:params) { [ given_policy_group, "--sync" ] + extra_params }
 
           before do
             allow(chef_config).to receive(:ssl_verify_mode).and_return(:verify_peer)
@@ -373,7 +373,6 @@ CONFIG
             expect(context.chef_config).to eq(expected_config)
           end
 
-
           include_examples "common_optional_options"
 
         end
@@ -386,8 +385,7 @@ CONFIG
 
         let(:extra_params) { [] }
 
-        let(:params) { [ given_policy_group, '--policy-name', "myapp" ] + extra_params }
-
+        let(:params) { [ given_policy_group, "--policy-name", "myapp" ] + extra_params }
 
         before do
           command.apply_params!(params)
@@ -444,7 +442,7 @@ CONFIG
 
     let(:chef_runner) { instance_double("ChefDK::ChefRunner") }
 
-    let(:params) { %w[ policygroup --sync ] }
+    let(:params) { %w{ policygroup --sync } }
 
     context "when the provision cookbook doesn't exist" do
 
@@ -495,7 +493,7 @@ CONFIG
       end
 
       it "prints an error and exits non-zero" do
-          expected_output=<<-E
+        expected_output = <<-E
 Error: push failed
 Reason: (StandardError) some operation failed
 
@@ -547,7 +545,7 @@ E
 
       context "when using --no-policy" do
 
-        let(:params) { %w[ --no-policy ] }
+        let(:params) { %w{ --no-policy } }
 
         it "exits 0" do
           return_value = command.run(params)
@@ -559,7 +557,7 @@ E
 
       context "with --policy-name" do
 
-        let(:params) { %w[ policygroup --policy-name otherapp ] }
+        let(:params) { %w{ policygroup --policy-name otherapp } }
 
         it "exits 0" do
           return_value = command.run(params)
@@ -589,4 +587,3 @@ E
 
   end
 end
-

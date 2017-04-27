@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/command_with_ui_object'
-require 'chef-dk/command/delete_policy'
+require "spec_helper"
+require "shared/command_with_ui_object"
+require "chef-dk/command/delete_policy"
 
 describe ChefDK::Command::DeletePolicy do
 
@@ -67,7 +67,7 @@ describe ChefDK::Command::DeletePolicy do
 
     context "when given a path to the config" do
 
-      let(:params) { base_params + %w[ -c ~/otherstuff/config.rb ] }
+      let(:params) { base_params + %w{ -c ~/otherstuff/config.rb } }
 
       let(:config_arg) { "~/otherstuff/config.rb" }
 
@@ -122,7 +122,7 @@ describe ChefDK::Command::DeletePolicy do
 
     context "when given too few arguments" do
 
-      let(:params) { %w[ ] }
+      let(:params) { %w{ } }
 
       it "shows usage and exits" do
         expect(command.run(params)).to eq(1)
@@ -132,7 +132,7 @@ describe ChefDK::Command::DeletePolicy do
 
     context "when given too many arguments" do
 
-      let(:params) { %w[ a-policy-name wut-is-this ] }
+      let(:params) { %w{ a-policy-name wut-is-this } }
 
       it "shows usage and exits" do
         expect(command.run(params)).to eq(1)
@@ -159,9 +159,9 @@ describe ChefDK::Command::DeletePolicy do
       end
 
       it "prints a debugging message and exits non-zero" do
-        expect(command.run(%w[example-policy])).to eq(1)
+        expect(command.run(%w{example-policy})).to eq(1)
 
-        expected_output=<<-E
+        expected_output = <<-E
 Error: Failed to delete policy.
 Reason: (StandardError) some operation failed
 
@@ -173,9 +173,9 @@ E
       context "when debug is enabled" do
 
         it "includes the backtrace in the error" do
-          command.run(%w[ example-policy -D ])
+          command.run(%w{ example-policy -D })
 
-          expected_output=<<-E
+          expected_output = <<-E
 Error: Failed to delete policy.
 Reason: (StandardError) some operation failed
 
@@ -197,11 +197,10 @@ E
       end
 
       it "exits 0" do
-        expect(command.run(%w[example-policy])).to eq(0)
+        expect(command.run(%w{example-policy})).to eq(0)
       end
 
     end
 
   end
 end
-

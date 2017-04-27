@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/cookbook_locks'
+require "spec_helper"
+require "chef-dk/policyfile/cookbook_locks"
 
 shared_examples_for "Cookbook Lock" do
 
@@ -125,7 +125,7 @@ shared_examples_for "Cookbook Lock" do
         "version" => "1.2.3",
         "source_options" => { "sourcekey" => "location info" },
         "cache_key" => nil,
-        "source" => "cookbooks_local_path"
+        "source" => "cookbooks_local_path",
       }
     end
 
@@ -151,7 +151,6 @@ shared_examples_for "Cookbook Lock" do
   end
 
 end
-
 
 describe ChefDK::Policyfile::CachedCookbook do
 
@@ -318,9 +317,9 @@ describe ChefDK::Policyfile::LocalCookbook do
         "version" => "1.2.3",
         "source" => "../my_repo/nginx",
         "source_options" => {
-          "path" => "../my_repo/nginx"
+          "path" => "../my_repo/nginx",
         },
-        "cache_key" => nil
+        "cache_key" => nil,
       }
     end
 
@@ -450,10 +449,10 @@ describe ChefDK::Policyfile::ArchivedCookbook do
         # when getting the cookbook location spec, source options needs to have
         # symbolic keys, so a round trip via LocalCookbook#build_from_lock_data
         # will result in this being a symbol
-        :path => "../my_repo/nginx"
+        :path => "../my_repo/nginx",
       },
       "cache_key" => nil,
-      "scm_info" => {}
+      "scm_info" => {},
     }
   end
 
@@ -522,7 +521,6 @@ describe ChefDK::Policyfile::ArchivedCookbook do
     it "returns unchanged data when calling to_lock" do
       expect(cookbook_lock.to_lock).to eq(wrapped_cookbook_lock_data)
     end
-
 
   end
 

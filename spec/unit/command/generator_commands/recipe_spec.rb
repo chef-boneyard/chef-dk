@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/a_file_generator'
-require 'chef-dk/command/generator_commands/recipe'
+require "spec_helper"
+require "shared/a_file_generator"
+require "chef-dk/command/generator_commands/recipe"
 
 describe ChefDK::Command::GeneratorCommands::Recipe do
 
@@ -27,7 +27,7 @@ describe ChefDK::Command::GeneratorCommands::Recipe do
     let(:generated_files) { [ "recipes/new_recipe.rb",
                               "spec/spec_helper.rb",
                               "spec/unit/recipes/new_recipe_spec.rb",
-                              "test/recipes/new_recipe.rb"
+                              "test/smoke/default/new_recipe_test.rb",
                             ] }
     let(:new_file_name) { "new_recipe" }
 

@@ -1,3 +1,51 @@
+## [v1.2.20](https://github.com/chef/chef-dk/tree/v1.2.20) (2017-01-27)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.16...v1.2.20)
+
+**Implemented enhancements:**
+
+- Update Inspec to 1.10.0 \(adds HTTP resource request\) [\#1142](https://github.com/chef/chef-dk/pull/1142) ([tduffield](https://github.com/tduffield))
+- Update Chef to 12.18.31 [\#1137](https://github.com/chef/chef-dk/pull/1137) ([tduffield](https://github.com/tduffield))
+- Ensure rake is installed via the CI tools [\#1132](https://github.com/chef/chef-dk/pull/1132) ([tduffield](https://github.com/tduffield))
+- Add new options to project.toml generator [\#1127](https://github.com/chef/chef-dk/pull/1127) ([afiune](https://github.com/afiune))
+- Add in rhel and windows FIPS override [\#1124](https://github.com/chef/chef-dk/pull/1124) ([rmoshier](https://github.com/rmoshier))
+- Document chefignore [\#1110](https://github.com/chef/chef-dk/pull/1110) ([vinyar](https://github.com/vinyar))
+- Adding maintainer and email fields to example [\#1107](https://github.com/chef/chef-dk/pull/1107) ([jjasghar](https://github.com/jjasghar))
+- Accept foo.lock.json as well as foo.rb when loading a policyfile [\#1087](https://github.com/chef/chef-dk/pull/1087) ([mivok](https://github.com/mivok))
+
+**Fixed bugs:**
+
+- Fix `delivery local` failures by adding 'chef exec' prefix to all commands in project.toml [\#1145](https://github.com/chef/chef-dk/pull/1145) ([afiune](https://github.com/afiune))
+
+## [v1.1.16](https://github.com/chef/chef-dk/tree/v1.1.16) (2016-12-14)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.0.3...v1.1.16)
+
+**Implemented enhancements:**
+
+- Update cookstyle and knife-spork to the latest versions [\#1113](https://github.com/chef/chef-dk/pull/1113) ([afiune](https://github.com/afiune))
+- Include Chef 12.17.44 [\#1111](https://github.com/chef/chef-dk/pull/1111) ([tas50](https://github.com/tas50))
+- Update gems to get test-kitchen 1.4.2 [\#1109](https://github.com/chef/chef-dk/pull/1109) ([afiune](https://github.com/afiune))
+- kitchen-dokken: Default to official `chef/chef` image [\#1103](https://github.com/chef/chef-dk/pull/1103) ([tduffield](https://github.com/tduffield))
+- Use 8.22.1 of Ohai [\#1102](https://github.com/chef/chef-dk/pull/1102) ([tduffield](https://github.com/tduffield))
+- Add `dco` command line utility to easier management of DCO sign-offs [\#1093](https://github.com/chef/chef-dk/pull/1093) ([tduffield](https://github.com/tduffield))
+
+**Fixed bugs:**
+
+- chef: Use `test/smoke/default` instead of `test/recipes` for generated cookbooks/recipes [\#1096](https://github.com/chef/chef-dk/pull/1096) ([tduffield](https://github.com/tduffield))
+
+## [v1.0.3](https://github.com/chef/chef-dk/tree/v1.0.3) (2016-11-14)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v0.19.6...v1.0.3)
+
+**Implemented enhancements:**
+
+- chef: Expose `inspec` binary in ChefDK PATH [\#1074](https://github.com/chef/chef-dk/pull/1074) ([schisamo](https://github.com/schisamo))
+- knife: Distribute `knife-opc` with ChefDK [\#1072](https://github.com/chef/chef-dk/pull/1072) ([srenatus](https://github.com/srenatus))
+- gems: Update mixlib-install to 2.1.6 and berkshelf to 5.2.0 [\#1066](https://github.com/chef/chef-dk/pull/1066) ([schisamo](https://github.com/schisamo))
+- gems: Include foodcritic 8 [\#1063](https://github.com/chef/chef-dk/pull/1063) ([tas50](https://github.com/tas50))
+
+**Fixed bugs:**
+
+- windows: Correctly find Git installation included with ChefDK [\#1060](https://github.com/chef/chef-dk/pull/1060) ([scottopherson](https://github.com/scottopherson))
+
 ## [v0.19.6](https://github.com/chef/chef-dk/tree/v0.18.30) (2016-10-17)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.18.30...v0.19.6)
 
@@ -81,7 +129,7 @@
 - Correct chef export usage message [\#859](https://github.com/chef/chef-dk/pull/859) ([philoserf](https://github.com/philoserf))
 
 
-## [v0.14](https://github.com/chef/chef-dk/tree/v0.14.25) (2016-05-17) 
+## [v0.14](https://github.com/chef/chef-dk/tree/v0.14.25) (2016-05-17)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v0.14.24...v0.14.25)
 
 **Fixed bugs:**
@@ -999,4 +1047,3 @@
 - Rework the command loader to be as lazy as possible [\#3](https://github.com/chef/chef-dk/pull/3) ([danielsdeleo](https://github.com/danielsdeleo))
 - Add a simple gem command to install to the bundled gems [\#2](https://github.com/chef/chef-dk/pull/2) ([danielsdeleo](https://github.com/danielsdeleo))
 - CC-14: Create chef-dk gem [\#1](https://github.com/chef/chef-dk/pull/1) ([sersut](https://github.com/sersut))
-

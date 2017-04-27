@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile_compiler'
+require "spec_helper"
+require "chef-dk/policyfile_compiler"
 
 describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph demands" do
 
@@ -49,7 +49,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         "nginx" => {
           "1.0.0" => [ [ "apt", "~> 2.0" ], [ "yum", "~> 1.0" ] ],
           "1.2.0" => [ [ "apt", "~> 2.1" ], [ "yum", "~> 1.0" ] ],
-          "2.0.0" => [ [ "apt", "~> 3.0" ], [ "yum", "~> 1.0" ], [ "ohai", "~> 2.0" ] ]
+          "2.0.0" => [ [ "apt", "~> 3.0" ], [ "yum", "~> 1.0" ], [ "ohai", "~> 2.0" ] ],
         },
 
         "mysql" => {
@@ -59,30 +59,30 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         },
 
         "local-cookbook" => {
-          "9.9.9" => [ ["local-cookbook-on-community-dep", "= 1.0.0"] ]
+          "9.9.9" => [ ["local-cookbook-on-community-dep", "= 1.0.0"] ],
         },
 
         "git-sourced-cookbook" => {
-          "10.10.10" => [ ["git-sourced-cookbook-dep", "= 1.0.0"] ]
+          "10.10.10" => [ ["git-sourced-cookbook-dep", "= 1.0.0"] ],
         },
 
         "remote-cb" => {
           "0.1.0" => [ ],
-          "1.1.1" => [ ]
+          "1.1.1" => [ ],
         },
 
         "remote-cb-two" => {
           "0.1.0" => [ ],
-          "1.1.1" => [ ]
+          "1.1.1" => [ ],
         },
 
         "local-cookbook-dep-one" => {
-          "1.5.0" => [ ]
+          "1.5.0" => [ ],
         },
 
         "git-sourced-cookbook-dep" => {
-          "2.8.0" => [ ]
-        }
+          "2.8.0" => [ ],
+        },
 
       }
     end
@@ -103,29 +103,28 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         },
 
         "local-cookbook" => {
-          "9.9.9" => [ ["local-cookbook-on-community-dep", "= 1.0.0"] ]
+          "9.9.9" => [ ["local-cookbook-on-community-dep", "= 1.0.0"] ],
         },
 
         "remote-cb" => {
-          "1.1.1" => [ ]
+          "1.1.1" => [ ],
         },
 
         "git-sourced-cookbook" => {
-          "10.10.10" => [ ["git-sourced-cookbook-dep", "= 1.0.0"] ]
+          "10.10.10" => [ ["git-sourced-cookbook-dep", "= 1.0.0"] ],
         },
 
         "private-cookbook" => {
-          "0.1.0" => [ ]
+          "0.1.0" => [ ],
         },
 
         "local-cookbook-dep-one" => {
-          "1.6.0" => [ ]
+          "1.6.0" => [ ],
         },
 
         "git-sourced-cookbook-dep" => {
-          "2.9.0" => [ ]
-        }
-
+          "2.9.0" => [ ],
+        },
 
       }
     end
@@ -189,8 +188,8 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     let(:trimmed_cookbook_universe) do
       {
         "remote-cb" => {
-          "1.1.1" => [ ]
-        }
+          "1.1.1" => [ ],
+        },
 
       }
     end
@@ -228,7 +227,6 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       allow(default_source_obj).to receive(:source_options_for).
         with("remote-cb", "1.1.1").
         and_return(remote_cb_source_opts)
-
 
       allow(ChefDK::Policyfile::CookbookLocationSpecification).to receive(:new).
         with("remote-cb", "= 1.1.1", remote_cb_source_opts, policyfile.storage_config).
@@ -301,7 +299,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
         let(:run_list) { ["remote-cb::this_recipe_doesnt_exist"] }
 
         it "emits an error" do
-          message =<<-MESSAGE
+          message = <<-MESSAGE
 The installed cookbooks do not contain all the recipes required by your run list(s):
 Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
 is missing the following required recipes:
@@ -329,11 +327,10 @@ MESSAGE
             and_return(false)
         end
 
-
         let(:run_list) { ["remote-cb::default", "remote-cb::this_recipe_doesnt_exist"] }
 
         it "emits an error" do
-          message =<<-MESSAGE
+          message = <<-MESSAGE
 The installed cookbooks do not contain all the recipes required by your run list(s):
 Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
 is missing the following required recipes:
@@ -365,7 +362,7 @@ MESSAGE
         let(:run_list) { ["remote-cb::this_recipe_doesnt_exist", "remote-cb::this_also_doesnt_exist"] }
 
         it "emits an error" do
-          message =<<-MESSAGE
+          message = <<-MESSAGE
 The installed cookbooks do not contain all the recipes required by your run list(s):
 Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
 is missing the following required recipes:
@@ -383,7 +380,6 @@ MESSAGE
         end
 
       end
-
 
     end
   end
@@ -408,7 +404,7 @@ MESSAGE
     it "has an empty set of solution_dependencies" do
       expected_solution_deps = {
         "Policyfile" => [],
-        "dependencies" => {}
+        "dependencies" => {},
       }
       expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
     end
@@ -452,13 +448,13 @@ MESSAGE
 
       it "uses the community cookbook in the solution" do
         expect(policyfile).to receive(:ensure_cache_dir_exists)
-        expect(policyfile.graph_solution).to eq({"remote-cb" => "1.1.1"})
+        expect(policyfile.graph_solution).to eq({ "remote-cb" => "1.1.1" })
       end
 
       it "includes the cookbook in the solution dependencies" do
         expected_solution_deps = {
           "Policyfile" => [],
-          "dependencies" => { "remote-cb (1.1.1)" => [] }
+          "dependencies" => { "remote-cb (1.1.1)" => [] },
         }
         expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
       end
@@ -479,17 +475,17 @@ MESSAGE
 
       it "uses the chef-server cookbook in the solution" do
         expect(policyfile).to receive(:ensure_cache_dir_exists)
-        expect(policyfile.graph_solution).to eq({"remote-cb" => "1.1.1"})
+        expect(policyfile.graph_solution).to eq({ "remote-cb" => "1.1.1" })
       end
     end
   end
 
   context "Given a local cookbook and only that cookbook in the run list" do
 
-    let(:run_list) { ['local-cookbook'] }
+    let(:run_list) { ["local-cookbook"] }
 
     before do
-      policyfile.dsl.cookbook('local-cookbook', path: "/foo")
+      policyfile.dsl.cookbook("local-cookbook", path: "/foo")
       allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:version).and_return("2.3.4")
       allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:dependencies).and_return([])
       allow(policyfile.cookbook_location_spec_for("local-cookbook")).to receive(:ensure_cached).and_return(true)
@@ -501,7 +497,7 @@ MESSAGE
 
     it "includes the local cookbook in the artifact universe" do
       expected_artifacts_graph = {
-        "local-cookbook" => { "2.3.4" => [] }
+        "local-cookbook" => { "2.3.4" => [] },
       }
       expect(policyfile.artifacts_graph).to eq(expected_artifacts_graph)
     end
@@ -509,7 +505,7 @@ MESSAGE
     it "includes the cookbook in the solution dependencies" do
       expected_solution_deps = {
         "Policyfile" => [ [ "local-cookbook", ">= 0.0.0" ] ],
-        "dependencies" => { "local-cookbook (2.3.4)" => [] }
+        "dependencies" => { "local-cookbook (2.3.4)" => [] },
       }
       expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
     end
@@ -518,7 +514,7 @@ MESSAGE
 
   context "Given a local cookbook with a dependency and only the local cookbook in the run list" do
 
-    let(:run_list) { ['local-cookbook'] }
+    let(:run_list) { ["local-cookbook"] }
 
     context "And the default source is the community site" do
 
@@ -538,14 +534,14 @@ MESSAGE
       it "overrides the community site universe with the local cookbook and its dependencies" do
         expected_artifacts_graph = external_cookbook_universe.dup
         expected_artifacts_graph["local-cookbook"] = {
-          "2.3.4" =>  [ [ "local-cookbook-dep-one", "~> 1.0" ] ]
+          "2.3.4" => [ [ "local-cookbook-dep-one", "~> 1.0" ] ],
         }
         expect(policyfile.artifacts_graph).to eq(expected_artifacts_graph)
       end
 
       it "uses the local cookbook in the solution and gets dependencies remotely" do
         expect(policyfile).to receive(:ensure_cache_dir_exists)
-        expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "local-cookbook-dep-one" => "1.5.0"})
+        expect(policyfile.graph_solution).to eq({ "local-cookbook" => "2.3.4", "local-cookbook-dep-one" => "1.5.0" })
       end
 
       it "includes the cookbook and dependencies in the solution dependencies" do
@@ -553,8 +549,8 @@ MESSAGE
           "Policyfile" => [ [ "local-cookbook", ">= 0.0.0" ] ],
           "dependencies" => {
             "local-cookbook (2.3.4)" => [[ "local-cookbook-dep-one", "~> 1.0"]],
-            "local-cookbook-dep-one (1.5.0)" => []
-          }
+            "local-cookbook-dep-one (1.5.0)" => [],
+          },
 
         }
         expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
@@ -582,14 +578,14 @@ MESSAGE
         # cookbook with the same name and version but different deps.
         expected_artifacts_graph = external_cookbook_universe.dup
         expected_artifacts_graph["local-cookbook"] = {
-          "2.3.4" => [ [ "local-cookbook-dep-one", "~> 1.0" ] ]
+          "2.3.4" => [ [ "local-cookbook-dep-one", "~> 1.0" ] ],
         }
         expect(policyfile.artifacts_graph).to eq(expected_artifacts_graph)
       end
 
       it "uses the local cookbook in the solution and gets dependencies remotely" do
         expect(policyfile).to receive(:ensure_cache_dir_exists)
-        expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "local-cookbook-dep-one" => "1.6.0"})
+        expect(policyfile.graph_solution).to eq({ "local-cookbook" => "2.3.4", "local-cookbook-dep-one" => "1.6.0" })
       end
 
       it "includes the cookbook and dependencies in the solution dependencies" do
@@ -597,8 +593,8 @@ MESSAGE
           "Policyfile" => [ [ "local-cookbook", ">= 0.0.0" ] ],
           "dependencies" => {
             "local-cookbook (2.3.4)" => [[ "local-cookbook-dep-one", "~> 1.0"]],
-            "local-cookbook-dep-one (1.6.0)" => []
-          }
+            "local-cookbook-dep-one (1.6.0)" => [],
+          },
 
         }
         expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
@@ -624,22 +620,22 @@ MESSAGE
 
     it "includes the git-sourced cookbook in the universe graph" do
       expected_artifacts_graph = {
-        "git-sourced-cookbook" => { "8.6.7" => [ ] }
+        "git-sourced-cookbook" => { "8.6.7" => [ ] },
       }
       expect(policyfile.artifacts_graph).to eq(expected_artifacts_graph)
     end
 
     it "uses the git sourced cookbook in the solution" do
       expect(policyfile).to receive(:ensure_cache_dir_exists)
-      expect(policyfile.graph_solution).to eq({"git-sourced-cookbook" => "8.6.7"})
+      expect(policyfile.graph_solution).to eq({ "git-sourced-cookbook" => "8.6.7" })
     end
 
     it "includes the cookbook and dependencies in the solution dependencies" do
       expected_solution_deps = {
         "Policyfile" => [ [ "git-sourced-cookbook", ">= 0.0.0" ] ],
         "dependencies" => {
-          "git-sourced-cookbook (8.6.7)" => []
-        }
+          "git-sourced-cookbook (8.6.7)" => [],
+        },
 
       }
       expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
@@ -669,14 +665,14 @@ MESSAGE
       it "overrides the community site universe with the git-sourced cookbook and deps" do
         expected_artifacts_graph = external_cookbook_universe.dup
         expected_artifacts_graph["git-sourced-cookbook"] = {
-          "8.6.7" => [ ["git-sourced-cookbook-dep", "~> 2.2" ] ]
+          "8.6.7" => [ ["git-sourced-cookbook-dep", "~> 2.2" ] ],
         }
         expect(policyfile.artifacts_graph).to eq(expected_artifacts_graph)
       end
 
       it "uses the git sourced cookbook with remote dependencies in the solution" do
         expect(policyfile).to receive(:ensure_cache_dir_exists)
-        expect(policyfile.graph_solution).to eq({"git-sourced-cookbook" => "8.6.7", "git-sourced-cookbook-dep" => "2.8.0"})
+        expect(policyfile.graph_solution).to eq({ "git-sourced-cookbook" => "8.6.7", "git-sourced-cookbook-dep" => "2.8.0" })
       end
 
       it "includes the cookbook and dependencies in the solution dependencies" do
@@ -684,8 +680,8 @@ MESSAGE
           "Policyfile" => [ [ "git-sourced-cookbook", ">= 0.0.0" ] ],
           "dependencies" => {
             "git-sourced-cookbook (8.6.7)" => [ [ "git-sourced-cookbook-dep", "~> 2.2" ] ],
-            "git-sourced-cookbook-dep (2.8.0)" => []
-          }
+            "git-sourced-cookbook-dep (2.8.0)" => [],
+          },
 
         }
         expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
@@ -704,14 +700,14 @@ MESSAGE
       it "overrides the chef server universe with the git-sourced cookbook and deps" do
         expected_artifacts_graph = external_cookbook_universe.dup
         expected_artifacts_graph["git-sourced-cookbook"] = {
-          "8.6.7" => [ ["git-sourced-cookbook-dep", "~> 2.2" ] ]
+          "8.6.7" => [ ["git-sourced-cookbook-dep", "~> 2.2" ] ],
         }
         expect(policyfile.artifacts_graph).to eq(expected_artifacts_graph)
       end
 
       it "uses the git sourced cookbook with remote dependencies in the solution" do
         expect(policyfile).to receive(:ensure_cache_dir_exists)
-        expect(policyfile.graph_solution).to eq({"git-sourced-cookbook" => "8.6.7", "git-sourced-cookbook-dep" => "2.9.0"})
+        expect(policyfile.graph_solution).to eq({ "git-sourced-cookbook" => "8.6.7", "git-sourced-cookbook-dep" => "2.9.0" })
       end
 
       it "includes the cookbook and dependencies in the solution dependencies" do
@@ -719,8 +715,8 @@ MESSAGE
           "Policyfile" => [ [ "git-sourced-cookbook", ">= 0.0.0" ] ],
           "dependencies" => {
             "git-sourced-cookbook (8.6.7)" => [ [ "git-sourced-cookbook-dep", "~> 2.2" ] ],
-            "git-sourced-cookbook-dep (2.9.0)" => []
-          }
+            "git-sourced-cookbook-dep (2.9.0)" => [],
+          },
 
         }
         expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
@@ -731,7 +727,7 @@ MESSAGE
 
   context "Given a local cookbook with a run list containing the local cookbook and another cookbook" do
 
-    let(:run_list) { ['local-cookbook', 'remote-cb'] }
+    let(:run_list) { ["local-cookbook", "remote-cb"] }
 
     before do
       policyfile.dsl.cookbook("local-cookbook", path: "foo/")
@@ -756,7 +752,7 @@ MESSAGE
 
       it "uses the locally specified cookbook and remote cookbooks in the solution" do
         expect(policyfile).to receive(:ensure_cache_dir_exists)
-        expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "remote-cb" => "1.1.1"})
+        expect(policyfile.graph_solution).to eq({ "local-cookbook" => "2.3.4", "remote-cb" => "1.1.1" })
       end
 
       it "includes the cookbook and dependencies in the solution dependencies" do
@@ -764,8 +760,8 @@ MESSAGE
           "Policyfile" => [ [ "local-cookbook", ">= 0.0.0" ] ],
           "dependencies" => {
             "local-cookbook (2.3.4)" => [],
-            "remote-cb (1.1.1)" => []
-          }
+            "remote-cb (1.1.1)" => [],
+          },
 
         }
         expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
@@ -789,7 +785,7 @@ MESSAGE
 
       it "uses the locally specified cookbook and remote cookbooks in the solution" do
         expect(policyfile).to receive(:ensure_cache_dir_exists)
-        expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "remote-cb" => "1.1.1"})
+        expect(policyfile.graph_solution).to eq({ "local-cookbook" => "2.3.4", "remote-cb" => "1.1.1" })
       end
 
       it "includes the cookbook and dependencies in the solution dependencies" do
@@ -797,8 +793,8 @@ MESSAGE
           "Policyfile" => [ [ "local-cookbook", ">= 0.0.0" ] ],
           "dependencies" => {
             "local-cookbook (2.3.4)" => [],
-            "remote-cb (1.1.1)" => []
-          }
+            "remote-cb (1.1.1)" => [],
+          },
 
         }
         expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
@@ -811,7 +807,7 @@ MESSAGE
 
     include_context "community default source"
 
-    let(:run_list) { ['remote-cb'] }
+    let(:run_list) { ["remote-cb"] }
 
     before do
       policyfile.dsl.cookbook("remote-cb", "~> 0.1")
@@ -823,15 +819,15 @@ MESSAGE
 
     it "emits a solution that satisfies the policyfile constraint" do
       expect(policyfile).to receive(:ensure_cache_dir_exists)
-      expect(policyfile.graph_solution).to eq({"remote-cb" => "0.1.0"})
+      expect(policyfile.graph_solution).to eq({ "remote-cb" => "0.1.0" })
     end
 
     it "includes the policyfile constraint in the solution dependencies" do
       expected_solution_deps = {
         "Policyfile" => [ [ "remote-cb", "~> 0.1" ] ],
         "dependencies" => {
-          "remote-cb (0.1.0)" => []
-        }
+          "remote-cb (0.1.0)" => [],
+        },
 
       }
       expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
@@ -842,7 +838,7 @@ MESSAGE
 
     include_context "community default source"
 
-    let(:run_list) { ['local-cookbook'] }
+    let(:run_list) { ["local-cookbook"] }
 
     before do
       policyfile.dsl.cookbook("remote-cb", "~> 0.1")
@@ -860,7 +856,7 @@ MESSAGE
 
     it "emits a solution that satisfies the policyfile constraint" do
       expect(policyfile).to receive(:ensure_cache_dir_exists)
-      expect(policyfile.graph_solution).to eq({"local-cookbook" => "2.3.4", "remote-cb" => "0.1.0"})
+      expect(policyfile.graph_solution).to eq({ "local-cookbook" => "2.3.4", "remote-cb" => "0.1.0" })
     end
 
     it "includes the policyfile constraint in the solution dependencies" do
@@ -868,8 +864,8 @@ MESSAGE
         "Policyfile" => [ [ "remote-cb", "~> 0.1" ], [ "local-cookbook", ">= 0.0.0"] ],
         "dependencies" => {
           "local-cookbook (2.3.4)" => [],
-          "remote-cb (0.1.0)" => []
-        }
+          "remote-cb (0.1.0)" => [],
+        },
 
       }
       expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
@@ -879,9 +875,9 @@ MESSAGE
   context "Given a run_list and named run_lists" do
 
     before do
-      policyfile.dsl.named_run_list(:foo, 'local-cookbook', 'nginx')
-      policyfile.dsl.named_run_list(:bar, 'remote-cb', 'nginx')
-      policyfile.dsl.run_list('private-cookbook', 'nginx')
+      policyfile.dsl.named_run_list(:foo, "local-cookbook", "nginx")
+      policyfile.dsl.named_run_list(:bar, "remote-cb", "nginx")
+      policyfile.dsl.run_list("private-cookbook", "nginx")
     end
 
     it "demands a solution that satisfies all of the run lists, with no duplicates" do
@@ -904,7 +900,7 @@ MESSAGE
 
     include_context "community default source"
 
-    let(:run_list) { [ 'repo-cookbook-one', 'remote-cb', 'remote-cb-two' ] }
+    let(:run_list) { [ "repo-cookbook-one", "remote-cb", "remote-cb-two" ] }
 
     before do
       policyfile.default_source(:chef_repo, "path/to/repo")
@@ -921,16 +917,16 @@ MESSAGE
       let(:repo_cookbook_universe) do
         {
           "repo-cookbook-one" => {
-            "1.0.0" => [ ]
+            "1.0.0" => [ ],
           },
 
           "repo-cookbook-two" => {
-            "9.9.9" => [ ["repo-cookbook-on-community-dep", "= 1.0.0"] ]
+            "9.9.9" => [ ["repo-cookbook-on-community-dep", "= 1.0.0"] ],
           },
 
           "private-cookbook" => {
-            "0.1.0" => [ ]
-          }
+            "0.1.0" => [ ],
+          },
         }
       end
 
@@ -942,7 +938,7 @@ MESSAGE
       end
 
       it "solves the graph demands using cookbooks from both sources" do
-        expected = {"repo-cookbook-one" => "1.0.0", "remote-cb" => "1.1.1", "remote-cb-two" => "1.1.1"}
+        expected = { "repo-cookbook-one" => "1.0.0", "remote-cb" => "1.1.1", "remote-cb-two" => "1.1.1" }
         expect(policyfile.graph_solution).to eq(expected)
       end
 
@@ -976,7 +972,6 @@ MESSAGE
           with("repo-cookbook-one", "1.0.0").
           and_return(expected_repo_options)
 
-
         repo_cb_location = policyfile.create_spec_for_cookbook("repo-cookbook-one", "1.0.0")
         expect(repo_cb_location.source_options).to eq(expected_repo_options)
 
@@ -998,15 +993,15 @@ MESSAGE
       let(:repo_cookbook_universe) do
         {
           "repo-cookbook-one" => {
-            "1.0.0" => [ ]
+            "1.0.0" => [ ],
           },
 
           "repo-cookbook-two" => {
-            "9.9.9" => [ ["repo-cookbook-on-community-dep", "= 1.0.0"] ]
+            "9.9.9" => [ ["repo-cookbook-on-community-dep", "= 1.0.0"] ],
           },
 
           "private-cookbook" => {
-            "0.1.0" => [ ]
+            "0.1.0" => [ ],
           },
 
           # NOTE: cookbooks are considered to conflict when both sources have
@@ -1021,12 +1016,12 @@ MESSAGE
           # This makes the compiler take a slightly different code path than if
           # the cookbook was just in the dep graphs.
           "remote-cb" => {
-            "99.99.99" => [ ]
+            "99.99.99" => [ ],
           },
 
           # This also conflicts, but only via the graphs
           "remote-cb-two" => {
-            "1.2.3" => [ ]
+            "1.2.3" => [ ],
           },
 
           # This has a dependency on a conflicting cookbook
@@ -1037,16 +1032,16 @@ MESSAGE
             # inspection of the graph, so the expected behavior is to error if
             # any possible solution could have a conflict.
             "1.0.0" => [ ["remote-cb-two", ">= 0.0.0" ] ],
-            "2.0.0" => [ ]
+            "2.0.0" => [ ],
 
-          }
+          },
 
         }
       end
 
       context "and the conflicting cookbook is in the run list" do
 
-        let(:run_list) { [ 'repo-cookbook-one', 'remote-cb', 'remote-cb-two' ] }
+        let(:run_list) { [ "repo-cookbook-one", "remote-cb", "remote-cb-two" ] }
 
         context "and no explicit source is given for the conflicting cookbook" do
 
@@ -1109,25 +1104,25 @@ ERROR
             {
               "remote-cb" => {
                 "1.1.1" => {
-                  "download_url" => "https://supermarket.chef.io/api/v1/cookbooks/remote-cb/versions/1.1.1/download"
-                }
-              }
+                  "download_url" => "https://supermarket.chef.io/api/v1/cookbooks/remote-cb/versions/1.1.1/download",
+                },
+              },
             }
           end
 
           let(:cookbook_version_paths) do
             {
               "remote-cb-two" => {
-                "1.1.1" => "path/to/repo/remote-cb-two"
-              }
+                "1.1.1" => "path/to/repo/remote-cb-two",
+              },
             }
           end
 
           before do
-            community_source.preferred_for 'remote-cb'
+            community_source.preferred_for "remote-cb"
             allow(community_source).to receive(:full_community_graph).and_return(full_universe_graph)
             allow(repo_source).to receive(:cookbook_version_paths).and_return(cookbook_version_paths)
-            repo_source.preferred_for 'remote-cb-two'
+            repo_source.preferred_for "remote-cb-two"
           end
 
           it "solves the graph" do
@@ -1137,14 +1132,14 @@ ERROR
           it "assigns the correct source options to the cookbook" do
             expected_remote_cb_source_opts = {
               artifactserver: "https://supermarket.chef.io/api/v1/cookbooks/remote-cb/versions/1.1.1/download",
-              version: "1.1.1"
+              version: "1.1.1",
             }
             actual_remote_cb_source_opts = policyfile.create_spec_for_cookbook("remote-cb", "1.1.1").source_options
             expect(actual_remote_cb_source_opts).to eq(expected_remote_cb_source_opts)
 
             expected_remote_cb_two_source_opts = {
               path: "path/to/repo/remote-cb-two",
-              version: "1.1.1"
+              version: "1.1.1",
             }
             actual_remote_cb_two_source_opts = policyfile.create_spec_for_cookbook("remote-cb-two", "1.1.1").source_options
             expect(actual_remote_cb_two_source_opts).to eq(expected_remote_cb_two_source_opts)
@@ -1181,7 +1176,7 @@ ERROR
 
       context "when the conflicting cookbook could not be in the solution set" do
 
-        let(:run_list) { [ 'local_cookbook' ] }
+        let(:run_list) { [ "local_cookbook" ] }
 
         it "creates the merged graph without error" do
           expect { policyfile.remote_artifacts_graph }.to_not raise_error
@@ -1194,7 +1189,6 @@ ERROR
         end
 
       end
-
 
     end
 

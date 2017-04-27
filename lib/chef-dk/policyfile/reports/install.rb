@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef-dk/policyfile/reports/table_printer'
+require "chef-dk/policyfile/reports/table_printer"
 
 module ChefDK
   module Policyfile
@@ -48,7 +48,7 @@ module ChefDK
 
         def fixed_version_install_table
           @fixed_version_install_table ||= TablePrinter.new(ui) do |t|
-            t.column(["Using", "Installing"])
+            t.column(%w{Using Installing})
             t.column(policyfile_compiler.fixed_version_cookbooks_specs.keys)
             t.column
             t.column
@@ -57,7 +57,7 @@ module ChefDK
 
         def install_table
           @install_table ||= TablePrinter.new(ui) do |t|
-            t.column(["Using", "Installing"])
+            t.column(%w{Using Installing})
             t.column(policyfile_compiler.graph_solution.keys)
             t.column(policyfile_compiler.graph_solution.values)
           end
@@ -67,4 +67,3 @@ module ChefDK
     end
   end
 end
-

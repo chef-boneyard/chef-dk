@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/generator_commands/base'
+require "chef-dk/command/generator_commands/base"
 
 module ChefDK
   module Command
@@ -80,7 +80,7 @@ module ChefDK
         end
 
         def cookbook_root
-          File.join(app_full_path, 'cookbooks')
+          File.join(app_full_path, "cookbooks")
         end
 
         def cookbook_name
@@ -104,4 +104,3 @@ module ChefDK
     end
   end
 end
-

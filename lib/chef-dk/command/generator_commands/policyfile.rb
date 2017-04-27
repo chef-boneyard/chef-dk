@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef-dk/command/generator_commands/base'
+require "chef-dk/command/generator_commands/base"
 
 module ChefDK
   module Command
@@ -42,7 +42,7 @@ module ChefDK
         end
 
         def recipe
-          'policyfile'
+          "policyfile"
         end
 
         def setup_context
@@ -88,7 +88,6 @@ module ChefDK
             err("ERROR: too many arguments")
             return false
           end
-
         end
 
         private

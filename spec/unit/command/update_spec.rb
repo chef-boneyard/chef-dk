@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/command_with_ui_object'
-require 'chef-dk/command/update'
+require "spec_helper"
+require "shared/command_with_ui_object"
+require "chef-dk/command/update"
 
 describe ChefDK::Command::Update do
 
@@ -54,7 +54,7 @@ describe ChefDK::Command::Update do
 
   context "when an explicit config file path is given" do
 
-    let(:params) { %w[ -c ~/.chef/alternate_config.rb ] }
+    let(:params) { %w{ -c ~/.chef/alternate_config.rb } }
 
     let(:chef_config_loader) { instance_double("Chef::WorkstationConfigLoader") }
 
@@ -162,7 +162,7 @@ describe ChefDK::Command::Update do
       end
 
       it "displays the exception and cause" do
-        expected_error_text=<<-E
+        expected_error_text = <<-E
 Error: install failed
 Reason: (StandardError) some operation failed
 
@@ -177,7 +177,7 @@ E
         let(:params) { ["-D"] }
 
         it "displays the exception and cause with backtrace" do
-          expected_error_text=<<-E
+          expected_error_text = <<-E
 Error: install failed
 Reason: (StandardError) some operation failed
 
@@ -240,7 +240,7 @@ E
       end
 
       it "displays the exception and cause" do
-        expected_error_text=<<-E
+        expected_error_text = <<-E
 Error: Failed to update Policyfile lock
 Reason: (StandardError) some operation failed
 
@@ -255,7 +255,7 @@ E
         let(:params) { ["-a", "-D"] }
 
         it "displays the exception and cause with backtrace" do
-          expected_error_text=<<-E
+          expected_error_text = <<-E
 Error: Failed to update Policyfile lock
 Reason: (StandardError) some operation failed
 

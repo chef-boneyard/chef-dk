@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'chef-dk/exceptions'
-require 'chef/cookbook/metadata'
+require "chef-dk/exceptions"
+require "chef/cookbook/metadata"
 
 module ChefDK
 

@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile_services/undelete'
+require "spec_helper"
+require "chef-dk/policyfile_services/undelete"
 
 describe ChefDK::PolicyfileServices::Undelete do
 
@@ -77,7 +77,7 @@ describe ChefDK::PolicyfileServices::Undelete do
       let(:policy_revision) do
         {
           "name" => "appserver",
-          "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111"
+          "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111",
         }
       end
 
@@ -151,7 +151,7 @@ OUTPUT
     let(:policy_revision) do
       {
         "name" => "appserver",
-        "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111"
+        "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111",
       }
     end
 
@@ -259,7 +259,7 @@ OUTPUT
     let(:policy_revision) do
       {
         "name" => "appserver",
-        "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111"
+        "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111",
       }
     end
 
@@ -299,6 +299,4 @@ OUTPUT
 
   end
 
-
 end
-

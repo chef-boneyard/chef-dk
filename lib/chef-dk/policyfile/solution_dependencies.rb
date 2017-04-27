@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'semverse'
+require "semverse"
 
-require 'chef-dk/exceptions'
+require "chef-dk/exceptions"
 
 module ChefDK
   module Policyfile
@@ -35,7 +35,7 @@ module ChefDK
         end
 
         def self.parse(str)
-          name, version_w_parens = str.split(' ')
+          name, version_w_parens = str.split(" ")
           version = version_w_parens[/\(([^)]+)\)/, 1]
           new(name, version)
         end
@@ -45,8 +45,8 @@ module ChefDK
         end
 
         def eql?(other)
-          other.kind_of?(self.class) and
-            other.name == name and
+          other.kind_of?(self.class) &&
+            other.name == name &&
             other.version == version
         end
 
@@ -57,7 +57,7 @@ module ChefDK
       end
 
       def self.from_lock(lock_data)
-        new.tap {|e| e.consume_lock_data(lock_data) }
+        new.tap { |e| e.consume_lock_data(lock_data) }
       end
 
       attr_reader :policyfile_dependencies
@@ -84,7 +84,7 @@ module ChefDK
       end
 
       def consume_lock_data(lock_data)
-        unless lock_data.key?("Policyfile") and lock_data.key?("dependencies")
+        unless lock_data.key?("Policyfile") && lock_data.key?("dependencies")
           msg = %Q|lockfile solution_dependencies must be a Hash of the form `{"Policyfile": [], "dependencies": {} }' (got: #{lock_data.inspect})|
           raise InvalidLockfile, msg
         end
@@ -154,8 +154,8 @@ module ChefDK
         policyfile_conflicts = []
 
         @policyfile_dependencies.each do |dep_name, constraint|
-          if dep_name == cookbook_name and !constraint.satisfies?(version)
-            policyfile_conflicts << ['Policyfile', dep_name, constraint]
+          if dep_name == cookbook_name && !constraint.satisfies?(version)
+            policyfile_conflicts << ["Policyfile", dep_name, constraint]
           end
         end
 
@@ -167,7 +167,7 @@ module ChefDK
 
         @cookbook_dependencies.each do |top_level_dep_name, dependencies|
           dependencies.each do |dep_name, constraint|
-            if dep_name == cookbook_name and !constraint.satisfies?(version)
+            if dep_name == cookbook_name && !constraint.satisfies?(version)
               cookbook_conflicts << [top_level_dep_name, dep_name, constraint]
             end
           end
@@ -195,7 +195,7 @@ module ChefDK
       end
 
       def find_cookbook_dep_by_name(name)
-        @cookbook_dependencies.find { |k,v| k.name == name }
+        @cookbook_dependencies.find { |k, v| k.name == name }
       end
 
       def find_cookbook_dep_by_name_and_version(name, version)
@@ -216,19 +216,19 @@ module ChefDK
       end
 
       def add_policyfile_dep_from_lock_data(entry)
-        unless entry.kind_of?(Array) and entry.size == 2
-          msg = %Q(lockfile solution_dependencies Policyfile dependencies entry must be like [ "$COOKBOOK_NAME", "$CONSTRAINT" ] (got: #{entry.inspect}))
+        unless entry.kind_of?(Array) && entry.size == 2
+          msg = %Q{lockfile solution_dependencies Policyfile dependencies entry must be like [ "$COOKBOOK_NAME", "$CONSTRAINT" ] (got: #{entry.inspect})}
           raise InvalidLockfile, msg
         end
 
         cookbook_name, constraint = entry
 
-        unless cookbook_name.kind_of?(String) and !cookbook_name.empty?
+        unless cookbook_name.kind_of?(String) && !cookbook_name.empty?
           msg = "lockfile solution_dependencies Policyfile dependencies entry. Cookbook name portion must be a string (got: #{entry.inspect})"
           raise InvalidLockfile, msg
         end
 
-        unless constraint.kind_of?(String) and !constraint.empty?
+        unless constraint.kind_of?(String) && !constraint.empty?
           msg = "malformed lockfile solution_dependencies Policyfile dependencies entry. Version constraint portion must be a string (got: #{entry.inspect})"
           raise InvalidLockfile, msg
         end
@@ -254,35 +254,35 @@ module ChefDK
       def add_cookbook_dep_from_lock_data(name_and_version, deps_list)
         unless name_and_version.kind_of?(String)
           show = "#{name_and_version.inspect} => #{deps_list.inspect}"
-          msg = %Q(lockfile cookbook_dependencies entries must be of the form "$COOKBOOK_NAME ($VERSION)" => [ $dependency, ...] (got: #{show}) )
+          msg = %Q{lockfile cookbook_dependencies entries must be of the form "$COOKBOOK_NAME ($VERSION)" => [ $dependency, ...] (got: #{show}) }
           raise InvalidLockfile, msg
         end
 
         unless Cookbook.valid_str?(name_and_version)
-          msg = %Q(lockfile cookbook_dependencies entry keys must be of the form "$COOKBOOK_NAME ($VERSION)" (got: #{name_and_version.inspect}) )
+          msg = %Q{lockfile cookbook_dependencies entry keys must be of the form "$COOKBOOK_NAME ($VERSION)" (got: #{name_and_version.inspect}) }
           raise InvalidLockfile, msg
         end
 
         unless deps_list.kind_of?(Array)
-          msg = %Q(lockfile cookbook_dependencies entry values must be an Array like [ [ "$COOKBOOK_NAME", "$CONSTRAINT" ], ... ] (got: #{deps_list.inspect}) )
+          msg = %Q{lockfile cookbook_dependencies entry values must be an Array like [ [ "$COOKBOOK_NAME", "$CONSTRAINT" ], ... ] (got: #{deps_list.inspect}) }
           raise InvalidLockfile, msg
         end
 
         deps_list.each do |entry|
 
-          unless entry.kind_of?(Array) and entry.size == 2
-            msg = %Q(lockfile solution_dependencies dependencies entry must be like [ "$COOKBOOK_NAME", "$CONSTRAINT" ] (got: #{entry.inspect}))
+          unless entry.kind_of?(Array) && entry.size == 2
+            msg = %Q{lockfile solution_dependencies dependencies entry must be like [ "$COOKBOOK_NAME", "$CONSTRAINT" ] (got: #{entry.inspect})}
             raise InvalidLockfile, msg
           end
 
           dep_name, constraint = entry
 
-          unless dep_name.kind_of?(String) and !dep_name.empty?
+          unless dep_name.kind_of?(String) && !dep_name.empty?
             msg = "malformed lockfile solution_dependencies dependencies entry. Cookbook name portion must be a string (got: #{entry.inspect})"
             raise InvalidLockfile, msg
           end
 
-          unless constraint.kind_of?(String) and !constraint.empty?
+          unless constraint.kind_of?(String) && !constraint.empty?
             msg = "malformed lockfile solution_dependencies dependencies entry. Version constraint portion must be a string (got: #{entry.inspect})"
             raise InvalidLockfile, msg
           end

@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/read_cookbook_for_compat_mode_upload'
-require 'chef-dk/helpers'
+require "spec_helper"
+require "chef-dk/policyfile/read_cookbook_for_compat_mode_upload"
+require "chef-dk/helpers"
 
 describe ChefDK::Policyfile::ReadCookbookForCompatModeUpload do
 
@@ -85,7 +85,7 @@ describe ChefDK::Policyfile::ReadCookbookForCompatModeUpload do
     end
 
     it "excludes ignored files from the list of cookbook files" do
-      expect(reader_with_ignored_files.cookbook_version.root_filenames).to_not include(chefignored_file)
+      expect(reader_with_ignored_files.cookbook_version.files_for("root_files")).to_not include(chefignored_file)
     end
 
   end

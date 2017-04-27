@@ -15,13 +15,13 @@
 # limitations under the License.
 #
 
-require 'ffi_yajl'
+require "ffi_yajl"
 
-require 'chef-dk/helpers'
-require 'chef-dk/service_exceptions'
-require 'chef-dk/policyfile_compiler'
-require 'chef-dk/policyfile/storage_config'
-require 'chef-dk/policyfile_lock'
+require "chef-dk/helpers"
+require "chef-dk/service_exceptions"
+require "chef-dk/policyfile_compiler"
+require "chef-dk/policyfile/storage_config"
+require "chef-dk/policyfile_lock"
 
 module ChefDK
   module PolicyfileServices
@@ -34,10 +34,12 @@ module ChefDK
       attr_reader :ui
       attr_reader :storage_config
       attr_reader :overwrite
+      attr_reader :chef_config
 
-      def initialize(policyfile: nil, ui: nil, root_dir: nil, overwrite: false)
+      def initialize(policyfile: nil, ui: nil, root_dir: nil, overwrite: false, config: nil)
         @ui = ui
         @overwrite = overwrite
+        @chef_config = config
 
         policyfile_rel_path = policyfile || "Policyfile.rb"
         policyfile_full_path = File.expand_path(policyfile_rel_path, root_dir)
@@ -66,7 +68,7 @@ module ChefDK
       end
 
       def policyfile_compiler
-        @policyfile_compiler ||= ChefDK::PolicyfileCompiler.evaluate(policyfile_content, policyfile_expanded_path, ui: ui)
+        @policyfile_compiler ||= ChefDK::PolicyfileCompiler.evaluate(policyfile_content, policyfile_expanded_path, ui: ui, chef_config: chef_config)
       end
 
       def expanded_run_list

@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/cookbook_location_specification'
+require "spec_helper"
+require "chef-dk/policyfile/cookbook_location_specification"
 
 describe ChefDK::Policyfile::CookbookLocationSpecification do
 
@@ -64,7 +64,7 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
     different_constraint = described_class.new(cookbook_name, ">= 1.0.0", source_options, storage_config)
     expect(cookbook_location_spec).to_not eq(different_constraint)
 
-    different_opts = described_class.new(cookbook_name, version_constraint, {git: "git://example.com/wat.git"}, storage_config)
+    different_opts = described_class.new(cookbook_name, version_constraint, { git: "git://example.com/wat.git" }, storage_config)
     expect(cookbook_location_spec).to_not eq(different_opts)
   end
 
@@ -272,6 +272,28 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
       expect(cookbook_location_spec).to be_valid
     end
 
+  end
+
+  describe "when created with a chef_server source" do
+
+    let(:source_options) { { chef_server: "https://api.opscode.com/organizations/chef-oss-dev/cookbooks/my_cookbook/versions/2.0.0/download" } }
+
+    it "has a chef_server installer" do
+      expect(cookbook_location_spec.installer).to be_a_kind_of(CookbookOmnifetch::ChefServerLocation)
+    end
+
+    it "does not have a fixed version" do
+      expect(cookbook_location_spec.version_fixed?).to be false
+    end
+
+    it "is a mirror of a canonical upstream" do
+      expect(cookbook_location_spec.mirrors_canonical_upstream?).to be true
+    end
+
+    it "is valid" do
+      expect(cookbook_location_spec.errors.size).to eq(0)
+      expect(cookbook_location_spec).to be_valid
+    end
 
   end
 end

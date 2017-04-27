@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-require 'chef-dk/configurable'
-require 'chef-dk/command/generator_commands'
+require "chef-dk/configurable"
+require "chef-dk/command/generator_commands"
 
-require 'chef-dk/command/generator_commands/chef_exts/recipe_dsl_ext'
-require 'chef-dk/command/generator_commands/chef_exts/generator_desc_resource'
+require "chef-dk/command/generator_commands/chef_exts/recipe_dsl_ext"
+require "chef-dk/command/generator_commands/chef_exts/generator_desc_resource"
 
 module ChefDK
   module Command
@@ -71,11 +71,11 @@ module ChefDK
           apply_generator_values_from_config
           Generator.add_attr_to_context(:have_git, have_git?)
           Generator.add_attr_to_context(:skip_git_init, false)
-          config.each do |k,v|
+          config.each do |k, v|
             Generator.add_attr_to_context(k, v)
           end
           # inject the arbitrary args supplied on cmdline, default = []
-          config[:generator_arg].each do |k,v|
+          config[:generator_arg].each do |k, v|
             Generator.add_attr_to_context(k, v)
           end
         end
@@ -85,7 +85,7 @@ module ChefDK
         def have_git?
           path = ENV["PATH"] || ""
           paths = path.split(File::PATH_SEPARATOR)
-          exts = [RbConfig::CONFIG['EXEEXT']]
+          exts = [RbConfig::CONFIG["EXEEXT"]]
           exts.concat(ENV["PATHEXT"].split(";")) unless ENV["PATHEXT"].nil?
           paths.any? do |bin_path|
             exts.any? do |ext|
@@ -136,20 +136,20 @@ module ChefDK
 
         def coerce_generator_copyright_holder
           generator_config.copyright_holder ||
-          knife_config.cookbook_copyright ||
-          "The Authors"
+            knife_config.cookbook_copyright ||
+            "The Authors"
         end
 
         def coerce_generator_email
           generator_config.email ||
-          knife_config.cookbook_email ||
-          "you@example.com"
+            knife_config.cookbook_email ||
+            "you@example.com"
         end
 
         def coerce_generator_license
           generator_config.license ||
-          knife_config.cookbook_license ||
-          "all_rights"
+            knife_config.cookbook_license ||
+            "all_rights"
         end
       end
     end

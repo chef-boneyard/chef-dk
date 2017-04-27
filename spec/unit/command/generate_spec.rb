@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
+require "spec_helper"
 require "stringio"
-require 'chef-dk/command/generate'
+require "chef-dk/command/generate"
 
 class ChefDK::Command::GeneratorCommands::Example < ChefDK::Command::GeneratorCommands::Base
 
@@ -41,7 +41,7 @@ class ChefDK::Command::GeneratorCommands::Example < ChefDK::Command::GeneratorCo
 
   def run
     parse_options(@argv)
-    {:argv => @argv, :ran_cmd => "example"}
+    { :argv => @argv, :ran_cmd => "example" }
   end
 end
 
@@ -99,29 +99,29 @@ E
     end
 
     it "prints usage when running an unknown generator" do
-      generate.run(%w[ancient-aliens])
+      generate.run(%w{ancient-aliens})
       expect(stdout).to include(expected_help_message)
     end
 
     it "runs the generator sub-command" do
-      result = generate.run(%w[example])
+      result = generate.run(%w{example})
       expect(result[:ran_cmd]).to eq("example")
     end
 
     it "removes the subcommand name from argv" do
-      result = generate.run(%w[example])
+      result = generate.run(%w{example})
       expect(result[:argv]).to eq([])
     end
 
     it "passes extra arguments and options to the subcommand" do
-      result = generate.run(%w[example argument_one argument_two --option-one --option-two])
-      expect(result[:argv]).to eq(%w[argument_one argument_two --option-one --option-two])
+      result = generate.run(%w{example argument_one argument_two --option-one --option-two})
+      expect(result[:argv]).to eq(%w{argument_one argument_two --option-one --option-two})
     end
 
     describe "when an invalid option is passed to the subcommand" do
 
       it "prints usage and returns non-zero" do
-        result = generate.run(%w[example --nope])
+        result = generate.run(%w{example --nope})
         expect(result).to eq(1)
         expect(stderr).to eq("ERROR: invalid option: --nope\n\n")
       end
@@ -131,7 +131,7 @@ E
     describe "when an option requires an argument but none is given" do
 
       it "prints usage and returns non-zero" do
-        result = generate.run(%w[example --arg])
+        result = generate.run(%w{example --arg})
         expect(result).to eq(1)
         expect(stderr).to eq("ERROR: missing argument: --arg\n\n")
       end

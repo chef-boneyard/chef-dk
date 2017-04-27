@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/a_file_generator'
-require 'chef-dk/command/generator_commands/policyfile'
+require "spec_helper"
+require "shared/a_file_generator"
+require "chef-dk/command/generator_commands/policyfile"
 
 describe ChefDK::Command::GeneratorCommands::Policyfile do
 
@@ -221,5 +221,3 @@ POLICYFILE_RB
   end
 
 end
-
-

@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef-dk/helpers'
+require "chef-dk/helpers"
 
 RSpec.shared_context "fixture cookbooks checksums" do
 
@@ -23,7 +23,7 @@ RSpec.shared_context "fixture cookbooks checksums" do
     major = sha1_id[0...14]
     minor = sha1_id[14...28]
     patch = sha1_id[28..40]
-    decimal_integers =[major, minor, patch].map {|hex| hex.to_i(16) }
+    decimal_integers = [major, minor, patch].map { |hex| hex.to_i(16) }
     decimal_integers.join(".")
   end
 
@@ -44,4 +44,3 @@ RSpec.shared_context "fixture cookbooks checksums" do
   let(:cookbook_dep_of_bar_cksum_dotted) { id_to_dotted(cookbook_dep_of_bar_cksum) }
 
 end
-

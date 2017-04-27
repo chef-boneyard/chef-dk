@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'fileutils'
-require 'tmpdir'
+require "fileutils"
+require "tmpdir"
 
 module TestHelpers
 

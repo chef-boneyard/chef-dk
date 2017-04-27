@@ -15,13 +15,13 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/comparison_base'
+require "spec_helper"
+require "chef-dk/policyfile/comparison_base"
 
 describe "Policyfile Comparison Bases" do
 
   let(:minimal_lockfile_json) do
-        <<-E
+    <<-E
 {
   "revision_id": "6fe753184c8946052d3231bb4212116df28d89a3a5f7ae52832ad408419dd5eb",
   "name": "install-example",
@@ -308,9 +308,7 @@ E
         expect(exception).to_not be_nil
       end
 
-
     end
-
 
     context "when a non-HTTP error occurs fetching the policyfile lock" do
 
@@ -340,4 +338,3 @@ E
 
   end
 end
-

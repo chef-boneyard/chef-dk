@@ -15,20 +15,41 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-
-require 'chef-dk/policyfile/chef_server_cookbook_source'
+require "spec_helper"
+require "chef-dk/policyfile/chef_server_cookbook_source"
 
 describe ChefDK::Policyfile::ChefServerCookbookSource do
+  subject { described_class.new(cookbook_source) }
 
-  let(:cookbook_source) { ChefDK::Policyfile::ChefServerCookbookSource.new("https://chef.example.com") }
+  let(:cookbook_source) { "https://chef.example.com/organizations/example" }
 
-  it "emits a not supported error when attempting to fetch universe" do
-    expect { cookbook_source.universe_graph }.to raise_error(ChefDK::UnsupportedFeature)
+  let(:http_connection) { double("ChefDK::AuthenticatedHTTP") }
+
+  let(:universe_response_encoded) { JSON.parse(IO.read(File.join(fixtures_path, "cookbooks_api/chef_server_universe.json"))) }
+
+  let(:pruned_universe) { JSON.parse(IO.read(File.join(fixtures_path, "cookbooks_api/pruned_chef_server_universe.json"))) }
+
+  describe "fetching the Universe graph" do
+
+    before do
+      expect(subject).to receive(:http_connection_for).with(cookbook_source).and_return(http_connection)
+    end
+
+    it "fetches the universe graph" do
+      expect(http_connection).to receive(:get).with("/universe").and_return(universe_response_encoded)
+      actual_universe = subject.universe_graph
+      expect(actual_universe).to have_key("apt")
+      expect(actual_universe["apt"]).to eq(pruned_universe["apt"])
+      expect(subject.universe_graph).to eq(pruned_universe)
+    end
+
+    it "generates location options for a cookbook from the given graph" do
+      expected_opts = {
+        chef_server: "https://chef.example.com/organizations/example",
+        http_client: http_connection,
+        version: "4.2.3",
+      }
+      expect(subject.source_options_for("ohai", "4.2.3")).to eq(expected_opts)
+    end
   end
-
-  it "emits a not supported error when attempting to get source options for a cookbook" do
-    expect { cookbook_source.source_options_for("foo", "1.2.3") }.to raise_error(ChefDK::UnsupportedFeature)
-  end
-
 end

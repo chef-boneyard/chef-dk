@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-require 'forwardable'
+require "forwardable"
 
-require 'semverse'
+require "semverse"
 
-require 'chef-dk/policyfile/community_cookbook_source'
+require "chef-dk/policyfile/community_cookbook_source"
 
 module ChefDK
   module Policyfile
@@ -71,11 +71,11 @@ module ChefDK
         @universe_graph ||= begin
           @community_source.universe_graph.inject({}) do |truncated, (cookbook_name, version_and_deps_list)|
             sorted_versions = version_and_deps_list.keys.sort_by do |version_string|
-            Semverse::Version.new(version_string)
-          end
-          greatest_version = sorted_versions.last
-          truncated[cookbook_name] = { greatest_version => version_and_deps_list[greatest_version] }
-          truncated
+              Semverse::Version.new(version_string)
+            end
+            greatest_version = sorted_versions.last
+            truncated[cookbook_name] = { greatest_version => version_and_deps_list[greatest_version] }
+            truncated
           end
         end
       end
@@ -87,4 +87,3 @@ module ChefDK
     end
   end
 end
-

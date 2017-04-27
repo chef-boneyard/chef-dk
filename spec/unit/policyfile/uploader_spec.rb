@@ -15,33 +15,33 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile/uploader'
+require "spec_helper"
+require "chef-dk/policyfile/uploader"
 
 # We load this here to ensure we get the "verifying doubles" behavior from
 # RSpec. It's not used by Policyfile::Uploader, but it's a collaborator.
-require 'chef-dk/authenticated_http'
+require "chef-dk/authenticated_http"
 
 describe ChefDK::Policyfile::Uploader do
 
   let(:policyfile_lock_data) do
     {
-      "name"=> "example",
-      "run_list"=> [ "recipe[omnibus::default]" ],
-      "cookbook_locks"=> {
-        "omnibus"=> {
-          "version"=> "2.2.0",
-          "identifier"=> "64b3e64306cff223206348e46af545b19032b170",
-          "dotted_decimal_identifier"=> "28345299219435506.9887234981653237.76628930769264",
-          "cache_key"=> "omnibus-2cf98f9797cacce9c8688fc4e74858b858e2bc14",
-          "origin"=> "git@github.com:opscode-cookbooks/omnibus.git",
-          "source_options"=> {
-            "git"=> "git@github.com:opscode-cookbooks/omnibus.git",
-            "revision"=> "2cf98f9797cacce9c8688fc4e74858b858e2bc14",
-            "branch"=> "master"
-          }
-        }
-      }
+      "name" => "example",
+      "run_list" => [ "recipe[omnibus::default]" ],
+      "cookbook_locks" => {
+        "omnibus" => {
+          "version" => "2.2.0",
+          "identifier" => "64b3e64306cff223206348e46af545b19032b170",
+          "dotted_decimal_identifier" => "28345299219435506.9887234981653237.76628930769264",
+          "cache_key" => "omnibus-2cf98f9797cacce9c8688fc4e74858b858e2bc14",
+          "origin" => "git@github.com:opscode-cookbooks/omnibus.git",
+          "source_options" => {
+            "git" => "git@github.com:opscode-cookbooks/omnibus.git",
+            "revision" => "2cf98f9797cacce9c8688fc4e74858b858e2bc14",
+            "branch" => "master",
+          },
+        },
+      },
     }
   end
 
@@ -66,7 +66,7 @@ describe ChefDK::Policyfile::Uploader do
     policyfile_as_data_bag_item = {
       "id" => "example-unit-test",
       "name" => "data_bag_item_policyfiles_example-unit-test",
-      "data_bag" => "policyfiles"
+      "data_bag" => "policyfiles",
     }
     policyfile_as_data_bag_item["raw_data"] = policyfile_lock_data.dup
     policyfile_as_data_bag_item["raw_data"]["id"] = "example-unit-test"
@@ -210,14 +210,13 @@ describe ChefDK::Policyfile::Uploader do
           let(:expected_cookbooks_for_upload) do
             [
               cookbook_versions["my_apache2"],
-              cookbook_versions["my_jenkins"]
+              cookbook_versions["my_jenkins"],
             ]
           end
 
           it "lists only cookbooks not on the server as needing to be uploaded" do
             expect(policyfile_lock).to receive(:validate_cookbooks!)
             expect(http_client).to receive(:get).with(list_cookbooks_url).and_return(existing_cookbook_on_remote)
-
 
             expect(uploader.cookbook_versions_to_upload).to eq(expected_cookbooks_for_upload)
           end
@@ -273,35 +272,35 @@ describe ChefDK::Policyfile::Uploader do
 
     context "when configured for policy document compat mode" do
 
-      let(:policyfiles_data_bag) { {"name" => "policyfiles" } }
+      let(:policyfiles_data_bag) { { "name" => "policyfiles" } }
 
-      let(:list_cookbooks_url) { 'cookbooks?num_versions=all' }
+      let(:list_cookbooks_url) { "cookbooks?num_versions=all" }
 
       let(:existing_cookbook_on_remote) do
-        {"apt"=>
-          {"url"=>"http://localhost:8889/cookbooks/apt",
-           "versions"=>
-            [{"url"=>
+        { "apt" =>
+          { "url" => "http://localhost:8889/cookbooks/apt",
+            "versions" =>
+            [{ "url" =>
                "http://localhost:8889/cookbooks/apt/46097674477573307.43471642740453733.243606720748315",
-              "version"=>"46097674477573307.43471642740453733.243606720748315"}]},
-         "build-essential"=>
-          {"url"=>"http://localhost:8889/cookbooks/build-essential",
-           "versions"=>
-            [{"url"=>
+               "version" => "46097674477573307.43471642740453733.243606720748315" }] },
+          "build-essential" =>
+          { "url" => "http://localhost:8889/cookbooks/build-essential",
+            "versions" =>
+            [{ "url" =>
                "http://localhost:8889/cookbooks/build-essential/67369247788170534.26353953100055918.55660493423796",
-              "version"=>"67369247788170534.26353953100055918.55660493423796"}]},
-         "java"=>
-          {"url"=>"http://localhost:8889/cookbooks/java",
-           "versions"=>
-            [{"url"=>
+               "version" => "67369247788170534.26353953100055918.55660493423796" }] },
+          "java" =>
+          { "url" => "http://localhost:8889/cookbooks/java",
+            "versions" =>
+            [{ "url" =>
                "http://localhost:8889/cookbooks/java/5664982062912610.52588194571203830.6215746262253",
-              "version"=>"5664982062912610.52588194571203830.6215746262253"}]},
-         "jenkins"=>
-          {"url"=>"http://localhost:8889/cookbooks/jenkins",
-           "versions"=>
-            [{"url"=>
+               "version" => "5664982062912610.52588194571203830.6215746262253" }] },
+          "jenkins" =>
+          { "url" => "http://localhost:8889/cookbooks/jenkins",
+            "versions" =>
+            [{ "url" =>
                "http://localhost:8889/cookbooks/jenkins/69194928762630300.30177357398946006.269829039948647",
-              "version"=>"69194928762630300.30177357398946006.269829039948647"}]}
+               "version" => "69194928762630300.30177357398946006.269829039948647" }] },
         }
       end
 
@@ -311,14 +310,14 @@ describe ChefDK::Policyfile::Uploader do
       end
 
       it "ensures a data bag named 'policyfiles' exists" do
-        expect(http_client).to receive(:post).with('data', policyfiles_data_bag)
+        expect(http_client).to receive(:post).with("data", policyfiles_data_bag)
         uploader.data_bag_create
       end
 
       it "does not error when the 'policyfiles' data bag exists" do
         response = double("Net::HTTP response", code: "409")
         error = Net::HTTPServerException.new("conflict", response)
-        expect(http_client).to receive(:post).with('data', {"name" => "policyfiles"}).and_raise(error)
+        expect(http_client).to receive(:post).with("data", { "name" => "policyfiles" }).and_raise(error)
         expect { uploader.data_bag_create }.to_not raise_error
       end
 
@@ -326,24 +325,24 @@ describe ChefDK::Policyfile::Uploader do
         response = double("Net::HTTP response", code: "404")
         error = Net::HTTPServerException.new("Not Found", response)
         expect(http_client).to receive(:put).
-          with('data/policyfiles/example-unit-test', policyfile_as_data_bag_item).
+          with("data/policyfiles/example-unit-test", policyfile_as_data_bag_item).
           and_raise(error)
         expect(http_client).to receive(:post).
-          with('data/policyfiles', policyfile_as_data_bag_item)
+          with("data/policyfiles", policyfile_as_data_bag_item)
 
         uploader.data_bag_item_create
       end
 
       it "replaces an existing policyfile on the server if it exists" do
         expect(http_client).to receive(:put).
-          with('data/policyfiles/example-unit-test', policyfile_as_data_bag_item)
+          with("data/policyfiles/example-unit-test", policyfile_as_data_bag_item)
         uploader.data_bag_item_create
       end
 
       it "creates the data bag and item to upload the policy" do
-        expect(http_client).to receive(:post).with('data', policyfiles_data_bag)
+        expect(http_client).to receive(:post).with("data", policyfiles_data_bag)
         expect(http_client).to receive(:put).
-          with('data/policyfiles/example-unit-test', policyfile_as_data_bag_item)
+          with("data/policyfiles/example-unit-test", policyfile_as_data_bag_item)
         uploader.upload_policy
       end
 
@@ -355,38 +354,38 @@ describe ChefDK::Policyfile::Uploader do
 
       let(:policy_document_native_api) { true }
 
-      let(:list_cookbooks_url) { 'cookbook_artifacts?num_versions=all' }
+      let(:list_cookbooks_url) { "cookbook_artifacts?num_versions=all" }
 
       let(:existing_cookbook_on_remote) do
-        {"apt"=>
-          {"url"=>"http://localhost:8889/cookbook_artifacts/apt",
-           "versions"=>
-            [{"url"=>
+        { "apt" =>
+          { "url" => "http://localhost:8889/cookbook_artifacts/apt",
+            "versions" =>
+            [{ "url" =>
                "http://localhost:8889/cookbook_artifacts/apt/5f7045a8aeaf6ccda3b3594258df9ee982b3a023",
-              "identifier"=>"5f7045a8aeaf6ccda3b3594258df9ee982b3a023"}]},
-         "build-essential"=>
-          {"url"=>"http://localhost:8889/cookbook_artifacts/build-essential",
-           "versions"=>
-            [{"url"=>
+               "identifier" => "5f7045a8aeaf6ccda3b3594258df9ee982b3a023" }] },
+          "build-essential" =>
+          { "url" => "http://localhost:8889/cookbook_artifacts/build-essential",
+            "versions" =>
+            [{ "url" =>
                "http://localhost:8889/cookbook_artifacts/build-essential/571d8ebd02b296fe90b2e4d68754af7e8e185f28",
-              "identifier"=>"571d8ebd02b296fe90b2e4d68754af7e8e185f28"}]},
-         "java"=>
-          {"url"=>"http://localhost:8889/cookbook_artifacts/java",
-           "versions"=>
-            [{"url"=>
+               "identifier" => "571d8ebd02b296fe90b2e4d68754af7e8e185f28" }] },
+          "java" =>
+          { "url" => "http://localhost:8889/cookbook_artifacts/java",
+            "versions" =>
+            [{ "url" =>
                "http://localhost:8889/cookbook_artifacts/java/9178a38ad3e3baa55b49c1b8d9f4bf6a43dbc358",
-              "identifier"=>"9178a38ad3e3baa55b49c1b8d9f4bf6a43dbc358"}]},
-         "jenkins"=>
-          {"url"=>"http://localhost:8889/cookbook_artifacts/jenkins",
-           "versions"=>
-            [{"url"=>
+               "identifier" => "9178a38ad3e3baa55b49c1b8d9f4bf6a43dbc358" }] },
+          "jenkins" =>
+          { "url" => "http://localhost:8889/cookbook_artifacts/jenkins",
+            "versions" =>
+            [{ "url" =>
                "http://localhost:8889/cookbook_artifacts/jenkins/0be380429add00d189b4431059ac967a60052323",
-              "identifier"=>"0be380429add00d189b4431059ac967a60052323"}]}
+               "identifier" => "0be380429add00d189b4431059ac967a60052323" }] },
         }
       end
       def expect_policyfile_upload
         expect(http_client).to receive(:put).
-          with('/policy_groups/unit-test/policies/example', policyfile_lock_data)
+          with("/policy_groups/unit-test/policies/example", policyfile_lock_data)
       end
 
       it "enables native document mode for policyfiles" do
@@ -395,7 +394,7 @@ describe ChefDK::Policyfile::Uploader do
 
       it "uploads the policyfile to the native API" do
         expect(http_client).to receive(:put).
-          with('/policy_groups/unit-test/policies/example', policyfile_lock_data)
+          with("/policy_groups/unit-test/policies/example", policyfile_lock_data)
 
         uploader.upload_policy
       end
@@ -407,4 +406,3 @@ describe ChefDK::Policyfile::Uploader do
   end
 
 end
-

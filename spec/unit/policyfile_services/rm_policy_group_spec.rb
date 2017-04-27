@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'chef-dk/policyfile_services/rm_policy_group'
+require "spec_helper"
+require "chef-dk/policyfile_services/rm_policy_group"
 
 describe ChefDK::PolicyfileServices::RmPolicyGroup do
 
@@ -33,29 +33,28 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
         "policies" => {
           "appserver" => { "revision_id" => "1111111111111111111111111111111111111111111111111111111111111111" },
           "load-balancer" => { "revision_id" => "5555555555555555555555555555555555555555555555555555555555555555" },
-          "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" }
-        }
+          "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" },
+        },
       },
       "preprod" => {
         "uri" => "https://chef.example/organizations/testorg/policy_groups/preprod",
         "policies" => {
           "appserver" => { "revision_id" => "2222222222222222222222222222222222222222222222222222222222222222" },
           "load-balancer" => { "revision_id" => "5555555555555555555555555555555555555555555555555555555555555555" },
-          "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" }
-        }
-      }
+          "db" => { "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999" },
+        },
+      },
     }
   end
-
 
   let(:empty_policy_groups) do
     {
       "dev" => {
-        "uri" => "https://chef.example/organizations/testorg/policy_groups/dev"
+        "uri" => "https://chef.example/organizations/testorg/policy_groups/dev",
       },
       "preprod" => {
-        "uri" => "https://chef.example/organizations/testorg/policy_groups/preprod"
-      }
+        "uri" => "https://chef.example/organizations/testorg/policy_groups/preprod",
+      },
     }
   end
 
@@ -77,7 +76,6 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
   let(:undo_stack) do
     rm_policy_group_service.undo_stack
   end
-
 
   it "configures an HTTP client" do
     expect(ChefDK::AuthenticatedHTTP).to receive(:new).with("https://localhost:10443",
@@ -133,7 +131,6 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
 
     end
 
-
   end
 
   context "when the given group doesn't exist" do
@@ -180,21 +177,21 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
     let(:policy_appserver_2) do
       {
         "name" => "appserver",
-        "revision_id" => "2222222222222222222222222222222222222222222222222222222222222222"
+        "revision_id" => "2222222222222222222222222222222222222222222222222222222222222222",
       }
     end
 
     let(:policy_load_balancer_5) do
       {
         "name" => "load-balancer",
-        "revision_id" => "5555555555555555555555555555555555555555555555555555555555555555"
+        "revision_id" => "5555555555555555555555555555555555555555555555555555555555555555",
       }
     end
 
     let(:policy_db_9) do
       {
         "name" => "db",
-        "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999"
+        "revision_id" => "9999999999999999999999999999999999999999999999999999999999999999",
       }
     end
 
@@ -227,9 +224,9 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
 
       expected_policy_revision_undo_data =
         [
-          { policy_name: "appserver", policy_group: "preprod", data: policy_appserver_2},
-          { policy_name: "load-balancer", policy_group: "preprod", data: policy_load_balancer_5},
-          { policy_name: "db", policy_group: "preprod", data: policy_db_9}
+          { policy_name: "appserver", policy_group: "preprod", data: policy_appserver_2 },
+          { policy_name: "load-balancer", policy_group: "preprod", data: policy_load_balancer_5 },
+          { policy_name: "db", policy_group: "preprod", data: policy_db_9 },
         ]
 
       expect(undo_record.policy_revisions.map(&:to_h)).to match_array(expected_policy_revision_undo_data)
@@ -238,4 +235,3 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
   end
 
 end
-

@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/a_file_generator'
-require 'chef-dk/command/generator_commands/cookbook_file'
+require "spec_helper"
+require "shared/a_file_generator"
+require "chef-dk/command/generator_commands/cookbook_file"
 
 describe ChefDK::Command::GeneratorCommands::CookbookFile do
 
@@ -29,4 +29,3 @@ describe ChefDK::Command::GeneratorCommands::CookbookFile do
 
   end
 end
-

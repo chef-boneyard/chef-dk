@@ -12,14 +12,25 @@
 # config.json file and it will continue working as usual.
 
 [local_phases]
-unit = "rspec spec/"
-lint = "cookstyle"
+unit = "chef exec rspec spec/"
+lint = "chef exec cookstyle"
 # Foodcritic includes rules only appropriate for community cookbooks
 # uploaded to Supermarket. We turn off any rules tagged "supermarket"
 # by default. If you plan to share this cookbook you should remove
 # '-t ~supermarket' below to enable supermarket rules.
-syntax = "foodcritic . --exclude spec -f any -t ~supermarket"
+syntax = "chef exec foodcritic . -t ~supermarket"
 provision = "chef exec kitchen create"
 deploy = "chef exec kitchen converge"
 smoke = "chef exec kitchen verify"
+# The functional phase is optional, you can define it by uncommenting
+# the line below and running the command: `delivery local functional`
+# functional = ""
 cleanup = "chef exec kitchen destroy"
+
+# Remote project.toml file
+#
+# Specify a remote URI location for the `project.toml` file.
+# This is useful for teams that wish to centrally manage the behavior
+# of the `delivery local` command across many different projects.
+#
+# remote_file = "https://url/project.toml"

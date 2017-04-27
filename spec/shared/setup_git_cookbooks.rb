@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require 'chef-dk/helpers'
+require "chef-dk/helpers"
 
 RSpec.shared_context "setup git cookbooks" do
 
@@ -27,7 +27,7 @@ RSpec.shared_context "setup git cookbooks" do
 
   let(:cookbook_path) { File.join(tempdir, "bar") }
 
-  let(:current_rev) { 'dfc68070c47cbf4267be14ea87f80680cb5dafb3' }
+  let(:current_rev) { "dfc68070c47cbf4267be14ea87f80680cb5dafb3" }
 
   before do
     reset_tempdir

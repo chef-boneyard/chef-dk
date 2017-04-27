@@ -15,13 +15,13 @@
 # limitations under the License.
 #
 
-require 'chef-dk/exceptions'
+require "chef-dk/exceptions"
 
 module ChefDK
   module Policyfile
     class NullCookbookSource
 
-      def initialize(_uri=nil)
+      def initialize(_uri = nil)
       end
 
       def universe_graph
@@ -29,7 +29,7 @@ module ChefDK
       end
 
       def source_options_for(cookbook_name, cookbook_version)
-        raise UnsupportedFeature, 'You must set a default_source in your Policyfile to download cookbooks without explicit sources'
+        raise UnsupportedFeature, "You must set a default_source in your Policyfile to download cookbooks without explicit sources"
       end
 
       def null?
