@@ -15,17 +15,22 @@
 # limitations under the License.
 #
 
-require "spec_helper"
-require "shared/a_file_generator"
-require "chef-dk/command/generator_commands/lwrp"
+require "chef-dk/command/generator_commands/cookbook_code_file"
 
-describe ChefDK::Command::GeneratorCommands::LWRP do
+module ChefDK
+  module Command
+    module GeneratorCommands
+      # chef generate resource [path/to/cookbook_root] NAME
+      class Resource < CookbookCodeFile
 
-  include_examples "a file generator" do
+        banner "Usage: chef generate resource [path/to/cookbook] NAME [options]"
 
-    let(:generator_name) { "lwrp" }
-    let(:generated_files) { [ "resources/new_lwrp.rb", "providers/new_lwrp.rb" ] }
-    let(:new_file_name) { "new_lwrp" }
+        options.merge!(SharedGeneratorOptions.options)
 
+        def recipe
+          "resource"
+        end
+      end
+    end
   end
 end
