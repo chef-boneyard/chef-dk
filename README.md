@@ -11,6 +11,7 @@ Chef Development Kit (ChefDK) brings Chef and the development tools developed by
 * [Test Kitchen][]
 * [ChefSpec][]
 * [Foodcritic][]
+* [Cookstyle][]
 * [Delivery CLI][]
 * [Push Jobs Client][]
 
@@ -324,6 +325,7 @@ packaging, and building works.
 [ChefDK]: https://downloads.chef.io/chefdk "Chef Development Kit"
 [Chef Documentation]: https://docs.chef.io "Chef Documentation"
 [ChefSpec]: http://sethvargo.github.io/chefspec/ "ChefSpec"
+[Cookstyle]: https://docs.chef.io/cookstyle.html "Cookstyle"
 [Foodcritic]: http://foodcritic.io "Foodcritic"
 [Learn Chef]: https://learn.chef.io "Learn Chef"
 [Test Kitchen]: http://kitchen.ci "Test Kitchen"
