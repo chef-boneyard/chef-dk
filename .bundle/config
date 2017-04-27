@@ -1,0 +1,3 @@
+---
+BUNDLE_WITHOUT: "omnibus_package:test:aix:bsd:linux:mac_os_x:solaris:windows:default"
+BUNDLE_DISABLE_SHARED_GEMS: "true"
