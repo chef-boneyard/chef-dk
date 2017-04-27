@@ -22,7 +22,7 @@ are in the omnibus directory in this repository.
 
 You can get the [latest release of ChefDK from the downloads page][ChefDK].
 
-On Mac OS X, you can also use [homebrew-cask](http://caskroom.io)
+On Mac OS X, you can also use [homebrew-cask](https://caskroom.github.io/)
 to `brew cask install chefdk`.
 
 Once you install the package, the `chef-client` suite, `berks`,
@@ -321,7 +321,7 @@ packaging, and building works.
 
 [Berkshelf]: https://docs.chef.io/berkshelf.html "Berkshelf"
 [Chef]: https://www.chef.io "Chef"
-[ChefDK]: https://downloads.chef.io/chef-dk "Chef Development Kit"
+[ChefDK]: https://downloads.chef.io/chefdk "Chef Development Kit"
 [Chef Documentation]: https://docs.chef.io "Chef Documentation"
 [ChefSpec]: http://sethvargo.github.io/chefspec/ "ChefSpec"
 [Foodcritic]: http://foodcritic.io "Foodcritic"
