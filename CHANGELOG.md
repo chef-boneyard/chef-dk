@@ -1,11 +1,10 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v2.0.0](https://github.com/chef/chef-dk/tree/v2.0.0) (2017-04-27)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.3.43...v2.0.0)
+## [v2.0.1](https://github.com/chef/chef-dk/tree/v2.0.1) (2017-04-27)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.3.43...v2.0.1)
 
-**Merged pull requests:**
+**Fixed bugs:**
 
-- .bundle/config is no longer in git [\#1244](https://github.com/chef/chef-dk/pull/1244) ([thommay](https://github.com/thommay))
 - Fix `chef generate template` with a content source [\#1243](https://github.com/chef/chef-dk/pull/1243) ([adamleff](https://github.com/adamleff))
 
 ## [v1.2.20](https://github.com/chef/chef-dk/tree/v1.2.20) (2017-01-27)
