@@ -88,9 +88,8 @@ GIT
       mixlib-shellout (~> 2.0)
 
 GIT
-  remote: https://github.com/tduffield/github-changelog-generator
-  revision: c6245b58b91b863464ca88e02aa752a0658b5f30
-  branch: adjust-tag-section-mapping
+  remote: https://github.com/chef/github-changelog-generator
+  revision: 7ab4953b47598dccf10e106058673c1592b8f9bf
   specs:
     github_changelog_generator (1.14.2)
       activesupport
@@ -135,13 +134,13 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (2.9.11)
-      aws-sdk-resources (= 2.9.11)
-    aws-sdk-core (2.9.11)
+    aws-sdk (2.9.14)
+      aws-sdk-resources (= 2.9.14)
+    aws-sdk-core (2.9.14)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.9.11)
-      aws-sdk-core (= 2.9.11)
+    aws-sdk-resources (2.9.14)
+      aws-sdk-core (= 2.9.14)
     aws-sdk-v1 (1.67.0)
       json (~> 1.4)
       nokogiri (~> 1)
@@ -335,7 +334,7 @@ GEM
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
       ipaddress (~> 0.8)
-    fog-core (1.43.0)
+    fog-core (1.44.1)
       builder
       excon (~> 0.49)
       formatador (~> 0.2)
@@ -473,7 +472,7 @@ GEM
     inflecto (0.0.2)
     inifile (3.0.0)
     iniparse (1.4.2)
-    inspec (1.21.0)
+    inspec (1.22.0)
       addressable (~> 2.4)
       faraday (>= 0.9.0)
       hashie (~> 3.4)
@@ -496,7 +495,7 @@ GEM
     jmespath (1.3.1)
     json (1.8.6)
     jwt (1.5.6)
-    kitchen-dokken (2.1.2)
+    kitchen-dokken (2.1.5)
       docker-api (~> 1.33)
       test-kitchen (~> 1.15)
     kitchen-ec2 (1.3.2)
@@ -614,7 +613,7 @@ GEM
       ast (~> 2.2)
     parslet (1.5.0)
       blankslate (~> 2.0)
-    plist (3.2.0)
+    plist (3.3.0)
     polyglot (0.3.5)
     powerpack (0.1.1)
     proxifier (1.0.3)
@@ -640,7 +639,7 @@ GEM
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
     rb-readline (0.5.4)
-    rbvmomi (1.11.1)
+    rbvmomi (1.11.2)
       builder (~> 3.0)
       json (>= 1.8)
       nokogiri (~> 1.5)
@@ -720,7 +719,7 @@ GEM
     solve (3.1.0)
       molinillo (>= 0.5)
       semverse (>= 1.1, < 3.0)
-    specinfra (2.67.8)
+    specinfra (2.67.9)
       net-scp
       net-ssh (>= 2.7, < 5.0)
       net-telnet
