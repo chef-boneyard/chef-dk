@@ -4,7 +4,7 @@
 [![Build Status Master](https://ci.appveyor.com/api/projects/status/github/chef/chef-dk?branch=master&svg=true&passingText=master%20-%20Ok&pendingText=master%20-%20Pending&failingText=master%20-%20Failing)](https://ci.appveyor.com/project/Chef/chef-dk/branch/master)
 [![](https://img.shields.io/badge/Release%20Policy-Cadence%20Release-brightgreen.svg)](https://github.com/chef/chef-rfc/blob/master/rfc086-chef-oss-project-policies.md#cadence-release)
 
-Chef Development Kit (ChefDK) brings Chef and the development tools developed by the Chef Community together and acts as the consistent interface to this awesomeness. This awesomeness is composed of:
+Chef Development Kit (ChefDK) brings Chef and **NON-CHEF** development tools used by the Chef Community together and acts as the consistent interface:
 
 * [Chef][]
 * [Berkshelf][]
@@ -15,9 +15,18 @@ Chef Development Kit (ChefDK) brings Chef and the development tools developed by
 * [Delivery CLI][]
 * [Push Jobs Client][]
 
-This repository contains the code for the `chef` command. The full
+This repository contains the code for the `chef` and other operating system commands. The full
 package is built with omnibus. Project and component build definitions
 are in the omnibus directory in this repository.
+
+# Warning
+Using this DK can and will break other builds on your system.  In particular *you* must take care about where the chef-dk installed commands resides in *your* PATH.  If you rely on `chef shell-init` you should accept that the chef-dk will break other build systems (please see Isses #313 and here #682 among other issues reported to other projects).  Some of the system commands that chef-dk installs are:
+- clear
+- lintool
+- tput
+- xz, 
+- xml2-config
+- xslt-config
 
 ## Installation
 
