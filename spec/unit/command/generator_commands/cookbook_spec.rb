@@ -589,6 +589,7 @@ KITCHEN_YML
 
         let(:expected_chefspec_spec_helper_content) do
           <<-SPEC_HELPER
+# frozen_string_literal: true
 require 'chefspec'
 require 'chefspec/policyfile'
 SPEC_HELPER
@@ -608,6 +609,7 @@ SPEC_HELPER
 
         let(:expected_content) do
           <<-POLICYFILE_RB
+# frozen_string_literal: true
 source 'https://supermarket.chef.io'
 
 metadata
@@ -666,6 +668,7 @@ KITCHEN_YML
 
         let(:expected_chefspec_spec_helper_content) do
           <<-SPEC_HELPER
+# frozen_string_literal: true
 require 'chefspec'
 require 'chefspec/berkshelf'
 SPEC_HELPER
