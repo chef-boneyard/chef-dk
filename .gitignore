@@ -34,3 +34,6 @@ Vagrantfile
 
 # Chef-Acceptance
 .acceptance_logs
+
+# some acceptance tests will leave this if they fail
+my-cookbook

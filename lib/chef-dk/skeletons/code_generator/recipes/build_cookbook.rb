@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 context = ChefDK::Generator.context
 delivery_project_dir = context.delivery_project_dir
