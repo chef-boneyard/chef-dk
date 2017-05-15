@@ -1,17 +1,11 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v2.0.2](https://github.com/chef/chef-dk/tree/v2.0.2) (2017-05-04)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v2.0.2...v2.0.2)
+## [v2.0.3](https://github.com/chef/chef-dk/tree/v2.0.3) (2017-05-04)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.3.43...v2.0.3)
 
 **Implemented enhancements:**
 
 - Create a Chef 12 style templates dir instead of a Chef 11 style dir [\#1247](https://github.com/chef/chef-dk/pull/1247) ([tas50](https://github.com/tas50))
-
-## [v2.0.2](https://github.com/chef/chef-dk/tree/v2.0.2) (2017-05-03)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.3.43...v2.0.2)
-
-**Implemented enhancements:**
-
 - Ship with Chef 13 [\#1239](https://github.com/chef/chef-dk/pull/1239) ([thommay](https://github.com/thommay))
 - Add inspec to chef --version output [\#1238](https://github.com/chef/chef-dk/pull/1238) ([adamleff](https://github.com/adamleff))
 - Bump cookstyle and foodcritic deps [\#1229](https://github.com/chef/chef-dk/pull/1229) ([tas50](https://github.com/tas50))
