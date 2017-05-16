@@ -36,7 +36,7 @@ group(:omnibus_package, :development, :test) do
   gem "guard"
   gem "ruby-prof"
   gem "cookstyle", ">= 1.3.0"
-  gem "foodcritic", ">= 9.0"
+  gem "foodcritic", ">= 8.0"
 end
 
 # All software we recognize needs to stay at the latest possible version. But
@@ -95,6 +95,10 @@ group(:omnibus_package) do
   # TODO Pinning these for now because github_changelog_generator has a bunch
   # of different versions across our products
   gem "nokogiri", "~> 1.6.3"
+
+  # TODO Remove this pinning since I am using it to fix the dep with
+  # with chef 12.19.36 and poise-boiler
+  gem "poise-boiler", "= 1.13.2"
 end
 
 # Everything except AIX and Windows
