@@ -92,6 +92,8 @@ module ChefDK
           set_default_chef_server_source(source_argument, &block)
         when :chef_repo
           set_default_chef_repo_source(source_argument, &block)
+        when :artifactory
+          set_default_artifactory_source(source_argument, &block)
         else
           @errors << "Invalid default_source type '#{source_type.inspect}'"
         end
@@ -170,6 +172,14 @@ module ChefDK
           @errors << "You must specify the server's URI when using a default_source :chef_server"
         else
           set_default_source(ChefServerCookbookSource.new(source_uri, chef_config: chef_config, &block))
+        end
+      end
+
+      def set_default_artifactory_source(source_uri, &block)
+        if source_uri.nil?
+          @errors << "You must specify the server's URI when using a default_source :artifactory"
+        else
+          set_default_source(ArtifactoryCookbookSource.new(source_uri, chef_config: chef_config, &block))
         end
       end
 

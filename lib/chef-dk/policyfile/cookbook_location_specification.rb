@@ -29,7 +29,7 @@ module ChefDK
       # API contract
       include StorageConfigDelegation
 
-      SOURCE_TYPES = [:git, :github, :path, :artifactserver, :chef_server]
+      SOURCE_TYPES = [:git, :github, :path, :artifactserver, :chef_server, :artifactory]
 
       #--
       # Required by CookbookOmnifetch API contract
@@ -69,7 +69,7 @@ module ChefDK
       end
 
       def mirrors_canonical_upstream?
-        [:git, :github, :artifactserver, :chef_server].include?(source_type)
+        [:git, :github, :artifactserver, :chef_server, :artifactory].include?(source_type)
       end
 
       def installed?
