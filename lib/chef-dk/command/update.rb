@@ -101,7 +101,7 @@ BANNER
       end
 
       def installer
-        @installer ||= PolicyfileServices::Install.new(policyfile: policyfile_relative_path, ui: ui, root_dir: Dir.pwd, overwrite: true)
+        @installer ||= PolicyfileServices::Install.new(policyfile: policyfile_relative_path, ui: ui, root_dir: Dir.pwd, config: chef_config, overwrite: true)
       end
 
       def attributes_updater

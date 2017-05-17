@@ -78,7 +78,7 @@ describe ChefDK::Command::Install do
 
     it "creates the installer service with a `nil` policyfile path" do
       expect(ChefDK::PolicyfileServices::Install).to receive(:new).
-        with(hash_including(policyfile: nil, ui: command.ui, root_dir: Dir.pwd)).
+        with(hash_including(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, config: Chef::Config)).
         and_return(install_service)
       expect(command.installer).to eq(install_service)
     end
@@ -95,7 +95,7 @@ describe ChefDK::Command::Install do
 
     it "creates the installer service with the specified policyfile path" do
       expect(ChefDK::PolicyfileServices::Install).to receive(:new).
-        with(hash_including(policyfile: "MyPolicy.rb", ui: command.ui, root_dir: Dir.pwd)).
+        with(hash_including(policyfile: "MyPolicy.rb", ui: command.ui, root_dir: Dir.pwd, config: Chef::Config)).
         and_return(install_service)
       expect(command.installer).to eq(install_service)
     end
