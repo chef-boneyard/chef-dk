@@ -55,7 +55,11 @@ group(:omnibus_package) do
   gem "chef-vault"
   # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
   gem "chef", github: "chef/chef", branch: "v12.19.36"
-  gem "cheffish", ">= 4.0"
+  # Pinned cheffish to version 5.0.1 since the latest version 13.0.0 has
+  # a dependency to ruby 2.3.3 but we are shipping ChefDK with ruby 2.3.1
+  #
+  # TODO: Remove this pin once we have solve the problem
+  gem "cheffish", "= 5.0.1"
   gem "chefspec"
   gem "fauxhai"
   gem "inspec", ">= 0.17.1"
