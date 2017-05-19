@@ -44,6 +44,12 @@ dependency "preparation"
 # or removal of a dependency doesn't dirty the entire project file
 dependency "chef-dk-complete"
 
+if windows?
+  dependency "rb-readline"
+  dependency "ruby-windows-devkit"
+  dependency "ruby-windows-devkit-bash"
+end
+
 package :rpm do
   signing_passphrase ENV["OMNIBUS_RPM_SIGNING_PASSPHRASE"]
 end
