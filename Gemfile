@@ -99,9 +99,6 @@ group(:omnibus_package) do
   # TODO Pinning these for now because github_changelog_generator has a bunch
   # of different versions across our products
   gem "nokogiri", "~> 1.6.3"
-
-  # TODO: Pinning this gem since chef needs it for integration testing.
-  gem "poise-boiler", git: "https://github.com/poise/poise-boiler", branch: "master"
 end
 
 # Everything except AIX and Windows

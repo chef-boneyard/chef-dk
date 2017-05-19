@@ -97,43 +97,6 @@ GIT
       uuidtools
 
 GIT
-  remote: https://github.com/poise/poise-boiler
-  revision: e9c5fc1190add32a1c5f2bc41a27f2336710df7a
-  branch: master
-  specs:
-    poise-boiler (1.15.1.pre)
-      awesome_print
-      bundler
-      chefspec (>= 5, < 8)
-      codeclimate-test-reporter (~> 1.0)
-      codecov (~> 0.0, >= 0.0.2)
-      foodcritic (>= 7, < 12)
-      fuubar (~> 2.0)
-      git (~> 1.2)
-      halite (~> 1.6)
-      hirb
-      kitchen-docker (>= 2.6.0.rc.0)
-      kitchen-ec2 (~> 1.0)
-      kitchen-sync (~> 2.1)
-      kitchen-vagrant
-      mixlib-shellout (>= 1.4, < 3.0)
-      poise-profiler (~> 1.0)
-      pry
-      pry-byebug
-      rake (>= 10.4, < 13)
-      rspec (~> 3.2)
-      rspec-its (~> 1.2)
-      simplecov (~> 0.9)
-      test-kitchen (~> 1.7, >= 1.7.1)
-      travis (~> 1.8, >= 1.8.1)
-      vagrant-wrapper
-      winrm (>= 1.6, < 3)
-      winrm-fs (>= 0.4, < 2)
-      wirb
-      yard (~> 0.8)
-      yard-classmethods (~> 1.0)
-
-GIT
   remote: https://github.com/tduffield/github-changelog-generator
   revision: c6245b58b91b863464ca88e02aa752a0658b5f30
   branch: adjust-tag-section-mapping
@@ -180,7 +143,6 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    awesome_print (1.7.0)
     aws-sdk (2.9.3)
       aws-sdk-resources (= 2.9.3)
     aws-sdk-core (2.9.3)
@@ -192,7 +154,6 @@ GEM
       json (~> 1.4)
       nokogiri (~> 1)
     aws-sigv4 (1.0.0)
-    backports (3.8.0)
     berkshelf (5.6.4)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (>= 2.0.2, < 4.0)
@@ -231,9 +192,6 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-api (0.7.0)
-      logify (~> 0.1)
-      mime-types
     chef-provisioning (2.2.1)
       cheffish (>= 4.0, < 6.0)
       inifile (>= 2.0.2)
@@ -281,12 +239,6 @@ GEM
       fauxhai (>= 3.6, < 5)
       rspec (~> 3.0)
     cleanroom (1.0.0)
-    codeclimate-test-reporter (1.0.8)
-      simplecov (<= 0.13)
-    codecov (0.1.10)
-      json
-      simplecov
-      url
     coderay (1.1.1)
     cookbook-omnifetch (0.5.1)
       mixlib-archive (~> 0.4)
@@ -313,21 +265,16 @@ GEM
       ffi (~> 1.9)
     diff-lcs (1.3)
     diffy (3.2.0)
-    docile (1.1.5)
     docker-api (1.33.3)
       excon (>= 0.38.0)
       json
     erubis (2.7.0)
-    ethon (0.10.1)
-      ffi (>= 1.3.0)
     excon (0.55.0)
     extlib (0.9.16)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     faraday-http-cache (2.0.0)
       faraday (~> 0.8)
-    faraday_middleware (0.11.0.1)
-      faraday (>= 0.7.4, < 1.0)
     fauxhai (4.1.0)
       net-ssh
     ffi (1.9.18)
@@ -490,17 +437,7 @@ GEM
       treetop (~> 1.4)
       yajl-ruby (~> 1.1)
     formatador (0.2.5)
-    fuubar (2.2.0)
-      rspec-core (~> 3.0)
-      ruby-progressbar (~> 1.4)
     fuzzyurl (0.9.0)
-    gh (0.15.1)
-      addressable (~> 2.4.0)
-      backports
-      faraday (~> 0.8)
-      multi_json (~> 1.0)
-      net-http-persistent (~> 2.9)
-      net-http-pipeline
     gherkin (4.1.1)
     git (1.3.0)
     google-api-client (0.8.7)
@@ -535,14 +472,8 @@ GEM
       thor (>= 0.18.1)
     gyoku (1.3.1)
       builder (>= 2.1.2)
-    halite (1.7.0)
-      bundler
-      chef (>= 12.0, < 14.0)
-      stove (~> 5.0)
-      thor
     hashie (3.5.5)
     highline (1.7.8)
-    hirb (0.7.3)
     hitimes (1.2.4)
     hitimes (1.2.4-x86-mingw32)
     httpclient (2.8.3)
@@ -571,8 +502,6 @@ GEM
     jmespath (1.3.1)
     json (1.8.6)
     jwt (1.5.6)
-    kitchen-docker (2.6.0)
-      test-kitchen (>= 1.0.0)
     kitchen-dokken (2.1.2)
       docker-api (~> 1.33)
       test-kitchen (~> 1.15)
@@ -586,9 +515,6 @@ GEM
       hashie (~> 3.4)
       inspec (>= 0.34.0, < 2.0.0)
       test-kitchen (~> 1.6)
-    kitchen-sync (2.2.0)
-      net-sftp
-      test-kitchen (>= 1.0.0)
     kitchen-vagrant (1.1.0)
       test-kitchen (~> 1.4)
     knife-opc (0.3.2)
@@ -613,7 +539,6 @@ GEM
     logging (2.2.0)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
-    logify (0.2.0)
     lumberjack (1.0.11)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
@@ -647,8 +572,6 @@ GEM
     multi_test (0.1.2)
     multipart-post (2.0.0)
     nenv (0.3.0)
-    net-http-persistent (2.9.4)
-    net-http-pipeline (1.0.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -691,8 +614,6 @@ GEM
     parslet (1.5.0)
       blankslate (~> 2.0)
     plist (3.2.0)
-    poise-profiler (1.1.0)
-      halite (~> 1.0)
     polyglot (0.3.5)
     powerpack (0.1.1)
     proxifier (1.0.3)
@@ -709,9 +630,6 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    pusher-client (0.6.2)
-      json
-      websocket (~> 1.0)
     rack (2.0.1)
     rainbow (2.2.1)
     rake (10.5.0)
@@ -795,11 +713,6 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
-    simplecov (0.13.0)
-      docile (~> 1.1.0)
-      json (>= 1.8, < 3)
-      simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.1)
     slop (3.6.0)
     solve (3.1.0)
       molinillo (>= 0.5)
@@ -810,9 +723,6 @@ GEM
       net-telnet
       sfl
     sslshake (1.2.0)
-    stove (5.2.0)
-      chef-api (~> 0.5)
-      logify (~> 0.2)
     stuartpreston-azure-sdk-for-ruby (0.7.2)
       json (~> 1.8)
       mime-types (> 1, < 4)
@@ -843,33 +753,19 @@ GEM
       net-ssh (>= 2.9, < 5.0)
       winrm (~> 2.0)
       winrm-fs (~> 1.0)
-    travis (1.8.8)
-      backports
-      faraday (~> 0.9)
-      faraday_middleware (~> 0.9, >= 0.9.1)
-      gh (~> 0.13)
-      highline (~> 1.6)
-      launchy (~> 2.1)
-      pusher-client (~> 0.4)
-      typhoeus (~> 0.6, >= 0.6.8)
     treetop (1.6.8)
       polyglot (~> 0.3)
     trollop (2.1.2)
-    typhoeus (0.8.0)
-      ethon (>= 0.8.0)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     ubuntu_ami (0.4.1)
     unicode-display_width (1.2.1)
-    url (0.3.2)
     uuid (2.3.8)
       macaddr (~> 1.0)
     uuidtools (2.1.5)
-    vagrant-wrapper (2.0.3)
     varia_model (0.6.0)
       buff-extensions (~> 2.0)
       hashie (>= 2.0.2, < 4.0.0)
-    websocket (1.2.4)
     win32-api (1.5.3-universal-mingw32)
     win32-dir (0.5.1)
       ffi (>= 1.0.0)
@@ -910,14 +806,10 @@ GEM
       logging (>= 1.6.1, < 3.0)
       rubyzip (~> 1.1)
       winrm (~> 2.0)
-    wirb (2.1.1)
-      paint (>= 0.9, < 3.0)
     wmi-lite (1.0.0)
     xml-simple (1.1.5)
     yajl-ruby (1.3.0)
     yard (0.9.8)
-    yard-classmethods (1.0.0)
-      yard
 
 PLATFORMS
   ruby
@@ -964,7 +856,6 @@ DEPENDENCIES
   nokogiri (~> 1.6.3)
   ohai (>= 8.13.0)
   opscode-pushy-client!
-  poise-boiler!
   pry
   pry-byebug
   pry-remote
