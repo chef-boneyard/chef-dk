@@ -19,9 +19,9 @@ Configure knife to use your preferred copyright holder, email contact and licens
 
 Supported values for `cookbook_license` are "apachev2", "mit","gplv2","gplv3",  or "none". These settings are used to prefill comments in the default recipe, and the corresponding values in the metadata.rb. You are free to change the the comments in those files.
 
-Create new cookbooks in this directory with Knife.
+Create new cookbooks in this directory with Chef.
 
-    knife cookbook create COOKBOOK
+    chef generate cookbook COOKBOOK
 
 This will create all the cookbook directory components. You don't need to use them all, and can delete the ones you don't need. It also creates a README file, metadata.rb and default recipe.
 
