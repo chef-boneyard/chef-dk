@@ -2,7 +2,7 @@
 
 ## InSpec
 
-InSpec has been updated to 1.25.0 with the following new functionality:
+InSpec has been updated to 1.25.1 with the following new functionality:
 
 * Consistent hashing for InSpec profiles
 * Add platform info to json formatter
