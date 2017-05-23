@@ -114,6 +114,7 @@ BANNER
 
       justify_length = subcommands.map(&:length).max + 2
       subcommand_specs.each do |name, spec|
+        next if spec.hidden
         msg("    #{"#{name}".ljust(justify_length)}#{spec.description}")
       end
     end
