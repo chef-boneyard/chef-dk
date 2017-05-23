@@ -544,6 +544,7 @@ end
       end
 
       def run(params = [ ])
+        err("[WARN] This is an internal command used by the ChefDK development team. If you are a ChefDK user, please do not run it.")
         @components_filter = parse_options(params)
 
         validate_components!
