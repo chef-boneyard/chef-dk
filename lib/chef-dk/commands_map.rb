@@ -54,7 +54,7 @@ module ChefDK
   class CommandsMap
     NULL_ARG = Object.new
 
-    CommandSpec = Struct.new(:name, :constant_name, :require_path, :description)
+    CommandSpec = Struct.new(:name, :constant_name, :require_path, :description, :hidden)
 
     class CommandSpec
 
@@ -72,12 +72,12 @@ module ChefDK
       @command_specs = {}
     end
 
-    def builtin(name, constant_name, require_path: NULL_ARG, desc: "")
+    def builtin(name, constant_name, require_path: NULL_ARG, desc: "", hidden: false)
       if null?(require_path)
         snake_case_path = name.tr("-", "_")
         require_path = "chef-dk/command/#{snake_case_path}"
       end
-      command_specs[name] = CommandSpec.new(name, constant_name, require_path, desc)
+      command_specs[name] = CommandSpec.new(name, constant_name, require_path, desc, hidden)
     end
 
     def instantiate(name)

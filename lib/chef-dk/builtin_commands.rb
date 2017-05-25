@@ -55,5 +55,5 @@ ChefDK.commands do |c|
 
   c.builtin "undelete", :Undelete, desc: "Undo a delete command"
 
-  c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications"
+  c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications", hidden: true
 end
