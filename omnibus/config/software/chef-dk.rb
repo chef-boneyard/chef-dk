@@ -43,65 +43,47 @@ end
 dependency "ruby"
 dependency "rubygems"
 dependency "bundler"
+dependency "ohai"
+dependency "appbundler"
+dependency "nokogiri-git"
 
-# Install all the native gems separately
-# Worst offenders first to take best advantage of cache:
-dependency "chef-dk-gem-dep-selector-libgecode"
-dependency "chef-dk-gem-ffi-rzmq"
-dependency "chef-dk-gem-ffi-yajl"
-dependency "chef-dk-gem-json"
-dependency "chef-dk-gem-nokogiri"
-dependency "chef-dk-gem-libyajl2"
-dependency "chef-dk-gem-ffi"
-dependency "chef-dk-gem-ruby-prof"
-dependency "chef-dk-gem-dep_selector"
-dependency "chef-dk-gem-nio4r"
-dependency "chef-dk-gem-byebug"
-dependency "chef-dk-gem-yajl-ruby"
-dependency "chef-dk-gem-hitimes"
-dependency "chef-dk-gem-debug_inspector"
-dependency "chef-dk-gem-binding_of_caller"
-
-# Now everyone else, in alphabetical order because we don't care THAT much
-Dir.entries(File.dirname(__FILE__)).sort.each do |gem_software|
-  if gem_software =~ /^(chef-dk-gem-.+)\.rb$/
-    dependency $1
-  end
-end
 
 build do
-  # This is where we get the definitions below
-  require_relative "../../files/chef-dk/build-chef-dk"
-  extend BuildChefDK
+  env = with_standard_compiler_flags(with_embedded_path)
 
-  project_env = env.dup
-  project_env["BUNDLE_GEMFILE"] = project_gemfile
+  excluded_groups = %w{server docgen maintenance pry travis integration ci}
+  excluded_groups << "ruby_prof" if aix?
+  excluded_groups << "ruby_shadow" if aix?
 
-  # Prepare to install: build config, retries, job, frozen=true
-  # TODO Windows install seems to sometimes install already-installed gems such
-  # as gherkin (and fail as a result) if you use jobs > 1.
-  create_bundle_config(project_gemfile, retries: 4, jobs: windows? ? 1 : 7, frozen: true)
+  # install the whole bundle first
+  bundle "install --without #{excluded_groups.join(' ')}", env: env
 
-  # Install all the things. Arguments are specified in .bundle/config (see create_bundle_config)
-  block { log.info(log_key) { "" } }
-  bundle "install --verbose", env: project_env
+  gem "build chef-dk.gemspec", env: env
 
-  # For whatever reason, nokogiri software def deletes this (rather small) directory
-  block { log.info(log_key) { "" } }
-  block "Remove mini_portile test dir" do
-    mini_portile = shellout!("#{bundle_bin} show mini_portile").stdout.chomp
-    remove_directory File.join(mini_portile, "test")
+  gem "install chef*.gem --no-ri --no-rdoc --verbose", env: env
+
+  env["NOKOGIRI_USE_SYSTEM_LIBRARIES"] = "true"
+
+  appbundle "berkshelf", lockdir: project_dir, without: %w{guard changelog}, env:env
+  appbundle "chef", lockdir: project_dir, without: %w{changelog integration docgen maintenance ci travis}, env:env
+
+  %w{chef-dk chef-vault foodcritic ohai test-kitchen opscode-pushy-client cookstyle inspec dco}.each do |gem|
+    appbundle gem, lockdir: project_dir, without: %w{changelog}, env: env
   end
 
-  # Check that it worked
-  block { log.info(log_key) { "" } }
-  bundle "check", env: project_env
+  # Clear the now-unnecessary git caches, cached gems, and git-checked-out gems
+  block "Delete bundler git cache and git installs" do
+    gemdir = shellout!("#{install_dir}/embedded/bin/gem environment gemdir", env: env).stdout.chomp
+    remove_directory "#{gemdir}/cache"
+    remove_directory "#{gemdir}/bundler"
+  end
 
-  # fix up git-sourced gems
-  properly_reinstall_git_and_path_sourced_gems
-  install_shared_gemfile
-
-  # Check that the final gemfile worked
-  block { log.info(log_key) { "" } }
-  bundle "check", env: env, cwd: File.dirname(shared_gemfile)
+  # Clean up docs
+  delete "#{install_dir}/embedded/docs"
+  delete "#{install_dir}/embedded/share/man"
+  delete "#{install_dir}/embedded/share/doc"
+  delete "#{install_dir}/embedded/share/gtk-doc"
+  delete "#{install_dir}/embedded/ssl/man"
+  delete "#{install_dir}/embedded/man"
+  delete "#{install_dir}/embedded/info"
 end

@@ -45,7 +45,6 @@ describe ChefDK::Command::Verify do
       "chef-provisioning",
       "chefspec",
       "generated-cookbooks-pass-chefspec",
-      "rubocop",
       "fauxhai",
       "knife-spork",
       "kitchen-vagrant",

@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "omnibus", git: "https://github.com/chef/omnibus.git"
+gem "omnibus", git: "https://github.com/chef/omnibus.git", branch: "lcg/improve-appbundling"
 gem "omnibus-software", git: "https://github.com/chef/omnibus-software.git"
 
 gem "pedump"

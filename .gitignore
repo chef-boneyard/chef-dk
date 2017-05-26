@@ -7,7 +7,7 @@ pkg/*
 
 # You should check in your Gemfile.lock in applications, and not in gems
 /Gemfile.local
-acceptance/.bundle
+.bundle
 
 # ignore some common Bundler 'binstubs' directory names
 # http://gembundler.com/man/bundle-exec.1.html

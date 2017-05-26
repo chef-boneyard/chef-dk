@@ -18,7 +18,7 @@
 # Explicit omnibus overrides.
 OMNIBUS_OVERRIDES = {
   # Until 1.13.0 is released
-  :bundler => "1.12.5",
+  :bundler => "1.14.6",
   # Lower level library pins
   ## according to comment in omnibus-sw, latest versions don't work on solaris
   # https://github.com/chef/omnibus-software/blob/aefb7e79d29ca746c3f843673ef5e317fa3cba54/config/software/libtool.rb#L23
