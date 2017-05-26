@@ -55,7 +55,7 @@ group(:omnibus_package) do
   gem "chef-provisioning-vagrant", ">= 0.11.0"
   gem "chef-vault"
   # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "chef", git: "https://github.com/chef/chef", branch: "v13.0.118"
+  gem "chef", "= 13.0.118"
   gem "cheffish", ">= 13.0"
   gem "chefspec"
   gem "fauxhai"
