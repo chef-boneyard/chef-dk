@@ -324,22 +324,6 @@ require 'spec_helper'
         end
       end
 
-      add_component "rubocop" do |c|
-        c.gem_base_dir = "rubocop"
-        c.smoke_test do
-          tmpdir do |cwd|
-            with_file(File.join(cwd, "foo.rb")) do |f|
-              f.write <<-EOF
-def foo
-  puts 'foo'
-end
-              EOF
-            end
-            sh("#{bin("rubocop")} foo.rb -l", cwd: cwd)
-          end
-        end
-      end
-
       add_component "fauxhai" do |c|
         c.gem_base_dir = "fauxhai"
         c.smoke_test { sh("#{embedded_bin("gem")} list fauxhai") }

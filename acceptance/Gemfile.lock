@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/chef/chef-acceptance.git
+  remote: https://github.com/chef/chef-acceptance
   revision: 3877c344098021ac66134e8edb5eb805d14d4643
   specs:
     chef-acceptance (0.2.0)

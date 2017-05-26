@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2016 Chef Software Inc.
+# Copyright:: Copyright (c) 2016-2017, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,6 @@
 # limitations under the License.
 #
 
-require_relative "bundle_util"
 require_relative "../version_policy"
 require "fileutils"
 
@@ -23,74 +22,52 @@ desc "Tasks to work with the main Gemfile and Gemfile.<platform>"
 namespace :bundle do
   desc "Update Gemfile.lock and all Gemfile.<platform>.locks (or one or more gems via bundle:update gem1 gem2 ...)."
   task :update, [:args] do |t, rake_args|
-    extend BundleUtil
     args = rake_args[:args] || ""
-    with_bundle_unfrozen do
-      puts ""
-      puts "-------------------------------------------------------------------"
-      puts "Updating Gemfile.lock ..."
-      puts "-------------------------------------------------------------------"
-      bundle "update #{args}"
-      platforms.each do |platform|
-        bundle "update #{args}", platform: platform
-      end
+    Bundler.with_clean_env do
+      sh "bundle update #{args}"
     end
   end
 
   desc "Conservatively update Gemfile.lock and all Gemfile.<platform>.locks"
   task :install, [:args] do |t, rake_args|
-    extend BundleUtil
     args = rake_args[:args] || ""
-    with_bundle_unfrozen do
-      puts ""
-      puts "-------------------------------------------------------------------"
-      puts "Updating Gemfile.lock ..."
-      puts "-------------------------------------------------------------------"
-      bundle "install #{args}"
-      platforms.each do |platform|
-        bundle "lock", platform: platform
+    args = rake_args[:args] || ""
+    Bundler.with_clean_env do
+      sh "bundle install #{args}"
+    end
+  end
+
+  def parse_bundle_outdated(bundle_outdated_output)
+    result = []
+    bundle_outdated_output.each_line do |line|
+      if line =~ /^\s*\* (.+) \(newest ([^,]+), installed ([^,)])*/
+        gem_name, newest_version, installed_version = $1, $2, $3
+        result << [ line, gem_name ]
       end
     end
+    result
   end
 
   # Find out if we're using the latest gems we can (so we don't regress versions)
   desc "Check for gems that are not at the latest released version, and report if anything not in ACCEPTABLE_OUTDATED_GEMS (version_policy.rb) is out of date."
   task :outdated do
-    extend BundleUtil
-    puts ""
-    puts "-------------------------------------------------------------------"
-    puts "Checking for outdated gems ..."
-    puts "-------------------------------------------------------------------"
-    with_bundle_unfrozen do
-      bundle_outdated = bundle("outdated", extract_output: true)
+    bundle_outdated = ""
+    Bundler.with_clean_env do
+      bundle_outdated = `bundle outdated`
       puts bundle_outdated
-      outdated_gems = parse_bundle_outdated(bundle_outdated).map { |line, gem_name| gem_name }
-      # Weed out the acceptable ones
-      outdated_gems = outdated_gems.reject { |gem_name| ACCEPTABLE_OUTDATED_GEMS.include?(gem_name) }
-      if outdated_gems.empty?
-        puts ""
-        puts "SUCCESS!"
-      else
-        raise "ERROR: outdated gems: #{outdated_gems.join(", ")}. Either fix them or add them to ACCEPTABLE_OUTDATED_GEMS in #{__FILE__}."
-      end
+    end
+    outdated_gems = parse_bundle_outdated(bundle_outdated).map { |line, gem_name| gem_name }
+    outdated_gems = outdated_gems.reject { |gem_name| ACCEPTABLE_OUTDATED_GEMS.include?(gem_name) }
+    unless outdated_gems.empty?
+      raise "ERROR: outdated gems: #{outdated_gems.join(", ")}. Either fix them or add them to ACCEPTABLE_OUTDATED_GEMS in #{__FILE__}."
     end
   end
 end
 
-desc "Run bundle with arbitrary args against the given platform; e.g. rake bundle[show]. No platform to run against the main bundle; bundle[show,windows] to run the windows one; bundle[show,*] to run against all non-default platforms."
-task :bundle, [:args, :platform] do |t, rake_args|
-  extend BundleUtil
+desc "Run bundle with arbitrary args"
+task :bundle, [:args] do |t, rake_args|
   args = rake_args[:args] || ""
-  platform = rake_args[:platform]
-  with_bundle_unfrozen do
-    if platform == "*"
-      platforms.each do |platform|
-        bundle args, platform: platform
-      end
-    elsif platform
-      bundle args, platform: platform
-    else
-      bundle args
-    end
+  Bundler.with_clean_env do
+    sh "bundle #{args}"
   end
 end

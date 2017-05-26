@@ -1,5 +1,5 @@
 #
-# Copyright 2014-2016 Chef Software, Inc.
+# Copyright 2014-2017, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -34,15 +34,50 @@ else
   install_dir "#{default_root}/#{name}"
 end
 
+override :"chef-dk", version: "local_source"
+override :appbundler, version: "lcg/transitive-gemfile"
+
 # Load dynamically updated overrides
 overrides_path = File.expand_path("../../../../omnibus_overrides.rb", __FILE__)
 instance_eval(IO.read(overrides_path), overrides_path)
 
 dependency "preparation"
 
-# All actual dependencies are in chef-dk-complete, so that the addition
-# or removal of a dependency doesn't dirty the entire project file
-dependency "chef-dk-complete"
+# For the Delivery build nodes
+dependency "delivery-cli"
+# This is a build-time dependency, so we won't leave it behind:
+dependency "rust-uninstall"
+
+# Leave for last so system git is used for most of the build.
+if windows?
+  dependency "git-windows"
+else
+  dependency "git-custom-bindir"
+end
+
+dependency "chef-dk"
+
+dependency "gem-permissions"
+
+if windows?
+  dependency "chef-dk-env-customization"
+  dependency "chef-dk-powershell-scripts"
+end
+
+dependency "rubygems-customization"
+dependency "shebang-cleanup"
+dependency "version-manifest"
+dependency "openssl-customization"
+
+dependency "stunnel" if fips_mode?
+
+# This *has* to be last, as it mutates the build environment and causes all
+# compilations that use ./configure et all (the msys env) to break
+if windows?
+  override :"ruby-windows-devkit", version: "4.5.2-20111229-1559" if windows_arch_i386?
+  dependency "ruby-windows-devkit"
+  dependency "ruby-windows-devkit-bash"
+end
 
 package :rpm do
   signing_passphrase ENV["OMNIBUS_RPM_SIGNING_PASSPHRASE"]

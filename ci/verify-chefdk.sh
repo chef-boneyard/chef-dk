@@ -23,7 +23,8 @@ for ruby_env_var in _ORIGINAL_GEM_PATH \
                     RUBYOPT \
                     RUBY_ENGINE \
                     RUBY_ROOT \
-                    RUBY_VERSION
+                    RUBY_VERSION \
+                    BUNDLER_VERSION
 do
   unset $ruby_env_var
 done
