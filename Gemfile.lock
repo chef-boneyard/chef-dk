@@ -202,8 +202,6 @@ GEM
       google-api-client (~> 0.8.0)
       retryable
       winrm-elevated
-    chef-provisioning-vagrant (0.11.0)
-      chef-provisioning
     chef-sugar (3.4.0)
     chef-vault (3.0.3)
     chef-zero (13.0.0)
@@ -822,7 +820,6 @@ DEPENDENCIES
   chef-provisioning-aws (>= 2.0)
   chef-provisioning-azure (>= 0.6.0)
   chef-provisioning-fog (>= 0.20.0)
-  chef-provisioning-vagrant (>= 0.11.0)
   chef-sugar
   chef-vault
   cheffish (>= 13.0)
