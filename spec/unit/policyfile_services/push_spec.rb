@@ -200,9 +200,9 @@ E
           push_service.uploader
         end
 
-        it "validates the lockfile, writes any updates, and uploads the cookbooks" do
+        it "validates the lockfile and uploads the cookbooks" do
           allow(File).to receive(:open).and_call_original
-          expect(File).to receive(:open).with(policyfile_lock_path, "wb+").and_yield(updated_lockfile_io)
+          expect(File).not_to receive(:open).with(policyfile_lock_path, "wb+")
           expect(uploader).to receive(:upload)
 
           push_service.run
@@ -218,9 +218,9 @@ E
           push_service.uploader
         end
 
-        it "validates the lockfile, writes any updates, and uploads the cookbooks" do
+        it "validates the lockfile and uploads the cookbooks" do
           allow(File).to receive(:open).and_call_original
-          expect(File).to receive(:open).with(policyfile_lock_path, "wb+").and_yield(updated_lockfile_io)
+          expect(File).not_to receive(:open).with(policyfile_lock_path, "wb+")
           expect(uploader).to receive(:upload)
 
           push_service.run
@@ -232,7 +232,7 @@ E
 
         before do
           allow(File).to receive(:open).and_call_original
-          expect(File).to receive(:open).with(policyfile_lock_path, "wb+").and_yield(updated_lockfile_io)
+          expect(File).not_to receive(:open).with(policyfile_lock_path, "wb+")
           expect(uploader).to receive(:upload).and_raise("an error")
         end
 
