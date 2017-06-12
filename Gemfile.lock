@@ -494,6 +494,8 @@ GEM
       multi_json
       retryable (~> 2.0)
       test-kitchen (~> 1.4, >= 1.4.1)
+    kitchen-hyperv (0.4.1)
+      test-kitchen (~> 1.4)
     kitchen-inspec (0.19.0)
       hashie (~> 3.4)
       inspec (>= 0.34.0, < 2.0.0)
@@ -838,6 +840,7 @@ DEPENDENCIES
   inspec (>= 0.17.1)
   kitchen-dokken (>= 2.1.0)
   kitchen-ec2
+  kitchen-hyperv
   kitchen-inspec
   kitchen-vagrant
   knife-opc (>= 0.3.2)
