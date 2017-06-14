@@ -24,7 +24,7 @@ OMNIBUS_OVERRIDES = {
   # https://github.com/chef/omnibus-software/blob/aefb7e79d29ca746c3f843673ef5e317fa3cba54/config/software/libtool.rb#L23
   "libffi" => "3.2.1",
   "libiconv" => "1.14",
-  "liblzma" => "5.2.2",
+  "liblzma" => "5.2.3",
   ## according to comment in omnibus-sw, the very latest versions don't work on solaris
   # https://github.com/chef/omnibus-software/blob/aefb7e79d29ca746c3f843673ef5e317fa3cba54/config/software/libtool.rb#L23
   "libtool" => "2.4.2",
