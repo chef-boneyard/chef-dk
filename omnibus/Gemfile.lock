@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: dff477bf41d361fdec34e3dd464f8bbfb7f219e4
+  revision: 266a8ab07b0380607ce8a6ec5fd824ea002be2f1
   specs:
     omnibus-software (4.0.0)
       chef-sugar (>= 3.4.0)
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: abe466b54561a190fda6591b9dd2ec1a457f60f6
+  revision: 1da4e6d456c7ad241940b61ee68ccbcb32596d87
   branch: lcg/improve-appbundling
   specs:
     omnibus (5.5.0)
@@ -29,27 +29,28 @@ GEM
   specs:
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
-    artifactory (2.8.1)
+    artifactory (2.8.2)
     awesome_print (1.7.0)
-    aws-sdk (2.9.25)
-      aws-sdk-resources (= 2.9.25)
-    aws-sdk-core (2.9.25)
+    aws-sdk (2.9.41)
+      aws-sdk-resources (= 2.9.41)
+    aws-sdk-core (2.9.41)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.9.25)
-      aws-sdk-core (= 2.9.25)
+    aws-sdk-resources (2.9.41)
+      aws-sdk-core (= 2.9.41)
     aws-sigv4 (1.0.0)
-    berkshelf (6.0.1)
+    berkshelf (6.1.0)
       addressable (~> 2.3, >= 2.3.4)
       berkshelf-api-client (>= 2.0.2, < 4.0)
       buff-config (~> 2.0)
       buff-extensions (~> 2.0)
-      buff-shell_out (~> 1.0)
       cleanroom (~> 1.0)
+      concurrent-ruby (~> 1.0)
       faraday (~> 0.9)
       httpclient (~> 2.7)
       minitar (~> 0.5, >= 0.5.4)
       mixlib-archive (~> 0.4)
+      mixlib-shellout (~> 2.0)
       octokit (~> 4.0)
       retryable (~> 2.0)
       ridley (~> 5.0)
@@ -73,13 +74,14 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef-config (13.0.118)
+    chef-config (13.1.31)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
     chef-sugar (3.4.0)
     cleanroom (1.0.0)
+    concurrent-ruby (1.0.5)
     erubis (2.7.0)
     faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
@@ -248,4 +250,4 @@ DEPENDENCIES
   winrm-elevated
 
 BUNDLED WITH
-   1.15.0
+   1.15.1
