@@ -61,6 +61,7 @@ group(:omnibus_package) do
   gem "inspec", ">= 0.17.1"
   gem "kitchen-ec2"
   gem "kitchen-dokken", ">= 2.1.0"
+  gem "kitchen-hyperv"
   gem "kitchen-inspec"
   gem "kitchen-vagrant"
   gem "knife-windows"
