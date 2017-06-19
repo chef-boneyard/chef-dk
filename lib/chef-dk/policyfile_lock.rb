@@ -193,7 +193,7 @@ module ChefDK
         location_spec.gather_profile_data
         locks_map[name] = location_spec.to_lock
         locks_map
-      end
+      end.sort.to_h
     end
 
     def validate_cookbooks!

@@ -109,7 +109,7 @@ module ChefDK
       def policyfile_dependencies_for_lock
         policyfile_dependencies.map do |name, constraint|
           [ name, constraint.to_s ]
-        end
+        end.sort
       end
 
       def cookbook_deps_for_lock
@@ -118,7 +118,21 @@ module ChefDK
             [ name, constraint.to_s ]
           end
           map
+        end.sort.to_h
+      end
+
+      def transitive_deps(names)
+        require 'set'
+        deps = Set.new
+        to_explore = names.dup
+        until to_explore.empty?
+          ck_name = to_explore.shift
+          next unless deps.add?(ck_name) # explore each ck only once
+          my_deps = find_cookbook_dep_by_name(ck_name)
+          dep_names = my_deps[1].map(&:first)
+          to_explore += dep_names
         end
+        deps.to_a.sort
       end
 
       private
