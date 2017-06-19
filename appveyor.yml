@@ -4,10 +4,13 @@ os: Windows Server 2012 R2
 platform:
   - x64
 
+cache:
+  - vendor/bundle
+
 environment:
   matrix:
-    - ruby_version: "23-x64"
-    - ruby_version: "23"
+    - ruby_version: "24-x64"
+    - ruby_version: "24"
 
 clone_folder: c:\projects\chefdk
 clone_depth: 1
@@ -39,6 +42,7 @@ install:
   - set SSL_CERT_FILE=C:\cacert.pem
 
 build_script:
+  - bundle config --local path vendor/bundle
   - bundle install || bundle install || bundle install
 
 test_script:
