@@ -45,7 +45,7 @@ module ChefDK
       message = "Could not find cookbook(s) to satisfy run list #{run_list.inspect} in #{cookbook_path}"
       raise CookbookNotFound.new(message, e)
     rescue => e
-      raise ChefConvergeError.new("Chef failed to converge: #{e}", e)
+      raise ChefConvergeError.new("Chef failed to converge: #{e} from file #{e.backtrace.first}", e)
     end
 
     def run_context
