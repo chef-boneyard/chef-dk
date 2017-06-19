@@ -27,6 +27,8 @@ gem "chef-dk", path: "."
 # EXPERIMENTAL: ALL gems specified here will be installed in chef-dk omnibus.
 # This represents all gems that will be part of chef-dk.
 
+gem "bundler"
+
 group(:omnibus_package, :development, :test) do
   gem "rake"
   gem "pry"
@@ -34,7 +36,6 @@ group(:omnibus_package, :development, :test) do
   gem "yard"
   gem "dep_selector"
   gem "guard"
-  gem "ruby-prof"
   gem "cookstyle", ">= 1.3.0"
   gem "foodcritic", ">= 9.0"
 end
@@ -43,24 +44,24 @@ end
 # since that's not expressible here, we make it >= the last *known* version to
 # at least prevent downgrades beyond that:
 group(:omnibus_package) do
-  gem "appbundler", github: "chef/appbundler" # until next release with multiple-gem support
+  gem "appbundler"
   gem "berkshelf", ">= 5.0"
   # Chef 12.8.1 Gem includes some extra files which can break gem installation on
   # windows. For now we are pulling chef from github at the tag as a workaround.
-  gem "chef-provisioning", ">= 2.0"
+  gem "chef-provisioning", ">= 2.3.0"
   gem "chef-provisioning-aws", ">= 2.0"
   gem "chef-provisioning-azure", ">= 0.6.0"
   gem "chef-provisioning-fog", ">= 0.20.0"
-  gem "chef-provisioning-vagrant", ">= 0.11.0"
   gem "chef-vault"
   # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "chef", github: "chef/chef", branch: "v12.19.36"
-  gem "cheffish", ">= 4.0"
+  gem "chef", "= 13.0.118"
+  gem "cheffish", ">= 13.0"
   gem "chefspec"
   gem "fauxhai"
   gem "inspec", ">= 0.17.1"
   gem "kitchen-ec2"
   gem "kitchen-dokken", ">= 2.1.0"
+  gem "kitchen-hyperv"
   gem "kitchen-inspec"
   gem "kitchen-vagrant"
   gem "knife-windows"
@@ -75,7 +76,7 @@ group(:omnibus_package) do
   gem "mixlib-versioning"
   gem "artifactory"
   # The opscode-pushy-client version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "opscode-pushy-client", github: "chef/opscode-pushy-client", branch: "2.1.2"
+  gem "opscode-pushy-client", ">= 2.3.0"
   gem "ffi-rzmq-core"
   gem "knife-push"
 
@@ -94,17 +95,21 @@ group(:omnibus_package) do
 
   # TODO Pinning these for now because github_changelog_generator has a bunch
   # of different versions across our products
-  gem "nokogiri", "~> 1.6.3"
-  gem "addressable", "~> 2.4.0"
+  gem "nokogiri"
+end
+
+# Everything except AIX
+group(:ruby_prof) do
+  gem "ruby-prof"
 end
 
 # Everything except AIX and Windows
-group(:linux, :bsd, :mac_os_x, :solaris) do
+group(:ruby_shadow) do
   gem "ruby-shadow", platform: :ruby
 end
 
 group(:changelog) do
-  gem "github_changelog_generator", git: "https://github.com/tduffield/github-changelog-generator", branch: "adjust-tag-section-mapping"
+  gem "github_changelog_generator", git: "https://github.com/chef/github-changelog-generator"
 end
 
 # mixlib-install is used by two groups

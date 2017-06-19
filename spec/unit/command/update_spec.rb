@@ -96,7 +96,7 @@ describe ChefDK::Command::Update do
 
     it "creates the installer service with a `nil` policyfile path" do
       expect(ChefDK::PolicyfileServices::Install).to receive(:new).
-        with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, overwrite: true).
+        with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, config: Chef::Config, overwrite: true).
         and_return(install_service)
       expect(command.installer).to eq(install_service)
     end
@@ -113,7 +113,7 @@ describe ChefDK::Command::Update do
 
     it "creates the installer service with the specified policyfile path" do
       expect(ChefDK::PolicyfileServices::Install).to receive(:new).
-        with(policyfile: "MyPolicy.rb", ui: command.ui, root_dir: Dir.pwd, overwrite: true).
+        with(policyfile: "MyPolicy.rb", ui: command.ui, root_dir: Dir.pwd, config: Chef::Config, overwrite: true).
         and_return(install_service)
       expect(command.installer).to eq(install_service)
     end

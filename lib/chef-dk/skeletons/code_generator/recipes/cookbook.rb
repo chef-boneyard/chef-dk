@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 context = ChefDK::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
@@ -10,8 +11,24 @@ generator_desc('Ensuring correct cookbook file content')
 directory cookbook_dir
 
 # metadata.rb
+spdx_license =  case context.license
+                when 'apachev2'
+                  'Apache-2.0'
+                when 'mit'
+                  'MIT'
+                when 'gplv2'
+                  'GPL-2.0'
+                when 'gplv3'
+                  'GPL-3.0'
+                else
+                  'All Rights Reserved'
+                end
+
 template "#{cookbook_dir}/metadata.rb" do
   helpers(ChefDK::Generator::TemplateHelper)
+  variables(
+    spdx_license: spdx_license
+  )
   action :create_if_missing
 end
 

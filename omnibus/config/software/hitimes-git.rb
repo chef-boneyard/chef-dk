@@ -1,6 +1,4 @@
-#
-# Copyright:: Copyright (c) 2014 Chef Software Inc.
-# License:: Apache License, Version 2.0
+# Copyright 2012-2017, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,22 +13,26 @@
 # limitations under the License.
 #
 
-require "chef-dk/command/generator_commands/cookbook_code_file"
+name "hitimes-git"
 
-module ChefDK
-  module Command
-    module GeneratorCommands
-      # chef generate lwrp [path/to/cookbook_root] NAME
-      class LWRP < CookbookCodeFile
+license "ISC"
+license_file "https://github.com/copiousfreetime/hitimes/blob/master/LICENSE"
+skip_transitive_dependency_licensing true
 
-        banner "Usage: chef generate lwrp [path/to/cookbook] NAME [options]"
+dependency "ruby"
 
-        options.merge!(SharedGeneratorOptions.options)
+dependency "rubygems"
+dependency "bundler"
 
-        def recipe
-          "lwrp"
-        end
-      end
-    end
-  end
+source git: "https://github.com/copiousfreetime/hitimes"
+default_version "master"
+
+build do
+  env = with_standard_compiler_flags(with_embedded_path)
+
+  gemfile = windows? ? "hitimes-1.2.4-x86-mingw32.gem" : "hitimes-1.2.4.gem"
+
+  rake "gem", env: env
+
+  gem "install pkg/#{gemfile}", env: env
 end

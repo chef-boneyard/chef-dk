@@ -198,7 +198,7 @@ lint = "chef exec cookstyle"
 # uploaded to Supermarket. We turn off any rules tagged "supermarket"
 # by default. If you plan to share this cookbook you should remove
 # '-t ~supermarket' below to enable supermarket rules.
-syntax = "chef exec foodcritic . --exclude spec -f any -t ~supermarket"
+syntax = "chef exec foodcritic . -t ~supermarket"
 provision = "chef exec kitchen create"
 deploy = "chef exec kitchen converge"
 smoke = "chef exec kitchen verify"
@@ -572,7 +572,7 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
-  - name: centos-7.2
+  - name: centos-7.3
 
 suites:
   - name: default
@@ -589,6 +589,7 @@ KITCHEN_YML
 
         let(:expected_chefspec_spec_helper_content) do
           <<-SPEC_HELPER
+# frozen_string_literal: true
 require 'chefspec'
 require 'chefspec/policyfile'
 SPEC_HELPER
@@ -608,6 +609,7 @@ SPEC_HELPER
 
         let(:expected_content) do
           <<-POLICYFILE_RB
+# frozen_string_literal: true
 source 'https://supermarket.chef.io'
 
 metadata
@@ -647,7 +649,7 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
-  - name: centos-7.2
+  - name: centos-7.3
 
 suites:
   - name: default
@@ -666,6 +668,7 @@ KITCHEN_YML
 
         let(:expected_chefspec_spec_helper_content) do
           <<-SPEC_HELPER
+# frozen_string_literal: true
 require 'chefspec'
 require 'chefspec/berkshelf'
 SPEC_HELPER

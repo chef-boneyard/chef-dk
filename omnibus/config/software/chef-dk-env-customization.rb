@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software, Inc.
+# Copyright:: Copyright (c) 2015-2017, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,6 +26,7 @@ source path: "#{project.files_path}/#{name}"
 dependency "ruby"
 
 build do
+  # lazied because we need ruby to get installed first
   block "Add chefdk_env_customization file" do
     source_customization_file = "#{project_dir}/windows/chefdk_env_customization.rb"
 
@@ -38,6 +39,7 @@ build do
       raise "Could not determine embedded Ruby's site directory, aborting!"
     end
 
-    FileUtils.cp source_customization_file, site_ruby
+    create_directory site_ruby
+    copy_file source_customization_file, site_ruby
   end
 end

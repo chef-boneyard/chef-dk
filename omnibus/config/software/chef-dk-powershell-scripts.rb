@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software, Inc.
+# Copyright:: Copyright (c) 2015-2017, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,18 +21,13 @@ name "chef-dk-powershell-scripts"
 
 license :project_license
 
-# chef-dk-gems must be installed so we can get the chef gem's powershell scripts
-dependency "chef-dk"
-
-require_relative "../../files/chef-dk-gem/build-chef-dk-gem"
-
 build do
-  extend BuildChefDKGem
   block "Install windows powershell scripts" do
     # Copy the chef gem's distro stuff over
-    chef_gem_path = shellout!("#{bundle_bin} show chef", env: env.merge("BUNDLE_GEMFILE" => shared_gemfile)).stdout.chomp
-    chef_module_dir = File.join(install_dir, "modules", "chef")
-    FileUtils.mkdir_p(chef_module_dir) if !File.exists?(chef_module_dir)
+    chef_gem_path = File.expand_path("../..", shellout!("#{install_dir}/embedded/bin/gem which chef").stdout.chomp)
+
+    chef_module_dir = "#{install_dir}/modules/chef"
+    create_directory(chef_module_dir)
     Dir.glob("#{chef_gem_path}/distro/powershell/chef/*").each do |file|
       copy_file(file, chef_module_dir)
     end

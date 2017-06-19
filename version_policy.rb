@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2016 Chef Software Inc.
+# Copyright:: Copyright (c) 2016-2017, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@
 # Explicit omnibus overrides.
 OMNIBUS_OVERRIDES = {
   # Until 1.13.0 is released
-  :bundler => "1.12.5",
+  :bundler => "1.15.1",
   # Lower level library pins
   ## according to comment in omnibus-sw, latest versions don't work on solaris
   # https://github.com/chef/omnibus-software/blob/aefb7e79d29ca746c3f843673ef5e317fa3cba54/config/software/libtool.rb#L23
@@ -34,7 +34,7 @@ OMNIBUS_OVERRIDES = {
   "makedepend" => "1.0.5",
   "ncurses" => "5.9",
   "pkg-config-lite" => "0.28-1",
-  "ruby" => "2.3.1",
+  "ruby" => "2.4.1",
   # Leave dev-kit pinned to 4.5 on 32-bit, because 4.7 is 20MB larger and we don't want
   # to unnecessarily make the client any fatter. (Since it's different between
   # 32 and 64, we have to do it in the project file still.)
@@ -81,10 +81,9 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "fog-google",        # fog-google 0.2+ requires Ruby 2.0+, fog 2.0.0 will include it
   "google-api-client", # chef-provisioning-fog restricts to < 0.9 for presently unknown reasons
   "json",              # inspec pins this because Ruby 2.0, no eta on fix
-  "rack",              # chef-zero pins this because Ruby 2.0, no eta on fix
   "rbvmomi",           # fog-vsphere restricts this to a patch version, not sure why
   "retriable",         # anchored by outdated google-api-client
-  "rubocop",           # cookstyle pins to 0.39.0 in 0.0.1
+  "rubocop",           # cookstyle pins older releases by design
   "slop",              # expected to disappear with pry 0.11
   "timers",            # anchored by outdated celluloid
   "github_changelog_generator", # we use a forked version that differs from rubygems
@@ -92,6 +91,7 @@ ACCEPTABLE_OUTDATED_GEMS = [
   "faraday",           # ridely restrcits this 0.9.x
   "thor",              # berkshelf restricts this to < 0.19.2
   "nokogiri",          # fog limits to ~> 1.5
+  "mixlib-install",    # test kitchen limits to less than 3.x
 
   # We have a task called update_stable_channel_gems which scans and pins to the
   # latest released chef/chef-config/opscode-pushy-client but it pulls from the

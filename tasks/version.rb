@@ -15,10 +15,34 @@
 # limitations under the License.
 #
 
+task :ci_version_bump do
+  begin
+    require "rake"
+
+    Rake::Task["version:bump_patch"].invoke
+    Rake::Task["version:update_gemfile_lock"].invoke
+
+    begin
+      Rake::Task["changelog:update"].invoke
+    rescue Exception => e
+      puts "There was an error updating the CHANGELOG"
+      puts e
+    end
+
+    begin
+      Rake::Task["update_dockerfile"].invoke
+    rescue Exception => e
+      puts "There was an error updating the Dockerfile"
+      puts e
+    end
+  end
+end
+
 namespace :version do
   desc "Bump patch version in lib/chef-dk/version.rb and update Gemfile*.lock conservatively to include the new version. If Gemfile has changed, this will update modified constraints as well."
-  task :bump => %w{version:bump_patch version:update_gemfile_lock}
+  task :bump => "ci_version_bump"
 
+  # Can be deleted when we migrate fully to expeditor
   desc "Show the current version."
   task :show do
     puts version
@@ -30,6 +54,10 @@ namespace :version do
     else
       raise "Could not read version from #{version_rb_path}. Contents:\n#{IO.read(version_rb_path)}"
     end
+  end
+
+  def version_file
+    File.expand_path("../../VERSION", __FILE__)
   end
 
   def version_rb_path
@@ -44,6 +72,7 @@ namespace :version do
     File.expand_path("../../RELEASE_NOTES.md", __FILE__)
   end
 
+  # Can be deleted when we migrate fully to expeditor
   # Add 1 to the current patch version in the VERSION file, and write it back out.
   desc "Bump the patch version in lib/chef-dk/version.rb."
   task :bump_patch do
@@ -57,6 +86,7 @@ namespace :version do
     IO.write(version_rb_path, new_version_file)
   end
 
+  # Can be deleted when we migrate fully to expeditor
   desc "Bump the minor version in lib/chef-dk/version.rb"
   task :bump_minor do
     current_version_file = IO.read(version_rb_path)
@@ -73,6 +103,7 @@ namespace :version do
     Rake::Task["bundle:install"].invoke
   end
 
+  # Can be deleted when we migrate fully to expeditor
   desc "Bump the major version in lib/chef-dk/version.rb"
   task :bump_major do
     current_version_file = IO.read(version_rb_path)
@@ -89,6 +120,24 @@ namespace :version do
     Rake::Task["bundle:install"].invoke
   end
 
+  # Called from .expeditor/update_version.sh
+  desc "Propogate the version from VERSION to the necessary parts of the repo"
+  task :update do
+    version = IO.read(version_file).chomp
+
+    updated_version_file = IO.read(version_rb_path).sub(/^(\s*VERSION\s*=\s*")(\d+\.\d+\.\d+)/) do
+      "#{$1}#{version}"
+    end
+
+    updated_gemfile_lock = IO.read(gemfile_lock_path).gsub!(/^\s*(chef-dk)\s*\((= )?\S+\)\s*$/) do |line|
+      line.gsub(/\((= )?\d+(\.\d+)+/) { "(#{$1}#{version}" }
+    end
+
+    IO.write(version_rb_path, updated_version_file)
+    IO.write(gemfile_lock_path, updated_gemfile_lock)
+  end
+
+  # Can be deleted when we migrate fully to expeditor
   desc "Update the Gemfile.lock to include the current chef-dk version"
   task :update_gemfile_lock do
     if File.exist?(gemfile_lock_path)

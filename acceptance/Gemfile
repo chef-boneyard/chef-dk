@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "chef-acceptance", github: "chef/chef-acceptance"
+gem "chef-acceptance", git: "https://github.com/chef/chef-acceptance"
 gem "test-kitchen"
 gem "kitchen-ec2"
 gem "kitchen-inspec"

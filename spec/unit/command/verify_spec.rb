@@ -45,7 +45,6 @@ describe ChefDK::Command::Verify do
       "chef-provisioning",
       "chefspec",
       "generated-cookbooks-pass-chefspec",
-      "rubocop",
       "fauxhai",
       "knife-spork",
       "kitchen-vagrant",
@@ -106,6 +105,7 @@ describe ChefDK::Command::Verify do
 
   describe "when running verify command" do
     let(:stdout_io) { StringIO.new }
+    let(:stderr_io) { StringIO.new }
     let(:ruby_path) { File.join(fixtures_path, "eg_omnibus_dir/valid/embedded/bin/ruby") }
 
     def run_unit_test
@@ -170,6 +170,7 @@ describe ChefDK::Command::Verify do
     before do
       allow(Gem).to receive(:ruby).and_return(ruby_path)
       allow(command_instance).to receive(:stdout).and_return(stdout_io)
+      allow(command_instance).to receive(:stderr).and_return(stderr_io)
       allow(command_instance).to receive(:components).and_return(components)
     end
 

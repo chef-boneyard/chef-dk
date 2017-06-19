@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 context = ChefDK::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
@@ -6,7 +7,7 @@ spec_helper_path = File.join(cookbook_dir, 'spec', 'spec_helper.rb')
 spec_dir = File.join(cookbook_dir, 'spec', 'unit', 'recipes')
 spec_path = File.join(spec_dir, "#{context.new_file_basename}_spec.rb")
 inspec_dir = File.join(cookbook_dir, 'test', 'smoke', 'default')
-inspec_path = File.join(inspec_dir, "#{context.new_file_basename}.rb")
+inspec_path = File.join(inspec_dir, "#{context.new_file_basename}_test.rb")
 
 if File.directory?(File.join(cookbook_dir, 'test', 'recipes'))
   Chef::Log.deprecation <<-EOH

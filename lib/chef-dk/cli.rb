@@ -97,12 +97,12 @@ BANNER
     def show_version
       msg("Chef Development Kit Version: #{ChefDK::VERSION}")
 
-      ["chef-client", "delivery", "berks", "kitchen"].each do |component|
+      ["chef-client", "delivery", "berks", "kitchen", "inspec"].each do |component|
         result = Bundler.with_clean_env { shell_out("#{component} --version") }
         if result.exitstatus != 0
           msg("#{component} version: ERROR")
         else
-          version = result.stdout.scan(/(?:master\s)?[\d+\.\(\)]+\S+/).join("\s")
+          version = result.stdout.lines.first.scan(/(?:master\s)?[\d+\.\(\)]+\S+/).join("\s")
           msg("#{component} version: #{version}")
         end
       end
@@ -114,6 +114,7 @@ BANNER
 
       justify_length = subcommands.map(&:length).max + 2
       subcommand_specs.each do |name, spec|
+        next if spec.hidden
         msg("    #{"#{name}".ljust(justify_length)}#{spec.description}")
       end
     end

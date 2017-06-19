@@ -1,7 +1,7 @@
-
+# frozen_string_literal: true
 context = ChefDK::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
-template_dir = File.join(cookbook_dir, 'templates', 'default')
+template_dir = File.join(cookbook_dir, 'templates')
 template_filename = context.new_file_basename
 
 unless File.extname(template_filename) == '.erb'
@@ -19,7 +19,7 @@ end
 if context.content_source
 
   file template_path do
-    content(IO.read(context.context_source))
+    content(IO.read(context.content_source))
   end
 
 else
