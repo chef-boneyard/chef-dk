@@ -60,10 +60,10 @@ BANNER
         default:      false,
         boolean:      true
 
-      option :update_attributes,
+      option :update_attributes_only,
         short:        "-a",
         long:         "--attributes",
-        description:  "Update attributes",
+        description:  "Only update attributes (not cookbooks)",
         default:      false,
         boolean:      true
 
@@ -78,6 +78,7 @@ BANNER
         @policyfile_relative_path = nil
         @installer = nil
         @attributes_updater = nil
+        @cookbooks_to_update = []
       end
 
       def run(params = [])
@@ -89,11 +90,8 @@ BANNER
         # ssl_verify_mode)
         chef_config
 
-        if update_attributes?
-          attributes_updater.run
-        else
-          installer.run
-        end
+        attributes_updater.run
+        installer.run(@cookbooks_to_update) unless update_attributes_only?
         0
       rescue PolicyfileServiceError => e
         handle_error(e)
@@ -117,8 +115,8 @@ BANNER
         config[:config_file]
       end
 
-      def update_attributes?
-        !!config[:update_attributes]
+      def update_attributes_only?
+        !!config[:update_attributes_only]
       end
 
       def handle_error(error)
@@ -133,15 +131,10 @@ BANNER
 
       def apply_params!(params)
         remaining_args = parse_options(params)
-        if remaining_args.size > 1
-          ui.err(opt_parser)
-          false
-        else
-          @policyfile_relative_path = remaining_args.first
-          true
-        end
+        @policyfile_relative_path = remaining_args.shift
+        @cookbooks_to_update += remaining_args
+        true
       end
-
     end
   end
 end
