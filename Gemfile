@@ -35,7 +35,7 @@ group(:omnibus_package, :development, :test) do
   gem "dep_selector"
   gem "guard"
   gem "ruby-prof"
-  gem "cookstyle", ">= 1.3.0"
+  gem "cookstyle", ">= 1.3.0", "< 2.0"
   gem "foodcritic", ">= 9.0"
 end
 
@@ -52,9 +52,9 @@ group(:omnibus_package) do
   gem "chef-provisioning-azure", ">= 0.6.0"
   gem "chef-provisioning-fog", ">= 0.20.0"
   gem "chef-provisioning-vagrant", ">= 0.11.0"
-  gem "chef-vault"
+  gem "chef-vault", "~> 2"
   # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "chef", github: "chef/chef", branch: "v12.19.36"
+  gem "chef", github: "chef/chef", branch: "v12.21.2"
   # Pinned cheffish to version 5.0.1 since the latest version 13.0.0 has
   # a dependency to ruby 2.3.3 but we are shipping ChefDK with ruby 2.3.1
   #
@@ -98,7 +98,7 @@ group(:omnibus_package) do
 
   # TODO Pinning these for now because github_changelog_generator has a bunch
   # of different versions across our products
-  gem "nokogiri", "~> 1.6.3"
+  gem "nokogiri", "~> 1.7.2"
 end
 
 # Everything except AIX and Windows
