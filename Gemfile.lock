@@ -7,14 +7,14 @@ GIT
 
 GIT
   remote: git://github.com/chef/chef.git
-  revision: 7b8ceacf4fe474587a485b5ad23713a5c0096145
-  branch: v12.19.36
+  revision: b3d8d581c64f59244c350ed084c57c90a04374e4
+  branch: v12.21.2
   specs:
-    chef (12.19.36)
+    chef (12.21.2)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.19.36)
-      chef-zero (>= 4.8)
+      chef-config (= 12.21.2)
+      chef-zero (>= 4.8, < 13)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
       ffi-yajl (~> 2.2)
@@ -39,11 +39,11 @@ GIT
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (12.19.36-universal-mingw32)
+    chef (12.21.2-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.19.36)
-      chef-zero (>= 4.8)
+      chef-config (= 12.21.2)
+      chef-zero (>= 4.8, < 13)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
       ffi (~> 1.9)
@@ -79,7 +79,7 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.19.36)
+    chef-config (12.21.2)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -224,7 +224,7 @@ GEM
     chef-provisioning-vagrant (0.11.0)
       chef-provisioning
     chef-sugar (3.4.0)
-    chef-vault (2.9.1)
+    chef-vault (2.9.2)
     chef-zero (5.3.2)
       ffi-yajl (~> 2.2)
       hashie (>= 2.0, < 4.0)
@@ -242,7 +242,7 @@ GEM
     coderay (1.1.1)
     cookbook-omnifetch (0.5.1)
       mixlib-archive (~> 0.4)
-    cookstyle (1.3.1)
+    cookstyle (1.4.0)
       rubocop (= 0.47.1)
     cucumber (2.4.0)
       builder (>= 2.1.2)
@@ -480,7 +480,7 @@ GEM
     i18n (0.8.1)
     inflecto (0.0.2)
     inifile (3.0.0)
-    iniparse (1.4.2)
+    iniparse (1.4.3)
     inspec (1.25.1)
       addressable (~> 2.4)
       faraday (>= 0.9.0)
@@ -585,9 +585,9 @@ GEM
       net-ssh-gateway (>= 1.2.0)
     net-telnet (0.1.1)
     nio4r (2.0.0)
-    nokogiri (1.6.8.1)
+    nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
-    nokogiri (1.6.8.1-x86-mingw32)
+    nokogiri (1.7.2-x86-mingw32)
       mini_portile2 (~> 2.1.0)
     nori (2.6.0)
     notiffany (0.1.1)
@@ -595,8 +595,8 @@ GEM
       shellany (~> 0.0)
     octokit (4.6.2)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (8.23.0)
-      chef-config (>= 12.5.0.alpha.1, < 13)
+    ohai (8.24.1)
+      chef-config (>= 12.5.0.alpha.1, < 14)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
       ipaddress
@@ -614,7 +614,7 @@ GEM
       ast (~> 2.2)
     parslet (1.5.0)
       blankslate (~> 2.0)
-    plist (3.2.0)
+    plist (3.3.0)
     polyglot (0.3.5)
     powerpack (0.1.1)
     proxifier (1.0.3)
@@ -631,8 +631,9 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    rack (2.0.1)
-    rainbow (2.2.1)
+    rack (2.0.3)
+    rainbow (2.2.2)
+      rake
     rake (10.5.0)
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
@@ -665,22 +666,22 @@ GEM
       retryable (~> 2.0)
       semverse (~> 2.0)
       varia_model (~> 0.6)
-    rspec (3.5.0)
-      rspec-core (~> 3.5.0)
-      rspec-expectations (~> 3.5.0)
-      rspec-mocks (~> 3.5.0)
-    rspec-core (3.5.4)
-      rspec-support (~> 3.5.0)
-    rspec-expectations (3.5.0)
+    rspec (3.6.0)
+      rspec-core (~> 3.6.0)
+      rspec-expectations (~> 3.6.0)
+      rspec-mocks (~> 3.6.0)
+    rspec-core (3.6.0)
+      rspec-support (~> 3.6.0)
+    rspec-expectations (3.6.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.5.0)
+      rspec-support (~> 3.6.0)
     rspec-its (1.2.0)
       rspec-core (>= 3.0.0)
       rspec-expectations (>= 3.0.0)
-    rspec-mocks (3.5.0)
+    rspec-mocks (3.6.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.5.0)
-    rspec-support (3.5.0)
+      rspec-support (~> 3.6.0)
+    rspec-support (3.6.0)
     rspec_junit_formatter (0.2.3)
       builder (< 4)
       rspec-core (>= 2, < 4, != 2.12.0)
@@ -702,11 +703,11 @@ GEM
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
     semverse (2.0.0)
-    serverspec (2.38.0)
+    serverspec (2.39.1)
       multi_json
       rspec (~> 3.0)
       rspec-its
-      specinfra (~> 2.53)
+      specinfra (~> 2.68)
     sfl (2.3)
     shellany (0.0.1)
     signet (0.7.3)
@@ -718,7 +719,7 @@ GEM
     solve (3.1.0)
       molinillo (>= 0.5)
       semverse (>= 1.1, < 3.0)
-    specinfra (2.67.7)
+    specinfra (2.68.0)
       net-scp
       net-ssh (>= 2.7, < 5.0)
       net-telnet
@@ -760,7 +761,7 @@ GEM
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     ubuntu_ami (0.4.1)
-    unicode-display_width (1.2.1)
+    unicode-display_width (1.3.0)
     uuid (2.3.8)
       macaddr (~> 1.0)
     uuidtools (2.1.5)
@@ -828,10 +829,10 @@ DEPENDENCIES
   chef-provisioning-fog (>= 0.20.0)
   chef-provisioning-vagrant (>= 0.11.0)
   chef-sugar
-  chef-vault
+  chef-vault (~> 2)
   cheffish (= 5.0.1)
   chefspec
-  cookstyle (>= 1.3.0)
+  cookstyle (>= 1.3.0, < 2.0)
   cucumber
   dco
   dep-selector-libgecode
@@ -854,7 +855,7 @@ DEPENDENCIES
   listen
   mixlib-install
   mixlib-versioning
-  nokogiri (~> 1.6.3)
+  nokogiri (~> 1.7.2)
   ohai (>= 8.13.0)
   opscode-pushy-client!
   pry
