@@ -501,6 +501,7 @@ GEM
       test-kitchen (~> 1.6)
     kitchen-vagrant (1.1.0)
       test-kitchen (~> 1.4)
+    knife-art (1.0.0)
     knife-opc (0.3.2)
     knife-push (1.0.2)
       chef (>= 12.7.2)
@@ -842,6 +843,7 @@ DEPENDENCIES
   kitchen-hyperv
   kitchen-inspec
   kitchen-vagrant
+  knife-art
   knife-opc (>= 0.3.2)
   knife-push
   knife-spork
