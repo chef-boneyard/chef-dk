@@ -31,7 +31,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = ">= 2.3"
 
   gem.files = %w{Rakefile LICENSE README.md warning.txt} +
-    %w{version_policy.rb omnibus_overrides.rb} +
+    %w{omnibus_overrides.rb} +
     Dir.glob("Gemfile*") + # Includes Gemfile and locks
     Dir.glob("*.gemspec") +
     Dir.glob("{lib,spec,acceptance,tasks}/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
