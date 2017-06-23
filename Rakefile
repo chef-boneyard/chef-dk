@@ -17,7 +17,6 @@
 
 require "bundler/gem_tasks"
 require_relative "tasks/version"
-require_relative "tasks/bundle"
 require_relative "tasks/dependencies"
 require_relative "tasks/github_changelog_generator"
 require_relative "tasks/announce"
