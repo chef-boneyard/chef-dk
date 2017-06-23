@@ -45,7 +45,6 @@ dependency "rubygems"
 dependency "bundler"
 dependency "ohai"
 dependency "appbundler"
-dependency "nokogiri-git"
 
 
 build do
