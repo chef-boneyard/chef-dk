@@ -121,15 +121,13 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
   execute('git-create-feature-branch') do
     command('git checkout -t -b add-delivery-configuration')
     cwd delivery_project_dir
-
-    not_if 'git branch |grep "add-delivery-configuration"'
+    not_if { shell_out('git branch', cwd: delivery_project_dir).stdout.match(/add-delivery-configuration/) }
   end
 
   execute('git-add-delivery-config-json') do
     command('git add .delivery/config.json')
     cwd delivery_project_dir
-
-    only_if 'git status -u --porcelain |grep ".delivery/config.json"'
+    only_if { shell_out('git status -u --porcelain', cwd: delivery_project_dir).stdout.match(%r{.delivery/config.json}) }
   end
 
   # Adding the new prototype file to the feature branch
@@ -137,15 +135,13 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
   execute('git-add-delivery-project-toml') do
     command('git add .delivery/project.toml')
     cwd delivery_project_dir
-
-    only_if 'git status -u --porcelain |grep ".delivery/project.toml"'
+    only_if { shell_out('git status -u --porcelain', cwd: delivery_project_dir).stdout.match(%r{.delivery/project.toml}) }
   end
 
   execute('git-commit-delivery-config') do
     command('git commit -m "Add generated delivery configuration"')
     cwd delivery_project_dir
-
-    only_if 'git status -u --porcelain | egrep "config.json|project.toml"'
+    only_if { shell_out('git status -u --porcelain', cwd: delivery_project_dir).stdout.match(/config\.json|project\.toml/) }
   end
 
   generator_desc('Adding build cookbook to feature branch')
@@ -153,15 +149,13 @@ if context.have_git && context.delivery_project_git_initialized && !context.skip
   execute('git-add-delivery-build-cookbook-files') do
     command('git add .delivery')
     cwd delivery_project_dir
-
-    only_if 'git status -u --porcelain |grep ".delivery"'
+    only_if { shell_out('git status -u --porcelain', cwd: delivery_project_dir).stdout.match(/\.delivery/) }
   end
 
   execute('git-commit-delivery-build-cookbook') do
     command('git commit -m "Add generated delivery build cookbook"')
     cwd delivery_project_dir
-
-    only_if 'git status -u --porcelain |grep ".delivery"'
+    only_if { shell_out('git status -u --porcelain', cwd: delivery_project_dir).stdout.match(/\.delivery/) }
   end
 
   execute("git-return-to-#{pipeline}-branch") do
