@@ -43,7 +43,6 @@ end
 dependency "ruby"
 dependency "rubygems"
 dependency "bundler"
-dependency "ohai"
 dependency "appbundler"
 
 
