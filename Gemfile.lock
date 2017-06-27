@@ -31,7 +31,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     CFPropertyList (2.3.5)
-    activesupport (4.2.8)
+    activesupport (4.2.9)
       i18n (~> 0.7)
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
@@ -48,13 +48,13 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (2.10.2)
-      aws-sdk-resources (= 2.10.2)
-    aws-sdk-core (2.10.2)
+    aws-sdk (2.10.3)
+      aws-sdk-resources (= 2.10.3)
+    aws-sdk-core (2.10.3)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.2)
-      aws-sdk-core (= 2.10.2)
+    aws-sdk-resources (2.10.3)
+      aws-sdk-core (= 2.10.3)
     aws-sdk-v1 (1.67.0)
       json (~> 1.4)
       nokogiri (~> 1)
@@ -76,7 +76,7 @@ GEM
       ridley (~> 5.0)
       solve (> 2.0, < 4.0)
       thor (~> 0.19, < 0.19.2)
-    berkshelf-api-client (4.0.0)
+    berkshelf-api-client (4.0.1)
       chef (>= 12.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -96,10 +96,10 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef (13.0.118)
+    chef (13.1.31)
       addressable
       bundler (>= 1.10)
-      chef-config (= 13.0.118)
+      chef-config (= 13.1.31)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -126,10 +126,10 @@ GEM
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (13.0.118-universal-mingw32)
+    chef (13.1.31-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 13.0.118)
+      chef-config (= 13.1.31)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -167,22 +167,22 @@ GEM
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (13.0.118)
+    chef-config (13.1.31)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
       mixlib-shellout (~> 2.0)
-    chef-provisioning (2.3.2)
+    chef-provisioning (2.4.0)
       cheffish (>= 4.0, < 14.0)
       inifile (>= 2.0.2)
       mixlib-install (>= 1.0, < 3.0)
       net-scp (~> 1.0)
       net-ssh (>= 2.9, < 5.0)
-      net-ssh-gateway (~> 1.2)
+      net-ssh-gateway (> 1.2, < 3.0)
       winrm (~> 2.0)
       winrm-elevated (~> 1.0)
       winrm-fs (~> 1.0)
-    chef-provisioning-aws (2.2.0)
+    chef-provisioning-aws (2.2.1)
       aws-sdk (>= 2.2.18, < 3.0)
       aws-sdk-v1 (>= 1.59.0)
       chef-provisioning (>= 1.0, < 3.0)
@@ -243,7 +243,7 @@ GEM
       ffi (~> 1.9)
     diff-lcs (1.3)
     diffy (3.2.0)
-    docker-api (1.33.5)
+    docker-api (1.33.6)
       excon (>= 0.38.0)
       json
     erubis (2.7.0)
@@ -398,7 +398,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (1.10.0)
+    fog-vsphere (1.11.0)
       fog-core
       rbvmomi (~> 1.9)
     fog-xenserver (0.3.0)
@@ -632,7 +632,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rb-readline (0.5.4)
-    rbvmomi (1.11.2)
+    rbvmomi (1.11.3)
       builder (~> 3.0)
       json (>= 1.8)
       nokogiri (~> 1.5)
@@ -713,7 +713,7 @@ GEM
     solve (3.1.0)
       molinillo (>= 0.5)
       semverse (>= 1.1, < 3.0)
-    specinfra (2.68.0)
+    specinfra (2.68.1)
       net-scp
       net-ssh (>= 2.7, < 5.0)
       net-telnet
@@ -815,11 +815,11 @@ PLATFORMS
 DEPENDENCIES
   appbundler
   artifactory
-  berkshelf (>= 5.0)
+  berkshelf (>= 6.2)
   bundler
-  chef (= 13.0.118)
+  chef (= 13.1.31)
   chef-dk!
-  chef-provisioning (>= 2.3.0)
+  chef-provisioning (>= 2.4.0)
   chef-provisioning-aws (>= 2.0)
   chef-provisioning-azure (>= 0.6.0)
   chef-provisioning-fog (>= 0.20.0)
@@ -827,7 +827,7 @@ DEPENDENCIES
   chef-vault
   cheffish (>= 13.0)
   chefspec
-  cookstyle (>= 1.3.0)
+  cookstyle (>= 2.0.0)
   cucumber
   dco
   dep-selector-libgecode
@@ -835,11 +835,11 @@ DEPENDENCIES
   fauxhai
   ffi
   ffi-rzmq-core
-  foodcritic (>= 9.0)
+  foodcritic (>= 11.2)
   github_changelog_generator!
   guard
-  inspec (>= 0.17.1)
-  kitchen-dokken (>= 2.1.0)
+  inspec (>= 0.29.0)
+  kitchen-dokken (>= 2.5.0)
   kitchen-ec2
   kitchen-hyperv
   kitchen-inspec
@@ -852,7 +852,7 @@ DEPENDENCIES
   mixlib-install
   mixlib-versioning
   nokogiri
-  ohai (>= 8.13.0)
+  ohai (>= 13.1.0)
   opscode-pushy-client (>= 2.3.0)
   pry
   pry-byebug
@@ -862,6 +862,9 @@ DEPENDENCIES
   rb-readline
   rdoc
   rdp-ruby-wmi
+  rspec-core (~> 3.0)
+  rspec-expectations (~> 3.0)
+  rspec-mocks (~> 3.0)
   rubocop
   ruby-prof
   ruby-shadow
