@@ -17,15 +17,7 @@
 
 source "https://rubygems.org"
 
-# Note we do not use the gemspec DSL which restricts to the
-# gemspec for the current platform and filters out other platforms
-# during a bundle lock operation. We actually want dependencies from
-# both of our gemspecs. Also note this this mimics gemspec behavior
-# of bundler versions prior to 1.12.0 (https://github.com/bundler/bundler/commit/193a14fe5e0d56294c7b370a0e59f93b2c216eed)
-gem "chef-dk", path: "."
-
-# EXPERIMENTAL: ALL gems specified here will be installed in chef-dk omnibus.
-# This represents all gems that will be part of chef-dk.
+gemspec
 
 gem "bundler"
 
@@ -36,37 +28,35 @@ group(:omnibus_package, :development, :test) do
   gem "yard"
   gem "dep_selector"
   gem "guard"
-  gem "cookstyle", ">= 1.3.0"
-  gem "foodcritic", ">= 9.0"
+  gem "cookstyle", ">= 2.0.0"
+  gem "foodcritic", ">= 11.2"
 end
 
-# All software we recognize needs to stay at the latest possible version. But
-# since that's not expressible here, we make it >= the last *known* version to
-# at least prevent downgrades beyond that:
+# We tend to track latest stable release without pinning.
+# In order to prevent the depsolver from downgrading we pin some floors with ">=".
+# We should only be using "~>" to work around bugs, or temporarily pinning some tech debt.
+# We equality pin the chef gem itself to assert which version we're shipping.
 group(:omnibus_package) do
   gem "appbundler"
-  gem "berkshelf", ">= 5.0"
-  # Chef 12.8.1 Gem includes some extra files which can break gem installation on
-  # windows. For now we are pulling chef from github at the tag as a workaround.
-  gem "chef-provisioning", ">= 2.3.0"
+  gem "berkshelf", ">= 6.2"
+  gem "chef-provisioning", ">= 2.4.0"
   gem "chef-provisioning-aws", ">= 2.0"
   gem "chef-provisioning-azure", ">= 0.6.0"
   gem "chef-provisioning-fog", ">= 0.20.0"
   gem "chef-vault"
-  # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "chef", "= 13.0.118"
+  gem "chef", "= 13.1.31"
   gem "cheffish", ">= 13.0"
   gem "chefspec"
   gem "fauxhai"
-  gem "inspec", ">= 0.17.1"
+  gem "inspec", ">= 0.29.0"
   gem "kitchen-ec2"
-  gem "kitchen-dokken", ">= 2.1.0"
+  gem "kitchen-dokken", ">= 2.5.0"
   gem "kitchen-hyperv"
   gem "kitchen-inspec"
   gem "kitchen-vagrant"
   gem "knife-windows"
   gem "knife-opc", ">= 0.3.2"
-  gem "ohai", ">= 8.13.0"
+  gem "ohai", ">= 13.1.0"
   gem "test-kitchen"
   gem "listen"
   gem "dco"
@@ -75,7 +65,6 @@ group(:omnibus_package) do
   gem "chef-sugar"
   gem "mixlib-versioning"
   gem "artifactory"
-  # The opscode-pushy-client version is pinned by "rake dependencies", which grabs the current version from omnibus.
   gem "opscode-pushy-client", ">= 2.3.0"
   gem "ffi-rzmq-core"
   gem "knife-push"
@@ -92,10 +81,6 @@ group(:omnibus_package) do
   gem "winrm-fs"
   gem "winrm-elevated"
   gem "cucumber"
-
-  # TODO Pinning these for now because github_changelog_generator has a bunch
-  # of different versions across our products
-  gem "nokogiri"
 end
 
 # Everything except AIX
