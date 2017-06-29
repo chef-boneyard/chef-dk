@@ -455,15 +455,17 @@ GEM
     highline (1.7.8)
     hitimes (1.2.5)
     hitimes (1.2.5-x86-mingw32)
+    htmlentities (4.3.4)
     httpclient (2.8.3)
     i18n (0.8.4)
     inflecto (0.0.2)
     inifile (3.0.0)
     iniparse (1.4.3)
-    inspec (1.29.0)
+    inspec (1.30.0)
       addressable (~> 2.4)
       faraday (>= 0.9.0)
       hashie (~> 3.4)
+      htmlentities
       json (>= 1.8, < 3.0)
       method_source (~> 0.8)
       mixlib-log
