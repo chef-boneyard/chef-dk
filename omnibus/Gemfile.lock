@@ -8,10 +8,10 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 1da4e6d456c7ad241940b61ee68ccbcb32596d87
+  revision: c71aede842a3e3f529498d68d16ca17cd693cc64
   branch: lcg/improve-appbundling
   specs:
-    omnibus (5.5.0)
+    omnibus (5.6.1)
       aws-sdk (~> 2)
       chef-sugar (~> 3.3)
       cleanroom (~> 1.0)
@@ -30,14 +30,14 @@ GEM
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     artifactory (2.8.2)
-    awesome_print (1.7.0)
-    aws-sdk (2.9.41)
-      aws-sdk-resources (= 2.9.41)
-    aws-sdk-core (2.9.41)
+    awesome_print (1.8.0)
+    aws-sdk (2.10.7)
+      aws-sdk-resources (= 2.10.7)
+    aws-sdk-core (2.10.7)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.9.41)
-      aws-sdk-core (= 2.9.41)
+    aws-sdk-resources (2.10.7)
+      aws-sdk-core (= 2.10.7)
     aws-sigv4 (1.0.0)
     berkshelf (6.1.0)
       addressable (~> 2.3, >= 2.3.4)
@@ -88,7 +88,7 @@ GEM
     ffi (1.9.18)
     ffi (1.9.18-x64-mingw32)
     ffi (1.9.18-x86-mingw32)
-    ffi-yajl (2.3.0)
+    ffi-yajl (2.3.1)
       libyajl2 (~> 1.2)
     fuzzyurl (0.9.0)
     gssapi (1.2.0)
@@ -143,7 +143,7 @@ GEM
     nori (2.6.0)
     octokit (4.7.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (8.24.0)
+    ohai (8.24.1)
       chef-config (>= 12.5.0.alpha.1, < 14)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
