@@ -41,7 +41,6 @@ GEM
     app_conf (0.4.2)
     appbundler (0.10.0)
       mixlib-cli (~> 1.4)
-      mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.3.0)
     autoparse (0.3.3)
@@ -201,7 +200,7 @@ GEM
       retryable
       winrm-elevated
     chef-sugar (3.4.0)
-    chef-vault (3.0.3)
+    chef-vault (3.1.0)
     chef-zero (13.0.0)
       ffi-yajl (~> 2.2)
       hashie (>= 2.0, < 4.0)
