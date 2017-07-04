@@ -19,6 +19,7 @@
 
 name "chef-dk-powershell-scripts"
 
+skip_transitive_dependency_licensing true
 license :project_license
 
 build do

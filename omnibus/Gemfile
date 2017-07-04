@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "omnibus", git: "https://github.com/chef/omnibus.git", branch: "lcg/improve-appbundling"
-gem "omnibus-software", git: "https://github.com/chef/omnibus-software.git", branch: "lcg/workaround-omnibus-api"
+gem "omnibus-software", git: "https://github.com/chef/omnibus-software.git"
 
 gem "pedump"
 

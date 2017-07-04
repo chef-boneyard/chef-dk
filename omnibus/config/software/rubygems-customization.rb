@@ -17,6 +17,7 @@
 
 name "rubygems-customization"
 
+skip_transitive_dependency_licensing true
 license :project_license
 
 source path: "#{project.files_path}/#{name}"
