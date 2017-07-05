@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2016 Chef Software Inc.
+# Copyright:: Copyright (c) 2016-2017, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -98,9 +98,6 @@ namespace :version do
     puts "Updating version in #{version_rb_path} from #{version} to #{new_version.chomp}"
     IO.write(version_rb_path, new_version_file)
     IO.write(release_notes_path, "# ChefDK #{$2}.#{$3.to_i + 1} Release Notes")
-    Rake::Task["changelog::archive"].invoke
-    Rake::Task["version:update_gemfile_lock"].invoke
-    Rake::Task["bundle:install"].invoke
   end
 
   # Can be deleted when we migrate fully to expeditor
@@ -115,9 +112,6 @@ namespace :version do
     puts "Updating version in #{version_rb_path} from #{version} to #{new_version.chomp}"
     IO.write(version_rb_path, new_version_file)
     IO.write(release_notes_path, "# ChefDK #{$2.to_i + 1}.0 Release Notes")
-    Rake::Task["changelog::archive"].invoke
-    Rake::Task["version:update_gemfile_lock"].invoke
-    Rake::Task["bundle:install"].invoke
   end
 
   # Called from .expeditor/update_version.sh
