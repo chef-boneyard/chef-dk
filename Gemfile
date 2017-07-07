@@ -39,10 +39,10 @@ end
 group(:omnibus_package) do
   gem "appbundler"
   gem "berkshelf", ">= 6.2"
-  gem "chef-provisioning", ">= 2.4.0"
-  gem "chef-provisioning-aws", ">= 2.0"
-  gem "chef-provisioning-azure", ">= 0.6.0"
-  gem "chef-provisioning-fog", ">= 0.20.0"
+  gem "chef-provisioning", ">= 2.4.0", group: :provisioning
+  gem "chef-provisioning-aws", ">= 2.0", group: :provisioning
+  gem "chef-provisioning-azure", ">= 0.6.0", group: :provisioning
+  gem "chef-provisioning-fog", ">= 0.20.0", group: :provisioning
   gem "chef-vault"
   gem "chef", "= 13.2.20"
   gem "cheffish", ">= 13.0"

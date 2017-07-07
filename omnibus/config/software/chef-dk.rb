@@ -64,8 +64,9 @@ build do
 
   appbundle "berkshelf", lockdir: project_dir, without: %w{guard changelog}, env:env
   appbundle "chef", lockdir: project_dir, without: %w{changelog integration docgen maintenance ci travis}, env:env
+  appbundle "test-kitchen", lockdir: project_dir, without: %w{changelog provisioning}, env: env
 
-  %w{chef-dk chef-vault foodcritic ohai test-kitchen opscode-pushy-client cookstyle inspec dco}.each do |gem|
+  %w{chef-dk chef-vault foodcritic ohai opscode-pushy-client cookstyle inspec dco}.each do |gem|
     appbundle gem, lockdir: project_dir, without: %w{changelog}, env: env
   end
 
