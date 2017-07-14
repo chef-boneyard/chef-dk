@@ -26,12 +26,11 @@
 
 # Windows architecture defaults - set to x86 unless otherwise specified.
 # ------------------------------
-windows_arch %w{x86 x64}.include?((ENV["OMNIBUS_WINDOWS_ARCH"] || "").downcase) ?
-                ENV["OMNIBUS_WINDOWS_ARCH"].downcase.to_sym : :x86
+windows_arch %w{x86 x64}.include?((ENV["OMNIBUS_WINDOWS_ARCH"] || "").downcase) ? ENV["OMNIBUS_WINDOWS_ARCH"].downcase.to_sym : :x86
 
 # Build in FIPS compatability mode
 # ------------------------------
-fips_mode (ENV["OMNIBUS_FIPS_MODE"] || "").downcase == "true"
+fips_mode ((ENV["OMNIBUS_FIPS_MODE"] || "").casecmp("true") == 0)
 
 # Disable git caching
 # ------------------------------

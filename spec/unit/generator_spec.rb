@@ -67,7 +67,7 @@ describe ChefDK::Generator::TemplateHelper do
       end
 
       it "should comment if requested" do
-        expect(helper.license_description('#')).to match(/^# Copyright/)
+        expect(helper.license_description("#")).to match(/^# Copyright/)
       end
     end
 
@@ -78,7 +78,7 @@ describe ChefDK::Generator::TemplateHelper do
       end
 
       it "should comment if requested" do
-        expect(helper.license_description('#')).to match(/# Licensed under the Apache/)
+        expect(helper.license_description("#")).to match(/# Licensed under the Apache/)
       end
     end
 
@@ -89,7 +89,7 @@ describe ChefDK::Generator::TemplateHelper do
       end
 
       it "should comment if requested" do
-        expect(helper.license_description('#')).to match(/# Permission is hereby granted/)
+        expect(helper.license_description("#")).to match(/# Permission is hereby granted/)
       end
     end
 
@@ -100,7 +100,7 @@ describe ChefDK::Generator::TemplateHelper do
       end
 
       it "should comment if requested" do
-        expect(helper.license_description('#')).to match(/# This program is free software;/)
+        expect(helper.license_description("#")).to match(/# This program is free software;/)
       end
     end
 
@@ -111,7 +111,7 @@ describe ChefDK::Generator::TemplateHelper do
       end
 
       it "should comment if requested" do
-        expect(helper.license_description('#')).to match(/# This program is free software:/)
+        expect(helper.license_description("#")).to match(/# This program is free software:/)
       end
     end
   end

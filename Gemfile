@@ -100,6 +100,8 @@ end
 # mixlib-install is used by two groups
 gem "mixlib-install", :group => [:changelog, :omnibus_package]
 
+gem "chefstyle", group: :test
+
 # TODO delete this when we figure out how to include the pushy windows dependencies
 # correctly
 platforms :mswin, :mingw do

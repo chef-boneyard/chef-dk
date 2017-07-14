@@ -22,7 +22,7 @@ require "chef-dk/policyfile/source_uri"
 describe ChefDK::Policyfile::SourceURI do
   subject { described_class.parse(source_uri) }
 
-  describe '#validate' do
+  describe "#validate" do
     context "when the scheme is not https" do
       let(:source_uri) { "ftp://chef.example.com" }
 
