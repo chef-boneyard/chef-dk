@@ -59,7 +59,7 @@ describe ChefDK::PolicyfileServices::Push do
   let(:push_service) { described_class.new(policyfile: policyfile_rb_name, policy_group: policy_group, ui: ui, config: config, root_dir: working_dir) }
 
   it "configures an HTTP client" do
-    expect(ChefDK::AuthenticatedHTTP).to receive(:new).with("https://localhost:10443",
+    expect(Chef::ServerAPI).to receive(:new).with("https://localhost:10443",
                                                        signing_key_filename: "/path/to/client/key.pem",
                                                        client_name: "deuce")
     push_service.http_client
@@ -180,7 +180,7 @@ describe ChefDK::PolicyfileServices::Push do
 E
       end
 
-      let(:http_client) { instance_double(ChefDK::AuthenticatedHTTP) }
+      let(:http_client) { instance_double(Chef::ServerAPI) }
 
       let(:updated_lockfile_io) { StringIO.new }
 

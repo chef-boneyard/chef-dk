@@ -22,7 +22,7 @@ describe ChefDK::PolicyfileServices::RmPolicy do
 
   let(:policy_name) { "appserver" }
 
-  let(:http_client) { instance_double(ChefDK::AuthenticatedHTTP) }
+  let(:http_client) { instance_double(Chef::ServerAPI) }
 
   let(:policy_revisions_data) do
     {
@@ -54,7 +54,7 @@ describe ChefDK::PolicyfileServices::RmPolicy do
   end
 
   it "configures an HTTP client" do
-    expect(ChefDK::AuthenticatedHTTP).to receive(:new).with("https://localhost:10443",
+    expect(Chef::ServerAPI).to receive(:new).with("https://localhost:10443",
                                                        signing_key_filename: "/path/to/client/key.pem",
                                                        client_name: "deuce")
     rm_policy_service.http_client

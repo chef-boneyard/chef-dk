@@ -22,7 +22,7 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
 
   let(:policy_group) { "preprod" }
 
-  let(:http_client) { instance_double(ChefDK::AuthenticatedHTTP) }
+  let(:http_client) { instance_double(Chef::ServerAPI) }
 
   let(:ui) { TestHelpers::TestUI.new }
 
@@ -78,7 +78,7 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
   end
 
   it "configures an HTTP client" do
-    expect(ChefDK::AuthenticatedHTTP).to receive(:new).with("https://localhost:10443",
+    expect(Chef::ServerAPI).to receive(:new).with("https://localhost:10443",
                                                        signing_key_filename: "/path/to/client/key.pem",
                                                        client_name: "deuce")
     rm_policy_group_service.http_client

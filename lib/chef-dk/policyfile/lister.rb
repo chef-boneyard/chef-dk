@@ -17,7 +17,7 @@
 
 require "set"
 
-require "chef-dk/authenticated_http"
+require "chef/server_api"
 require "chef-dk/service_exceptions"
 
 module ChefDK
@@ -183,7 +183,7 @@ module ChefDK
       end
 
       def http_client
-        @http_client ||= ChefDK::AuthenticatedHTTP.new(config.chef_server_url,
+        @http_client ||= Chef::ServerAPI.new(config.chef_server_url,
                                                        signing_key_filename: config.client_key,
                                                        client_name: config.node_name)
       end

@@ -15,25 +15,8 @@
 # limitations under the License.
 #
 
-require "chef/http"
-require "chef/http/authenticator"
-require "chef/http/json_input"
-require "chef/http/json_output"
-require "chef/http/decompressor"
-require "chef/http/validate_content_length"
+require "chef/server_api"
 
 module ChefDK
-  class AuthenticatedHTTP < Chef::HTTP
-
-    use JSONInput
-    use JSONOutput
-    use Decompressor
-    use Authenticator
-
-    # ValidateContentLength should come after Decompressor
-    # because the order of middlewares is reversed when handling
-    # responses.
-    use ValidateContentLength
-
-  end
+  AuthenticatedHTTP = Chef::ServerAPI
 end

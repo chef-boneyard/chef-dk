@@ -169,7 +169,7 @@ OUTPUT
       end
     end
 
-    let(:http_client) { instance_double(ChefDK::AuthenticatedHTTP) }
+    let(:http_client) { instance_double(Chef::ServerAPI) }
 
     before do
       allow(undelete_service).to receive(:http_client).and_return(http_client)
@@ -276,7 +276,7 @@ OUTPUT
       end
     end
 
-    let(:http_client) { instance_double(ChefDK::AuthenticatedHTTP) }
+    let(:http_client) { instance_double(Chef::ServerAPI) }
 
     before do
       allow(undelete_service).to receive(:http_client).and_return(http_client)

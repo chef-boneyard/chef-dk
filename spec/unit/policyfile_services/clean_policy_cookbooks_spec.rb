@@ -72,7 +72,7 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
     }
   end
 
-  let(:http_client) { instance_double(ChefDK::AuthenticatedHTTP) }
+  let(:http_client) { instance_double(Chef::ServerAPI) }
 
   let(:ui) { TestHelpers::TestUI.new }
 
@@ -88,7 +88,7 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
   end
 
   it "configures an HTTP client with the user's credentials" do
-    expect(ChefDK::AuthenticatedHTTP).to receive(:new).with("https://localhost:10443",
+    expect(Chef::ServerAPI).to receive(:new).with("https://localhost:10443",
                                                        signing_key_filename: "/path/to/client/key.pem",
                                                        client_name: "deuce")
     clean_policy_cookbooks_service.http_client

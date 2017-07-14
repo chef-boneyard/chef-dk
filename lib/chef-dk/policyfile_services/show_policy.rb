@@ -218,9 +218,9 @@ module ChefDK
       end
 
       def http_client
-        @http_client ||= ChefDK::AuthenticatedHTTP.new(chef_config.chef_server_url,
-                                                       signing_key_filename: chef_config.client_key,
-                                                       client_name: chef_config.node_name)
+        @http_client ||= Chef::ServerAPI.new(chef_config.chef_server_url,
+                                             signing_key_filename: chef_config.client_key,
+                                             client_name: chef_config.node_name)
       end
 
       private
