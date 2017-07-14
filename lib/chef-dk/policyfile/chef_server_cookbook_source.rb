@@ -18,7 +18,7 @@
 require "ffi_yajl"
 require "chef-dk/exceptions"
 require "chef-dk/policyfile/source_uri"
-require "chef-dk/authenticated_http"
+require "chef/server_api"
 
 module ChefDK
   module Policyfile
@@ -82,7 +82,7 @@ module ChefDK
       private
 
       def http_connection_for(base_url)
-        @http_connections[base_url] ||= ChefDK::AuthenticatedHTTP.new(base_url,
+        @http_connections[base_url] ||= Chef::ServerAPI.new(base_url,
                                                        signing_key_filename: chef_config.client_key,
                                                        client_name: chef_config.node_name)
       end

@@ -22,7 +22,7 @@ require "chef-dk/policyfile/differ"
 require "chef-dk/policyfile/comparison_base"
 require "chef-dk/policyfile/storage_config"
 require "chef-dk/configurable"
-require "chef-dk/authenticated_http"
+require "chef/server_api"
 
 module ChefDK
   module Command
@@ -161,9 +161,9 @@ BANNER
       end
 
       def http_client
-        @http_client ||= ChefDK::AuthenticatedHTTP.new(chef_config.chef_server_url,
-                                                       signing_key_filename: chef_config.client_key,
-                                                       client_name: chef_config.node_name)
+        @http_client ||= Chef::ServerAPI.new(chef_config.chef_server_url,
+                                             signing_key_filename: chef_config.client_key,
+                                             client_name: chef_config.node_name)
       end
 
       def old_lock

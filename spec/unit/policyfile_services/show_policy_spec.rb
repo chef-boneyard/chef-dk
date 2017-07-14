@@ -56,7 +56,7 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
 
     describe "when an error occurs fetching data from the server" do
 
-      let(:http_client) { instance_double(ChefDK::AuthenticatedHTTP) }
+      let(:http_client) { instance_double(Chef::ServerAPI) }
 
       let(:response) do
         Net::HTTPResponse.send(:response_class, "500").new("1.0", "500", "Internal Server Error").tap do |r|
@@ -804,7 +804,7 @@ OUTPUT
 
     let(:policy_group) { "dev" }
 
-    let(:http_client) { instance_double("ChefDK::AuthenticatedHTTP", url: "https://chef.example/organizations/monkeynews") }
+    let(:http_client) { instance_double("Chef::ServerAPI", url: "https://chef.example/organizations/monkeynews") }
 
     before do
       allow(show_policy_service).to receive(:http_client).and_return(http_client)

@@ -45,7 +45,7 @@ describe ChefDK::Command::Diff do
 
     let(:ui) { TestHelpers::TestUI.new }
 
-    let(:http_client) { instance_double("ChefDK::AuthenticatedHTTP") }
+    let(:http_client) { instance_double("Chef::ServerAPI") }
 
     let(:differ) { instance_double("ChefDK::Policyfile::Differ", run_report: nil) }
 

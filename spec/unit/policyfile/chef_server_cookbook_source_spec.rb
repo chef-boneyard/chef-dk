@@ -23,7 +23,7 @@ describe ChefDK::Policyfile::ChefServerCookbookSource do
 
   let(:cookbook_source) { "https://chef.example.com/organizations/example" }
 
-  let(:http_connection) { double("ChefDK::AuthenticatedHTTP") }
+  let(:http_connection) { double("Chef::ServerAPI") }
 
   let(:universe_response_encoded) { JSON.parse(IO.read(File.join(fixtures_path, "cookbooks_api/chef_server_universe.json"))) }
 

@@ -222,7 +222,7 @@ E
 
     let(:group) { "acceptance" }
     let(:policy_name) { "chatserver" }
-    let(:http_client) { instance_double("ChefDK::AuthenticatedHTTP", url: "https://chef.example/organizations/monkeynews") }
+    let(:http_client) { instance_double("Chef::ServerAPI", url: "https://chef.example/organizations/monkeynews") }
 
     subject(:comparison_base) { described_class.new(group, policy_name, http_client) }
 
