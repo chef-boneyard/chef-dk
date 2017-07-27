@@ -72,6 +72,7 @@ group(:omnibus_package) do
   # All of the following used to be software definitions we included:
   gem "knife-spork"
   gem "dep-selector-libgecode"
+  gem "mixlib-install"
   gem "nokogiri"
   gem "pry-byebug"
   gem "pry-remote"
@@ -92,13 +93,6 @@ end
 group(:ruby_shadow) do
   gem "ruby-shadow", platform: :ruby
 end
-
-group(:changelog) do
-  gem "github_changelog_generator", git: "https://github.com/chef/github-changelog-generator"
-end
-
-# mixlib-install is used by two groups
-gem "mixlib-install", :group => [:changelog, :omnibus_package]
 
 # TODO delete this when we figure out how to include the pushy windows dependencies
 # correctly
