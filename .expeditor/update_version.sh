@@ -8,8 +8,10 @@ set -evx
 
 sed -i -r "s/^(\s*)VERSION = \".+\"/\1VERSION = \"$(cat VERSION)\"/" lib/chef-dk/version.rb
 
-# Update the version inside Gemfile.lock
-bundle update chef-dk
+# There is a bug (https://github.com/bundler/bundler/issues/5644) that is preventing
+# us from updating the chef-dk gem via `bundle update` or `bundle lock --update`.
+# Until that is addressed, let's replace the version using sed.
+sed -i -r "s/chef-dk\s\(.+\)$/chef-dk \($(cat VERSION)\)/" Gemfile.lock
 
 # Once Expeditor finshes executing this script, it will commit the changes and push
 # the commit as a new tag corresponding to the value in the VERSION file.
