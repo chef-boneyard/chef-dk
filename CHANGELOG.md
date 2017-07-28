@@ -1,7 +1,15 @@
 <!-- latest_release -->
+## [v2.1.2](https://github.com/chef/chef-dk/tree/v2.1.2) (2017-07-28)
+
+#### Merged Pull Requests
+- Update Gemfile.lock using sed rather than bundler [#1334](https://github.com/chef/chef-dk/pull/1334) ([tduffield](https://github.com/tduffield))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=2.0.28 -->
+### Changes since 2.0.28 release
+
+#### Merged Pull Requests
+- Update Gemfile.lock using sed rather than bundler [#1334](https://github.com/chef/chef-dk/pull/1334) ([tduffield](https://github.com/tduffield)) <!-- 2.1.2 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
