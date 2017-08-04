@@ -444,15 +444,15 @@ GEM
       builder (>= 2.1.2)
     hashie (3.5.6)
     highline (1.7.8)
-    hitimes (1.2.5)
-    hitimes (1.2.5-x86-mingw32)
+    hitimes (1.2.6)
+    hitimes (1.2.6-x86-mingw32)
     htmlentities (4.3.4)
     httpclient (2.8.3)
     i18n (0.8.6)
     inflecto (0.0.2)
     inifile (3.0.0)
     iniparse (1.4.4)
-    inspec (1.31.1)
+    inspec (1.32.1)
       addressable (~> 2.4)
       faraday (>= 0.9.0)
       hashie (~> 3.4)
@@ -546,7 +546,7 @@ GEM
       win32-process (~> 0.8.2)
       wmi-lite (~> 1.0)
     mixlib-versioning (1.2.2)
-    molinillo (0.6.1)
+    molinillo (0.5.7)
     multi_json (1.12.1)
     multi_test (0.1.2)
     multipart-post (2.0.0)
@@ -690,7 +690,7 @@ GEM
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
     semverse (2.0.0)
-    serverspec (2.39.1)
+    serverspec (2.39.2)
       multi_json
       rspec (~> 3.0)
       rspec-its
@@ -842,6 +842,7 @@ DEPENDENCIES
   listen
   mixlib-install
   mixlib-versioning
+  molinillo (< 0.6.0)
   nokogiri
   ohai (>= 13.1.0)
   opscode-pushy-client (>= 2.3.0)
