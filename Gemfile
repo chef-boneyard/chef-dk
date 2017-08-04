@@ -19,6 +19,9 @@ source "https://rubygems.org"
 
 gemspec
 
+# temporary pin until molinillo is fixed
+gem "molinillo", "< 0.6.0"
+
 gem "bundler"
 
 group(:omnibus_package, :development, :test) do
