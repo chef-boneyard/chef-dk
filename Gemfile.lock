@@ -46,7 +46,7 @@ GEM
       json (~> 1.4)
       nokogiri (~> 1)
     aws-sigv4 (1.0.1)
-    berkshelf (6.2.2)
+    berkshelf (6.3.0)
       buff-config (~> 2.0)
       buff-extensions (~> 2.0)
       chef (>= 12.7.2)
@@ -807,7 +807,7 @@ PLATFORMS
 DEPENDENCIES
   appbundler
   artifactory
-  berkshelf (>= 6.2)
+  berkshelf (>= 6.3)
   bundler
   chef (= 13.2.20)
   chef-dk!

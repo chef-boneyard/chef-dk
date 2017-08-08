@@ -41,7 +41,7 @@ end
 # We equality pin the chef gem itself to assert which version we're shipping.
 group(:omnibus_package) do
   gem "appbundler"
-  gem "berkshelf", ">= 6.2"
+  gem "berkshelf", ">= 6.3"
   gem "chef-provisioning", ">= 2.4.0"
   gem "chef-provisioning-aws", ">= 2.0"
   gem "chef-provisioning-azure", ">= 0.6.0"
