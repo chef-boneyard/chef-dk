@@ -1,14 +1,15 @@
-<!-- latest_release 2.1.4 -->
-## [v2.1.4](https://github.com/chef/chef-dk/tree/v2.1.4) (2017-08-04)
+<!-- latest_release 2.1.5 -->
+## [v2.1.5](https://github.com/chef/chef-dk/tree/v2.1.5) (2017-08-09)
 
 #### Merged Pull Requests
-- temporarily pin molinillo until it is un-busted [#1340](https://github.com/chef/chef-dk/pull/1340) ([lamont-granquist](https://github.com/lamont-granquist))
+- Update dependencies [#1342](https://github.com/chef/chef-dk/pull/1342) ([jaym](https://github.com/jaym))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.0.28 -->
 ### Changes since 2.0.28 release
 
 #### Merged Pull Requests
+- Update dependencies [#1342](https://github.com/chef/chef-dk/pull/1342) ([jaym](https://github.com/jaym)) <!-- 2.1.5 -->
 - temporarily pin molinillo until it is un-busted [#1340](https://github.com/chef/chef-dk/pull/1340) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 2.1.4 -->
 - bump gemfile.lock [#1339](https://github.com/chef/chef-dk/pull/1339) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 2.1.3 -->
 - Update Gemfile.lock using sed rather than bundler [#1334](https://github.com/chef/chef-dk/pull/1334) ([tduffield](https://github.com/tduffield)) <!-- 2.1.2 -->
