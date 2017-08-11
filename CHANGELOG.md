@@ -1,11 +1,11 @@
 This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
 
-## [v1.3.42](https://github.com/chef/chef-dk/tree/v1.3.42) (2017-04-13)
-[Full Changelog](https://github.com/chef/chef-dk/compare/v1.3.40...v1.3.42)
+## [v1.5.1](https://github.com/chef/chef-dk/tree/v1.5.1) (2017-08-11)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v2.0.28...v1.5.1)
 
-**Merged pull requests:**
+**Fixed bugs:**
 
-- Add expeditor [\#1213](https://github.com/chef/chef-dk/pull/1213) ([tduffield](https://github.com/tduffield))
+- in6\_addr: invalid address weird error when using ChefDK 2 [\#1321](https://github.com/chef/chef-dk/issues/1321)
 
 ## [v1.2.20](https://github.com/chef/chef-dk/tree/v1.2.20) (2017-01-27)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.16...v1.2.20)
