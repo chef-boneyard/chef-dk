@@ -57,3 +57,4 @@ matrix:
 branches:
   only:
     - master
+    - chefdk-1
