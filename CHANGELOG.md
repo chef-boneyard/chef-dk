@@ -1,28 +1,26 @@
-<!-- latest_release 2.1.11 -->
-## [v2.1.11](https://github.com/chef/chef-dk/tree/v2.1.11) (2017-08-11)
-
-#### Merged Pull Requests
-- Make sure to include libstc++-6 [#1352](https://github.com/chef/chef-dk/pull/1352) ([jaym](https://github.com/jaym))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=2.0.28 -->
-### Changes since 2.0.28 release
-
-#### Merged Pull Requests
-- Make sure to include libstc++-6 [#1352](https://github.com/chef/chef-dk/pull/1352) ([jaym](https://github.com/jaym)) <!-- 2.1.11 -->
-- Update libzmq and use correct omnibus def on windows [#1350](https://github.com/chef/chef-dk/pull/1350) ([jaym](https://github.com/jaym)) <!-- 2.1.10 -->
-- libiconv 1.14 defn no longer exists in omnibus-software master [#1349](https://github.com/chef/chef-dk/pull/1349) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 2.1.9 -->
-- bump git to 2.14.1 (CVE-2017-1000117) [#1348](https://github.com/chef/chef-dk/pull/1348) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 2.1.8 -->
-- bump test-kitchen to 1.17.0 [#1347](https://github.com/chef/chef-dk/pull/1347) ([robbkidd](https://github.com/robbkidd)) <!-- 2.1.7 -->
-- Bump InSpec to v1.33.1 [#1346](https://github.com/chef/chef-dk/pull/1346) ([adamleff](https://github.com/adamleff)) <!-- 2.1.6 -->
-- Update dependencies [#1342](https://github.com/chef/chef-dk/pull/1342) ([jaym](https://github.com/jaym)) <!-- 2.1.5 -->
-- temporarily pin molinillo until it is un-busted [#1340](https://github.com/chef/chef-dk/pull/1340) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 2.1.4 -->
-- bump gemfile.lock [#1339](https://github.com/chef/chef-dk/pull/1339) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 2.1.3 -->
-- Update Gemfile.lock using sed rather than bundler [#1334](https://github.com/chef/chef-dk/pull/1334) ([tduffield](https://github.com/tduffield)) <!-- 2.1.2 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v2.1.11](https://github.com/chef/chef-dk/tree/v2.1.11) (2017-08-11)
+
+#### Merged Pull Requests
+- Update Gemfile.lock using sed rather than bundler [#1334](https://github.com/chef/chef-dk/pull/1334) ([tduffield](https://github.com/tduffield))
+- bump gemfile.lock [#1339](https://github.com/chef/chef-dk/pull/1339) ([lamont-granquist](https://github.com/lamont-granquist))
+- temporarily pin molinillo until it is un-busted [#1340](https://github.com/chef/chef-dk/pull/1340) ([lamont-granquist](https://github.com/lamont-granquist))
+- Update dependencies [#1342](https://github.com/chef/chef-dk/pull/1342) ([jaym](https://github.com/jaym))
+- Bump InSpec to v1.33.1 [#1346](https://github.com/chef/chef-dk/pull/1346) ([adamleff](https://github.com/adamleff))
+- bump test-kitchen to 1.17.0 [#1347](https://github.com/chef/chef-dk/pull/1347) ([robbkidd](https://github.com/robbkidd))
+- bump git to 2.14.1 (CVE-2017-1000117) [#1348](https://github.com/chef/chef-dk/pull/1348) ([lamont-granquist](https://github.com/lamont-granquist))
+- libiconv 1.14 defn no longer exists in omnibus-software master [#1349](https://github.com/chef/chef-dk/pull/1349) ([lamont-granquist](https://github.com/lamont-granquist))
+- Update libzmq and use correct omnibus def on windows [#1350](https://github.com/chef/chef-dk/pull/1350) ([jaym](https://github.com/jaym))
+- Make sure to include libstc++-6 [#1352](https://github.com/chef/chef-dk/pull/1352) ([jaym](https://github.com/jaym))
 <!-- latest_stable_release -->
+
+
 
 ## [v1.2.20](https://github.com/chef/chef-dk/tree/v1.2.20) (2017-01-27)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.16...v1.2.20)
