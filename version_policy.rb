@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2016 Chef Software Inc.
+# Copyright:: Copyright (c) 2016-2017, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +19,7 @@
 OMNIBUS_OVERRIDES = {
   # Until 1.13.0 is released
   :bundler => "1.12.5",
+  :rubygems => "2.6.11",  # 2.6.12 fails to install appbundler
   # Lower level library pins
   ## according to comment in omnibus-sw, latest versions don't work on solaris
   # https://github.com/chef/omnibus-software/blob/aefb7e79d29ca746c3f843673ef5e317fa3cba54/config/software/libtool.rb#L23
@@ -34,7 +35,7 @@ OMNIBUS_OVERRIDES = {
   "makedepend" => "1.0.5",
   "ncurses" => "5.9",
   "pkg-config-lite" => "0.28-1",
-  "ruby" => "2.3.1",
+  "ruby" => "2.3.4",
   # Leave dev-kit pinned to 4.5 on 32-bit, because 4.7 is 20MB larger and we don't want
   # to unnecessarily make the client any fatter. (Since it's different between
   # 32 and 64, we have to do it in the project file still.)
@@ -59,7 +60,7 @@ OMNIBUS_OVERRIDES = {
 # name of the rubygem (gem list -re <rubygem name> gets us the latest version).
 #
 OMNIBUS_RUBYGEMS_AT_LATEST_VERSION = {
-  rubygems: "rubygems-update",
+  # rubygems: "rubygems-update",
   # bundler: "bundler", # pinned to 1.12.5 until we figure out how we're failing on 1.13.0
 }
 
