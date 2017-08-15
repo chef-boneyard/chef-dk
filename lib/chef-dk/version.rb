@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2017, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,5 +16,5 @@
 #
 
 module ChefDK
-  VERSION = "1.5.3"
+  VERSION = "1.6.0"
 end
