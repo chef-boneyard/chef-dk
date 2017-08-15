@@ -4,6 +4,8 @@ This release of ChefDK update the embedded git to 2.14.1 to address [CVE-2017-10
 
 It was also necessary to bump the ruby version up to 2.3.4 in order to ship this fix.
 
+This also bumps the Chef version from 12.21.2 to 12.21.4 along with patch bumps to several other gem dependencies.
+
 # ChefDK 1.5 Release Notes
 
 ## Security Fixes
