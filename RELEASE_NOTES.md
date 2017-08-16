@@ -1,4 +1,4 @@
-# ChefDK 1.6.0 Release Notes
+# ChefDK 1.6.1 Release Notes
 
 This release of ChefDK update the embedded git to 2.14.1 to address [CVE-2017-1000117](https://www.cvedetails.com/cve/CVE-2017-1000117/)
 

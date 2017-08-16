@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2016 Chef Software Inc.
+# Copyright:: Copyright (c) 2016-2017, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,6 @@ class ReleaseAnnouncement
 
   def initialize(version, date, type)
     @version = version
-    @maj_minor = version.split(".")[0..1].join(".")
     @date = Date.parse(date) unless date.nil?
     @release_notes = release_notes_from_file
     @type = type
@@ -41,7 +40,7 @@ class ReleaseAnnouncement
   end
 
   def release_notes_from_file
-    File.read("RELEASE_NOTES.md").match(/^# ChefDK #{@maj_minor} Release Notes\n\n(.*)/m)[1]
+    File.read("RELEASE_NOTES.md").match(/^# ChefDK #{@version} Release Notes\n\n(.*)/m)[1]
   end
 end
 
