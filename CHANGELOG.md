@@ -1,7 +1,15 @@
-<!-- latest_release -->
+<!-- latest_release 2.1.12 -->
+## [v2.1.12](https://github.com/chef/chef-dk/tree/v2.1.12) (2017-08-24)
+
+#### Merged Pull Requests
+- Dep bump for kitchen-dokken, kitchen-vagrant, foodcritic, inspec, and train [#1362](https://github.com/chef/chef-dk/pull/1362) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=2.1.11 -->
+### Changes since 2.1.11 release
+
+#### Merged Pull Requests
+- Dep bump for kitchen-dokken, kitchen-vagrant, foodcritic, inspec, and train [#1362](https://github.com/chef/chef-dk/pull/1362) ([tas50](https://github.com/tas50)) <!-- 2.1.12 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
