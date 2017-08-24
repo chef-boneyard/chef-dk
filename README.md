@@ -321,13 +321,13 @@ packaging, and building works.
 - - -
 
 [Berkshelf]: https://docs.chef.io/berkshelf.html "Berkshelf"
-[Chef]: https://www.chef.io "Chef"
+[Chef]: https://www.chef.io/chef/ "Chef"
 [ChefDK]: https://downloads.chef.io/chefdk "Chef Development Kit"
 [Chef Documentation]: https://docs.chef.io "Chef Documentation"
-[ChefSpec]: http://sethvargo.github.io/chefspec/ "ChefSpec"
+[ChefSpec]: http://chefspec.github.io/chefspec/ "ChefSpec"
 [Cookstyle]: https://docs.chef.io/cookstyle.html "Cookstyle"
 [Foodcritic]: http://foodcritic.io "Foodcritic"
 [Learn Chef]: https://learn.chef.io "Learn Chef"
 [Test Kitchen]: http://kitchen.ci "Test Kitchen"
-[Delivery CLI]: https://docs.chef.io/ctl_delivery.html "Delivery CLI"
+[Delivery CLI]: https://docs.chef.io/delivery_cli.html "Delivery CLI"
 [Push Jobs Client]: https://docs.chef.io/push_jobs.html#push-jobs-client "Push Jobs Client"
