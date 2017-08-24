@@ -79,10 +79,10 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef (13.2.20)
+    chef (13.3.42)
       addressable
       bundler (>= 1.10)
-      chef-config (= 13.2.20)
+      chef-config (= 13.3.42)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -109,10 +109,10 @@ GEM
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (13.2.20-universal-mingw32)
+    chef (13.3.42-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 13.2.20)
+      chef-config (= 13.3.42)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -150,7 +150,7 @@ GEM
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (13.2.20)
+    chef-config (13.3.42)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -388,7 +388,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (1.11.3)
+    fog-vsphere (1.12.0)
       fog-core
       rbvmomi (~> 1.9)
     fog-xenserver (0.3.0)
@@ -807,7 +807,7 @@ DEPENDENCIES
   artifactory
   berkshelf (>= 6.3)
   bundler
-  chef (= 13.2.20)
+  chef (= 13.3.42)
   chef-dk!
   chef-provisioning (>= 2.4.0)
   chef-provisioning-aws (>= 2.0)
