@@ -122,7 +122,7 @@ module ChefDK
       end
 
       def transitive_deps(names)
-        require 'set'
+        require "set"
         deps = Set.new
         to_explore = names.dup
         until to_explore.empty?

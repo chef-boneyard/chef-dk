@@ -52,7 +52,7 @@ module ChefDK
       end
 
       def fingerprint_text
-        files_with_checksums.sort { |a, b| a[0] <=> b[0] }.inject("") do |fingerprint, file_spec|
+        files_with_checksums.sort_by { |a| a[0] }.inject("") do |fingerprint, file_spec|
           fingerprint << "#{file_spec[0]}:#{file_spec[1]}\n"
         end
       end

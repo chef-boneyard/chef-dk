@@ -41,7 +41,6 @@ dependency "rubygems"
 dependency "bundler"
 dependency "appbundler"
 
-
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
@@ -58,8 +57,8 @@ build do
 
   env["NOKOGIRI_USE_SYSTEM_LIBRARIES"] = "true"
 
-  appbundle "berkshelf", lockdir: project_dir, without: %w{guard changelog}, env:env
-  appbundle "chef", lockdir: project_dir, without: %w{changelog integration docgen maintenance ci travis}, env:env
+  appbundle "berkshelf", lockdir: project_dir, without: %w{guard changelog}, env: env
+  appbundle "chef", lockdir: project_dir, without: %w{changelog integration docgen maintenance ci travis}, env: env
 
   %w{chef-dk chef-vault foodcritic ohai test-kitchen opscode-pushy-client cookstyle inspec dco}.each do |gem|
     appbundle gem, lockdir: project_dir, without: %w{changelog}, env: env

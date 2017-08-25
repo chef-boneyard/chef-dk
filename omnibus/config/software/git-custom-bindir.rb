@@ -32,7 +32,7 @@ dependency "curl"
 dependency "zlib"
 dependency "openssl"
 dependency "pcre"
-dependency "libiconv"  # FIXME: can we figure out how to remove this?
+dependency "libiconv" # FIXME: can we figure out how to remove this?
 dependency "expat"
 
 relative_path "git-#{version}"

@@ -20,13 +20,13 @@ require "chef-dk/policyfile/chef_repo_cookbook_source"
 
 describe ChefDK::Policyfile::ChefRepoCookbookSource do
 
-  let(:repo_path) {
+  let(:repo_path) do
     File.expand_path("spec/unit/fixtures/local_path_cookbooks", project_root)
-  }
+  end
 
   let(:cookbook_source) { ChefDK::Policyfile::ChefRepoCookbookSource.new(repo_path) }
 
-  let(:local_repo_universe) {
+  let(:local_repo_universe) do
     {
       "another-local-cookbook" => {
         "0.1.0" => [],
@@ -41,7 +41,7 @@ describe ChefDK::Policyfile::ChefRepoCookbookSource do
         "0.1.0" => [],
       },
     }
-  }
+  end
 
   it "gives the set of arguments to `default_source` used to create it" do
     expect(cookbook_source.default_source_args).to eq([:chef_repo, repo_path])

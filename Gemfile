@@ -94,6 +94,8 @@ group(:ruby_shadow) do
   gem "ruby-shadow", platform: :ruby
 end
 
+gem "chefstyle", group: :test
+
 # TODO delete this when we figure out how to include the pushy windows dependencies
 # correctly
 platforms :mswin, :mingw do

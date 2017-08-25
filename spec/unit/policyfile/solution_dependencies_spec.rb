@@ -69,7 +69,7 @@ describe ChefDK::Policyfile::SolutionDependencies do
 
   end
 
-  context 'when populated with dependency data from a complex lockfile' do
+  context "when populated with dependency data from a complex lockfile" do
     let(:dependency_data) do
       {
         "Policyfile" => [
@@ -88,9 +88,9 @@ describe ChefDK::Policyfile::SolutionDependencies do
     it "can compute list of transitive dependencies" do
 
       expect(solution_dependencies.transitive_deps(["e"])).to eq(["e"])
-      expect(solution_dependencies.transitive_deps(["c"])).to eq(["c", "e"])
-      expect(solution_dependencies.transitive_deps(["c", "d"])).to eq(["c", "d", "e"])
-      expect(solution_dependencies.transitive_deps(["a"])).to eq(["a", "c", "d", "e"])
+      expect(solution_dependencies.transitive_deps(["c"])).to eq(%w{c e})
+      expect(solution_dependencies.transitive_deps(%w{c d})).to eq(%w{c d e})
+      expect(solution_dependencies.transitive_deps(["a"])).to eq(%w{a c d e})
     end
   end
 

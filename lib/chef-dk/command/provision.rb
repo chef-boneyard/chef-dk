@@ -384,7 +384,7 @@ E
           ui.err("The --no-policy flag cannot be combined with policyfile arguments")
           ui.err("")
           ui.err(opt_parser)
-          return false
+          false
         end
       end
 

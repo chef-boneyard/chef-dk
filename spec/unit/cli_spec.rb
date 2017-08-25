@@ -125,7 +125,7 @@ E
     let(:argv) { %w{-v} }
     let(:delivery_version) { "master (454c3f37819ed508a49c971f38e42267ce8a47de)" }
 
-    let(:tools) {
+    let(:tools) do
       {
         "chef-client" => {
           "version_output" => "Chef: 12.0.3",
@@ -145,10 +145,10 @@ E
         },
         "inspec" => {
           "version_output" => "1.19.1\n\nYour version of InSpec is out of date! The latest version is 1.21.0.",
-          "expected_version" => "1.19.1"
-        }
+          "expected_version" => "1.19.1",
+        },
       }
-    }
+    end
 
     it "does not print versions of tools with missing or errored tools" do
       full_version_message = version_message

@@ -163,8 +163,8 @@ module ChefDK
     # This method resets all the instance variables used. It
     # should only be used for testing
     def reset!
-      self.instance_variables.each do |ivar|
-        self.instance_variable_set(ivar, nil)
+      instance_variables.each do |ivar|
+        instance_variable_set(ivar, nil)
       end
     end
 

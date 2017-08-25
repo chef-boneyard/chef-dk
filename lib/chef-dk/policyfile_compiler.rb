@@ -347,9 +347,9 @@ module ChefDK
     def best_source_for(cookbook_name)
       preferred = default_source.find { |s| s.preferred_source_for?(cookbook_name) }
       if preferred.nil?
-        default_source.find { |s|
+        default_source.find do |s|
           s.universe_graph.has_key?(cookbook_name)
-        }
+        end
       else
         preferred
       end
