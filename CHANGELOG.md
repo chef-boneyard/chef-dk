@@ -30,6 +30,12 @@
 - Make sure to include libstc++-6 [#1352](https://github.com/chef/chef-dk/pull/1352) ([jaym](https://github.com/jaym))
 <!-- latest_stable_release -->
 
+## [v2.0.28](https://github.com/chef/chef-dk/tree/v2.0.28) (2017-07-14)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v2.0.26...v2.0.28)
+
+**Fixed bugs:**
+
+- `chef push` Broken in ChefDK 2.0.26 [\#1322](https://github.com/chef/chef-dk/issues/1322)
 
 
 ## [v1.2.20](https://github.com/chef/chef-dk/tree/v1.2.20) (2017-01-27)
