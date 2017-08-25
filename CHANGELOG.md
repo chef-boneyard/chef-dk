@@ -1,14 +1,15 @@
-<!-- latest_release 2.1.14 -->
-## [v2.1.14](https://github.com/chef/chef-dk/tree/v2.1.14) (2017-08-24)
+<!-- latest_release 2.1.15 -->
+## [v2.1.15](https://github.com/chef/chef-dk/tree/v2.1.15) (2017-08-25)
 
 #### Merged Pull Requests
-- Add CODEOWNERS file to request reviews [#1363](https://github.com/chef/chef-dk/pull/1363) ([thommay](https://github.com/thommay))
+- Add in missing changelog entries [#1366](https://github.com/chef/chef-dk/pull/1366) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.1.11 -->
 ### Changes since 2.1.11 release
 
 #### Merged Pull Requests
+- Add in missing changelog entries [#1366](https://github.com/chef/chef-dk/pull/1366) ([tas50](https://github.com/tas50)) <!-- 2.1.15 -->
 - Add CODEOWNERS file to request reviews [#1363](https://github.com/chef/chef-dk/pull/1363) ([thommay](https://github.com/thommay)) <!-- 2.1.14 -->
 - Bump deps for new cookstyle and inspec [#1364](https://github.com/chef/chef-dk/pull/1364) ([tas50](https://github.com/tas50)) <!-- 2.1.13 -->
 - Dep bump for kitchen-dokken, kitchen-vagrant, foodcritic, inspec, and train [#1362](https://github.com/chef/chef-dk/pull/1362) ([tas50](https://github.com/tas50)) <!-- 2.1.12 -->
