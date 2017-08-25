@@ -79,6 +79,50 @@
 - Remove support for Ruby 2.2 [#1230](https://github.com/chef/chef-dk/pull/1230)
 - Updates to the generator cookbook to pass Foodcritic [#1226](https://github.com/chef/chef-dk/pull/1226)
 
+## [v1.3.43](https://github.com/chef/chef-dk/tree/v1.3.43) (2017-04-14)
+
+- Fix OpenSSL installation for Windows FIPS users [#1224](https://github.com/chef/chef-dk/pull/1226)
+
+## [v1.3.40](https://github.com/chef/chef-dk/tree/v1.3.40) (2017-04-07)
+
+- Use Expeditor tooling for version bumping and release [#1213](https://github.com/chef/chef-dk/pull/1213)
+- Generate inspec tests that end with `_test.rb` in the cookbook generator [#1219](https://github.com/chef/chef-dk/pull/1219)
+- Update liblzma to 5.2.3 [#1220](https://github.com/chef/chef-dk/pull/1220)
+- Update InSpec to 1.19.1 [#1217](https://github.com/chef/chef-dk/pull/1217)
+- Require Chef 12.1+ in the skeleton cookbook and use chef_version [#1215](https://github.com/chef/chef-dk/pull/1215)
+- Write proper SPDX License strings in the cookbook generator [#1218](https://github.com/chef/chef-dk/pull/1218)
+- Use CentOS 7.3 in the generated Test Kitchen configs [#1214](https://github.com/chef/chef-dk/pull/1214)
+- Use latest Foodcritic, Inspec, Chefspec, and Fauxhai [#1211](https://github.com/chef/chef-dk/pull/1211)
+- Bump deps to the latest for Fauxhai 4.0.2 [#1208](https://github.com/chef/chef-dk/pull/1208)
+- Update cookbook validation check to not fail if a cookbook lacks a recipe [#1195](https://github.com/chef/chef-dk/pull/1195)
+- Bump deps to bring in Foodcritic 10 and Cheffish 5 [#1205](https://github.com/chef/chef-dk/pull/1205)
+- Add release policy badge to README [#1204](https://github.com/chef/chef-dk/pull/1204)
+- Generate better example ChefSpec code [#1202](https://github.com/chef/chef-dk/pull/1202)
+- Bump deps for Chefspec 6.1 [#1192](https://github.com/chef/chef-dk/pull/1192)
+- Fix links to the Chefspec and Berkshelf site [#1193](https://github.com/chef/chef-dk/pull/1193)
+- Remove veil gem [#1189](https://github.com/chef/chef-dk/pull/1189)
+- Update Test Kitchen to 1.16 [#1188](https://github.com/chef/chef-dk/pull/1188)
+- Improve generator error messaging when license is invalid [#1180](https://github.com/chef/chef-dk/pull/1180)
+- Fix the dependency updater so Chef Client is updated [#1178](https://github.com/chef/chef-dk/pull/1178)
+- Update Berkshelf to 5.6.3 and ChefSpec to 6.0.0 [#1176](https://github.com/chef/chef-dk/pull/1176)
+- Use kitchen-dokken 2.1.x [#1175](https://github.com/chef/chef-dk/pull/1175)
+- Cleanup the symlinks we create / remove on binary install [#1161](https://github.com/chef/chef-dk/pull/1161)
+- Update omnibus-software to pull in openssl patch fixes [#1173](https://github.com/chef/chef-dk/pull/1173)
+- Update OpenSSL to 1.0.2j to match chef-client [#1171](https://github.com/chef/chef-dk/pull/1171)
+- Avoid override existing delivery configuration [#1162](https://github.com/chef/chef-dk/pull/1162)
+- Remove chefstyle from DK and pin cookstyle with a minimal version [#1169](https://github.com/chef/chef-dk/pull/1169)
+- Bring in the latest chefspec, kitchen-vagrant, kitchen-ec2, inspec [#1167](https://github.com/chef/chef-dk/pull/1167)
+- Add cookstyle/chefstyle/foodcritic tests to Travis [#1160](https://github.com/chef/chef-dk/pull/1160)
+- Properly skip generated skeleton Inspec tests [#1153](https://github.com/chef/chef-dk/pull/1153)
+- Use ChefDK, rather than Chef Client, as build-cookbook Test Kitchen base [#1150](https://github.com/chef/chef-dk/pull/1150)
+
+## [v1.2.22](https://github.com/chef/chef-dk/tree/v1.2.22) (2017-02-02)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.20...v1.2.22)
+
+**Fixed bugs:**
+
+- Update to mixlib-archive 0.4.1 to address security vulnerability [\#1154](https://github.com/chef/chef-dk/pull/1154) ([tduffield](https://github.com/tduffield))
+
 ## [v1.2.20](https://github.com/chef/chef-dk/tree/v1.2.20) (2017-01-27)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.16...v1.2.20)
 
