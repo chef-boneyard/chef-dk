@@ -13,7 +13,7 @@ build do
     # it how to statically link yet
     dlls = [
       "libwinpthread-1",
-      "libstdc++-6"
+      "libstdc++-6",
     ]
     if windows_arch_i386?
       dlls << "libgcc_s_dw2-1"
