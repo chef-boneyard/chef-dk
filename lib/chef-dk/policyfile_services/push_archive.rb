@@ -20,7 +20,7 @@ require "archive/tar/minitar"
 
 require "chef-dk/service_exceptions"
 require "chef-dk/policyfile_lock"
-require "chef-dk/authenticated_http"
+require "chef/server_api"
 require "chef-dk/policyfile/uploader"
 
 module ChefDK
@@ -75,9 +75,9 @@ module ChefDK
 
       # @api private
       def http_client
-        @http_client ||= ChefDK::AuthenticatedHTTP.new(config.chef_server_url,
-                                                       signing_key_filename: config.client_key,
-                                                       client_name: config.node_name)
+        @http_client ||= Chef::ServerAPI.new(config.chef_server_url,
+                                             signing_key_filename: config.client_key,
+                                             client_name: config.node_name)
       end
 
       private

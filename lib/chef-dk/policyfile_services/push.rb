@@ -18,7 +18,7 @@
 require "ffi_yajl"
 
 require "chef-dk/service_exceptions"
-require "chef-dk/authenticated_http"
+require "chef/server_api"
 require "chef-dk/policyfile_compiler"
 require "chef-dk/policyfile/uploader"
 require "chef-dk/policyfile/storage_config"
@@ -51,7 +51,7 @@ module ChefDK
       end
 
       def http_client
-        @http_client ||= ChefDK::AuthenticatedHTTP.new(config.chef_server_url,
+        @http_client ||= Chef::ServerAPI.new(config.chef_server_url,
                                                        signing_key_filename: config.client_key,
                                                        client_name: config.node_name)
       end

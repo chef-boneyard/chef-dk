@@ -357,10 +357,8 @@ E
         end
 
         it "has a default source" do
-          skip "Chef server isn't yet supported in cookbook-omnifetch (pending /universe endpoint in Chef Server)"
-
           expect(policyfile.errors).to eq([])
-          expected = ChefDK::Policyfile::ChefServerCookbookSource.new("https://mychef.example.com")
+          expected = [ ChefDK::Policyfile::ChefServerCookbookSource.new("https://mychef.example.com") ]
           expect(policyfile.default_source).to eq(expected)
         end
 
@@ -536,9 +534,7 @@ MESSAGE
           EOH
         end
 
-        # Chef server isn't yet supported in cookbook-omnifetch (pending /universe endpoint in Chef Server)
-        # We have to skip at the example definition level or else we fail in the before block
-        skip "sets the source of the cookbook to the git URL" do
+        it "sets the source of the cookbook to the git URL" do
           expected_cb_spec = ChefDK::Policyfile::CookbookLocationSpecification.new("foo", ">= 0.0.0", { chef_server: "https://mychefserver.example.com" }, storage_config)
           expect(policyfile.cookbook_location_specs).to eq("foo" => expected_cb_spec)
         end

@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "chef-dk/authenticated_http"
+require "chef/server_api"
 require "chef-dk/service_exceptions"
 require "chef-dk/policyfile/undo_stack"
 
@@ -71,7 +71,7 @@ module ChefDK
       end
 
       def http_client
-        @http_client ||= ChefDK::AuthenticatedHTTP.new(chef_config.chef_server_url,
+        @http_client ||= Chef::ServerAPI.new(chef_config.chef_server_url,
                                                        signing_key_filename: chef_config.client_key,
                                                        client_name: chef_config.node_name)
       end

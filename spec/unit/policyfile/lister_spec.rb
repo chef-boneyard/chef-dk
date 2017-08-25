@@ -31,14 +31,14 @@ describe ChefDK::Policyfile::Lister do
            node_name: "deuce")
   end
 
-  let(:http_client) { instance_double(ChefDK::AuthenticatedHTTP) }
+  let(:http_client) { instance_double(Chef::ServerAPI) }
 
   subject(:info_fetcher) do
     described_class.new(config: config)
   end
 
   it "configures an HTTP client" do
-    expect(ChefDK::AuthenticatedHTTP).to receive(:new).with("https://localhost:10443",
+    expect(Chef::ServerAPI).to receive(:new).with("https://localhost:10443",
                                                        signing_key_filename: "/path/to/client/key.pem",
                                                        client_name: "deuce")
     info_fetcher.http_client

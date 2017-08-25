@@ -37,7 +37,7 @@ describe ChefDK::PolicyfileServices::CleanPolicies do
 
   describe "when there is an error listing data from the server" do
 
-    let(:http_client) { instance_double(ChefDK::AuthenticatedHTTP) }
+    let(:http_client) { instance_double(Chef::ServerAPI) }
 
     let(:response) do
       Net::HTTPResponse.send(:response_class, "500").new("1.0", "500", "Internal Server Error").tap do |r|
@@ -66,7 +66,7 @@ describe ChefDK::PolicyfileServices::CleanPolicies do
 
   context "when existing policies are listed successfully" do
 
-    let(:http_client) { instance_double(ChefDK::AuthenticatedHTTP) }
+    let(:http_client) { instance_double(Chef::ServerAPI) }
 
     before do
       policy_lister.set!(policies_by_name, policies_by_group)

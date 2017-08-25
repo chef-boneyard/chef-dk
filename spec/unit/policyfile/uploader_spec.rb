@@ -20,7 +20,7 @@ require "chef-dk/policyfile/uploader"
 
 # We load this here to ensure we get the "verifying doubles" behavior from
 # RSpec. It's not used by Policyfile::Uploader, but it's a collaborator.
-require "chef-dk/authenticated_http"
+require "chef/server_api"
 
 describe ChefDK::Policyfile::Uploader do
 
@@ -51,7 +51,7 @@ describe ChefDK::Policyfile::Uploader do
 
   let(:policy_group) { "unit-test" }
 
-  let(:http_client) { instance_double("ChefDK::AuthenticatedHTTP") }
+  let(:http_client) { instance_double("Chef::ServerAPI") }
 
   let(:policy_document_native_api) { false }
 

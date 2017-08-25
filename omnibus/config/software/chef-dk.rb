@@ -33,11 +33,7 @@ dependency "zlib"
 dependency "libarchive"
 
 # For opscode-pushy-client
-if windows?
-  dependency "libzmq4x-windows"
-else
-  dependency "libzmq"
-end
+dependency "libzmq"
 
 # ruby and bundler and friends
 dependency "ruby"
