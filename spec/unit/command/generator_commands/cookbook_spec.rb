@@ -575,7 +575,7 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
-  - name: centos-7.3
+  - name: centos-7
 
 suites:
   - name: default
@@ -652,7 +652,7 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
-  - name: centos-7.3
+  - name: centos-7
 
 suites:
   - name: default
