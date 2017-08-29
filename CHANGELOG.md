@@ -1,14 +1,15 @@
-<!-- latest_release 2.1.20 -->
-## [v2.1.20](https://github.com/chef/chef-dk/tree/v2.1.20) (2017-08-29)
+<!-- latest_release 2.1.21 -->
+## [v2.1.21](https://github.com/chef/chef-dk/tree/v2.1.21) (2017-08-29)
 
 #### Merged Pull Requests
-- Upgrade to Rubygems 2.6.13 to resolve CVEs [#1370](https://github.com/chef/chef-dk/pull/1370) ([tas50](https://github.com/tas50))
+- Now that bento ships major version slugs, let&#39;s use them [#1368](https://github.com/chef/chef-dk/pull/1368) ([cheeseplus](https://github.com/cheeseplus))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.1.11 -->
 ### Changes since 2.1.11 release
 
 #### Merged Pull Requests
+- Now that bento ships major version slugs, let&#39;s use them [#1368](https://github.com/chef/chef-dk/pull/1368) ([cheeseplus](https://github.com/cheeseplus)) <!-- 2.1.21 -->
 - Upgrade to Rubygems 2.6.13 to resolve CVEs [#1370](https://github.com/chef/chef-dk/pull/1370) ([tas50](https://github.com/tas50)) <!-- 2.1.20 -->
 - attempt to re-enable chefstyle [#1324](https://github.com/chef/chef-dk/pull/1324) ([thommay](https://github.com/thommay)) <!-- 2.1.18 -->
 - Add gems.locked in .gitignore [#1328](https://github.com/chef/chef-dk/pull/1328) ([grv87](https://github.com/grv87)) <!-- 2.1.17 -->
