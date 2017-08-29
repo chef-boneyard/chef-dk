@@ -43,8 +43,8 @@ end
 # since that's not expressible here, we make it >= the last *known* version to
 # at least prevent downgrades beyond that:
 group(:omnibus_package) do
-  gem "appbundler", github: "chef/appbundler" # until next release with multiple-gem support
-  gem "berkshelf", ">= 5.0"
+  gem "appbundler", git: "https://github.com/chef/appbundler" # until next release with multiple-gem support
+  gem "berkshelf", ">= 6.3.1"
   # Chef 12.8.1 Gem includes some extra files which can break gem installation on
   # windows. For now we are pulling chef from github at the tag as a workaround.
   gem "chef-provisioning", ">= 2.0"
@@ -54,7 +54,7 @@ group(:omnibus_package) do
   gem "chef-provisioning-vagrant", ">= 0.11.0"
   gem "chef-vault", "~> 2"
   # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "chef", github: "chef/chef", branch: "v12.21.4"
+  gem "chef", git: "https://github.com/chef/chef", branch: "v12.21.4"
   # Pinned cheffish to version 5.0.1 since the latest version 13.0.0 has
   # a dependency to ruby 2.3.3 but we are shipping ChefDK with ruby 2.3.1
   #
@@ -79,7 +79,7 @@ group(:omnibus_package) do
   gem "mixlib-versioning"
   gem "artifactory"
   # The opscode-pushy-client version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "opscode-pushy-client", github: "chef/opscode-pushy-client", branch: "2.2.0"
+  gem "opscode-pushy-client", git: "https://github.com/chef/opscode-pushy-client", branch: "2.2.0"
   gem "ffi-rzmq-core"
   gem "knife-push"
 
@@ -98,7 +98,7 @@ group(:omnibus_package) do
 
   # TODO Pinning these for now because github_changelog_generator has a bunch
   # of different versions across our products
-  gem "nokogiri", "~> 1.7.2"
+  gem "nokogiri", ">= 1.8"
 end
 
 # Everything except AIX and Windows

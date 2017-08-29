@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2017, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,7 +44,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "ffi-yajl", ">= 1.0", "< 3.0"
   gem.add_dependency "minitar", "~> 0.5.4"
   gem.add_dependency "chef", "~> 12.5"
-  gem.add_dependency "solve", "< 4.0", "> 2.0"
+  gem.add_dependency "solve", "< 5.0", "> 2.0"
   gem.add_dependency "addressable", ">= 2.3.5", "< 2.6"
   gem.add_dependency "cookbook-omnifetch", "~> 0.5"
   gem.add_dependency "diff-lcs", "~> 1.0"
