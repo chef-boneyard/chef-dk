@@ -58,14 +58,14 @@ end
 dependency "chef-dk"
 
 dependency "gem-permissions"
+dependency "rubygems-customization"
+dependency "shebang-cleanup"
 
 if windows?
   dependency "chef-dk-env-customization"
   dependency "chef-dk-powershell-scripts"
 end
 
-dependency "rubygems-customization"
-dependency "shebang-cleanup"
 dependency "version-manifest"
 dependency "openssl-customization"
 
