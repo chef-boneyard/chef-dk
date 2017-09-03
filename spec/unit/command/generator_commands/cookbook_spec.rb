@@ -236,7 +236,9 @@ PROJECT_DOT_TOML
     "path": ".delivery/build_cookbook"
   },
   "delivery-truck": {
-    "enable_cookstyle": true
+    "lint": {
+      "enable_cookstyle": true
+    }
   },
   "skip_phases": [],
   "job_dispatch": {
