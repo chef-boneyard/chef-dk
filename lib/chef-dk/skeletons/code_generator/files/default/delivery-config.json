@@ -6,7 +6,7 @@
   },
   "delivery-truck": {
     "lint": {
-    "enable_cookstyle": true
+      "enable_cookstyle": true
     }
   },
   "skip_phases": [],
