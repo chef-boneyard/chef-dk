@@ -1,14 +1,15 @@
-<!-- latest_release 2.1.23 -->
-## [v2.1.23](https://github.com/chef/chef-dk/tree/v2.1.23) (2017-09-03)
+<!-- latest_release 2.1.24 -->
+## [v2.1.24](https://github.com/chef/chef-dk/tree/v2.1.24) (2017-09-04)
 
 #### Merged Pull Requests
-- Update config.json with proper cookstyle use [#1369](https://github.com/chef/chef-dk/pull/1369) ([mattstratton](https://github.com/mattstratton))
+- Upgrade to rubygems 2.6.13 [#1379](https://github.com/chef/chef-dk/pull/1379) ([thommay](https://github.com/thommay))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.1.11 -->
 ### Changes since 2.1.11 release
 
 #### Merged Pull Requests
+- Upgrade to rubygems 2.6.13 [#1379](https://github.com/chef/chef-dk/pull/1379) ([thommay](https://github.com/thommay)) <!-- 2.1.24 -->
 - Update config.json with proper cookstyle use [#1369](https://github.com/chef/chef-dk/pull/1369) ([mattstratton](https://github.com/mattstratton)) <!-- 2.1.23 -->
 - Pull in latest inspec, kitchen-dokken, and chef-vault [#1376](https://github.com/chef/chef-dk/pull/1376) ([tas50](https://github.com/tas50)) <!-- 2.1.22 -->
 - Now that bento ships major version slugs, let&#39;s use them [#1368](https://github.com/chef/chef-dk/pull/1368) ([cheeseplus](https://github.com/cheeseplus)) <!-- 2.1.21 -->
