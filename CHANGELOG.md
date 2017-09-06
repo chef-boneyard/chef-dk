@@ -1,3 +1,4 @@
+<!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
 <!-- latest_release 2.2.1 -->
 ## [v2.2.1](https://github.com/chef/chef-dk/tree/v2.2.1) (2017-09-04)
 
