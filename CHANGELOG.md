@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.2.1 -->
-## [v2.2.1](https://github.com/chef/chef-dk/tree/v2.2.1) (2017-09-04)
+<!-- latest_release 2.2.2 -->
+## [v2.2.2](https://github.com/chef/chef-dk/tree/v2.2.2) (2017-09-07)
 
 #### Merged Pull Requests
-- bump version for release [#1380](https://github.com/chef/chef-dk/pull/1380) ([thommay](https://github.com/thommay))
+- Update Expeditor config to meet 0.5.0 requirements [#1382](https://github.com/chef/chef-dk/pull/1382) ([tduffield](https://github.com/tduffield))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.1.11 -->
 ### Changes since 2.1.11 release
 
 #### Merged Pull Requests
+- Update Expeditor config to meet 0.5.0 requirements [#1382](https://github.com/chef/chef-dk/pull/1382) ([tduffield](https://github.com/tduffield)) <!-- 2.2.2 -->
 - bump version for release [#1380](https://github.com/chef/chef-dk/pull/1380) ([thommay](https://github.com/thommay)) <!-- 2.2.1 -->
 - Upgrade to rubygems 2.6.13 [#1379](https://github.com/chef/chef-dk/pull/1379) ([thommay](https://github.com/thommay)) <!-- 2.1.24 -->
 - Update config.json with proper cookstyle use [#1369](https://github.com/chef/chef-dk/pull/1369) ([mattstratton](https://github.com/mattstratton)) <!-- 2.1.23 -->
