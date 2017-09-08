@@ -38,6 +38,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       test/smoke/default/default_test.rb
       Berksfile
       chefignore
+      LICENSE
       metadata.rb
       README.md
       recipes
