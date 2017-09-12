@@ -28,6 +28,7 @@ GEM
     app_conf (0.4.2)
     appbundler (0.10.0)
       mixlib-cli (~> 1.4)
+      mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.3.0)
     autoparse (0.3.3)
@@ -519,6 +520,7 @@ GEM
     logging (2.2.2)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
+    logify (0.2.0)
     lumberjack (1.0.12)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
@@ -712,6 +714,9 @@ GEM
       net-telnet
       sfl
     sslshake (1.2.0)
+    stove (5.2.0)
+      chef-api (~> 0.5)
+      logify (~> 0.2)
     stuartpreston-azure-sdk-for-ruby (0.7.2)
       json (~> 1.8)
       mime-types (> 1, < 4)
@@ -860,6 +865,7 @@ DEPENDENCIES
   rubocop
   ruby-prof
   ruby-shadow
+  stove
   test-kitchen
   win32-api
   win32-dir
