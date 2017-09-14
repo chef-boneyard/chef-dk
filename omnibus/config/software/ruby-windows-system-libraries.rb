@@ -11,7 +11,10 @@ build do
   if windows?
     # Needed now that we switched to msys2 and have not figured out how to tell
     # it how to statically link yet
-    dlls = ["libwinpthread-1"]
+    dlls = [
+      "libwinpthread-1",
+      "libstdc++-6",
+    ]
     if windows_arch_i386?
       dlls << "libgcc_s_dw2-1"
     else

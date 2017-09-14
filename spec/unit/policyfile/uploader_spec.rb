@@ -45,8 +45,9 @@ describe ChefDK::Policyfile::Uploader do
     }
   end
 
-  let(:policyfile_lock) { instance_double("ChefDK::PolicyfileLock", name: "example",
-                                                                    to_lock: policyfile_lock_data) }
+  let(:policyfile_lock) do
+    instance_double("ChefDK::PolicyfileLock", name: "example",
+                                              to_lock: policyfile_lock_data) end
 
   let(:policy_group) { "unit-test" }
 

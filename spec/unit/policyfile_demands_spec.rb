@@ -867,7 +867,6 @@ MESSAGE
           "remote-cb (0.1.0)" => [],
         },
 
-
       }
       expect(policyfile.solution_dependencies.to_lock).to eq(expected_solution_deps)
     end

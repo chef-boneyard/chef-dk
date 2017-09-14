@@ -38,13 +38,13 @@ end
 # We equality pin the chef gem itself to assert which version we're shipping.
 group(:omnibus_package) do
   gem "appbundler"
-  gem "berkshelf", ">= 6.2"
+  gem "berkshelf", ">= 6.3"
   gem "chef-provisioning", ">= 2.4.0"
   gem "chef-provisioning-aws", ">= 2.0"
   gem "chef-provisioning-azure", ">= 0.6.0"
   gem "chef-provisioning-fog", ">= 0.20.0"
   gem "chef-vault"
-  gem "chef", "= 13.2.20"
+  gem "chef", "= 13.4.19"
   gem "cheffish", ">= 13.0"
   gem "chefspec"
   gem "fauxhai"
@@ -72,6 +72,7 @@ group(:omnibus_package) do
   # All of the following used to be software definitions we included:
   gem "knife-spork"
   gem "dep-selector-libgecode"
+  gem "mixlib-install"
   gem "nokogiri"
   gem "pry-byebug"
   gem "pry-remote"
@@ -81,6 +82,7 @@ group(:omnibus_package) do
   gem "winrm-fs"
   gem "winrm-elevated"
   gem "cucumber"
+  gem "stove"
 end
 
 # Everything except AIX
@@ -93,12 +95,7 @@ group(:ruby_shadow) do
   gem "ruby-shadow", platform: :ruby
 end
 
-group(:changelog) do
-  gem "github_changelog_generator", git: "https://github.com/chef/github-changelog-generator"
-end
-
-# mixlib-install is used by two groups
-gem "mixlib-install", :group => [:changelog, :omnibus_package]
+gem "chefstyle", group: :test
 
 # TODO delete this when we figure out how to include the pushy windows dependencies
 # correctly

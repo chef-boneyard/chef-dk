@@ -46,8 +46,8 @@ module ChefDK
       def validate
         super
 
-        unless VALID_SCHEMES.include?(self.scheme)
-          raise InvalidPolicyfileSourceURI.new(self, "invalid URI scheme '#{self.scheme}'. Valid schemes: #{VALID_SCHEMES}")
+        unless VALID_SCHEMES.include?(scheme)
+          raise InvalidPolicyfileSourceURI.new(self, "invalid URI scheme '#{scheme}'. Valid schemes: #{VALID_SCHEMES}")
         end
       rescue Addressable::URI::InvalidURIError => ex
         raise InvalidPolicyfileSourceURI.new(self, ex)

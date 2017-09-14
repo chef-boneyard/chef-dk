@@ -1,4 +1,143 @@
-This changelog reflects the current state of chef-dk's master branch on github and may not reflect the current released version of chef-dk, which is [![Gem Version](https://badge.fury.io/rb/chef-dk.svg)](https://badge.fury.io/rb/chef-dk).
+<!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
+<!-- latest_release 2.2.6 -->
+## [v2.2.6](https://github.com/chef/chef-dk/tree/v2.2.6) (2017-09-14)
+
+#### Merged Pull Requests
+- Adds stove for inclusion [#1385](https://github.com/chef/chef-dk/pull/1385) ([scassiba](https://github.com/scassiba))
+<!-- latest_release -->
+
+<!-- release_rollup since=2.1.11 -->
+### Changes since 2.1.11 release
+
+#### Merged Pull Requests
+- Adds stove for inclusion [#1385](https://github.com/chef/chef-dk/pull/1385) ([scassiba](https://github.com/scassiba)) <!-- 2.2.6 -->
+- Ship Chef 13.4.19 [#1387](https://github.com/chef/chef-dk/pull/1387) ([tas50](https://github.com/tas50)) <!-- 2.2.5 -->
+- Bring in the latest net-ssh, rake, kitchen-hyperv, inspec, and foodcritic [#1386](https://github.com/chef/chef-dk/pull/1386) ([tas50](https://github.com/tas50)) <!-- 2.2.4 -->
+- Added LICENSE generation to skeleton [#1383](https://github.com/chef/chef-dk/pull/1383) ([mengesb](https://github.com/mengesb)) <!-- 2.2.3 -->
+- Update Expeditor config to meet 0.5.0 requirements [#1382](https://github.com/chef/chef-dk/pull/1382) ([tduffield](https://github.com/tduffield)) <!-- 2.2.2 -->
+- bump version for release [#1380](https://github.com/chef/chef-dk/pull/1380) ([thommay](https://github.com/thommay)) <!-- 2.2.1 -->
+- Upgrade to rubygems 2.6.13 [#1379](https://github.com/chef/chef-dk/pull/1379) ([thommay](https://github.com/thommay)) <!-- 2.1.24 -->
+- Update config.json with proper cookstyle use [#1369](https://github.com/chef/chef-dk/pull/1369) ([mattstratton](https://github.com/mattstratton)) <!-- 2.1.23 -->
+- Pull in latest inspec, kitchen-dokken, and chef-vault [#1376](https://github.com/chef/chef-dk/pull/1376) ([tas50](https://github.com/tas50)) <!-- 2.1.22 -->
+- Now that bento ships major version slugs, let&#39;s use them [#1368](https://github.com/chef/chef-dk/pull/1368) ([cheeseplus](https://github.com/cheeseplus)) <!-- 2.1.21 -->
+- Upgrade to Rubygems 2.6.13 to resolve CVEs [#1370](https://github.com/chef/chef-dk/pull/1370) ([tas50](https://github.com/tas50)) <!-- 2.1.20 -->
+- attempt to re-enable chefstyle [#1324](https://github.com/chef/chef-dk/pull/1324) ([thommay](https://github.com/thommay)) <!-- 2.1.18 -->
+- Add gems.locked in .gitignore [#1328](https://github.com/chef/chef-dk/pull/1328) ([grv87](https://github.com/grv87)) <!-- 2.1.17 -->
+- Fix a few readme links [#1365](https://github.com/chef/chef-dk/pull/1365) ([tas50](https://github.com/tas50)) <!-- 2.1.16 -->
+- Add in missing changelog entries [#1366](https://github.com/chef/chef-dk/pull/1366) ([tas50](https://github.com/tas50)) <!-- 2.1.15 -->
+- Add CODEOWNERS file to request reviews [#1363](https://github.com/chef/chef-dk/pull/1363) ([thommay](https://github.com/thommay)) <!-- 2.1.14 -->
+- Bump deps for new cookstyle and inspec [#1364](https://github.com/chef/chef-dk/pull/1364) ([tas50](https://github.com/tas50)) <!-- 2.1.13 -->
+- Dep bump for kitchen-dokken, kitchen-vagrant, foodcritic, inspec, and train [#1362](https://github.com/chef/chef-dk/pull/1362) ([tas50](https://github.com/tas50)) <!-- 2.1.12 -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
+## [v2.1.11](https://github.com/chef/chef-dk/tree/v2.1.11) (2017-08-11)
+
+#### Merged Pull Requests
+- Update Gemfile.lock using sed rather than bundler [#1334](https://github.com/chef/chef-dk/pull/1334) ([tduffield](https://github.com/tduffield))
+- bump gemfile.lock [#1339](https://github.com/chef/chef-dk/pull/1339) ([lamont-granquist](https://github.com/lamont-granquist))
+- temporarily pin molinillo until it is un-busted [#1340](https://github.com/chef/chef-dk/pull/1340) ([lamont-granquist](https://github.com/lamont-granquist))
+- Update dependencies [#1342](https://github.com/chef/chef-dk/pull/1342) ([jaym](https://github.com/jaym))
+- Bump InSpec to v1.33.1 [#1346](https://github.com/chef/chef-dk/pull/1346) ([adamleff](https://github.com/adamleff))
+- bump test-kitchen to 1.17.0 [#1347](https://github.com/chef/chef-dk/pull/1347) ([robbkidd](https://github.com/robbkidd))
+- bump git to 2.14.1 (CVE-2017-1000117) [#1348](https://github.com/chef/chef-dk/pull/1348) ([lamont-granquist](https://github.com/lamont-granquist))
+- libiconv 1.14 defn no longer exists in omnibus-software master [#1349](https://github.com/chef/chef-dk/pull/1349) ([lamont-granquist](https://github.com/lamont-granquist))
+- Update libzmq and use correct omnibus def on windows [#1350](https://github.com/chef/chef-dk/pull/1350) ([jaym](https://github.com/jaym))
+- Make sure to include libstc++-6 [#1352](https://github.com/chef/chef-dk/pull/1352) ([jaym](https://github.com/jaym))
+<!-- latest_stable_release -->
+
+## [v2.0.28](https://github.com/chef/chef-dk/tree/v2.0.28) (2017-07-14)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v2.0.26...v2.0.28)
+
+**Fixed bugs:**
+
+- `chef push` Broken in ChefDK 2.0.26 [\#1322](https://github.com/chef/chef-dk/issues/1322)
+
+## [v2.0.26](https://github.com/chef/chef-dk/tree/v2.0.26) (2017-07-05)
+
+- Bump deps for the new Foodcritic / Inspec / Chef-Sugar / Chef-Vault [\#1319](https://github.com/chef/chef-dk/pull/1319)
+- Use a less squished background in the macOS installer [#1313](https://github.com/chef/chef-dk/pull/1313)
+- Use the chef 13.2 release [#1311](https://github.com/chef/chef-dk/pull/1311)
+- Ensure that necessary system libraries are installed on Windows [#1310](https://github.com/chef/chef-dk/pull/1310)
+- Bump deps to bring in the latest Ohai [#1308](https://github.com/chef/chef-dk/pull/1308)
+- Use the latest OpenSSL 1.0.2 release (1.0.2l) instead of 1.1.0 [#1307](https://github.com/chef/chef-dk/pull/1307)
+- Use Omnibus 5.6.1 [#1305](https://github.com/chef/chef-dk/pull/1305)
+- Bump InSpec to v1.30.0 [#1303](https://github.com/chef/chef-dk/pull/1303)
+- Bump and simplify our various Gem pins [#1302](https://github.com/chef/chef-dk/pull/1302)
+- Use OpenSSL 1.1.0f for new crypto functionality [#1300](https://github.com/chef/chef-dk/pull/1300)
+- Add cookstyle linting as default in the generated build cookbook [#1299](https://github.com/chef/chef-dk/pull/1299)
+- Update the build cookbook generator code to detect file changes on Windows [#1181](https://github.com/chef/chef-dk/pull/1181)
+- Remove version_policy logic and related files [#1293](https://github.com/chef/chef-dk/pull/1293)
+- Bump deps for Berkshelf 6.3.0 [#1291](https://github.com/chef/chef-dk/pull/1291)
+- Fix typo in metadata.rb.erb template file [#1289](https://github.com/chef/chef-dk/pull/1289)
+- Allow updating specific cookbooks in a policyfile [#1284](https://github.com/chef/chef-dk/pull/1284)
+- Update chef runner error messages to provide a full backtrace [#1275](https://github.com/chef/chef-dk/pull/1275)
+- Test on Ruby 2.4 in AppVeyor [#1285](https://github.com/chef/chef-dk/pull/1285)
+- Update to our latest logo in the macOS installer [#1274](https://github.com/chef/chef-dk/pull/1274)
+- Add kitchen-hyperv gem and bump all other gems [#1283](https://github.com/chef/chef-dk/pull/1283)
+- Update zlib to 1.2.11 to address CVEs [#1280](https://github.com/chef/chef-dk/pull/1280)
+- Replace example text in the generated chef-repo to use chef generate cookbook [#1260](https://github.com/chef/chef-dk/pull/1260)
+- Update dependencies to bring in Cookstyle 2.0 [#1272](https://github.com/chef/chef-dk/pull/1272)
+- Remove chef-provisioning-vagrant and bump all other gems [#1269](https://github.com/chef/chef-dk/pull/1269)
+- Refactor how we appbundle ChefDK to fix build failures [#1263](https://github.com/chef/chef-dk/pull/1263)
+- Make it clearer that chef verify is not for end users [#1261](https://github.com/chef/chef-dk/pull/1261)
+- Ensure a config object is passed down in the update action [#1254](https://github.com/chef/chef-dk/pull/1254)
+- Add support for Artifactory as a Policyfile source [#1252](https://github.com/chef/chef-dk/pull/1252)
+- Adds 'chef generate helpers [COOKBOOK] HELPERS_NAME' [#1085](https://github.com/chef/chef-dk/pull/1085)
+- Create a Chef 12 style templates dir instead of a Chef 11 style dir [#1247](https://github.com/chef/chef-dk/pull/1247)
+- Add cookstyle to the list of utilities in DK readme [#1241](https://github.com/chef/chef-dk/pull/1241)
+- Update LWRP -> Resource in the generators [#1194](https://github.com/chef/chef-dk/pull/1194)
+- Fix `chef generate template` with a content source [#1243](https://github.com/chef/chef-dk/pull/1243)
+- Pull in Chef 13 and Ruby 2.4.1 [#1235](https://github.com/chef/chef-dk/pull/1235)
+- Add inspec to chef --version output [#1238](https://github.com/chef/chef-dk/pull/1238)
+- remove iconv from ruby build [#1233](https://github.com/chef/chef-dk/pull/1233)
+- Update generated delivery local config to use updated foodcritic syntax [#950](https://github.com/chef/chef-dk/pull/950)
+- Remove support for Ruby 2.2 [#1230](https://github.com/chef/chef-dk/pull/1230)
+- Updates to the generator cookbook to pass Foodcritic [#1226](https://github.com/chef/chef-dk/pull/1226)
+
+## [v1.3.43](https://github.com/chef/chef-dk/tree/v1.3.43) (2017-04-14)
+
+- Fix OpenSSL installation for Windows FIPS users [#1224](https://github.com/chef/chef-dk/pull/1226)
+
+## [v1.3.40](https://github.com/chef/chef-dk/tree/v1.3.40) (2017-04-07)
+
+- Use Expeditor tooling for version bumping and release [#1213](https://github.com/chef/chef-dk/pull/1213)
+- Generate inspec tests that end with `_test.rb` in the cookbook generator [#1219](https://github.com/chef/chef-dk/pull/1219)
+- Update liblzma to 5.2.3 [#1220](https://github.com/chef/chef-dk/pull/1220)
+- Update InSpec to 1.19.1 [#1217](https://github.com/chef/chef-dk/pull/1217)
+- Require Chef 12.1+ in the skeleton cookbook and use chef_version [#1215](https://github.com/chef/chef-dk/pull/1215)
+- Write proper SPDX License strings in the cookbook generator [#1218](https://github.com/chef/chef-dk/pull/1218)
+- Use CentOS 7.3 in the generated Test Kitchen configs [#1214](https://github.com/chef/chef-dk/pull/1214)
+- Use latest Foodcritic, Inspec, Chefspec, and Fauxhai [#1211](https://github.com/chef/chef-dk/pull/1211)
+- Bump deps to the latest for Fauxhai 4.0.2 [#1208](https://github.com/chef/chef-dk/pull/1208)
+- Update cookbook validation check to not fail if a cookbook lacks a recipe [#1195](https://github.com/chef/chef-dk/pull/1195)
+- Bump deps to bring in Foodcritic 10 and Cheffish 5 [#1205](https://github.com/chef/chef-dk/pull/1205)
+- Add release policy badge to README [#1204](https://github.com/chef/chef-dk/pull/1204)
+- Generate better example ChefSpec code [#1202](https://github.com/chef/chef-dk/pull/1202)
+- Bump deps for Chefspec 6.1 [#1192](https://github.com/chef/chef-dk/pull/1192)
+- Fix links to the Chefspec and Berkshelf site [#1193](https://github.com/chef/chef-dk/pull/1193)
+- Remove veil gem [#1189](https://github.com/chef/chef-dk/pull/1189)
+- Update Test Kitchen to 1.16 [#1188](https://github.com/chef/chef-dk/pull/1188)
+- Improve generator error messaging when license is invalid [#1180](https://github.com/chef/chef-dk/pull/1180)
+- Fix the dependency updater so Chef Client is updated [#1178](https://github.com/chef/chef-dk/pull/1178)
+- Update Berkshelf to 5.6.3 and ChefSpec to 6.0.0 [#1176](https://github.com/chef/chef-dk/pull/1176)
+- Use kitchen-dokken 2.1.x [#1175](https://github.com/chef/chef-dk/pull/1175)
+- Cleanup the symlinks we create / remove on binary install [#1161](https://github.com/chef/chef-dk/pull/1161)
+- Update omnibus-software to pull in openssl patch fixes [#1173](https://github.com/chef/chef-dk/pull/1173)
+- Update OpenSSL to 1.0.2j to match chef-client [#1171](https://github.com/chef/chef-dk/pull/1171)
+- Avoid override existing delivery configuration [#1162](https://github.com/chef/chef-dk/pull/1162)
+- Remove chefstyle from DK and pin cookstyle with a minimal version [#1169](https://github.com/chef/chef-dk/pull/1169)
+- Bring in the latest chefspec, kitchen-vagrant, kitchen-ec2, inspec [#1167](https://github.com/chef/chef-dk/pull/1167)
+- Add cookstyle/chefstyle/foodcritic tests to Travis [#1160](https://github.com/chef/chef-dk/pull/1160)
+- Properly skip generated skeleton Inspec tests [#1153](https://github.com/chef/chef-dk/pull/1153)
+- Use ChefDK, rather than Chef Client, as build-cookbook Test Kitchen base [#1150](https://github.com/chef/chef-dk/pull/1150)
+
+## [v1.2.22](https://github.com/chef/chef-dk/tree/v1.2.22) (2017-02-02)
+[Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.20...v1.2.22)
+
+**Fixed bugs:**
+
+- Update to mixlib-archive 0.4.1 to address security vulnerability [\#1154](https://github.com/chef/chef-dk/pull/1154) ([tduffield](https://github.com/tduffield))
 
 ## [v1.2.20](https://github.com/chef/chef-dk/tree/v1.2.20) (2017-01-27)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.16...v1.2.20)
@@ -1049,6 +1188,3 @@ This changelog reflects the current state of chef-dk's master branch on github a
 - Rework the command loader to be as lazy as possible [\#3](https://github.com/chef/chef-dk/pull/3) ([danielsdeleo](https://github.com/danielsdeleo))
 - Add a simple gem command to install to the bundled gems [\#2](https://github.com/chef/chef-dk/pull/2) ([danielsdeleo](https://github.com/danielsdeleo))
 - CC-14: Create chef-dk gem [\#1](https://github.com/chef/chef-dk/pull/1) ([sersut](https://github.com/sersut))
-
-
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*

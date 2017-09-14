@@ -51,7 +51,7 @@ module ChefDK
   end
 
   class OmnibusInstallNotFound < RuntimeError
-    def initialize()
+    def initialize
       super("Can not find omnibus installation directory for Chef.")
     end
   end

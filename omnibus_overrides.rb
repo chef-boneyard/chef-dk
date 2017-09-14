@@ -1,10 +1,10 @@
 # THIS IS NOW HAND MANAGED, JUST EDIT THE THING
 # .travis.yml and appveyor.yml consume this,
 # try to keep it machine-parsable.
-override :rubygems, version: "2.6.11"
+override :rubygems, version: "2.6.13"
 override :bundler, version: "1.15.1"
 override "libffi", version: "3.2.1"
-override "libiconv", version: "1.14"
+override "libiconv", version: "1.15"
 override "liblzma", version: "5.2.3"
 override "libtool", version: "2.4.2"
 override "libxml2", version: "2.9.4"
@@ -18,5 +18,5 @@ override "ruby-windows-devkit-bash", version: "3.1.23-4-msys-1.0.18"
 override "util-macros", version: "1.19.0"
 override "xproto", version: "7.0.28"
 override "zlib", version: "1.2.11"
-override "libzmq", version: "4.0.5"
+override "libzmq", version: "4.0.7"
 override "openssl", version: "1.0.2l"

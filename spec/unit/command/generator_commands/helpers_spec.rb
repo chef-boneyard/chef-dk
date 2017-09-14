@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-require 'shared/a_file_generator'
-require 'chef-dk/command/generator_commands/helpers'
+require "spec_helper"
+require "shared/a_file_generator"
+require "chef-dk/command/generator_commands/helpers"
 
 describe ChefDK::Command::GeneratorCommands::Helpers do
 

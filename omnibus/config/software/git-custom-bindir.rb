@@ -23,7 +23,7 @@
 # TODO - when deleting this, also delete omnibus/config/templates/git-custom-bindir
 
 name "git-custom-bindir"
-default_version "2.8.2"
+default_version "2.14.1"
 
 license "LGPL-2.1"
 license_file "LGPL-2.1"
@@ -32,13 +32,13 @@ dependency "curl"
 dependency "zlib"
 dependency "openssl"
 dependency "pcre"
-dependency "libiconv"  # FIXME: can we figure out how to remove this?
+dependency "libiconv" # FIXME: can we figure out how to remove this?
 dependency "expat"
 
 relative_path "git-#{version}"
 
-version "2.8.2" do
-  source md5: "3022d8ebf64b35b9704d5adf54b256f9"
+version "2.14.1" do
+  source md5: "b767f0b21aa41d10268b2075078d334e"
 end
 
 source url: "https://www.kernel.org/pub/software/scm/git/git-#{version}.tar.gz"

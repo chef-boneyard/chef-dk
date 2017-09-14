@@ -15,10 +15,9 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
+require "spec_helper"
 require "chef-dk/policyfile_services/install"
 require "chef-dk/policyfile/cookbook_sources"
-
 
 describe ChefDK::PolicyfileServices::Install do
 
@@ -70,8 +69,8 @@ EOH
       "origin" => "https://supermarket.chef.io:443/api/v1/cookbooks/#{name}/versions/#{version}/download",
       "source_options" => {
         "artifactserver" => "https://supermarket.chef.io:443/api/v1/cookbooks/#{name}/versions/#{version}/download",
-        "version" => version
-      }
+        "version" => version,
+      },
     }
   end
 
@@ -84,7 +83,7 @@ EOH
         "top-level" => cookbook_lock("top-level", "1.2.0"),
         "a" => cookbook_lock("a", "2.1.0"),
         "b" => cookbook_lock("b", "1.2.3"),
-        "top-level-bis" => cookbook_lock("top-level-bis", "1.0.0")
+        "top-level-bis" => cookbook_lock("top-level-bis", "1.0.0"),
       },
       "default_attributes" => {},
       "override_attributes" => {},
@@ -99,12 +98,11 @@ EOH
           "top-level (1.2.0)" => [ [ "a", "~> 2.1" ], [ "b", "~> 1.0" ] ],
           "a (2.1.0)" => [],
           "b (1.2.3)" => [],
-          "top-level-bis (1.0.0)" => []
-        }
-      }
+          "top-level-bis (1.0.0)" => [],
+        },
+      },
     }.to_json
   end
-
 
   context "when given one cookbook to update" do
     before(:each) do
@@ -114,7 +112,6 @@ EOH
 
       expect(IO).to receive(:read).with(policyfile_rb_path).and_return(policyfile_content)
       expect(IO).to receive(:read).with(policyfile_lock_path).and_return(policyfile_lock_content)
-
 
       # lock generation is a no-op. Its behavior is already tested
       # elsewhere. We only check constraints changes

@@ -310,7 +310,7 @@ METADATA
 
         git!("init .")
         git!("add .")
-        git!("commit -m \"initial commit\"")
+        git!("commit --no-gpg-sign -m \"initial commit\"")
 
         Dir.chdir(tempdir) do
           allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
@@ -344,7 +344,7 @@ METADATA
 
         git!("init .")
         git!("add .")
-        git!("commit -m \"initial commit\"")
+        git!("commit --no-gpg-sign -m \"initial commit\"")
 
         Dir.chdir(tempdir) do
           allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)

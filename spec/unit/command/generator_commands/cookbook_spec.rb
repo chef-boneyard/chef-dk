@@ -38,6 +38,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       test/smoke/default/default_test.rb
       Berksfile
       chefignore
+      LICENSE
       metadata.rb
       README.md
       recipes
@@ -236,7 +237,9 @@ PROJECT_DOT_TOML
     "path": ".delivery/build_cookbook"
   },
   "delivery-truck": {
-    "enable_cookstyle": true
+    "lint": {
+      "enable_cookstyle": true
+    }
   },
   "skip_phases": [],
   "job_dispatch": {
@@ -575,7 +578,7 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
-  - name: centos-7.3
+  - name: centos-7
 
 suites:
   - name: default
@@ -652,7 +655,7 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
-  - name: centos-7.3
+  - name: centos-7
 
 suites:
   - name: default

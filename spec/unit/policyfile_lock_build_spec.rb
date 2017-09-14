@@ -674,7 +674,6 @@ REVISION_STRING
             "source_options" => nil,
           },
 
-
         },
 
         "default_attributes" => {},

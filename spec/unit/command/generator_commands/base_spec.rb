@@ -134,7 +134,7 @@ describe ChefDK::Command::GeneratorCommands::Base do
     end
   end
 
-  describe '#have_git?' do
+  describe "#have_git?" do
     let(:cmd) { described_class.new([]) }
     let(:path) { "bin_path" }
 

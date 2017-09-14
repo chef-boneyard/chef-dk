@@ -2,9 +2,9 @@ FROM ubuntu:16.04
 MAINTAINER Chef Software, Inc. <docker@chef.io>
 
 ARG CHANNEL=stable
-ARG VERSION=2.0.28
+ARG VERSION=2.1.11
 ENV DEBIAN_FRONTEND=noninteractive \
-    PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:/root/.chefdk/gem/ruby/2.4.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    PATH=PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:/root/.chefdk/gem/ruby/2.4.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 RUN apt-get update && \
     apt-get install -y wget ssh && \

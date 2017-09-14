@@ -23,7 +23,7 @@ require "chef-dk/command/generator_commands/cookbook"
 require "chef-dk/command/generator_commands/app"
 require "chef-dk/command/generator_commands/attribute"
 require "chef-dk/command/generator_commands/cookbook_file"
-require 'chef-dk/command/generator_commands/helpers'
+require "chef-dk/command/generator_commands/helpers"
 require "chef-dk/command/generator_commands/resource"
 require "chef-dk/command/generator_commands/recipe"
 require "chef-dk/command/generator_commands/template"
