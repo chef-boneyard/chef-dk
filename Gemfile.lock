@@ -151,6 +151,9 @@ GEM
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
+    chef-api (0.7.1)
+      logify (~> 0.1)
+      mime-types
     chef-config (13.4.19)
       addressable
       fuzzyurl
