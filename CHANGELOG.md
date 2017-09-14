@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.2.4 -->
-## [v2.2.4](https://github.com/chef/chef-dk/tree/v2.2.4) (2017-09-13)
+<!-- latest_release 2.2.5 -->
+## [v2.2.5](https://github.com/chef/chef-dk/tree/v2.2.5) (2017-09-14)
 
 #### Merged Pull Requests
-- Bring in the latest net-ssh, rake, kitchen-hyperv, inspec, and foodcritic [#1386](https://github.com/chef/chef-dk/pull/1386) ([tas50](https://github.com/tas50))
+- Ship Chef 13.4.19 [#1387](https://github.com/chef/chef-dk/pull/1387) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.1.11 -->
 ### Changes since 2.1.11 release
 
 #### Merged Pull Requests
+- Ship Chef 13.4.19 [#1387](https://github.com/chef/chef-dk/pull/1387) ([tas50](https://github.com/tas50)) <!-- 2.2.5 -->
 - Bring in the latest net-ssh, rake, kitchen-hyperv, inspec, and foodcritic [#1386](https://github.com/chef/chef-dk/pull/1386) ([tas50](https://github.com/tas50)) <!-- 2.2.4 -->
 - Added LICENSE generation to skeleton [#1383](https://github.com/chef/chef-dk/pull/1383) ([mengesb](https://github.com/mengesb)) <!-- 2.2.3 -->
 - Update Expeditor config to meet 0.5.0 requirements [#1382](https://github.com/chef/chef-dk/pull/1382) ([tduffield](https://github.com/tduffield)) <!-- 2.2.2 -->
