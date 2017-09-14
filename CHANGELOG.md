@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.2.8 -->
-## [v2.2.8](https://github.com/chef/chef-dk/tree/v2.2.8) (2017-09-14)
+<!-- latest_release 2.3.1 -->
+## [v2.3.1](https://github.com/chef/chef-dk/tree/v2.3.1) (2017-09-14)
 
 #### Merged Pull Requests
-- update ruby version for multiple CVEs [#1390](https://github.com/chef/chef-dk/pull/1390) ([thommay](https://github.com/thommay))
+- Release ChefDK 2.3 [#1391](https://github.com/chef/chef-dk/pull/1391) ([thommay](https://github.com/thommay))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.1.11 -->
 ### Changes since 2.1.11 release
 
 #### Merged Pull Requests
+- Release ChefDK 2.3 [#1391](https://github.com/chef/chef-dk/pull/1391) ([thommay](https://github.com/thommay)) <!-- 2.3.1 -->
 - update ruby version for multiple CVEs [#1390](https://github.com/chef/chef-dk/pull/1390) ([thommay](https://github.com/thommay)) <!-- 2.2.8 -->
 - Update Dockerfile with small fixes [#1332](https://github.com/chef/chef-dk/pull/1332) ([AnalogJ](https://github.com/AnalogJ)) <!-- 2.2.7 -->
 - Adds stove for inclusion [#1385](https://github.com/chef/chef-dk/pull/1385) ([scassiba](https://github.com/scassiba)) <!-- 2.2.6 -->
