@@ -240,6 +240,7 @@ module ChefDK
           local_cookbook(cookbook_name) do |local_cb|
             local_cb.source = spec.relative_path
             local_cb.source_options = spec.source_options_for_lock
+            local_cb.cookbook_in_git_repo = spec.source_options[:cookbook_in_git_repo]
           end
         end
       end

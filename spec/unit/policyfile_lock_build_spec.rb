@@ -873,6 +873,7 @@ REVISION_STRING
               mirrors_canonical_upstream?: true,
               cache_key: "foo-1.0.0",
               uri: cached_cookbook_uri,
+              source_options: {},
               source_options_for_lock: { "artifactserver" => cached_cookbook_uri, "version" => "1.0.0" })
     end
 
@@ -881,6 +882,7 @@ REVISION_STRING
               mirrors_canonical_upstream?: false,
               relative_paths_root: relative_paths_root,
               relative_path: "bar",
+              source_options: {},
               source_options_for_lock: { "path" => "bar" })
     end
 
