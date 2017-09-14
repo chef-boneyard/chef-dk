@@ -57,6 +57,13 @@ else
 
 end
 
+# LICENSE
+template "#{cookbook_dir}/LICENSE" do
+  helpers(ChefDK::Generator::TemplateHelper)
+  source "LICENSE.#{context.license}.erb"
+  action :create_if_missing
+end
+
 # Test Kitchen
 template "#{cookbook_dir}/.kitchen.yml" do
   if context.use_berkshelf

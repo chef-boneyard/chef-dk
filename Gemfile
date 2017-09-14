@@ -44,7 +44,7 @@ group(:omnibus_package) do
   gem "chef-provisioning-azure", ">= 0.6.0"
   gem "chef-provisioning-fog", ">= 0.20.0"
   gem "chef-vault"
-  gem "chef", "= 13.3.42"
+  gem "chef", "= 13.4.19"
   gem "cheffish", ">= 13.0"
   gem "chefspec"
   gem "fauxhai"
@@ -82,6 +82,7 @@ group(:omnibus_package) do
   gem "winrm-fs"
   gem "winrm-elevated"
   gem "cucumber"
+  gem "stove"
 end
 
 # Everything except AIX
