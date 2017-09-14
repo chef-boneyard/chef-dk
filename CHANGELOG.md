@@ -1,14 +1,15 @@
-<!-- latest_release 1.6.3 -->
-## [v1.6.3](https://github.com/chef/chef-dk/tree/v1.6.3) (2017-08-16)
+<!-- latest_release 1.6.4 -->
+## [v1.6.4](https://github.com/chef/chef-dk/tree/v1.6.4) (2017-09-14)
 
 #### Merged Pull Requests
-- Bring chefdk-1 expeditor config up to date [#1355](https://github.com/chef/chef-dk/pull/1355) ([tduffield](https://github.com/tduffield))
+- Update ruby version for multiple CVEs [#1389](https://github.com/chef/chef-dk/pull/1389) ([thommay](https://github.com/thommay))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.1.11 -->
 ### Changes since 2.1.11 release
 
 #### Merged Pull Requests
+- Update ruby version for multiple CVEs [#1389](https://github.com/chef/chef-dk/pull/1389) ([thommay](https://github.com/thommay)) <!-- 1.6.4 -->
 - Bring chefdk-1 expeditor config up to date [#1355](https://github.com/chef/chef-dk/pull/1355) ([tduffield](https://github.com/tduffield)) <!-- 1.6.3 -->
 <!-- release_rollup -->
 
