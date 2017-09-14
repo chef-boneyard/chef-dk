@@ -1,39 +1,37 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.3.1 -->
-## [v2.3.1](https://github.com/chef/chef-dk/tree/v2.3.1) (2017-09-14)
-
-#### Merged Pull Requests
-- Release ChefDK 2.3 [#1391](https://github.com/chef/chef-dk/pull/1391) ([thommay](https://github.com/thommay))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=2.1.11 -->
-### Changes since 2.1.11 release
-
-#### Merged Pull Requests
-- Release ChefDK 2.3 [#1391](https://github.com/chef/chef-dk/pull/1391) ([thommay](https://github.com/thommay)) <!-- 2.3.1 -->
-- update ruby version for multiple CVEs [#1390](https://github.com/chef/chef-dk/pull/1390) ([thommay](https://github.com/thommay)) <!-- 2.2.8 -->
-- Update Dockerfile with small fixes [#1332](https://github.com/chef/chef-dk/pull/1332) ([AnalogJ](https://github.com/AnalogJ)) <!-- 2.2.7 -->
-- Adds stove for inclusion [#1385](https://github.com/chef/chef-dk/pull/1385) ([scassiba](https://github.com/scassiba)) <!-- 2.2.6 -->
-- Ship Chef 13.4.19 [#1387](https://github.com/chef/chef-dk/pull/1387) ([tas50](https://github.com/tas50)) <!-- 2.2.5 -->
-- Bring in the latest net-ssh, rake, kitchen-hyperv, inspec, and foodcritic [#1386](https://github.com/chef/chef-dk/pull/1386) ([tas50](https://github.com/tas50)) <!-- 2.2.4 -->
-- Added LICENSE generation to skeleton [#1383](https://github.com/chef/chef-dk/pull/1383) ([mengesb](https://github.com/mengesb)) <!-- 2.2.3 -->
-- Update Expeditor config to meet 0.5.0 requirements [#1382](https://github.com/chef/chef-dk/pull/1382) ([tduffield](https://github.com/tduffield)) <!-- 2.2.2 -->
-- bump version for release [#1380](https://github.com/chef/chef-dk/pull/1380) ([thommay](https://github.com/thommay)) <!-- 2.2.1 -->
-- Upgrade to rubygems 2.6.13 [#1379](https://github.com/chef/chef-dk/pull/1379) ([thommay](https://github.com/thommay)) <!-- 2.1.24 -->
-- Update config.json with proper cookstyle use [#1369](https://github.com/chef/chef-dk/pull/1369) ([mattstratton](https://github.com/mattstratton)) <!-- 2.1.23 -->
-- Pull in latest inspec, kitchen-dokken, and chef-vault [#1376](https://github.com/chef/chef-dk/pull/1376) ([tas50](https://github.com/tas50)) <!-- 2.1.22 -->
-- Now that bento ships major version slugs, let&#39;s use them [#1368](https://github.com/chef/chef-dk/pull/1368) ([cheeseplus](https://github.com/cheeseplus)) <!-- 2.1.21 -->
-- Upgrade to Rubygems 2.6.13 to resolve CVEs [#1370](https://github.com/chef/chef-dk/pull/1370) ([tas50](https://github.com/tas50)) <!-- 2.1.20 -->
-- attempt to re-enable chefstyle [#1324](https://github.com/chef/chef-dk/pull/1324) ([thommay](https://github.com/thommay)) <!-- 2.1.18 -->
-- Add gems.locked in .gitignore [#1328](https://github.com/chef/chef-dk/pull/1328) ([grv87](https://github.com/grv87)) <!-- 2.1.17 -->
-- Fix a few readme links [#1365](https://github.com/chef/chef-dk/pull/1365) ([tas50](https://github.com/tas50)) <!-- 2.1.16 -->
-- Add in missing changelog entries [#1366](https://github.com/chef/chef-dk/pull/1366) ([tas50](https://github.com/tas50)) <!-- 2.1.15 -->
-- Add CODEOWNERS file to request reviews [#1363](https://github.com/chef/chef-dk/pull/1363) ([thommay](https://github.com/thommay)) <!-- 2.1.14 -->
-- Bump deps for new cookstyle and inspec [#1364](https://github.com/chef/chef-dk/pull/1364) ([tas50](https://github.com/tas50)) <!-- 2.1.13 -->
-- Dep bump for kitchen-dokken, kitchen-vagrant, foodcritic, inspec, and train [#1362](https://github.com/chef/chef-dk/pull/1362) ([tas50](https://github.com/tas50)) <!-- 2.1.12 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v2.3.1](https://github.com/chef/chef-dk/tree/v2.3.1) (2017-09-14)
+
+#### Merged Pull Requests
+- Dep bump for kitchen-dokken, kitchen-vagrant, foodcritic, inspec, and train [#1362](https://github.com/chef/chef-dk/pull/1362) ([tas50](https://github.com/tas50))
+- Bump deps for new cookstyle and inspec [#1364](https://github.com/chef/chef-dk/pull/1364) ([tas50](https://github.com/tas50))
+- Add CODEOWNERS file to request reviews [#1363](https://github.com/chef/chef-dk/pull/1363) ([thommay](https://github.com/thommay))
+- Add in missing changelog entries [#1366](https://github.com/chef/chef-dk/pull/1366) ([tas50](https://github.com/tas50))
+- Fix a few readme links [#1365](https://github.com/chef/chef-dk/pull/1365) ([tas50](https://github.com/tas50))
+- Add gems.locked in .gitignore [#1328](https://github.com/chef/chef-dk/pull/1328) ([grv87](https://github.com/grv87))
+- attempt to re-enable chefstyle [#1324](https://github.com/chef/chef-dk/pull/1324) ([thommay](https://github.com/thommay))
+- Upgrade to Rubygems 2.6.13 to resolve CVEs [#1370](https://github.com/chef/chef-dk/pull/1370) ([tas50](https://github.com/tas50))
+- Now that bento ships major version slugs, let&#39;s use them [#1368](https://github.com/chef/chef-dk/pull/1368) ([cheeseplus](https://github.com/cheeseplus))
+- Pull in latest inspec, kitchen-dokken, and chef-vault [#1376](https://github.com/chef/chef-dk/pull/1376) ([tas50](https://github.com/tas50))
+- Update config.json with proper cookstyle use [#1369](https://github.com/chef/chef-dk/pull/1369) ([mattstratton](https://github.com/mattstratton))
+- Upgrade to rubygems 2.6.13 [#1379](https://github.com/chef/chef-dk/pull/1379) ([thommay](https://github.com/thommay))
+- bump version for release [#1380](https://github.com/chef/chef-dk/pull/1380) ([thommay](https://github.com/thommay))
+- Update Expeditor config to meet 0.5.0 requirements [#1382](https://github.com/chef/chef-dk/pull/1382) ([tduffield](https://github.com/tduffield))
+- Added LICENSE generation to skeleton [#1383](https://github.com/chef/chef-dk/pull/1383) ([mengesb](https://github.com/mengesb))
+- Bring in the latest net-ssh, rake, kitchen-hyperv, inspec, and foodcritic [#1386](https://github.com/chef/chef-dk/pull/1386) ([tas50](https://github.com/tas50))
+- Ship Chef 13.4.19 [#1387](https://github.com/chef/chef-dk/pull/1387) ([tas50](https://github.com/tas50))
+- Adds stove for inclusion [#1385](https://github.com/chef/chef-dk/pull/1385) ([scassiba](https://github.com/scassiba))
+- Update Dockerfile with small fixes [#1332](https://github.com/chef/chef-dk/pull/1332) ([AnalogJ](https://github.com/AnalogJ))
+- update ruby version for multiple CVEs [#1390](https://github.com/chef/chef-dk/pull/1390) ([thommay](https://github.com/thommay))
+- Release ChefDK 2.3 [#1391](https://github.com/chef/chef-dk/pull/1391) ([thommay](https://github.com/thommay))
+<!-- latest_stable_release -->
+
 ## [v2.1.11](https://github.com/chef/chef-dk/tree/v2.1.11) (2017-08-11)
 
 #### Merged Pull Requests
@@ -47,7 +45,6 @@
 - libiconv 1.14 defn no longer exists in omnibus-software master [#1349](https://github.com/chef/chef-dk/pull/1349) ([lamont-granquist](https://github.com/lamont-granquist))
 - Update libzmq and use correct omnibus def on windows [#1350](https://github.com/chef/chef-dk/pull/1350) ([jaym](https://github.com/jaym))
 - Make sure to include libstc++-6 [#1352](https://github.com/chef/chef-dk/pull/1352) ([jaym](https://github.com/jaym))
-<!-- latest_stable_release -->
 
 ## [v2.0.28](https://github.com/chef/chef-dk/tree/v2.0.28) (2017-07-14)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v2.0.26...v2.0.28)
