@@ -82,6 +82,7 @@ group(:omnibus_package) do
   gem "winrm-fs"
   gem "winrm-elevated"
   gem "cucumber"
+  gem "stove"
 end
 
 # Everything except AIX
