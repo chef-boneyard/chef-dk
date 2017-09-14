@@ -54,6 +54,8 @@ group(:omnibus_package) do
   gem "kitchen-hyperv"
   gem "kitchen-inspec"
   gem "kitchen-vagrant"
+  gem "kitchen-vcenter"
+  gem "knife-vcenter"
   gem "knife-windows"
   gem "knife-opc", ">= 0.3.2"
   gem "ohai", ">= 13.1.0"
