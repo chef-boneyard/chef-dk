@@ -1,8 +1,18 @@
-# ChefDK 1.6.1 Release Notes
+# ChefDK 1.6 Release Notes
+
+This release of ChefDK contains Ruby 2.3.5, fixing 4 CVEs:
+  * CVE-2017-0898
+  * CVE-2017-10784
+  * CVE-2017-14033
+  * CVE-2017-14064
+
+The 2.2.1 release includes RubyGems 2.6.13 to fix the following CVEs:
+  * CVE-2017-0899
+  * CVE-2017-0900
+  * CVE-2017-0901
+  * CVE-2017-0902
 
 This release of ChefDK update the embedded git to 2.14.1 to address [CVE-2017-1000117](https://www.cvedetails.com/cve/CVE-2017-1000117/)
-
-It was also necessary to bump the ruby version up to 2.3.4 in order to ship this fix.
 
 This also bumps the Chef version from 12.21.2 to 12.21.4 along with patch bumps to several other gem dependencies.
 
