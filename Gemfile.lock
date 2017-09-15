@@ -489,6 +489,7 @@ GEM
       method_source (~> 0.8)
       mixlib-log
       parallel (~> 1.9)
+      parslet (~> 1.5)
       pry (~> 0)
       rainbow (~> 2)
       rspec (~> 3)
