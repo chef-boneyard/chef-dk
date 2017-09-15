@@ -1,14 +1,15 @@
-<!-- latest_release 1.6.6 -->
-## [v1.6.6](https://github.com/chef/chef-dk/tree/v1.6.6) (2017-09-15)
+<!-- latest_release 1.6.7 -->
+## [v1.6.7](https://github.com/chef/chef-dk/tree/v1.6.7) (2017-09-15)
 
 #### Merged Pull Requests
-- Update bundler to latest version [#1395](https://github.com/chef/chef-dk/pull/1395) ([thommay](https://github.com/thommay))
+- update omnibus software [#1396](https://github.com/chef/chef-dk/pull/1396) ([thommay](https://github.com/thommay))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.1.11 -->
 ### Changes since 2.1.11 release
 
 #### Merged Pull Requests
+- update omnibus software [#1396](https://github.com/chef/chef-dk/pull/1396) ([thommay](https://github.com/thommay)) <!-- 1.6.7 -->
 - Update bundler to latest version [#1395](https://github.com/chef/chef-dk/pull/1395) ([thommay](https://github.com/thommay)) <!-- 1.6.6 -->
 - Update release notes for 1.6 release [#1392](https://github.com/chef/chef-dk/pull/1392) ([thommay](https://github.com/thommay)) <!-- 1.6.5 -->
 - Update ruby version for multiple CVEs [#1389](https://github.com/chef/chef-dk/pull/1389) ([thommay](https://github.com/thommay)) <!-- 1.6.4 -->
