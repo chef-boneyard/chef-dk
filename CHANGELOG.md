@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 2.3.3 -->
+## [v2.3.3](https://github.com/chef/chef-dk/tree/v2.3.3) (2017-09-21)
+
+#### Merged Pull Requests
+- Be more selective about what dev gems we bundle [#1393](https://github.com/chef/chef-dk/pull/1393) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=2.3.1 -->
+### Changes since 2.3.1 release
+
+#### Merged Pull Requests
+- Be more selective about what dev gems we bundle [#1393](https://github.com/chef/chef-dk/pull/1393) ([tas50](https://github.com/tas50)) <!-- 2.3.3 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
