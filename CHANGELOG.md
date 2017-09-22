@@ -5,19 +5,22 @@
 - update omnibus software [#1396](https://github.com/chef/chef-dk/pull/1396) ([thommay](https://github.com/thommay))
 <!-- latest_release -->
 
-<!-- release_rollup since=2.1.11 -->
-### Changes since 2.1.11 release
-
-#### Merged Pull Requests
-- update omnibus software [#1396](https://github.com/chef/chef-dk/pull/1396) ([thommay](https://github.com/thommay)) <!-- 1.6.7 -->
-- Update bundler to latest version [#1395](https://github.com/chef/chef-dk/pull/1395) ([thommay](https://github.com/thommay)) <!-- 1.6.6 -->
-- Update release notes for 1.6 release [#1392](https://github.com/chef/chef-dk/pull/1392) ([thommay](https://github.com/thommay)) <!-- 1.6.5 -->
-- Update ruby version for multiple CVEs [#1389](https://github.com/chef/chef-dk/pull/1389) ([thommay](https://github.com/thommay)) <!-- 1.6.4 -->
-- Bring chefdk-1 expeditor config up to date [#1355](https://github.com/chef/chef-dk/pull/1355) ([tduffield](https://github.com/tduffield)) <!-- 1.6.3 -->
+<!-- release_rollup since=2.3.4 -->
+### Changes since 2.3.4 release
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v2.3.4](https://github.com/chef/chef-dk/tree/v2.3.4) (2017-09-22)
+
+#### Merged Pull Requests
+- Bring chefdk-1 expeditor config up to date [#1355](https://github.com/chef/chef-dk/pull/1355) ([tduffield](https://github.com/tduffield))
+- Update ruby version for multiple CVEs [#1389](https://github.com/chef/chef-dk/pull/1389) ([thommay](https://github.com/thommay))
+- Update release notes for 1.6 release [#1392](https://github.com/chef/chef-dk/pull/1392) ([thommay](https://github.com/thommay))
+- Update bundler to latest version [#1395](https://github.com/chef/chef-dk/pull/1395) ([thommay](https://github.com/thommay))
+- update omnibus software [#1396](https://github.com/chef/chef-dk/pull/1396) ([thommay](https://github.com/thommay))
 <!-- latest_stable_release -->
+
+
 
 ## [v1.2.20](https://github.com/chef/chef-dk/tree/v1.2.20) (2017-01-27)
 [Full Changelog](https://github.com/chef/chef-dk/compare/v1.1.16...v1.2.20)
