@@ -39,30 +39,21 @@ versions we accept in the chef-dk), there are several places to do so:
 * To add or remove a package from the chef-dk, or update its version,
   edit [Gemfile](Gemfile).
 * To change the version of binary packages, edit
-  [version_policy.rb](version_policy.rb).
+  [omnibus_overrides.rb](omnibus_overrides.rb).
 * To add new packages to the chef-dk, edit
   [omnibus/config/projects/chefdk.rb](omnibus/config/projects/chefdk.rb).
 
 Once you've made any changes you want, you have to update the lockfiles
 that actually drive the build:
 
-* To update the chef-dk's dependencies to the very latest versions
-  available, run `rake bundle:update`.
-* To update the chef-dk's dependencies *conservatively* (changing as
-  little as possible), run `rake bundle:install`.
-* To update specific gems only, run `rake bundle:update[gem1 gem2 ...]`
-* **`bundle update` and `bundle install` will *not* work, on purpose:**
+* To add any new gems, and update the chef-dk's dependencies to the very latest versions
+  available, run `rake dependencies:force_update`.
+* To update the chef-dk's dependencies (changing as
+  little as possible), run `rake dependencies:update`.
   the rake task handles both the windows and non-windows lockfiles and
 updates them in sync.
-
-To perform a full update of all dependencies everywhere, run `./ci/dependency_update.sh`.
-This will update the `Gemfile.lock`,
-`Gemfile.windows.lock`, `omnibus/Gemfile.lock`,
-`acceptance/Gemfile.lock`, `omnibus/Berksfile.lock`, and
-`omnibus_overrides.rb`.  It will also show you any outdated dependencies
-due to conflicting constraints. Some outdated dependencies are to be
-expected; it will inform you if any new ones appear that we don't know
-about, and tell you how to proceed.
+* To update the gems used by omnibus (generally when changing the
+  definitions in `omnibus-software`), run `rake dependencies:update_omnibus_gemfile_lock`.
 
 # How the ChefDK Builds and Versions
 
@@ -72,46 +63,43 @@ of versioning, building and releasing the ChefDK.
 
 ## ChefDK Packages
 
-The ChefDK is distributed as packages for debian, rhel, ubuntu, windows
-and os/x. It includes a large number of components from various sources,
+The ChefDK is distributed as packages for Debian, RHEL, Ubuntu, Windows
+and macOS. It includes a large number of components from various sources,
 and these are versioned and maintained separately from the chef-dk
 project, which bundles them all together conveniently for the user.
 
 These packages go through several milestones:
 - `master`: When code is checked in to master, the patch version of
   chef-dk is bumped (e.g. 0.9.10 -> 0.9.11) and a build is kicked off
-automatically to create and test the packages in Chef's Jenkins cluster.
+  automatically to create and test the packages in Chef's Jenkins cluster.
 - `unstable`: When a package is built, it enters the unstable channel.
   When all packages for all OS's have successfully built, the test phase
-is kicked off in Jenkins across all supported OS's. These builds are
-password-protected and generally only available to the test systems.
+  is kicked off in Jenkins across all supported OS.
 - `current`: If the packages pass all the tests on all supported OS's,
-  it is promoted as a unit to `current`, and is available via Chef's
-artifactory by running `curl https://omnitruck.chef.io/install.sh | sudo
-bash -s -- -c current -P chefdk`
-- `stable`: Periodically, Chef will pick a release to "bless" for folks
-  who would like a slower update schedule than "every time a build
-passes the tests." When this happens, it is manually promoted to stable
-and an announcement is sent to the list. It can be reached at
-https://downloads.chef.io or installed using the `curl` command without
-specifying `-c current`. Packages in `stable` are no longer available in
-`current`.
+  it is promoted as a unit to `current`, and is available to install
+  from the current channel on https://downloads.chef.io/ or by using
+  `mixlib-install`. 
+- `stable`: Once a month, Chef will mark a release as stable.
+  When this happens, it is manually promoted to stable
+  and an announcement is sent to the list. It can be reached at
+  https://downloads.chef.io or installed using `mixlib-install`
 
-Additionally, periodically Chef will update the desired versions of
-chef-dk components and check that in to `master`, triggering a new build
-with the updated components in it.
+## Continuous Integration
 
-## Automated Version Bumping
+Whenever a change is merged to either the `master` or `chefdk-1`
+branches, the `expeditor` bot updates the changelog, and increments the
+patch version of the branch. Expeditor is [documented thoroughly](http://expeditor-docs.es.chef.io/), 
+and is used by many Chef projects.
 
-Whenever a change is checked in to `master`, the patch version of
-`chef-dk` is bumped. To do this, the `lita-versioner` bot listens to
-github for merged PRs, and when it finds one, takes these actions:
-
-1. Bumps the patch version in `lib/chef-dk/version.rb` (e.g. 0.9.14 ->
-   0.9.15).
-2. Runs `rake dependencies:update_conservative` to update the
-   `Gemfile.lock` and `Gemfile.windows.lock` to include the new version.
-3. Pushes to `master` and submits a new build to Chef's Jenkins cluster.
+Expeditor is controlled by a number of Pull Request labels:
+ * `Expeditor: Exclude From Changelog`: This PR is not a software change
+   and should not be included in the ChangeLog
+ * `Expeditor: Skip Build`: This PR doesn't warrant a new build of
+   ChefDK.
+ * `Expeditor: Skip Version Bump`: This PR doesn't change any behaviour
+   of ChefDK, and so does not warrant a new patch version. Typically,
+   skipping a version bump will also imply one should skip running a build, too.
+ * `Expeditor: Skip All`: All of the above.
 
 ## Component Versions
 
@@ -120,9 +108,8 @@ and `test-kitchen`, and binary components like `openssl` and even `ruby`
 itself.
 
 In general, you can find all chef-dk desired versions in the
-[Gemfile](Gemfile) and [version_policy.rb](version_policy.rb) files. The
-[Gemfile.lock](Gemfile.lock) is the locked version of the Gemfile, and
-[omnibus_overrides](omnibus_overrides.rb) is the locked version of
+[Gemfile](Gemfile) and [omnibus_overrides.rb](omnibus_overrides.rb) files. The
+[Gemfile.lock](Gemfile.lock) is the locked version of the Gemfile.
 omnibus. [build](omnibus/Gemfile) and [test](acceptance/Gemfile)
 Gemfiles and [Berksfile](omnibus/Berksfile) version the toolset we use
 to build and test.
@@ -131,10 +118,8 @@ to build and test.
 
 The versions of binary components (as well as rubygems and bundler,
 which can't be versioned in a Gemfile) are stored in
-[version_policy.rb](version_policy.rb) (the `OMNIBUS_OVERRIDES`
-constant) and locked in [omnibus_overrides](omnibus_overrides.rb).
-`rake dependencies` will update the `bundler` version, and the rest are
-be updated manually by Chef every so often.
+[omnibus_overrides](omnibus_overrides.rb). These are updated as
+required.
 
 These have software definitions either in
 [omnibus/config/software](omnibus/config/software) or, more often, in
@@ -151,30 +136,8 @@ versions, the `Gemfile`. Specifically, the `Gemfile` at the top of the
 chef-dk repository governs the version of every single gem we install
 into the chef-dk package. It's a one-stop shop.
 
-Our rubygems component versions are locked down with `Gemfile.lock` and
-`Gemfile.windows.lock` (which affects windows), and can be updated with
-`rake dependencies`.
-
-There are three gems versioned outside the `Gemfile`: `rubygems`,
-`bundler` and `chef`. `rubygems` and `bundler` are in the
-`RUBYGEMS_AT_LATEST_VERSION` constant in
-[version_policy.rb](version-policy.rb) and locked in
-[omnibus_overrides](omnibus_overrides.rb). `chef`'s version is stored in
-the [Gemfile](Gemfile) and pins to the latest `current` build of chef
-(the latest one to pass tests). They are kept up to date by `rake
-dependencies`.
-
-**Windows**: [Gemfile.lock](Gemfile.lock) is generated
-platform-agnostic. In order to keep windows versions in sync,
-[Gemfile.windows](Gemfile.windows) reads the generic Gemfile.lock and
-explicitly pins all gems to those versions, allowing bundler to bring in
-windows-specific versions of the gems and new deps, but requiring that
-all gems shared between Windows and Unix have the same version.
-
-The tool we use to generate Windows-specific lockfiles on non-Windows
-machines is [tasks/bin/bundle-platform](bundle-platform), which takes
-the first argument and sets `Gem.platforms`, and then calls `bundle`
-with the remaining arguments.
+See [Updating Dependencies](#updating-dependencies) for further
+information.
 
 ### Build Tooling Versions
 
