@@ -57,6 +57,8 @@ group(:omnibus_package) do
   gem "knife-windows"
   gem "knife-opc", ">= 0.3.2"
   gem "ohai", ">= 13.1.0"
+  # net-ssh 4.2.0 explodes the world. FIXME
+  gem "net-ssh", "= 4.1.0"
   gem "test-kitchen"
   gem "listen"
   gem "dco"
