@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 2.3.5 -->
+## [v2.3.5](https://github.com/chef/chef-dk/tree/v2.3.5) (2017-09-26)
+
+#### Merged Pull Requests
+- Update dependencies to pull in InSpec v1.39.1 [#1407](https://github.com/chef/chef-dk/pull/1407) ([adamleff](https://github.com/adamleff))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=2.3.4 -->
+### Changes since 2.3.4 release
+
+#### Merged Pull Requests
+- Update dependencies to pull in InSpec v1.39.1 [#1407](https://github.com/chef/chef-dk/pull/1407) ([adamleff](https://github.com/adamleff)) <!-- 2.3.5 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
