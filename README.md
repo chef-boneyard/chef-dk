@@ -314,7 +314,7 @@ For information on contributing to this project see <https://github.com/chef/che
 
 # For ChefDK Developers
 
-See the [Development Guide](DEVELOPMENT.md) for how to get started with
+See the [Development Guide](CONTRIBUTING.md) for how to get started with
 development on the ChefDK itself, as well as details on how dependencies,
 packaging, and building works.
 
