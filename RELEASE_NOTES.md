@@ -1,5 +1,10 @@
 # ChefDK 2.4 Release Notes
 
+## Rename `smoke` tests to `integration` tests.
+
+The cookbook, recipe, and app generators now name the test directory
+`integration` instead of `smoke`.
+
 ## Improved Performance Downloading Cookbooks from a Chef Server
 
 Policyfile users who use a Chef Server as a cookbook source will
@@ -84,7 +89,7 @@ Lockfile written to /home/jaym/workspace/chef-dk/users.lock.json
 Policy revision id: 20fac68f987152f62a2761e1cfc7f1dc29b598303bfb2d84a115557e2a4a8f27
 ```
 
-This will produce a `users.lock.json` that has the `base` policyfile lock merged in. 
+This will produce a `users.lock.json` that has the `base` policyfile lock merged in.
 
 More information can be found in
 [RFC097](https://github.com/chef/chef-rfc/blob/master/rfc097-policyfile-includes.md) and
