@@ -31,3 +31,6 @@ cookbooks to supermarkets.
 The cookbook generator now adds a LICENSE file when creating a new
 cookbook.
 
+
+## Boilerplate tests are generated for the CentOS platform
+When `chef generate cookbook` is ran, boilerplate unit tests for the CentOS 7 platform are now generated as well.
