@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.3.9 -->
-## [v2.3.9](https://github.com/chef/chef-dk/tree/v2.3.9) (2017-10-03)
+<!-- latest_release 2.3.10 -->
+## [v2.3.10](https://github.com/chef/chef-dk/tree/v2.3.10) (2017-10-06)
 
 #### Merged Pull Requests
-- Dependencies bump [#1414](https://github.com/chef/chef-dk/pull/1414) ([adamleff](https://github.com/adamleff))
+- Documented how to run a version of chef-dk under development [#1419](https://github.com/chef/chef-dk/pull/1419) ([rmiesen](https://github.com/rmiesen))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.3.4 -->
 ### Changes since 2.3.4 release
 
 #### Merged Pull Requests
+- Documented how to run a version of chef-dk under development [#1419](https://github.com/chef/chef-dk/pull/1419) ([rmiesen](https://github.com/rmiesen)) <!-- 2.3.10 -->
 - Dependencies bump [#1414](https://github.com/chef/chef-dk/pull/1414) ([adamleff](https://github.com/adamleff)) <!-- 2.3.9 -->
 - Revert &quot;add kitchen-google, remove chef-provisioning-fog&quot; [#1413](https://github.com/chef/chef-dk/pull/1413) ([thommay](https://github.com/thommay)) <!-- 2.3.8 -->
 - add kitchen-google, remove chef-provisioning-fog [#1410](https://github.com/chef/chef-dk/pull/1410) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 2.3.7 -->
