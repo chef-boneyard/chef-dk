@@ -8,6 +8,12 @@ To build the chef-dk, we use the omnibus system. Go to the
 A standard `bundle install` in the root directory and in the `omnibus/`
 directory will get you started. You can run unit tests via:
 
+## Running `chef` Locally
+
+```
+bundle exec chef
+```
+
 ## Unit Testing
 
 ```
