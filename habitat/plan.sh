@@ -63,32 +63,34 @@ do_build() {
 
 do_install() {
 
-  mkdir -p $pkg_prefix/bin
+  mkdir -p $pkg_prefix/ruby-bin
 
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/bin chef-dk
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/bin chef
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/bin ohai
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/bin foodcritic
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/bin test-kitchen
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/bin berkshelf
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/bin inspec
+  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin chef-dk
+  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin chef
+  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin ohai
+  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin foodcritic
+  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin test-kitchen
+  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin berkshelf
+  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin inspec
 
   if [[ `readlink /usr/bin/env` = "$(pkg_path_for coreutils)/bin/env" ]]; then
     build_line "Removing the symlink we created for '/usr/bin/env'"
     rm /usr/bin/env
   fi
 
-  wrap_ruby_bin "$pkg_prefix/bin/chef"
-  wrap_ruby_bin "$pkg_prefix/bin/chef-client"
-  wrap_ruby_bin "$pkg_prefix/bin/chef-apply"
-  wrap_ruby_bin "$pkg_prefix/bin/chef-shell"
-  wrap_ruby_bin "$pkg_prefix/bin/chef-solo"
-  wrap_ruby_bin "$pkg_prefix/bin/ohai"
-  wrap_ruby_bin "$pkg_prefix/bin/knife"
-  wrap_ruby_bin "$pkg_prefix/bin/kitchen"
-  wrap_ruby_bin "$pkg_prefix/bin/berks"
-  wrap_ruby_bin "$pkg_prefix/bin/foodcritic"
-  wrap_ruby_bin "$pkg_prefix/bin/inspec"
+  mkdir -p $pkg_prefix/bin
+
+  wrap_ruby_bin "chef"
+  wrap_ruby_bin "chef-client"
+  wrap_ruby_bin "chef-apply"
+  wrap_ruby_bin "chef-shell"
+  wrap_ruby_bin "chef-solo"
+  wrap_ruby_bin "ohai"
+  wrap_ruby_bin "knife"
+  wrap_ruby_bin "kitchen"
+  wrap_ruby_bin "berks"
+  wrap_ruby_bin "foodcritic"
+  wrap_ruby_bin "inspec"
 }
 
 # Stubs
@@ -98,10 +100,12 @@ do_strip() {
 
 # Copied from https://github.com/habitat-sh/core-plans/blob/f84832de42b300a64f1b38c54d659c4f6d303c95/bundler/plan.sh#L32
 wrap_ruby_bin() {
-  local bin="$1"
-  build_line "Adding wrapper $bin to ${bin}.real"
-  mv -v "$bin" "${bin}.real"
-  cat <<EOF > "$bin"
+  local bin_basename="$1"
+  local real_cmd="$pkg_prefix/ruby-bin/$bin_basename"
+  local wrapper="$pkg_prefix/bin/$bin_basename"
+
+  build_line "Adding wrapper $wrapper to $real_cmd"
+  cat <<EOF > "$wrapper"
 #!$(pkg_path_for busybox-static)/bin/sh
 set -e
 if test -n "$DEBUG"; then set -x; fi
@@ -110,7 +114,7 @@ export GEM_PATH="$(hab pkg path core/ruby)/lib/ruby/gems/2.4.0:$(hab pkg path co
 export SSL_CERT_FILE=$(hab pkg path core/cacerts)/ssl/cert.pem 
 export APPBUNDLER_ALLOW_RVM=true
 unset RUBYOPT GEMRC
-exec $(pkg_path_for ruby)/bin/ruby ${bin}.real \$@
+exec $(pkg_path_for ruby)/bin/ruby ${real_cmd} \$@
 EOF
-  chmod -v 755 "$bin"
+  chmod -v 755 "$wrapper"
 }
