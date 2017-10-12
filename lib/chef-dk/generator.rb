@@ -154,7 +154,7 @@ EOH
         end
         if comment
           # Ensure there's no trailing whitespace
-          result.gsub(/^(.+)$/, "#{comment} \\1").gsub(/^$/, "#{comment}")
+          result.gsub(/^(.+)$/, "#{comment} \\1").gsub(/^$/, "#{comment}").strip
         else
           result
         end
