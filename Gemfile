@@ -44,7 +44,7 @@ group(:omnibus_package) do
   gem "chef-provisioning-aws", "= 3.0.0-rc1", group: :provisioning
   gem "chef-provisioning-fog", ">= 0.25.0", group: :provisioning
   gem "chef-vault"
-  gem "chef", "= 13.4.24"
+  gem "chef", "= 13.3.42"
   gem "cheffish", ">= 13.0"
   gem "chefspec"
   gem "fauxhai"
