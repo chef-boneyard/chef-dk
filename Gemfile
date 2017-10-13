@@ -40,17 +40,19 @@ group(:omnibus_package) do
   gem "appbundler"
   gem "berkshelf", ">= 6.3"
   gem "chef-provisioning", ">= 2.4.0", group: :provisioning
-  gem "chef-provisioning-aws", ">= 2.0", group: :provisioning
-  gem "chef-provisioning-azure", ">= 0.6.0", group: :provisioning
-  gem "chef-provisioning-fog", ">= 0.20.0", group: :provisioning
+  # FIXME: release 3.0.0 before DK release
+  gem "chef-provisioning-aws", "= 3.0.0-rc1", group: :provisioning
+  gem "chef-provisioning-fog", ">= 0.25.0", group: :provisioning
   gem "chef-vault"
-  gem "chef", "= 13.4.24"
+  gem "chef", "= 13.3.42"
   gem "cheffish", ">= 13.0"
   gem "chefspec"
   gem "fauxhai"
   gem "inspec", ">= 0.29.0"
   gem "kitchen-ec2"
+  gem "kitchen-digitalocean"
   gem "kitchen-dokken", ">= 2.5.0"
+  gem "kitchen-google"
   gem "kitchen-hyperv"
   gem "kitchen-inspec"
   gem "kitchen-vagrant"
