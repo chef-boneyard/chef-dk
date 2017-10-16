@@ -68,6 +68,11 @@ module ChefDK
           :description => "Use PIPELINE to set target branch to something other than master for the build_cookbook",
           :default => "master"
 
+        option :git,
+          :long => "--git-url GIT_URL",
+          :description => "Used to set both the `issues_url` and `source_url` within the cookbook metadata",
+          :default => "default"
+
         options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
@@ -131,10 +136,16 @@ module ChefDK
 
           Generator.add_attr_to_context(:use_berkshelf, berks_mode?)
           Generator.add_attr_to_context(:pipeline, pipeline)
+
+          Generator.add_attr_to_context(:git, git)
         end
 
         def pipeline
           config[:pipeline]
+        end
+
+        def git
+          config[:git]
         end
 
         def policy_name
@@ -216,6 +227,19 @@ module ChefDK
 
           if config[:policy]
             @berks_mode = false
+          end
+
+          if config[:git] != "default"
+            begin
+              url = URI.parse(config[:git])
+            rescue URI::InvalidURIError => err
+              err("Unable to parse `--git-url` provided, please check it's valid")
+              @params_valid = false
+            end
+            if @params_valid != false && url.scheme.nil?
+              err("Please prefix a uri.scheme to '--git-url' e.g. 'https://'")
+              @params_valid = false
+            end
           end
 
           if config[:verbose]

@@ -102,7 +102,7 @@ EOF
     expect(cookbook_generator.chef_runner.cookbook_path).to eq(File.expand_path("lib/chef-dk/skeletons", project_root))
   end
 
-  context "when given invalid/incomplete arguments" do
+  context "when given invalid/incomplete arguments it" do
 
     let(:expected_help_message) do
       "Usage: chef generate cookbook NAME [options]\n"
@@ -132,6 +132,17 @@ EOF
       expect(stdout_io.string).to include(message)
     end
 
+    it "errors if an invalid uri is passed to --git-url" do
+      expect(with_argv(%w{new_cookbook --git-url "invalid uri"}).run).to eq(1)
+      message = "Unable to parse `--git-url` provided, please check it's valid"
+      expect(stderr_io.string).to include(message)
+    end
+
+    it "errors if uri.scheme is missing from --git-url" do
+      expect(with_argv(%w{new_cookbook --git-url uri_minus_scheme.com}).run).to eq(1)
+      message = "Please prefix a uri.scheme to '--git-url' e.g. 'https://'"
+      expect(stderr_io.string).to include(message)
+    end
   end
 
   context "when given the name of the cookbook to generate" do
@@ -603,6 +614,23 @@ SPEC_HELPER
 
       end
 
+    end
+
+    context "and given a custom git-url" do
+
+      let(:argv) { %w{new_cookbook --git-url https://chefspec.can.be.fun} }
+
+      before do
+        reset_tempdir
+      end
+
+      describe "it creates a custom metadata.rb" do
+        let(:file) { File.join(tempdir, "new_cookbook", "metadata.rb") }
+
+        include_examples "a generated file", :cookbook_name do
+          let(:line) { /https:\/\/chefspec.can.be.fun/m }
+        end
+      end
     end
 
     context "when configured for Berkshelf" do
