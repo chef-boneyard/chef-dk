@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.3.15 -->
-## [v2.3.15](https://github.com/chef/chef-dk/tree/v2.3.15) (2017-10-24)
+<!-- latest_release 2.3.16 -->
+## [v2.3.16](https://github.com/chef/chef-dk/tree/v2.3.16) (2017-10-27)
 
 #### Merged Pull Requests
-- bring in more gems to the chef-dk bundle [#1435](https://github.com/chef/chef-dk/pull/1435) ([lamont-granquist](https://github.com/lamont-granquist))
+- Bump deps for InSpec 1.43.5 [#1439](https://github.com/chef/chef-dk/pull/1439) ([adamleff](https://github.com/adamleff))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.3.4 -->
 ### Changes since 2.3.4 release
 
 #### Merged Pull Requests
+- Bump deps for InSpec 1.43.5 [#1439](https://github.com/chef/chef-dk/pull/1439) ([adamleff](https://github.com/adamleff)) <!-- 2.3.16 -->
 - bring in more gems to the chef-dk bundle [#1435](https://github.com/chef/chef-dk/pull/1435) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 2.3.15 -->
 - Don&#39;t include chef-provisioning and friends in the appbundle for the … [#1428](https://github.com/chef/chef-dk/pull/1428) ([thommay](https://github.com/thommay)) <!-- 2.3.14 -->
 - Remove trailing newline [#1426](https://github.com/chef/chef-dk/pull/1426) ([username-is-already-taken2](https://github.com/username-is-already-taken2)) <!-- 2.3.13 -->
