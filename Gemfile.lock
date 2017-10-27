@@ -36,9 +36,6 @@ GEM
       jmespath (~> 1.0)
     aws-sdk-resources (2.10.73)
       aws-sdk-core (= 2.10.73)
-    aws-sdk-v1 (1.67.0)
-      json (~> 1.4)
-      nokogiri (~> 1)
     aws-sigv4 (1.0.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -79,10 +76,10 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef (13.4.24)
+    chef (13.3.42)
       addressable
       bundler (>= 1.10)
-      chef-config (= 13.4.24)
+      chef-config (= 13.3.42)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -109,10 +106,10 @@ GEM
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (13.4.24-universal-mingw32)
+    chef (13.3.42-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 13.4.24)
+      chef-config (= 13.3.42)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -153,7 +150,7 @@ GEM
     chef-api (0.7.1)
       logify (~> 0.1)
       mime-types
-    chef-config (13.4.24)
+    chef-config (13.3.42)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -168,9 +165,8 @@ GEM
       winrm (~> 2.0)
       winrm-elevated (~> 1.0)
       winrm-fs (~> 1.0)
-    chef-provisioning-aws (2.2.2)
+    chef-provisioning-aws (3.0.0.pre.rc1)
       aws-sdk (>= 2.2.18, < 3.0)
-      aws-sdk-v1 (>= 1.59.0)
       chef-provisioning (>= 1.0, < 3.0)
       retryable (~> 2.0, >= 2.0.1)
       ubuntu_ami (~> 0.4, >= 0.4.1)
@@ -681,7 +677,7 @@ GEM
       winrm-fs (~> 1.0)
     treetop (1.6.8)
       polyglot (~> 0.3)
-    tzinfo (1.2.3)
+    tzinfo (1.2.4)
       thread_safe (~> 0.1)
     uber (0.0.15)
     ubuntu_ami (0.4.1)
@@ -750,10 +746,10 @@ DEPENDENCIES
   artifactory
   berkshelf (>= 6.3.1)
   bundler
-  chef (= 13.4.24)
+  chef (= 13.3.42)
   chef-dk!
   chef-provisioning (>= 2.4.0)
-  chef-provisioning-aws (>= 2.0)
+  chef-provisioning-aws (= 3.0.0.pre.rc1)
   chef-provisioning-azure (>= 0.6.0)
   chef-provisioning-fog (>= 0.26.0)
   chef-sugar
