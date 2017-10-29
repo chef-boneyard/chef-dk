@@ -18,6 +18,7 @@
 require "chef-dk/policyfile/cookbook_sources"
 require "chef-dk/policyfile/cookbook_location_specification"
 require "chef-dk/policyfile/storage_config"
+require "chef-dk/policyfile/policyfile_location_specification"
 
 require "chef/node/attribute"
 require "chef/run_list/run_list_item"
@@ -36,6 +37,7 @@ module ChefDK
       attr_reader :run_list
       attr_reader :default_source
       attr_reader :cookbook_location_specs
+      attr_reader :included_policies
 
       attr_reader :named_run_lists
       attr_reader :node_attributes
@@ -48,6 +50,7 @@ module ChefDK
         @errors = []
         @run_list = []
         @named_run_lists = {}
+        @included_policies = []
         @default_source = [ NullCookbookSource.new ]
         @cookbook_location_specs = {}
         @storage_config = storage_config
@@ -119,6 +122,18 @@ module ChefDK
           @cookbook_location_specs[name] = spec
           @errors += spec.errors
         end
+      end
+
+      def include_policy(name, source_options = {})
+        puts "Adding #{name} with options #{source_options}"
+        if source_options[:local] != nil 
+          # TODO: storage_config is meant for cookbooks. We use it here to get the relative_paths_root.
+          spec = PolicyfileLocationSpecification.new(name, source_options, storage_config)
+          included_policies << spec
+        else
+          raise "unimplemented"
+        end
+
       end
 
       def default

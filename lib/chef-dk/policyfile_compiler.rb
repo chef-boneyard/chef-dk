@@ -51,6 +51,7 @@ module ChefDK
     def_delegator :@dsl, :errors
     def_delegator :@dsl, :default_source
     def_delegator :@dsl, :cookbook_location_specs
+    def_delegator :@dsl, :included_policies
 
     attr_reader :dsl
     attr_reader :storage_config
@@ -79,7 +80,17 @@ module ChefDK
 
     def expanded_run_list
       # doesn't support roles yet...
-      Chef::RunList.new(*run_list)
+      concated_runlist = Chef::RunList.new
+      included_policies.each do |policy_spec|
+        lock = policy_spec.policyfile_lock
+        lock.run_list.each do |run_list_item|
+          concated_runlist << run_list_item
+        end
+      end
+      run_list.each do |run_list_item|
+        concated_runlist << run_list_item
+      end
+      concated_runlist
     end
 
     # copy of the expanded_run_list, properly formatted for use in a lockfile
@@ -88,8 +99,23 @@ module ChefDK
     end
 
     def expanded_named_run_lists
-      named_run_lists.inject({}) do |expanded, (name, run_list_items)|
-        expanded[name] = Chef::RunList.new(*run_list_items)
+      included_policies_named_runlists = included_policies.inject({}) do |acc, policy_spec|
+        lock = policy_spec.policyfile_lock
+        lock.named_run_lists.inject(acc) do |expanded, (name, run_list_items)|
+          expanded[name] ||= Chef::RunList.new
+          run_list_items.each do |run_list_item|
+            expanded[name] << run_list_item
+          end
+          expanded
+        end
+        acc
+      end
+
+      named_run_lists.inject(included_policies_named_runlists) do |expanded, (name, run_list_items)|
+        expanded[name] ||= Chef::RunList.new
+        run_list_items.each do |run_list_item|
+          expanded[name] << run_list_item
+        end
         expanded
       end
     end
@@ -207,7 +233,16 @@ module ChefDK
       solution_deps
     end
 
-    def graph_demands
+    def cookbook_demands_from_policies
+      included_policies.map do |policy_spec|
+        lock = policy_spec.policyfile_lock
+        lock.cookbook_locks.map do |ck_name, location_spec|
+          [ck_name, "= #{location_spec.version}"]
+        end
+      end.flatten(1)
+    end
+
+    def cookbook_demands_from_current
       cookbooks_for_demands.map do |cookbook_name|
         spec = cookbook_location_spec_for(cookbook_name)
         if spec.nil?
@@ -218,6 +253,12 @@ module ChefDK
           [ cookbook_name, spec.version_constraint.to_s ]
         end
       end
+    end
+
+    def graph_demands
+      ## TODO: By merging cookbooks from the current policyfile and included policies,
+      #        we lose the ability to know where a conflict came from
+      (cookbook_demands_from_current + cookbook_demands_from_policies)
     end
 
     def artifacts_graph
