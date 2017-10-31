@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.3.17 -->
-## [v2.3.17](https://github.com/chef/chef-dk/tree/v2.3.17) (2017-10-27)
+<!-- latest_release 2.4.1 -->
+## [v2.4.1](https://github.com/chef/chef-dk/tree/v2.4.1) (2017-10-31)
 
 #### Merged Pull Requests
-- Bump chef-provisioning and downgrade chef for now [#1441](https://github.com/chef/chef-dk/pull/1441) ([thommay](https://github.com/thommay))
+- Bump bundler, libxml2, libxslt and libyaml to the latest [#1444](https://github.com/chef/chef-dk/pull/1444) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.3.4 -->
 ### Changes since 2.3.4 release
 
 #### Merged Pull Requests
+- Bump bundler, libxml2, libxslt and libyaml to the latest [#1444](https://github.com/chef/chef-dk/pull/1444) ([tas50](https://github.com/tas50)) <!-- 2.4.1 -->
 - Bump chef-provisioning and downgrade chef for now [#1441](https://github.com/chef/chef-dk/pull/1441) ([thommay](https://github.com/thommay)) <!-- 2.3.17 -->
 - Bump deps for InSpec 1.43.5 [#1439](https://github.com/chef/chef-dk/pull/1439) ([adamleff](https://github.com/adamleff)) <!-- 2.3.16 -->
 - bring in more gems to the chef-dk bundle [#1435](https://github.com/chef/chef-dk/pull/1435) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 2.3.15 -->
