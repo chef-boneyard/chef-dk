@@ -33,12 +33,15 @@ module ChefDK
       def policyfile_lock
         @policyfile_lock ||= begin
           ensure_cached
-          lock_data = FFI_Yajl::Parser.new.parse(content)
           PolicyfileLock.new(storage_config, ui: ui).build_from_lock_data(lock_data)
         end
       end
 
       private
+
+      def lock_data
+        FFI_Yajl::Parser.new.parse(content)
+      end
 
       def content
         IO.read(path)
