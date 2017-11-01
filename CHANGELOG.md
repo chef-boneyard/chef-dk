@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.4.2 -->
-## [v2.4.2](https://github.com/chef/chef-dk/tree/v2.4.2) (2017-11-01)
+<!-- latest_release 2.4.3 -->
+## [v2.4.3](https://github.com/chef/chef-dk/tree/v2.4.3) (2017-11-01)
 
 #### Merged Pull Requests
-- Update Foodcritic to 12.1 [#1447](https://github.com/chef/chef-dk/pull/1447) ([tas50](https://github.com/tas50))
+- Update Test Kitchen to 1.19 [#1448](https://github.com/chef/chef-dk/pull/1448) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.3.4 -->
 ### Changes since 2.3.4 release
 
 #### Merged Pull Requests
+- Update Test Kitchen to 1.19 [#1448](https://github.com/chef/chef-dk/pull/1448) ([tas50](https://github.com/tas50)) <!-- 2.4.3 -->
 - Update Foodcritic to 12.1 [#1447](https://github.com/chef/chef-dk/pull/1447) ([tas50](https://github.com/tas50)) <!-- 2.4.2 -->
 - Bump bundler, libxml2, libxslt and libyaml to the latest [#1444](https://github.com/chef/chef-dk/pull/1444) ([tas50](https://github.com/tas50)) <!-- 2.4.1 -->
 - Bump chef-provisioning and downgrade chef for now [#1441](https://github.com/chef/chef-dk/pull/1441) ([thommay](https://github.com/thommay)) <!-- 2.3.17 -->
