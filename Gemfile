@@ -29,7 +29,7 @@ group(:omnibus_package, :development, :test) do
   gem "dep_selector"
   gem "guard"
   gem "cookstyle", ">= 2.0.0"
-  gem "foodcritic", ">= 11.2"
+  gem "foodcritic", ">= 12.1"
 end
 
 # We tend to track latest stable release without pinning.
