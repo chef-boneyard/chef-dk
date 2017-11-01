@@ -12,13 +12,13 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     artifactory (2.8.2)
-    aws-sdk (2.10.74)
-      aws-sdk-resources (= 2.10.74)
-    aws-sdk-core (2.10.74)
+    aws-sdk (2.10.75)
+      aws-sdk-resources (= 2.10.75)
+    aws-sdk-core (2.10.75)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.74)
-      aws-sdk-core (= 2.10.74)
+    aws-sdk-resources (2.10.75)
+      aws-sdk-core (= 2.10.75)
     aws-sigv4 (1.0.2)
     berkshelf (6.3.1)
       buff-config (~> 2.0)
@@ -334,4 +334,4 @@ DEPENDENCIES
   winrm-fs
 
 BUNDLED WITH
-   1.15.4
+   1.16.0

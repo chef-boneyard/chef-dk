@@ -30,13 +30,13 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     awesome_print (1.8.0)
-    aws-sdk (2.10.74)
-      aws-sdk-resources (= 2.10.74)
-    aws-sdk-core (2.10.74)
+    aws-sdk (2.10.75)
+      aws-sdk-resources (= 2.10.75)
+    aws-sdk-core (2.10.75)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.74)
-      aws-sdk-core (= 2.10.74)
+    aws-sdk-resources (2.10.75)
+      aws-sdk-core (= 2.10.75)
     aws-sigv4 (1.0.2)
     berkshelf (6.3.1)
       buff-config (~> 2.0)
@@ -301,7 +301,7 @@ GEM
       sfl
     syslog-logger (1.6.8)
     systemu (2.6.5)
-    test-kitchen (1.18.0)
+    test-kitchen (1.19.0)
       mixlib-install (~> 3.6)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
@@ -375,4 +375,4 @@ DEPENDENCIES
   winrm-elevated
 
 BUNDLED WITH
-   1.15.4
+   1.16.0

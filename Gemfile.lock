@@ -29,13 +29,13 @@ GEM
       mixlib-cli (~> 1.4)
     artifactory (2.8.2)
     ast (2.3.0)
-    aws-sdk (2.10.74)
-      aws-sdk-resources (= 2.10.74)
-    aws-sdk-core (2.10.74)
+    aws-sdk (2.10.75)
+      aws-sdk-resources (= 2.10.75)
+    aws-sdk-core (2.10.75)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.74)
-      aws-sdk-core (= 2.10.74)
+    aws-sdk-resources (2.10.75)
+      aws-sdk-core (= 2.10.75)
     aws-sigv4 (1.0.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -650,7 +650,7 @@ GEM
       uuid (~> 2.0)
     syslog-logger (1.6.8)
     systemu (2.6.5)
-    test-kitchen (1.18.0)
+    test-kitchen (1.19.0)
       mixlib-install (~> 3.6)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
@@ -817,4 +817,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.15.4
+   1.16.0
