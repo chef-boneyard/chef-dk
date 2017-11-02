@@ -1,3 +1,5 @@
+require 'chef-dk/policyfile_lock'
+
 module ChefDK
   module Policyfile
     class PolicyfileLocationSpecification
