@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.4.3 -->
-## [v2.4.3](https://github.com/chef/chef-dk/tree/v2.4.3) (2017-11-01)
+<!-- latest_release 2.4.4 -->
+## [v2.4.4](https://github.com/chef/chef-dk/tree/v2.4.4) (2017-11-03)
 
 #### Merged Pull Requests
-- Update Test Kitchen to 1.19 [#1448](https://github.com/chef/chef-dk/pull/1448) ([tas50](https://github.com/tas50))
+- Enable Concurrent File Downloads when Downloading from a Chef Server [#1449](https://github.com/chef/chef-dk/pull/1449) ([danielsdeleo](https://github.com/danielsdeleo))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.3.4 -->
 ### Changes since 2.3.4 release
 
 #### Merged Pull Requests
+- Enable Concurrent File Downloads when Downloading from a Chef Server [#1449](https://github.com/chef/chef-dk/pull/1449) ([danielsdeleo](https://github.com/danielsdeleo)) <!-- 2.4.4 -->
 - Update Test Kitchen to 1.19 [#1448](https://github.com/chef/chef-dk/pull/1448) ([tas50](https://github.com/tas50)) <!-- 2.4.3 -->
 - Update Foodcritic to 12.1 [#1447](https://github.com/chef/chef-dk/pull/1447) ([tas50](https://github.com/tas50)) <!-- 2.4.2 -->
 - Bump bundler, libxml2, libxslt and libyaml to the latest [#1444](https://github.com/chef/chef-dk/pull/1444) ([tas50](https://github.com/tas50)) <!-- 2.4.1 -->
