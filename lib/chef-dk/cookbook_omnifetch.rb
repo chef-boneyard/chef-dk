@@ -28,4 +28,5 @@ CookbookOmnifetch.configure do |c|
   c.storage_path = Pathname.new(File.expand_path(File.join(ChefDK::Helpers.chefdk_home, "cache", "cookbooks")))
   c.shell_out_class = ChefDK::ShellOut
   c.cached_cookbook_class = ChefDK::CookbookMetadata
+  c.chef_server_download_concurrency = 10
 end
