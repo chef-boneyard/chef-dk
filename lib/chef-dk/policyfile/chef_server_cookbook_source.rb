@@ -18,7 +18,7 @@
 require "ffi_yajl"
 require "chef-dk/exceptions"
 require "chef-dk/policyfile/source_uri"
-require "chef/server_api"
+require "chef-dk/chef_server_api_multi"
 
 module ChefDK
   module Policyfile
@@ -82,9 +82,10 @@ module ChefDK
       private
 
       def http_connection_for(base_url)
-        @http_connections[base_url] ||= Chef::ServerAPI.new(base_url,
-                                                       signing_key_filename: chef_config.client_key,
-                                                       client_name: chef_config.node_name)
+        @http_connections[base_url] ||=
+          ChefServerAPIMulti.new(base_url,
+                                 signing_key_filename: chef_config.client_key,
+                                 client_name: chef_config.node_name)
       end
 
       def full_chef_server_graph
