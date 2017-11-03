@@ -1,3 +1,13 @@
+# ChefDK 2.4 Release Notes
+
+## Improved Performance Downloading Cookbooks from a Chef Server
+
+Policyfile users who use a Chef Server as a cookbook source will
+experience faster cookbook downloads when running `chef install`. Chef
+Server's API requires each file in a cookbook to be downloaded
+separately; ChefDK will now download the files in parallel.
+Additionally, HTTP keepalives are enabled to reduce connection overhead.
+
 # ChefDK 2.3 Release Notes
 
 ChefDK 2.3 includes Ruby 2.4.2 to fix the following CVEs:
