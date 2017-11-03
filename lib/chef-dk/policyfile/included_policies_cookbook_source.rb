@@ -65,6 +65,10 @@ module ChefDK
         universe_graph.include?(cookbook_name)
       end
 
+      def preferred_cookbooks
+        universe_graph.keys
+      end
+
       def ==(other)
         other.kind_of?(self.class) && other.included_policy_location_specs == included_policy_location_specs
       end

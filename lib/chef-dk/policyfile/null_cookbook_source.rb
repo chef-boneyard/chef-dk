@@ -36,6 +36,10 @@ module ChefDK
         true
       end
 
+      def preferred_cookbooks
+        []
+      end
+
       def desc
         "null_cookbook_source"
       end

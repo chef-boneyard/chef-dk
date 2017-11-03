@@ -24,6 +24,7 @@ require "chef/mixin/deep_merge"
 
 require "chef-dk/policyfile/dsl"
 require "chef-dk/policyfile/attribute_merge_checker"
+require "chef-dk/policyfile/included_policies_cookbook_source"
 require "chef-dk/policyfile_lock"
 require "chef-dk/ui"
 require "chef-dk/policyfile/reports/install"
@@ -51,7 +52,6 @@ module ChefDK
     def_delegator :@dsl, :named_run_list
     def_delegator :@dsl, :named_run_lists
     def_delegator :@dsl, :errors
-    def_delegator :@dsl, :default_source
     def_delegator :@dsl, :cookbook_location_specs
     def_delegator :@dsl, :included_policies
 
@@ -68,6 +68,16 @@ module ChefDK
 
       @ui = ui || UI.null
       @install_report = Policyfile::Reports::Install.new(ui: @ui, policyfile_compiler: self)
+    end
+
+    def default_source
+      prepend_array = if included_policies.length > 0
+                        [included_policies_cookbook_source]
+                      else
+                        []
+                      end
+      prepend_array + dsl.default_source
+
     end
 
     def error!
@@ -284,6 +294,38 @@ module ChefDK
       end
     end
 
+    def included_policies_cookbook_source
+      @included_policies_cookbook_source ||= begin
+        source = Policyfile::IncludedPoliciesCookbookSource.new(included_policies)
+        handle_included_policies_preferred_cookbook_conflicts(source)
+        source
+      end
+    end
+
+    def handle_included_policies_preferred_cookbook_conflicts(included_policies_source)
+      # All cookbooks in the included policies are preferred.
+      conflicting_source_messages = []
+      dsl.default_source.reject {|s| s.null?}.each do |source_b|
+        conflicting_preferences = included_policies_source.preferred_cookbooks & source_b.preferred_cookbooks
+        next if conflicting_preferences.empty?
+        next if conflicting_preferences.all? do |cookbook_name|
+          version = included_policies_source.universe_graph[cookbook_name].keys.first
+          if included_policies_source.source_options_for(cookbook_name, version) == source_b.source_options_for(cookbook_name, version)
+            true
+          else
+            false
+          end
+        end
+        conflicting_source_messages  << "#{source_b.desc} sets a preferred for cookbook(s) #{conflicting_preferences.join(', ')}. This conflicts with an included policy."
+      end
+      unless conflicting_source_messages.empty?
+        msg = "You may not override the cookbook sources for any cookbooks required by included policies.\n"
+        msg << conflicting_source_messages.join("\n") << "\n"
+        raise IncludePolicyCookbookSourceConflict.new(msg)
+      end
+    end
+
+
     def graph_demands
       ## TODO: By merging cookbooks from the current policyfile and included policies,
       #        we lose the ability to know where a conflict came from
@@ -291,7 +333,6 @@ module ChefDK
     end
 
     def artifacts_graph
-      # TODO: Should we include the included policies artifacts here?
       remote_artifacts_graph.merge(local_artifacts_graph)
     end
 

@@ -96,6 +96,9 @@ module ChefDK
   class BUG < RuntimeError
   end
 
+  class IncludePolicyCookbookSourceConflict < StandardError
+  end
+
   class CookbookSourceConflict < StandardError
 
     attr_reader :conflicting_cookbooks

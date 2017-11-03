@@ -18,6 +18,7 @@
 
 require "spec_helper"
 require "chef-dk/policyfile_compiler"
+require "chef-dk/exceptions"
 
 describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
@@ -94,6 +95,11 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
       [cookbook_info[:name], cookbook_info[:version]]
     end
 
+    solution_dependencies_cookbooks = included_policy_cookbooks.inject({}) do |acc, cookbook_info|
+      acc["#{cookbook_info[:name]} (#{cookbook_info[:version]})"] = external_cookbook_universe[cookbook_info[:name]][cookbook_info[:version]]
+      acc
+    end
+
     {
       "name" => "included_policyfile",
       "revision_id" => "myrevisionid",
@@ -103,8 +109,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
       "override_attributes" => included_policy_override_attributes,
       "solution_dependencies" => {
         "Policyfile"=> solution_dependencies_lock,
-        ## We dont use dependencies, no need to fill it out
-        "dependencies" => {}
+        "dependencies" => solution_dependencies_cookbooks
       }
     }.tap do |core|
       core["named_run_lists"] = included_policy_expanded_named_runlist if included_policy_expanded_named_runlist 
@@ -125,8 +130,12 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
   let(:policyfile) do
     policyfile = ChefDK::PolicyfileCompiler.new.build do |p|
-
-      p.default_source.replace([default_source]) if default_source
+      if default_source
+        p.default_source.replace([default_source])
+      else
+        allow(p.default_source.first).to receive(:universe_graph).and_return(external_cookbook_universe)
+        allow(p.default_source.first).to receive(:null?).and_return(false)
+      end
       p.run_list(*run_list)
 
       named_run_list.each do |name, run_list|
@@ -142,7 +151,6 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
       end
 
       allow(p).to receive(:included_policies).and_return(included_policies)
-      allow(p.default_source.first).to receive(:universe_graph).and_return(external_cookbook_universe)
     end
 
     policyfile
@@ -243,6 +251,48 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
           }
         ]
       }
+
+      context "and the including policy does not specify any sources" do
+        let(:run_list) { [] }
+        it "it defaults to those provided in the included policy lock" do
+          expect(policyfile_lock.to_lock["solution_dependencies"]["dependencies"]).to(
+            have_key("cookbookC (2.0.0)"))
+        end
+      end
+
+      context "and the including policy specifies a source that is equivalent to the included policy" do
+        let(:run_list) { [] }
+        let(:default_source) { instance_double("ChefDK::Policyfile::NullCookbookSource") }
+
+        before do
+          allow(default_source).to receive(:preferred_cookbooks).and_return(["cookbookC"])
+          allow(default_source).to receive(:source_options_for).with("cookbookC", "2.0.0").and_return({})
+          allow(default_source).to receive(:null?).and_return(false)
+          allow(default_source).to receive(:universe_graph).and_return(external_cookbook_universe)
+          allow(default_source).to receive(:desc).and_return("source double")
+        end
+
+        it "it defaults to those provided in the included policy lock" do
+          expect{policyfile_lock.to_lock}.not_to raise_error
+        end
+      end
+
+      context "and the including policy specifies a source that is not equivalent to the included policy" do
+        let(:run_list) { [] }
+        let(:default_source) { instance_double("ChefDK::Policyfile::NullCookbookSource") }
+
+        before do
+          allow(default_source).to receive(:preferred_cookbooks).and_return(["cookbookC"])
+          allow(default_source).to receive(:source_options_for).with("cookbookC", "2.0.0").and_return({"foo"=>"bar"})
+          allow(default_source).to receive(:null?).and_return(false)
+          allow(default_source).to receive(:universe_graph).and_return(external_cookbook_universe)
+          allow(default_source).to receive(:desc).and_return("source double")
+        end
+
+        it "it raises an error" do
+          expect{policyfile_lock.to_lock}.to raise_error(ChefDK::IncludePolicyCookbookSourceConflict)
+        end
+      end
 
       context "and the including policy's dependencies can be solved with the included policy's locks" do
         let(:run_list) { ["local_easy::default"] }
