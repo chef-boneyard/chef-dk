@@ -17,14 +17,185 @@
 #
 
 require "spec_helper"
+require "chef-dk/policyfile_compiler"
 require "chef-dk/policyfile_lock.rb"
 
 describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" do
 
+  let(:run_list) { ["local::default"] }
+
+  let(:default_source) { [:community] }
+
+  let(:external_cookbook_universe) {
+    {
+      "cookbookA" => {
+        "1.0.0" => [ ],
+        "2.0.0" => [ ["cookbookB", "= 2.0.0" ]],
+      },
+      "cookbookB" => {
+        "1.0.0" => [ ],
+        "2.0.0" => [ ],
+      },
+      "cookbookC" => {
+        "1.0.0" => [ ],
+        "2.0.0" => [ ],
+      },
+      "local" => {
+        "1.0.0" => [ ["cookbookC", "= 1.0.0" ] ],
+      },
+      "local_easy" => {
+        "1.0.0" => [ ["cookbookC", "= 2.0.0" ] ],
+      }
+    }
+  }
+
+  let(:included_policy_cookbook_universe) { external_cookbook_universe }
+
+  let(:included_policy_default_attributes) { {} }
+  let(:included_policy_override_attributes) { {} }
+  let(:included_policy_expanded_named_runlist) { nil }
+  let(:included_policy_expanded_runlist) { ["recipe[cookbookA::default]"] }
+  let(:included_policy_cookbooks) {
+    [
+      {
+        name: "cookbookA",
+        version: "2.0.0"
+      },
+      # We need to manually specify the dependencies of cookbookA
+      {
+        name: "cookbookB",
+        version: "2.0.0"
+      }
+
+    ]
+  }
+
+  let(:included_policy_source_options) do
+    {
+      "cookbookA" => {
+        "2.0.0" => {artifactserver: "https://supermarket.example/c/cookbookA/2.0.0/download", version: "2.0.0", somekey: "withavalue"}
+      },
+      "cookbookB" => {
+        "2.0.0" => {artifactserver: "https://supermarket.example/c/cookbookB/2.0.0/download", version: "2.0.0", somekey: "withavalue"}
+      }
+    }
+  end
+
+  let(:included_policy_lock_data) do
+    cookbook_locks = included_policy_cookbooks.inject({}) do |acc, cookbook_info|
+      acc[cookbook_info[:name]] = {
+        "version" => cookbook_info[:version],
+        "identifier" => "identifier",
+        "dotted_decimal_identifier" => "dotted_decimal_identifier",
+        "cache_key" => "#{cookbook_info[:name]}-#{cookbook_info[:version]}",
+        "origin" => "uri",
+        "source_options" => included_policy_source_options[cookbook_info[:name]][cookbook_info[:version]]
+      }
+      acc
+    end
+
+    solution_dependencies_lock = included_policy_cookbooks.map do |cookbook_info|
+      [cookbook_info[:name], cookbook_info[:version]]
+    end
+
+    solution_dependencies_cookbooks = included_policy_cookbooks.inject({}) do |acc, cookbook_info|
+      acc["#{cookbook_info[:name]} (#{cookbook_info[:version]})"] = included_policy_cookbook_universe[cookbook_info[:name]][cookbook_info[:version]]
+      acc
+    end
+
+    {
+      "name" => "included_policyfile",
+      "revision_id" => "myrevisionid",
+      "run_list" => included_policy_expanded_runlist,
+      "cookbook_locks" => cookbook_locks,
+      "default_attributes" => included_policy_default_attributes,
+      "override_attributes" => included_policy_override_attributes,
+      "solution_dependencies" => {
+        "Policyfile"=> solution_dependencies_lock,
+        "dependencies" => solution_dependencies_cookbooks
+      }
+    }.tap do |core|
+      core["named_run_lists"] = included_policy_expanded_named_runlist if included_policy_expanded_named_runlist 
+    end
+  end
+
+  let(:included_policy_lock_name) { "included" }
+
+  # let(:remote_cb_source_opts) do
+  #   { artifactserver: "https://supermarket.example/c/remote-cb/1.1.1/download", version: "1.1.1" }
+  # end
+
+  let(:default_source_obj) do
+    instance_double("ChefDK::Policyfile::CommunityCookbookSource")
+  end
+
+  let(:policyfile) do
+    policyfile = ChefDK::PolicyfileCompiler.new.build do |p|
+      p.run_list(*run_list)
+    end
+
+    allow(policyfile.dsl).to receive(:default_source).and_return([default_source_obj])
+
+    allow(default_source_obj).to receive(:universe_graph).
+      and_return(external_cookbook_universe)
+
+    allow(default_source_obj).to receive(:null?).and_return(false)
+    allow(default_source_obj).to receive(:preferred_cookbooks).and_return([])
+
+    allow(policyfile).to receive(:included_policies).and_return([included_policy_lock_spec])
+
+    policyfile
+  end
+
+  before do
+
+    allow(default_source_obj).to receive(:preferred_source_for?).and_return(false)
+
+    allow(default_source_obj).to receive(:source_options_for) do |cookbook_name, version|
+      { artifactserver: "https://supermarket.example/c/#{cookbook_name}/#{version}/download", version: version }
+    end
+
+    allow(ChefDK::Policyfile::CookbookLocationSpecification).to receive(:new) do |cookbook_name, version_constraint, source_opts, storage_config|
+      double = instance_double("ChefDK::Policyfile::CookbookLocationSpecification",
+                      name: cookbook_name,
+                      version_constraint: Semverse::Constraint.new(version_constraint),
+                      ensure_cached: nil,
+                      to_s: "#{cookbook_name} #{version_constraint}")
+      allow(double).to receive(:cookbook_has_recipe?).and_return(true)
+      allow(double).to receive(:installed?).and_return(true)
+      allow(double).to receive(:mirrors_canonical_upstream?).and_return(true)
+      allow(double).to receive(:cache_key).and_return("#{cookbook_name}-#{version_constraint}-#{source_opts.to_s}")
+      allow(double).to receive(:uri).and_return("uri://#{cookbook_name}-#{version_constraint}-#{source_opts.to_s}")
+      allow(double).to receive(:source_options_for_lock).and_return(source_opts)
+      double
+    end
+  end
+
   context "when a policy is included from local disk" do
+    let(:included_policy_lock_spec) do
+      # TODO: we can put this on disk
+      ChefDK::Policyfile::PolicyfileLocationSpecification.new(included_policy_lock_name, {:local => "somelocation"}, nil).tap do |spec|
+        allow(spec).to receive(:valid?).and_return(true)
+        allow(spec).to receive(:ensure_cached)
+        allow(spec).to receive(:lock_data).and_return(included_policy_lock_data)
+      end
+    end
 
-    it "maintains source locations for remote cookbooks (i.e., from github or supermarket)"
+    before do
+      policyfile.install
+    end
 
+    it "maintains the correct source locations for cookbooks from the included policy" do
+      expect(policyfile.lock.cookbook_locks["cookbookA"].source_options).to eq(included_policy_source_options["cookbookA"]["2.0.0"])
+      expect(policyfile.lock.cookbook_locks["cookbookB"].source_options).to eq(included_policy_source_options["cookbookB"]["2.0.0"])
+    end
+
+    it "maintains the correct source locations for cookbooks from the current policy", :focus do
+      expect(policyfile.lock.cookbook_locks["local"].source_options).to eq(default_source_obj.source_options_for("local", "1.0.0"))
+      expect(policyfile.lock.cookbook_locks["cookbookC"].source_options).to eq(default_source_obj.source_options_for("cookbookC", "1.0.0"))
+    end
+
+    ## This requires being able to do a to_lock
     it "maintains identifiers for remote cookbooks"
 
     context "and the included policy sources cookbooks from local disk" do
