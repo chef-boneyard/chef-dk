@@ -70,14 +70,17 @@ module ChefDK
       @install_report = Policyfile::Reports::Install.new(ui: @ui, policyfile_compiler: self)
     end
 
-    def default_source
-      prepend_array = if included_policies.length > 0
-                        [included_policies_cookbook_source]
-                      else
-                        []
-                      end
-      prepend_array + dsl.default_source
-
+    def default_source(source_type = nil, source_argument = nil, &block)
+      if source_type == nil
+        prepend_array = if included_policies.length > 0
+                          [included_policies_cookbook_source]
+                        else
+                          []
+                        end
+        prepend_array + dsl.default_source
+      else
+        dsl.default_source(source_type, source_argument, &block)
+      end
     end
 
     def error!
