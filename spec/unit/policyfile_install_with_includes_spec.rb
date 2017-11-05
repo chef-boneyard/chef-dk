@@ -121,9 +121,13 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
 
   let(:included_policy_lock_name) { "included" }
 
-  # let(:remote_cb_source_opts) do
-  #   { artifactserver: "https://supermarket.example/c/remote-cb/1.1.1/download", version: "1.1.1" }
-  # end
+  let(:included_policy_fetcher) do
+    instance_double("ChefDK::Policyfile::LocalLockFetcher").tap do |double|
+      allow(double).to receive(:lock_data).and_return(included_policy_lock_data)
+      allow(double).to receive(:valid?).and_return(true)
+      allow(double).to receive(:errors?).and_return([])
+    end
+  end
 
   let(:default_source_obj) do
     instance_double("ChefDK::Policyfile::CommunityCookbookSource")
@@ -173,11 +177,9 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
 
   context "when a policy is included from local disk" do
     let(:included_policy_lock_spec) do
-      # TODO: we can put this on disk
       ChefDK::Policyfile::PolicyfileLocationSpecification.new(included_policy_lock_name, {:local => "somelocation"}, nil).tap do |spec|
         allow(spec).to receive(:valid?).and_return(true)
-        allow(spec).to receive(:ensure_cached)
-        allow(spec).to receive(:lock_data).and_return(included_policy_lock_data)
+        allow(spec).to receive(:fetcher).and_return(included_policy_fetcher)
       end
     end
 
@@ -190,7 +192,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
       expect(policyfile.lock.cookbook_locks["cookbookB"].source_options).to eq(included_policy_source_options["cookbookB"]["2.0.0"])
     end
 
-    it "maintains the correct source locations for cookbooks from the current policy", :focus do
+    it "maintains the correct source locations for cookbooks from the current policy" do
       expect(policyfile.lock.cookbook_locks["local"].source_options).to eq(default_source_obj.source_options_for("local", "1.0.0"))
       expect(policyfile.lock.cookbook_locks["cookbookC"].source_options).to eq(default_source_obj.source_options_for("cookbookC", "1.0.0"))
     end

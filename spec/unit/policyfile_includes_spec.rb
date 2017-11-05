@@ -117,12 +117,18 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
   end
 
   let(:included_policy_lock_name) { "included" }
+  let(:included_policy_fetcher) do
+    instance_double("ChefDK::Policyfile::LocalLockFetcher").tap do |double|
+      allow(double).to receive(:lock_data).and_return(included_policy_lock_data)
+      allow(double).to receive(:valid?).and_return(true)
+      allow(double).to receive(:errors?).and_return([])
+    end
+  end
 
   let(:included_policy_lock_spec) do
     ChefDK::Policyfile::PolicyfileLocationSpecification.new(included_policy_lock_name, {:local => "somelocation"}, nil).tap do |spec|
       allow(spec).to receive(:valid?).and_return(true)
-      allow(spec).to receive(:ensure_cached)
-      allow(spec).to receive(:lock_data).and_return(included_policy_lock_data)
+      allow(spec).to receive(:fetcher).and_return(included_policy_fetcher)
     end
   end
 

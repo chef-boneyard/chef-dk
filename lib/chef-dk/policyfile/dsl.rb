@@ -125,15 +125,9 @@ module ChefDK
       end
 
       def include_policy(name, source_options = {})
-        puts "Adding #{name} with options #{source_options}"
-        if source_options[:local] != nil 
-          # TODO: storage_config is meant for cookbooks. We use it here to get the relative_paths_root.
-          spec = PolicyfileLocationSpecification.new(name, source_options, storage_config)
-          included_policies << spec
-        else
-          raise "unimplemented"
-        end
-
+        spec = PolicyfileLocationSpecification.new(name, source_options, storage_config, chef_config)
+        included_policies << spec
+        @errors += spec.errors
       end
 
       def default
