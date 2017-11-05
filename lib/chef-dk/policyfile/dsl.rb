@@ -125,9 +125,17 @@ module ChefDK
       end
 
       def include_policy(name, source_options = {})
-        spec = PolicyfileLocationSpecification.new(name, source_options, storage_config, chef_config)
-        included_policies << spec
-        @errors += spec.errors
+        #TODO: Make included_policies a map
+        if existing = included_policies.find { |p| p.name == name }
+          err = "Included policy '#{name}' assigned conflicting locations or was already specified\n\n"
+          err << "Previous source: #{existing.source_options.inspect}\n"
+          err << "Conflicts with: #{source_options.inspect}\n"
+          @errors << err
+        else
+          spec = PolicyfileLocationSpecification.new(name, source_options, storage_config, chef_config)
+          included_policies << spec
+          @errors += spec.errors
+        end
       end
 
       def default
