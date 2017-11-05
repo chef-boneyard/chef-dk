@@ -8,7 +8,7 @@ module ChefDK
       attr_accessor :source_options
       attr_accessor :chef_config
      
-      def initialize(name, source_options, chef_config)
+      def initialize(name, source_options, chef_config = nil)
         @name = name
         @source_options = source_options
         @chef_config = chef_config
