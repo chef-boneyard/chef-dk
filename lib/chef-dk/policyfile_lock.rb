@@ -273,6 +273,7 @@ module ChefDK
       set_cookbook_locks_from_lock_data(lock_data)
       set_attributes_from_lock_data(lock_data)
       set_solution_dependencies_from_lock_data(lock_data)
+      set_included_policy_locks_from_lock_data(lock_data)
       self
     end
 
@@ -283,6 +284,7 @@ module ChefDK
       set_cookbook_locks_as_archives_from_lock_data(lock_data)
       set_attributes_from_lock_data(lock_data)
       set_solution_dependencies_from_lock_data(lock_data)
+      set_included_policy_locks_from_lock_data(lock_data)
       self
     end
 
@@ -529,6 +531,20 @@ module ChefDK
 
       s = Policyfile::SolutionDependencies.from_lock(lock_data["solution_dependencies"])
       @solution_dependencies = s
+    end
+
+    def set_included_policy_locks_from_lock_data(lock_data)
+      locks = lock_data["included_policy_locks"]
+      if locks.nil?
+        @included_policy_locks = []
+      else
+        locks.each do |lock_info|
+          if !(["revision_id", "name", "source_options"].all? { |key| !lock_info[key].nil? })
+            raise InvalidLockfile, "lockfile included policy without #{key}"
+          end
+        end
+        @included_policy_locks = locks
+      end
     end
 
     def build_cookbook_lock_from_lock_data(name, lock_info)
