@@ -238,6 +238,7 @@ REVISION_STRING
         "override_attributes" => {},
 
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
+        "included_policy_locks" => {},
       }
     end
 
@@ -334,6 +335,7 @@ REVISION_STRING
         "override_attributes" => { "foo2" => "baz" },
 
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
+        "included_policy_locks" => {},
       }
     end
 
@@ -424,6 +426,7 @@ REVISION_STRING
         "default_attributes" => {},
         "override_attributes" => {},
 
+        "included_policy_locks" => {},
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
       }
     end
@@ -535,6 +538,7 @@ REVISION_STRING
         "override_attributes" => {},
 
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
+        "included_policy_locks" => {},
       }
     end
 
@@ -680,7 +684,7 @@ REVISION_STRING
         "override_attributes" => {},
 
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
-
+        "included_policy_locks" => {},
       }
     end
 
@@ -772,6 +776,7 @@ REVISION_STRING
           "Policyfile" => [],
           "dependencies" => { "foo (1.0.0)" => [] },
         },
+        "included_policy_locks" => {},
       }
     end
 
@@ -841,6 +846,7 @@ REVISION_STRING
         "override_attributes" => {},
 
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
+        "included_policy_locks" => {},
       }
     end
 
@@ -933,7 +939,9 @@ REVISION_STRING
               all_cookbook_location_specs: { "foo" => cached_location_spec, "bar" => local_location_spec },
               solution_dependencies: policyfile_solution_dependencies,
               default_attributes: policyfile_default_attrs,
-              override_attributes: policyfile_override_attrs )
+              override_attributes: policyfile_override_attrs,
+              included_policies: []
+            )
     end
 
     let(:policyfile_lock) do
@@ -1019,6 +1027,7 @@ REVISION_STRING
           "Policyfile" => [ [ "foo", "~> 1.0" ] ],
           "dependencies" => { "foo (1.0.0)" => [], "bar (0.1.0)" => [] },
         },
+        "included_policy_locks" => {},
       }
     end
 
