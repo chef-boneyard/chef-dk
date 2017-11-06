@@ -26,7 +26,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
 
   let(:default_source) { [:community] }
 
-  let(:external_cookbook_universe) {
+  let(:external_cookbook_universe) do
     {
       "cookbookA" => {
         "1.0.0" => [ ],
@@ -45,9 +45,9 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
       },
       "local_easy" => {
         "1.0.0" => [ ["cookbookC", "= 2.0.0" ] ],
-      }
+      },
     }
-  }
+  end
 
   let(:included_policy_cookbook_universe) { external_cookbook_universe }
 
@@ -55,29 +55,28 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
   let(:included_policy_override_attributes) { {} }
   let(:included_policy_expanded_named_runlist) { nil }
   let(:included_policy_expanded_runlist) { ["recipe[cookbookA::default]"] }
-  let(:included_policy_cookbooks) {
+  let(:included_policy_cookbooks) do
     [
       {
         name: "cookbookA",
-        version: "2.0.0"
+        version: "2.0.0",
       },
       # We need to manually specify the dependencies of cookbookA
       {
         name: "cookbookB",
-        version: "2.0.0"
-      }
-
+        version: "2.0.0",
+      },
     ]
-  }
+  end
 
   let(:included_policy_source_options) do
     {
       "cookbookA" => {
-        "2.0.0" => {artifactserver: "https://supermarket.example/c/cookbookA/2.0.0/download", version: "2.0.0", somekey: "withavalue"}
+        "2.0.0" => { artifactserver: "https://supermarket.example/c/cookbookA/2.0.0/download", version: "2.0.0", somekey: "withavalue" },
       },
       "cookbookB" => {
-        "2.0.0" => {artifactserver: "https://supermarket.example/c/cookbookB/2.0.0/download", version: "2.0.0", somekey: "withavalue"}
-      }
+        "2.0.0" => { artifactserver: "https://supermarket.example/c/cookbookB/2.0.0/download", version: "2.0.0", somekey: "withavalue" },
+      },
     }
   end
 
@@ -89,7 +88,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
         "dotted_decimal_identifier" => "dotted_decimal_identifier",
         "cache_key" => "#{cookbook_info[:name]}-#{cookbook_info[:version]}",
         "origin" => "uri",
-        "source_options" => included_policy_source_options[cookbook_info[:name]][cookbook_info[:version]]
+        "source_options" => included_policy_source_options[cookbook_info[:name]][cookbook_info[:version]],
       }
       acc
     end
@@ -111,11 +110,11 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
       "default_attributes" => included_policy_default_attributes,
       "override_attributes" => included_policy_override_attributes,
       "solution_dependencies" => {
-        "Policyfile"=> solution_dependencies_lock,
-        "dependencies" => solution_dependencies_cookbooks
-      }
+        "Policyfile" => solution_dependencies_lock,
+        "dependencies" => solution_dependencies_cookbooks,
+      },
     }.tap do |core|
-      core["named_run_lists"] = included_policy_expanded_named_runlist if included_policy_expanded_named_runlist 
+      core["named_run_lists"] = included_policy_expanded_named_runlist if included_policy_expanded_named_runlist
     end
   end
 
@@ -125,7 +124,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
     instance_double("ChefDK::Policyfile::LocalLockFetcher").tap do |double|
       allow(double).to receive(:lock_data).and_return(included_policy_lock_data)
       allow(double).to receive(:valid?).and_return(true)
-      allow(double).to receive(:errors?).and_return([])
+      allow(double).to receive(:errors).and_return([])
     end
   end
 
@@ -168,8 +167,8 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
       allow(double).to receive(:cookbook_has_recipe?).and_return(true)
       allow(double).to receive(:installed?).and_return(true)
       allow(double).to receive(:mirrors_canonical_upstream?).and_return(true)
-      allow(double).to receive(:cache_key).and_return("#{cookbook_name}-#{version_constraint}-#{source_opts.to_s}")
-      allow(double).to receive(:uri).and_return("uri://#{cookbook_name}-#{version_constraint}-#{source_opts.to_s}")
+      allow(double).to receive(:cache_key).and_return("#{cookbook_name}-#{version_constraint}-#{source_opts}")
+      allow(double).to receive(:uri).and_return("uri://#{cookbook_name}-#{version_constraint}-#{source_opts}")
       allow(double).to receive(:source_options_for_lock).and_return(source_opts)
       double
     end
@@ -177,7 +176,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
 
   context "when a policy is included from local disk" do
     let(:included_policy_lock_spec) do
-      ChefDK::Policyfile::PolicyfileLocationSpecification.new(included_policy_lock_name, {:local => "somelocation"}, nil).tap do |spec|
+      ChefDK::Policyfile::PolicyfileLocationSpecification.new(included_policy_lock_name, { :local => "somelocation" }, nil).tap do |spec|
         allow(spec).to receive(:valid?).and_return(true)
         allow(spec).to receive(:fetcher).and_return(included_policy_fetcher)
       end

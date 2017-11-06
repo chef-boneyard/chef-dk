@@ -1,6 +1,6 @@
-require 'chef-dk/policyfile_lock'
-require 'chef-dk/policyfile/local_lock_fetcher'
-require 'chef-dk/policyfile/chef_server_lock_fetcher'
+require "chef-dk/policyfile_lock"
+require "chef-dk/policyfile/local_lock_fetcher"
+require "chef-dk/policyfile/chef_server_lock_fetcher"
 
 module ChefDK
   module Policyfile
@@ -44,7 +44,7 @@ module ChefDK
         if LOCATION_TYPES.all? { |l| source_options[l].nil? }
           error_messages << "include_policy must use one of the following sources: #{LOCATION_TYPES.join(', ')}"
         else
-          if fetcher != nil
+          if !fetcher.nil?
             error_messages += fetcher.errors
           end
         end
@@ -60,4 +60,3 @@ module ChefDK
     end
   end
 end
-

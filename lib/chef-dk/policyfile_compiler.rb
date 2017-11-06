@@ -71,7 +71,7 @@ module ChefDK
     end
 
     def default_source(source_type = nil, source_argument = nil, &block)
-      if source_type == nil
+      if source_type.nil?
         prepend_array = if included_policies.length > 0
                           [included_policies_cookbook_source]
                         else
@@ -144,18 +144,18 @@ module ChefDK
 
     def default_attributes
       check_for_default_attribute_conflicts!
-      included_policies.map {|p| p.policyfile_lock }.inject(
+      included_policies.map { |p| p.policyfile_lock }.inject(
         dsl.node_attributes.combined_default.to_hash) do |acc, lock|
           Chef::Mixin::DeepMerge.merge(acc, lock.default_attributes)
-      end
+        end
     end
 
     def override_attributes
       check_for_override_attribute_conflicts!
-      included_policies.map {|p| p.policyfile_lock }.inject(
+      included_policies.map { |p| p.policyfile_lock }.inject(
         dsl.node_attributes.combined_override.to_hash) do |acc, lock|
           Chef::Mixin::DeepMerge.merge(acc, lock.override_attributes)
-      end
+        end
     end
 
     def check_for_default_attribute_conflicts!
@@ -278,10 +278,10 @@ module ChefDK
     end
 
     def cookbook_demands_from_policies
-      included_policies.map do |policy_spec|
+      included_policies.flat_map do |policy_spec|
         lock = policy_spec.policyfile_lock
         lock.solution_dependencies.to_lock["Policyfile"]
-      end.flatten(1)
+      end
     end
 
     def cookbook_demands_from_current
@@ -308,7 +308,7 @@ module ChefDK
     def handle_included_policies_preferred_cookbook_conflicts(included_policies_source)
       # All cookbooks in the included policies are preferred.
       conflicting_source_messages = []
-      dsl.default_source.reject {|s| s.null?}.each do |source_b|
+      dsl.default_source.reject { |s| s.null? }.each do |source_b|
         conflicting_preferences = included_policies_source.preferred_cookbooks & source_b.preferred_cookbooks
         next if conflicting_preferences.empty?
         next if conflicting_preferences.all? do |cookbook_name|
@@ -319,7 +319,7 @@ module ChefDK
             false
           end
         end
-        conflicting_source_messages  << "#{source_b.desc} sets a preferred for cookbook(s) #{conflicting_preferences.join(', ')}. This conflicts with an included policy."
+        conflicting_source_messages << "#{source_b.desc} sets a preferred for cookbook(s) #{conflicting_preferences.join(', ')}. This conflicts with an included policy."
       end
       unless conflicting_source_messages.empty?
         msg = "You may not override the cookbook sources for any cookbooks required by included policies.\n"
@@ -327,7 +327,6 @@ module ChefDK
         raise IncludePolicyCookbookSourceConflict.new(msg)
       end
     end
-
 
     def graph_demands
       ## TODO: By merging cookbooks from the current policyfile and included policies,

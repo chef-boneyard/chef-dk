@@ -1,4 +1,4 @@
-require 'chef-dk/policyfile_lock'
+require "chef-dk/policyfile_lock"
 
 module ChefDK
   module Policyfile
@@ -7,7 +7,7 @@ module ChefDK
       attr_accessor :name
       attr_accessor :source_options
       attr_accessor :chef_config
-     
+
       def initialize(name, source_options, chef_config)
         @name = name
         @source_options = source_options
@@ -59,5 +59,3 @@ module ChefDK
     end
   end
 end
-
-

@@ -62,19 +62,18 @@ E
 
   let(:minimal_lockfile) { FFI_Yajl::Parser.parse(minimal_lockfile_json) }
 
-
   let(:policy_name) { "chatserver" }
   let(:policy_revision_id) { "somerevisionid" }
   let(:url) { "https://chef.example/organizations/monkeynews" }
-  let(:source_options) { 
+  let(:source_options) do
     {
       server: url,
       policy_name: policy_name,
       policy_revision_id: policy_revision_id,
     }
-  }
+  end
 
-  let(:chef_config) do 
+  let(:chef_config) do
     double("ChefConfig").tap do |double|
       allow(double).to receive(:client_key).and_return("key")
       allow(double).to receive(:node_name).and_return("node_name")

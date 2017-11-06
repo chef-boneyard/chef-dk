@@ -64,26 +64,24 @@ E
 
   before do
     reset_tempdir
-    File.open(lock_file_path, 'w') { |file| file.write(minimal_lockfile_json) }
+    File.open(lock_file_path, "w") { |file| file.write(minimal_lockfile_json) }
   end
 
   after do
     reset_tempdir
   end
 
-
   let(:minimal_lockfile) { FFI_Yajl::Parser.parse(minimal_lockfile_json) }
 
-  let(:source_options) { 
+  let(:source_options) do
     {
-      local: lock_file_path, 
+      local: lock_file_path,
     }
-  }
+  end
 
   subject(:fetcher) { described_class.new("foo", source_options) }
 
   it "loads the policy from disk" do
     expect(fetcher.lock_data).to eq(minimal_lockfile)
   end
-
 end

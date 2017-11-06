@@ -30,7 +30,6 @@ module ChefDK
       class ConflictingCookbookSources < StandardError
       end
 
-
       # Why do we need this class?
       # If we rely on default sources, we may not have the the universe of cookbooks
       # provided in the included policies

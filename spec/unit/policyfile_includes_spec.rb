@@ -42,7 +42,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
   let(:default_source) { nil }
 
-  let(:external_cookbook_universe) {
+  let(:external_cookbook_universe) do
     {
       "cookbookA" => {
         "1.0.0" => [ ],
@@ -61,22 +61,22 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
       },
       "local_easy" => {
         "1.0.0" => [ ["cookbookC", "= 2.0.0" ] ],
-      }
+      },
     }
-  }
-  
+  end
+
   let(:included_policy_default_attributes) { {} }
   let(:included_policy_override_attributes) { {} }
   let(:included_policy_expanded_named_runlist) { nil }
   let(:included_policy_expanded_runlist) { ["recipe[cookbookA::default]"] }
-  let(:included_policy_cookbooks) {
+  let(:included_policy_cookbooks) do
     [
       {
         name: "cookbookA",
-        version: "2.0.0"
-      }
+        version: "2.0.0",
+      },
     ]
-  }
+  end
 
   let(:included_policy_lock_data) do
     cookbook_locks = included_policy_cookbooks.inject({}) do |acc, cookbook_info|
@@ -86,7 +86,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
         "dotted_decimal_identifier" => "dotted_decimal_identifier",
         "cache_key" => "#{cookbook_info[:name]}-#{cookbook_info[:version]}",
         "origin" => "uri",
-        "source_options" => {}
+        "source_options" => {},
       }
       acc
     end
@@ -108,11 +108,11 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
       "default_attributes" => included_policy_default_attributes,
       "override_attributes" => included_policy_override_attributes,
       "solution_dependencies" => {
-        "Policyfile"=> solution_dependencies_lock,
-        "dependencies" => solution_dependencies_cookbooks
-      }
+        "Policyfile" => solution_dependencies_lock,
+        "dependencies" => solution_dependencies_cookbooks,
+      },
     }.tap do |core|
-      core["named_run_lists"] = included_policy_expanded_named_runlist if included_policy_expanded_named_runlist 
+      core["named_run_lists"] = included_policy_expanded_named_runlist if included_policy_expanded_named_runlist
     end
   end
 
@@ -121,12 +121,12 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
     instance_double("ChefDK::Policyfile::LocalLockFetcher").tap do |double|
       allow(double).to receive(:lock_data).and_return(included_policy_lock_data)
       allow(double).to receive(:valid?).and_return(true)
-      allow(double).to receive(:errors?).and_return([])
+      allow(double).to receive(:errors).and_return([])
     end
   end
 
   let(:included_policy_lock_spec) do
-    ChefDK::Policyfile::PolicyfileLocationSpecification.new(included_policy_lock_name, {:local => "somelocation"}, nil).tap do |spec|
+    ChefDK::Policyfile::PolicyfileLocationSpecification.new(included_policy_lock_name, { :local => "somelocation" }, nil).tap do |spec|
       allow(spec).to receive(:valid?).and_return(true)
       allow(spec).to receive(:fetcher).and_return(included_policy_fetcher)
     end
@@ -203,7 +203,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
       let(:included_policy_expanded_named_runlist) do
         {
-          "shared" => ["recipe[cookbookA::included]"]
+          "shared" => ["recipe[cookbookA::included]"],
         }
       end
 
@@ -211,7 +211,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
         let(:named_run_list) do
           {
-            "local" => ["local::foo"]
+            "local" => ["local::foo"],
           }
         end
 
@@ -225,7 +225,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
         let(:named_run_list) do
           {
-            "shared" => ["local::foo"]
+            "shared" => ["local::foo"],
           }
         end
 
@@ -249,14 +249,14 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
     context "when some cookbooks are shared as dependencies or transitive dependencies" do
       let(:included_policy_expanded_runlist) { ["recipe[cookbookC::default]"] }
-      let(:included_policy_cookbooks) {
+      let(:included_policy_cookbooks) do
         [
           {
             name: "cookbookC",
-            version: "2.0.0"
-          }
+            version: "2.0.0",
+          },
         ]
-      }
+      end
 
       context "and the including policy does not specify any sources" do
         let(:run_list) { [] }
@@ -279,7 +279,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
         end
 
         it "it defaults to those provided in the included policy lock" do
-          expect{policyfile_lock.to_lock}.not_to raise_error
+          expect { policyfile_lock.to_lock }.not_to raise_error
         end
       end
 
@@ -289,14 +289,14 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
         before do
           allow(default_source).to receive(:preferred_cookbooks).and_return(["cookbookC"])
-          allow(default_source).to receive(:source_options_for).with("cookbookC", "2.0.0").and_return({"foo"=>"bar"})
+          allow(default_source).to receive(:source_options_for).with("cookbookC", "2.0.0").and_return({ "foo" => "bar" })
           allow(default_source).to receive(:null?).and_return(false)
           allow(default_source).to receive(:universe_graph).and_return(external_cookbook_universe)
           allow(default_source).to receive(:desc).and_return("source double")
         end
 
         it "it raises an error" do
-          expect{policyfile_lock.to_lock}.to raise_error(ChefDK::IncludePolicyCookbookSourceConflict)
+          expect { policyfile_lock.to_lock }.to raise_error(ChefDK::IncludePolicyCookbookSourceConflict)
         end
       end
 
@@ -314,19 +314,19 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
         let(:run_list) { ["local::default"] }
 
         it "raises an error describing the conflict" do
-          expect{policyfile_lock.to_lock}.to raise_error(Solve::Errors::NoSolutionError)
+          expect { policyfile_lock.to_lock }.to raise_error(Solve::Errors::NoSolutionError)
         end
 
         it "includes the name and location of the included policy in the error message" do
           pending("Not implemented")
-          expect{policyfile_lock.to_lock}.to raise_error(Solve::Errors::NoSolutionError) do |e|
+          expect { policyfile_lock.to_lock }.to raise_error(Solve::Errors::NoSolutionError) do |e|
             expect(e.to_s).to match(/#{included_policy_lock_name}/)
           end
 
         end
 
         it "includes the source of the conflicting dependency constraint from the including policy" do
-          expect{policyfile_lock.to_lock}.to raise_error(Solve::Errors::NoSolutionError) do |e|
+          expect { policyfile_lock.to_lock }.to raise_error(Solve::Errors::NoSolutionError) do |e|
             expect(e.to_s).to match(/`cookbookC \(= 2.0.0\)`/) # This one comes from the included policy
             expect(e.to_s).to match(/`cookbookC \(= 1.0.0\)` required by `local-1.0.0`/) # This one comes from the included policy
           end
@@ -334,7 +334,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
         it "should not have an open constraint on cookbookC" do
           pending("I think this is a bug")
-          expect{policyfile_lock.to_lock}.to raise_error(Solve::Errors::NoSolutionError) do |e|
+          expect { policyfile_lock.to_lock }.to raise_error(Solve::Errors::NoSolutionError) do |e|
             expect(e.to_s).not_to match(/`cookbookC \(>= 0.0.0\)`/)
           end
         end
@@ -352,21 +352,22 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
     end
 
     context "when default attributes are specified" do
-      let(:default_attributes) {
+      let(:default_attributes) do
         {
           "shared" => {
-            "foo" => "bar"
-          }
+            "foo" => "bar",
+          },
         }
-      }
+      end
+
       context "when the included policy does not have attributes that conflict with the including policy" do
-        let(:included_policy_default_attributes) {
+        let(:included_policy_default_attributes) do
           {
             "not_shared" => {
-              "foo" => "bar"
-            }
+              "foo" => "bar",
+            },
           }
-        }
+        end
 
         it "emits a lockfile with the attributes from both merged" do
           expect(policyfile_lock.to_lock["default_attributes"]).to include(included_policy_default_attributes, default_attributes)
@@ -384,16 +385,16 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
       end
 
       context "when the included policy has attributes that conflict with the including policy's attributes" do
-        let(:included_policy_default_attributes) {
+        let(:included_policy_default_attributes) do
           {
             "shared" => {
-              "foo" => "not_bar"
-            }
+              "foo" => "not_bar",
+            },
           }
-        }
+        end
 
         it "raises an error describing all attribute conflicts" do
-          expect{policyfile_lock.to_lock}.to raise_error(ChefDK::Policyfile::AttributeMergeChecker::ConflictError)
+          expect { policyfile_lock.to_lock }.to raise_error(ChefDK::Policyfile::AttributeMergeChecker::ConflictError)
         end
 
         it "includes the name and location of the included policy in the error message"
@@ -404,21 +405,22 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
     end
 
     context "when override attributes are specified" do
-      let(:override_attributes) {
+      let(:override_attributes) do
         {
           "shared" => {
-            "foo" => "bar"
-          }
+            "foo" => "bar",
+          },
         }
-      }
+      end
+
       context "when the included policy does not have attributes that conflict with the including policy" do
-        let(:included_policy_override_attributes) {
+        let(:included_policy_override_attributes) do
           {
             "not_shared" => {
-              "foo" => "bar"
-            }
+              "foo" => "bar",
+            },
           }
-        }
+        end
 
         it "emits a lockfile with the attributes from both merged" do
           expect(policyfile_lock.to_lock["override_attributes"]).to include(included_policy_override_attributes, override_attributes)
@@ -436,16 +438,16 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
       end
 
       context "when the included policy has attributes that conflict with the including policy's attributes" do
-        let(:included_policy_override_attributes) {
+        let(:included_policy_override_attributes) do
           {
             "shared" => {
-              "foo" => "not_bar"
-            }
+              "foo" => "not_bar",
+            },
           }
-        }
+        end
 
         it "raises an error describing all attribute conflicts" do
-          expect{policyfile_lock.to_lock}.to raise_error(ChefDK::Policyfile::AttributeMergeChecker::ConflictError)
+          expect { policyfile_lock.to_lock }.to raise_error(ChefDK::Policyfile::AttributeMergeChecker::ConflictError)
         end
 
         it "includes the name and location of the included policy in the error message"
@@ -454,8 +456,6 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
       end
     end
-
-
   end
 
   context "when several policies are included" do
@@ -503,7 +503,4 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
     end
 
   end
-
 end
-
-
