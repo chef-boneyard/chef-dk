@@ -278,6 +278,16 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
 
     let(:source_options) { { chef_server: "https://api.opscode.com/organizations/chef-oss-dev/cookbooks/my_cookbook/versions/2.0.0/download" } }
 
+    let(:http_client) { instance_double("ChefDK::ChefServerAPIMulti") }
+
+    before do
+      CookbookOmnifetch.integration.default_chef_server_http_client = http_client
+    end
+
+    after do
+      CookbookOmnifetch.integration.default_chef_server_http_client = nil
+    end
+
     it "has a chef_server installer" do
       expect(cookbook_location_spec.installer).to be_a_kind_of(CookbookOmnifetch::ChefServerLocation)
     end
@@ -288,6 +298,44 @@ describe ChefDK::Policyfile::CookbookLocationSpecification do
 
     it "is a mirror of a canonical upstream" do
       expect(cookbook_location_spec.mirrors_canonical_upstream?).to be true
+    end
+
+    it "is valid" do
+      expect(cookbook_location_spec.errors.size).to eq(0)
+      expect(cookbook_location_spec).to be_valid
+    end
+
+  end
+
+  describe "when created with a chef_server_artifact source" do
+
+    let(:source_options) do
+      {
+        chef_server_artifact: "https://api.opscode.com/organizations/chef-oss-dev/",
+        identifier: "09d43fad354b3efcc5b5836fef5137131f60f974",
+      }
+    end
+
+    let(:http_client) { instance_double("ChefDK::ChefServerAPIMulti") }
+
+    before do
+      CookbookOmnifetch.integration.default_chef_server_http_client = http_client
+    end
+
+    after do
+      CookbookOmnifetch.integration.default_chef_server_http_client = nil
+    end
+
+    it "has a chef_server_artifact installer" do
+      expect(cookbook_location_spec.installer).to be_a_kind_of(CookbookOmnifetch::ChefServerArtifactLocation)
+    end
+
+    it "does has a fixed version" do
+      expect(cookbook_location_spec.version_fixed?).to be(true)
+    end
+
+    it "is a mirror of a canonical upstream" do
+      expect(cookbook_location_spec.mirrors_canonical_upstream?).to be(true)
     end
 
     it "is valid" do
