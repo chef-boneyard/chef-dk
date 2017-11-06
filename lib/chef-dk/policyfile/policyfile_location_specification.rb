@@ -22,6 +22,10 @@ module ChefDK
         @chef_config = chef_config
       end
 
+      def revision_id
+        fetcher.lock_data["revision_id"]
+      end
+
       def fetcher
         @fetcher ||= begin
                        if source_options[:server]
@@ -56,6 +60,10 @@ module ChefDK
         @policyfile_lock ||= begin
                                PolicyfileLock.new(storage_config, ui: ui).build_from_lock_data(fetcher.lock_data)
                              end
+      end
+
+      def source_options_for_lock
+        fetcher.source_options_for_lock
       end
     end
   end

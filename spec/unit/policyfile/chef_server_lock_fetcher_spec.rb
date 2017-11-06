@@ -20,10 +20,11 @@ require "chef-dk/policyfile/chef_server_lock_fetcher"
 
 describe ChefDK::Policyfile::ChefServerLockFetcher do
 
+  let(:revision_id) { "6fe753184c8946052d3231bb4212116df28d89a3a5f7ae52832ad408419dd5eb" }
   let(:minimal_lockfile_json) do
     <<-E
 {
-  "revision_id": "6fe753184c8946052d3231bb4212116df28d89a3a5f7ae52832ad408419dd5eb",
+  "revision_id": "#{revision_id}",
   "name": "install-example",
   "run_list": [
     "recipe[local-cookbook::default]"
@@ -64,14 +65,8 @@ E
 
   let(:policy_name) { "chatserver" }
   let(:policy_revision_id) { "somerevisionid" }
+  let(:policy_group) { "somegroup" }
   let(:url) { "https://chef.example/organizations/monkeynews" }
-  let(:source_options) do
-    {
-      server: url,
-      policy_name: policy_name,
-      policy_revision_id: policy_revision_id,
-    }
-  end
 
   let(:chef_config) do
     double("ChefConfig").tap do |double|
@@ -87,10 +82,36 @@ E
     allow(Chef::ServerAPI).to receive(:new).with(url, anything).and_return(http_client)
   end
 
-  it "calls the chef server to get the policy" do
-    expect(http_client).to receive(:get).with("policies/#{policy_name}/revisions/#{policy_revision_id}").
-      and_return(minimal_lockfile)
-    expect(fetcher.lock_data).to eq(minimal_lockfile)
+  context "when using revision id" do
+    let(:source_options) do
+      {
+        server: url,
+        policy_name: policy_name,
+        policy_revision_id: policy_revision_id,
+      }
+    end
+
+    it "calls the chef server to get the policy" do
+      expect(http_client).to receive(:get).with("policies/#{policy_name}/revisions/#{policy_revision_id}").
+        and_return(minimal_lockfile)
+        expect(fetcher.lock_data).to eq(minimal_lockfile)
+    end
+  end
+
+  context "when using policy group" do
+    let(:source_options) do
+      {
+        server: url,
+        policy_name: policy_name,
+        policy_group: policy_group,
+      }
+    end
+
+    it "calls the chef server to get the policy" do
+      expect(http_client).to receive(:get).with("policy_groups/#{policy_group}/policies/#{policy_name}").
+        and_return(minimal_lockfile)
+        expect(fetcher.lock_data).to eq(minimal_lockfile)
+    end
   end
 
 end

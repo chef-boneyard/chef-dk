@@ -93,6 +93,8 @@ module ChefDK
 
     attr_reader :cookbook_locks
 
+    attr_reader :included_policy_locks
+
     attr_reader :install_report
 
     def initialize(storage_config, ui: nil)
@@ -108,6 +110,9 @@ module ChefDK
       @override_attributes = {}
 
       @solution_dependencies = Policyfile::SolutionDependencies.new
+
+      @included_policy_locks = {}
+
       @install_report = InstallReport.new(ui: @ui, policyfile_lock: self)
     end
 
@@ -141,6 +146,7 @@ module ChefDK
         lock["default_attributes"] = default_attributes
         lock["override_attributes"] = override_attributes
         lock["solution_dependencies"] = solution_dependencies.to_lock
+        lock["included_policy_locks"] = included_policy_locks
       end
     end
 
@@ -248,6 +254,14 @@ module ChefDK
       @override_attributes = compiler.override_attributes
 
       @solution_dependencies = compiler.solution_dependencies
+
+      @included_policy_locks = compiler.included_policies.inject({}) do |acc, policy|
+        acc[policy.name] = {
+          revision_id: policy.revision_id,
+          source_options: policy.source_options_for_lock,
+        }
+        acc
+      end
 
       self
     end

@@ -139,4 +139,7 @@ EXAMPLE
 
   end
 
+  class PolicyfileLockDownloadError < StandardError
+  end
+
 end

@@ -118,6 +118,8 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
     end
   end
 
+  let(:lock_source_options) { { :local => "somelocation" } }
+
   let(:included_policy_lock_name) { "included" }
 
   let(:included_policy_fetcher) do
@@ -176,9 +178,10 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
 
   context "when a policy is included from local disk" do
     let(:included_policy_lock_spec) do
-      ChefDK::Policyfile::PolicyfileLocationSpecification.new(included_policy_lock_name, { :local => "somelocation" }, nil).tap do |spec|
+      ChefDK::Policyfile::PolicyfileLocationSpecification.new(included_policy_lock_name, lock_source_options, nil).tap do |spec|
         allow(spec).to receive(:valid?).and_return(true)
         allow(spec).to receive(:fetcher).and_return(included_policy_fetcher)
+        allow(spec).to receive(:source_options_for_lock).and_return(lock_source_options)
       end
     end
 
@@ -198,6 +201,13 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
 
     ## This requires being able to do a to_lock
     it "maintains identifiers for remote cookbooks"
+
+    # TODO: Sicne the PolicyfileLocationSpecification is a mock, this isn't really testing anything about a local lockfile
+    it "emits the included policy in the lock file" do
+      lock = policyfile.lock
+      allow(lock).to receive(:cookbook_locks_for_lockfile).and_return({})
+      expect(lock.to_lock["included_policy_locks"]).to eq({included_policy_lock_name => { revision_id: "myrevisionid", source_options: lock_source_options } })
+    end
 
     context "and the included policy sources cookbooks from local disk" do
       # For example, imagine a directory layout like:

@@ -30,14 +30,16 @@ module ChefDK
 
       attr_reader :ui
       attr_reader :storage_config
+      attr_reader :chef_config
 
-      def initialize(policyfile: nil, ui: nil, root_dir: nil)
+      def initialize(policyfile: nil, ui: nil, root_dir: nil, chef_config: nil)
         @ui = ui
 
         policyfile_rel_path = policyfile || "Policyfile.rb"
         policyfile_full_path = File.expand_path(policyfile_rel_path, root_dir)
         @storage_config = Policyfile::StorageConfig.new.use_policyfile(policyfile_full_path)
         @updated = false
+        @chef_config = chef_config
       end
 
       def run
@@ -74,7 +76,7 @@ module ChefDK
       end
 
       def policyfile_compiler
-        @policyfile_compiler ||= ChefDK::PolicyfileCompiler.evaluate(policyfile_content, policyfile_expanded_path, ui: ui)
+        @policyfile_compiler ||= ChefDK::PolicyfileCompiler.evaluate(policyfile_content, policyfile_expanded_path, ui: ui, chef_config: chef_config)
       end
 
       def policyfile_lock_content
