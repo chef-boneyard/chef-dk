@@ -23,6 +23,8 @@ describe ChefDK::Configurable do
 
   let(:includer) { TestConfigurable.new }
 
+  before { includer.reset_config! }
+
   it "provides chef_config" do
     expect(includer.chef_config).to eq Chef::Config
   end
@@ -37,5 +39,30 @@ describe ChefDK::Configurable do
 
   it "provides generator_config" do
     expect(includer.generator_config).to eq Chef::Config.chefdk.generator
+  end
+
+  describe "loading Chef Config" do
+
+    let(:url) { "https://chef.example/organizations/myorg" }
+
+    let(:key_path) { "/path/to/my/key.pem" }
+
+    let(:username) { "my-username" }
+
+    before do
+      Chef::Config.chef_server_url(url)
+      Chef::Config.client_key(key_path)
+      Chef::Config.node_name(username)
+      includer.chef_config
+    end
+
+    it "creates a default chef server HTTP client for Omnifetch" do
+      client = CookbookOmnifetch.default_chef_server_http_client
+      expect(client).to be_a_kind_of(ChefDK::ChefServerAPIMulti)
+      expect(client.url).to eq(url)
+      expect(client.opts[:signing_key_filename]).to eq(key_path)
+      expect(client.opts[:client_name]).to eq(username)
+    end
+
   end
 end

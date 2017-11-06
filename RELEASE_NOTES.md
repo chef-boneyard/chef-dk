@@ -8,6 +8,22 @@ Server's API requires each file in a cookbook to be downloaded
 separately; ChefDK will now download the files in parallel.
 Additionally, HTTP keepalives are enabled to reduce connection overhead.
 
+## Cookbook Artifact Source for Policyfiles
+
+Policyfile users may now source cookbooks from the Chef Server's
+cookbook artifact store. This is mainly intended to support the upcoming
+`include_policy` feature, but could be useful in some situations.
+
+Given a cookbook that has been uploaded to the Chef Server via `chef push`,
+it can be used in another policy by adding code like the following to
+the ruby policyfile:
+
+```
+cookbook "runit",
+  chef_server_artifact: "https://chef.example/organizations/myorg",
+  identifier: "09d43fad354b3efcc5b5836fef5137131f60f974"
+```
+
 # ChefDK 2.3 Release Notes
 
 ChefDK 2.3 includes Ruby 2.4.2 to fix the following CVEs:
