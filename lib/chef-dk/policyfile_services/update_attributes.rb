@@ -44,7 +44,13 @@ module ChefDK
 
       def run
         assert_policy_and_lock_present!
-
+        #TODO: There is quite a major bug here in terms of how include_policy works
+        #      include_policy requires the compiler to fetch the lock. The lock it fetches is not
+        #      based on the lock data of the policy being updated. Thus, if the include_policy does
+        #      not use a hard pin (revision_id), this is going to pick up default attributes from there
+        #
+        #      To do this correctly, I think we need to ask the DSL for the attributes
+        #
         if policyfile_compiler.default_attributes != policyfile_lock.default_attributes
           policyfile_lock.default_attributes = policyfile_compiler.default_attributes
           @updated = true

@@ -39,6 +39,15 @@ module ChefDK
         })
       end
 
+      def apply_locked_source_options(options_from_lock)
+        options = options_from_lock.inject({}) do |acc, (key, value)|
+          acc[key.to_sym] = value
+          acc
+        end
+        source_options.merge!(options)
+        raise ChefDK::InvalidLockfile, "Invalid source_options provided from lock data: #{options_from_lock_file.inspect}" if !valid?
+      end
+
       def lock_data
         @lock_data ||= fetch_lock_data
       end
@@ -51,7 +60,7 @@ module ChefDK
         elsif policy_group
           http_client.get("policy_groups/#{policy_group}/policies/#{policy_name}")
         else
-          raise ChefDK::BUG.new("The source_options should have been validated")
+          raise ChefDK::BUG.new("The source_options should have been validated: #{source_options.inspect}")
         end
       rescue Net::ProtocolError => e
         if e.respond_to?(:response) && e.response.code.to_s == "404"

@@ -115,9 +115,9 @@ module ChefDK
 
       def update_lock_and_install(cookbooks_to_update)
         ui.msg "Updating #{cookbooks_to_update.join(',')} cookbooks"
-
         to_update = policyfile_lock.solution_dependencies.transitive_deps(cookbooks_to_update)
         prepare_constraints_for_update(to_update)
+        prepare_constraints_for_policies
         generate_lock_and_install
       end
 
@@ -136,6 +136,13 @@ module ChefDK
             location_spec.source_options,
             location_spec.storage_config
           )
+        end
+      end
+
+      def prepare_constraints_for_policies
+        policyfile_compiler.included_policies.each do |policy|
+          lock = policyfile_lock.included_policy_locks.find { |policy_lock| policy_lock["name"] == policy.name }
+          policy.apply_locked_source_options(lock["source_options"])
         end
       end
 

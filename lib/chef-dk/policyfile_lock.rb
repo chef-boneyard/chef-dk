@@ -257,9 +257,9 @@ module ChefDK
 
       @included_policy_locks = compiler.included_policies.map do |policy|
         {
-          name: policy.name,
-          revision_id: policy.revision_id,
-          source_options: policy.source_options_for_lock,
+          "name" => policy.name,
+          "revision_id" => policy.revision_id,
+          "source_options" => policy.source_options_for_lock,
         }
       end
 

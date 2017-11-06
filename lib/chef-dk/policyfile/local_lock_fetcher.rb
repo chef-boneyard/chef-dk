@@ -28,6 +28,14 @@ module ChefDK
         error_messages
       end
 
+      def source_options_for_lock
+        source_options
+      end
+
+      def apply_locked_source_options(options_from_lock)
+        # There are no options the lock could provide
+      end
+
       def lock_data
         FFI_Yajl::Parser.new.parse(content)
       end

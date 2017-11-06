@@ -65,6 +65,10 @@ module ChefDK
       def source_options_for_lock
         fetcher.source_options_for_lock
       end
+
+      def apply_locked_source_options(options_from_lock)
+        fetcher.apply_locked_source_options(options_from_lock)
+      end
     end
   end
 end
