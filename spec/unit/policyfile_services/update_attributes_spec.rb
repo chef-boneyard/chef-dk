@@ -134,6 +134,7 @@ E
           "Policyfile" => [["local-cookbook", ">= 0.0.0"]],
           "dependencies" => { "local-cookbook (2.3.4)" => [] },
         },
+        "included_policy_locks" => {},
       }
     end
 
