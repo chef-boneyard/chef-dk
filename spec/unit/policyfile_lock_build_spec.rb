@@ -238,7 +238,7 @@ REVISION_STRING
         "override_attributes" => {},
 
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
-        "included_policy_locks" => {},
+        "included_policy_locks" => [],
       }
     end
 
@@ -335,7 +335,7 @@ REVISION_STRING
         "override_attributes" => { "foo2" => "baz" },
 
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
-        "included_policy_locks" => {},
+        "included_policy_locks" => [],
       }
     end
 
@@ -426,8 +426,8 @@ REVISION_STRING
         "default_attributes" => {},
         "override_attributes" => {},
 
-        "included_policy_locks" => {},
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
+        "included_policy_locks" => [],
       }
     end
 
@@ -538,7 +538,7 @@ REVISION_STRING
         "override_attributes" => {},
 
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
-        "included_policy_locks" => {},
+        "included_policy_locks" => [],
       }
     end
 
@@ -684,7 +684,7 @@ REVISION_STRING
         "override_attributes" => {},
 
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
-        "included_policy_locks" => {},
+        "included_policy_locks" => [],
       }
     end
 
@@ -776,7 +776,7 @@ REVISION_STRING
           "Policyfile" => [],
           "dependencies" => { "foo (1.0.0)" => [] },
         },
-        "included_policy_locks" => {},
+        "included_policy_locks" => [],
       }
     end
 
@@ -846,7 +846,7 @@ REVISION_STRING
         "override_attributes" => {},
 
         "solution_dependencies" => { "Policyfile" => [], "dependencies" => {} },
-        "included_policy_locks" => {},
+        "included_policy_locks" => [],
       }
     end
 
@@ -1027,7 +1027,7 @@ REVISION_STRING
           "Policyfile" => [ [ "foo", "~> 1.0" ] ],
           "dependencies" => { "foo (1.0.0)" => [], "bar (0.1.0)" => [] },
         },
-        "included_policy_locks" => {},
+        "included_policy_locks" => [],
       }
     end
 

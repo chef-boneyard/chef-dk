@@ -111,7 +111,7 @@ module ChefDK
 
       @solution_dependencies = Policyfile::SolutionDependencies.new
 
-      @included_policy_locks = {}
+      @included_policy_locks = []
 
       @install_report = InstallReport.new(ui: @ui, policyfile_lock: self)
     end
@@ -255,12 +255,12 @@ module ChefDK
 
       @solution_dependencies = compiler.solution_dependencies
 
-      @included_policy_locks = compiler.included_policies.inject({}) do |acc, policy|
-        acc[policy.name] = {
+      @included_policy_locks = compiler.included_policies.map do |policy|
+        {
+          name: policy.name,
           revision_id: policy.revision_id,
           source_options: policy.source_options_for_lock,
         }
-        acc
       end
 
       self

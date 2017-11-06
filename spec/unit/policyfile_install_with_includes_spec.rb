@@ -206,7 +206,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
     it "emits the included policy in the lock file" do
       lock = policyfile.lock
       allow(lock).to receive(:cookbook_locks_for_lockfile).and_return({})
-      expect(lock.to_lock["included_policy_locks"]).to eq({included_policy_lock_name => { revision_id: "myrevisionid", source_options: lock_source_options } })
+      expect(lock.to_lock["included_policy_locks"]).to eq([{ name: included_policy_lock_name, revision_id: "myrevisionid", source_options: lock_source_options }])
     end
 
     context "and the included policy sources cookbooks from local disk" do
