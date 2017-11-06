@@ -82,7 +82,7 @@ describe ChefDK::Command::Update do
 
     it "creates an attributes update service object" do
       expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new).
-        with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd).
+        with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, chef_config: anything).
         and_return(update_attrs_service)
       expect(command.attributes_updater).to eq(update_attrs_service)
     end
@@ -133,7 +133,7 @@ describe ChefDK::Command::Update do
       before do
         expect(install_service).to receive(:run)
         expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new).
-          with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd).
+          with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, chef_config: anything).
           and_return(update_attrs_service)
         expect(update_attrs_service).to receive(:run)
       end
@@ -160,7 +160,7 @@ describe ChefDK::Command::Update do
       before do
         expect(install_service).to receive(:run).and_raise(exception)
         expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new).
-          with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd).
+          with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, chef_config: anything).
           and_return(update_attrs_service)
         expect(update_attrs_service).to receive(:run)
       end
