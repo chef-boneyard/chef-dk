@@ -21,6 +21,7 @@ require "chef-dk/policyfile/chef_server_lock_fetcher"
 describe ChefDK::Policyfile::ChefServerLockFetcher do
 
   let(:revision_id) { "6fe753184c8946052d3231bb4212116df28d89a3a5f7ae52832ad408419dd5eb" }
+  let(:identifier) { "fab501cfaf747901bd82c1bc706beae7dc3a350c" }
   let(:minimal_lockfile_json) do
     <<-E
 {
@@ -32,7 +33,7 @@ describe ChefDK::Policyfile::ChefServerLockFetcher do
   "cookbook_locks": {
     "local-cookbook": {
       "version": "2.3.4",
-      "identifier": "fab501cfaf747901bd82c1bc706beae7dc3a350c",
+      "identifier": "#{identifier}",
       "dotted_decimal_identifier": "70567763561641081.489844270461035.258281553147148",
       "source": "cookbooks/local-cookbook",
       "cache_key": null,
@@ -61,7 +62,9 @@ describe ChefDK::Policyfile::ChefServerLockFetcher do
 E
   end
 
-  let(:minimal_lockfile) { FFI_Yajl::Parser.parse(minimal_lockfile_json) }
+  def minimal_lockfile
+    FFI_Yajl::Parser.parse(minimal_lockfile_json)
+  end
 
   let(:policy_name) { "chatserver" }
   let(:policy_revision_id) { "somerevisionid" }
@@ -75,6 +78,15 @@ E
     end
   end
   let(:http_client) { instance_double("Chef::ServerAPI", url: url ) }
+
+  let(:minimal_lockfile_modified) do
+    minimal_lockfile.tap do |lockfile|
+      lockfile["cookbook_locks"]["local-cookbook"]["source_options"] = {
+        "chef_server_artifact" => url,
+        "identifier" => identifier,
+      }
+    end
+  end
 
   subject(:fetcher) { described_class.new(policy_name, source_options, chef_config) }
 
@@ -94,7 +106,7 @@ E
     it "calls the chef server to get the policy" do
       expect(http_client).to receive(:get).with("policies/#{policy_name}/revisions/#{policy_revision_id}").
         and_return(minimal_lockfile)
-        expect(fetcher.lock_data).to eq(minimal_lockfile)
+      expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
     end
   end
 
@@ -110,7 +122,7 @@ E
     it "calls the chef server to get the policy" do
       expect(http_client).to receive(:get).with("policy_groups/#{policy_group}/policies/#{policy_name}").
         and_return(minimal_lockfile)
-        expect(fetcher.lock_data).to eq(minimal_lockfile)
+      expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
     end
   end
 
