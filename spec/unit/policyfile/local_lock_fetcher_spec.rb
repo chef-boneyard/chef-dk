@@ -37,7 +37,7 @@ describe ChefDK::Policyfile::LocalLockFetcher do
       "cache_key": null,
       "scm_info": null,
       "source_options": {
-        "path": "cookbooks/local-cookbook"
+        "path": "../cookbooks/local-cookbook"
       }
     }
   },
@@ -60,10 +60,12 @@ describe ChefDK::Policyfile::LocalLockFetcher do
 E
   end
 
-  let(:lock_file_path) { "#{tempdir}/foo.lock.json" }
+  let(:lock_file_path) { "#{tempdir}/foo/bar/baz/foo.lock.json" }
+  let(:storage_config) { ChefDK::Policyfile::StorageConfig.new.use_policyfile("#{tempdir}/Policyfile.rb") }
 
   before do
     reset_tempdir
+    FileUtils.mkdir_p(Pathname.new(lock_file_path).dirname)
     File.open(lock_file_path, "w") { |file| file.write(minimal_lockfile_json) }
   end
 
@@ -71,7 +73,15 @@ E
     reset_tempdir
   end
 
-  let(:minimal_lockfile) { FFI_Yajl::Parser.parse(minimal_lockfile_json) }
+  def minimal_lockfile 
+    FFI_Yajl::Parser.parse(minimal_lockfile_json)
+  end
+
+  let(:minimal_lockfile_modified) do
+    minimal_lockfile.tap do |lockfile|
+      lockfile["cookbook_locks"]["local-cookbook"]["source_options"] = { "path" => "foo/bar/cookbooks/local-cookbook" }
+    end
+  end
 
   let(:source_options) do
     {
@@ -79,9 +89,9 @@ E
     }
   end
 
-  subject(:fetcher) { described_class.new("foo", source_options) }
+  subject(:fetcher) { described_class.new("foo", source_options, storage_config) }
 
   it "loads the policy from disk" do
-    expect(fetcher.lock_data).to eq(minimal_lockfile)
+    expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
   end
 end

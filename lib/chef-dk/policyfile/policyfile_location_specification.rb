@@ -31,7 +31,7 @@ module ChefDK
                        if source_options[:server]
                          Policyfile::ChefServerLockFetcher.new(name, source_options, chef_config)
                        elsif source_options[:local]
-                         Policyfile::LocalLockFetcher.new(name, source_options, chef_config)
+                         Policyfile::LocalLockFetcher.new(name, source_options, storage_config)
                        else
                          raise "Invalid policyfile lock location type"
                        end

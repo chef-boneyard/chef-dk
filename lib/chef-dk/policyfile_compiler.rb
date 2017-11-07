@@ -471,8 +471,6 @@ module ChefDK
     end
 
     def preferred_source_for_cookbook(conflicting_cb_name)
-      # TODO: Create a source for each included policy?
-      # TODO: Prefer the source from the included policy
       default_source.find { |s| s.preferred_source_for?(conflicting_cb_name) }
     end
 
