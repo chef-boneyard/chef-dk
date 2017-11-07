@@ -212,7 +212,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
             "name" => included_policy_lock_name,
             "revision_id" => "myrevisionid",
             "source_options" => lock_source_options,
-          }
+          },
         ])
     end
 

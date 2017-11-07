@@ -50,15 +50,11 @@ module ChefDK
 
       def lock_data
         @lock_data ||= fetch_lock_data.tap do |data|
-          cookbook_locks = data["cookbook_locks"].inject({}) do |acc, (cookbook_name, cookbook_lock)|
+          data["cookbook_locks"].each do |cookbook_name, cookbook_lock|
             cookbook_lock["source_options"] = {
               "chef_server_artifact" => server,
-              "identifier" => cookbook_lock["identifier"]
+              "identifier" => cookbook_lock["identifier"],
             }
-
-            acc[cookbook_name] = cookbook_lock
-
-            acc
           end
         end
       end
