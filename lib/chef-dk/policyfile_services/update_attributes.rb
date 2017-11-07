@@ -44,6 +44,7 @@ module ChefDK
 
       def run
         assert_policy_and_lock_present!
+        prepare_constraints_for_policies
         #TODO: There is quite a major bug here in terms of how include_policy works
         #      include_policy requires the compiler to fetch the lock. The lock it fetches is not
         #      based on the lock data of the policy being updated. Thus, if the include_policy does
@@ -104,6 +105,14 @@ module ChefDK
           raise LockfileNotFound, "Policyfile lock not found at path #{policyfile_lock_expanded_path}"
         end
       end
+
+      def prepare_constraints_for_policies
+        policyfile_compiler.included_policies.each do |policy|
+          lock = policyfile_lock.included_policy_locks.find { |policy_lock| policy_lock["name"] == policy.name }
+          policy.apply_locked_source_options(lock["source_options"])
+        end
+      end
+
 
     end
   end
