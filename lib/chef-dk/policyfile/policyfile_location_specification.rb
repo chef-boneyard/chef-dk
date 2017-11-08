@@ -28,7 +28,7 @@ module ChefDK
 
       def fetcher
         @fetcher ||= begin
-                       if source_options[:path] 
+                       if source_options[:path]
                          Policyfile::LocalLockFetcher.new(name, source_options, storage_config)
                        elsif source_options[:server]
                          Policyfile::ChefServerLockFetcher.new(name, source_options, chef_config)
