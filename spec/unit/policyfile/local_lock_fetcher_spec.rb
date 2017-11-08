@@ -89,9 +89,20 @@ E
     }
   end
 
+  let(:source_options_for_lock) { source_options }
+
   subject(:fetcher) { described_class.new("foo", source_options, storage_config) }
 
   it "loads the policy from disk" do
+    expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
+  end
+
+  it "returns source_options_for_lock" do
+    expect(fetcher.source_options).to eq(source_options)
+  end
+
+  it "applies can apply source options from the lock" do
+    fetcher.apply_locked_source_options(source_options_for_lock)
     expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
   end
 end
