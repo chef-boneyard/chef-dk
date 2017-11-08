@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.4.5 -->
-## [v2.4.5](https://github.com/chef/chef-dk/tree/v2.4.5) (2017-11-06)
+<!-- latest_release 2.4.6 -->
+## [v2.4.6](https://github.com/chef/chef-dk/tree/v2.4.6) (2017-11-08)
 
 #### Merged Pull Requests
-- Cookbook artifact source [#1450](https://github.com/chef/chef-dk/pull/1450) ([danielsdeleo](https://github.com/danielsdeleo))
+- Bump openssl and rubygems to latest [#1451](https://github.com/chef/chef-dk/pull/1451) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.3.4 -->
 ### Changes since 2.3.4 release
 
 #### Merged Pull Requests
+- Bump openssl and rubygems to latest [#1451](https://github.com/chef/chef-dk/pull/1451) ([tas50](https://github.com/tas50)) <!-- 2.4.6 -->
 - Cookbook artifact source [#1450](https://github.com/chef/chef-dk/pull/1450) ([danielsdeleo](https://github.com/danielsdeleo)) <!-- 2.4.5 -->
 - Enable Concurrent File Downloads when Downloading from a Chef Server [#1449](https://github.com/chef/chef-dk/pull/1449) ([danielsdeleo](https://github.com/danielsdeleo)) <!-- 2.4.4 -->
 - Update Test Kitchen to 1.19 [#1448](https://github.com/chef/chef-dk/pull/1448) ([tas50](https://github.com/tas50)) <!-- 2.4.3 -->
