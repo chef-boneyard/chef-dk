@@ -21,7 +21,7 @@ module ChefDK
       def errors
         error_messages = []
 
-        [:local].each do |key|
+        [:path].each do |key|
           error_messages << "include_policy for #{name} is missing key #{key}" unless source_options[key]
         end
 
@@ -60,7 +60,7 @@ module ChefDK
       end
 
       def path
-        path = Pathname.new(source_options[:local])
+        path = Pathname.new(source_options[:path])
         if !path.absolute?
           path = Pathname.new(storage_config.relative_paths_root).join(path)
         end

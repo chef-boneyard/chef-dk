@@ -124,14 +124,14 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
   end
 
   let(:policy1_location_spec) do
-    ChefDK::Policyfile::PolicyfileLocationSpecification.new("policy1", { :local => "somelocation" }, nil).tap do |spec|
+    ChefDK::Policyfile::PolicyfileLocationSpecification.new("policy1", { :path => "somelocation" }, nil).tap do |spec|
       allow(spec).to receive(:valid?).and_return(true)
       allow(spec).to receive(:fetcher).and_return(policy1_fetcher)
     end
   end
 
   let(:policy2_location_spec) do
-    ChefDK::Policyfile::PolicyfileLocationSpecification.new("policy2", { :local => "somelocation" }, nil).tap do |spec|
+    ChefDK::Policyfile::PolicyfileLocationSpecification.new("policy2", { :path => "somelocation" }, nil).tap do |spec|
       allow(spec).to receive(:valid?).and_return(true)
       allow(spec).to receive(:fetcher).and_return(policy2_fetcher)
     end

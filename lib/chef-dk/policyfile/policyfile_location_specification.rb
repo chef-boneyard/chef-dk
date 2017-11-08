@@ -12,7 +12,7 @@ module ChefDK
       attr_reader :chef_config
       attr_reader :ui
 
-      LOCATION_TYPES = [:git, :local, :server]
+      LOCATION_TYPES = [:path, :server]
 
       def initialize(name, source_options, storage_config, chef_config = nil)
         @name = name
@@ -28,10 +28,10 @@ module ChefDK
 
       def fetcher
         @fetcher ||= begin
-                       if source_options[:server]
-                         Policyfile::ChefServerLockFetcher.new(name, source_options, chef_config)
-                       elsif source_options[:local]
+                       if source_options[:path] 
                          Policyfile::LocalLockFetcher.new(name, source_options, storage_config)
+                       elsif source_options[:server]
+                         Policyfile::ChefServerLockFetcher.new(name, source_options, chef_config)
                        else
                          raise "Invalid policyfile lock location type"
                        end

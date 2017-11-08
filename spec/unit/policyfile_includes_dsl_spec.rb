@@ -21,7 +21,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
   describe "when include_policy specifies a policy on disk" do
     describe "and the included policy is correctly configured" do
-      let(:included_policies) { [["foo", { local: "./foo.lock.json" }]] }
+      let(:included_policies) { [["foo", { path: "./foo.lock.json" }]] }
 
       it "has a included policy" do
         expect(policyfile.included_policies.length).to eq(1)
@@ -124,8 +124,8 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
   describe "when a policy with the same name is specified multiple times" do
     let(:included_policies) do
       [
-        ["foo", { local: "./foo.lock.json" }],
-        ["foo", { local: "./foo.lock.json" }],
+        ["foo", { path: "./foo.lock.json" }],
+        ["foo", { path: "./foo.lock.json" }],
       ]
     end
 

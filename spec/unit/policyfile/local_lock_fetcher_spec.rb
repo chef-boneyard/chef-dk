@@ -85,7 +85,7 @@ E
 
   let(:source_options) do
     {
-      local: lock_file_path,
+      path: lock_file_path,
     }
   end
 

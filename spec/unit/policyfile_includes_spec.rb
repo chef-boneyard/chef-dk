@@ -125,7 +125,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
     end
   end
 
-  let(:lock_source_options) { { :local => "somelocation" } }
+  let(:lock_source_options) { { :path => "somelocation" } }
   let(:included_policy_lock_spec) do
     ChefDK::Policyfile::PolicyfileLocationSpecification.new(included_policy_lock_name, lock_source_options, nil).tap do |spec|
       allow(spec).to receive(:valid?).and_return(true)
