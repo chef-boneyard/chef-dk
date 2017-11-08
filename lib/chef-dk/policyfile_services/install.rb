@@ -140,10 +140,9 @@ module ChefDK
       end
 
       def prepare_constraints_for_policies
-        policyfile_compiler.included_policies.each do |policy|
-          lock = policyfile_lock.included_policy_locks.find { |policy_lock| policy_lock["name"] == policy.name }
-          policy.apply_locked_source_options(lock["source_options"])
-        end
+        Policyfile::LockApplier.
+          new(policyfile_lock, policyfile_compiler).
+          apply!
       end
 
       def install_from_lock
