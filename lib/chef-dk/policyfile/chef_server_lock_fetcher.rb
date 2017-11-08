@@ -13,6 +13,8 @@ module ChefDK
         @name = name
         @source_options = source_options
         @chef_config = chef_config
+
+        @source_options[:policy_name] ||= name
       end
 
       def valid?

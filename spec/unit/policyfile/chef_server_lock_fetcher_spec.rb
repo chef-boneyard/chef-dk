@@ -108,6 +108,21 @@ E
         and_return(minimal_lockfile)
       expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
     end
+
+    context "and policy_name is not provided" do
+      let(:source_options) do
+      {
+        server: url,
+        policy_revision_id: policy_revision_id,
+      }
+      end
+
+      it "calls the chef server to get the policy with the dsl name" do
+        expect(http_client).to receive(:get).with("policies/#{policy_name}/revisions/#{policy_revision_id}").
+          and_return(minimal_lockfile)
+          expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
+      end
+    end
   end
 
   context "when using policy group" do

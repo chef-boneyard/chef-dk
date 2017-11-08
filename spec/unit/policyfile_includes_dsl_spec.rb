@@ -54,9 +54,8 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
     describe "and the policy name is missing" do
       let(:included_policies) { [["foo", { server: "http://example.com", policy_revision_id: "bar" }]] }
-      it "has a dsl with errors" do
-        expect(policyfile.dsl.errors.length).to eq(1)
-        expect(policyfile.dsl.errors[0]).to match(/missing key policy_name/)
+      it "has no errors" do
+        expect(policyfile.dsl.errors.length).to eq(0)
       end
     end
 
