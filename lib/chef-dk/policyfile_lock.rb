@@ -539,7 +539,7 @@ module ChefDK
         @included_policy_locks = []
       else
         locks.each do |lock_info|
-          if !(%w(revision_id name source_options).all? { |key| !lock_info[key].nil? })
+          if !(%w{revision_id name source_options}.all? { |key| !lock_info[key].nil? })
             raise InvalidLockfile, "lockfile included policy missing one of the required keys"
           end
         end

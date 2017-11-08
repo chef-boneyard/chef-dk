@@ -112,8 +112,6 @@ module ChefDK
           policy.apply_locked_source_options(lock["source_options"])
         end
       end
-
-
     end
   end
 end

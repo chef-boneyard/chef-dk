@@ -73,7 +73,7 @@ E
     reset_tempdir
   end
 
-  def minimal_lockfile 
+  def minimal_lockfile
     FFI_Yajl::Parser.parse(minimal_lockfile_json)
   end
 
