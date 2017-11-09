@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.4.7 -->
-## [v2.4.7](https://github.com/chef/chef-dk/tree/v2.4.7) (2017-11-09)
+<!-- latest_release 2.4.8 -->
+## [v2.4.8](https://github.com/chef/chef-dk/tree/v2.4.8) (2017-11-09)
 
 #### Merged Pull Requests
-- Pull in Chef 13.6.4, knife-ec2 0.16 and fauxhai 5.5 [#1452](https://github.com/chef/chef-dk/pull/1452) ([tas50](https://github.com/tas50))
+- Update to chef-provisioning-aws 3 rc2 [#1453](https://github.com/chef/chef-dk/pull/1453) ([thommay](https://github.com/thommay))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.3.4 -->
 ### Changes since 2.3.4 release
 
 #### Merged Pull Requests
+- Update to chef-provisioning-aws 3 rc2 [#1453](https://github.com/chef/chef-dk/pull/1453) ([thommay](https://github.com/thommay)) <!-- 2.4.8 -->
 - Pull in Chef 13.6.4, knife-ec2 0.16 and fauxhai 5.5 [#1452](https://github.com/chef/chef-dk/pull/1452) ([tas50](https://github.com/tas50)) <!-- 2.4.7 -->
 - Bump openssl and rubygems to latest [#1451](https://github.com/chef/chef-dk/pull/1451) ([tas50](https://github.com/tas50)) <!-- 2.4.6 -->
 - Cookbook artifact source [#1450](https://github.com/chef/chef-dk/pull/1450) ([danielsdeleo](https://github.com/danielsdeleo)) <!-- 2.4.5 -->
