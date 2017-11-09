@@ -40,7 +40,7 @@ group(:omnibus_package) do
   gem "appbundler"
   gem "berkshelf", ">= 6.3.1"
   gem "chef-provisioning", ">= 2.4.0", group: :provisioning
-  gem "chef-provisioning-aws", "= 3.0.0-rc1", group: :provisioning
+  gem "chef-provisioning-aws", "= 3.0.0-rc2", group: :provisioning
   gem "chef-provisioning-azure", ">= 0.6.0", group: :provisioning
   gem "chef-provisioning-fog", ">= 0.26.0", group: :provisioning
   gem "chef-vault", ">= 3.3.0"
