@@ -72,10 +72,10 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
   let(:included_policy_source_options) do
     {
       "cookbookA" => {
-        "2.0.0" => { artifactserver: "https://supermarket.example/c/cookbookA/2.0.0/download", version: "2.0.0", somekey: "withavalue" },
+        "2.0.0" => { artifactserver: "https://supermarket.example/c/cookbookA/2.0.0/download", version: "2.0.0", from_included_policy: "withavalue" },
       },
       "cookbookB" => {
-        "2.0.0" => { artifactserver: "https://supermarket.example/c/cookbookB/2.0.0/download", version: "2.0.0", somekey: "withavalue" },
+        "2.0.0" => { artifactserver: "https://supermarket.example/c/cookbookB/2.0.0/download", version: "2.0.0", from_included_policy: "withavalue" },
       },
     }
   end
@@ -199,8 +199,22 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
       expect(policyfile.lock.cookbook_locks["cookbookC"].source_options).to eq(default_source_obj.source_options_for("cookbookC", "1.0.0"))
     end
 
-    ## This requires being able to do a to_lock
-    it "maintains identifiers for remote cookbooks"
+    it "maintains identifiers for remote cookbooks", :focus do
+      allow(ChefDK::Policyfile::CachedCookbook).to receive(:new) do |name, storage_config|
+        mock = ChefDK::Policyfile::CachedCookbook.allocate
+        mock.send(:initialize, name, storage_config)
+        allow(mock).to receive(:installed?).and_return(true)
+        allow(mock).to receive(:validate!)
+        allow(mock).to receive(:cookbook_version) do
+          instance_double("Chef::CookbookVersion",
+                          version: mock.source_options[:version],
+                          manifest_records_by_path: [])
+        end
+        mock
+      end
+      expect(policyfile.lock.to_lock["cookbook_locks"]["cookbookA"]["source_options"]).to eq(included_policy_source_options["cookbookA"]["2.0.0"])
+      expect(policyfile.lock.to_lock["cookbook_locks"]["cookbookB"]["source_options"]).to eq(included_policy_source_options["cookbookB"]["2.0.0"])
+    end
 
     # TODO: Sicne the PolicyfileLocationSpecification is a mock, this isn't really testing anything about a local lockfile
     it "emits the included policy in the lock file" do
