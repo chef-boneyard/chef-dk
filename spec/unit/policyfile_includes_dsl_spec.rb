@@ -70,7 +70,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
           expect(policyfile.included_policies.length).to eq(1)
         end
 
-        it "uses a local fetcher" do
+        it "uses a server fetcher" do
           expect(policyfile.included_policies[0].fetcher).to be_a(ChefDK::Policyfile::ChefServerLockFetcher)
         end
 
@@ -94,7 +94,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
         expect(policyfile.included_policies.length).to eq(1)
       end
 
-      it "uses a local fetcher" do
+      it "uses a server fetcher" do
         expect(policyfile.included_policies[0].fetcher).to be_a(ChefDK::Policyfile::ChefServerLockFetcher)
       end
 
