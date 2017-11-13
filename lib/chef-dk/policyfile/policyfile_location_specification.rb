@@ -1,6 +1,7 @@
 require "chef-dk/policyfile_lock"
 require "chef-dk/policyfile/local_lock_fetcher"
 require "chef-dk/policyfile/chef_server_lock_fetcher"
+require "chef-dk/exceptions"
 
 module ChefDK
   module Policyfile
@@ -33,7 +34,8 @@ module ChefDK
                        elsif source_options[:server]
                          Policyfile::ChefServerLockFetcher.new(name, source_options, chef_config)
                        else
-                         raise "Invalid policyfile lock location type"
+                         raise ChefDK::InvalidPolicyfileLocation.new(
+                           "Invalid policyfile lock location type. The supported locations are: #{LOCATION_TYPES.join(", ")}")
                        end
                      end
       end

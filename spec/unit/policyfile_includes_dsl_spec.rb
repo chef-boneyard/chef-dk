@@ -119,6 +119,10 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
       expect(policyfile.dsl.errors.length).to eq(1)
       expect(policyfile.dsl.errors[0]).to match(/include_policy must use one of the following/)
     end
+
+    it "errors when trying to get the fetcher" do
+      expect { policyfile.included_policies[0].fetcher }.to raise_error(ChefDK::InvalidPolicyfileLocation)
+    end
   end
 
   describe "when a policy with the same name is specified multiple times" do

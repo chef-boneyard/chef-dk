@@ -144,4 +144,7 @@ EXAMPLE
 
   class LocalPolicyfileLockNotFound < StandardError
   end
+
+  class InvalidPolicyfileLocation < StandardError
+  end
 end
