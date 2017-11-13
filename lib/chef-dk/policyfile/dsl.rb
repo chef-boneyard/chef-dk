@@ -125,7 +125,6 @@ module ChefDK
       end
 
       def include_policy(name, source_options = {})
-        #TODO: Make included_policies a map
         if existing = included_policies.find { |p| p.name == name }
           err = "Included policy '#{name}' assigned conflicting locations or was already specified\n\n"
           err << "Previous source: #{existing.source_options.inspect}\n"

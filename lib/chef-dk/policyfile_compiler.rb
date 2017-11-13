@@ -195,7 +195,6 @@ module ChefDK
 
       graph_solution.each do |cookbook_name, version|
         spec = cookbook_location_spec_for(cookbook_name)
-        # TODO: Make sure that included policy specs win
         if spec.nil? || !spec.version_fixed?
           spec = create_spec_for_cookbook(cookbook_name, version)
           install_report.installing_cookbook(spec)
@@ -459,7 +458,6 @@ module ChefDK
     end
 
     def best_source_for(cookbook_name)
-      # TODO: we have a function that does this
       preferred = default_source.find { |s| s.preferred_source_for?(cookbook_name) }
       if preferred.nil?
         default_source.find do |s|

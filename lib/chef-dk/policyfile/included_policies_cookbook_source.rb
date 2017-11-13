@@ -109,7 +109,6 @@ module ChefDK
             end
             if acc[name]
               if acc[name][version]
-                #TODO: Should compare sets
                 if acc[name][version] != mapped_deps
                   raise ConflictingCookbookDependencies.new("Conflicting dependencies provided for cookbook #{name}")
                 end
