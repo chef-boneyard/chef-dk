@@ -240,13 +240,17 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
     end
 
     context "when no cookbooks are shared as dependencies or transitive dependencies" do
+      let(:included_policy_expanded_runlist) { ["recipe[cookbookC::default]"] }
+      let(:run_list) { ["cookbookA::default"] }
 
-      it "does not raise a have conflicting dependency requirements error"
+      it "does not raise a have conflicting dependency requirements error" do
+        expect { policyfile_lock.to_lock }.not_to raise_error
+      end
 
-      it "emits a lockfile where cookbooks pulled from the upstream are at identical versions"
-
-      it "solves the dependencies added by the top-level policyfile and emits them in the lockfile"
-
+      it "emits a lockfile where cookbooks pulled from the upstream are at identical versions" do
+        expect(policyfile_lock.to_lock["solution_dependencies"]["dependencies"]).to(
+          have_key("cookbookC (2.0.0)"))
+      end
     end
 
     context "when some cookbooks are shared as dependencies or transitive dependencies" do
