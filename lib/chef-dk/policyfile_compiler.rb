@@ -158,26 +158,6 @@ module ChefDK
         end
     end
 
-    def check_for_default_attribute_conflicts!
-      checker = Policyfile::AttributeMergeChecker.new
-      checker.with_attributes("user-specified", dsl.node_attributes.combined_default)
-      included_policies.map do |policy_spec|
-        lock = policy_spec.policyfile_lock
-        checker.with_attributes(policy_spec.name, lock.default_attributes)
-      end
-      checker.check!
-    end
-
-    def check_for_override_attribute_conflicts!
-      checker = Policyfile::AttributeMergeChecker.new
-      checker.with_attributes("user-specified", dsl.node_attributes.combined_override)
-      included_policies.map do |policy_spec|
-        lock = policy_spec.policyfile_lock
-        checker.with_attributes(policy_spec.name, lock.override_attributes)
-      end
-      checker.check!
-    end
-
     def lock
       @policyfile_lock ||= PolicyfileLock.build_from_compiler(self, storage_config)
     end
@@ -274,57 +254,6 @@ module ChefDK
         solution_deps.add_cookbook_dep(name, version, transitive_deps)
       end
       solution_deps
-    end
-
-    def cookbook_demands_from_policies
-      included_policies.flat_map do |policy_spec|
-        lock = policy_spec.policyfile_lock
-        lock.solution_dependencies.to_lock["Policyfile"]
-      end
-    end
-
-    def cookbook_demands_from_current
-      cookbooks_for_demands.map do |cookbook_name|
-        spec = cookbook_location_spec_for(cookbook_name)
-        if spec.nil?
-          [ cookbook_name, DEFAULT_DEMAND_CONSTRAINT ]
-        elsif spec.version_fixed?
-          [ cookbook_name, "= #{spec.version}" ]
-        else
-          [ cookbook_name, spec.version_constraint.to_s ]
-        end
-      end
-    end
-
-    def included_policies_cookbook_source
-      @included_policies_cookbook_source ||= begin
-        source = Policyfile::IncludedPoliciesCookbookSource.new(included_policies)
-        handle_included_policies_preferred_cookbook_conflicts(source)
-        source
-      end
-    end
-
-    def handle_included_policies_preferred_cookbook_conflicts(included_policies_source)
-      # All cookbooks in the included policies are preferred.
-      conflicting_source_messages = []
-      dsl.default_source.reject { |s| s.null? }.each do |source_b|
-        conflicting_preferences = included_policies_source.preferred_cookbooks & source_b.preferred_cookbooks
-        next if conflicting_preferences.empty?
-        next if conflicting_preferences.all? do |cookbook_name|
-          version = included_policies_source.universe_graph[cookbook_name].keys.first
-          if included_policies_source.source_options_for(cookbook_name, version) == source_b.source_options_for(cookbook_name, version)
-            true
-          else
-            false
-          end
-        end
-        conflicting_source_messages << "#{source_b.desc} sets a preferred for cookbook(s) #{conflicting_preferences.join(', ')}. This conflicts with an included policy."
-      end
-      unless conflicting_source_messages.empty?
-        msg = "You may not override the cookbook sources for any cookbooks required by included policies.\n"
-        msg << conflicting_source_messages.join("\n") << "\n"
-        raise IncludePolicyCookbookSourceConflict.new(msg)
-      end
     end
 
     def graph_demands
@@ -522,6 +451,77 @@ module ChefDK
       end
 
       dependency_set
+    end
+
+    def check_for_default_attribute_conflicts!
+      checker = Policyfile::AttributeMergeChecker.new
+      checker.with_attributes("user-specified", dsl.node_attributes.combined_default)
+      included_policies.map do |policy_spec|
+        lock = policy_spec.policyfile_lock
+        checker.with_attributes(policy_spec.name, lock.default_attributes)
+      end
+      checker.check!
+    end
+
+    def check_for_override_attribute_conflicts!
+      checker = Policyfile::AttributeMergeChecker.new
+      checker.with_attributes("user-specified", dsl.node_attributes.combined_override)
+      included_policies.map do |policy_spec|
+        lock = policy_spec.policyfile_lock
+        checker.with_attributes(policy_spec.name, lock.override_attributes)
+      end
+      checker.check!
+    end
+
+    def cookbook_demands_from_policies
+      included_policies.flat_map do |policy_spec|
+        lock = policy_spec.policyfile_lock
+        lock.solution_dependencies.to_lock["Policyfile"]
+      end
+    end
+
+    def cookbook_demands_from_current
+      cookbooks_for_demands.map do |cookbook_name|
+        spec = cookbook_location_spec_for(cookbook_name)
+        if spec.nil?
+          [ cookbook_name, DEFAULT_DEMAND_CONSTRAINT ]
+        elsif spec.version_fixed?
+          [ cookbook_name, "= #{spec.version}" ]
+        else
+          [ cookbook_name, spec.version_constraint.to_s ]
+        end
+      end
+    end
+
+    def included_policies_cookbook_source
+      @included_policies_cookbook_source ||= begin
+        source = Policyfile::IncludedPoliciesCookbookSource.new(included_policies)
+        handle_included_policies_preferred_cookbook_conflicts(source)
+        source
+      end
+    end
+
+    def handle_included_policies_preferred_cookbook_conflicts(included_policies_source)
+      # All cookbooks in the included policies are preferred.
+      conflicting_source_messages = []
+      dsl.default_source.reject { |s| s.null? }.each do |source_b|
+        conflicting_preferences = included_policies_source.preferred_cookbooks & source_b.preferred_cookbooks
+        next if conflicting_preferences.empty?
+        next if conflicting_preferences.all? do |cookbook_name|
+          version = included_policies_source.universe_graph[cookbook_name].keys.first
+          if included_policies_source.source_options_for(cookbook_name, version) == source_b.source_options_for(cookbook_name, version)
+            true
+          else
+            false
+          end
+        end
+        conflicting_source_messages << "#{source_b.desc} sets a preferred for cookbook(s) #{conflicting_preferences.join(', ')}. This conflicts with an included policy."
+      end
+      unless conflicting_source_messages.empty?
+        msg = "You may not override the cookbook sources for any cookbooks required by included policies.\n"
+        msg << conflicting_source_messages.join("\n") << "\n"
+        raise IncludePolicyCookbookSourceConflict.new(msg)
+      end
     end
 
   end
