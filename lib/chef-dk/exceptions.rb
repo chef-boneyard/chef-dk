@@ -142,4 +142,6 @@ EXAMPLE
   class PolicyfileLockDownloadError < StandardError
   end
 
+  class LocalPolicyfileLockNotFound < StandardError
+  end
 end

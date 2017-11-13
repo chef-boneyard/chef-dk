@@ -1,4 +1,5 @@
 require "chef-dk/policyfile_lock"
+require "chef-dk/exceptions"
 
 module ChefDK
   module Policyfile
@@ -60,11 +61,25 @@ module ChefDK
       end
 
       def path
-        path = Pathname.new(source_options[:path])
-        if !path.absolute?
-          path = Pathname.new(storage_config.relative_paths_root).join(path)
+        @path ||= begin
+          path = Pathname.new(source_options[:path])
+          if path.directory?
+            path = path.join("#{name}.lock.json")
+            if !path.file?
+              raise ChefDK::LocalPolicyfileLockNotFound.new(
+                "Expected to find file #{name}.lock.json inside #{source_options[:path]}. If the file name is different than this, provide the file name as part of the path.")
+            end
+          else
+            if !path.file?
+              raise ChefDK::LocalPolicyfileLockNotFound.new(
+                "The provided path #{source_options[:path]} does not exist.")
+            end
+          end
+          if !path.absolute?
+            path = Pathname.new(storage_config.relative_paths_root).join(path)
+          end
+          path
         end
-        path
       end
     end
   end
