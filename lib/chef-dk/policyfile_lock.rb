@@ -142,11 +142,11 @@ module ChefDK
         lock["name"] = name
         lock["run_list"] = run_list
         lock["named_run_lists"] = named_run_lists unless named_run_lists.empty?
+        lock["included_policy_locks"] = included_policy_locks
         lock["cookbook_locks"] = cookbook_locks_for_lockfile
         lock["default_attributes"] = default_attributes
         lock["override_attributes"] = override_attributes
         lock["solution_dependencies"] = solution_dependencies.to_lock
-        lock["included_policy_locks"] = included_policy_locks
       end
     end
 
