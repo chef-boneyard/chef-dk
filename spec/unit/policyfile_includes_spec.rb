@@ -180,8 +180,6 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
     let(:included_policies) { [included_policy_lock_spec] }
 
-    it "emits a lockfile describing the source of the included policy"
-
     # currently you must have a run list in a policyfile, but it should now
     # become possible to make a combo-policy just by combining other policies
     context "when the including policy does not have a run list" do
@@ -323,38 +321,13 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
           expect { policyfile_lock.to_lock }.to raise_error(Solve::Errors::NoSolutionError)
         end
 
-        it "includes the name and location of the included policy in the error message" do
-          pending("Not implemented")
-          expect { policyfile_lock.to_lock }.to raise_error(Solve::Errors::NoSolutionError) do |e|
-            expect(e.to_s).to match(/#{included_policy_lock_name}/)
-          end
-
-        end
-
         it "includes the source of the conflicting dependency constraint from the including policy" do
           expect { policyfile_lock.to_lock }.to raise_error(Solve::Errors::NoSolutionError) do |e|
             expect(e.to_s).to match(/`cookbookC \(= 2.0.0\)`/) # This one comes from the included policy
             expect(e.to_s).to match(/`cookbookC \(= 1.0.0\)` required by `local-1.0.0`/) # This one comes from the included policy
           end
         end
-
-        it "should not have an open constraint on cookbookC" do
-          pending("I think this is a bug")
-          expect { policyfile_lock.to_lock }.to raise_error(Solve::Errors::NoSolutionError) do |e|
-            expect(e.to_s).not_to match(/`cookbookC \(>= 0.0.0\)`/)
-          end
-        end
-
       end
-
-      context "and the including policy explicitly sets the source for a cookbook which conflicts with the source in the included policy" do
-
-        it "raises an error describing the conflict"
-
-        it "includes the name and location of the included policy in the error message"
-
-      end
-
     end
 
     context "when default attributes are specified" do
@@ -454,11 +427,6 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
             ChefDK::Policyfile::AttributeMergeChecker::ConflictError,
             "Attribute '[shared][foo]' provided conflicting values by the following sources [\"user-specified\", \"included\"]")
         end
-
-        it "includes the name and location of the included policy in the error message"
-
-        it "includes the source location of the conflicting attribute in the including policy"
-
       end
     end
   end
