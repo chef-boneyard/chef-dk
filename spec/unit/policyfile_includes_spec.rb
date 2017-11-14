@@ -464,47 +464,288 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
   end
 
   context "when several policies are included" do
+    let(:included_policy_2_default_attributes) { {} }
+    let(:included_policy_2_override_attributes) { {} }
+    let(:included_policy_2_expanded_named_runlist) { nil }
+    let(:included_policy_2_expanded_runlist) { ["recipe[cookbookA::default]"] }
+    let(:included_policy_2_cookbooks) do
+      [
+        {
+          name: "cookbookA",
+          version: "2.0.0",
+        },
+      ]
+    end
+
+    let(:included_policy_2_lock_data) do
+      cookbook_locks = included_policy_2_cookbooks.inject({}) do |acc, cookbook_info|
+        acc[cookbook_info[:name]] = {
+          "version" => cookbook_info[:version],
+          "identifier" => "identifier",
+          "dotted_decimal_identifier" => "dotted_decimal_identifier",
+          "cache_key" => "#{cookbook_info[:name]}-#{cookbook_info[:version]}",
+          "origin" => "uri",
+          "source_options" => {},
+        }
+        acc
+      end
+
+      solution_dependencies_lock = included_policy_2_cookbooks.map do |cookbook_info|
+        [cookbook_info[:name], cookbook_info[:version]]
+      end
+
+      solution_dependencies_cookbooks = included_policy_2_cookbooks.inject({}) do |acc, cookbook_info|
+        acc["#{cookbook_info[:name]} (#{cookbook_info[:version]})"] = external_cookbook_universe[cookbook_info[:name]][cookbook_info[:version]]
+        acc
+      end
+
+      {
+        "name" => "included_policy_2file",
+        "revision_id" => "myrevisionid",
+        "run_list" => included_policy_2_expanded_runlist,
+        "cookbook_locks" => cookbook_locks,
+        "default_attributes" => included_policy_2_default_attributes,
+        "override_attributes" => included_policy_2_override_attributes,
+        "solution_dependencies" => {
+          "Policyfile" => solution_dependencies_lock,
+          "dependencies" => solution_dependencies_cookbooks,
+        },
+      }.tap do |core|
+        core["named_run_lists"] = included_policy_2_expanded_named_runlist if included_policy_2_expanded_named_runlist
+      end
+    end
+
+    let(:included_policy_2_lock_name) { "included2" }
+    let(:included_policy_2_fetcher) do
+      instance_double("ChefDK::Policyfile::LocalLockFetcher").tap do |double|
+        allow(double).to receive(:lock_data).and_return(included_policy_2_lock_data)
+        allow(double).to receive(:valid?).and_return(true)
+        allow(double).to receive(:errors).and_return([])
+      end
+    end
+
+    let(:included_policy_2_lock_spec) do
+      ChefDK::Policyfile::PolicyfileLocationSpecification.new(included_policy_2_lock_name, lock_source_options, nil).tap do |spec|
+        allow(spec).to receive(:valid?).and_return(true)
+        allow(spec).to receive(:fetcher).and_return(included_policy_2_fetcher)
+        allow(spec).to receive(:source_options_for_lock).and_return(lock_source_options)
+      end
+    end
+
+    let(:included_policies) { [included_policy_lock_spec, included_policy_2_lock_spec] }
+
+    let(:run_list) { ["local::default"] }
 
     context "when no cookbooks are shared as dependencies or transitive dependencies by included policies" do
+      let(:included_policy_expanded_runlist) { ["recipe[cookbookA::default]"] }
+      let(:included_policy_cookbooks) do
+        [
+          {
+            name: "cookbookA",
+            version: "2.0.0",
+          },
+        ]
+      end
 
-      it "does not raise a have conflicting dependency requirements error"
+      let(:included_policy_2_expanded_runlist) { ["recipe[cookbookB::default]"] }
+      let(:included_policy_2_cookbooks) do
+        [
+          {
+            name: "cookbookB",
+            version: "2.0.0",
+          },
+        ]
+      end
 
-      it "emits a lockfile where cookbooks pulled from the upstreams are at identical versions"
+      it "does not raise a have conflicting dependency requirements error" do
+        expect { policyfile_lock.to_lock }.not_to raise_error
+      end
 
-      it "solves the dependencies added by the top-level policyfile"
-
+      it "emits a lockfile with the correct dependencies" do
+        expect(policyfile_lock.to_lock["solution_dependencies"]["dependencies"]).to eq({
+          "cookbookA (2.0.0)" => [],
+          "cookbookB (2.0.0)" => [],
+          "cookbookC (1.0.0)" => [],
+          "local (1.0.0)" => [["cookbookC", "= 1.0.0"]],
+        })
+      end
     end
 
     context "when some cookbooks appear as dependencies or transitive dependencies of some included policies" do
+      let(:included_policy_expanded_runlist) { ["recipe[cookbookC::default]"] }
+      let(:included_policy_2_expanded_runlist) { ["recipe[cookbookC::default]"] }
 
       context "and the locked versions of the cookbooks match" do
+        let(:included_policy_cookbooks) do
+          [
+            {
+              name: "cookbookC",
+              version: "1.0.0",
+            },
+          ]
+        end
 
-        it "solves the dependencies with the matching versions"
+        let(:included_policy_2_cookbooks) do
+          [
+            {
+              name: "cookbookC",
+              version: "1.0.0",
+            },
+          ]
+        end
 
+        it "solves the dependencies with the matching versions" do
+          expect(policyfile_lock.to_lock["solution_dependencies"]["dependencies"]).to eq({
+            "cookbookC (1.0.0)" => [],
+            "local (1.0.0)" => [["cookbookC", "= 1.0.0"]],
+          })
+        end
       end
 
       context "and the locked versions of the cookbooks do not match" do
+        let(:included_policy_cookbooks) do
+          [
+            {
+              name: "cookbookC",
+              version: "1.0.0",
+            },
+          ]
+        end
 
-        it "raises an error describing the conflict"
+        let(:included_policy_2_cookbooks) do
+          [
+            {
+              name: "cookbookC",
+              version: "2.0.0",
+            },
+          ]
+        end
 
-        it "includes the name and location of the conflicting included policies in the error message"
+        it "raises an error describing the conflict" do
+          expect { policyfile_lock }.to raise_error(
+            ChefDK::Policyfile::IncludedPoliciesCookbookSource::ConflictingCookbookVersions,
+            /Multiple versions provided for cookbook cookbookC/
+          )
+        end
+      end
+    end
 
+    context "when default attributes are specified" do
+      context "when the included policies do not have conflicting attributes" do
+        let(:included_policy_default_attributes) do
+          {
+            "not_conflict" => {
+              "foo" => "bar",
+            },
+          }
+        end
+        let(:included_policy_2_default_attributes) do
+          {
+            "not_conflict" => {
+              "foo" => "bar",
+            },
+          }
+        end
+        let(:default_attributes) do
+          {
+            "not_conflict" => {
+              "bar" => "baz",
+            },
+          }
+        end
+
+        it "emits a lockfile with the included policies' attributes merged" do
+          expect(policyfile_lock.to_lock["default_attributes"]).to eq({
+            "not_conflict" => {
+              "foo" => "bar",
+              "bar" => "baz",
+            },
+          })
+        end
       end
 
+      context "when the included policies have conflicting attributes" do
+        let(:included_policy_default_attributes) do
+          {
+            "conflict" => {
+              "foo" => "bar",
+            },
+          }
+        end
+
+        let(:included_policy_2_default_attributes) do
+          {
+            "conflict" => {
+              "foo" => "baz",
+            },
+          }
+        end
+
+        it "raises an error describing the conflict" do
+          expect { policyfile_lock }.to raise_error(
+            ChefDK::Policyfile::AttributeMergeChecker::ConflictError,
+            "Attribute '[conflict][foo]' provided conflicting values by the following sources [\"included\", \"included2\"]")
+        end
+      end
     end
 
-    context "when the included policies do not have conflicting attributes" do
+    context "when override attributes are specified" do
+      context "when the included policies do not have conflicting attributes" do
+        let(:included_policy_override_attributes) do
+          {
+            "not_conflict" => {
+              "foo" => "bar",
+            },
+          }
+        end
+        let(:included_policy_2_override_attributes) do
+          {
+            "not_conflict" => {
+              "foo" => "bar",
+            },
+          }
+        end
+        let(:override_attributes) do
+          {
+            "not_conflict" => {
+              "bar" => "baz",
+            },
+          }
+        end
 
-      it "emits a lockfile with the included policies' attributes merged"
+        it "emits a lockfile with the included policies' attributes merged" do
+          expect(policyfile_lock.to_lock["override_attributes"]).to eq({
+            "not_conflict" => {
+              "foo" => "bar",
+              "bar" => "baz",
+            },
+          })
+        end
+      end
 
-    end
+      context "when the included policies have conflicting attributes" do
+        let(:included_policy_override_attributes) do
+          {
+            "conflict" => {
+              "foo" => "bar",
+            },
+          }
+        end
 
-    context "when the included policies have conflicting attributes" do
+        let(:included_policy_2_override_attributes) do
+          {
+            "conflict" => {
+              "foo" => "baz",
+            },
+          }
+        end
 
-      it "raises an error describing the conflict"
-
-      it "includes the name an location of the conflicting included policies in the error message"
-
+        it "raises an error describing the conflict" do
+          expect { policyfile_lock }.to raise_error(
+            ChefDK::Policyfile::AttributeMergeChecker::ConflictError,
+            "Attribute '[conflict][foo]' provided conflicting values by the following sources [\"included\", \"included2\"]")
+        end
+      end
     end
 
   end
