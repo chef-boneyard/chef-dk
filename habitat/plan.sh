@@ -8,11 +8,10 @@ pkg_filename=${pkg_dirname}.tar.gz
 pkg_license=('Apache-2.0')
 pkg_bin_dirs=(bin)
 pkg_build_deps=(core/make core/gcc core/coreutils core/git)
-# NOTE: core/openssl is set here to the exact version that
-# core/ruby/2.4.2/20170914220737 was built with. In the future ruby should be
-# automatically built when openssl is updated and we can change our dep back to
-# just `core/openssl`
-pkg_deps=(core/glibc core/busybox-static core/ruby core/libxml2 core/libxslt core/libiconv core/xz core/zlib core/bundler core/openssl/1.0.2j/20170513215106 core/cacerts core/libffi)
+# NOTE: core/openssl is set here to the exact version that core/ruby/ was built
+# with. In the future ruby should be automatically built when openssl is
+# updated and we can change our dep back to just `core/openssl`
+pkg_deps=(core/glibc core/busybox-static core/ruby core/libxml2 core/libxslt core/libiconv core/xz core/zlib core/bundler core/openssl/1.0.2l/20171014213633 core/cacerts core/libffi)
 pkg_svc_user=root
 
 do_download() {
