@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.4.11 -->
-## [v2.4.11](https://github.com/chef/chef-dk/tree/v2.4.11) (2017-11-14)
+<!-- latest_release 2.4.12 -->
+## [v2.4.12](https://github.com/chef/chef-dk/tree/v2.4.12) (2017-11-16)
 
 #### Merged Pull Requests
-- Pull in latest foodcritic, kitchen-inspec, and train [#1460](https://github.com/chef/chef-dk/pull/1460) ([tas50](https://github.com/tas50))
+- Pull in Foodcritic 12.2.1 [#1462](https://github.com/chef/chef-dk/pull/1462) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.3.4 -->
 ### Changes since 2.3.4 release
 
 #### Merged Pull Requests
+- Pull in Foodcritic 12.2.1 [#1462](https://github.com/chef/chef-dk/pull/1462) ([tas50](https://github.com/tas50)) <!-- 2.4.12 -->
 - Pull in latest foodcritic, kitchen-inspec, and train [#1460](https://github.com/chef/chef-dk/pull/1460) ([tas50](https://github.com/tas50)) <!-- 2.4.11 -->
 - Enable FC011 testing for the skeleton cookbook [#1456](https://github.com/chef/chef-dk/pull/1456) ([tas50](https://github.com/tas50)) <!-- 2.4.10 -->
 - Bump deps to pick up InSpec 1.44.8 [#1455](https://github.com/chef/chef-dk/pull/1455) ([adamleff](https://github.com/adamleff)) <!-- 2.4.9 -->
