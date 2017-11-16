@@ -306,7 +306,7 @@ GEM
     fog-xml (0.1.3)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
-    foodcritic (12.2.0)
+    foodcritic (12.2.1)
       cucumber-core (>= 1.3)
       erubis
       ffi-yajl (~> 2.0)
