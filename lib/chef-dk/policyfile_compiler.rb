@@ -20,8 +20,11 @@ require "forwardable"
 
 require "solve"
 require "chef/run_list"
+require "chef/mixin/deep_merge"
 
 require "chef-dk/policyfile/dsl"
+require "chef-dk/policyfile/attribute_merge_checker"
+require "chef-dk/policyfile/included_policies_cookbook_source"
 require "chef-dk/policyfile_lock"
 require "chef-dk/ui"
 require "chef-dk/policyfile/reports/install"
@@ -49,8 +52,8 @@ module ChefDK
     def_delegator :@dsl, :named_run_list
     def_delegator :@dsl, :named_run_lists
     def_delegator :@dsl, :errors
-    def_delegator :@dsl, :default_source
     def_delegator :@dsl, :cookbook_location_specs
+    def_delegator :@dsl, :included_policies
 
     attr_reader :dsl
     attr_reader :storage_config
@@ -67,6 +70,19 @@ module ChefDK
       @install_report = Policyfile::Reports::Install.new(ui: @ui, policyfile_compiler: self)
     end
 
+    def default_source(source_type = nil, source_argument = nil, &block)
+      if source_type.nil?
+        prepend_array = if included_policies.length > 0
+                          [included_policies_cookbook_source]
+                        else
+                          []
+                        end
+        prepend_array + dsl.default_source
+      else
+        dsl.default_source(source_type, source_argument, &block)
+      end
+    end
+
     def error!
       unless errors.empty?
         raise PolicyfileError, errors.join("\n")
@@ -79,7 +95,17 @@ module ChefDK
 
     def expanded_run_list
       # doesn't support roles yet...
-      Chef::RunList.new(*run_list)
+      concated_runlist = Chef::RunList.new
+      included_policies.each do |policy_spec|
+        lock = policy_spec.policyfile_lock
+        lock.run_list.each do |run_list_item|
+          concated_runlist << run_list_item
+        end
+      end
+      run_list.each do |run_list_item|
+        concated_runlist << run_list_item
+      end
+      concated_runlist
     end
 
     # copy of the expanded_run_list, properly formatted for use in a lockfile
@@ -88,8 +114,23 @@ module ChefDK
     end
 
     def expanded_named_run_lists
-      named_run_lists.inject({}) do |expanded, (name, run_list_items)|
-        expanded[name] = Chef::RunList.new(*run_list_items)
+      included_policies_named_runlists = included_policies.inject({}) do |acc, policy_spec|
+        lock = policy_spec.policyfile_lock
+        lock.named_run_lists.inject(acc) do |expanded, (name, run_list_items)|
+          expanded[name] ||= Chef::RunList.new
+          run_list_items.each do |run_list_item|
+            expanded[name] << run_list_item
+          end
+          expanded
+        end
+        acc
+      end
+
+      named_run_lists.inject(included_policies_named_runlists) do |expanded, (name, run_list_items)|
+        expanded[name] ||= Chef::RunList.new
+        run_list_items.each do |run_list_item|
+          expanded[name] << run_list_item
+        end
         expanded
       end
     end
@@ -102,11 +143,19 @@ module ChefDK
     end
 
     def default_attributes
-      dsl.node_attributes.combined_default.to_hash
+      check_for_default_attribute_conflicts!
+      included_policies.map { |p| p.policyfile_lock }.inject(
+        dsl.node_attributes.combined_default.to_hash) do |acc, lock|
+          Chef::Mixin::DeepMerge.merge(acc, lock.default_attributes)
+        end
     end
 
     def override_attributes
-      dsl.node_attributes.combined_override.to_hash
+      check_for_override_attribute_conflicts!
+      included_policies.map { |p| p.policyfile_lock }.inject(
+        dsl.node_attributes.combined_override.to_hash) do |acc, lock|
+          Chef::Mixin::DeepMerge.merge(acc, lock.override_attributes)
+        end
     end
 
     def lock
@@ -208,16 +257,9 @@ module ChefDK
     end
 
     def graph_demands
-      cookbooks_for_demands.map do |cookbook_name|
-        spec = cookbook_location_spec_for(cookbook_name)
-        if spec.nil?
-          [ cookbook_name, DEFAULT_DEMAND_CONSTRAINT ]
-        elsif spec.version_fixed?
-          [ cookbook_name, "= #{spec.version}" ]
-        else
-          [ cookbook_name, spec.version_constraint.to_s ]
-        end
-      end
+      ## TODO: By merging cookbooks from the current policyfile and included policies,
+      #        we lose the ability to know where a conflict came from
+      (cookbook_demands_from_current + cookbook_demands_from_policies)
     end
 
     def artifacts_graph
@@ -409,6 +451,77 @@ module ChefDK
       end
 
       dependency_set
+    end
+
+    def check_for_default_attribute_conflicts!
+      checker = Policyfile::AttributeMergeChecker.new
+      checker.with_attributes("user-specified", dsl.node_attributes.combined_default)
+      included_policies.map do |policy_spec|
+        lock = policy_spec.policyfile_lock
+        checker.with_attributes(policy_spec.name, lock.default_attributes)
+      end
+      checker.check!
+    end
+
+    def check_for_override_attribute_conflicts!
+      checker = Policyfile::AttributeMergeChecker.new
+      checker.with_attributes("user-specified", dsl.node_attributes.combined_override)
+      included_policies.map do |policy_spec|
+        lock = policy_spec.policyfile_lock
+        checker.with_attributes(policy_spec.name, lock.override_attributes)
+      end
+      checker.check!
+    end
+
+    def cookbook_demands_from_policies
+      included_policies.flat_map do |policy_spec|
+        lock = policy_spec.policyfile_lock
+        lock.solution_dependencies.to_lock["Policyfile"]
+      end
+    end
+
+    def cookbook_demands_from_current
+      cookbooks_for_demands.map do |cookbook_name|
+        spec = cookbook_location_spec_for(cookbook_name)
+        if spec.nil?
+          [ cookbook_name, DEFAULT_DEMAND_CONSTRAINT ]
+        elsif spec.version_fixed?
+          [ cookbook_name, "= #{spec.version}" ]
+        else
+          [ cookbook_name, spec.version_constraint.to_s ]
+        end
+      end
+    end
+
+    def included_policies_cookbook_source
+      @included_policies_cookbook_source ||= begin
+        source = Policyfile::IncludedPoliciesCookbookSource.new(included_policies)
+        handle_included_policies_preferred_cookbook_conflicts(source)
+        source
+      end
+    end
+
+    def handle_included_policies_preferred_cookbook_conflicts(included_policies_source)
+      # All cookbooks in the included policies are preferred.
+      conflicting_source_messages = []
+      dsl.default_source.reject { |s| s.null? }.each do |source_b|
+        conflicting_preferences = included_policies_source.preferred_cookbooks & source_b.preferred_cookbooks
+        next if conflicting_preferences.empty?
+        next if conflicting_preferences.all? do |cookbook_name|
+          version = included_policies_source.universe_graph[cookbook_name].keys.first
+          if included_policies_source.source_options_for(cookbook_name, version) == source_b.source_options_for(cookbook_name, version)
+            true
+          else
+            false
+          end
+        end
+        conflicting_source_messages << "#{source_b.desc} sets a preferred for cookbook(s) #{conflicting_preferences.join(', ')}. This conflicts with an included policy."
+      end
+      unless conflicting_source_messages.empty?
+        msg = "You may not override the cookbook sources for any cookbooks required by included policies.\n"
+        msg << conflicting_source_messages.join("\n") << "\n"
+        raise IncludePolicyCookbookSourceConflict.new(msg)
+      end
     end
 
   end

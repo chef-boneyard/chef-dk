@@ -96,6 +96,9 @@ module ChefDK
   class BUG < RuntimeError
   end
 
+  class IncludePolicyCookbookSourceConflict < StandardError
+  end
+
   class CookbookSourceConflict < StandardError
 
     attr_reader :conflicting_cookbooks
@@ -136,4 +139,12 @@ EXAMPLE
 
   end
 
+  class PolicyfileLockDownloadError < StandardError
+  end
+
+  class LocalPolicyfileLockNotFound < StandardError
+  end
+
+  class InvalidPolicyfileLocation < StandardError
+  end
 end

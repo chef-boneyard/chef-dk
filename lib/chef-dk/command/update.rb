@@ -83,13 +83,6 @@ BANNER
 
       def run(params = [])
         return 1 unless apply_params!(params)
-
-        # Force config file to be loaded. We don't use the configuration
-        # directly, but the user may have SSL configuration options that they
-        # need to talk to a private supermarket (e.g., trusted_certs or
-        # ssl_verify_mode)
-        chef_config
-
         attributes_updater.run
         installer.run(@cookbooks_to_update) unless update_attributes_only?
         0
@@ -104,7 +97,7 @@ BANNER
 
       def attributes_updater
         @attributes_updater ||=
-          PolicyfileServices::UpdateAttributes.new(policyfile: policyfile_relative_path, ui: ui, root_dir: Dir.pwd)
+          PolicyfileServices::UpdateAttributes.new(policyfile: policyfile_relative_path, ui: ui, root_dir: Dir.pwd, chef_config: chef_config)
       end
 
       def debug?

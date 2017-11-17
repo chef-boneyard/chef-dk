@@ -134,6 +134,7 @@ E
           "Policyfile" => [["local-cookbook", ">= 0.0.0"]],
           "dependencies" => { "local-cookbook (2.3.4)" => [] },
         },
+        "included_policy_locks" => [],
       }
     end
 
@@ -168,6 +169,18 @@ E
         expect(ui.output).to include(message)
       end
 
+      context "when a policyfile is included" do
+        let(:lock_applier) { instance_double("ChefDK::Policyfile::LockApplier") }
+
+        it "locks the included policyfile" do
+          expect(ChefDK::Policyfile::LockApplier).to receive(:new).with(
+            update_attrs_service.policyfile_lock, update_attrs_service.policyfile_compiler).and_return(lock_applier)
+          expect(lock_applier).not_to receive(:with_unlocked_policies)
+          expect(lock_applier).to receive(:apply!)
+
+          update_attrs_service.run
+        end
+      end
     end
 
     context "when the Policyfile.rb has different attributes than the lockfile" do

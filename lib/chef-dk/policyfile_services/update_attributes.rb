@@ -17,6 +17,7 @@
 
 require "chef-dk/helpers"
 require "chef-dk/policyfile/storage_config"
+require "chef-dk/policyfile/lock_applier"
 require "chef-dk/service_exceptions"
 require "chef-dk/policyfile_compiler"
 
@@ -30,18 +31,21 @@ module ChefDK
 
       attr_reader :ui
       attr_reader :storage_config
+      attr_reader :chef_config
 
-      def initialize(policyfile: nil, ui: nil, root_dir: nil)
+      def initialize(policyfile: nil, ui: nil, root_dir: nil, chef_config: nil)
         @ui = ui
 
         policyfile_rel_path = policyfile || "Policyfile.rb"
         policyfile_full_path = File.expand_path(policyfile_rel_path, root_dir)
         @storage_config = Policyfile::StorageConfig.new.use_policyfile(policyfile_full_path)
         @updated = false
+        @chef_config = chef_config
       end
 
       def run
         assert_policy_and_lock_present!
+        prepare_constraints
 
         if policyfile_compiler.default_attributes != policyfile_lock.default_attributes
           policyfile_lock.default_attributes = policyfile_compiler.default_attributes
@@ -74,7 +78,7 @@ module ChefDK
       end
 
       def policyfile_compiler
-        @policyfile_compiler ||= ChefDK::PolicyfileCompiler.evaluate(policyfile_content, policyfile_expanded_path, ui: ui)
+        @policyfile_compiler ||= ChefDK::PolicyfileCompiler.evaluate(policyfile_content, policyfile_expanded_path, ui: ui, chef_config: chef_config)
       end
 
       def policyfile_lock_content
@@ -97,6 +101,10 @@ module ChefDK
         end
       end
 
+      def prepare_constraints
+        Policyfile::LockApplier.new(policyfile_lock, policyfile_compiler).
+          apply!
+      end
     end
   end
 end

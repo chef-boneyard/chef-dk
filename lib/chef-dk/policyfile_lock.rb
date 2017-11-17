@@ -93,6 +93,8 @@ module ChefDK
 
     attr_reader :cookbook_locks
 
+    attr_reader :included_policy_locks
+
     attr_reader :install_report
 
     def initialize(storage_config, ui: nil)
@@ -108,6 +110,9 @@ module ChefDK
       @override_attributes = {}
 
       @solution_dependencies = Policyfile::SolutionDependencies.new
+
+      @included_policy_locks = []
+
       @install_report = InstallReport.new(ui: @ui, policyfile_lock: self)
     end
 
@@ -137,6 +142,7 @@ module ChefDK
         lock["name"] = name
         lock["run_list"] = run_list
         lock["named_run_lists"] = named_run_lists unless named_run_lists.empty?
+        lock["included_policy_locks"] = included_policy_locks
         lock["cookbook_locks"] = cookbook_locks_for_lockfile
         lock["default_attributes"] = default_attributes
         lock["override_attributes"] = override_attributes
@@ -249,6 +255,14 @@ module ChefDK
 
       @solution_dependencies = compiler.solution_dependencies
 
+      @included_policy_locks = compiler.included_policies.map do |policy|
+        {
+          "name" => policy.name,
+          "revision_id" => policy.revision_id,
+          "source_options" => policy.source_options_for_lock,
+        }
+      end
+
       self
     end
 
@@ -259,6 +273,7 @@ module ChefDK
       set_cookbook_locks_from_lock_data(lock_data)
       set_attributes_from_lock_data(lock_data)
       set_solution_dependencies_from_lock_data(lock_data)
+      set_included_policy_locks_from_lock_data(lock_data)
       self
     end
 
@@ -269,6 +284,7 @@ module ChefDK
       set_cookbook_locks_as_archives_from_lock_data(lock_data)
       set_attributes_from_lock_data(lock_data)
       set_solution_dependencies_from_lock_data(lock_data)
+      set_included_policy_locks_from_lock_data(lock_data)
       self
     end
 
@@ -515,6 +531,20 @@ module ChefDK
 
       s = Policyfile::SolutionDependencies.from_lock(lock_data["solution_dependencies"])
       @solution_dependencies = s
+    end
+
+    def set_included_policy_locks_from_lock_data(lock_data)
+      locks = lock_data["included_policy_locks"]
+      if locks.nil?
+        @included_policy_locks = []
+      else
+        locks.each do |lock_info|
+          if !(%w{revision_id name source_options}.all? { |key| !lock_info[key].nil? })
+            raise InvalidLockfile, "lockfile included policy missing one of the required keys"
+          end
+        end
+        @included_policy_locks = locks
+      end
     end
 
     def build_cookbook_lock_from_lock_data(name, lock_info)

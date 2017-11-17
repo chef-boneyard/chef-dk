@@ -24,6 +24,73 @@ cookbook "runit",
   identifier: "09d43fad354b3efcc5b5836fef5137131f60f974"
 ```
 
+## Add include_policy directive
+Policyfile maybe now use the `include_policy` directive as described in
+[RFC097](https://github.com/chef/chef-rfc/blob/master/rfc097-policyfile-includes.md).
+This directive's purpose is to allow the inclusion policyfile locks to the current
+policyfile. In this iteration, we support sourcing lock files from a local path or a
+chef server. Below is a simple example of how the `include_policy` directive can be used.
+
+Given a policyfile `base.rb`:
+```
+name 'base'
+
+default_source :supermarket
+
+run_list 'motd'
+
+cookbook 'motd', '~> 0.6.0'
+```
+
+Run:
+```
+>> chef install ./base.rb
+
+Building policy base
+Expanded run list: recipe[motd]
+Caching Cookbooks...
+Using      motd         0.6.4
+Using      chef_handler 3.0.2
+
+Lockfile written to /home/jaym/workspace/chef-dk/base.lock.json
+Policy revision id: 1238e7a353ec07a4df6636cdffd8805220a00789bace96d6d70268a4b0064023
+```
+
+This will produce the `base.lock.json` that will be included in our next policy `users.rb`:
+```
+name 'users'
+
+default_source :supermarket
+
+run_list 'user'
+
+cookbook 'user', '~> 0.7.0'
+
+include_policy 'base', path: './base.lock.json'
+```
+
+Run:
+```
+>> chef install ./users.rb
+
+Building policy users
+Expanded run list: recipe[motd::default], recipe[user]
+Caching Cookbooks...
+Using      motd         0.6.4
+Installing user         0.7.0
+Using      chef_handler 3.0.2
+
+Lockfile written to /home/jaym/workspace/chef-dk/users.lock.json
+Policy revision id: 20fac68f987152f62a2761e1cfc7f1dc29b598303bfb2d84a115557e2a4a8f27
+```
+
+This will produce a `users.lock.json` that has the `base` policyfile lock merged in. 
+
+More information can be found in
+[RFC097](https://github.com/chef/chef-rfc/blob/master/rfc097-policyfile-includes.md) and
+the [docs](https://docs.chef.io/policyfile.htm://docs.chef.io/policyfile.html).
+
+
 # ChefDK 2.3 Release Notes
 
 ChefDK 2.3 includes Ruby 2.4.2 to fix the following CVEs:

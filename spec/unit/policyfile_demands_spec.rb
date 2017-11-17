@@ -215,7 +215,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     end
 
     before do
-      policyfile.default_source.replace([ default_source_obj ])
+      allow(policyfile).to receive(:default_source).and_return([default_source_obj])
 
       allow(default_source_obj).to receive(:universe_graph).
         and_return(trimmed_cookbook_universe)

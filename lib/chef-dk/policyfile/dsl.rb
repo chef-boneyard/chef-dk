@@ -18,6 +18,7 @@
 require "chef-dk/policyfile/cookbook_sources"
 require "chef-dk/policyfile/cookbook_location_specification"
 require "chef-dk/policyfile/storage_config"
+require "chef-dk/policyfile/policyfile_location_specification"
 
 require "chef/node/attribute"
 require "chef/run_list/run_list_item"
@@ -36,6 +37,7 @@ module ChefDK
       attr_reader :run_list
       attr_reader :default_source
       attr_reader :cookbook_location_specs
+      attr_reader :included_policies
 
       attr_reader :named_run_lists
       attr_reader :node_attributes
@@ -48,6 +50,7 @@ module ChefDK
         @errors = []
         @run_list = []
         @named_run_lists = {}
+        @included_policies = []
         @default_source = [ NullCookbookSource.new ]
         @cookbook_location_specs = {}
         @storage_config = storage_config
@@ -117,6 +120,19 @@ module ChefDK
           @errors << err
         else
           @cookbook_location_specs[name] = spec
+          @errors += spec.errors
+        end
+      end
+
+      def include_policy(name, source_options = {})
+        if existing = included_policies.find { |p| p.name == name }
+          err = "Included policy '#{name}' assigned conflicting locations or was already specified\n\n"
+          err << "Previous source: #{existing.source_options.inspect}\n"
+          err << "Conflicts with: #{source_options.inspect}\n"
+          @errors << err
+        else
+          spec = PolicyfileLocationSpecification.new(name, source_options, storage_config, chef_config)
+          included_policies << spec
           @errors += spec.errors
         end
       end
