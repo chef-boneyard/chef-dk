@@ -1,7 +1,26 @@
+#
+# Copyright:: Copyright (c) 2017 Chef Software Inc.
+# License:: Apache License, Version 2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 require "chef/mash"
+
 module ChefDK
   module Policyfile
     class AttributeMergeChecker
+      # A ConflictError is used to specify a conflict has occurred
       class ConflictError < StandardError
         attr_reader :attribute_path
         attr_reader :provided_by
@@ -13,6 +32,10 @@ module ChefDK
         end
       end
 
+      # A Leaf is used to mark an individual attribute that has already
+      # been provided, along with its value and by who
+      #
+      # @api private
       class Leaf
         attr_reader :provided_by
         attr_reader :val
@@ -23,6 +46,7 @@ module ChefDK
         end
       end
 
+      # An AttributeHashInfo holds a set of attributes along with where they came from
       class AttributeHashInfo
         attr_reader :source_name
         attr_reader :hash
@@ -32,16 +56,27 @@ module ChefDK
         end
       end
 
+      # @return [Array<AttributeHashInfo>] A list of attributes and who they were provided by
       attr_reader :attribute_hash_infos
 
       def initialize
         @attribute_hash_infos = []
       end
 
+      # Add a hash of attributes to the set of attributes that will be compared
+      # for conflicts
+      #
+      # @param source_name [String] Where the attributes came from
+      # @param hash [Hash] attributes from source_name
       def with_attributes(source_name, hash)
         attribute_hash_infos << AttributeHashInfo.new(source_name, hash)
       end
 
+      # Check all added attributes for conflicts. Different sources can provide
+      # the same attribute if they have the same value. Otherwise, it is considered
+      # a conflict
+      #
+      # @raise ConflictError if there are conflicting attributes
       def check!
         check_struct = Mash.new
         attribute_hash_infos.each do |attr_hash_info|

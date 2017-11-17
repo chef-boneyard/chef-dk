@@ -1,3 +1,20 @@
+#
+# Copyright:: Copyright (c) 2017 Chef Software Inc.
+# License:: Apache License, Version 2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 module ChefDK
   module Policyfile
 
@@ -7,12 +24,22 @@ module ChefDK
       attr_reader :policyfile_lock
       attr_reader :policyfile_compiler
 
+      # Initialize a LockApplier. By default, all locked data this class knows
+      # about will be applied to the compiler. Currently, it applies locks only
+      # for included policies.
+      #
+      # @param policyfile_lock [PolicyfileLock] contains the locked data to use
+      # @param policyfile_compiler [PolicyfileCompiler] the compiler to apply the locked data
       def initialize(policyfile_lock, policyfile_compiler)
         @policyfile_lock = policyfile_lock
         @policyfile_compiler = policyfile_compiler
         @unlocked_policies = []
       end
 
+      # Unlocks included policies
+      #
+      # @param policies [:all] Unconstrain all policies
+      # @param policies [Array<String>] Unconstrain a specific policy by name
       def with_unlocked_policies(policies)
         if policies == :all || unlocked_policies == :all
           @unlocked_policies = :all
@@ -24,7 +51,10 @@ module ChefDK
         self
       end
 
-      # No changes are applied until apply! is invoked
+      # Apply locks described in policyfile_lock allowing for the deviations asked
+      # for.
+      #
+      # @note No changes are applied until apply! is invoked
       def apply!
         prepare_constraints_for_policies
       end
