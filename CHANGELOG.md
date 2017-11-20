@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.4.13 -->
-## [v2.4.13](https://github.com/chef/chef-dk/tree/v2.4.13) (2017-11-17)
+<!-- latest_release 2.4.14 -->
+## [v2.4.14](https://github.com/chef/chef-dk/tree/v2.4.14) (2017-11-20)
 
 #### Merged Pull Requests
-- Add support for multiple policy files [#1446](https://github.com/chef/chef-dk/pull/1446) ([jaym](https://github.com/jaym))
+- Update `chef` command help for granular updates [#1464](https://github.com/chef/chef-dk/pull/1464) ([AntonOfTheWoods](https://github.com/AntonOfTheWoods))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.3.4 -->
 ### Changes since 2.3.4 release
 
 #### Merged Pull Requests
+- Update `chef` command help for granular updates [#1464](https://github.com/chef/chef-dk/pull/1464) ([AntonOfTheWoods](https://github.com/AntonOfTheWoods)) <!-- 2.4.14 -->
 - Add support for multiple policy files [#1446](https://github.com/chef/chef-dk/pull/1446) ([jaym](https://github.com/jaym)) <!-- 2.4.13 -->
 - Pull in Foodcritic 12.2.1 [#1462](https://github.com/chef/chef-dk/pull/1462) ([tas50](https://github.com/tas50)) <!-- 2.4.12 -->
 - Pull in latest foodcritic, kitchen-inspec, and train [#1460](https://github.com/chef/chef-dk/pull/1460) ([tas50](https://github.com/tas50)) <!-- 2.4.11 -->

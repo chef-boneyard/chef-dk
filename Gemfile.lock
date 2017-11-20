@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    chef-dk (2.4.13)
+    chef-dk (2.4.14)
       addressable (>= 2.3.5, < 2.6)
       chef (~> 13.0)
       chef-provisioning (~> 2.0)
