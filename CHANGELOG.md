@@ -1,12 +1,15 @@
-<!-- latest_release 1.6.7 -->
-## [v1.6.7](https://github.com/chef/chef-dk/tree/v1.6.7) (2017-09-15)
+<!-- latest_release 1.6.9 -->
+## [v1.6.9](https://github.com/chef/chef-dk/tree/v1.6.9) (2017-11-22)
 
 #### Merged Pull Requests
-- update omnibus software [#1396](https://github.com/chef/chef-dk/pull/1396) ([thommay](https://github.com/thommay))
+- update omnibus [#1454](https://github.com/chef/chef-dk/pull/1454) ([thommay](https://github.com/thommay))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.3.4 -->
 ### Changes since 2.3.4 release
+
+#### Merged Pull Requests
+- update omnibus [#1454](https://github.com/chef/chef-dk/pull/1454) ([thommay](https://github.com/thommay)) <!-- 1.6.9 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
