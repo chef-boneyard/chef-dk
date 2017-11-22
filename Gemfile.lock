@@ -113,7 +113,7 @@ GIT
 PATH
   remote: .
   specs:
-    chef-dk (1.6.9)
+    chef-dk (1.6.10)
       addressable (>= 2.3.5, < 2.6)
       chef (~> 12.5)
       chef-provisioning (~> 2.0)

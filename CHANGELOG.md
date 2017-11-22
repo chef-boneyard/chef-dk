@@ -1,14 +1,15 @@
-<!-- latest_release 1.6.9 -->
-## [v1.6.9](https://github.com/chef/chef-dk/tree/v1.6.9) (2017-11-22)
+<!-- latest_release 1.6.10 -->
+## [v1.6.10](https://github.com/chef/chef-dk/tree/v1.6.10) (2017-11-22)
 
 #### Merged Pull Requests
-- update omnibus [#1454](https://github.com/chef/chef-dk/pull/1454) ([thommay](https://github.com/thommay))
+- Don&#39;t uninstall bundler on Travis / Appveyor [#1466](https://github.com/chef/chef-dk/pull/1466) ([btm](https://github.com/btm))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.3.4 -->
 ### Changes since 2.3.4 release
 
 #### Merged Pull Requests
+- Don&#39;t uninstall bundler on Travis / Appveyor [#1466](https://github.com/chef/chef-dk/pull/1466) ([btm](https://github.com/btm)) <!-- 1.6.10 -->
 - update omnibus [#1454](https://github.com/chef/chef-dk/pull/1454) ([thommay](https://github.com/thommay)) <!-- 1.6.9 -->
 <!-- release_rollup -->
 
