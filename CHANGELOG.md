@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.4.16 -->
-## [v2.4.16](https://github.com/chef/chef-dk/tree/v2.4.16) (2017-11-28)
+<!-- latest_release 2.4.17 -->
+## [v2.4.17](https://github.com/chef/chef-dk/tree/v2.4.17) (2017-11-28)
 
 #### Merged Pull Requests
-- Dump dependencies and update release notes for 2.4 [#1467](https://github.com/chef/chef-dk/pull/1467) ([tas50](https://github.com/tas50))
+- Pull in the new Test Kitchen which allows for the latest winrm-fs [#1470](https://github.com/chef/chef-dk/pull/1470) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.3.4 -->
 ### Changes since 2.3.4 release
 
 #### Merged Pull Requests
+- Pull in the new Test Kitchen which allows for the latest winrm-fs [#1470](https://github.com/chef/chef-dk/pull/1470) ([tas50](https://github.com/tas50)) <!-- 2.4.17 -->
 - Dump dependencies and update release notes for 2.4 [#1467](https://github.com/chef/chef-dk/pull/1467) ([tas50](https://github.com/tas50)) <!-- 2.4.16 -->
 - Update dependencies [#1465](https://github.com/chef/chef-dk/pull/1465) ([thommay](https://github.com/thommay)) <!-- 2.4.15 -->
 - Update `chef` command help for granular updates [#1464](https://github.com/chef/chef-dk/pull/1464) ([AntonOfTheWoods](https://github.com/AntonOfTheWoods)) <!-- 2.4.14 -->
