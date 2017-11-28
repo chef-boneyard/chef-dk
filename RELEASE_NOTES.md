@@ -105,12 +105,12 @@ The Chef Provisioning AWS gem has been updated from the Amazon AWS SDK V1 to V2.
 ## Notable Updated Gems
 
 - aws-sdk 2.10.45 -> 2.10.90
-- chef 13.4.19 - > 13.6.4 ([Changelog](https://github.com/chef/chef/blob/master/RELEASE_NOTES.md))
+- chef 13.4.19 -> 13.6.4 ([Changelog](https://github.com/chef/chef/blob/master/RELEASE_NOTES.md))
+- chefspec 7.1.0 -> 7.1.1 ([Changelog](https://github.com/chefspec/chefspec/blob/master/CHANGELOG.md)
 - chef-provisioning 2.5.0 -> 2.6.0 ([Changelog](https://github.com/chef/chef-provisioning/blob/master/CHANGELOG.md))
 - chef-provisioning-aws 2.2.2 -> 3.0.0 ([Changelog](https://github.com/chef/chef-provisioning-aws/blob/master/CHANGELOG.md))
 - chef-provisioning-fog 0.21.0 -> 0.26.0 ([Changelog](https://github.com/chef/chef-provisioning-fog/blob/master/CHANGELOG.md))
 - chef-sugar 3.5.0 -> 3.6.0 ([Changelog](https://github.com/sethvargo/chef-sugar/blob/master/CHANGELOG.md))
-- cucumber 2.4.0 -> 3.0.2 ([Changelog](https://github.com/cucumber/cucumber-ruby/blob/master/CHANGELOG.md))
 - fauxhai 5.3.0 -> 5.5.0 ([Changelog](https://github.com/chefspec/fauxhai/blob/master/CHANGELOG.md))
 - foodcritic 11.4.0 -> 12.2.1 ([Changelog](https://github.com/Foodcritic/foodcritic/blob/master/CHANGELOG.md))
 - inspec 1.36.1 -> 1.44.13 ([Changelog](https://github.com/chef/inspec/blob/master/CHANGELOG.md))
@@ -121,12 +121,11 @@ The Chef Provisioning AWS gem has been updated from the Amazon AWS SDK V1 to V2.
 - knife-google new @ 3.2.0
 - knife-spork 1.6.3 -> 1.7.1 ([Changelog](https://github.com/jonlives/knife-spork/blob/master/CHANGELOG.md))
 - mixlib-install 2.1.12 -> 3.8.0 ([Changelog](https://github.com/chef/mixlib-install/blob/master/CHANGELOG.md))
-- rake 12.1.0 -> 12.3.0 ([Changelog](https://github.com/ruby/rake/blob/master/History.rdoc))
 - rspec 3.6.0 -> 3.7.0 ([Changelog](https://github.com/rspec/rspec-core/blob/master/Changelog.md))
 - serverspec 2.40.0 -> 2.41.3
-- test-kitchen 1.17.0 -> 1.19.1 ([Changelog](https://github.com/test-kitchen/test-kitchen/blob/master/CHANGELOG.md))
+- test-kitchen 1.17.0 -> 1.19.2 ([Changelog](https://github.com/test-kitchen/test-kitchen/blob/master/CHANGELOG.md))
 - train 0.26.2 -> 0.29.2 ([Changelog](https://github.com/chef/train/blob/master/CHANGELOG.md))
-- winrm-fs 1.0.1 -> winrm-fs 1.1.0 ([Changelog](https://github.com/WinRb/winrm-fs/blob/master/changelog.md))
+- winrm-fs 1.0.1 -> winrm-fs 1.1.1 ([Changelog](https://github.com/WinRb/winrm-fs/blob/master/changelog.md))
 
 
 # ChefDK 2.3 Release Notes
