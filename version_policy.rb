@@ -17,39 +17,35 @@
 
 # Explicit omnibus overrides.
 OMNIBUS_OVERRIDES = {
-  # Until 1.13.0 is released
-  :bundler => "1.15.4",
-  :rubygems => "2.6.13", # 2.6.12 fails to install appbundler
+  :bundler => "1.16.0",
+  :rubygems => "2.6.14",
   # Lower level library pins
-  ## according to comment in omnibus-sw, latest versions don't work on solaris
-  # https://github.com/chef/omnibus-software/blob/aefb7e79d29ca746c3f843673ef5e317fa3cba54/config/software/libtool.rb#L23
+  # These are the latest version in omnibus-software as of 2017-11-28:
   "libffi" => "3.2.1",
   "libiconv" => "1.15",
   "liblzma" => "5.2.3",
-  ## according to comment in omnibus-sw, the very latest versions don't work on solaris
-  # https://github.com/chef/omnibus-software/blob/aefb7e79d29ca746c3f843673ef5e317fa3cba54/config/software/libtool.rb#L23
-  "libtool" => "2.4.2",
-  "libxml2" => "2.9.4",
-  "libxslt" => "1.1.29",
+  "libxml2" => "2.9.5",
+  "libxslt" => "1.1.30",
   "libyaml" => "0.1.7",
   "makedepend" => "1.0.5",
   "ncurses" => "5.9",
+  "openssl" => "1.0.2m",
   "pkg-config-lite" => "0.28-1",
   "ruby" => "2.3.5",
+  "util-macros" => "1.19.0",
+  "xproto" => "7.0.28",
+  "zlib" => "1.2.11",
+  ## according to comment in omnibus-sw, the latest versions of libtool don't work on solaris
+  # https://github.com/chef/omnibus-software/blob/aefb7e79d29ca746c3f843673ef5e317fa3cba54/config/software/libtool.rb#L23
+  "libtool" => "2.4.2",
   # Leave dev-kit pinned to 4.5 on 32-bit, because 4.7 is 20MB larger and we don't want
   # to unnecessarily make the client any fatter. (Since it's different between
   # 32 and 64, we have to do it in the project file still.)
   # "ruby-windows-devkit" => "4.5.2-20111229-1559",
   "ruby-windows-devkit-bash" => "3.1.23-4-msys-1.0.18",
-  "util-macros" => "1.19.0",
-  "xproto" => "7.0.28",
-  "zlib" => "1.2.11",
   # The windows dependency (libzmq4x-windows) only has 1 version so far in
   # software def so we don't need to override that
   "libzmq" => "4.0.7",
-
-  # Match what is in Chef Client
-  "openssl" => "1.0.2j",
 }
 
 #

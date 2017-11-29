@@ -43,7 +43,7 @@ end
 # since that's not expressible here, we make it >= the last *known* version to
 # at least prevent downgrades beyond that:
 group(:omnibus_package) do
-  gem "appbundler", github: "chef/appbundler" # until next release with multiple-gem support
+  gem "appbundler"
   gem "berkshelf", ">= 5.0"
   # Chef 12.8.1 Gem includes some extra files which can break gem installation on
   # windows. For now we are pulling chef from github at the tag as a workaround.
@@ -54,7 +54,7 @@ group(:omnibus_package) do
   gem "chef-provisioning-vagrant", ">= 0.11.0"
   gem "chef-vault", "~> 2"
   # The chef version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "chef", github: "chef/chef", branch: "v12.21.4"
+  gem "chef", github: "chef/chef", branch: "v12.21.26"
   # Pinned cheffish to version 5.0.1 since the latest version 13.0.0 has
   # a dependency to ruby 2.3.3 but we are shipping ChefDK with ruby 2.3.1
   #
@@ -79,7 +79,7 @@ group(:omnibus_package) do
   gem "mixlib-versioning"
   gem "artifactory"
   # The opscode-pushy-client version is pinned by "rake dependencies", which grabs the current version from omnibus.
-  gem "opscode-pushy-client", github: "chef/opscode-pushy-client", branch: "2.2.0"
+  gem "opscode-pushy-client", github: "chef/opscode-pushy-client", branch: "2.4.5"
   gem "ffi-rzmq-core"
   gem "knife-push"
 

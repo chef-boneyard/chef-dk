@@ -1,19 +1,12 @@
 GIT
-  remote: git://github.com/chef/appbundler.git
-  revision: 6582b68884453b5ca5c962458a0c08046c719558
-  specs:
-    appbundler (0.10.0)
-      mixlib-cli (~> 1.4)
-
-GIT
   remote: git://github.com/chef/chef.git
-  revision: 9d0661c289b9220ffc056f35f6fb3c1a2d54eb90
-  branch: v12.21.4
+  revision: 3365b635aef810b8f12a194e59dd51e182234731
+  branch: v12.21.26
   specs:
-    chef (12.21.4)
+    chef (12.21.26)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.21.4)
+      chef-config (= 12.21.26)
       chef-zero (>= 4.8, < 13)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -39,10 +32,10 @@ GIT
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (12.21.4-universal-mingw32)
+    chef (12.21.26-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 12.21.4)
+      chef-config (= 12.21.26)
       chef-zero (>= 4.8, < 13)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -79,7 +72,7 @@ GIT
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (12.21.4)
+    chef-config (12.21.26)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -87,13 +80,13 @@ GIT
 
 GIT
   remote: git://github.com/chef/opscode-pushy-client.git
-  revision: 673b488071e98fa159682a3b15bc033db876dea8
-  branch: 2.2.0
+  revision: 52065af8c203e11befc7efb338867813ff10b574
+  branch: 2.4.5
   specs:
-    opscode-pushy-client (2.2.0)
-      chef (~> 12.19)
+    opscode-pushy-client (2.4.5)
+      chef (>= 12.19, < 14.0)
       ffi-rzmq
-      ohai (~> 8.23)
+      ohai (>= 8.23, < 14.0)
       uuidtools
 
 GIT
@@ -137,6 +130,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     app_conf (0.4.2)
+    appbundler (0.10.0)
+      mixlib-cli (~> 1.4)
     artifactory (2.8.1)
     ast (2.3.0)
     autoparse (0.3.3)
@@ -473,7 +468,7 @@ GEM
     gyoku (1.3.1)
       builder (>= 2.1.2)
     hashie (3.5.6)
-    highline (1.7.8)
+    highline (1.7.10)
     hitimes (1.2.4)
     hitimes (1.2.4-x86-mingw32)
     httpclient (2.8.3)
@@ -520,7 +515,7 @@ GEM
     kitchen-vagrant (1.1.0)
       test-kitchen (~> 1.4)
     knife-opc (0.3.2)
-    knife-push (1.0.2)
+    knife-push (1.0.3)
       chef (>= 12.7.2)
     knife-spork (1.6.3)
       app_conf (>= 0.4.0)
@@ -590,13 +585,15 @@ GEM
       mini_portile2 (~> 2.1.0)
     nokogiri (1.7.2-x86-mingw32)
       mini_portile2 (~> 2.1.0)
+    nokogiri (1.7.2-x64-mingw32)
+      mini_portile2 (~> 2.1.0)
     nori (2.6.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
     octokit (4.6.2)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (8.24.1)
+    ohai (8.25.1)
       chef-config (>= 12.5.0.alpha.1, < 14)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
@@ -636,7 +633,7 @@ GEM
     rack (2.0.3)
     rainbow (2.2.2)
       rake
-    rake (10.5.0)
+    rake (12.3.0)
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
@@ -705,11 +702,11 @@ GEM
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
     semverse (2.0.0)
-    serverspec (2.40.0)
+    serverspec (2.41.3)
       multi_json
       rspec (~> 3.0)
       rspec-its
-      specinfra (~> 2.68)
+      specinfra (~> 2.72)
     sfl (2.3)
     shellany (0.0.1)
     signet (0.7.3)
@@ -721,7 +718,7 @@ GEM
     solve (3.1.0)
       molinillo (>= 0.5)
       semverse (>= 1.1, < 3.0)
-    specinfra (2.70.1)
+    specinfra (2.72.1)
       net-scp
       net-ssh (>= 2.7, < 5.0)
       net-telnet
@@ -817,10 +814,11 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
   x86-mingw32
 
 DEPENDENCIES
-  appbundler!
+  appbundler
   artifactory
   berkshelf (>= 5.0)
   chef!
@@ -885,4 +883,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.14.6
+   1.16.0
