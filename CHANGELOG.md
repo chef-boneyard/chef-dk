@@ -1,20 +1,18 @@
-<!-- latest_release 1.6.11 -->
-## [v1.6.11](https://github.com/chef/chef-dk/tree/v1.6.11) (2017-11-29)
-
-#### Merged Pull Requests
-- Update libraries for [security] fixes. [#1469](https://github.com/chef/chef-dk/pull/1469) ([btm](https://github.com/btm))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=2.3.4 -->
-### Changes since 2.3.4 release
-
-#### Merged Pull Requests
-- Update libraries for [security] fixes. [#1469](https://github.com/chef/chef-dk/pull/1469) ([btm](https://github.com/btm)) <!-- 1.6.11 -->
-- Don&#39;t uninstall bundler on Travis / Appveyor [#1466](https://github.com/chef/chef-dk/pull/1466) ([btm](https://github.com/btm)) <!-- 1.6.10 -->
-- update omnibus [#1454](https://github.com/chef/chef-dk/pull/1454) ([thommay](https://github.com/thommay)) <!-- 1.6.9 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v1.6.11](https://github.com/chef/chef-dk/tree/v1.6.11) (2017-11-29)
+
+#### Merged Pull Requests
+- update omnibus [#1454](https://github.com/chef/chef-dk/pull/1454) ([thommay](https://github.com/thommay))
+- Don&#39;t uninstall bundler on Travis / Appveyor [#1466](https://github.com/chef/chef-dk/pull/1466) ([btm](https://github.com/btm))
+- Update libraries for [security] fixes. [#1469](https://github.com/chef/chef-dk/pull/1469) ([btm](https://github.com/btm))
+<!-- latest_stable_release -->
+
 ## [v2.3.4](https://github.com/chef/chef-dk/tree/v2.3.4) (2017-09-22)
 
 #### Merged Pull Requests
@@ -23,7 +21,6 @@
 - Update release notes for 1.6 release [#1392](https://github.com/chef/chef-dk/pull/1392) ([thommay](https://github.com/thommay))
 - Update bundler to latest version [#1395](https://github.com/chef/chef-dk/pull/1395) ([thommay](https://github.com/thommay))
 - update omnibus software [#1396](https://github.com/chef/chef-dk/pull/1396) ([thommay](https://github.com/thommay))
-<!-- latest_stable_release -->
 
 
 
