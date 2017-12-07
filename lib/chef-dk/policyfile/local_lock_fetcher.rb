@@ -116,12 +116,7 @@ module ChefDK
       end
 
       def abs_path
-        source_path = Pathname.new(source_options[:path])
-        if !source_path.absolute?
-          Pathname.new(storage_config.relative_paths_root).join(source_path)
-        else
-          source_path
-        end
+        Pathname.new(source_options[:path]).expand_path(storage_config.relative_paths_root)
       end
     end
   end
