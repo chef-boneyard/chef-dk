@@ -98,7 +98,7 @@ module ChefDK
 
       def path
         @path ||= begin
-          path = Pathname.new(source_options[:path])
+          path = abs_path
           if path.directory?
             path = path.join("#{name}.lock.json")
             if !path.file?
@@ -111,10 +111,16 @@ module ChefDK
                 "The provided path #{source_options[:path]} does not exist.")
             end
           end
-          if !path.absolute?
-            path = Pathname.new(storage_config.relative_paths_root).join(path)
-          end
           path
+        end
+      end
+
+      def abs_path
+        source_path = Pathname.new(source_options[:path])
+        if !source_path.absolute?
+          Pathname.new(storage_config.relative_paths_root).join(source_path)
+        else
+          source_path
         end
       end
     end
