@@ -60,19 +60,6 @@ describe ChefDK::Policyfile::LocalLockFetcher do
 E
   end
 
-  let(:lock_file_path) { "#{tempdir}/foo/bar/baz/foo.lock.json" }
-  let(:storage_config) { ChefDK::Policyfile::StorageConfig.new.use_policyfile("#{tempdir}/Policyfile.rb") }
-
-  before do
-    reset_tempdir
-    FileUtils.mkdir_p(Pathname.new(lock_file_path).dirname)
-    File.open(lock_file_path, "w") { |file| file.write(minimal_lockfile_json) }
-  end
-
-  after do
-    reset_tempdir
-  end
-
   def minimal_lockfile
     FFI_Yajl::Parser.parse(minimal_lockfile_json)
   end
@@ -83,78 +70,103 @@ E
     end
   end
 
-  subject(:fetcher) { described_class.new("foo", source_options, storage_config) }
+  [:relative, :absolute].each do |mode|
+    context "When path is #{mode}" do
+      let(:path) { "foo/bar/baz/foo.lock.json" }
+      let(:lock_file_path_abs) { "#{tempdir}/#{path}" }
+      let(:lock_file_path) do
+        if mode == :relative
+          path
+        else
+          lock_file_path_abs
+        end
+      end
+      let(:storage_config) { ChefDK::Policyfile::StorageConfig.new.use_policyfile("#{tempdir}/Policyfile.rb") }
 
-  context "when the path is a file" do
-    context "and the file exists" do
-      let(:source_options) do
-        {
-          path: lock_file_path,
-        }
+      before do
+        reset_tempdir
+        FileUtils.mkdir_p(Pathname.new(lock_file_path_abs).dirname)
+        File.open(lock_file_path_abs, "w") { |file| file.write(minimal_lockfile_json) }
       end
 
-      let(:source_options_for_lock) { source_options }
-
-      it "loads the policy from disk" do
-        expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
+      after do
+        reset_tempdir
       end
 
-      it "returns source_options_for_lock" do
-        expect(fetcher.source_options).to eq(source_options)
+      subject(:fetcher) { described_class.new("foo", source_options, storage_config) }
+
+      context "when the path is a file" do
+        context "and the file exists" do
+          let(:source_options) do
+            {
+              path: lock_file_path,
+            }
+          end
+
+          let(:source_options_for_lock) { source_options }
+
+          it "loads the policy from disk" do
+            expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
+          end
+
+          it "returns source_options_for_lock" do
+            expect(fetcher.source_options).to eq(source_options)
+          end
+
+          it "applies can apply source options from the lock" do
+            fetcher.apply_locked_source_options(source_options_for_lock)
+            expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
+          end
+        end
+
+        context "and the file does not exist" do
+          let(:source_options) do
+            {
+              path: Pathname.new(lock_file_path).dirname.join("dne.json.lock").to_s,
+            }
+          end
+
+          it "raises an error" do
+            expect { fetcher.lock_data }.to raise_error(ChefDK::LocalPolicyfileLockNotFound)
+          end
+        end
       end
 
-      it "applies can apply source options from the lock" do
-        fetcher.apply_locked_source_options(source_options_for_lock)
-        expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
-      end
-    end
+      context "when the path is a directory" do
+        context "and the file exists" do
+          let(:source_options) do
+            {
+              path: Pathname.new(lock_file_path).dirname.to_s,
+            }
+          end
 
-    context "and the file does not exist" do
-      let(:source_options) do
-        {
-          path: Pathname.new(lock_file_path).dirname.join("dne.json.lock").to_s,
-        }
-      end
+          let(:source_options_for_lock) { source_options }
 
-      it "raises an error" do
-        expect { fetcher.lock_data }.to raise_error(ChefDK::LocalPolicyfileLockNotFound)
-      end
-    end
-  end
+          it "loads the policy from disk" do
+            expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
+          end
 
-  context "when the path is a directory" do
-    context "and the file exists" do
-      let(:source_options) do
-        {
-          path: Pathname.new(lock_file_path).dirname.to_s,
-        }
-      end
+          it "returns source_options_for_lock" do
+            expect(fetcher.source_options).to eq(source_options)
+          end
 
-      let(:source_options_for_lock) { source_options }
+          it "applies can apply source options from the lock" do
+            fetcher.apply_locked_source_options(source_options_for_lock)
+            expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
+          end
+        end
 
-      it "loads the policy from disk" do
-        expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
-      end
+        context "and the file does not exist" do
+          let(:source_options) do
+            {
+              path: Pathname.new(lock_file_path).dirname.parent.to_s,
+            }
+          end
 
-      it "returns source_options_for_lock" do
-        expect(fetcher.source_options).to eq(source_options)
-      end
-
-      it "applies can apply source options from the lock" do
-        fetcher.apply_locked_source_options(source_options_for_lock)
-        expect(fetcher.lock_data).to eq(minimal_lockfile_modified)
-      end
-    end
-
-    context "and the file does not exist" do
-      let(:source_options) do
-        {
-          path: Pathname.new(lock_file_path).dirname.parent.to_s,
-        }
-      end
-
-      it "raises an error" do
-        expect { fetcher.lock_data }.to raise_error(ChefDK::LocalPolicyfileLockNotFound, /provide the file name as part of the path/)
+          it "raises an error" do
+            expect { fetcher.lock_data }.to raise_error(ChefDK::LocalPolicyfileLockNotFound, /provide the file name as part of the path/)
+          end
+        end
       end
     end
   end
