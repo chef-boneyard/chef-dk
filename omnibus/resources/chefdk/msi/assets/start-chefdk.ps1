@@ -9,11 +9,11 @@ Try {
 
     if ( test-path $conemulocation )
     {
-        start-process $conemulocation -verb runas -argumentlist '/title',"`"$chefdktitle`"",'/cmd','powershell.exe','-noexit','-command',$chefdkcommand
+        start-process $conemulocation -verb runas -argumentlist '-ExecutionPolicy Bypass','/title',"`"$chefdktitle`"",'/cmd','powershell.exe','-noexit','-command',$chefdkcommand
     }
     else
     {
-        start-process powershell.exe -verb runas -argumentlist '-noexit','-command',"$chefdkcommand; (get-host).ui.rawui.windowtitle = '$chefdktitle'"
+        start-process powershell.exe -verb runas -argumentlist '-ExecutionPolicy Bypass','-noexit','-command',"$chefdkcommand; (get-host).ui.rawui.windowtitle = '$chefdktitle'"
     }
 }
 Catch
