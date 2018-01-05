@@ -268,7 +268,7 @@ PROJECT_DOT_TOML
 # Cookbook:: build_cookbook
 # Recipe:: publish
 #
-# Copyright:: 2017, The Authors, All Rights Reserved.
+# Copyright:: 2018, The Authors, All Rights Reserved.
 include_recipe 'delivery-truck::publish'
   CONFIG_DOT_JSON
         end
