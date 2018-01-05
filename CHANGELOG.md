@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.4.22 -->
-## [v2.4.22](https://github.com/chef/chef-dk/tree/v2.4.22) (2017-12-12)
+<!-- latest_release 2.4.23 -->
+## [v2.4.23](https://github.com/chef/chef-dk/tree/v2.4.23) (2018-01-05)
 
 #### Merged Pull Requests
-- Bumping deps for kitchen-ec2 [#1476](https://github.com/chef/chef-dk/pull/1476) ([cheeseplus](https://github.com/cheeseplus))
+- Bump deps to pick up InSpec v1.49.2 [#1481](https://github.com/chef/chef-dk/pull/1481) ([adamleff](https://github.com/adamleff))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.4.17 -->
 ### Changes since 2.4.17 release
 
 #### Merged Pull Requests
+- Bump deps to pick up InSpec v1.49.2 [#1481](https://github.com/chef/chef-dk/pull/1481) ([adamleff](https://github.com/adamleff)) <!-- 2.4.23 -->
 - Bumping deps for kitchen-ec2 [#1476](https://github.com/chef/chef-dk/pull/1476) ([cheeseplus](https://github.com/cheeseplus)) <!-- 2.4.22 -->
 - Fix bug causing relative paths to not work correctly in local_lock_fetcher [#1474](https://github.com/chef/chef-dk/pull/1474) ([jaym](https://github.com/jaym)) <!-- 2.4.21 -->
 - Require Chef 12.14+ in the skeleton cookbook  [#1472](https://github.com/chef/chef-dk/pull/1472) ([iennae](https://github.com/iennae)) <!-- 2.4.20 -->
