@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.4.23 -->
-## [v2.4.23](https://github.com/chef/chef-dk/tree/v2.4.23) (2018-01-05)
+<!-- latest_release 2.4.24 -->
+## [v2.4.24](https://github.com/chef/chef-dk/tree/v2.4.24) (2018-01-18)
 
 #### Merged Pull Requests
-- Bump deps to pick up InSpec v1.49.2 [#1481](https://github.com/chef/chef-dk/pull/1481) ([adamleff](https://github.com/adamleff))
+- Pull in the latest inspec, fauxhai, ohai, fog-openstack, fog-scaleway, and kitchen-inspec [#1486](https://github.com/chef/chef-dk/pull/1486) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.4.17 -->
 ### Changes since 2.4.17 release
 
 #### Merged Pull Requests
+- Pull in the latest inspec, fauxhai, ohai, fog-openstack, fog-scaleway, and kitchen-inspec [#1486](https://github.com/chef/chef-dk/pull/1486) ([tas50](https://github.com/tas50)) <!-- 2.4.24 -->
 - Bump deps to pick up InSpec v1.49.2 [#1481](https://github.com/chef/chef-dk/pull/1481) ([adamleff](https://github.com/adamleff)) <!-- 2.4.23 -->
 - Bumping deps for kitchen-ec2 [#1476](https://github.com/chef/chef-dk/pull/1476) ([cheeseplus](https://github.com/cheeseplus)) <!-- 2.4.22 -->
 - Fix bug causing relative paths to not work correctly in local_lock_fetcher [#1474](https://github.com/chef/chef-dk/pull/1474) ([jaym](https://github.com/jaym)) <!-- 2.4.21 -->
