@@ -169,9 +169,6 @@ GEM
       chef-provisioning (>= 1.0, < 3.0)
       retryable (~> 2.0, >= 2.0.1)
       ubuntu_ami (~> 0.4, >= 0.4.1)
-    chef-provisioning-azure (0.6.0)
-      chef-provisioning (>= 1.0, < 3.0)
-      stuartpreston-azure-sdk-for-ruby (~> 0.7)
     chef-provisioning-fog (0.26.0)
       chef-provisioning (>= 1.0, < 3.0)
       cheffish (>= 13.1.0, < 14.0)
@@ -744,7 +741,6 @@ DEPENDENCIES
   chef-dk!
   chef-provisioning (>= 2.4.0)
   chef-provisioning-aws (>= 3.0.0)
-  chef-provisioning-azure (>= 0.6.0)
   chef-provisioning-fog (>= 0.26.0)
   chef-sugar
   chef-vault (>= 3.3.0)
