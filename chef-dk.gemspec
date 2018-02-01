@@ -42,7 +42,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "mixlib-cli", "~> 1.7"
   gem.add_dependency "mixlib-shellout", "~> 2.0"
   gem.add_dependency "ffi-yajl", ">= 1.0", "< 3.0"
-  gem.add_dependency "minitar", "~> 0.5.4"
+  gem.add_dependency "minitar", "~> 0.6"
   gem.add_dependency "chef", "~> 13.0"
   gem.add_dependency "solve", "< 5.0", "> 2.0"
   gem.add_dependency "addressable", ">= 2.3.5", "< 2.6"
