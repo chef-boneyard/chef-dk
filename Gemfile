@@ -54,7 +54,7 @@ group(:omnibus_package) do
   gem "kitchen-google", ">= 1.4.0"
   gem "kitchen-hyperv", ">= 0.5.1"
   gem "kitchen-inspec", ">= 0.19.0"
-  gem "kitchen-vagrant", ">= 1.2.1"
+  gem "kitchen-vagrant", ">= 1.3.0"
   gem "knife-ec2", ">= 0.15.0"
   gem "knife-google", ">= 3.2.0"
   gem "knife-windows", ">= 1.9.0"
