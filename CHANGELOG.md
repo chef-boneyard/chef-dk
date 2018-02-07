@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.4.25 -->
-## [v2.4.25](https://github.com/chef/chef-dk/tree/v2.4.25) (2018-02-01)
+<!-- latest_release 2.4.26 -->
+## [v2.4.26](https://github.com/chef/chef-dk/tree/v2.4.26) (2018-02-07)
 
 #### Merged Pull Requests
-- Chef 13.7 Release [#1492](https://github.com/chef/chef-dk/pull/1492) ([thommay](https://github.com/thommay))
+- Updated Kitchen Vagrant Gem [#1495](https://github.com/chef/chef-dk/pull/1495) ([ilovemysillybanana](https://github.com/ilovemysillybanana))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.4.17 -->
 ### Changes since 2.4.17 release
 
 #### Merged Pull Requests
+- Updated Kitchen Vagrant Gem [#1495](https://github.com/chef/chef-dk/pull/1495) ([ilovemysillybanana](https://github.com/ilovemysillybanana)) <!-- 2.4.26 -->
 - Chef 13.7 Release [#1492](https://github.com/chef/chef-dk/pull/1492) ([thommay](https://github.com/thommay)) <!-- 2.4.25 -->
 - Pull in the latest inspec, fauxhai, ohai, fog-openstack, fog-scaleway, and kitchen-inspec [#1486](https://github.com/chef/chef-dk/pull/1486) ([tas50](https://github.com/tas50)) <!-- 2.4.24 -->
 - Bump deps to pick up InSpec v1.49.2 [#1481](https://github.com/chef/chef-dk/pull/1481) ([adamleff](https://github.com/adamleff)) <!-- 2.4.23 -->
