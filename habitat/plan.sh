@@ -1,31 +1,56 @@
 pkg_name=chef-dk
 pkg_origin=chef
 pkg_maintainer="The Chef Maintainers <humans@chef.io>"
-pkg_description="The Chef Client"
-pkg_version=$(cat ../VERSION)
-pkg_source=nosuchfile.tar.gz
-pkg_filename=${pkg_dirname}.tar.gz
+pkg_description="The Chef Developer Kit"
 pkg_license=('Apache-2.0')
 pkg_bin_dirs=(bin)
-pkg_build_deps=(core/make core/gcc core/coreutils core/git)
-# NOTE: core/openssl is set here to the exact version that core/ruby/ was built
-# with. In the future ruby should be automatically built when openssl is
-# updated and we can change our dep back to just `core/openssl`
-pkg_deps=(core/glibc core/busybox-static core/ruby core/libxml2 core/libxslt core/libiconv core/xz core/zlib core/bundler core/openssl/1.0.2l/20171014213633 core/cacerts core/libffi)
+pkg_build_deps=(
+  core/make
+  core/gcc
+  core/coreutils
+  core/git
+)
+
+pkg_deps=(
+  core/glibc
+  core/busybox-static
+  core/ruby
+  core/libxml2
+  core/libxslt
+  core/libiconv
+  core/xz
+  core/zlib
+  core/bundler
+  core/openssl
+  core/cacerts
+  core/libffi
+)
+
 pkg_svc_user=root
 
+pkg_version() {
+  cat ../VERSION
+}
+
+do_before() {
+  do_default_before
+  update_pkg_version
+}
+
 do_download() {
-  build_line "Fake download! Creating archive of latest repository commit."
-  # source is in this repo, so we're going to create an archive from the
-  # appropriate path within the repo and place the generated tarball in the
-  # location expected by do_unpack
-  cd $PLAN_CONTEXT/../
-  git archive --prefix=${pkg_name}-${pkg_version}/ --output=$HAB_CACHE_SRC_PATH/${pkg_filename} HEAD
+  # Instead of downloading, build a gem based on the source in src/
+  cd $PLAN_CONTEXT/..
+  gem build $pkg_name.gemspec
 }
 
 do_verify() {
-  build_line "Skipping checksum verification on the archive we just created."
   return 0
+}
+
+do_unpack() {
+  # Unpack the gem we built to the source cache path. Building then unpacking
+  # the gem reuses the file inclusion/exclusion rules defined in the gemspec.
+  gem unpack $PLAN_CONTEXT/../$pkg_name-$pkg_version.gem --target=$HAB_CACHE_SRC_PATH
 }
 
 do_prepare() {
@@ -40,6 +65,7 @@ do_prepare() {
 }
 
 do_build() {
+  cd $CACHE_PATH
   export CPPFLAGS="${CPPFLAGS} ${CFLAGS}"
 
   local _bundler_dir=$(pkg_path_for bundler)
@@ -51,7 +77,7 @@ do_build() {
   export GEM_PATH=${_bundler_dir}:${GEM_HOME}
 
   export NOKOGIRI_CONFIG="--use-system-libraries --with-zlib-dir=${_zlib_dir} --with-xslt-dir=${_libxslt_dir} --with-xml2-include=${_libxml2_dir}/include/libxml2 --with-xml2-lib=${_libxml2_dir}/lib"
-  bundle config --local build.nokogiri '${NOKOGIRI_CONFIG}'
+  bundle config --local build.nokogiri "${NOKOGIRI_CONFIG}"
 
   bundle config --local silence_root_warning 1
 
@@ -61,7 +87,7 @@ do_build() {
 }
 
 do_install() {
-
+  cd $CACHE_PATH
   mkdir -p $pkg_prefix/ruby-bin
 
   bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin chef-dk
