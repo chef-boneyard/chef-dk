@@ -26,10 +26,14 @@ group(:omnibus_package, :development, :test) do
   gem "pry"
   gem "rdoc"
   gem "yard"
-  gem "dep_selector"
   gem "guard"
   gem "cookstyle", ">= 2.0.0"
   gem "foodcritic", ">= 12.1"
+end
+
+group(:dep_selector) do
+  gem "dep_selector"
+  gem "dep-selector-libgecode"
 end
 
 # We tend to track latest stable release without pinning.
@@ -76,7 +80,6 @@ group(:omnibus_package) do
 
   # All of the following used to be software definitions we included:
   gem "knife-spork"
-  gem "dep-selector-libgecode"
   gem "mixlib-install"
   gem "nokogiri"
   gem "pry-byebug"

@@ -2,6 +2,7 @@
 coverage
 .DS_Store
 pkg/*
+*.gem
 */tags
 *~
 
@@ -37,3 +38,4 @@ Vagrantfile
 
 # some acceptance tests will leave this if they fail
 my-cookbook
+results/
