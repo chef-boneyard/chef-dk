@@ -25,17 +25,18 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     app_conf (0.4.2)
-    appbundler (0.10.0)
+    appbundler (0.11.0)
       mixlib-cli (~> 1.4)
+      mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.10.133)
-      aws-sdk-resources (= 2.10.133)
-    aws-sdk-core (2.10.133)
+    aws-sdk (2.11.6)
+      aws-sdk-resources (= 2.11.6)
+    aws-sdk-core (2.11.6)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.133)
-      aws-sdk-core (= 2.10.133)
+    aws-sdk-resources (2.11.6)
+      aws-sdk-core (= 2.11.6)
     aws-sigv4 (1.0.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -75,10 +76,10 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef (13.7.16)
+    chef (13.8.0)
       addressable
       bundler (>= 1.10)
-      chef-config (= 13.7.16)
+      chef-config (= 13.8.0)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -105,10 +106,10 @@ GEM
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (13.7.16-universal-mingw32)
+    chef (13.8.0-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 13.7.16)
+      chef-config (= 13.8.0)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -149,7 +150,7 @@ GEM
     chef-api (0.7.1)
       logify (~> 0.1)
       mime-types
-    chef-config (13.7.16)
+    chef-config (13.8.0)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -252,10 +253,10 @@ GEM
       multipart-post (>= 1.2, < 3)
     fauxhai (5.6.0)
       net-ssh
-    ffi (1.9.21)
-    ffi (1.9.21-x64-mingw32)
-    ffi (1.9.21-x86-mingw32)
-    ffi-rzmq (2.0.5)
+    ffi (1.9.23)
+    ffi (1.9.23-x64-mingw32)
+    ffi (1.9.23-x86-mingw32)
+    ffi-rzmq (2.0.6)
       ffi-rzmq-core (>= 1.0.6)
     ffi-rzmq-core (1.0.6)
       ffi
@@ -283,7 +284,7 @@ GEM
     fog-json (1.0.2)
       fog-core (~> 1.0)
       multi_json (~> 1.10)
-    fog-openstack (0.1.23)
+    fog-openstack (0.1.24)
       fog-core (~> 1.40)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
@@ -360,7 +361,7 @@ GEM
     ice_nine (0.11.2)
     inifile (3.0.0)
     iniparse (1.4.4)
-    inspec (1.51.18)
+    inspec (1.51.21)
       addressable (~> 2.4)
       faraday (>= 0.9.0)
       hashie (~> 3.4)
@@ -408,7 +409,7 @@ GEM
       hashie (~> 3.4)
       inspec (>= 0.34.0, < 2.0.0)
       test-kitchen (~> 1.6)
-    kitchen-vagrant (1.3.0)
+    kitchen-vagrant (1.3.1)
       test-kitchen (~> 1.4)
     knife-cloud (1.2.1)
       chef (>= 0.10.10)
@@ -518,7 +519,7 @@ GEM
     os (0.9.6)
     paint (1.0.1)
     parallel (1.12.1)
-    parser (2.5.0.0)
+    parser (2.5.0.2)
       ast (~> 2.4.0)
     parslet (1.8.2)
     plist (3.4.0)
@@ -728,7 +729,7 @@ DEPENDENCIES
   artifactory
   berkshelf (>= 6.3.1)
   bundler
-  chef (= 13.7.16)
+  chef (= 13.8.0)
   chef-dk!
   chef-provisioning (>= 2.4.0)
   chef-provisioning-aws (>= 3.0.0)
@@ -748,7 +749,7 @@ DEPENDENCIES
   ffi-rzmq-core
   foodcritic (>= 12.1)
   guard
-  inspec (>= 1.42.3)
+  inspec (~> 1.42)
   kitchen-digitalocean (>= 0.9.8)
   kitchen-dokken (>= 2.5.0)
   kitchen-ec2 (>= 1.3.2)
@@ -798,4 +799,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.16.1
+   1.16.0

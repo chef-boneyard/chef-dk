@@ -38,7 +38,6 @@ dependency "libzmq"
 # ruby and bundler and friends
 dependency "ruby"
 dependency "rubygems"
-dependency "bundler"
 dependency "appbundler"
 
 build do
