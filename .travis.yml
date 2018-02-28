@@ -23,9 +23,6 @@ dist: trusty
 before_install:
   - gem update --system $(grep rubygems omnibus_overrides.rb | cut -d'"' -f2)
   - gem --version
-  - rvm @global do gem uninstall bundler -a -x
-  - gem install bundler -v $(grep bundler omnibus_overrides.rb | cut -d'"' -f2)
-  - bundle --version
   - rm -f .bundle/config
 
 bundler_args: --without changelog docgen guard maintenance omnibus_package tools aix bsd mac_os_x solaris windows --frozen

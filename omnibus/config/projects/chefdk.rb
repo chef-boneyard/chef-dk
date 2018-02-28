@@ -35,7 +35,6 @@ else
 end
 
 override :"chef-dk", version: "local_source"
-override :appbundler, version: "lcg/transitive-gemfile"
 
 # Load dynamically updated overrides
 overrides_path = File.expand_path("../../../../omnibus_overrides.rb", __FILE__)
