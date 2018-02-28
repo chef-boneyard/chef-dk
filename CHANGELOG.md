@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.4.28 -->
-## [v2.4.28](https://github.com/chef/chef-dk/tree/v2.4.28) (2018-02-21)
+<!-- latest_release unreleased -->
+## Unreleased
 
 #### Merged Pull Requests
-- Add habitat plan [#1424](https://github.com/chef/chef-dk/pull/1424) ([danielsdeleo](https://github.com/danielsdeleo))
+- bump dependencies [#1508](https://github.com/chef/chef-dk/pull/1508) ([thommay](https://github.com/thommay))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.4.17 -->
 ### Changes since 2.4.17 release
 
 #### Merged Pull Requests
+- bump dependencies [#1508](https://github.com/chef/chef-dk/pull/1508) ([thommay](https://github.com/thommay)) <!-- 2.5.0 -->
 - Add habitat plan [#1424](https://github.com/chef/chef-dk/pull/1424) ([danielsdeleo](https://github.com/danielsdeleo)) <!-- 2.4.28 -->
 - update minitar dependency [#1494](https://github.com/chef/chef-dk/pull/1494) ([thewyzard44](https://github.com/thewyzard44)) <!-- 2.4.27 -->
 - Updated Kitchen Vagrant Gem [#1495](https://github.com/chef/chef-dk/pull/1495) ([ilovemysillybanana](https://github.com/ilovemysillybanana)) <!-- 2.4.26 -->
