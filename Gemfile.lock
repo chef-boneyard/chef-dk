@@ -25,18 +25,18 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     app_conf (0.4.2)
-    appbundler (0.11.0)
+    appbundler (0.11.2)
       mixlib-cli (~> 1.4)
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.6)
-      aws-sdk-resources (= 2.11.6)
-    aws-sdk-core (2.11.6)
+    aws-sdk (2.11.8)
+      aws-sdk-resources (= 2.11.8)
+    aws-sdk-core (2.11.8)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.6)
-      aws-sdk-core (= 2.11.6)
+    aws-sdk-resources (2.11.8)
+      aws-sdk-core (= 2.11.8)
     aws-sigv4 (1.0.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -76,10 +76,10 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef (13.8.0)
+    chef (13.8.3)
       addressable
       bundler (>= 1.10)
-      chef-config (= 13.8.0)
+      chef-config (= 13.8.3)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -106,10 +106,10 @@ GEM
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (13.8.0-universal-mingw32)
+    chef (13.8.3-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 13.8.0)
+      chef-config (= 13.8.3)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -147,10 +147,10 @@ GEM
       win32-service (~> 0.8.7)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-api (0.7.1)
+    chef-api (0.8.0)
       logify (~> 0.1)
       mime-types
-    chef-config (13.8.0)
+    chef-config (13.8.3)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -237,7 +237,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.3)
     diffy (3.2.0)
-    docker-api (1.34.0)
+    docker-api (1.34.1)
       excon (>= 0.47.0)
       multi_json
     droplet_kit (2.2.2)
@@ -405,9 +405,9 @@ GEM
       test-kitchen
     kitchen-hyperv (0.5.1)
       test-kitchen (~> 1.4)
-    kitchen-inspec (0.22.0)
+    kitchen-inspec (0.23.1)
       hashie (~> 3.4)
-      inspec (>= 0.34.0, < 2.0.0)
+      inspec (>= 0.34.0, < 3.0.0)
       test-kitchen (~> 1.6)
     kitchen-vagrant (1.3.1)
       test-kitchen (~> 1.4)
@@ -499,7 +499,7 @@ GEM
       shellany (~> 0.0)
     octokit (4.8.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (13.7.1)
+    ohai (13.8.0)
       chef-config (>= 12.5.0.alpha.1, < 14)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
@@ -519,7 +519,7 @@ GEM
     os (0.9.6)
     paint (1.0.1)
     parallel (1.12.1)
-    parser (2.5.0.2)
+    parser (2.5.0.3)
       ast (~> 2.4.0)
     parslet (1.8.2)
     plist (3.4.0)
@@ -543,7 +543,7 @@ GEM
     rainbow (2.2.2)
       rake
     rake (12.3.0)
-    rb-fsevent (0.10.2)
+    rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rb-readline (0.5.5)
@@ -729,7 +729,7 @@ DEPENDENCIES
   artifactory
   berkshelf (>= 6.3.1)
   bundler
-  chef (= 13.8.0)
+  chef (= 13.8.3)
   chef-dk!
   chef-provisioning (>= 2.4.0)
   chef-provisioning-aws (>= 3.0.0)
@@ -799,4 +799,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
