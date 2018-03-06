@@ -9,6 +9,7 @@ gem "windows_chef_zero"
 gem "winrm-fs"
 gem "winrm-elevated"
 gem "berkshelf"
+gem "inspec", "~> 1.0" # until we pull 2.0 into chefDK
 
 # Workaround to address https://github.com/sickill/rainbow/issues/44
 gem "rainbow", ">= 2.1.0", "< 2.2"
