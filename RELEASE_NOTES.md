@@ -1,27 +1,63 @@
-# ChefDK 2.4 Release Notes
+# ChefDK 2.5 Release Notes
 
 ## Rename `smoke` tests to `integration` tests.
 
-The cookbook, recipe, and app generators now name the test directory
-`integration` instead of `smoke`.
+The cookbook, recipe, and app generators now name the test directory `integration` instead of `smoke`.
+
+## Chef 13.8.3
+
+ChefDK now ships with Chef 13.8.3\. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
+## Updated chef_version in chef generate cookbook
+
+When running `chef generate cookbook` the generated cookbook will now specify a minimum chef release of 12.14 not 12.1.
+
+## Security Updates
+
+### Ruby
+
+Ruby has been updated to 2.4.3 to resolve `CVE-2017-17405`
+
+### OpenSSL
+
+OpenSSL has been updated to 1.0.2n to resolve `CVE-2017-3738`, `CVE-2017-3737`, `CVE-2017-3736`, and `CVE-2017-3735`.
+
+### LibXML2
+
+LibXML2 has been updated to 2.9.7 to fix `CVE-2017-15412`
+
+### minitar
+
+minitar has been updated to 0.6.1 to resolve `CVE-2016-10173`
+
+## Updated Components
+
+- `chefspec` 7.1.2 -> 7.1.2
+- `chef-api` 0.7.1 -> 0.8.0
+- `chef-provisioning` 2.6.0 -> 2.7.0
+- `chef-provisioning-aws` 3.0.0 -> 3.0.2
+- `chef-sugar` 3.6.0 -> 4.0.0
+- `foodcritic` 12.2.1 -> 12.3.0
+- `inspec` 1.45.13 -> 1.51.21
+- `kitchen-dokken` 2.6.5 -> 2.6.7
+- `kitchen-ec2` 1.3.2 -> 2.2.1
+- `kitchen-inspec` 0.20.0 -> 0.23.1
+- `kitchen-vagrant` 1.2.1 -> 1.3.1
+- `knife-ec2` 0.16.0 -> 0.17.0
+- `test-kitchen` 1.19.2 -> 1.20.0
+- `chef-provisioning-azure` has been removed as it used deprecated Azure APIs
+
+# ChefDK 2.4 Release Notes
 
 ## Improved Performance Downloading Cookbooks from a Chef Server
 
-Policyfile users who use a Chef Server as a cookbook source will
-experience faster cookbook downloads when running `chef install`. Chef
-Server's API requires each file in a cookbook to be downloaded
-separately; ChefDK will now download the files in parallel.
-Additionally, HTTP keepalives are enabled to reduce connection overhead.
+Policyfile users who use a Chef Server as a cookbook source will experience faster cookbook downloads when running `chef install`. Chef Server's API requires each file in a cookbook to be downloaded separately; ChefDK will now download the files in parallel. Additionally, HTTP keepalives are enabled to reduce connection overhead.
 
 ## Cookbook Artifact Source for Policyfiles
 
-Policyfile users may now source cookbooks from the Chef Server's
-cookbook artifact store. This is mainly intended to support the upcoming
-`include_policy` feature, but could be useful in some situations.
+Policyfile users may now source cookbooks from the Chef Server's cookbook artifact store. This is mainly intended to support the upcoming `include_policy` feature, but could be useful in some situations.
 
-Given a cookbook that has been uploaded to the Chef Server via `chef push`,
-it can be used in another policy by adding code like the following to
-the ruby policyfile:
+Given a cookbook that has been uploaded to the Chef Server via `chef push`, it can be used in another policy by adding code like the following to the ruby policyfile:
 
 ```
 cookbook "runit",
