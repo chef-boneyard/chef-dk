@@ -1,8 +1,9 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release unreleased -->
-## Unreleased
+<!-- latest_release 2.5.1 -->
+## [v2.5.1](https://github.com/chef/chef-dk/tree/v2.5.1) (2018-03-06)
 
 #### Merged Pull Requests
+- Use Chef 13.8.3, chef-api 0.8.0, and kitchen-inspec 0.23.1 [#1511](https://github.com/chef/chef-dk/pull/1511) ([tas50](https://github.com/tas50))
 - bump dependencies [#1508](https://github.com/chef/chef-dk/pull/1508) ([thommay](https://github.com/thommay))
 <!-- latest_release -->
 
@@ -10,6 +11,7 @@
 ### Changes since 2.4.17 release
 
 #### Merged Pull Requests
+- Use Chef 13.8.3, chef-api 0.8.0, and kitchen-inspec 0.23.1 [#1511](https://github.com/chef/chef-dk/pull/1511) ([tas50](https://github.com/tas50)) <!-- 2.5.1 -->
 - bump dependencies [#1508](https://github.com/chef/chef-dk/pull/1508) ([thommay](https://github.com/thommay)) <!-- 2.5.0 -->
 - Add habitat plan [#1424](https://github.com/chef/chef-dk/pull/1424) ([danielsdeleo](https://github.com/danielsdeleo)) <!-- 2.4.28 -->
 - update minitar dependency [#1494](https://github.com/chef/chef-dk/pull/1494) ([thewyzard44](https://github.com/thewyzard44)) <!-- 2.4.27 -->
