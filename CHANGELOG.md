@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.5.2 -->
-## [v2.5.2](https://github.com/chef/chef-dk/tree/v2.5.2) (2018-03-07)
+<!-- latest_release 2.5.3 -->
+## [v2.5.3](https://github.com/chef/chef-dk/tree/v2.5.3) (2018-03-07)
 
 #### Merged Pull Requests
-- Bump kitchen-dokken and ChefSpec [#1514](https://github.com/chef/chef-dk/pull/1514) ([tas50](https://github.com/tas50))
+- Pull in Chef 13.8.5 and knife-windows 1.9.1 [#1516](https://github.com/chef/chef-dk/pull/1516) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.4.17 -->
 ### Changes since 2.4.17 release
 
 #### Merged Pull Requests
+- Pull in Chef 13.8.5 and knife-windows 1.9.1 [#1516](https://github.com/chef/chef-dk/pull/1516) ([tas50](https://github.com/tas50)) <!-- 2.5.3 -->
 - Bump kitchen-dokken and ChefSpec [#1514](https://github.com/chef/chef-dk/pull/1514) ([tas50](https://github.com/tas50)) <!-- 2.5.2 -->
 - Use Chef 13.8.3, chef-api 0.8.0, and kitchen-inspec 0.23.1 [#1511](https://github.com/chef/chef-dk/pull/1511) ([tas50](https://github.com/tas50)) <!-- 2.5.1 -->
 - bump dependencies [#1508](https://github.com/chef/chef-dk/pull/1508) ([thommay](https://github.com/thommay)) <!-- 2.5.0 -->
