@@ -4,9 +4,9 @@
 
 The cookbook, recipe, and app generators now name the test directory `integration` instead of `smoke`.
 
-## Chef 13.8.3
+## Chef 13.8.5
 
-ChefDK now ships with Chef 13.8.3\. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+ChefDK now ships with Chef 13.8.5. See <https://docs.chef.io/release_notes.html> for more information on what's new.
 
 ## Updated chef_version in chef generate cookbook
 
@@ -44,6 +44,7 @@ minitar has been updated to 0.6.1 to resolve `CVE-2016-10173`
 - `kitchen-inspec` 0.20.0 -> 0.23.1
 - `kitchen-vagrant` 1.2.1 -> 1.3.1
 - `knife-ec2` 0.16.0 -> 0.17.0
+- `knife-windows` 1.9.0 -> 1.9.1
 - `test-kitchen` 1.19.2 -> 1.20.0
 - `chef-provisioning-azure` has been removed as it used deprecated Azure APIs
 
