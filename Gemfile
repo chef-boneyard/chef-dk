@@ -51,6 +51,7 @@ group(:omnibus_package) do
   gem "cheffish", ">= 13.1.0"
   gem "chefspec", ">= 7.1.0"
   gem "fauxhai", ">= 5.4.0"
+  gem "ffi", "= 1.9.21"
   gem "inspec", "~> 1.42"
   gem "kitchen-ec2", ">= 1.3.2"
   gem "kitchen-digitalocean", ">= 0.9.8"
@@ -108,7 +109,7 @@ gem "chefstyle", group: :test
 # TODO delete this when we figure out how to include the pushy windows dependencies
 # correctly
 platforms :mswin, :mingw do
-  gem "ffi"
+  gem "ffi", "= 1.9.21"
   gem "rdp-ruby-wmi"
   gem "windows-api"
   gem "windows-pr"
