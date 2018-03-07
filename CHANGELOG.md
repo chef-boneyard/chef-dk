@@ -1,33 +1,31 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.5.3 -->
-## [v2.5.3](https://github.com/chef/chef-dk/tree/v2.5.3) (2018-03-07)
-
-#### Merged Pull Requests
-- Pull in Chef 13.8.5 and knife-windows 1.9.1 [#1516](https://github.com/chef/chef-dk/pull/1516) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=2.4.17 -->
-### Changes since 2.4.17 release
-
-#### Merged Pull Requests
-- Pull in Chef 13.8.5 and knife-windows 1.9.1 [#1516](https://github.com/chef/chef-dk/pull/1516) ([tas50](https://github.com/tas50)) <!-- 2.5.3 -->
-- Bump kitchen-dokken and ChefSpec [#1514](https://github.com/chef/chef-dk/pull/1514) ([tas50](https://github.com/tas50)) <!-- 2.5.2 -->
-- Use Chef 13.8.3, chef-api 0.8.0, and kitchen-inspec 0.23.1 [#1511](https://github.com/chef/chef-dk/pull/1511) ([tas50](https://github.com/tas50)) <!-- 2.5.1 -->
-- bump dependencies [#1508](https://github.com/chef/chef-dk/pull/1508) ([thommay](https://github.com/thommay)) <!-- 2.5.0 -->
-- Add habitat plan [#1424](https://github.com/chef/chef-dk/pull/1424) ([danielsdeleo](https://github.com/danielsdeleo)) <!-- 2.4.28 -->
-- update minitar dependency [#1494](https://github.com/chef/chef-dk/pull/1494) ([thewyzard44](https://github.com/thewyzard44)) <!-- 2.4.27 -->
-- Updated Kitchen Vagrant Gem [#1495](https://github.com/chef/chef-dk/pull/1495) ([ilovemysillybanana](https://github.com/ilovemysillybanana)) <!-- 2.4.26 -->
-- Chef 13.7 Release [#1492](https://github.com/chef/chef-dk/pull/1492) ([thommay](https://github.com/thommay)) <!-- 2.4.25 -->
-- Pull in the latest inspec, fauxhai, ohai, fog-openstack, fog-scaleway, and kitchen-inspec [#1486](https://github.com/chef/chef-dk/pull/1486) ([tas50](https://github.com/tas50)) <!-- 2.4.24 -->
-- Bump deps to pick up InSpec v1.49.2 [#1481](https://github.com/chef/chef-dk/pull/1481) ([adamleff](https://github.com/adamleff)) <!-- 2.4.23 -->
-- Bumping deps for kitchen-ec2 [#1476](https://github.com/chef/chef-dk/pull/1476) ([cheeseplus](https://github.com/cheeseplus)) <!-- 2.4.22 -->
-- Fix bug causing relative paths to not work correctly in local_lock_fetcher [#1474](https://github.com/chef/chef-dk/pull/1474) ([jaym](https://github.com/jaym)) <!-- 2.4.21 -->
-- Require Chef 12.14+ in the skeleton cookbook  [#1472](https://github.com/chef/chef-dk/pull/1472) ([iennae](https://github.com/iennae)) <!-- 2.4.20 -->
-- They are integration tests, not smoke tests [#1415](https://github.com/chef/chef-dk/pull/1415) ([nathenharvey](https://github.com/nathenharvey)) <!-- 2.4.19 -->
-- Bump dependencies to pull in InSpec v1.46.2 [#1471](https://github.com/chef/chef-dk/pull/1471) ([adamleff](https://github.com/adamleff)) <!-- 2.4.18 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v2.5.3](https://github.com/chef/chef-dk/tree/v2.5.3) (2018-03-07)
+
+#### Merged Pull Requests
+- Bump dependencies to pull in InSpec v1.46.2 [#1471](https://github.com/chef/chef-dk/pull/1471) ([adamleff](https://github.com/adamleff))
+- They are integration tests, not smoke tests [#1415](https://github.com/chef/chef-dk/pull/1415) ([nathenharvey](https://github.com/nathenharvey))
+- Require Chef 12.14+ in the skeleton cookbook  [#1472](https://github.com/chef/chef-dk/pull/1472) ([iennae](https://github.com/iennae))
+- Fix bug causing relative paths to not work correctly in local_lock_fetcher [#1474](https://github.com/chef/chef-dk/pull/1474) ([jaym](https://github.com/jaym))
+- Bumping deps for kitchen-ec2 [#1476](https://github.com/chef/chef-dk/pull/1476) ([cheeseplus](https://github.com/cheeseplus))
+- Bump deps to pick up InSpec v1.49.2 [#1481](https://github.com/chef/chef-dk/pull/1481) ([adamleff](https://github.com/adamleff))
+- Pull in the latest inspec, fauxhai, ohai, fog-openstack, fog-scaleway, and kitchen-inspec [#1486](https://github.com/chef/chef-dk/pull/1486) ([tas50](https://github.com/tas50))
+- Chef 13.7 Release [#1492](https://github.com/chef/chef-dk/pull/1492) ([thommay](https://github.com/thommay))
+- Updated Kitchen Vagrant Gem [#1495](https://github.com/chef/chef-dk/pull/1495) ([ilovemysillybanana](https://github.com/ilovemysillybanana))
+- update minitar dependency [#1494](https://github.com/chef/chef-dk/pull/1494) ([thewyzard44](https://github.com/thewyzard44))
+- Add habitat plan [#1424](https://github.com/chef/chef-dk/pull/1424) ([danielsdeleo](https://github.com/danielsdeleo))
+- bump dependencies [#1508](https://github.com/chef/chef-dk/pull/1508) ([thommay](https://github.com/thommay))
+- Use Chef 13.8.3, chef-api 0.8.0, and kitchen-inspec 0.23.1 [#1511](https://github.com/chef/chef-dk/pull/1511) ([tas50](https://github.com/tas50))
+- Bump kitchen-dokken and ChefSpec [#1514](https://github.com/chef/chef-dk/pull/1514) ([tas50](https://github.com/tas50))
+- Pull in Chef 13.8.5 and knife-windows 1.9.1 [#1516](https://github.com/chef/chef-dk/pull/1516) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v2.4.17](https://github.com/chef/chef-dk/tree/v2.4.17) (2017-11-29)
 
 #### Merged Pull Requests
@@ -61,7 +59,6 @@
 - Update dependencies [#1465](https://github.com/chef/chef-dk/pull/1465) ([thommay](https://github.com/thommay))
 - Dump dependencies and update release notes for 2.4 [#1467](https://github.com/chef/chef-dk/pull/1467) ([tas50](https://github.com/tas50))
 - Pull in the new Test Kitchen which allows for the latest winrm-fs [#1470](https://github.com/chef/chef-dk/pull/1470) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v2.3.3](https://github.com/chef/chef-dk/tree/v2.3.3) (2017-09-21)
 
