@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 2.5.4 -->
+## [v2.5.4](https://github.com/chef/chef-dk/tree/v2.5.4) (2018-03-08)
+
+#### Merged Pull Requests
+- Remove policyfile_zero provisioner [#1522](https://github.com/chef/chef-dk/pull/1522) ([danielsdeleo](https://github.com/danielsdeleo))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=2.5.3 -->
+### Changes since 2.5.3 release
+
+#### Merged Pull Requests
+- Remove policyfile_zero provisioner [#1522](https://github.com/chef/chef-dk/pull/1522) ([danielsdeleo](https://github.com/danielsdeleo)) <!-- 2.5.4 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
