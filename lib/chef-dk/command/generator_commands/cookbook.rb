@@ -42,6 +42,11 @@ module ChefDK
           boolean:     true,
           default:     nil
 
+        option :kitchen,
+          long:        "--kitchen CONFIGURATION",
+          description: "Generate cookbooks with a specific kitchen configuration (dokken|vagrant) - defaults to vagrant",
+          default:     "vagrant"
+
         option :policy,
           short:        "-P",
           long:         "--policy",
@@ -131,6 +136,11 @@ module ChefDK
 
           Generator.add_attr_to_context(:use_berkshelf, berks_mode?)
           Generator.add_attr_to_context(:pipeline, pipeline)
+          Generator.add_attr_to_context(:kitchen, kitchen)
+        end
+
+        def kitchen
+          config[:kitchen]
         end
 
         def pipeline
