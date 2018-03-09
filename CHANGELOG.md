@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.5.8 -->
-## [v2.5.8](https://github.com/chef/chef-dk/tree/v2.5.8) (2018-03-09)
+<!-- latest_release unreleased -->
+## Unreleased
 
 #### Merged Pull Requests
-- Fix link in example cookbook to point to the correct docs site URL [#1518](https://github.com/chef/chef-dk/pull/1518) ([tas50](https://github.com/tas50))
+- Bump to 3.0 [#1523](https://github.com/chef/chef-dk/pull/1523) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- Bump to 3.0 [#1523](https://github.com/chef/chef-dk/pull/1523) ([tas50](https://github.com/tas50)) <!-- 3.0.0 -->
 - Fix link in example cookbook to point to the correct docs site URL [#1518](https://github.com/chef/chef-dk/pull/1518) ([tas50](https://github.com/tas50)) <!-- 2.5.8 -->
 - Remove strainer from the generated chefignore file [#1519](https://github.com/chef/chef-dk/pull/1519) ([tas50](https://github.com/tas50)) <!-- 2.5.7 -->
 - Format cookbooks generated readme &amp; reference supermarket [#1520](https://github.com/chef/chef-dk/pull/1520) ([tas50](https://github.com/tas50)) <!-- 2.5.6 -->
