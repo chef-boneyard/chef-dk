@@ -63,6 +63,7 @@ group(:omnibus_package) do
   gem "knife-google", ">= 3.2.0"
   gem "knife-windows", ">= 1.9.0"
   gem "knife-opc", ">= 0.3.2"
+  gem "knife-vsphere", ">= 2.0.3"
   gem "ohai", ">= 13.1.0"
   # net-ssh 4.2.0 explodes the world. FIXME
   gem "net-ssh", "= 4.1.0"
