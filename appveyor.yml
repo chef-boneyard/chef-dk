@@ -22,6 +22,7 @@ branches:
 install:
   - systeminfo
   - winrm quickconfig -q
+  - regedit /s c:\projects\chef\appveyor_registry.reg
   - SET FORCE_FFI_YAJL=ext
   - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
   - echo %PATH%
