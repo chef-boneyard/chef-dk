@@ -51,7 +51,7 @@ group(:omnibus_package) do
   gem "cheffish", ">= 13.1.0"
   gem "chefspec", ">= 7.1.0"
   gem "fauxhai", ">= 5.4.0"
-  gem "inspec", "~> 1.42"
+  gem "inspec", "~> 2"
   gem "kitchen-ec2", ">= 1.3.2"
   gem "kitchen-digitalocean", ">= 0.9.8"
   gem "kitchen-dokken", ">= 2.5.0"
