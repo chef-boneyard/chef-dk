@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.2 -->
-## [v3.0.2](https://github.com/chef/chef-dk/tree/v3.0.2) (2018-03-27)
+<!-- latest_release 3.0.3 -->
+## [v3.0.3](https://github.com/chef/chef-dk/tree/v3.0.3) (2018-03-29)
 
 #### Merged Pull Requests
-- Fixes the spec file as it should display the recipe name and not default [#1532](https://github.com/chef/chef-dk/pull/1532) ([burtlo](https://github.com/burtlo))
+- Bump deps for new docker-api, knife-vsphere, and mixlib-config [#1533](https://github.com/chef/chef-dk/pull/1533) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- Bump deps for new docker-api, knife-vsphere, and mixlib-config [#1533](https://github.com/chef/chef-dk/pull/1533) ([tas50](https://github.com/tas50)) <!-- 3.0.3 -->
 - Fixes the spec file as it should display the recipe name and not default [#1532](https://github.com/chef/chef-dk/pull/1532) ([burtlo](https://github.com/burtlo)) <!-- 3.0.2 -->
 - add knife-vsphere and bump gems [#1525](https://github.com/chef/chef-dk/pull/1525) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.1 -->
 - Bump to 3.0 [#1523](https://github.com/chef/chef-dk/pull/1523) ([tas50](https://github.com/tas50)) <!-- 3.0.0 -->
