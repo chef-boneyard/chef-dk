@@ -10,7 +10,6 @@ cache:
 environment:
   matrix:
     - ruby_version: "24-x64"
-    - ruby_version: "24"
 
 clone_folder: c:\projects\chefdk
 clone_depth: 1
@@ -22,6 +21,7 @@ branches:
 install:
   - systeminfo
   - winrm quickconfig -q
+  - regedit /s c:\projects\chefdk\appveyor_registry.reg
   - SET FORCE_FFI_YAJL=ext
   - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
   - echo %PATH%
