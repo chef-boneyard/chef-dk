@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.4 -->
-## [v3.0.4](https://github.com/chef/chef-dk/tree/v3.0.4) (2018-03-29)
+<!-- latest_release 3.0.5 -->
+## [v3.0.5](https://github.com/chef/chef-dk/tree/v3.0.5) (2018-04-06)
 
 #### Merged Pull Requests
-- powershell_exec mixin support for ChefDK MSI installer [#1528](https://github.com/chef/chef-dk/pull/1528) ([stuartpreston](https://github.com/stuartpreston))
+- Update openssl to 1.0.2o [#1536](https://github.com/chef/chef-dk/pull/1536) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- Update openssl to 1.0.2o [#1536](https://github.com/chef/chef-dk/pull/1536) ([tas50](https://github.com/tas50)) <!-- 3.0.5 -->
 - powershell_exec mixin support for ChefDK MSI installer [#1528](https://github.com/chef/chef-dk/pull/1528) ([stuartpreston](https://github.com/stuartpreston)) <!-- 3.0.4 -->
 - Bump deps for new docker-api, knife-vsphere, and mixlib-config [#1533](https://github.com/chef/chef-dk/pull/1533) ([tas50](https://github.com/tas50)) <!-- 3.0.3 -->
 - Fixes the spec file as it should display the recipe name and not default [#1532](https://github.com/chef/chef-dk/pull/1532) ([burtlo](https://github.com/burtlo)) <!-- 3.0.2 -->
