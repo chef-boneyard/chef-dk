@@ -4,22 +4,22 @@
 # https://docs.chef.io/policyfile.html
 
 # A name that describes what the system you're building with Chef does.
-name "<%= policy_name %>"
+name '<%= policy_name %>'
 
 <% if include_chef_repo_source %>
 # This lets you source cookbooks from your chef-repo.
-default_source :chef_repo, "../"
+default_source :chef_repo, '../'
 
 <% end -%>
 # Where to find external cookbooks:
 default_source :supermarket
 
 # run_list: chef-client will run these recipes in the order specified.
-run_list "<%= policy_run_list %>"
+run_list '<%= policy_run_list %>'
 
 # Specify a custom source for a single cookbook:
 <% if policy_local_cookbook.nil? %>
-# cookbook "example_cookbook", path: "../cookbooks/example_cookbook"
+# cookbook 'example_cookbook', path: '../cookbooks/example_cookbook'
 <% else %>
-cookbook "<%= cookbook_name %>", path: "."
+cookbook '<%= cookbook_name %>', path: '.'
 <% end %>
