@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.6 -->
-## [v3.0.6](https://github.com/chef/chef-dk/tree/v3.0.6) (2018-04-09)
+<!-- latest_release 3.0.7 -->
+## [v3.0.7](https://github.com/chef/chef-dk/tree/v3.0.7) (2018-04-10)
 
 #### Merged Pull Requests
-- make generated policyfile not violate cookstyle [#1527](https://github.com/chef/chef-dk/pull/1527) ([thommay](https://github.com/thommay))
+- Attempt to unzip files if MSI repair selected [#1534](https://github.com/chef/chef-dk/pull/1534) ([stuartpreston](https://github.com/stuartpreston))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- Attempt to unzip files if MSI repair selected [#1534](https://github.com/chef/chef-dk/pull/1534) ([stuartpreston](https://github.com/stuartpreston)) <!-- 3.0.7 -->
 - make generated policyfile not violate cookstyle [#1527](https://github.com/chef/chef-dk/pull/1527) ([thommay](https://github.com/thommay)) <!-- 3.0.6 -->
 - Update openssl to 1.0.2o [#1536](https://github.com/chef/chef-dk/pull/1536) ([tas50](https://github.com/tas50)) <!-- 3.0.5 -->
 - powershell_exec mixin support for ChefDK MSI installer [#1528](https://github.com/chef/chef-dk/pull/1528) ([stuartpreston](https://github.com/stuartpreston)) <!-- 3.0.4 -->
