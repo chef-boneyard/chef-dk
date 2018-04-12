@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.9 -->
-## [v3.0.9](https://github.com/chef/chef-dk/tree/v3.0.9) (2018-04-11)
+<!-- latest_release 3.0.10 -->
+## [v3.0.10](https://github.com/chef/chef-dk/tree/v3.0.10) (2018-04-12)
 
 #### Merged Pull Requests
-- Get omnibus and omnibus-software back on master [#1539](https://github.com/chef/chef-dk/pull/1539) ([thommay](https://github.com/thommay))
+- Ship InSpec 2 [#1531](https://github.com/chef/chef-dk/pull/1531) ([thommay](https://github.com/thommay))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- Ship InSpec 2 [#1531](https://github.com/chef/chef-dk/pull/1531) ([thommay](https://github.com/thommay)) <!-- 3.0.10 -->
 - Get omnibus and omnibus-software back on master [#1539](https://github.com/chef/chef-dk/pull/1539) ([thommay](https://github.com/thommay)) <!-- 3.0.9 -->
 - add ruby 2.5.1 and update omnibus-software [#1538](https://github.com/chef/chef-dk/pull/1538) ([thommay](https://github.com/thommay)) <!-- 3.0.8 -->
 - Attempt to unzip files if MSI repair selected [#1534](https://github.com/chef/chef-dk/pull/1534) ([stuartpreston](https://github.com/stuartpreston)) <!-- 3.0.7 -->
