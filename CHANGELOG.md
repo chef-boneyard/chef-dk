@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.10 -->
-## [v3.0.10](https://github.com/chef/chef-dk/tree/v3.0.10) (2018-04-12)
+<!-- latest_release 3.0.11 -->
+## [v3.0.11](https://github.com/chef/chef-dk/tree/v3.0.11) (2018-04-12)
 
 #### Merged Pull Requests
-- Ship InSpec 2 [#1531](https://github.com/chef/chef-dk/pull/1531) ([thommay](https://github.com/thommay))
+- Deprecate OSX 10.10 builds [#1542](https://github.com/chef/chef-dk/pull/1542) ([scotthain](https://github.com/scotthain))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- Deprecate OSX 10.10 builds [#1542](https://github.com/chef/chef-dk/pull/1542) ([scotthain](https://github.com/scotthain)) <!-- 3.0.11 -->
 - Ship InSpec 2 [#1531](https://github.com/chef/chef-dk/pull/1531) ([thommay](https://github.com/thommay)) <!-- 3.0.10 -->
 - Get omnibus and omnibus-software back on master [#1539](https://github.com/chef/chef-dk/pull/1539) ([thommay](https://github.com/thommay)) <!-- 3.0.9 -->
 - add ruby 2.5.1 and update omnibus-software [#1538](https://github.com/chef/chef-dk/pull/1538) ([thommay](https://github.com/thommay)) <!-- 3.0.8 -->
