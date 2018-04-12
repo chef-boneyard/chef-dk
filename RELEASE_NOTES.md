@@ -1,3 +1,9 @@
+# ChefDK 3.0 Release Notes
+
+## Platform Deprecation
+ChefDK is no longer is built or tested on OS X 10.10 in accordance with Chef's EOL policy.
+
+
 # ChefDK 2.5 Release Notes
 
 ## Rename `smoke` tests to `integration` tests.
