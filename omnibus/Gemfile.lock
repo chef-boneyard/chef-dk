@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 0cb3a8dfb6cebd56684c1d4609a676959389e4c5
-  branch: master
+  revision: 71f7f900cddf62c3c1260ec3885a029e1f2193d9
+  branch: lcg/appbundle-0.11-without
   specs:
     omnibus-software (4.0.0)
       chef-sugar (>= 3.4.0)
@@ -9,8 +9,8 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 7f3652f85986ba24d681493bf2968326bfc2de46
-  branch: master
+  revision: 5bc3a48f9210c19f9b84371d6037447739c96bd8
+  branch: lcg/improve-appbundling
   specs:
     omnibus (5.6.11)
       aws-sdk (~> 2)
@@ -188,7 +188,7 @@ GEM
     minitar (0.6.1)
     mixlib-archive (0.4.1)
       mixlib-log
-    mixlib-authentication (1.4.2)
+    mixlib-authentication (1.4.3)
     mixlib-cli (1.7.0)
     mixlib-config (2.2.6)
       tomlrb
