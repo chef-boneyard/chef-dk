@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.14 -->
-## [v3.0.14](https://github.com/chef/chef-dk/tree/v3.0.14) (2018-04-13)
+<!-- latest_release 3.0.15 -->
+## [v3.0.15](https://github.com/chef/chef-dk/tree/v3.0.15) (2018-04-13)
 
 #### Merged Pull Requests
-- Added default LANG settings [#1541](https://github.com/chef/chef-dk/pull/1541) ([jjasghar](https://github.com/jjasghar))
+- get omnibus tracking back on master [#1545](https://github.com/chef/chef-dk/pull/1545) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- get omnibus tracking back on master [#1545](https://github.com/chef/chef-dk/pull/1545) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.15 -->
 - Added default LANG settings [#1541](https://github.com/chef/chef-dk/pull/1541) ([jjasghar](https://github.com/jjasghar)) <!-- 3.0.14 -->
 - Added git for the build container [#1535](https://github.com/chef/chef-dk/pull/1535) ([jjasghar](https://github.com/jjasghar)) <!-- 3.0.13 -->
 - Fix incorrect path value in the Dockerfile [#1537](https://github.com/chef/chef-dk/pull/1537) ([meringu](https://github.com/meringu)) <!-- 3.0.12 -->
