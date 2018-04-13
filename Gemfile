@@ -19,6 +19,9 @@ source "https://rubygems.org"
 
 gemspec
 
+# XXX: this idiotic pin can go away when berkshelf-7 is included
+gem "hitimes", "= 1.2.3"
+
 gem "bundler"
 
 group(:omnibus_package, :development, :test) do
