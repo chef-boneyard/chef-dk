@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.12 -->
-## [v3.0.12](https://github.com/chef/chef-dk/tree/v3.0.12) (2018-04-12)
+<!-- latest_release 3.0.13 -->
+## [v3.0.13](https://github.com/chef/chef-dk/tree/v3.0.13) (2018-04-13)
 
 #### Merged Pull Requests
-- Fix incorrect path value in the Dockerfile [#1537](https://github.com/chef/chef-dk/pull/1537) ([meringu](https://github.com/meringu))
+- Added git for the build container [#1535](https://github.com/chef/chef-dk/pull/1535) ([jjasghar](https://github.com/jjasghar))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- Added git for the build container [#1535](https://github.com/chef/chef-dk/pull/1535) ([jjasghar](https://github.com/jjasghar)) <!-- 3.0.13 -->
 - Fix incorrect path value in the Dockerfile [#1537](https://github.com/chef/chef-dk/pull/1537) ([meringu](https://github.com/meringu)) <!-- 3.0.12 -->
 - Deprecate OSX 10.10 builds [#1542](https://github.com/chef/chef-dk/pull/1542) ([scotthain](https://github.com/scotthain)) <!-- 3.0.11 -->
 - Ship InSpec 2 [#1531](https://github.com/chef/chef-dk/pull/1531) ([thommay](https://github.com/thommay)) <!-- 3.0.10 -->
