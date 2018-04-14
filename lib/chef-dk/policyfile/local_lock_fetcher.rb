@@ -86,6 +86,12 @@ module ChefDK
 
       private
 
+      # Transforms cookbook paths to a path relative to the current
+      # cookbook for which we are generating a new lock file.
+      # Eg: '../cookbooks/base_cookbook'
+      #
+      # @param path_to_transform [String] Path to dependent cookbook.
+      # @return [Pathname] Path to dependent cookbook relative to the current cookbook/Policyfile.
       def transform_path(path_to_transform)
         cur_path = Pathname.new(storage_config.relative_paths_root)
         include_path = Pathname.new(path).dirname

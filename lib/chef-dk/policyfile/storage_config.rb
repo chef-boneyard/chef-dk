@@ -21,6 +21,16 @@ require "chef-dk/exceptions"
 module ChefDK
   module Policyfile
 
+    # Provides handling of relative paths, such as on disk cookbooks which
+    # are specified relative to the Policyfile and local caching of compiled
+    # Policyfile artifacts.
+    #
+    # @author Dan DeLeo
+    # @since 0.11.0
+    # @attr_accessor [String] relative_paths_root Root path relative to the named Policyfile
+    # @attr_accessor [String] cache_path Local cache directory for
+    # @attr_reader [String] policyfile_filename Uncompiled Policyfile filename.
+    # @attr_reader [String] policyfile_lock_filename Filename of compiled Policyfile.
     class StorageConfig
 
       attr_accessor :relative_paths_root

@@ -40,7 +40,7 @@ module ChefDK
         end
       end
 
-      VALID_SCHEMES = %w{ https http }.freeze
+      VALID_SCHEMES = %w{ https http git }.freeze
 
       # @raise [ChefDK::InvalidPolicyfileSourceURI]
       def validate
