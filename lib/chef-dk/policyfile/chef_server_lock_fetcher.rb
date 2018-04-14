@@ -34,7 +34,7 @@ module ChefDK
       # @param source_options [Hash] A hash with a :server key pointing at the chef server,
       # along with :policy_name and either :policy_group or :policy_revision_id. If :policy_name
       # is not provided, name is used.
-      # @param storage_config [StorageConfig]
+      # @param chef_config [Chef::Config, ChefConfig::Config]
       #
       # @example ChefServerLockFetcher for a policyfile with a specific revision id
       #   ChefServerLockFetcher.new("foo",
@@ -46,7 +46,7 @@ module ChefDK
       #     chef_config)
       #
       # @example ChefServerLockFetcher for a policyfile with the latest revision_id for a policy group
-       #   ChefServerLockFetcher.new("foo",
+      #   ChefServerLockFetcher.new("foo",
       #     {server: "http://example.com", policy_group: "dev"},
       #     chef_config)
       #
@@ -153,6 +153,9 @@ module ChefDK
         source_options[:server]
       end
 
+      # @see Chef:ServerAPI
+      # @see Chef::HTTP::JSONInput#get
+      # @return [Hash] Returns a parsed JSON object... I think.
       def http_client
         @http_client ||= Chef::ServerAPI.new(source_options[:server],
                                              signing_key_filename: chef_config.client_key,

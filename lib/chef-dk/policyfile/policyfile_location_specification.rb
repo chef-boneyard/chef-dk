@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2017 Chef Software Inc.
+# Copyright:: Copyright (c) 2017-2018 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,32 +18,33 @@
 require "chef-dk/policyfile_lock"
 require "chef-dk/policyfile/local_lock_fetcher"
 require "chef-dk/policyfile/chef_server_lock_fetcher"
+require "chef-dk/policyfile/git_lock_fetcher"
 require "chef-dk/exceptions"
+
 
 module ChefDK
   module Policyfile
     # A PolicyfileLocationSpecification specifies where a policyfile lock is to be fetched from.
     # Using this information, it provides a fetcher that is capable loading the policyfile
     # lock.
+    #
+    # @attr_reader [String] name The name of the policyfile
+    # @attr_reader [Hash] source_options Options describing how to get the policyfile lock
     class PolicyfileLocationSpecification
-
-      # @return [String] the name of the policyfile
       attr_reader :name
-
-      # @return [Hash] options describing how to get the policyfile lock
       attr_reader :source_options
 
       attr_reader :storage_config
       attr_reader :chef_config
       attr_reader :ui
 
-      LOCATION_TYPES = [:path, :server]
+      LOCATION_TYPES = [:path, :server, :git]
 
-      # Intialize a location spec
+      # Initialize a location spec
       #
       # @param name [String] the name of the policyfile
       # @param source_options [Hash] options describing where the policyfile lock lives
-      # @param storage_config [Poilcyfile::StorageConfig]
+      # @param storage_config [Policyfile::StorageConfig]
       # @param chef_config [Chef::Config] chef config that will be used when communication
       #                    with a chef server is required
       def initialize(name, source_options, storage_config, chef_config = nil)
@@ -62,13 +63,16 @@ module ChefDK
       # @return A policyfile lock fetcher compatible with the given source_options
       def fetcher
         @fetcher ||= begin
-                       if source_options[:path]
+                       if source_options[:path] && !source_options[:git]
                          Policyfile::LocalLockFetcher.new(name, source_options, storage_config)
                        elsif source_options[:server]
                          Policyfile::ChefServerLockFetcher.new(name, source_options, chef_config)
+                       elsif source_options[:git]
+                         Policyfile::GitLockFetcher.new(name, source_options, storage_config)
                        else
                          raise ChefDK::InvalidPolicyfileLocation.new(
-                           "Invalid policyfile lock location type. The supported locations are: #{LOCATION_TYPES.join(", ")}")
+                           "Invalid policyfile lock location type. The supported locations are: #{LOCATION_TYPES.join(", ")}"
+                         )
                        end
                      end
       end
