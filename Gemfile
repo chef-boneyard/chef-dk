@@ -19,9 +19,6 @@ source "https://rubygems.org"
 
 gemspec
 
-# XXX: this idiotic pin can go away when berkshelf-7 is included
-gem "hitimes", "= 1.2.3"
-
 gem "bundler"
 
 group(:omnibus_package, :development, :test) do
@@ -45,7 +42,7 @@ end
 # We equality pin the chef gem itself to assert which version we're shipping.
 group(:omnibus_package) do
   gem "appbundler"
-  gem "berkshelf", ">= 6.3.1"
+  gem "berkshelf", git: "https://github.com/berkshelf/berkshelf.git", branch: "master"
   gem "chef-provisioning", ">= 2.4.0", group: :provisioning
   gem "chef-provisioning-aws", ">= 3.0.0", group: :provisioning
   gem "chef-provisioning-fog", ">= 0.26.0", group: :provisioning
