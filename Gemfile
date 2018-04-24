@@ -42,32 +42,31 @@ end
 # We equality pin the chef gem itself to assert which version we're shipping.
 group(:omnibus_package) do
   gem "appbundler"
-  gem "berkshelf", git: "https://github.com/berkshelf/berkshelf.git", branch: "master"
-  gem "chef-provisioning", ">= 2.4.0", group: :provisioning
-  gem "chef-provisioning-aws", ">= 3.0.0", group: :provisioning
-  gem "chef-provisioning-fog", ">= 0.26.0", group: :provisioning
+  gem "berkshelf", ">= 7.0"
+  gem "chef-provisioning", ">= 2.7.1", group: :provisioning
+  gem "chef-provisioning-aws", ">= 3.0.2", group: :provisioning
+  gem "chef-provisioning-fog", ">= 0.26.1", group: :provisioning
   gem "chef-vault", ">= 3.3.0"
-  gem "chef", "= 13.8.5"
-  gem "cheffish", ">= 13.1.0"
-  gem "chefspec", ">= 7.1.0"
+  gem "chef", "= 14.0.202"
+  gem "cheffish", ">= 14.0.1"
+  gem "chefspec", ">= 7.2.0"
   gem "fauxhai", ">= 5.4.0"
   gem "inspec", "~> 2"
-  gem "kitchen-ec2", ">= 1.3.2"
+  gem "kitchen-ec2", ">= 2.2.1"
   gem "kitchen-digitalocean", ">= 0.9.8"
-  gem "kitchen-dokken", ">= 2.5.0"
+  gem "kitchen-dokken", ">= 2.6.7"
   gem "kitchen-google", ">= 1.4.0"
   gem "kitchen-hyperv", ">= 0.5.1"
   gem "kitchen-inspec", ">= 0.19.0"
-  gem "kitchen-vagrant", ">= 1.3.0"
+  gem "kitchen-vagrant", ">= 1.3.2"
   gem "knife-ec2", ">= 0.15.0"
   gem "knife-google", ">= 3.2.0"
   gem "knife-windows", ">= 1.9.0"
   gem "knife-opc", ">= 0.3.2"
   gem "knife-vsphere", ">= 2.0.3"
-  gem "ohai", ">= 13.1.0"
-  # net-ssh 4.2.0 explodes the world. FIXME
-  gem "net-ssh", "= 4.1.0"
-  gem "test-kitchen", ">= 1.18.0"
+  gem "ohai", ">= 14.0.29"
+  gem "net-ssh", ">= 4.2.0"
+  gem "test-kitchen", ">= 1.21.1"
   gem "listen"
   gem "dco"
 
@@ -75,7 +74,7 @@ group(:omnibus_package) do
   gem "chef-sugar"
   gem "mixlib-versioning"
   gem "artifactory"
-  gem "opscode-pushy-client", ">= 2.3.0"
+  gem "opscode-pushy-client", ">= 2.4.11"
   gem "ffi-rzmq-core"
   gem "knife-push"
 
