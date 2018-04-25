@@ -247,6 +247,8 @@ GEM
     ffi (1.9.23)
     ffi (1.9.23-x64-mingw32)
     ffi (1.9.23-x86-mingw32)
+    ffi-libarchive (0.2.0)
+      ffi (~> 1.0)
     ffi-rzmq (2.0.6)
       ffi-rzmq-core (>= 1.0.6)
     ffi-rzmq-core (1.0.6)
@@ -746,6 +748,7 @@ DEPENDENCIES
   dep_selector
   fauxhai (>= 5.4.0)
   ffi
+  ffi-libarchive
   ffi-rzmq-core
   foodcritic (>= 12.1)
   guard
