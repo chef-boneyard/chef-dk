@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.16 -->
-## [v3.0.16](https://github.com/chef/chef-dk/tree/v3.0.16) (2018-04-14)
+<!-- latest_release 3.0.17 -->
+## [v3.0.17](https://github.com/chef/chef-dk/tree/v3.0.17) (2018-04-25)
 
 #### Merged Pull Requests
-- pin hitimes + bump everything else [#1546](https://github.com/chef/chef-dk/pull/1546) ([lamont-granquist](https://github.com/lamont-granquist))
+- update berkshelf to 7 and pull in chef 14. [#1551](https://github.com/chef/chef-dk/pull/1551) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- update berkshelf to 7 and pull in chef 14. [#1551](https://github.com/chef/chef-dk/pull/1551) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.17 -->
 - pin hitimes + bump everything else [#1546](https://github.com/chef/chef-dk/pull/1546) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.16 -->
 - get omnibus tracking back on master [#1545](https://github.com/chef/chef-dk/pull/1545) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.15 -->
 - Added default LANG settings [#1541](https://github.com/chef/chef-dk/pull/1541) ([jjasghar](https://github.com/jjasghar)) <!-- 3.0.14 -->
