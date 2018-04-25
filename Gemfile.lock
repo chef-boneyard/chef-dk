@@ -247,6 +247,8 @@ GEM
     ffi (1.9.23)
     ffi (1.9.23-x64-mingw32)
     ffi (1.9.23-x86-mingw32)
+    ffi-libarchive (0.2.0)
+      ffi (~> 1.0)
     ffi-rzmq (2.0.6)
       ffi-rzmq-core (>= 1.0.6)
     ffi-rzmq-core (1.0.6)
@@ -453,7 +455,7 @@ GEM
     mini_portile2 (2.3.0)
     minitar (0.6.1)
     minitest (5.11.3)
-    mixlib-archive (0.4.1)
+    mixlib-archive (0.4.2)
       mixlib-log
     mixlib-authentication (2.0.0)
     mixlib-cli (1.7.0)
@@ -746,6 +748,7 @@ DEPENDENCIES
   dep_selector
   fauxhai (>= 5.4.0)
   ffi
+  ffi-libarchive
   ffi-rzmq-core
   foodcritic (>= 12.1)
   guard
@@ -765,6 +768,7 @@ DEPENDENCIES
   knife-vsphere (>= 2.0.3)
   knife-windows (>= 1.9.0)
   listen
+  mixlib-archive (>= 0.4.2)
   mixlib-install
   mixlib-versioning
   net-ssh (>= 4.2.0)
