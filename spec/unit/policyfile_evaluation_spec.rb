@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2018, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -52,18 +52,8 @@ describe ChefDK::PolicyfileCompiler do
         let(:policyfile_rb) { "{{{{::::{{::" }
 
         it "has a syntax error message" do
-          expected_error = <<-E
-Invalid ruby syntax in policyfile 'TestPolicyfile.rb':
-
-TestPolicyfile.rb:1: syntax error, unexpected :: at EXPR_BEG, expecting tCONSTANT
-{{{{::::{{::
-        ^
-TestPolicyfile.rb:1: syntax error, unexpected end-of-input, expecting tCONSTANT
-{{{{::::{{::
-            ^
-E
           expect(policyfile.errors.size).to eq(1)
-          expect(policyfile.errors.first).to eq(expected_error.chomp)
+          expect(policyfile.errors.first).to match(/Invalid ruby syntax in policyfile 'TestPolicyfile.rb'/)
         end
 
       end
