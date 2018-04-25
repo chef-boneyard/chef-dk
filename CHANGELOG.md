@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.19 -->
-## [v3.0.19](https://github.com/chef/chef-dk/tree/v3.0.19) (2018-04-25)
+<!-- latest_release 3.0.20 -->
+## [v3.0.20](https://github.com/chef/chef-dk/tree/v3.0.20) (2018-04-25)
 
 #### Merged Pull Requests
-- Ship libarchive and ffi-libarchive [#1553](https://github.com/chef/chef-dk/pull/1553) ([thommay](https://github.com/thommay))
+- Force the container to properly run in en_US.UTF-8 [#1548](https://github.com/chef/chef-dk/pull/1548) ([tduffield](https://github.com/tduffield))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- Force the container to properly run in en_US.UTF-8 [#1548](https://github.com/chef/chef-dk/pull/1548) ([tduffield](https://github.com/tduffield)) <!-- 3.0.20 -->
 - Ship libarchive and ffi-libarchive [#1553](https://github.com/chef/chef-dk/pull/1553) ([thommay](https://github.com/thommay)) <!-- 3.0.19 -->
 - bump travis, bump ruby, fix a spec [#1552](https://github.com/chef/chef-dk/pull/1552) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.18 -->
 - update berkshelf to 7 and pull in chef 14. [#1551](https://github.com/chef/chef-dk/pull/1551) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.17 -->

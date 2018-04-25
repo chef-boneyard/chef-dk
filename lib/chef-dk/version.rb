@@ -16,5 +16,5 @@
 #
 
 module ChefDK
-  VERSION = "3.0.19"
+  VERSION = "3.0.20"
 end
