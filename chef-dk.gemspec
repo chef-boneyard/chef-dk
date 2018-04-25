@@ -28,7 +28,7 @@ Gem::Specification.new do |gem|
   gem.summary       = gem.description
   gem.homepage      = "https://www.chef.io/"
 
-  gem.required_ruby_version = ">= 2.3"
+  gem.required_ruby_version = ">= 2.4"
 
   gem.files = %w{Rakefile LICENSE README.md warning.txt} +
     %w{omnibus_overrides.rb} +
