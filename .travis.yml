@@ -20,23 +20,23 @@ matrix:
     - rvm: 2.4.4
       env:
         RSPEC: 1
-      script: $(which bundle) exec rspec
+      script: bundle exec rspec
     - rvm: 2.5.1
       env:
         RSPEC: 1
-      script: $(which bundle) exec rspec
+      script: bundle exec rspec
     - rvm: 2.5.1
       env:
         CHEFSTYLE: 1
-      script: $(which bundle) exec rake style:chefstyle
+      script: bundle exec rake style:chefstyle
     - rvm: 2.5.1
       env:
         COOKSTYLE: 1
-      script: $(which bundle) exec rake style:cookstyle
+      script: bundle exec rake style:cookstyle
     - rvm: 2.5.1
       env:
         FOODCRITIC: 1
-      script: $(which bundle) exec rake style:foodcritic
+      script: bundle exec rake style:foodcritic
 
 branches:
   only:
