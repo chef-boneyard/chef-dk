@@ -20,6 +20,7 @@ source "https://rubygems.org"
 gemspec
 
 # ffi 1.9.22+1.9.23 are buggy in our spec/unit/application/client_spec.rb tests on el6/el7
+# (this pin has nothing directly to do with chefdk, please delete if no longer applicable)
 gem "ffi", "< 1.9.22"
 
 gem "bundler"
