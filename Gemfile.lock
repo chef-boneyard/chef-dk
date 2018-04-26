@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.37)
-      aws-sdk-resources (= 2.11.37)
-    aws-sdk-core (2.11.37)
+    aws-sdk (2.11.39)
+      aws-sdk-resources (= 2.11.39)
+    aws-sdk-core (2.11.39)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.37)
-      aws-sdk-core (= 2.11.37)
+    aws-sdk-resources (2.11.39)
+      aws-sdk-core (= 2.11.39)
     aws-sigv4 (1.0.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -244,9 +244,9 @@ GEM
       http-cookie (~> 1.0.0)
     fauxhai (6.1.0)
       net-ssh
-    ffi (1.9.23)
-    ffi (1.9.23-x64-mingw32)
-    ffi (1.9.23-x86-mingw32)
+    ffi (1.9.21)
+    ffi (1.9.21-x64-mingw32)
+    ffi (1.9.21-x86-mingw32)
     ffi-libarchive (0.2.0)
       ffi (~> 1.0)
     ffi-rzmq (2.0.6)
@@ -648,7 +648,7 @@ GEM
     thread_safe (0.3.6)
     timeliness (0.3.8)
     tomlrb (1.2.6)
-    train (1.4.1)
+    train (1.4.2)
       aws-sdk (~> 2)
       azure_mgmt_resources (~> 0.15)
       docker-api (~> 1.26)
@@ -747,7 +747,7 @@ DEPENDENCIES
   dep-selector-libgecode
   dep_selector
   fauxhai (>= 5.4.0)
-  ffi
+  ffi (< 1.9.22)
   ffi-libarchive
   ffi-rzmq-core
   foodcritic (>= 12.1)
