@@ -95,6 +95,13 @@ module ChefDK
       # @param options_from_lock [Hash] The source options loaded from a policyfile lock
       def apply_locked_source_options(options_from_lock)
         # There are no options the lock could provide
+
+        options = options_from_lock.inject({}) do |acc, (key, value)|
+          acc[key.to_sym] = value
+          acc
+        end
+        source_options.merge!(options)
+        raise ChefDK::InvalidLockfile, "Invalid source_options provided from lock data: #{options_from_lock_file.inspect}" if !valid?
       end
 
       # @return [String] of the policyfile lock data
@@ -131,7 +138,7 @@ module ChefDK
       def fetch_lock_data
         install unless installed?
         FFI_Yajl::Parser.new.parse(
-          show_file(@rev_parse, lockfile_path)
+          show_file(rev_parse, lockfile_path)
         )
       end
 
@@ -154,8 +161,12 @@ module ChefDK
         end
 
         Dir.chdir(cache_path) do
-          @revision ||= git %{rev-parse #{@rev_parse}}
+          @revision ||= git %{rev-parse #{rev_parse}}
         end
+      end
+
+      def rev_parse
+        source_options[:revision] || @rev_parse
       end
 
       # Shows contents of a file from a shallow or full clone repository for a
