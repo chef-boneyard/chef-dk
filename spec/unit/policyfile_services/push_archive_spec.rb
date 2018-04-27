@@ -152,21 +152,6 @@ E
         end
       end
 
-      context "when the archive is not a gzip file" do
-
-        before do
-          FileUtils.touch(archive_file_path)
-        end
-
-        it "errors out" do
-          expect(exception).to_not be_nil
-          expect(exception.message).to eq("Failed to publish archived policy")
-          expect(exception_cause).to be_a(ChefDK::InvalidPolicyArchive)
-          expect(exception_cause.message).to eq("Archive file #{archive_file_path} could not be unpacked. not in gzip format")
-        end
-
-      end
-
       context "when the archive is a gzip file of a garbage file" do
 
         before do
@@ -179,7 +164,7 @@ E
           expect(exception).to_not be_nil
           expect(exception.message).to eq("Failed to publish archived policy")
           expect(exception_cause).to be_a(ChefDK::InvalidPolicyArchive)
-          expect(exception_cause.message).to eq("Archive file #{archive_file_path} could not be unpacked. Tar archive looks corrupt.")
+          expect(exception_cause.message).to eq("Archive file #{archive_file_path} could not be unpacked. Unrecognized archive format")
         end
       end
 
@@ -195,7 +180,7 @@ E
           expect(exception).to_not be_nil
           expect(exception.message).to eq("Failed to publish archived policy")
           expect(exception_cause).to be_a(ChefDK::InvalidPolicyArchive)
-          expect(exception_cause.message).to eq("Archive file #{archive_file_path} could not be unpacked. Tar archive looks corrupt.")
+          expect(exception_cause.message).to eq("Archive file #{archive_file_path} could not be unpacked. Unrecognized archive format")
         end
       end
     end
