@@ -130,10 +130,9 @@ module ChefDK
       end
 
       def create_archive
-        Zlib::GzipWriter.open(archive_file_location) do |gz_file|
-          Dir.chdir(staging_dir) do
-            Archive::Tar::Minitar.pack(".", gz_file)
-          end
+        Dir.chdir(staging_dir) do
+          targets = Find.find(".").collect { |e| e }
+          Mixlib::Archive.new(archive_file_location).create(targets, gzip: true)
         end
       end
 

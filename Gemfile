@@ -21,6 +21,10 @@ gemspec
 
 gem "bundler"
 
+# ffi 1.9.22+1.9.23 are buggy in our spec/unit/application/client_spec.rb tests on el6/el7
+# (this pin has nothing directly to do with chefdk, please delete if no longer applicable)
+gem "ffi", "< 1.9.22"
+
 group(:omnibus_package, :development, :test) do
   gem "rake"
   gem "pry"
@@ -29,6 +33,7 @@ group(:omnibus_package, :development, :test) do
   gem "guard"
   gem "cookstyle", "= 2.1.0"
   gem "foodcritic", "= 12.3.0"
+  gem "ffi-libarchive"
 end
 
 group(:dep_selector) do
@@ -67,6 +72,7 @@ group(:omnibus_package) do
   # net-ssh 4.2.0 explodes the world. FIXME
   gem "net-ssh", "= 4.1.0"
   gem "test-kitchen", ">= 1.18.0"
+  gem "mixlib-archive", ">= 0.4.6"
   gem "listen"
   gem "dco"
 
@@ -108,7 +114,6 @@ gem "chefstyle", group: :test
 # TODO delete this when we figure out how to include the pushy windows dependencies
 # correctly
 platforms :mswin, :mingw do
-  gem "ffi"
   gem "rdp-ruby-wmi"
   gem "windows-api"
   gem "windows-pr"

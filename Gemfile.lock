@@ -25,18 +25,18 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     app_conf (0.4.2)
-    appbundler (0.11.4)
+    appbundler (0.11.6)
       mixlib-cli (~> 1.4)
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.44)
-      aws-sdk-resources (= 2.11.44)
-    aws-sdk-core (2.11.44)
+    aws-sdk (2.11.58)
+      aws-sdk-resources (= 2.11.58)
+    aws-sdk-core (2.11.58)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.44)
-      aws-sdk-core (= 2.11.44)
+    aws-sdk-resources (2.11.58)
+      aws-sdk-core (= 2.11.58)
     aws-sigv4 (1.0.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -222,7 +222,7 @@ GEM
       backports (>= 3.8.0)
       cucumber-tag_expressions (~> 1.1.0)
       gherkin (>= 5.0.0)
-    cucumber-expressions (5.0.17)
+    cucumber-expressions (5.0.18)
     cucumber-tag_expressions (1.1.1)
     cucumber-wire (0.0.1)
     dco (1.0.1)
@@ -236,11 +236,11 @@ GEM
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.3)
-    diffy (3.2.0)
+    diffy (3.2.1)
     docker-api (1.34.2)
       excon (>= 0.47.0)
       multi_json
-    droplet_kit (2.2.2)
+    droplet_kit (2.3.0)
       activesupport (> 3.0, < 6)
       faraday (~> 0.9)
       kartograph (~> 0.2.3)
@@ -249,13 +249,15 @@ GEM
     equalizer (0.0.11)
     erubis (2.7.0)
     excon (0.62.0)
-    faraday (0.15.0)
+    faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
     fauxhai (5.6.0)
       net-ssh
-    ffi (1.9.23)
-    ffi (1.9.23-x64-mingw32)
-    ffi (1.9.23-x86-mingw32)
+    ffi (1.9.21)
+    ffi (1.9.21-x64-mingw32)
+    ffi (1.9.21-x86-mingw32)
+    ffi-libarchive (0.2.0)
+      ffi (~> 1.0)
     ffi-rzmq (2.0.6)
       ffi-rzmq-core (>= 1.0.6)
     ffi-rzmq-core (1.0.6)
@@ -318,7 +320,7 @@ GEM
     gcewinpass (1.0.0)
       google-api-client (~> 0.9.0)
     gherkin (5.0.0)
-    git (1.3.0)
+    git (1.4.0)
     google-api-client (0.9.28)
       addressable (~> 2.3)
       googleauth (~> 0.5)
@@ -361,7 +363,7 @@ GEM
     ice_nine (0.11.2)
     inifile (3.0.0)
     iniparse (1.4.4)
-    inspec (1.51.21)
+    inspec (1.51.25)
       addressable (~> 2.4)
       faraday (>= 0.9.0)
       hashie (~> 3.4)
@@ -461,7 +463,7 @@ GEM
     mixlib-cli (1.7.0)
     mixlib-config (2.2.6)
       tomlrb
-    mixlib-install (3.9.3)
+    mixlib-install (3.10.0)
       mixlib-shellout
       mixlib-versioning
       thor
@@ -667,7 +669,7 @@ GEM
       thread_safe (~> 0.1)
     uber (0.0.15)
     ubuntu_ami (0.4.1)
-    unicode-display_width (1.3.2)
+    unicode-display_width (1.3.3)
     uuidtools (2.1.5)
     varia_model (0.6.0)
       buff-extensions (~> 2.0)
@@ -718,7 +720,7 @@ GEM
       rubyzip (~> 1.1)
       winrm (~> 2.0)
     wmi-lite (1.0.0)
-    yard (0.9.12)
+    yard (0.9.13)
 
 PLATFORMS
   ruby
@@ -746,7 +748,8 @@ DEPENDENCIES
   dep-selector-libgecode
   dep_selector
   fauxhai (= 5.6.0)
-  ffi
+  ffi (< 1.9.22)
+  ffi-libarchive
   ffi-rzmq-core
   foodcritic (= 12.3.0)
   guard
@@ -765,6 +768,7 @@ DEPENDENCIES
   knife-spork
   knife-windows (>= 1.9.0)
   listen
+  mixlib-archive (>= 0.4.6)
   mixlib-install
   mixlib-versioning
   net-ssh (= 4.1.0)
