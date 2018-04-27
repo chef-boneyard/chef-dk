@@ -19,6 +19,10 @@ source "https://rubygems.org"
 
 gemspec
 
+# ffi 1.9.22+1.9.23 are buggy in our spec/unit/application/client_spec.rb tests on el6/el7
+# (this pin has nothing directly to do with chefdk, please delete if no longer applicable)
+gem "ffi", "< 1.9.22"
+
 gem "bundler"
 
 group(:omnibus_package, :development, :test) do
@@ -110,7 +114,6 @@ gem "chefstyle", group: :test
 # TODO delete this when we figure out how to include the pushy windows dependencies
 # correctly
 platforms :mswin, :mingw do
-  gem "ffi"
   gem "rdp-ruby-wmi"
   gem "windows-api"
   gem "windows-pr"
