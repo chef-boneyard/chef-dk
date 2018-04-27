@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.22 -->
-## [v3.0.22](https://github.com/chef/chef-dk/tree/v3.0.22) (2018-04-27)
+<!-- latest_release 3.0.23 -->
+## [v3.0.23](https://github.com/chef/chef-dk/tree/v3.0.23) (2018-04-27)
 
 #### Merged Pull Requests
-- expeditor force expire cache [#1556](https://github.com/chef/chef-dk/pull/1556) ([lamont-granquist](https://github.com/lamont-granquist))
+- remove expire cache [#1557](https://github.com/chef/chef-dk/pull/1557) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- remove expire cache [#1557](https://github.com/chef/chef-dk/pull/1557) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.23 -->
 - expeditor force expire cache [#1556](https://github.com/chef/chef-dk/pull/1556) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.22 -->
 -  pin ffi to avoid el6/el7 bugginess [#1555](https://github.com/chef/chef-dk/pull/1555) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.21 -->
 - Force the container to properly run in en_US.UTF-8 [#1548](https://github.com/chef/chef-dk/pull/1548) ([tduffield](https://github.com/tduffield)) <!-- 3.0.20 -->
