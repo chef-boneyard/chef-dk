@@ -3,6 +3,9 @@
 ## Platform Deprecation
 ChefDK is no longer is built or tested on OS X 10.10 in accordance with Chef's EOL policy.
 
+## Cookbook generator creates a CHANGELOG.md
+
+`chef cookbook generate [cookbook_name]` now creates a `CHANGELOG.md` file.
 
 # ChefDK 2.5 Release Notes
 

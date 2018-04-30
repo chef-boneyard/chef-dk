@@ -41,6 +41,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       LICENSE
       metadata.rb
       README.md
+      CHANGELOG.md
       recipes
       recipes/default.rb
       spec
@@ -445,6 +446,14 @@ OUTPUT
 
     describe "README.md" do
       let(:file) { File.join(tempdir, "new_cookbook", "README.md") }
+
+      include_examples "a generated file", :cookbook_name do
+        let(:line) { "# new_cookbook" }
+      end
+    end
+
+    describe "CHANGELOG.md" do
+      let(:file) { File.join(tempdir, "new_cookbook", "CHANGELOG.md") }
 
       include_examples "a generated file", :cookbook_name do
         let(:line) { "# new_cookbook" }

@@ -38,6 +38,12 @@ template "#{cookbook_dir}/README.md" do
   action :create_if_missing
 end
 
+# CHANGELOG
+template "#{cookbook_dir}/CHANGELOG.md" do
+  helpers(ChefDK::Generator::TemplateHelper)
+  action :create_if_missing
+end
+
 # chefignore
 cookbook_file "#{cookbook_dir}/chefignore"
 
