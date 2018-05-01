@@ -24,8 +24,8 @@ describe ChefDK::Policyfile::GitLockFetcher do
   let(:identifier) { "fab501cfaf747901bd82c1bc706beae7dc3a350c" }
   let(:git_revision) { "8404a9e0b5c27c55d529e61222e14f950b6e4171" }
   let(:rel) { "cookbooks/nested_cookbook" }
-  let(:cookbook_name) {"git-cookbook"}
-  let(:nested_cookbook_name) {"cookbooks/nested-cookbook"}
+  let(:cookbook_name) { "git-cookbook" }
+  let(:nested_cookbook_name) { "cookbooks/nested-cookbook" }
   let(:repo) { "https://github.com/monkeynews/bananas" }
 
   let(:minimal_lockfile_json) do
@@ -64,7 +64,7 @@ describe ChefDK::Policyfile::GitLockFetcher do
     }
   }
 }
-E
+    E
   end
 
   def minimal_lockfile
@@ -78,7 +78,7 @@ E
   let(:minimal_lockfile_modified) do
     minimal_lockfile.tap do |lockfile|
       lockfile["cookbook_locks"][cookbook_name]["source_options"] = {
-        "git" => repo,
+        "git"      => repo,
         "revision" => git_revision,
       }
     end
@@ -87,13 +87,13 @@ E
   let(:minimal_lockfile_with_scm_info) do
     minimal_lockfile_modified.tap do |lockfile|
       lockfile["cookbook_locks"][cookbook_name]["scm_info"] = {
-        "scm" => "git",
-        "remote" => repo,
-        "revision" => git_revision,
-        "working_tree_clean" => true,
-        "published" => true,
+        "scm"                          => "git",
+        "remote"                       => repo,
+        "revision"                     => git_revision,
+        "working_tree_clean"           => true,
+        "published"                    => true,
         "synchronized_remote_branches" => [
-          "origin/master"
+          "origin/master",
         ],
       }
     end
@@ -101,13 +101,12 @@ E
 
   let(:source_options) do
     {
-      git: repo,
-      revision: git_revision
+      git:      repo,
+      revision: git_revision,
     }
   end
 
   let(:shellout) { instance_double("Mixlib::ShellOut", run_command: "git") }
-
 
   describe "#lock_data" do
     subject(:lock_data) { described_class.new(policy_name, source_options, storage_config).lock_data }
@@ -123,12 +122,12 @@ E
 
     context "when using a relative path for the policyfile" do
       let(:source_options_rel) do
-        source_options.collect{|k,v| [k.to_s, v]}.to_h.merge({"rel" => rel})
+        source_options.collect { |k, v| [k.to_s, v] }.to_h.merge({ "rel" => rel })
       end
 
       subject(:relative_path_fetcher) { described_class.new(policy_name, source_options_rel, storage_config) }
 
-      it "omits the relative of the policyfile from the source_options" do
+      it "omits the relative path of the policyfile from the source_options" do
         subject { described_class.new(policy_name, source_options_rel, storage_config) }
 
         expect(Mixlib::ShellOut).to receive(:new).and_return(shellout)
@@ -142,68 +141,15 @@ E
         expect(
           relative_path_fetcher.lock_data["cookbook_locks"][cookbook_name]["source_options"]
         ).to match(
-                   {
-                     "git" => repo,
-                     "revision" => git_revision,
-                   }
-                 )
+               {
+                 "git"      => repo,
+                 "revision" => git_revision,
+               }
+             )
         expect(
           relative_path_fetcher.lock_data["cookbook_locks"][cookbook_name]["source_options"]
         ).not_to match(source_options_rel)
-      end
-
-    end
-
-    context "when a cookbook dependency uses a relative git path" do
-      let(:source_options_with_scm_info) { source_options.collect{|k,v| [k.to_s, v]}.to_h.merge(minimal_lockfile_with_scm_info) }
-
-      context "when the path is '.'" do
-        let(:source_options_with_rel_path_scm_info) do
-          source_options_with_scm_info["cookbook_locks"][cookbook_name]["scm_info"].tap do |scm_info|
-            scm_info["path"] = "/foo/bar"
-          end
-        end
-
-        subject(:foobar) { described_class.new(policy_name, source_options_with_rel_path_scm_info, storage_config) }
-
-        it "removes the 'path' key from the source_options" do
-          expect(Mixlib::ShellOut).to receive(:new).and_return(shellout)
-          allow(shellout).to receive(:error?).and_return(false)
-          allow(shellout).to receive(:stdout).and_return(minimal_lockfile_json)
-          allow(Dir).to receive(:chdir).and_return(0)
-          allow_any_instance_of(described_class).to receive(:cache_path).and_return(
-            Pathname.new(subject.storage_config.relative_paths_root)
-          )
-
-          require 'pry';binding.pry
-          expect(
-            foobar.lock_data["cookbook_locks"][cookbook_name]["source_options"]
-          ).to match(source_options_with_rel_path_scm_info)
-        end
-      end
-
-      context "when the path is prefixed with './'" do
-        let(:source_options) do
-          {
-            path: Pathname.new(lock_file_path).dirname.join("dne.json.lock").to_s,
-          }
-        end
-        it "raises a GitError"
-      end # context "when the path is prefixed with './'" do
-
-      context "and the lock file does not exist" do
-        let(:source_options) do
-          {
-            path: Pathname.new(lock_file_path).dirname.join("dne.json.lock").to_s,
-          }
-        end
-        it "raises a GitError"
-      end # context "and the lock file does not exist"
-    end # context "when a cookbook dependency uses a relative git path"
-  end
-
-  describe "#source_options_for_lock" do
-    it "adds the git commit hash"
-  end
-
+      end # it "omits the relative path of the policyfile from the source_options"
+    end # context "when using a relative path for the policyfile"
+  end # describe "#lock_data"
 end # describe ChefDK::Policyfile::GitLockFetcher

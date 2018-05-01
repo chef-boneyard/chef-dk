@@ -21,7 +21,6 @@ require "chef-dk/policyfile/chef_server_lock_fetcher"
 require "chef-dk/policyfile/git_lock_fetcher"
 require "chef-dk/exceptions"
 
-
 module ChefDK
   module Policyfile
     # A PolicyfileLocationSpecification specifies where a policyfile lock is to be fetched from.

@@ -29,7 +29,7 @@ module ChefDK
     # @author Ryan Hass
     # @author Daniel DeLeo
     #
-    # @since 3.1.0
+    # @since 3.0
     #
     class GitLockFetcher
       attr_accessor :name
@@ -37,11 +37,11 @@ module ChefDK
       attr_accessor :storage_config
 
       attr_reader :uri
+      attr_reader :revision
+      attr_reader :path
       attr_reader :branch
       attr_reader :tag
       attr_reader :ref
-      attr_reader :revision
-      attr_reader :path
 
       # Initialize a GitLockFetcher
       #
@@ -51,17 +51,16 @@ module ChefDK
       def initialize(name, source_options, storage_config)
         @name           = name
         @storage_config = storage_config
-        @source_options = source_options
-
-        @uri      = source_options[:git]
-        @branch   = source_options[:branch]
-        @tag      = source_options[:tag]
-        @ref      = source_options[:ref]
-        @revision = source_options[:revision]
-        @path     = source_options[:path] || source_options[:rel]
+        @source_options = symbolize_keys(source_options)
+        @revision = @source_options[:revision]
+        @path     = @source_options[:path] || @source_options[:rel]
+        @uri      = @source_options[:git]
+        @branch   = @source_options[:branch]
+        @tag      = @source_options[:tag]
+        @ref      = @source_options[:ref]
 
         # The revision to parse
-        @rev_parse = source_options[:ref] || source_options[:branch] || source_options[:tag] || "master"
+        @rev_parse = @source_options[:ref] || @source_options[:branch] || @source_options[:tag] || "master"
       end
 
       # @return [True] if there were no errors with the provided source_options
@@ -94,8 +93,6 @@ module ChefDK
       #
       # @param options_from_lock [Hash] The source options loaded from a policyfile lock
       def apply_locked_source_options(options_from_lock)
-        # There are no options the lock could provide
-
         options = options_from_lock.inject({}) do |acc, (key, value)|
           acc[key.to_sym] = value
           acc
@@ -104,40 +101,58 @@ module ChefDK
         raise ChefDK::InvalidLockfile, "Invalid source_options provided from lock data: #{options_from_lock_file.inspect}" if !valid?
       end
 
-      # @return [String] of the policyfile lock data
+      # @return [Hash] of the policyfile lock data
       def lock_data
         @lock_data ||= fetch_lock_data.tap do |data|
           data["cookbook_locks"].each do |cookbook_name, cookbook_lock|
-            cookbook_path = cookbook_lock["source_options"]["path"]
-            cookbook_lock["source_options"].tap do |opt|
-              if cookbook_lock.has_key?("scm_info")
-                opt["rel"] = opt["path"] unless opt["path"] == "."
+            if cookbook_lock["source_options"].has_key?("path")
+              cookbook_lock["source_options"].tap do |opt|
+                opt["git"]      = uri unless opt.has_key?("git")
+                opt["revision"] = revision unless opt.has_key?("revision")
+                opt["branch"]   = branch unless opt.has_key?("branch") || branch.nil?
+                opt["tag"]      = tag unless opt.has_key?("tag") || branch.nil?
+                opt["ref"]      = ref unless opt.has_key?("ref") || ref.nil?
+
+                path_keys = %w{path rel}.map { |path_key| path_key if opt.has_key?(path_key) }.compact
+
+                path_keys.each do |name|
+                  # We can safely grab the entire cookbook when the Policyfile defines a cookbook path of itself (".")
+                  if opt[name] == "."
+                    opt.delete(name)
+                    next
+                  end
+
+                  # Mutate the path key to a rel key so that we identify the source_type
+                  # as a git repo and not a local directory. Git also doesn't like paths
+                  # prefixed with `./` and cannot use relative paths outside the repo.
+                  # http://rubular.com/r/JYpdYHT19p
+                  pattern = /(^..\/)|(^.\/)/
+                  opt["rel"] = opt[name].gsub(pattern, "")
+                end
+
+                # Delete the path key if present to ensure we use the git source_type
                 opt.delete("path")
-                opt["git"] = cookbook_lock["scm_info"]["remote"]
-                # Note: In instances where the Policyfile.lock is being
-                # consumed from a cookbook, the cookbook from which it will be
-                # consumed will always be one git revision behind. This is due
-                # to the fact that one must generate a lock file which will
-                # contain the git ref from the working copy and then commit
-                # the resulting lock file artifact which will in turn create a
-                # new git ref. However, this may be the incorrect behavior for
-                # some users whom wish to commit the lock file along with any
-                # changes in the same commit, and will require a different way
-                # of generating the locks.
-                opt["revision"] = cookbook_lock["scm_info"]["revision"]
               end
-            end
-          end
-        end
+            end # cookbook_lock["source_options"]
+          end # data["cookbook_locks"].each
+        end # fetch_lock_data.tap
 
         @lock_data
       end
 
       private
 
+      # Helper method to normalize data.
+      #
+      # @param [Hash] hash Hash with symbols and/or strings as keys.
+      # @return [Hash] Hash with only symbols as keys.
+      def symbolize_keys(hash)
+        hash.inject({}) { |memo, (k, v)| memo[k.to_sym] = v; memo }
+      end
+
       def fetch_lock_data
         install unless installed?
-        FFI_Yajl::Parser.new.parse(
+        FFI_Yajl::Parser.parse(
           show_file(rev_parse, lockfile_path)
         )
       end
