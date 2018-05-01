@@ -37,9 +37,6 @@ module ChefDK
       attr_accessor :storage_config
 
       attr_reader :uri
-      attr_reader :branch
-      attr_reader :tag
-      attr_reader :ref
       attr_reader :revision
       attr_reader :path
 
@@ -51,17 +48,13 @@ module ChefDK
       def initialize(name, source_options, storage_config)
         @name           = name
         @storage_config = storage_config
-        @source_options = source_options
-
-        @uri      = source_options[:git]
-        @branch   = source_options[:branch]
-        @tag      = source_options[:tag]
-        @ref      = source_options[:ref]
-        @revision = source_options[:revision]
-        @path     = source_options[:path] || source_options[:rel]
+        @source_options = symbolize_keys(source_options)
+        @revision = @source_options[:revision]
+        @path     = @source_options[:path] || @source_options[:rel]
+        @uri      = @source_options[:git]
 
         # The revision to parse
-        @rev_parse = source_options[:ref] || source_options[:branch] || source_options[:tag] || "master"
+        @rev_parse = @source_options[:ref] || @source_options[:branch] || @source_options[:tag] || "master"
       end
 
       # @return [True] if there were no errors with the provided source_options
@@ -108,7 +101,6 @@ module ChefDK
       def lock_data
         @lock_data ||= fetch_lock_data.tap do |data|
           data["cookbook_locks"].each do |cookbook_name, cookbook_lock|
-            cookbook_path = cookbook_lock["source_options"]["path"]
             cookbook_lock["source_options"].tap do |opt|
               if cookbook_lock.has_key?("scm_info")
                 opt["rel"] = opt["path"] unless opt["path"] == "."
@@ -135,9 +127,17 @@ module ChefDK
 
       private
 
+      # Helper method to normalize data.
+      #
+      # @param [Hash] hash Hash with symbols and/or strings as keys.
+      # @return [Hash] Hash with only symbols as keys.
+      def symbolize_keys(hash)
+        hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+      end
+
       def fetch_lock_data
         install unless installed?
-        FFI_Yajl::Parser.new.parse(
+        FFI_Yajl::Parser.parse(
           show_file(rev_parse, lockfile_path)
         )
       end
