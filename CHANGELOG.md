@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.24 -->
-## [v3.0.24](https://github.com/chef/chef-dk/tree/v3.0.24) (2018-04-30)
+<!-- latest_release 3.0.25 -->
+## [v3.0.25](https://github.com/chef/chef-dk/tree/v3.0.25) (2018-05-03)
 
 #### Merged Pull Requests
-- Generate a `CHANGELOG.md` for cookbooks [#1560](https://github.com/chef/chef-dk/pull/1560) ([nathenharvey](https://github.com/nathenharvey))
+- bump deps [#1563](https://github.com/chef/chef-dk/pull/1563) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- bump deps [#1563](https://github.com/chef/chef-dk/pull/1563) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.25 -->
 - Generate a `CHANGELOG.md` for cookbooks [#1560](https://github.com/chef/chef-dk/pull/1560) ([nathenharvey](https://github.com/nathenharvey)) <!-- 3.0.24 -->
 - remove expire cache [#1557](https://github.com/chef/chef-dk/pull/1557) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.23 -->
 - expeditor force expire cache [#1556](https://github.com/chef/chef-dk/pull/1556) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.22 -->
