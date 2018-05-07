@@ -25,7 +25,7 @@ module ChefDK
     def initialize(enable_pager: true)
       @enable_pager = enable_pager
       @pipe = nil
-      @pager_pid
+      @pager_pid = nil
     end
 
     def pager_enabled?
