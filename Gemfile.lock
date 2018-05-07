@@ -751,7 +751,7 @@ DEPENDENCIES
   ffi-rzmq-core
   foodcritic (>= 12.1)
   guard
-  inspec (~> 2)
+  inspec (>= 2.1.68)
   kitchen-digitalocean (>= 0.9.8)
   kitchen-dokken (>= 2.6.7)
   kitchen-ec2 (>= 2.2.1)
