@@ -85,7 +85,7 @@ E
       end
 
       def run(params)
-        if generator_spec = generator_for(params[0])
+        if (generator_spec = generator_for(params[0]))
           params.shift
           generator = GeneratorCommands.build(generator_spec.class_name, params)
           generator.run
