@@ -38,7 +38,7 @@ describe ChefDK::Command::ShellInit do
     let(:expected_gem_path) { Gem.path.join(File::PATH_SEPARATOR) }
 
     before do
-      allow(::Dir).to receive(:exists?).and_call_original
+      allow(::Dir).to receive(:exist?).and_call_original
     end
 
     context "with no explicit omnibus directory" do
@@ -52,7 +52,7 @@ describe ChefDK::Command::ShellInit do
         allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
         allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
         allow(command_instance).to receive(:git_bin_dir).and_return(git_bin_dir)
-        allow(::Dir).to receive(:exists?).with(git_bin_dir).and_return(true)
+        allow(::Dir).to receive(:exist?).with(git_bin_dir).and_return(true)
       end
 
       it "emits a script to add ChefDK's ruby to the shell environment" do
@@ -78,7 +78,7 @@ describe ChefDK::Command::ShellInit do
       let(:argv) { [shell, "--omnibus-dir", omnibus_root] }
 
       before do
-        allow(::Dir).to receive(:exists?).with(git_bin_dir).and_return(true)
+        allow(::Dir).to receive(:exist?).with(git_bin_dir).and_return(true)
       end
 
       it "emits a script to add ChefDK's ruby to the shell environment" do
