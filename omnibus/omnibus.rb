@@ -30,7 +30,7 @@ windows_arch %w{x86 x64}.include?((ENV["OMNIBUS_WINDOWS_ARCH"] || "").downcase) 
 
 # Build in FIPS compatability mode
 # ------------------------------
-fips_mode ((ENV["OMNIBUS_FIPS_MODE"] || "").casecmp("true") == 0)
+fips_mode((ENV["OMNIBUS_FIPS_MODE"] || "").casecmp("true") == 0)
 
 # Disable git caching
 # ------------------------------

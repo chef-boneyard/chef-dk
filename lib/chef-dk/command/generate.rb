@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2018, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -85,7 +85,7 @@ E
       end
 
       def run(params)
-        if generator_spec = generator_for(params[0])
+        if ( generator_spec = generator_for(params[0]) )
           params.shift
           generator = GeneratorCommands.build(generator_spec.class_name, params)
           generator.run

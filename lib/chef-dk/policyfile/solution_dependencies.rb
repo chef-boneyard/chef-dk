@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2018, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +16,7 @@
 #
 
 require "semverse"
-
+require "set"
 require "chef-dk/exceptions"
 
 module ChefDK
@@ -122,7 +122,6 @@ module ChefDK
       end
 
       def transitive_deps(names)
-        require "set"
         deps = Set.new
         to_explore = names.dup
         until to_explore.empty?

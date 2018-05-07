@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2018, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -70,7 +70,6 @@ module ChefDK
         def read_and_validate_params
           arguments = parse_options(params)
 
-          new_file_path = nil
           case arguments.size
           when 0
             if chef_repo_mode?
@@ -81,7 +80,6 @@ module ChefDK
               use_default_policy_settings
             end
           when 1
-            new_file_path = arguments[0]
             derive_policy_settings_from_args(arguments[0])
           else
             @params_valid = false

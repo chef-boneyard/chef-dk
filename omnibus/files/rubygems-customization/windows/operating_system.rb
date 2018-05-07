@@ -31,7 +31,7 @@ module Gem
                     ENV["CHEFDK_HOME"]
                   else
                     old_home = File.join(Gem.user_home, ".chefdk")
-                    if File.exists?(old_home)
+                    if File.exist?(old_home)
                       Gem.ui.alert_warning <<-EOF
 
         ChefDK now defaults to using #{default_home} instead of #{old_home}.

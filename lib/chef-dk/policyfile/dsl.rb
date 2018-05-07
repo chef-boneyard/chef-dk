@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2018, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,8 +34,8 @@ module ChefDK
       attr_writer :name
 
       attr_reader :errors
-      attr_reader :run_list
-      attr_reader :default_source
+      attr_writer :run_list
+      attr_writer :default_source
       attr_reader :cookbook_location_specs
       attr_reader :included_policies
 
@@ -113,7 +113,7 @@ module ChefDK
         constraint = version_and_source_opts.first || ">= 0.0.0"
         spec = CookbookLocationSpecification.new(name, constraint, source_options, storage_config)
 
-        if existing_source = @cookbook_location_specs[name]
+        if ( existing_source = @cookbook_location_specs[name] )
           err = "Cookbook '#{name}' assigned to conflicting sources\n\n"
           err << "Previous source: #{existing_source.source_options.inspect}\n"
           err << "Conflicts with: #{source_options.inspect}\n"
@@ -125,7 +125,7 @@ module ChefDK
       end
 
       def include_policy(name, source_options = {})
-        if existing = included_policies.find { |p| p.name == name }
+        if ( existing = included_policies.find { |p| p.name == name } )
           err = "Included policy '#{name}' assigned conflicting locations or was already specified\n\n"
           err << "Previous source: #{existing.source_options.inspect}\n"
           err << "Conflicts with: #{source_options.inspect}\n"
@@ -262,7 +262,7 @@ module ChefDK
       end
 
       def error_context(policyfile_string, policyfile_filename, exception)
-        if line_number_to_show = culprit_line_number(policyfile_filename, exception)
+        if ( line_number_to_show = culprit_line_number(policyfile_filename, exception) )
           code = policyfile_string.lines.to_a[line_number_to_show - 1].strip
           "#{line_number_to_show}: #{code}"
         else
@@ -271,7 +271,7 @@ module ChefDK
       end
 
       def culprit_line_number(policyfile_filename, exception)
-        if most_proximate_backtrace_line = filtered_bt(policyfile_filename, exception).first
+        if ( most_proximate_backtrace_line = filtered_bt(policyfile_filename, exception).first )
           most_proximate_backtrace_line[/^(?:.\:)?[^:]+:([\d]+)/, 1].to_i
         else
           nil

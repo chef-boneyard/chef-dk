@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2018, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -134,7 +134,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
     end
   end
 
-  let (:included_policies) { [] }
+  let(:included_policies) { [] }
 
   let(:policyfile) do
     policyfile = ChefDK::PolicyfileCompiler.new.build do |p|
