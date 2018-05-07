@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.25 -->
-## [v3.0.25](https://github.com/chef/chef-dk/tree/v3.0.25) (2018-05-03)
+<!-- latest_release 3.0.26 -->
+## [v3.0.26](https://github.com/chef/chef-dk/tree/v3.0.26) (2018-05-07)
 
 #### Merged Pull Requests
-- bump deps [#1563](https://github.com/chef/chef-dk/pull/1563) ([lamont-granquist](https://github.com/lamont-granquist))
+- Use Mixlib::Archive rather than Minitar [#1558](https://github.com/chef/chef-dk/pull/1558) ([thommay](https://github.com/thommay))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- Use Mixlib::Archive rather than Minitar [#1558](https://github.com/chef/chef-dk/pull/1558) ([thommay](https://github.com/thommay)) <!-- 3.0.26 -->
 - bump deps [#1563](https://github.com/chef/chef-dk/pull/1563) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.25 -->
 - Generate a `CHANGELOG.md` for cookbooks [#1560](https://github.com/chef/chef-dk/pull/1560) ([nathenharvey](https://github.com/nathenharvey)) <!-- 3.0.24 -->
 - remove expire cache [#1557](https://github.com/chef/chef-dk/pull/1557) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.23 -->
