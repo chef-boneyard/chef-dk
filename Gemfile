@@ -33,6 +33,7 @@ group(:omnibus_package, :development, :test) do
   gem "guard"
   gem "cookstyle", ">= 2.0.0"
   gem "foodcritic", ">= 12.1"
+  gem "ffi-libarchive"
 end
 
 group(:dep_selector) do
@@ -55,7 +56,6 @@ group(:omnibus_package) do
   gem "cheffish", ">= 14.0.1"
   gem "chefspec", ">= 7.2.0"
   gem "fauxhai", ">= 5.4.0"
-  gem "ffi-libarchive"
   gem "inspec", "~> 2"
   gem "kitchen-ec2", ">= 2.2.1"
   gem "kitchen-digitalocean", ">= 0.9.8"
@@ -69,7 +69,7 @@ group(:omnibus_package) do
   gem "knife-windows", ">= 1.9.0"
   gem "knife-opc", ">= 0.3.2"
   gem "knife-vsphere", ">= 2.0.3"
-  gem "mixlib-archive", ">= 0.4.2"
+  gem "mixlib-archive", ">= 0.4.5"
   gem "ohai", ">= 14.0.29"
   gem "net-ssh", ">= 4.2.0"
   gem "test-kitchen", ">= 1.21.1"

@@ -433,12 +433,7 @@ CONFIG
 
             # explode the tarball so the assertions can find the files
             before do
-              Zlib::GzipReader.open(expected_archive_path) do |gz_file|
-                tar = Archive::Tar::Minitar::Input.new(gz_file)
-                tar.each do |e|
-                  tar.extract_entry(export_dir, e)
-                end
-              end
+              Mixlib::Archive.new(expected_archive_path).extract(export_dir)
             end
 
           end

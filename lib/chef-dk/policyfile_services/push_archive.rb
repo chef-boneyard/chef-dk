@@ -132,45 +132,9 @@ MESSAGE
       end
 
       def unpack_to(staging_dir)
-        Zlib::GzipReader.open(archive_file_path) do |gz_file|
-          untar_to(gz_file, staging_dir)
-        end
-
-        # untar_to can raise InvalidPolicyArchive, let it through
-      rescue InvalidPolicyArchive
-        raise
+        Mixlib::Archive.new(archive_file_path).extract(staging_dir)
       rescue => e
         raise InvalidPolicyArchive, "Archive file #{archive_file_path} could not be unpacked. #{e}"
-      end
-
-      def untar_to(tar_file, staging_dir)
-        # Minitar doesn't do much input checking, so if you feed it a
-        # garbage-enough file it will just do weird things and blow up. For
-        # example, if tar_file is just a bunch of nul characters, then tar will
-        # try to open a file named '.'; if you give it some random string that
-        # fits in the size of the filename header, it will create that file.
-        #
-        # Tar archives that we create via `chef export -a` and probably
-        # everything else we might encounter should be in ustar format. For
-        # such a tar file, bytes 257-263 should be "ustar\0", so we use this as
-        # a sanity check.
-        # https://en.wikipedia.org/wiki/Tar_(computing)
-
-        first_tar_header = tar_file.read(512)
-        ustar_indicator = first_tar_header[257, 6]
-
-        unless ustar_indicator == USTAR_INDICATOR
-          raise InvalidPolicyArchive, "Archive file #{archive_file_path} could not be unpacked. Tar archive looks corrupt."
-        end
-
-        # "undo" read of the first 512 bytes
-        tar_file.rewind
-
-        Archive::Tar::Minitar::Input.open(tar_file) do |stream|
-          stream.each do |entry|
-            stream.extract_entry(staging_dir, entry)
-          end
-        end
       end
 
       def looks_like_old_format_archive?(staging_dir)
