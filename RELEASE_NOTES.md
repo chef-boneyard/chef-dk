@@ -1,3 +1,8 @@
+
+## Platform Additions
+
+Enable Ubuntu-18.04 and Debian-9 tested ChefDK packages.
+
 # ChefDK 3.0 Release Notes
 
 ## Platform Deprecation
