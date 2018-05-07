@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2018, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -314,7 +314,7 @@ module ChefDK
     end
 
     def cookbook_version_fixed?(cookbook_name)
-      if cookbook_location_spec = cookbook_location_spec_for(cookbook_name)
+      if ( cookbook_location_spec = cookbook_location_spec_for(cookbook_name) )
         cookbook_location_spec.version_fixed?
       else
         false
@@ -328,7 +328,7 @@ module ChefDK
 
     def combined_run_lists
       expanded_named_run_lists.values.inject(expanded_run_list.to_a) do |accum_run_lists, run_list|
-        accum_run_lists |= run_list.to_a
+        accum_run_lists | run_list.to_a
       end
     end
 

@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software Inc.
+# Copyright:: Copyright (c) 2015-2018, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,6 @@ module ChefDK
     def initialize(enable_pager: true)
       @enable_pager = enable_pager
       @pipe = nil
-      @pager_pid
     end
 
     def pager_enabled?
