@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2018, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,7 +38,7 @@ describe ChefDK::Command::ShellInit do
     let(:expected_gem_path) { Gem.path.join(File::PATH_SEPARATOR) }
 
     before do
-      allow(::Dir).to receive(:exists?).and_call_original
+      allow(::Dir).to receive(:exist?).and_call_original
     end
 
     context "with no explicit omnibus directory" do
