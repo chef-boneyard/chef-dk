@@ -167,7 +167,7 @@ module ChefDK
     end
 
     def assert_present!
-      unless File.exists?( component_path )
+      unless File.exist?( component_path )
         raise MissingComponentError.new(name, "Could not find #{component_path}")
       end
     rescue Gem::LoadError => e

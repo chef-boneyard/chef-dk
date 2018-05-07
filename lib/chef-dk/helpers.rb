@@ -121,8 +121,8 @@ module ChefDK
         begin
           user_bin_dir = File.expand_path(File.join(Gem.user_dir, "bin"))
           path = [ omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV["PATH"] ]
-          path << git_bin_dir if Dir.exists?(git_bin_dir)
-          path << git_windows_bin_dir if Dir.exists?(git_windows_bin_dir)
+          path << git_bin_dir if Dir.exist?(git_bin_dir)
+          path << git_windows_bin_dir if Dir.exist?(git_windows_bin_dir)
           {
             "PATH" => path.join(File::PATH_SEPARATOR),
             "GEM_ROOT" => Gem.default_dir,

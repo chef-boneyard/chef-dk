@@ -6,7 +6,7 @@
 #
 # You can find this file in the repo at https://github.com/chef/omnibus-chef
 
-if !ENV["HOME"] || !File.exists?(ENV["HOME"])
+if !ENV["HOME"] || !File.exist?(ENV["HOME"])
   old_home = ENV["HOME"]
   found = false
   alternate_homes = []
@@ -14,7 +14,7 @@ if !ENV["HOME"] || !File.exists?(ENV["HOME"])
   alternate_homes << "#{ENV['USERPROFILE']}" if ENV["USERPROFILE"]
 
   alternate_homes.each do |path|
-    if File.exists?(path)
+    if File.exist?(path)
       ENV["HOME"] = path
       found = true
       break
