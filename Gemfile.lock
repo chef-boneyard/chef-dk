@@ -182,7 +182,7 @@ GEM
     cheffish (14.0.1)
       chef-zero (~> 14.0)
       net-ssh
-    chefspec (7.2.0)
+    chefspec (7.2.1)
       chef (>= 12.14.89)
       fauxhai (>= 4)
       rspec (~> 3.0)
@@ -509,7 +509,7 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    octokit (4.8.0)
+    octokit (4.9.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     ohai (14.1.0)
       chef-config (>= 12.8, < 15)
