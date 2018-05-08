@@ -27,8 +27,8 @@ group(:omnibus_package, :development, :test) do
   gem "rdoc"
   gem "yard"
   gem "guard"
-  gem "cookstyle", ">= 2.0.0"
-  gem "foodcritic", ">= 12.1"
+  gem "cookstyle", "= 2.1.0"
+  gem "foodcritic", "= 12.3.0"
 end
 
 group(:dep_selector) do
@@ -42,7 +42,7 @@ end
 # We equality pin the chef gem itself to assert which version we're shipping.
 group(:omnibus_package) do
   gem "appbundler"
-  gem "berkshelf", ">= 6.3.1"
+  gem "berkshelf", "= 6.3.2"
   gem "chef-provisioning", ">= 2.4.0", group: :provisioning
   gem "chef-provisioning-aws", ">= 3.0.0", group: :provisioning
   gem "chef-provisioning-fog", ">= 0.26.0", group: :provisioning
@@ -50,7 +50,7 @@ group(:omnibus_package) do
   gem "chef", "= 13.9.1"
   gem "cheffish", ">= 13.1.0"
   gem "chefspec", ">= 7.1.0"
-  gem "fauxhai", ">= 5.4.0"
+  gem "fauxhai", "= 5.6.0"
   gem "inspec", "~> 1.42"
   gem "kitchen-ec2", ">= 1.3.2"
   gem "kitchen-digitalocean", ">= 0.9.8"
@@ -63,7 +63,7 @@ group(:omnibus_package) do
   gem "knife-google", ">= 3.2.0"
   gem "knife-windows", ">= 1.9.0"
   gem "knife-opc", ">= 0.3.2"
-  gem "ohai", ">= 13.1.0"
+  gem "ohai", ">= 13.1.0", "< 14"
   # net-ssh 4.2.0 explodes the world. FIXME
   gem "net-ssh", "= 4.1.0"
   gem "test-kitchen", ">= 1.18.0"
