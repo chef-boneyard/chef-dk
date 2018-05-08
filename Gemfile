@@ -52,7 +52,7 @@ group(:omnibus_package) do
   gem "chef-provisioning-aws", ">= 3.0.2", group: :provisioning
   gem "chef-provisioning-fog", ">= 0.26.1", group: :provisioning
   gem "chef-vault", ">= 3.3.0"
-  gem "chef", "= 14.0.202"
+  gem "chef", "= 14.1.1"
   gem "cheffish", ">= 14.0.1"
   gem "chefspec", ">= 7.2.0"
   gem "fauxhai", ">= 5.4.0"
@@ -69,7 +69,7 @@ group(:omnibus_package) do
   gem "knife-windows", ">= 1.9.0"
   gem "knife-opc", ">= 0.3.2"
   gem "knife-vsphere", ">= 2.0.3"
-  gem "mixlib-archive", ">= 0.4.5"
+  gem "mixlib-archive", ">= 0.4.6"
   gem "ohai", ">= 14.0.29"
   gem "net-ssh", ">= 4.2.0"
   gem "test-kitchen", ">= 1.21.1"
