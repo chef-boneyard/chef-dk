@@ -218,7 +218,7 @@ GEM
     net-telnet (0.1.1)
     nio4r (2.3.1)
     nori (2.6.0)
-    octokit (4.8.0)
+    octokit (4.9.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     ohai (8.26.1)
       chef-config (>= 12.5.0.alpha.1, < 14)
