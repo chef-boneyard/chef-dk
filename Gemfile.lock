@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.43)
-      aws-sdk-resources (= 2.11.43)
-    aws-sdk-core (2.11.43)
+    aws-sdk (2.11.44)
+      aws-sdk-resources (= 2.11.44)
+    aws-sdk-core (2.11.44)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.43)
-      aws-sdk-core (= 2.11.43)
+    aws-sdk-resources (2.11.44)
+      aws-sdk-core (= 2.11.44)
     aws-sigv4 (1.0.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -62,13 +62,14 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (10.0.2)
-    chef (14.0.202)
+    chef (14.1.1)
       addressable
       bundler (>= 1.10)
-      chef-config (= 14.0.202)
+      chef-config (= 14.1.1)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
+      ffi (< 1.9.22)
       ffi-yajl (~> 2.2)
       highline (~> 1.6, >= 1.6.9)
       iniparse (~> 1.4)
@@ -92,14 +93,14 @@ GEM
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (14.0.202-universal-mingw32)
+    chef (14.1.1-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 14.0.202)
+      chef-config (= 14.1.1)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
-      ffi (~> 1.9)
+      ffi (< 1.9.22)
       ffi-yajl (~> 2.2)
       highline (~> 1.6, >= 1.6.9)
       iniparse (~> 1.4)
@@ -131,12 +132,13 @@ GEM
       win32-mutex (~> 0.4.2)
       win32-process (~> 0.8.2)
       win32-service (~> 0.8.7)
+      win32-taskscheduler (~> 0.4.0)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
     chef-api (0.8.0)
       logify (~> 0.1)
       mime-types
-    chef-config (14.0.202)
+    chef-config (14.1.1)
       addressable
       fuzzyurl
       mixlib-config (~> 2.0)
@@ -455,7 +457,7 @@ GEM
     mini_portile2 (2.3.0)
     minitar (0.6.1)
     minitest (5.11.3)
-    mixlib-archive (0.4.5)
+    mixlib-archive (0.4.6)
       mixlib-log
     mixlib-authentication (2.0.0)
     mixlib-cli (1.7.0)
@@ -631,6 +633,7 @@ GEM
     stove (6.0.0)
       chef-api (~> 0.5)
       logify (~> 0.2)
+    structured_warnings (0.3.0)
     syslog-logger (1.6.8)
     systemu (2.6.5)
     test-kitchen (1.21.2)
@@ -695,6 +698,9 @@ GEM
     win32-service (0.8.10)
       ffi
       ffi-win32-extensions
+    win32-taskscheduler (0.4.0)
+      ffi
+      structured_warnings
     windows-api (0.4.4)
       win32-api (>= 1.4.5)
     windows-pr (1.2.6)
@@ -730,7 +736,7 @@ DEPENDENCIES
   artifactory
   berkshelf (>= 7.0)
   bundler
-  chef (= 14.0.202)
+  chef (= 14.1.1)
   chef-dk!
   chef-provisioning (>= 2.7.1)
   chef-provisioning-aws (>= 3.0.2)
@@ -767,7 +773,7 @@ DEPENDENCIES
   knife-vsphere (>= 2.0.3)
   knife-windows (>= 1.9.0)
   listen
-  mixlib-archive (>= 0.4.5)
+  mixlib-archive (>= 0.4.6)
   mixlib-install
   mixlib-versioning
   net-ssh (>= 4.2.0)

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: f947159f6471b0a4413199568e62a1db7ba14426
+  revision: cb42641d8c0af24b87a4750cc415b9493022ab85
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -31,13 +31,13 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     awesome_print (1.8.0)
-    aws-sdk (2.11.36)
-      aws-sdk-resources (= 2.11.36)
-    aws-sdk-core (2.11.36)
+    aws-sdk (2.11.44)
+      aws-sdk-resources (= 2.11.44)
+    aws-sdk-core (2.11.44)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.36)
-      aws-sdk-core (= 2.11.36)
+    aws-sdk-resources (2.11.44)
+      aws-sdk-core (= 2.11.44)
     aws-sigv4 (1.0.2)
     berkshelf (6.3.2)
       buff-config (~> 2.0)
@@ -177,7 +177,7 @@ GEM
     kitchen-vagrant (1.3.2)
       test-kitchen (~> 1.4)
     libyajl2 (1.2.0)
-    license_scout (1.0.3)
+    license_scout (1.0.4)
       ffi-yajl (~> 2.2)
       mixlib-shellout (~> 2.2)
       toml-rb (~> 1.0)
@@ -186,7 +186,7 @@ GEM
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
     minitar (0.6.1)
-    mixlib-archive (0.4.1)
+    mixlib-archive (0.4.6)
       mixlib-log
     mixlib-authentication (1.4.2)
     mixlib-cli (1.7.0)
@@ -216,7 +216,7 @@ GEM
       net-ssh (>= 2.6.5)
       net-ssh-gateway (>= 1.2.0)
     net-telnet (0.1.1)
-    nio4r (2.3.0)
+    nio4r (2.3.1)
     nori (2.6.0)
     octokit (4.8.0)
       sawyer (~> 0.8.0, >= 0.5.3)
@@ -304,13 +304,13 @@ GEM
       sfl
     syslog-logger (1.6.8)
     systemu (2.6.5)
-    test-kitchen (1.21.1)
+    test-kitchen (1.21.2)
       mixlib-install (~> 3.6)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
       net-ssh (>= 2.9, < 5.0)
       net-ssh-gateway (~> 1.2)
-      thor (~> 0.19, < 0.19.2)
+      thor (~> 0.19)
       winrm (~> 2.0)
       winrm-elevated (~> 1.0)
       winrm-fs (~> 1.1)
