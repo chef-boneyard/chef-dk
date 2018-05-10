@@ -1,11 +1,74 @@
 # ChefDK 3.0 Release Notes
 
-## Platform Deprecation
-ChefDK is no longer is built or tested on OS X 10.10 in accordance with Chef's EOL policy.
+## Chef 14.1.1
+
+ChefDK now ships with Chef 14.1.1\. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
+## Updated Operating System support
+
+ChefDK now ships packages for Ubuntu 18.04 and Debian 9. In accordance with Chef's platform End Of Life policy, ChefDK is no longer shipped on macOS 10.10.
+
+## Enhanced cookbook archive handling
+
+ChefDK now uses an embedded copy of libarchive to support Policyfile and Berkshelf. This improves overall performance and provides a well tested interface to many different types of archives. It also resolves the long standing "not an octal string" problem users face when depending on certain cookbooks in the supermarket.
+
+## Updated Tooling
+
+### Test Kitchen
+
+Test Kitchen has been updated from 1.20.0 to 1.21.2. This release allows you to use a kitchen.yml config file instead of .kitchen.yml so the kitchen config will no longer be hidden in your cookbook directories. It also introduces new config options for SSH proxy servers and allows you to specify multiple paths for data bags. See <https://github.com/test-kitchen/test-kitchen/blob/master/CHANGELOG.md> for the complete list of changes.
+
+### InSpec
+
+InSpec has been updated from 1.51.21 to 2.1.68. InSpec 2.0 brings compliance automation to the cloud, with new resource types specifically built for AWS and Azure clouds. Along with these changes are major speed improvements and quality of life updates. Please visit <https://www.inspec.io> for more information.
+
+### ChefSpec
+
+ChefSpec has been updated to 7.2.1 with Fauxhai 6.2.0. This release removes all platforms that were previously marked as deprecated in Fauxhai. If you saw Fauxhai deprecation warnings during your ChefSpec runs these will now be failures. This update also adds 9 new platforms and updates existing data for Chef 14. To see a complete list of platforms that can be mocked in ChefSpec see <https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md>.
+
+### Foodcritic
+
+Foodcritic has been updated to from 12.3.0 to 13.1.1. This updates Foodcritic for Chef 13 or later by removing Chef 12 metadata and removing several legacy rules that suggested writing resources in a Chef 12 manner. The update also adds 9 new rules for writing custom resources and updating cookbooks to Chef 13 and 14, resolves several long standing file detection bugs, and improves performance.
+
+### Cookstyle
+
+Cookstyle has been updated to 3.0, which updates the underlying RuboCop engine to 0.55 with a long list of bug fixes and improvements. This release of Cookstyle also enables 19 new rules available in RuboCop. See <https://github.com/chef/cookstyle/blob/master/CHANGELOG.md> for a complete list of newly enabled rules.
+
+### Berkshelf
+
+Berkshelf has been updated to 7.0.2.  Berkshelf 7 moves to using the same libraries as the Chef Client, ensuring consistent behaviour - for instance, ensuring that chefignore files work the same - and enabling a quicker turnaround on bug fixes.  The “Actor crashed” failures of celluloid will no longer be produced by Berkshelf.
+
+### VMware vSphere support
+
+The knife-vsphere plugin for managing VMware vSphere is now bundled with ChefDK.
 
 ## Cookbook generator creates a CHANGELOG.md
 
 `chef cookbook generate [cookbook_name]` now creates a `CHANGELOG.md` file.
+
+## Updated Components and Tools
+
+- `chef-provisioning` 2.7.0 -> 2.7.1
+- `knife-ec2` 0.17.0 -> 0.18.0
+- `opscode-pushy-client` 2.3.0 -> 2.4.11
+
+## Security Updates
+
+### Ruby
+
+Ruby has been updated to 2.5.1 to resolve the following vulnerabilities:
+
+- `CVE-2017-17742`: HTTP response splitting in WEBrick
+- `CVE-2018-6914`: Unintentional file and directory creation with directory traversal in tempfile and tmpdir
+- `CVE-2018-8777`: DoS by large request in WEBrick
+- `CVE-2018-8778`: Buffer under-read in String#unpack
+- `CVE-2018-8779`: Unintentional socket creation by poisoned NUL byte in UNIXServer and UNIXSocket
+- `CVE-2018-8780`: Unintentional directory traversal by poisoned NUL byte in Dir
+- Multiple vulnerabilities in RubyGems
+
+### OpenSSL
+
+OpenSSL has been updated to 1.0.2o to resolve `CVE-2018-0739`.
 
 # ChefDK 2.5 Release Notes
 
