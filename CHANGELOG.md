@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.30 -->
-## [v3.0.30](https://github.com/chef/chef-dk/tree/v3.0.30) (2018-05-11)
+<!-- latest_release 3.0.31 -->
+## [v3.0.31](https://github.com/chef/chef-dk/tree/v3.0.31) (2018-05-14)
 
 #### Merged Pull Requests
-- bump deps again [#1578](https://github.com/chef/chef-dk/pull/1578) ([lamont-granquist](https://github.com/lamont-granquist))
+- bump appbundler dep to rebuild [#1580](https://github.com/chef/chef-dk/pull/1580) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- bump appbundler dep to rebuild [#1580](https://github.com/chef/chef-dk/pull/1580) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.31 -->
 - bump deps again [#1578](https://github.com/chef/chef-dk/pull/1578) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.30 -->
 - bump chefspec [#1570](https://github.com/chef/chef-dk/pull/1570) ([thommay](https://github.com/thommay)) <!-- 3.0.29 -->
 - Bump dependencies for Chef 14.1 [#1568](https://github.com/chef/chef-dk/pull/1568) ([thommay](https://github.com/thommay)) <!-- 3.0.28 -->
