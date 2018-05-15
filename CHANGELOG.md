@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.31 -->
-## [v3.0.31](https://github.com/chef/chef-dk/tree/v3.0.31) (2018-05-14)
+<!-- latest_release 3.0.32 -->
+## [v3.0.32](https://github.com/chef/chef-dk/tree/v3.0.32) (2018-05-15)
 
 #### Merged Pull Requests
-- bump appbundler dep to rebuild [#1580](https://github.com/chef/chef-dk/pull/1580) ([lamont-granquist](https://github.com/lamont-granquist))
+- set windows installer custom setup font to white [#1581](https://github.com/chef/chef-dk/pull/1581) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- set windows installer custom setup font to white [#1581](https://github.com/chef/chef-dk/pull/1581) ([robbkidd](https://github.com/robbkidd)) <!-- 3.0.32 -->
 - bump appbundler dep to rebuild [#1580](https://github.com/chef/chef-dk/pull/1580) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.31 -->
 - bump deps again [#1578](https://github.com/chef/chef-dk/pull/1578) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.30 -->
 - bump chefspec [#1570](https://github.com/chef/chef-dk/pull/1570) ([thommay](https://github.com/thommay)) <!-- 3.0.29 -->
