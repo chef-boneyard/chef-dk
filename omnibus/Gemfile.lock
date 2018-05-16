@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: cb42641d8c0af24b87a4750cc415b9493022ab85
+  revision: cd92f43bf80ed5b0a664ef8a83d6beb0a6578a72
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -31,13 +31,13 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     awesome_print (1.8.0)
-    aws-sdk (2.11.44)
-      aws-sdk-resources (= 2.11.44)
-    aws-sdk-core (2.11.44)
+    aws-sdk (2.11.50)
+      aws-sdk-resources (= 2.11.50)
+    aws-sdk-core (2.11.50)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.44)
-      aws-sdk-core (= 2.11.44)
+    aws-sdk-resources (2.11.50)
+      aws-sdk-core (= 2.11.50)
     aws-sigv4 (1.0.2)
     berkshelf (6.3.2)
       buff-config (~> 2.0)
@@ -150,7 +150,7 @@ GEM
     concurrent-ruby (1.0.5)
     diff-lcs (1.3)
     erubis (2.7.0)
-    faraday (0.15.0)
+    faraday (0.15.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.23)
     ffi (1.9.23-x64-mingw32)
@@ -177,7 +177,7 @@ GEM
     kitchen-vagrant (1.3.2)
       test-kitchen (~> 1.4)
     libyajl2 (1.2.0)
-    license_scout (1.0.4)
+    license_scout (1.0.5)
       ffi-yajl (~> 2.2)
       mixlib-shellout (~> 2.2)
       toml-rb (~> 1.0)
@@ -192,7 +192,7 @@ GEM
     mixlib-cli (1.7.0)
     mixlib-config (2.2.6)
       tomlrb
-    mixlib-install (3.9.3)
+    mixlib-install (3.10.0)
       mixlib-shellout
       mixlib-versioning
       thor

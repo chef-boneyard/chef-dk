@@ -39,6 +39,10 @@ dependency "libzmq"
 # ruby and bundler and friends
 dependency "ruby"
 dependency "rubygems"
+
+# depend on train so that we get the correctly built protobuf version
+dependency "train"
+
 dependency "appbundler"
 
 build do
