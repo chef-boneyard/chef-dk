@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.32 -->
-## [v3.0.32](https://github.com/chef/chef-dk/tree/v3.0.32) (2018-05-15)
+<!-- latest_release 3.0.33 -->
+## [v3.0.33](https://github.com/chef/chef-dk/tree/v3.0.33) (2018-05-16)
 
 #### Merged Pull Requests
-- set windows installer custom setup font to white [#1581](https://github.com/chef/chef-dk/pull/1581) ([robbkidd](https://github.com/robbkidd))
+- add vendor dir to default chefignore [#1571](https://github.com/chef/chef-dk/pull/1571) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- add vendor dir to default chefignore [#1571](https://github.com/chef/chef-dk/pull/1571) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.33 -->
 - set windows installer custom setup font to white [#1581](https://github.com/chef/chef-dk/pull/1581) ([robbkidd](https://github.com/robbkidd)) <!-- 3.0.32 -->
 - bump appbundler dep to rebuild [#1580](https://github.com/chef/chef-dk/pull/1580) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.31 -->
 - bump deps again [#1578](https://github.com/chef/chef-dk/pull/1578) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.30 -->
