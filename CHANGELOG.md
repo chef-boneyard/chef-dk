@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.34 -->
-## [v3.0.34](https://github.com/chef/chef-dk/tree/v3.0.34) (2018-05-16)
+<!-- latest_release 3.0.35 -->
+## [v3.0.35](https://github.com/chef/chef-dk/tree/v3.0.35) (2018-05-16)
 
 #### Merged Pull Requests
-- Include Chef Client 14.1.12 [#1582](https://github.com/chef/chef-dk/pull/1582) ([thommay](https://github.com/thommay))
+- remove train+appbundler software dep [#1584](https://github.com/chef/chef-dk/pull/1584) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.3 -->
 ### Changes since 2.5.3 release
 
 #### Merged Pull Requests
+- remove train+appbundler software dep [#1584](https://github.com/chef/chef-dk/pull/1584) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.35 -->
 - Include Chef Client 14.1.12 [#1582](https://github.com/chef/chef-dk/pull/1582) ([thommay](https://github.com/thommay)) <!-- 3.0.34 -->
 - add vendor dir to default chefignore [#1571](https://github.com/chef/chef-dk/pull/1571) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.33 -->
 - set windows installer custom setup font to white [#1581](https://github.com/chef/chef-dk/pull/1581) ([robbkidd](https://github.com/robbkidd)) <!-- 3.0.32 -->
