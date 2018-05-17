@@ -64,9 +64,9 @@ module ChefDK
 
   class InvalidPolicyfileSourceURI < StandardError
     def initialize(url, reason = nil)
-      @url = url
+      @url    = url
       @reason = reason
-      msg = "'#{@url}' is not a valid Policy File Source URI"
+      msg     = "'#{@url}' is not a valid Policy File Source URI"
       msg << " #{@reason}." unless @reason.nil?
       super(msg)
     end
@@ -107,7 +107,7 @@ module ChefDK
 
     def initialize(conflicting_cookbooks, cookbook_sources)
       @conflicting_cookbooks = conflicting_cookbooks
-      @cookbook_sources = cookbook_sources
+      @cookbook_sources      = cookbook_sources
       super(compute_message)
     end
 
@@ -126,7 +126,7 @@ module ChefDK
     end
 
     def resolution_message(overlapping_cookbooks)
-      example_source = cookbook_sources.first
+      example_source       = cookbook_sources.first
       source_key, location = example_source.default_source_args
       <<-EXAMPLE
 You can set a preferred source to resolve this issue with code like:
@@ -134,7 +134,7 @@ You can set a preferred source to resolve this issue with code like:
 default_source :#{source_key}, "#{location}" do |s|
   s.preferred_for "#{overlapping_cookbooks.join('", "')}"
 end
-EXAMPLE
+      EXAMPLE
     end
 
   end
@@ -147,4 +147,5 @@ EXAMPLE
 
   class InvalidPolicyfileLocation < StandardError
   end
+
 end

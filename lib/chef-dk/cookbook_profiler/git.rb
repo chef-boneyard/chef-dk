@@ -31,6 +31,7 @@ module ChefDK
         @unborn_branch_ref = nil
       end
 
+      # @return [Hash] Hashed used for pinning cookbook versions within a Policfile.lock
       def profile_data
         {
           "scm" => "git",
