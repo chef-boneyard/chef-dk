@@ -2,10 +2,14 @@
 <!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.0.36 -->
+### Changes since 3.0.36 release
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.0.36](https://github.com/chef/chef-dk/tree/v3.0.36) (2018-05-21)
+<!-- latest_stable_release -->
+
 ## [v3.0.36](https://github.com/chef/chef-dk/tree/v3.0.36) (2018-05-21)
 
 #### Merged Pull Requests
@@ -51,7 +55,6 @@
 - Include Chef Client 14.1.12 [#1582](https://github.com/chef/chef-dk/pull/1582) ([thommay](https://github.com/thommay))
 - remove train+appbundler software dep [#1584](https://github.com/chef/chef-dk/pull/1584) ([lamont-granquist](https://github.com/lamont-granquist))
 - Add Git support for include_policy. [#1554](https://github.com/chef/chef-dk/pull/1554) ([rhass](https://github.com/rhass))
-<!-- latest_stable_release -->
 
 ## [v2.5.3](https://github.com/chef/chef-dk/tree/v2.5.3) (2018-03-07)
 
