@@ -12,6 +12,17 @@ ChefDK now ships packages for Ubuntu 18.04 and Debian 9. In accordance with Chef
 
 ChefDK now uses an embedded copy of libarchive to support Policyfile and Berkshelf. This improves overall performance and provides a well tested interface to many different types of archives. It also resolves the long standing "not an octal string" problem users face when depending on certain cookbooks in the supermarket.
 
+## Policyfiles: updated `include_policy` support
+
+Policyfiles now support git targets for included policies.
+
+```
+include_policy 'base_policy',
+               git: 'https://github.com/happychef/chef-repo.git',
+               branch: master,
+               path: 'policies/base/Policyfile.lock.json'
+```
+
 ## Updated Tooling
 
 ### Test Kitchen
