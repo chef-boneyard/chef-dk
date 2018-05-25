@@ -16,7 +16,7 @@ docker_images:
   - chefdk
 
 habitat_packages:
-  - chefdk
+  - chef-dk
 
 github:
   # The file where the MAJOR.MINOR.PATCH version is kept. The version in this file

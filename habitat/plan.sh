@@ -1,4 +1,4 @@
-pkg_name=chefdk
+pkg_name=chef-dk
 pkg_origin=chef
 pkg_maintainer="The Chef Maintainers <humans@chef.io>"
 pkg_description="The Chef Developer Kit"
@@ -40,7 +40,7 @@ do_before() {
 do_download() {
   # Instead of downloading, build a gem based on the source in src/
   cd $PLAN_CONTEXT/..
-  gem build chef-dk.gemspec
+  gem build $pkg_name.gemspec
 }
 
 do_verify() {
@@ -50,7 +50,7 @@ do_verify() {
 do_unpack() {
   # Unpack the gem we built to the source cache path. Building then unpacking
   # the gem reuses the file inclusion/exclusion rules defined in the gemspec.
-  gem unpack $PLAN_CONTEXT/../chef-dk-$pkg_version.gem --target=$HAB_CACHE_SRC_PATH
+  gem unpack $PLAN_CONTEXT/../$pkg_name-$pkg_version.gem --target=$HAB_CACHE_SRC_PATH
 }
 
 do_prepare() {
