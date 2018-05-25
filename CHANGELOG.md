@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.37 -->
-## [v3.0.37](https://github.com/chef/chef-dk/tree/v3.0.37) (2018-05-25)
+<!-- latest_release 3.0.38 -->
+## [v3.0.38](https://github.com/chef/chef-dk/tree/v3.0.38) (2018-05-25)
 
 #### Merged Pull Requests
-- publish habitat packages [#1583](https://github.com/chef/chef-dk/pull/1583) ([thommay](https://github.com/thommay))
+- Fix hab plan to use correct gemspec name [#1587](https://github.com/chef/chef-dk/pull/1587) ([jonlives](https://github.com/jonlives))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.0.36 -->
 ### Changes since 3.0.36 release
 
 #### Merged Pull Requests
+- Fix hab plan to use correct gemspec name [#1587](https://github.com/chef/chef-dk/pull/1587) ([jonlives](https://github.com/jonlives)) <!-- 3.0.38 -->
 - publish habitat packages [#1583](https://github.com/chef/chef-dk/pull/1583) ([thommay](https://github.com/thommay)) <!-- 3.0.37 -->
 <!-- release_rollup -->
 
