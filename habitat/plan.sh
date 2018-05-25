@@ -50,7 +50,7 @@ do_verify() {
 do_unpack() {
   # Unpack the gem we built to the source cache path. Building then unpacking
   # the gem reuses the file inclusion/exclusion rules defined in the gemspec.
-  gem unpack $PLAN_CONTEXT/../$pkg_name-$pkg_version.gem --target=$HAB_CACHE_SRC_PATH
+  gem unpack $PLAN_CONTEXT/../chef-dk-$pkg_version.gem --target=$HAB_CACHE_SRC_PATH
 }
 
 do_prepare() {
