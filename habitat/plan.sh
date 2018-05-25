@@ -40,7 +40,7 @@ do_before() {
 do_download() {
   # Instead of downloading, build a gem based on the source in src/
   cd $PLAN_CONTEXT/..
-  gem build $pkg_name.gemspec
+  gem build chef-dk.gemspec
 }
 
 do_verify() {
