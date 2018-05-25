@@ -1,4 +1,4 @@
-pkg_name=chefdk
+pkg_name=chef-dk
 pkg_origin=chef
 pkg_maintainer="The Chef Maintainers <humans@chef.io>"
 pkg_description="The Chef Developer Kit"
