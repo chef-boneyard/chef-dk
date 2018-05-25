@@ -1,9 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.0.37 -->
+## [v3.0.37](https://github.com/chef/chef-dk/tree/v3.0.37) (2018-05-25)
+
+#### Merged Pull Requests
+- publish habitat packages [#1583](https://github.com/chef/chef-dk/pull/1583) ([thommay](https://github.com/thommay))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.0.36 -->
 ### Changes since 3.0.36 release
+
+#### Merged Pull Requests
+- publish habitat packages [#1583](https://github.com/chef/chef-dk/pull/1583) ([thommay](https://github.com/thommay)) <!-- 3.0.37 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
