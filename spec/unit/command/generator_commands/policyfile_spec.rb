@@ -111,7 +111,7 @@ describe ChefDK::Command::GeneratorCommands::Policyfile do
 
     let(:chef_repo_dot_txt) { File.join(tempdir, ".chef-repo.txt") }
 
-    let(:policies_dir) { File.join(tempdir, "policies") }
+    let(:policies_dir) { File.join(tempdir, "policyfiles") }
 
     let(:expected_policyfile_content) do
       <<-POLICYFILE_RB

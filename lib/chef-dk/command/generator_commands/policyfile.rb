@@ -104,7 +104,7 @@ module ChefDK
           given_policy_dirname = File.expand_path(File.dirname(new_file_path))
           @policyfile_dir =
             if chef_repo_mode? && (given_policy_dirname == Dir.pwd)
-              File.expand_path("policies")
+              File.expand_path("policyfiles")
             else
               given_policy_dirname
             end
