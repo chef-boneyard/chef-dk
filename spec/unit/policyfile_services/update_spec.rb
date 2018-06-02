@@ -104,21 +104,7 @@ EOH
     }.to_json
   end
 
-  context "when given one cookbook to update" do
-    before(:each) do
-      # stub access to Policyfile.rb and Policyfile.lock.json
-      expect(File).to receive(:exist?).at_least(:once).with(policyfile_rb_path).and_return(true)
-      expect(File).to receive(:exist?).at_least(:once).with(policyfile_lock_path).and_return(true)
-
-      expect(IO).to receive(:read).with(policyfile_rb_path).and_return(policyfile_content)
-      expect(IO).to receive(:read).with(policyfile_lock_path).and_return(policyfile_lock_content)
-
-      # lock generation is a no-op. Its behavior is already tested
-      # elsewhere. We only check constraints changes
-      expect(install_service).to receive(:generate_lock_and_install)
-
-      expect { install_service.run(["top-level"]) }.not_to raise_error
-    end
+  shared_examples "regular update operation" do
     it "allows update on cookbook to update" do
       expect(install_service.policyfile_compiler.dsl.cookbook_location_specs["top-level"].version_constraint.to_s).to eq(">= 0.0.0")
     end
@@ -127,12 +113,48 @@ EOH
       expect(install_service.policyfile_compiler.dsl.cookbook_location_specs["top-level-bis"].version_constraint.to_s).to eq("= 1.0.0")
     end
 
-    it "allows update on dependencies" do
-      expect(install_service.policyfile_compiler.dsl.cookbook_location_specs["a"]).to be_nil
+  end
+
+  context "when given one cookbook to update" do
+    before(:each) do
+      # stub access to Policyfile.rb and Policyfile.lock.json
+      allow(File).to receive(:exist?).and_call_original
+      expect(File).to receive(:exist?).at_least(:once).with(policyfile_rb_path).and_return(true)
+      expect(File).to receive(:exist?).at_least(:once).with(policyfile_lock_path).and_return(true)
+
+      allow(IO).to receive(:read).and_call_original
+      expect(IO).to receive(:read).with(policyfile_rb_path).and_return(policyfile_content)
+      expect(IO).to receive(:read).with(policyfile_lock_path).and_return(policyfile_lock_content)
+
+      # lock generation is a no-op. Its behavior is already tested
+      # elsewhere. We only check constraints changes
+      expect(install_service).to receive(:generate_lock_and_install)
+
+      expect { install_service.run(["top-level"], update_strategy) }.not_to raise_error
     end
 
-    it "preserves existing constraints from Policyfile" do
-      expect(install_service.policyfile_compiler.dsl.cookbook_location_specs["b"].version_constraint.to_s).to eq(">= 1.2.3")
+    context "with relaxed update strategy" do
+      let(:update_strategy) { "relaxed" }
+
+      it_behaves_like "regular update operation"
+
+      it "allows update on dependencies" do
+        expect(install_service.policyfile_compiler.dsl.cookbook_location_specs["a"]).to be_nil
+      end
+
+      it "preserves existing constraints from Policyfile" do
+        expect(install_service.policyfile_compiler.dsl.cookbook_location_specs["b"].version_constraint.to_s).to eq(">= 1.2.3")
+      end
+    end
+
+    context "with strict update strategy" do
+      let(:update_strategy) { "strict" }
+
+      it_behaves_like "regular update operation"
+
+      it "does not allow update on dependencies" do
+        expect(install_service.policyfile_compiler.dsl.cookbook_location_specs["a"].version_constraint.to_s).to eq("= 2.1.0")
+      end
     end
 
   end

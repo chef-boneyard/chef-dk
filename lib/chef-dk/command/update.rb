@@ -67,6 +67,12 @@ BANNER
         default:      false,
         boolean:      true
 
+      option :update_strategy,
+        long:         "--update-strategy STRATEGY",
+        description:  "Use the given strategy for update. Possible values: relaxed (default), strict",
+        default:      "relaxed",
+        in:           %w{relaxed strict}
+
       attr_reader :policyfile_relative_path
 
       attr_accessor :ui
@@ -84,7 +90,7 @@ BANNER
       def run(params = [])
         return 1 unless apply_params!(params)
         attributes_updater.run
-        installer.run(@cookbooks_to_update) unless update_attributes_only?
+        installer.run(@cookbooks_to_update, config[:update_strategy]) unless update_attributes_only?
         0
       rescue PolicyfileServiceError => e
         handle_error(e)
