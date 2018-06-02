@@ -24,7 +24,7 @@ are in the omnibus directory in this repository.
 You can get the [latest release of ChefDK from the downloads page][ChefDK].
 
 On Mac OS X, you can also use [homebrew-cask](https://caskroom.github.io/)
-to `brew cask install chefdk`.
+to `brew cask install chef/chef/chefdk`.
 
 Once you install the package, the `chef-client` suite, `berks`,
 `kitchen`, and this application (`chef`) will be symlinked into your
