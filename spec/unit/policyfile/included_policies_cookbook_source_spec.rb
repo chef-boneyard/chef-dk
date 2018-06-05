@@ -137,9 +137,9 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
     end
   end
 
-  let(:policies) { [] }
+  let(:policyfiles) { [] }
 
-  let(:cookbook_source) { ChefDK::Policyfile::IncludedPoliciesCookbookSource.new(policies) }
+  let(:cookbook_source) { ChefDK::Policyfile::IncludedPoliciesCookbookSource.new(policyfiles) }
 
   context "when no policies are included" do
     it "returns false for preferred_source_for" do
@@ -152,7 +152,7 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
   end
 
   context "when a single policy is to be included" do
-    let(:policies) { [policy1_location_spec] }
+    let(:policyfiles) { [policy1_location_spec] }
 
     it "does not have a preferred source for unlocked cookbooks" do
       expect(cookbook_source.preferred_source_for?("cookbookC")).to eq(false)
@@ -185,7 +185,7 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
   end
 
   context "when multiple policies are to be included" do
-    let(:policies) { [policy1_location_spec, policy2_location_spec] }
+    let(:policyfiles) { [policy1_location_spec, policy2_location_spec] }
 
     context "when the policies use the same cookbooks with the same versions and sources" do
       let(:policy2_cookbooks) { policy1_cookbooks + [{ name: "cookbookC", version: "2.0.0" }] }
