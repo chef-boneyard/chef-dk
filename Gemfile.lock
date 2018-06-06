@@ -251,7 +251,7 @@ GEM
     excon (0.62.0)
     faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
-    fauxhai (5.4.0)
+    fauxhai (5.6.0)
       net-ssh
     ffi (1.9.25)
     ffi (1.9.25-x64-mingw32)
@@ -745,7 +745,7 @@ DEPENDENCIES
   dco
   dep-selector-libgecode
   dep_selector
-  fauxhai (~> 5.4.0)
+  fauxhai (~> 5.4)
   ffi
   ffi-rzmq-core
   foodcritic (~> 12.1)
