@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.39 -->
-## [v3.0.39](https://github.com/chef/chef-dk/tree/v3.0.39) (2018-06-02)
+<!-- latest_release 3.0.40 -->
+## [v3.0.40](https://github.com/chef/chef-dk/tree/v3.0.40) (2018-06-06)
 
 #### Merged Pull Requests
-- Update README for new cask tap [#1593](https://github.com/chef/chef-dk/pull/1593) ([coderanger](https://github.com/coderanger))
+- Unpin ffi and bump deps [#1596](https://github.com/chef/chef-dk/pull/1596) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.0.36 -->
 ### Changes since 3.0.36 release
 
 #### Merged Pull Requests
+- Unpin ffi and bump deps [#1596](https://github.com/chef/chef-dk/pull/1596) ([tas50](https://github.com/tas50)) <!-- 3.0.40 -->
 - Update README for new cask tap [#1593](https://github.com/chef/chef-dk/pull/1593) ([coderanger](https://github.com/coderanger)) <!-- 3.0.39 -->
 - Fix hab plan to use correct gemspec name [#1587](https://github.com/chef/chef-dk/pull/1587) ([jonlives](https://github.com/jonlives)) <!-- 3.0.38 -->
 - publish habitat packages [#1583](https://github.com/chef/chef-dk/pull/1583) ([thommay](https://github.com/thommay)) <!-- 3.0.37 -->
