@@ -17,7 +17,6 @@
 language: ruby
 sudo: false
 cache: bundler
-dist: trusty
 
 # Early warning system to catch if Rubygems breaks something
 before_install:
@@ -53,3 +52,4 @@ matrix:
 branches:
   only:
     - master
+    - chefdk-2

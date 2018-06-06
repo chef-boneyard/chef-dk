@@ -18,6 +18,7 @@ skip_tags: true
 branches:
   only:
     - master
+    - chefdk-2
 
 install:
   - systeminfo
