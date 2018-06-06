@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: cd92f43bf80ed5b0a664ef8a83d6beb0a6578a72
+  revision: df6f7e3e464e7a12110d9dc880d591a086f5b902
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -31,13 +31,13 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     awesome_print (1.8.0)
-    aws-sdk (2.11.50)
-      aws-sdk-resources (= 2.11.50)
-    aws-sdk-core (2.11.50)
+    aws-sdk (2.11.62)
+      aws-sdk-resources (= 2.11.62)
+    aws-sdk-core (2.11.62)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.50)
-      aws-sdk-core (= 2.11.50)
+    aws-sdk-resources (2.11.62)
+      aws-sdk-core (= 2.11.62)
     aws-sigv4 (1.0.2)
     berkshelf (6.3.2)
       buff-config (~> 2.0)
@@ -150,11 +150,11 @@ GEM
     concurrent-ruby (1.0.5)
     diff-lcs (1.3)
     erubis (2.7.0)
-    faraday (0.15.1)
+    faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
-    ffi (1.9.23)
-    ffi (1.9.23-x64-mingw32)
-    ffi (1.9.23-x86-mingw32)
+    ffi (1.9.25)
+    ffi (1.9.25-x64-mingw32)
+    ffi (1.9.25-x86-mingw32)
     ffi-win32-extensions (1.0.3)
       ffi
     ffi-yajl (2.3.1)
@@ -177,7 +177,7 @@ GEM
     kitchen-vagrant (1.3.2)
       test-kitchen (~> 1.4)
     libyajl2 (1.2.0)
-    license_scout (1.0.5)
+    license_scout (1.0.10)
       ffi-yajl (~> 2.2)
       mixlib-shellout (~> 2.2)
       toml-rb (~> 1.0)
@@ -380,4 +380,4 @@ DEPENDENCIES
   winrm-elevated
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
