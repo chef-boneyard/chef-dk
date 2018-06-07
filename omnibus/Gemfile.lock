@@ -186,7 +186,7 @@ GEM
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
     minitar (0.6.1)
-    mixlib-archive (0.4.7)
+    mixlib-archive (0.4.6)
       mixlib-log
     mixlib-authentication (1.4.2)
     mixlib-cli (1.7.0)

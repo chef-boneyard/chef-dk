@@ -457,7 +457,7 @@ GEM
     mini_portile2 (2.3.0)
     minitar (0.6.1)
     minitest (5.11.3)
-    mixlib-archive (0.4.7)
+    mixlib-archive (0.4.6)
       mixlib-log
     mixlib-authentication (2.1.0)
     mixlib-cli (1.7.0)
