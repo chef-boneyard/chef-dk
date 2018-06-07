@@ -1,8 +1,9 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release unreleased -->
-## Unreleased
+<!-- latest_release 3.0.41 -->
+## [v3.0.41](https://github.com/chef/chef-dk/tree/v3.0.41) (2018-06-07)
 
 #### Merged Pull Requests
+- Bump Chef to 14.2.0 + other bumps [#1603](https://github.com/chef/chef-dk/pull/1603) ([tas50](https://github.com/tas50))
 - Update help link in Add/Remove Programs on Windows [#1600](https://github.com/chef/chef-dk/pull/1600) ([stuartpreston](https://github.com/stuartpreston))
 <!-- latest_release -->
 
@@ -10,6 +11,7 @@
 ### Changes since 3.0.36 release
 
 #### Merged Pull Requests
+- Bump Chef to 14.2.0 + other bumps [#1603](https://github.com/chef/chef-dk/pull/1603) ([tas50](https://github.com/tas50)) <!-- 3.0.41 -->
 - Update help link in Add/Remove Programs on Windows [#1600](https://github.com/chef/chef-dk/pull/1600) ([stuartpreston](https://github.com/stuartpreston)) <!-- 3.0.40 -->
 - Unpin ffi and bump deps [#1596](https://github.com/chef/chef-dk/pull/1596) ([tas50](https://github.com/tas50)) <!-- 3.0.40 -->
 - Update README for new cask tap [#1593](https://github.com/chef/chef-dk/pull/1593) ([coderanger](https://github.com/coderanger)) <!-- 3.0.39 -->
