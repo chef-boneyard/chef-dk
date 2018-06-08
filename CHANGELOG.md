@@ -1,16 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.41 -->
-## [v3.0.41](https://github.com/chef/chef-dk/tree/v3.0.41) (2018-06-07)
+<!-- latest_release 3.0.42 -->
+## [v3.0.42](https://github.com/chef/chef-dk/tree/v3.0.42) (2018-06-08)
 
 #### Merged Pull Requests
-- Bump Chef to 14.2.0 + other bumps [#1603](https://github.com/chef/chef-dk/pull/1603) ([tas50](https://github.com/tas50))
-- Update help link in Add/Remove Programs on Windows [#1600](https://github.com/chef/chef-dk/pull/1600) ([stuartpreston](https://github.com/stuartpreston))
+- berkshelf + mixlib-auth bumps + others [#1604](https://github.com/chef/chef-dk/pull/1604) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.0.36 -->
 ### Changes since 3.0.36 release
 
 #### Merged Pull Requests
+- berkshelf + mixlib-auth bumps + others [#1604](https://github.com/chef/chef-dk/pull/1604) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.42 -->
 - Bump Chef to 14.2.0 + other bumps [#1603](https://github.com/chef/chef-dk/pull/1603) ([tas50](https://github.com/tas50)) <!-- 3.0.41 -->
 - Update help link in Add/Remove Programs on Windows [#1600](https://github.com/chef/chef-dk/pull/1600) ([stuartpreston](https://github.com/stuartpreston)) <!-- 3.0.40 -->
 - Unpin ffi and bump deps [#1596](https://github.com/chef/chef-dk/pull/1596) ([tas50](https://github.com/tas50)) <!-- 3.0.40 -->
