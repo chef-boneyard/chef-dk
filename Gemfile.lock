@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.63)
-      aws-sdk-resources (= 2.11.63)
-    aws-sdk-core (2.11.63)
+    aws-sdk (2.11.65)
+      aws-sdk-resources (= 2.11.65)
+    aws-sdk-core (2.11.65)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.63)
-      aws-sdk-core (= 2.11.63)
+    aws-sdk-resources (2.11.65)
+      aws-sdk-core (= 2.11.65)
     aws-sigv4 (1.0.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -45,7 +45,7 @@ GEM
     azure_mgmt_resources (0.16.0)
       ms_rest_azure (~> 0.10.0)
     backports (3.11.3)
-    berkshelf (7.0.3)
+    berkshelf (7.0.4)
       chef (>= 13.6.52)
       chef-config
       cleanroom (~> 1.0)
@@ -459,7 +459,7 @@ GEM
     minitest (5.11.3)
     mixlib-archive (0.4.6)
       mixlib-log
-    mixlib-authentication (2.1.0)
+    mixlib-authentication (2.1.1)
     mixlib-cli (1.7.0)
     mixlib-config (2.2.6)
       tomlrb
@@ -478,7 +478,7 @@ GEM
       concurrent-ruby (~> 1.0)
       faraday (~> 0.9)
       timeliness (~> 0.3)
-    ms_rest_azure (0.10.7)
+    ms_rest_azure (0.10.8)
       concurrent-ruby (~> 1.0)
       faraday (~> 0.9)
       faraday-cookie_jar (~> 0.0.6)
@@ -772,7 +772,7 @@ DEPENDENCIES
   knife-vsphere (>= 2.0.3)
   knife-windows (>= 1.9.0)
   listen
-  mixlib-archive (>= 0.4.6)
+  mixlib-archive (= 0.4.6)
   mixlib-install
   mixlib-versioning
   net-ssh (>= 4.2.0)
@@ -808,4 +808,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.16.2
+   1.16.1
