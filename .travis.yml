@@ -17,7 +17,6 @@
 language: ruby
 sudo: false
 cache: bundler
-dist: trusty
 
 # Early warning system to catch if Rubygems breaks something
 before_install:
@@ -33,19 +32,19 @@ env:
 
 matrix:
   include:
-    - rvm: 2.4.3
+    - rvm: 2.4.4
       env:
         RSPEC: 1
       script: $(which bundle) exec rspec
-    - rvm: 2.4.3
+    - rvm: 2.4.4
       env:
         CHEFSTYLE: 1
       script: $(which bundle) exec rake style:chefstyle
-    - rvm: 2.4.3
+    - rvm: 2.4.4
       env:
         COOKSTYLE: 1
       script: $(which bundle) exec rake style:cookstyle
-    - rvm: 2.4.3
+    - rvm: 2.4.4
       env:
         FOODCRITIC: 1
       script: $(which bundle) exec rake style:foodcritic
@@ -53,3 +52,4 @@ matrix:
 branches:
   only:
     - master
+    - chefdk-2
