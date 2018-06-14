@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.43 -->
-## [v3.0.43](https://github.com/chef/chef-dk/tree/v3.0.43) (2018-06-08)
+<!-- latest_release 3.0.44 -->
+## [v3.0.44](https://github.com/chef/chef-dk/tree/v3.0.44) (2018-06-14)
 
 #### Merged Pull Requests
-- add knife-acl and knife-tidy [#1605](https://github.com/chef/chef-dk/pull/1605) ([lamont-granquist](https://github.com/lamont-granquist))
+- Pull in the latest tools [#1606](https://github.com/chef/chef-dk/pull/1606) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.0.36 -->
 ### Changes since 3.0.36 release
 
 #### Merged Pull Requests
+- Pull in the latest tools [#1606](https://github.com/chef/chef-dk/pull/1606) ([tas50](https://github.com/tas50)) <!-- 3.0.44 -->
 - add knife-acl and knife-tidy [#1605](https://github.com/chef/chef-dk/pull/1605) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.43 -->
 - berkshelf + mixlib-auth bumps + others [#1604](https://github.com/chef/chef-dk/pull/1604) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.42 -->
 - Bump Chef to 14.2.0 + other bumps [#1603](https://github.com/chef/chef-dk/pull/1603) ([tas50](https://github.com/tas50)) <!-- 3.0.41 -->
