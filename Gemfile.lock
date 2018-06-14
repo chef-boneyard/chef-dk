@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.65)
-      aws-sdk-resources (= 2.11.65)
-    aws-sdk-core (2.11.65)
+    aws-sdk (2.11.68)
+      aws-sdk-resources (= 2.11.68)
+    aws-sdk-core (2.11.68)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.65)
-      aws-sdk-core (= 2.11.65)
+    aws-sdk-resources (2.11.68)
+      aws-sdk-core (= 2.11.68)
     aws-sigv4 (1.0.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -244,12 +244,12 @@ GEM
     faraday-cookie_jar (0.0.6)
       faraday (>= 0.7.4)
       http-cookie (~> 1.0.0)
-    fauxhai (6.2.0)
+    fauxhai (6.3.0)
       net-ssh
     ffi (1.9.25)
     ffi (1.9.25-x64-mingw32)
     ffi (1.9.25-x86-mingw32)
-    ffi-libarchive (0.2.0)
+    ffi-libarchive (0.4.1)
       ffi (~> 1.0)
     ffi-rzmq (2.0.6)
       ffi-rzmq-core (>= 1.0.6)
@@ -382,14 +382,14 @@ GEM
     json (2.1.0)
     jwt (2.1.0)
     kartograph (0.2.7)
-    kitchen-digitalocean (0.9.8)
-      droplet_kit (~> 2.2)
+    kitchen-digitalocean (0.10.0)
+      droplet_kit (~> 2.3)
       test-kitchen (~> 1.17)
     kitchen-dokken (2.6.7)
       docker-api (~> 1.33)
       lockfile (~> 2.1)
       test-kitchen (~> 1.15)
-    kitchen-ec2 (2.2.1)
+    kitchen-ec2 (2.2.2)
       aws-sdk (~> 2)
       excon
       multi_json
@@ -463,7 +463,7 @@ GEM
       mixlib-log
     mixlib-authentication (2.1.1)
     mixlib-cli (1.7.0)
-    mixlib-config (2.2.6)
+    mixlib-config (2.2.8)
       tomlrb
     mixlib-install (3.10.0)
       mixlib-shellout
@@ -538,7 +538,7 @@ GEM
     parslet (1.8.2)
     plist (3.4.0)
     polyglot (0.3.5)
-    powerpack (0.1.1)
+    powerpack (0.1.2)
     proxifier (1.0.3)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -651,7 +651,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     timeliness (0.3.8)
-    tomlrb (1.2.6)
+    tomlrb (1.2.7)
     train (1.4.4)
       aws-sdk (~> 2)
       azure_mgmt_resources (~> 0.15)
@@ -812,4 +812,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
