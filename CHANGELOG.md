@@ -6,27 +6,29 @@
 - Preparing 3.1 release [#1611](https://github.com/chef/chef-dk/pull/1611) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
-<!-- release_rollup since=3.0.36 -->
-### Changes since 3.0.36 release
-
-#### Merged Pull Requests
-- Preparing 3.1 release [#1611](https://github.com/chef/chef-dk/pull/1611) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.1.0 -->
-- Update Fauxhai, TK, and Foodcritic to the latest [#1612](https://github.com/chef/chef-dk/pull/1612) ([tas50](https://github.com/tas50)) <!-- 3.0.46 -->
-- Update dependencies [#1609](https://github.com/chef/chef-dk/pull/1609) ([tas50](https://github.com/tas50)) <!-- 3.0.45 -->
-- Pull in the latest tools [#1606](https://github.com/chef/chef-dk/pull/1606) ([tas50](https://github.com/tas50)) <!-- 3.0.44 -->
-- add knife-acl and knife-tidy [#1605](https://github.com/chef/chef-dk/pull/1605) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.43 -->
-- berkshelf + mixlib-auth bumps + others [#1604](https://github.com/chef/chef-dk/pull/1604) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.42 -->
-- Bump Chef to 14.2.0 + other bumps [#1603](https://github.com/chef/chef-dk/pull/1603) ([tas50](https://github.com/tas50)) <!-- 3.0.41 -->
-- Update help link in Add/Remove Programs on Windows [#1600](https://github.com/chef/chef-dk/pull/1600) ([stuartpreston](https://github.com/stuartpreston)) <!-- 3.0.40 -->
-- Unpin ffi and bump deps [#1596](https://github.com/chef/chef-dk/pull/1596) ([tas50](https://github.com/tas50)) <!-- 3.0.40 -->
-- Update README for new cask tap [#1593](https://github.com/chef/chef-dk/pull/1593) ([coderanger](https://github.com/coderanger)) <!-- 3.0.39 -->
-- Fix hab plan to use correct gemspec name [#1587](https://github.com/chef/chef-dk/pull/1587) ([jonlives](https://github.com/jonlives)) <!-- 3.0.38 -->
-- publish habitat packages [#1583](https://github.com/chef/chef-dk/pull/1583) ([thommay](https://github.com/thommay)) <!-- 3.0.37 -->
+<!-- release_rollup since=3.1.0 -->
+### Changes since 3.1.0 release
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
-## [v3.0.36](https://github.com/chef/chef-dk/tree/v3.0.36) (2018-05-21)
+## [v3.1.0](https://github.com/chef/chef-dk/tree/v3.1.0) (2018-07-05)
+
+#### Merged Pull Requests
+- publish habitat packages [#1583](https://github.com/chef/chef-dk/pull/1583) ([thommay](https://github.com/thommay))
+- Fix hab plan to use correct gemspec name [#1587](https://github.com/chef/chef-dk/pull/1587) ([jonlives](https://github.com/jonlives))
+- Update README for new cask tap [#1593](https://github.com/chef/chef-dk/pull/1593) ([coderanger](https://github.com/coderanger))
+- Unpin ffi and bump deps [#1596](https://github.com/chef/chef-dk/pull/1596) ([tas50](https://github.com/tas50))
+- Update help link in Add/Remove Programs on Windows [#1600](https://github.com/chef/chef-dk/pull/1600) ([stuartpreston](https://github.com/stuartpreston))
+- Bump Chef to 14.2.0 + other bumps [#1603](https://github.com/chef/chef-dk/pull/1603) ([tas50](https://github.com/tas50))
+- berkshelf + mixlib-auth bumps + others [#1604](https://github.com/chef/chef-dk/pull/1604) ([lamont-granquist](https://github.com/lamont-granquist))
+- add knife-acl and knife-tidy [#1605](https://github.com/chef/chef-dk/pull/1605) ([lamont-granquist](https://github.com/lamont-granquist))
+- Pull in the latest tools [#1606](https://github.com/chef/chef-dk/pull/1606) ([tas50](https://github.com/tas50))
+- Update dependencies [#1609](https://github.com/chef/chef-dk/pull/1609) ([tas50](https://github.com/tas50))
+- Update Fauxhai, TK, and Foodcritic to the latest [#1612](https://github.com/chef/chef-dk/pull/1612) ([tas50](https://github.com/tas50))
+- Preparing 3.1 release [#1611](https://github.com/chef/chef-dk/pull/1611) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_stable_release -->
+
+## [v3.0.36](https://github.com/chef/chef-dk/tree/v3.0.36) (2018-05-21)
 
 ## [v3.0.36](https://github.com/chef/chef-dk/tree/v3.0.36) (2018-05-21)
 
