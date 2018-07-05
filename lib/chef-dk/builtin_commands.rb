@@ -41,8 +41,6 @@ ChefDK.commands do |c|
 
   c.builtin "diff", :Diff, desc: "Generate an itemized diff of two Policyfile lock documents"
 
-  c.builtin "provision", :Provision, desc: "Provision VMs and clusters via cookbook"
-
   c.builtin "export", :Export, desc: "Export a policy lock as a Chef Zero code repo"
 
   c.builtin "clean-policy-revisions", :CleanPolicyRevisions, desc: "Delete unused policy revisions on the server"

@@ -49,9 +49,6 @@ end
 group(:omnibus_package) do
   gem "appbundler"
   gem "berkshelf", ">= 7.0.5"
-  gem "chef-provisioning", ">= 2.7.1", group: :provisioning
-  gem "chef-provisioning-aws", ">= 3.0.2", group: :provisioning
-  gem "chef-provisioning-fog", ">= 0.26.1", group: :provisioning
   gem "chef-vault", ">= 3.4.1"
   # Expeditor manages the version of chef released to Rubygems. We only release 'stable' chef
   # gems to Rubygems now, so letting this float on latest should always give us the latest

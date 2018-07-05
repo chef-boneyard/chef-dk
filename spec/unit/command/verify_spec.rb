@@ -43,7 +43,6 @@ describe ChefDK::Command::Verify do
       "chef-client",
       "chef-dk",
       "chef-apply",
-      "chef-provisioning",
       "chefspec",
       "generated-cookbooks-pass-chefspec",
       "fauxhai",

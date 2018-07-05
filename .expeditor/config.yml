@@ -146,15 +146,6 @@ subscriptions:
   - workload: ruby_gem_published:chef-apply-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: ruby_gem_published:chef-provisioning-*
-    actions:
-      - bash:.expeditor/update_dep.sh
-  - workload: ruby_gem_published:chef-provisioning-aws-*
-    actions:
-      - bash:.expeditor/update_dep.sh
-  - workload: ruby_gem_published:chef-provisioning-fog-*
-    actions:
-      - bash:.expeditor/update_dep.sh
   - workload: ruby_gem_published:chef-telemetry-*
     actions:
       - bash:.expeditor/update_dep.sh
