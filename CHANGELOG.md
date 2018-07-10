@@ -1,13 +1,17 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release unreleased -->
-## Unreleased
+<!-- latest_release 3.1.1 -->
+## [v3.1.1](https://github.com/chef/chef-dk/tree/v3.1.1) (2018-07-10)
 
 #### Merged Pull Requests
+- Update mixlib-config / mixlib-install [#1619](https://github.com/chef/chef-dk/pull/1619) ([tas50](https://github.com/tas50))
 - Preparing 3.1 release [#1611](https://github.com/chef/chef-dk/pull/1611) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
+
+#### Merged Pull Requests
+- Update mixlib-config / mixlib-install [#1619](https://github.com/chef/chef-dk/pull/1619) ([tas50](https://github.com/tas50)) <!-- 3.1.1 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
