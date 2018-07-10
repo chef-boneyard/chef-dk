@@ -11,6 +11,9 @@
 
 #### Merged Pull Requests
 - Manually bump the version to 2.5.9 to fix expeditor [#1620](https://github.com/chef/chef-dk/pull/1620) ([tas50](https://github.com/tas50)) <!-- 2.5.9 -->
+- Update libxml2 to 2.9.8 [#1618](https://github.com/chef/chef-dk/pull/1618) ([tas50](https://github.com/tas50)) <!-- 2.5.8 -->
+- Bump deps to pull in nokogiri 1.8.4 [#1617](https://github.com/chef/chef-dk/pull/1617) ([tas50](https://github.com/tas50)) <!-- 2.5.7 -->
+- Bump gems / Ruby / openssl / Chef versions [#1598](https://github.com/chef/chef-dk/pull/1598) ([tas50](https://github.com/tas50)) <!-- 2.5.6 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
