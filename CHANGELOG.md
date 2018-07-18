@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.3 -->
-## [v3.1.3](https://github.com/chef/chef-dk/tree/v3.1.3) (2018-07-18)
+<!-- latest_release 3.1.4 -->
+## [v3.1.4](https://github.com/chef/chef-dk/tree/v3.1.4) (2018-07-18)
 
 #### Merged Pull Requests
-- Use new mixlib-config to resolve berkshelf errors on windows [#1625](https://github.com/chef/chef-dk/pull/1625) ([tas50](https://github.com/tas50))
+- add windows habitat plan [#1595](https://github.com/chef/chef-dk/pull/1595) ([mwrock](https://github.com/mwrock))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- add windows habitat plan [#1595](https://github.com/chef/chef-dk/pull/1595) ([mwrock](https://github.com/mwrock)) <!-- 3.1.4 -->
 - Use new mixlib-config to resolve berkshelf errors on windows [#1625](https://github.com/chef/chef-dk/pull/1625) ([tas50](https://github.com/tas50)) <!-- 3.1.3 -->
 - Update to Chef 14.3.37 [#1624](https://github.com/chef/chef-dk/pull/1624) ([tas50](https://github.com/tas50)) <!-- 3.1.2 -->
 - Update mixlib-config / mixlib-install [#1619](https://github.com/chef/chef-dk/pull/1619) ([tas50](https://github.com/tas50)) <!-- 3.1.1 -->
