@@ -29,6 +29,20 @@ dependency "libxslt"
 dependency "liblzma"
 dependency "zlib"
 
+#
+# NOTE: NO GEM DEPENDENCIES
+#
+# we do not add dependencies here on omnibus-software definitions that install gems.
+#
+# all of the gems for chef-dk must be installed in the mega bundle install below.
+#
+# doing bundle install / rake install in dependent software definitions causes gemsets
+# to get solved without some of the chef-dk constraints, which results in multiple different
+# versions of gems in the omnibus bundle.
+#
+# for gems that depend on c-libs, we include the c-libraries directly here.
+#
+
 # For berkshelf
 dependency "libarchive"
 
@@ -38,7 +52,7 @@ dependency "libzmq"
 # ruby and bundler and friends
 dependency "ruby"
 dependency "rubygems"
-dependency "appbundler"
+dependency "bundler" # technically a gem, but we gotta solve the chicken-egg problem here
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
@@ -56,13 +70,13 @@ build do
 
   env["NOKOGIRI_USE_SYSTEM_LIBRARIES"] = "true"
 
-  appbundle "chef", lockdir: project_dir, without: %w{integration docgen maintenance ci travis}, env: env
-  appbundle "foodcritic", lockdir: project_dir, without: %w{development}, env: env
-  appbundle "test-kitchen", lockdir: project_dir, without: %w{changelog debug docs provisioning}, env: env
-  appbundle "inspec", lockdir: project_dir, without: %w{deploy tools maintenance}, env: env
+  appbundle "chef", lockdir: project_dir, gem: "chef", without: %w{integration docgen maintenance ci travis}, env: env
+  appbundle "foodcritic", lockdir: project_dir, gem: "foodcritic", without: %w{development}, env: env
+  appbundle "test-kitchen", lockdir: project_dir, gem: "test-kitchen", without: %w{changelog debug docs provisioning}, env: env
+  appbundle "inspec", lockdir: project_dir, gem: "inspec", without: %w{deploy tools maintenance integration}, env: env
 
   %w{chef-dk chef-vault ohai opscode-pushy-client cookstyle dco berkshelf}.each do |gem|
-    appbundle gem, lockdir: project_dir, without: %w{changelog}, env: env
+    appbundle gem, lockdir: project_dir, gem: gem, without: %w{changelog}, env: env
   end
 
   # Clear the now-unnecessary git caches, cached gems, and git-checked-out gems
