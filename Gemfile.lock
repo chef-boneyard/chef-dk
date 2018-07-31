@@ -140,7 +140,7 @@ GEM
       mime-types
     chef-apply (0.1.18)
       chef (>= 14.0)
-      chef-dk (3.1.6)
+      chef-dk (>= 3.0)
       chef-telemetry
       mixlib-cli
       mixlib-config
