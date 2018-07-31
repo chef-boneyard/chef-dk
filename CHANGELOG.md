@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.5 -->
-## [v3.1.5](https://github.com/chef/chef-dk/tree/v3.1.5) (2018-07-31)
+<!-- latest_release 3.1.6 -->
+## [v3.1.6](https://github.com/chef/chef-dk/tree/v3.1.6) (2018-07-31)
 
 #### Merged Pull Requests
-- Pull in the latest knife-google, kitchen-google, inspec and more [#1633](https://github.com/chef/chef-dk/pull/1633) ([tas50](https://github.com/tas50))
+- [SHACK-304] Add Chef Apply as a gem dependency [#1631](https://github.com/chef/chef-dk/pull/1631) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- [SHACK-304] Add Chef Apply as a gem dependency [#1631](https://github.com/chef/chef-dk/pull/1631) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.1.6 -->
 - Pull in the latest knife-google, kitchen-google, inspec and more [#1633](https://github.com/chef/chef-dk/pull/1633) ([tas50](https://github.com/tas50)) <!-- 3.1.5 -->
 - add windows habitat plan [#1595](https://github.com/chef/chef-dk/pull/1595) ([mwrock](https://github.com/mwrock)) <!-- 3.1.4 -->
 - Use new mixlib-config to resolve berkshelf errors on windows [#1625](https://github.com/chef/chef-dk/pull/1625) ([tas50](https://github.com/tas50)) <!-- 3.1.3 -->

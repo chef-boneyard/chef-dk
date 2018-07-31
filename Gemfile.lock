@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    chef-dk (3.1.5)
+    chef-dk (3.1.6)
       addressable (>= 2.3.5, < 2.6)
       chef (~> 14.0)
       chef-provisioning (~> 2.0)
@@ -140,7 +140,7 @@ GEM
       mime-types
     chef-apply (0.1.18)
       chef (>= 14.0)
-      chef-dk (>= 3.0)
+      chef-dk (3.1.6)
       chef-telemetry
       mixlib-cli
       mixlib-config
