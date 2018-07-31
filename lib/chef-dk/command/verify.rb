@@ -184,6 +184,15 @@ KITCHEN_YML
         end
       end
 
+      add_component "chef-apply" do |c|
+        c.gem_base_dir = "chef-apply"
+        c.unit_test do
+          bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
+          sh("#{embedded_bin("bundle")} exec rspec")
+        end
+        c.smoke_test { sh("#{bin("chef-run")} -v") }
+      end
+
       # entirely possible this needs to be driven by a utility method in chef-provisioning.
       add_component "chef-provisioning" do |c|
         c.gem_base_dir = "chef-dk"
