@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.1.8 -->
-## [v3.1.8](https://github.com/chef/chef-dk/tree/v3.1.8) (2018-08-01)
+<!-- latest_release unreleased -->
+## Unreleased
 
 #### Merged Pull Requests
-- [SHACK-304] Expeditor version update needs to only update the ChefDK version [#1637](https://github.com/chef/chef-dk/pull/1637) ([tyler-ball](https://github.com/tyler-ball))
+- Bump version to 3.2.0 [#1639](https://github.com/chef/chef-dk/pull/1639) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Bump version to 3.2.0 [#1639](https://github.com/chef/chef-dk/pull/1639) ([tas50](https://github.com/tas50)) <!-- 3.2.0 -->
 - [SHACK-304] Expeditor version update needs to only update the ChefDK version [#1637](https://github.com/chef/chef-dk/pull/1637) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.1.8 -->
 - [SHACK-304] Habitat build fails with bundler error [#1636](https://github.com/chef/chef-dk/pull/1636) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.1.7 -->
 - [SHACK-304] Add Chef Apply as a gem dependency [#1631](https://github.com/chef/chef-dk/pull/1631) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.1.6 -->
