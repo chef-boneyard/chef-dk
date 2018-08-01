@@ -1,8 +1,9 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release unreleased -->
-## Unreleased
+<!-- latest_release 3.2.1 -->
+## [v3.2.1](https://github.com/chef/chef-dk/tree/v3.2.1) (2018-08-01)
 
 #### Merged Pull Requests
+- Update train to remove google-cloud gem dep [#1640](https://github.com/chef/chef-dk/pull/1640) ([tas50](https://github.com/tas50))
 - Bump version to 3.2.0 [#1639](https://github.com/chef/chef-dk/pull/1639) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
@@ -10,6 +11,7 @@
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Update train to remove google-cloud gem dep [#1640](https://github.com/chef/chef-dk/pull/1640) ([tas50](https://github.com/tas50)) <!-- 3.2.1 -->
 - Bump version to 3.2.0 [#1639](https://github.com/chef/chef-dk/pull/1639) ([tas50](https://github.com/tas50)) <!-- 3.2.0 -->
 - [SHACK-304] Expeditor version update needs to only update the ChefDK version [#1637](https://github.com/chef/chef-dk/pull/1637) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.1.8 -->
 - [SHACK-304] Habitat build fails with bundler error [#1636](https://github.com/chef/chef-dk/pull/1636) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.1.7 -->
