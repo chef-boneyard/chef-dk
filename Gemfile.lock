@@ -30,20 +30,20 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.90)
-      aws-sdk-resources (= 2.11.90)
-    aws-sdk-core (2.11.90)
+    aws-sdk (2.11.100)
+      aws-sdk-resources (= 2.11.100)
+    aws-sdk-core (2.11.100)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.90)
-      aws-sdk-core (= 2.11.90)
+    aws-sdk-resources (2.11.100)
+      aws-sdk-core (= 2.11.100)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
     backports (3.11.3)
-    berkshelf (6.3.2)
+    berkshelf (6.3.4)
       buff-config (~> 2.0)
       buff-extensions (~> 2.0)
       chef (>= 12.7.2, < 14.0)
@@ -639,7 +639,7 @@ GEM
       logify (~> 0.2)
     syslog-logger (1.6.8)
     systemu (2.6.5)
-    test-kitchen (1.22.0)
+    test-kitchen (1.22.1)
       mixlib-install (~> 3.6)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
@@ -787,7 +787,7 @@ DEPENDENCIES
   ruby-prof
   ruby-shadow
   stove
-  test-kitchen (~> 1.18)
+  test-kitchen (~> 1.22.0)
   win32-api
   win32-dir
   win32-event

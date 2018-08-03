@@ -66,7 +66,7 @@ group(:omnibus_package) do
   gem "ohai", "~> 13.1"
   # net-ssh 4.2.0 explodes the world. FIXME
   gem "net-ssh", "= 4.1.0"
-  gem "test-kitchen", "~> 1.18"
+  gem "test-kitchen", "~> 1.22.0"
   gem "listen"
   gem "dco"
 
