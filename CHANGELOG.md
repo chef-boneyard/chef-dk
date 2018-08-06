@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.4 -->
-## [v3.2.4](https://github.com/chef/chef-dk/tree/v3.2.4) (2018-08-06)
+<!-- latest_release 3.2.5 -->
+## [v3.2.5](https://github.com/chef/chef-dk/tree/v3.2.5) (2018-08-06)
 
 #### Merged Pull Requests
-- Pull in the new knife-ec2 / updated fog-aws gem [#1644](https://github.com/chef/chef-dk/pull/1644) ([tas50](https://github.com/tas50))
+- Pin ruby to 2.5.1 in habitat plan [#1646](https://github.com/chef/chef-dk/pull/1646) ([ryancragun](https://github.com/ryancragun))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Pin ruby to 2.5.1 in habitat plan [#1646](https://github.com/chef/chef-dk/pull/1646) ([ryancragun](https://github.com/ryancragun)) <!-- 3.2.5 -->
 - Pull in the new knife-ec2 / updated fog-aws gem [#1644](https://github.com/chef/chef-dk/pull/1644) ([tas50](https://github.com/tas50)) <!-- 3.2.4 -->
 - bumping deps, pulling in berks patch release [#1643](https://github.com/chef/chef-dk/pull/1643) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.2.3 -->
 - Update train to remove google-cloud gem dep [#1640](https://github.com/chef/chef-dk/pull/1640) ([tas50](https://github.com/tas50)) <!-- 3.2.1 -->
