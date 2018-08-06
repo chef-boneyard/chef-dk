@@ -1,16 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.1 -->
-## [v3.2.1](https://github.com/chef/chef-dk/tree/v3.2.1) (2018-08-01)
+<!-- latest_release 3.2.3 -->
+## [v3.2.3](https://github.com/chef/chef-dk/tree/v3.2.3) (2018-08-06)
 
 #### Merged Pull Requests
-- Update train to remove google-cloud gem dep [#1640](https://github.com/chef/chef-dk/pull/1640) ([tas50](https://github.com/tas50))
-- Bump version to 3.2.0 [#1639](https://github.com/chef/chef-dk/pull/1639) ([tas50](https://github.com/tas50))
+- bumping deps, pulling in berks patch release [#1643](https://github.com/chef/chef-dk/pull/1643) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- bumping deps, pulling in berks patch release [#1643](https://github.com/chef/chef-dk/pull/1643) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.2.3 -->
 - Update train to remove google-cloud gem dep [#1640](https://github.com/chef/chef-dk/pull/1640) ([tas50](https://github.com/tas50)) <!-- 3.2.1 -->
 - Bump version to 3.2.0 [#1639](https://github.com/chef/chef-dk/pull/1639) ([tas50](https://github.com/tas50)) <!-- 3.2.0 -->
 - [SHACK-304] Expeditor version update needs to only update the ChefDK version [#1637](https://github.com/chef/chef-dk/pull/1637) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.1.8 -->
