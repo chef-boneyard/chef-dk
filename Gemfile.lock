@@ -778,7 +778,7 @@ PLATFORMS
 DEPENDENCIES
   appbundler
   artifactory
-  berkshelf (>= 7.0)
+  berkshelf (>= 7.0.5)
   bundler
   chef (= 14.3.37)
   chef-apply
@@ -789,35 +789,35 @@ DEPENDENCIES
   chef-sugar
   chef-vault (>= 3.3.0)
   cheffish (>= 14.0.1)
-  chefspec (>= 7.2.0)
+  chefspec (>= 7.2.1)
   chefstyle
   cookstyle (>= 2.0.0)
   cucumber
   dco
   dep-selector-libgecode
   dep_selector
-  fauxhai (>= 5.4.0)
+  fauxhai (>= 6.5.0)
   ffi-libarchive
   ffi-rzmq-core
   foodcritic (>= 12.1)
   guard
-  inspec (>= 2.1.68)
-  kitchen-digitalocean (>= 0.9.8)
+  inspec (>= 2.2.55)
+  kitchen-digitalocean (>= 0.10.0)
   kitchen-dokken (>= 2.6.7)
-  kitchen-ec2 (>= 2.2.1)
-  kitchen-google (>= 1.4.0)
+  kitchen-ec2 (>= 2.2.2)
+  kitchen-google (>= 1.5.0)
   kitchen-hyperv (>= 0.5.1)
-  kitchen-inspec (>= 0.19.0)
+  kitchen-inspec (>= 0.23.1)
   kitchen-vagrant (>= 1.3.2)
   knife-acl (>= 1.0.3)
-  knife-ec2 (>= 0.15.0)
-  knife-google (>= 3.2.0)
-  knife-opc (>= 0.3.2)
+  knife-ec2 (>= 0.19.10)
+  knife-google (>= 3.3.0)
+  knife-opc (>= 0.4.0)
   knife-push
   knife-spork
-  knife-tidy (>= 0.2.1)
-  knife-vsphere (>= 2.0.3)
-  knife-windows (>= 1.9.0)
+  knife-tidy (>= 1.2.0)
+  knife-vsphere (>= 2.1.1)
+  knife-windows (>= 1.9.1)
   listen
   mixlib-archive (= 0.4.6)
   mixlib-install
@@ -841,7 +841,7 @@ DEPENDENCIES
   ruby-prof
   ruby-shadow
   stove
-  test-kitchen (>= 1.21.1)
+  test-kitchen (>= 1.23.0)
   win32-api
   win32-dir
   win32-event
