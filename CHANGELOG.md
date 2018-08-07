@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.6 -->
-## [v3.2.6](https://github.com/chef/chef-dk/tree/v3.2.6) (2018-08-07)
+<!-- latest_release 3.2.7 -->
+## [v3.2.7](https://github.com/chef/chef-dk/tree/v3.2.7) (2018-08-07)
 
 #### Merged Pull Requests
-- Bump all the minimum versions to prevent downgrades [#1645](https://github.com/chef/chef-dk/pull/1645) ([tas50](https://github.com/tas50))
+- Pull in latest test-kitchen, fog-digitalocean, and berkshelf [#1647](https://github.com/chef/chef-dk/pull/1647) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Pull in latest test-kitchen, fog-digitalocean, and berkshelf [#1647](https://github.com/chef/chef-dk/pull/1647) ([tas50](https://github.com/tas50)) <!-- 3.2.7 -->
 - Bump all the minimum versions to prevent downgrades [#1645](https://github.com/chef/chef-dk/pull/1645) ([tas50](https://github.com/tas50)) <!-- 3.2.6 -->
 - Pin ruby to 2.5.1 in habitat plan [#1646](https://github.com/chef/chef-dk/pull/1646) ([ryancragun](https://github.com/ryancragun)) <!-- 3.2.5 -->
 - Pull in the new knife-ec2 / updated fog-aws gem [#1644](https://github.com/chef/chef-dk/pull/1644) ([tas50](https://github.com/tas50)) <!-- 3.2.4 -->
