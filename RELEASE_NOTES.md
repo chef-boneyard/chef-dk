@@ -1,4 +1,28 @@
-# ChefDK 2.5 Release Notes
+# ChefDK 2.5.13 Release Notes
+
+## Chef 13.10.4
+
+ChefDK now ships with Chef 13.10.4. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
+## Security Updates
+
+### Ruby
+
+Ruby has been updated to 2.4.4 to resolve `CVE-2018-8780`, `CVE-2018-8779`, `CVE-2018-8778`, `CVE-2018-8777`, `CVE-2018-6914`, `CVE-2017-17790`, and `CVE-2017-17742`.
+
+### OpenSSL
+
+OpenSSL has been updated to 1.0.2o to resolve `CVE-2018-0739`
+
+### LibXML2
+
+LibXML2 has been updated to 2.9.8 to fix `CVE-2008-4225` and `CVE-2008-4226`
+
+## Updated Components
+
+- `test-kitchen` 1.20.0 -> 1.22.0
+
+# ChefDK 2.5.3 Release Notes
 
 ## Rename `smoke` tests to `integration` tests.
 

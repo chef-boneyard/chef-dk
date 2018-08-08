@@ -47,7 +47,7 @@ group(:omnibus_package) do
   gem "chef-provisioning-aws", ">= 3.0.0", group: :provisioning
   gem "chef-provisioning-fog", ">= 0.26.0", group: :provisioning
   gem "chef-vault", ">= 3.3.0"
-  gem "chef", "= 13.10.0"
+  gem "chef", "= 13.10.4"
   gem "cheffish", ">= 13.1.0"
   gem "chefspec", ">= 7.1.0"
   gem "fauxhai", "~> 5.4"
@@ -66,7 +66,7 @@ group(:omnibus_package) do
   gem "ohai", "~> 13.1"
   # net-ssh 4.2.0 explodes the world. FIXME
   gem "net-ssh", "= 4.1.0"
-  gem "test-kitchen", "~> 1.18"
+  gem "test-kitchen", "~> 1.22.0"
   gem "listen"
   gem "dco"
 

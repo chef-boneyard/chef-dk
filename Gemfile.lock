@@ -17,7 +17,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.0)
+    activesupport (5.2.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
@@ -30,20 +30,20 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.90)
-      aws-sdk-resources (= 2.11.90)
-    aws-sdk-core (2.11.90)
+    aws-sdk (2.11.103)
+      aws-sdk-resources (= 2.11.103)
+    aws-sdk-core (2.11.103)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.90)
-      aws-sdk-core (= 2.11.90)
+    aws-sdk-resources (2.11.103)
+      aws-sdk-core (= 2.11.103)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
     backports (3.11.3)
-    berkshelf (6.3.2)
+    berkshelf (6.3.4)
       buff-config (~> 2.0)
       buff-extensions (~> 2.0)
       chef (>= 12.7.2, < 14.0)
@@ -76,10 +76,10 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef (13.10.0)
+    chef (13.10.4)
       addressable
       bundler (>= 1.10)
-      chef-config (= 13.10.0)
+      chef-config (= 13.10.4)
       chef-zero (~> 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -98,18 +98,18 @@ GEM
       ohai (~> 13.0)
       plist (~> 3.2)
       proxifier (~> 1.0)
-      rspec-core (~> 3.5)
-      rspec-expectations (~> 3.5)
-      rspec-mocks (~> 3.5)
+      rspec-core (~> 3.5, < 3.8)
+      rspec-expectations (~> 3.5, < 3.8)
+      rspec-mocks (~> 3.5, < 3.8)
       rspec_junit_formatter (~> 0.2.0)
       serverspec (~> 2.7)
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (13.10.0-universal-mingw32)
+    chef (13.10.4-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 13.10.0)
+      chef-config (= 13.10.4)
       chef-zero (~> 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -129,9 +129,9 @@ GEM
       ohai (~> 13.0)
       plist (~> 3.2)
       proxifier (~> 1.0)
-      rspec-core (~> 3.5)
-      rspec-expectations (~> 3.5)
-      rspec-mocks (~> 3.5)
+      rspec-core (~> 3.5, < 3.8)
+      rspec-expectations (~> 3.5, < 3.8)
+      rspec-mocks (~> 3.5, < 3.8)
       rspec_junit_formatter (~> 0.2.0)
       serverspec (~> 2.7)
       specinfra (~> 2.10)
@@ -150,7 +150,7 @@ GEM
     chef-api (0.8.0)
       logify (~> 0.1)
       mime-types
-    chef-config (13.10.0)
+    chef-config (13.10.4)
       addressable
       fuzzyurl
       mixlib-config (>= 2.2.12, < 3.0)
@@ -639,7 +639,7 @@ GEM
       logify (~> 0.2)
     syslog-logger (1.6.8)
     systemu (2.6.5)
-    test-kitchen (1.22.0)
+    test-kitchen (1.22.1)
       mixlib-install (~> 3.6)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
@@ -731,7 +731,7 @@ DEPENDENCIES
   artifactory
   berkshelf (~> 6.3.1)
   bundler
-  chef (= 13.10.0)
+  chef (= 13.10.4)
   chef-dk!
   chef-provisioning (>= 2.4.0)
   chef-provisioning-aws (>= 3.0.0)
@@ -787,7 +787,7 @@ DEPENDENCIES
   ruby-prof
   ruby-shadow
   stove
-  test-kitchen (~> 1.18)
+  test-kitchen (~> 1.22.0)
   win32-api
   win32-dir
   win32-event
