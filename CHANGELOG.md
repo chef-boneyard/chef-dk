@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.7 -->
-## [v3.2.7](https://github.com/chef/chef-dk/tree/v3.2.7) (2018-08-07)
+<!-- latest_release 3.2.8 -->
+## [v3.2.8](https://github.com/chef/chef-dk/tree/v3.2.8) (2018-08-09)
 
 #### Merged Pull Requests
-- Pull in latest test-kitchen, fog-digitalocean, and berkshelf [#1647](https://github.com/chef/chef-dk/pull/1647) ([tas50](https://github.com/tas50))
+- Updating dependencies to pull in latest chef-apply release [#1648](https://github.com/chef/chef-dk/pull/1648) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Updating dependencies to pull in latest chef-apply release [#1648](https://github.com/chef/chef-dk/pull/1648) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.8 -->
 - Pull in latest test-kitchen, fog-digitalocean, and berkshelf [#1647](https://github.com/chef/chef-dk/pull/1647) ([tas50](https://github.com/tas50)) <!-- 3.2.7 -->
 - Bump all the minimum versions to prevent downgrades [#1645](https://github.com/chef/chef-dk/pull/1645) ([tas50](https://github.com/tas50)) <!-- 3.2.6 -->
 - Pin ruby to 2.5.1 in habitat plan [#1646](https://github.com/chef/chef-dk/pull/1646) ([ryancragun](https://github.com/ryancragun)) <!-- 3.2.5 -->
