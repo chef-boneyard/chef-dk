@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: cb42641d8c0af24b87a4750cc415b9493022ab85
+  revision: 33e91c818a7ddfdb3130d6e407ed289c3c05aca7
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -31,15 +31,15 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     awesome_print (1.8.0)
-    aws-sdk (2.11.44)
-      aws-sdk-resources (= 2.11.44)
-    aws-sdk-core (2.11.44)
+    aws-sdk (2.11.101)
+      aws-sdk-resources (= 2.11.101)
+    aws-sdk-core (2.11.101)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.44)
-      aws-sdk-core (= 2.11.44)
-    aws-sigv4 (1.0.2)
-    berkshelf (6.3.2)
+    aws-sdk-resources (2.11.101)
+      aws-sdk-core (= 2.11.101)
+    aws-sigv4 (1.0.3)
+    berkshelf (6.3.3)
       buff-config (~> 2.0)
       buff-extensions (~> 2.0)
       chef (>= 12.7.2, < 14.0)
@@ -150,11 +150,11 @@ GEM
     concurrent-ruby (1.0.5)
     diff-lcs (1.3)
     erubis (2.7.0)
-    faraday (0.15.0)
+    faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
-    ffi (1.9.23)
-    ffi (1.9.23-x64-mingw32)
-    ffi (1.9.23-x86-mingw32)
+    ffi (1.9.25)
+    ffi (1.9.25-x64-mingw32)
+    ffi (1.9.25-x86-mingw32)
     ffi-win32-extensions (1.0.3)
       ffi
     ffi-yajl (2.3.1)
@@ -166,8 +166,9 @@ GEM
       builder (>= 2.1.2)
     hashie (3.5.7)
     highline (1.7.10)
-    hitimes (1.2.6)
-    hitimes (1.2.6-x86-mingw32)
+    hitimes (1.3.0)
+    hitimes (1.3.0-x64-mingw32)
+    hitimes (1.3.0-x86-mingw32)
     httpclient (2.8.3)
     iniparse (1.4.4)
     iostruct (0.0.4)
@@ -177,7 +178,7 @@ GEM
     kitchen-vagrant (1.3.2)
       test-kitchen (~> 1.4)
     libyajl2 (1.2.0)
-    license_scout (1.0.4)
+    license_scout (1.0.11)
       ffi-yajl (~> 2.2)
       mixlib-shellout (~> 2.2)
       toml-rb (~> 1.0)
@@ -186,19 +187,19 @@ GEM
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
     minitar (0.6.1)
-    mixlib-archive (0.4.6)
+    mixlib-archive (0.4.13)
       mixlib-log
     mixlib-authentication (1.4.2)
     mixlib-cli (1.7.0)
-    mixlib-config (2.2.6)
+    mixlib-config (2.2.13)
       tomlrb
-    mixlib-install (3.9.3)
+    mixlib-install (3.11.2)
       mixlib-shellout
       mixlib-versioning
       thor
     mixlib-log (1.7.1)
-    mixlib-shellout (2.3.2)
-    mixlib-shellout (2.3.2-universal-mingw32)
+    mixlib-shellout (2.4.0)
+    mixlib-shellout (2.4.0-universal-mingw32)
       win32-process (~> 0.8.2)
       wmi-lite (~> 1.0)
     mixlib-versioning (1.2.2)
@@ -215,7 +216,7 @@ GEM
     net-ssh-multi (1.2.1)
       net-ssh (>= 2.6.5)
       net-ssh-gateway (>= 1.2.0)
-    net-telnet (0.1.1)
+    net-telnet (0.2.0)
     nio4r (2.3.1)
     nori (2.6.0)
     octokit (4.9.0)
@@ -297,14 +298,14 @@ GEM
     solve (4.0.0)
       molinillo (~> 0.6)
       semverse (>= 1.1, < 3.0)
-    specinfra (2.73.3)
+    specinfra (2.75.1)
       net-scp
-      net-ssh (>= 2.7, < 5.0)
+      net-ssh (>= 2.7)
       net-telnet
       sfl
     syslog-logger (1.6.8)
     systemu (2.6.5)
-    test-kitchen (1.21.2)
+    test-kitchen (1.23.0)
       mixlib-install (~> 3.6)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
@@ -319,7 +320,7 @@ GEM
       hitimes
     toml-rb (1.1.1)
       citrus (~> 3.0, > 3.0)
-    tomlrb (1.2.6)
+    tomlrb (1.2.7)
     uuidtools (2.1.5)
     varia_model (0.6.0)
       buff-extensions (~> 2.0)
@@ -356,7 +357,7 @@ GEM
     winrm-elevated (1.1.0)
       winrm (~> 2.0)
       winrm-fs (~> 1.0)
-    winrm-fs (1.2.0)
+    winrm-fs (1.2.1)
       erubis (~> 2.7)
       logging (>= 1.6.1, < 3.0)
       rubyzip (~> 1.1)
@@ -380,4 +381,4 @@ DEPENDENCIES
   winrm-elevated
 
 BUNDLED WITH
-   1.16.1
+   1.16.3

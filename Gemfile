@@ -19,10 +19,6 @@ source "https://rubygems.org"
 
 gemspec
 
-# ffi 1.9.22+1.9.23 are buggy in our spec/unit/application/client_spec.rb tests on el6/el7
-# (this pin has nothing directly to do with chefdk, please delete if no longer applicable)
-gem "ffi", "< 1.9.22"
-
 gem "bundler"
 
 group(:omnibus_package, :development, :test) do
@@ -47,34 +43,41 @@ end
 # We equality pin the chef gem itself to assert which version we're shipping.
 group(:omnibus_package) do
   gem "appbundler"
-  gem "berkshelf", ">= 7.0"
+  gem "berkshelf", ">= 7.0.5"
   gem "chef-provisioning", ">= 2.7.1", group: :provisioning
   gem "chef-provisioning-aws", ">= 3.0.2", group: :provisioning
   gem "chef-provisioning-fog", ">= 0.26.1", group: :provisioning
   gem "chef-vault", ">= 3.3.0"
-  gem "chef", "= 14.1.1"
+  gem "chef", "= 14.3.37"
   gem "cheffish", ">= 14.0.1"
-  gem "chefspec", ">= 7.2.0"
-  gem "fauxhai", ">= 5.4.0"
-  gem "inspec", ">= 2.1.68"
-  gem "kitchen-ec2", ">= 2.2.1"
-  gem "kitchen-digitalocean", ">= 0.9.8"
+  gem "chefspec", ">= 7.2.1"
+  gem "fauxhai", ">= 6.5.0"
+  gem "inspec", ">= 2.2.55"
+  gem "kitchen-ec2", ">= 2.2.2"
+  gem "kitchen-digitalocean", ">= 0.10.0"
   gem "kitchen-dokken", ">= 2.6.7"
-  gem "kitchen-google", ">= 1.4.0"
+  gem "kitchen-google", ">= 1.5.0"
   gem "kitchen-hyperv", ">= 0.5.1"
-  gem "kitchen-inspec", ">= 0.19.0"
+  gem "kitchen-inspec", ">= 0.23.1"
   gem "kitchen-vagrant", ">= 1.3.2"
-  gem "knife-ec2", ">= 0.15.0"
-  gem "knife-google", ">= 3.2.0"
-  gem "knife-windows", ">= 1.9.0"
-  gem "knife-opc", ">= 0.3.2"
-  gem "knife-vsphere", ">= 2.0.3"
-  gem "mixlib-archive", ">= 0.4.6"
+  gem "knife-acl", ">= 1.0.3"
+  gem "knife-ec2", ">= 0.19.10"
+  gem "knife-google", ">= 3.3.0"
+  gem "knife-tidy", ">= 1.2.0"
+  gem "knife-windows", ">= 1.9.1"
+  gem "knife-opc", ">= 0.4.0"
+  gem "knife-vsphere", ">= 2.1.1"
+  gem "mixlib-archive", "= 0.4.6" # FIXME: equality pinned for now because windows is busted on 0.4.7
   gem "ohai", ">= 14.0.29"
   gem "net-ssh", ">= 4.2.0"
-  gem "test-kitchen", ">= 1.21.1"
+  gem "test-kitchen", ">= 1.23.0"
   gem "listen"
   gem "dco"
+
+  # Right now we must import chef-apply as a gem into the ChefDK because this is where all the gem
+  # dependency resolution occurs. Putting it elsewhere endangers older ChefDK issues of gem version
+  # conflicts post-build.
+  gem "chef-apply"
 
   # For Delivery build node
   gem "chef-sugar"

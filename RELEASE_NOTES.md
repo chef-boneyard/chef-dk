@@ -1,3 +1,53 @@
+# ChefDK 3.1 Release Notes
+
+## Chef 14.2.0
+
+ChefDK now ships with Chef 14.2.0\. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
+## Habitat packages available
+
+ChefDK is now released as a habitat package under the identifier `chef/chef-dk`. All successful builds will be available in the `unstable` channel and all promoted builds will be available in the `stable` channel. This is similar to the `current` and `stable` downloads of ChefDK available on <https://downloads.chef.io/chefdk/stable>.
+
+## Updated Homebrew cask tap
+
+On macOS you can install ChefDK using `brew cask install chef/chef/chefdk`. This behavior is not new but the tap name changed.
+
+## Updated Tooling
+
+### Fauxhai
+
+Fauxhai 6.4.0 brings support for 3 new platforms - CentOS 7.5, Debian 8.11, and FreeBSD 11.2. It also updates the dumps for Amazon Linux, Redhat, SLES, and Ubuntu to match Chef 14.2 output. Finally it deprecates FreeBSD 10.3.
+
+### Foodcritic
+
+Foodcritic 14.0.0 adds support for Chef 14.2 metadata, makes it the default, and removes old Chef 13 metadata. It also updated rules for clarity, removed an unecessary rule, and added a new rule saying when cookbooks have unecessary dependencies now that resources moved into core Chef. See the [changelog](https://github.com/Foodcritic/foodcritic/blob/master/CHANGELOG.md#1400-2018-06-28) for a full list of changes.
+
+### knife-acl
+
+[knife-acl](https://github.com/chef/knife-acl) is now included with ChefDK. This knife plugin allows admin users to modify Chef Server ACLs from their command line.
+
+### knife-tidy
+
+[knife-tidy](https://github.com/chef-customers/knife-tidy) is now included with ChefDK. This knife plugin generates reports about stale nodes and helps clean them up.
+
+### Test Kitchen
+
+Test Kitchen 1.11.0 adds a new `ssh_gateway_port` config and fixed a bug on Unix systems where scripts were not created as executable.
+
+## Updated Components and Tools
+
+- `fauxhai`: 6.3.0 -> 6.4.0
+- `foodcritic`: 13.1.1 -> 14.0.0
+- `kitchen-digitalocean`: 0.9.8 -> 0.10.0
+- `knife-opc`: 0.3.2 -> 0.4.0
+- `test-kitchen`: 1.21.2 ->1.22.0
+
+## Security Updates
+
+### ffi
+
+- `CVE-2018-1000201`: DLL loading issue which can be hijacked on Windows OS
+
 # ChefDK 3.0 Release Notes
 
 ## Chef 14.1.1
@@ -11,6 +61,17 @@ ChefDK now ships packages for Ubuntu 18.04 and Debian 9. In accordance with Chef
 ## Enhanced cookbook archive handling
 
 ChefDK now uses an embedded copy of libarchive to support Policyfile and Berkshelf. This improves overall performance and provides a well tested interface to many different types of archives. It also resolves the long standing "not an octal string" problem users face when depending on certain cookbooks in the supermarket.
+
+## Policyfiles: updated `include_policy` support
+
+Policyfiles now support git targets for included policies.
+
+```
+include_policy 'base_policy',
+               git: 'https://github.com/happychef/chef-repo.git',
+               branch: master,
+               path: 'policies/base/Policyfile.lock.json'
+```
 
 ## Updated Tooling
 

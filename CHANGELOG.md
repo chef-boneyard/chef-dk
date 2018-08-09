@@ -1,53 +1,98 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.0.29 -->
-## [v3.0.29](https://github.com/chef/chef-dk/tree/v3.0.29) (2018-05-08)
+<!-- latest_release 3.2.7 -->
+## [v3.2.7](https://github.com/chef/chef-dk/tree/v3.2.7) (2018-08-07)
 
 #### Merged Pull Requests
-- bump chefspec [#1570](https://github.com/chef/chef-dk/pull/1570) ([thommay](https://github.com/thommay))
+- Pull in latest test-kitchen, fog-digitalocean, and berkshelf [#1647](https://github.com/chef/chef-dk/pull/1647) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup since=2.5.3 -->
-### Changes since 2.5.3 release
+<!-- release_rollup since=3.1.0 -->
+### Changes since 3.1.0 release
 
 #### Merged Pull Requests
-- bump chefspec [#1570](https://github.com/chef/chef-dk/pull/1570) ([thommay](https://github.com/thommay)) <!-- 3.0.29 -->
-- Bump dependencies for Chef 14.1 [#1568](https://github.com/chef/chef-dk/pull/1568) ([thommay](https://github.com/thommay)) <!-- 3.0.28 -->
-- bump deps and chefstyle [#1567](https://github.com/chef/chef-dk/pull/1567) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.27 -->
-- Use Mixlib::Archive rather than Minitar [#1558](https://github.com/chef/chef-dk/pull/1558) ([thommay](https://github.com/thommay)) <!-- 3.0.26 -->
-- bump deps [#1563](https://github.com/chef/chef-dk/pull/1563) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.25 -->
-- Generate a `CHANGELOG.md` for cookbooks [#1560](https://github.com/chef/chef-dk/pull/1560) ([nathenharvey](https://github.com/nathenharvey)) <!-- 3.0.24 -->
-- remove expire cache [#1557](https://github.com/chef/chef-dk/pull/1557) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.23 -->
-- expeditor force expire cache [#1556](https://github.com/chef/chef-dk/pull/1556) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.22 -->
--  pin ffi to avoid el6/el7 bugginess [#1555](https://github.com/chef/chef-dk/pull/1555) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.21 -->
-- Force the container to properly run in en_US.UTF-8 [#1548](https://github.com/chef/chef-dk/pull/1548) ([tduffield](https://github.com/tduffield)) <!-- 3.0.20 -->
-- Ship libarchive and ffi-libarchive [#1553](https://github.com/chef/chef-dk/pull/1553) ([thommay](https://github.com/thommay)) <!-- 3.0.19 -->
-- bump travis, bump ruby, fix a spec [#1552](https://github.com/chef/chef-dk/pull/1552) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.18 -->
-- update berkshelf to 7 and pull in chef 14. [#1551](https://github.com/chef/chef-dk/pull/1551) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.17 -->
-- pin hitimes + bump everything else [#1546](https://github.com/chef/chef-dk/pull/1546) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.16 -->
-- get omnibus tracking back on master [#1545](https://github.com/chef/chef-dk/pull/1545) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.15 -->
-- Added default LANG settings [#1541](https://github.com/chef/chef-dk/pull/1541) ([jjasghar](https://github.com/jjasghar)) <!-- 3.0.14 -->
-- Added git for the build container [#1535](https://github.com/chef/chef-dk/pull/1535) ([jjasghar](https://github.com/jjasghar)) <!-- 3.0.13 -->
-- Fix incorrect path value in the Dockerfile [#1537](https://github.com/chef/chef-dk/pull/1537) ([meringu](https://github.com/meringu)) <!-- 3.0.12 -->
-- Deprecate OSX 10.10 builds [#1542](https://github.com/chef/chef-dk/pull/1542) ([scotthain](https://github.com/scotthain)) <!-- 3.0.11 -->
-- Ship InSpec 2 [#1531](https://github.com/chef/chef-dk/pull/1531) ([thommay](https://github.com/thommay)) <!-- 3.0.10 -->
-- Get omnibus and omnibus-software back on master [#1539](https://github.com/chef/chef-dk/pull/1539) ([thommay](https://github.com/thommay)) <!-- 3.0.9 -->
-- add ruby 2.5.1 and update omnibus-software [#1538](https://github.com/chef/chef-dk/pull/1538) ([thommay](https://github.com/thommay)) <!-- 3.0.8 -->
-- Attempt to unzip files if MSI repair selected [#1534](https://github.com/chef/chef-dk/pull/1534) ([stuartpreston](https://github.com/stuartpreston)) <!-- 3.0.7 -->
-- make generated policyfile not violate cookstyle [#1527](https://github.com/chef/chef-dk/pull/1527) ([thommay](https://github.com/thommay)) <!-- 3.0.6 -->
-- Update openssl to 1.0.2o [#1536](https://github.com/chef/chef-dk/pull/1536) ([tas50](https://github.com/tas50)) <!-- 3.0.5 -->
-- powershell_exec mixin support for ChefDK MSI installer [#1528](https://github.com/chef/chef-dk/pull/1528) ([stuartpreston](https://github.com/stuartpreston)) <!-- 3.0.4 -->
-- Bump deps for new docker-api, knife-vsphere, and mixlib-config [#1533](https://github.com/chef/chef-dk/pull/1533) ([tas50](https://github.com/tas50)) <!-- 3.0.3 -->
-- Fixes the spec file as it should display the recipe name and not default [#1532](https://github.com/chef/chef-dk/pull/1532) ([burtlo](https://github.com/burtlo)) <!-- 3.0.2 -->
-- add knife-vsphere and bump gems [#1525](https://github.com/chef/chef-dk/pull/1525) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.0.1 -->
-- Bump to 3.0 [#1523](https://github.com/chef/chef-dk/pull/1523) ([tas50](https://github.com/tas50)) <!-- 3.0.0 -->
-- Fix link in example cookbook to point to the correct docs site URL [#1518](https://github.com/chef/chef-dk/pull/1518) ([tas50](https://github.com/tas50)) <!-- 2.5.8 -->
-- Remove strainer from the generated chefignore file [#1519](https://github.com/chef/chef-dk/pull/1519) ([tas50](https://github.com/tas50)) <!-- 2.5.7 -->
-- Format cookbooks generated readme &amp; reference supermarket [#1520](https://github.com/chef/chef-dk/pull/1520) ([tas50](https://github.com/tas50)) <!-- 2.5.6 -->
-- Bump copyrights to 2018 [#1521](https://github.com/chef/chef-dk/pull/1521) ([tas50](https://github.com/tas50)) <!-- 2.5.5 -->
-- Remove policyfile_zero provisioner [#1522](https://github.com/chef/chef-dk/pull/1522) ([danielsdeleo](https://github.com/danielsdeleo)) <!-- 2.5.4 -->
+- Pull in latest test-kitchen, fog-digitalocean, and berkshelf [#1647](https://github.com/chef/chef-dk/pull/1647) ([tas50](https://github.com/tas50)) <!-- 3.2.7 -->
+- Bump all the minimum versions to prevent downgrades [#1645](https://github.com/chef/chef-dk/pull/1645) ([tas50](https://github.com/tas50)) <!-- 3.2.6 -->
+- Pin ruby to 2.5.1 in habitat plan [#1646](https://github.com/chef/chef-dk/pull/1646) ([ryancragun](https://github.com/ryancragun)) <!-- 3.2.5 -->
+- Pull in the new knife-ec2 / updated fog-aws gem [#1644](https://github.com/chef/chef-dk/pull/1644) ([tas50](https://github.com/tas50)) <!-- 3.2.4 -->
+- bumping deps, pulling in berks patch release [#1643](https://github.com/chef/chef-dk/pull/1643) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.2.3 -->
+- Update train to remove google-cloud gem dep [#1640](https://github.com/chef/chef-dk/pull/1640) ([tas50](https://github.com/tas50)) <!-- 3.2.1 -->
+- Bump version to 3.2.0 [#1639](https://github.com/chef/chef-dk/pull/1639) ([tas50](https://github.com/tas50)) <!-- 3.2.0 -->
+- [SHACK-304] Expeditor version update needs to only update the ChefDK version [#1637](https://github.com/chef/chef-dk/pull/1637) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.1.8 -->
+- [SHACK-304] Habitat build fails with bundler error [#1636](https://github.com/chef/chef-dk/pull/1636) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.1.7 -->
+- [SHACK-304] Add Chef Apply as a gem dependency [#1631](https://github.com/chef/chef-dk/pull/1631) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.1.6 -->
+- Pull in the latest knife-google, kitchen-google, inspec and more [#1633](https://github.com/chef/chef-dk/pull/1633) ([tas50](https://github.com/tas50)) <!-- 3.1.5 -->
+- add windows habitat plan [#1595](https://github.com/chef/chef-dk/pull/1595) ([mwrock](https://github.com/mwrock)) <!-- 3.1.4 -->
+- Use new mixlib-config to resolve berkshelf errors on windows [#1625](https://github.com/chef/chef-dk/pull/1625) ([tas50](https://github.com/tas50)) <!-- 3.1.3 -->
+- Update to Chef 14.3.37 [#1624](https://github.com/chef/chef-dk/pull/1624) ([tas50](https://github.com/tas50)) <!-- 3.1.2 -->
+- Update mixlib-config / mixlib-install [#1619](https://github.com/chef/chef-dk/pull/1619) ([tas50](https://github.com/tas50)) <!-- 3.1.1 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.1.0](https://github.com/chef/chef-dk/tree/v3.1.0) (2018-07-05)
+
+#### Merged Pull Requests
+- publish habitat packages [#1583](https://github.com/chef/chef-dk/pull/1583) ([thommay](https://github.com/thommay))
+- Fix hab plan to use correct gemspec name [#1587](https://github.com/chef/chef-dk/pull/1587) ([jonlives](https://github.com/jonlives))
+- Update README for new cask tap [#1593](https://github.com/chef/chef-dk/pull/1593) ([coderanger](https://github.com/coderanger))
+- Unpin ffi and bump deps [#1596](https://github.com/chef/chef-dk/pull/1596) ([tas50](https://github.com/tas50))
+- Update help link in Add/Remove Programs on Windows [#1600](https://github.com/chef/chef-dk/pull/1600) ([stuartpreston](https://github.com/stuartpreston))
+- Bump Chef to 14.2.0 + other bumps [#1603](https://github.com/chef/chef-dk/pull/1603) ([tas50](https://github.com/tas50))
+- berkshelf + mixlib-auth bumps + others [#1604](https://github.com/chef/chef-dk/pull/1604) ([lamont-granquist](https://github.com/lamont-granquist))
+- add knife-acl and knife-tidy [#1605](https://github.com/chef/chef-dk/pull/1605) ([lamont-granquist](https://github.com/lamont-granquist))
+- Pull in the latest tools [#1606](https://github.com/chef/chef-dk/pull/1606) ([tas50](https://github.com/tas50))
+- Update dependencies [#1609](https://github.com/chef/chef-dk/pull/1609) ([tas50](https://github.com/tas50))
+- Update Fauxhai, TK, and Foodcritic to the latest [#1612](https://github.com/chef/chef-dk/pull/1612) ([tas50](https://github.com/tas50))
+- Preparing 3.1 release [#1611](https://github.com/chef/chef-dk/pull/1611) ([tyler-ball](https://github.com/tyler-ball))
+<!-- latest_stable_release -->
+
+## [v3.0.36](https://github.com/chef/chef-dk/tree/v3.0.36) (2018-05-21)
+
+## [v3.0.36](https://github.com/chef/chef-dk/tree/v3.0.36) (2018-05-21)
+
+#### Merged Pull Requests
+- Remove policyfile_zero provisioner [#1522](https://github.com/chef/chef-dk/pull/1522) ([danielsdeleo](https://github.com/danielsdeleo))
+- Bump copyrights to 2018 [#1521](https://github.com/chef/chef-dk/pull/1521) ([tas50](https://github.com/tas50))
+- Format cookbooks generated readme &amp; reference supermarket [#1520](https://github.com/chef/chef-dk/pull/1520) ([tas50](https://github.com/tas50))
+- Remove strainer from the generated chefignore file [#1519](https://github.com/chef/chef-dk/pull/1519) ([tas50](https://github.com/tas50))
+- Fix link in example cookbook to point to the correct docs site URL [#1518](https://github.com/chef/chef-dk/pull/1518) ([tas50](https://github.com/tas50))
+- Bump to 3.0 [#1523](https://github.com/chef/chef-dk/pull/1523) ([tas50](https://github.com/tas50))
+- add knife-vsphere and bump gems [#1525](https://github.com/chef/chef-dk/pull/1525) ([lamont-granquist](https://github.com/lamont-granquist))
+- Fixes the spec file as it should display the recipe name and not default [#1532](https://github.com/chef/chef-dk/pull/1532) ([burtlo](https://github.com/burtlo))
+- Bump deps for new docker-api, knife-vsphere, and mixlib-config [#1533](https://github.com/chef/chef-dk/pull/1533) ([tas50](https://github.com/tas50))
+- powershell_exec mixin support for ChefDK MSI installer [#1528](https://github.com/chef/chef-dk/pull/1528) ([stuartpreston](https://github.com/stuartpreston))
+- Update openssl to 1.0.2o [#1536](https://github.com/chef/chef-dk/pull/1536) ([tas50](https://github.com/tas50))
+- make generated policyfile not violate cookstyle [#1527](https://github.com/chef/chef-dk/pull/1527) ([thommay](https://github.com/thommay))
+- Attempt to unzip files if MSI repair selected [#1534](https://github.com/chef/chef-dk/pull/1534) ([stuartpreston](https://github.com/stuartpreston))
+- add ruby 2.5.1 and update omnibus-software [#1538](https://github.com/chef/chef-dk/pull/1538) ([thommay](https://github.com/thommay))
+- Get omnibus and omnibus-software back on master [#1539](https://github.com/chef/chef-dk/pull/1539) ([thommay](https://github.com/thommay))
+- Ship InSpec 2 [#1531](https://github.com/chef/chef-dk/pull/1531) ([thommay](https://github.com/thommay))
+- Deprecate OSX 10.10 builds [#1542](https://github.com/chef/chef-dk/pull/1542) ([scotthain](https://github.com/scotthain))
+- Fix incorrect path value in the Dockerfile [#1537](https://github.com/chef/chef-dk/pull/1537) ([meringu](https://github.com/meringu))
+- Added git for the build container [#1535](https://github.com/chef/chef-dk/pull/1535) ([jjasghar](https://github.com/jjasghar))
+- Added default LANG settings [#1541](https://github.com/chef/chef-dk/pull/1541) ([jjasghar](https://github.com/jjasghar))
+- get omnibus tracking back on master [#1545](https://github.com/chef/chef-dk/pull/1545) ([lamont-granquist](https://github.com/lamont-granquist))
+- pin hitimes + bump everything else [#1546](https://github.com/chef/chef-dk/pull/1546) ([lamont-granquist](https://github.com/lamont-granquist))
+- update berkshelf to 7 and pull in chef 14. [#1551](https://github.com/chef/chef-dk/pull/1551) ([lamont-granquist](https://github.com/lamont-granquist))
+- bump travis, bump ruby, fix a spec [#1552](https://github.com/chef/chef-dk/pull/1552) ([lamont-granquist](https://github.com/lamont-granquist))
+- Ship libarchive and ffi-libarchive [#1553](https://github.com/chef/chef-dk/pull/1553) ([thommay](https://github.com/thommay))
+- Force the container to properly run in en_US.UTF-8 [#1548](https://github.com/chef/chef-dk/pull/1548) ([tduffield](https://github.com/tduffield))
+-  pin ffi to avoid el6/el7 bugginess [#1555](https://github.com/chef/chef-dk/pull/1555) ([lamont-granquist](https://github.com/lamont-granquist))
+- expeditor force expire cache [#1556](https://github.com/chef/chef-dk/pull/1556) ([lamont-granquist](https://github.com/lamont-granquist))
+- remove expire cache [#1557](https://github.com/chef/chef-dk/pull/1557) ([lamont-granquist](https://github.com/lamont-granquist))
+- Generate a `CHANGELOG.md` for cookbooks [#1560](https://github.com/chef/chef-dk/pull/1560) ([nathenharvey](https://github.com/nathenharvey))
+- bump deps [#1563](https://github.com/chef/chef-dk/pull/1563) ([lamont-granquist](https://github.com/lamont-granquist))
+- Use Mixlib::Archive rather than Minitar [#1558](https://github.com/chef/chef-dk/pull/1558) ([thommay](https://github.com/thommay))
+- bump deps and chefstyle [#1567](https://github.com/chef/chef-dk/pull/1567) ([lamont-granquist](https://github.com/lamont-granquist))
+- Bump dependencies for Chef 14.1 [#1568](https://github.com/chef/chef-dk/pull/1568) ([thommay](https://github.com/thommay))
+- bump chefspec [#1570](https://github.com/chef/chef-dk/pull/1570) ([thommay](https://github.com/thommay))
+- bump deps again [#1578](https://github.com/chef/chef-dk/pull/1578) ([lamont-granquist](https://github.com/lamont-granquist))
+- bump appbundler dep to rebuild [#1580](https://github.com/chef/chef-dk/pull/1580) ([lamont-granquist](https://github.com/lamont-granquist))
+- set windows installer custom setup font to white [#1581](https://github.com/chef/chef-dk/pull/1581) ([robbkidd](https://github.com/robbkidd))
+- add vendor dir to default chefignore [#1571](https://github.com/chef/chef-dk/pull/1571) ([lamont-granquist](https://github.com/lamont-granquist))
+- Include Chef Client 14.1.12 [#1582](https://github.com/chef/chef-dk/pull/1582) ([thommay](https://github.com/thommay))
+- remove train+appbundler software dep [#1584](https://github.com/chef/chef-dk/pull/1584) ([lamont-granquist](https://github.com/lamont-granquist))
+- Add Git support for include_policy. [#1554](https://github.com/chef/chef-dk/pull/1554) ([rhass](https://github.com/rhass))
+
 ## [v2.5.3](https://github.com/chef/chef-dk/tree/v2.5.3) (2018-03-07)
 
 #### Merged Pull Requests
@@ -66,7 +111,6 @@
 - Use Chef 13.8.3, chef-api 0.8.0, and kitchen-inspec 0.23.1 [#1511](https://github.com/chef/chef-dk/pull/1511) ([tas50](https://github.com/tas50))
 - Bump kitchen-dokken and ChefSpec [#1514](https://github.com/chef/chef-dk/pull/1514) ([tas50](https://github.com/tas50))
 - Pull in Chef 13.8.5 and knife-windows 1.9.1 [#1516](https://github.com/chef/chef-dk/pull/1516) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v2.4.17](https://github.com/chef/chef-dk/tree/v2.4.17) (2017-11-29)
 

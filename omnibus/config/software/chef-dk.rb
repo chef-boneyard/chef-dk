@@ -30,6 +30,20 @@ dependency "liblzma"
 dependency "zlib"
 dependency "libarchive"
 
+#
+# NOTE: NO GEM DEPENDENCIES
+#
+# we do not add dependencies here on omnibus-software definitions that install gems.
+#
+# all of the gems for chef-dk must be installed in the mega bundle install below.
+#
+# doing bundle install / rake install in dependent software definitions causes gemsets
+# to get solved without some of the chef-dk constraints, which results in multiple different
+# versions of gems in the omnibus bundle.
+#
+# for gems that depend on c-libs, we include the c-libraries directly here.
+#
+
 # For berkshelf
 dependency "libarchive"
 
@@ -39,7 +53,10 @@ dependency "libzmq"
 # ruby and bundler and friends
 dependency "ruby"
 dependency "rubygems"
-dependency "appbundler"
+dependency "bundler" # technically a gem, but we gotta solve the chicken-egg problem here
+
+# for train
+dependency "google-protobuf"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
@@ -62,7 +79,7 @@ build do
   appbundle "test-kitchen", lockdir: project_dir, gem: "test-kitchen", without: %w{changelog debug docs provisioning}, env: env
   appbundle "inspec", lockdir: project_dir, gem: "inspec", without: %w{deploy tools maintenance integration}, env: env
 
-  %w{chef-dk chef-vault ohai opscode-pushy-client cookstyle dco berkshelf}.each do |gem|
+  %w{chef-dk chef-apply chef-vault ohai opscode-pushy-client cookstyle dco berkshelf}.each do |gem|
     appbundle gem, lockdir: project_dir, gem: gem, without: %w{changelog}, env: env
   end
 

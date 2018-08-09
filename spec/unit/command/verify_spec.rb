@@ -42,6 +42,7 @@ describe ChefDK::Command::Verify do
       "tk-policyfile-provisioner",
       "chef-client",
       "chef-dk",
+      "chef-apply",
       "chef-provisioning",
       "chefspec",
       "generated-cookbooks-pass-chefspec",

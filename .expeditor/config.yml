@@ -1,4 +1,4 @@
-# Documentation available at http://expeditor-docs.es.chef.io/
+# Documentation available at https://expeditor.chef.io/docs/getting-started/
 
 # The name of the product keys for this product (from mixlib-install)
 product_key: chefdk
@@ -15,6 +15,9 @@ rubygems:
 docker_images:
   - chefdk
 
+habitat_packages:
+  - chef-dk
+
 github:
   # The file where the MAJOR.MINOR.PATCH version is kept. The version in this file
   # is bumped automatically via the `built_in:bump_version` merge_action.
@@ -22,36 +25,41 @@ github:
   # The file where our CHANGELOG is kept. This file is updated automatically with
   # details from the Pull Request via the `built_in:update_changelog` merge_action.
   changelog_file: "CHANGELOG.md"
+  # This deletes the GitHub PR branch after successfully merged into the release branch
+  delete_branch_on_merge: true
   # The tag format to use (e.g. v1.0.0)
   version_tag_format: "v{{version}}"
-  # The Github Team primarily responsible for handling incoming Pull Requests.
-  maintainer_group: chef/client-core
+  # allow bumping the minor release via label
+  minor_bump_labels:
+    - "Expeditor: Bump Minor Version"
   # Which Github branches to build Omnibus releases from, and what versions
   # (as determined by the value in the VERSION file) those branches are responsible
   # for building.
   release_branch:
     - master:
+        version_constraint: 3.*
+    - chefdk-2:
         version_constraint: 2.*
-    - chefdk-1:
-        version_constraint: 1.*
 
 # These actions are taken, in order they are specified, anytime a Pull Request is merged.
 merge_actions:
   - built_in:bump_version:
       ignore_labels:
-        - "Version: Skip Bump"
         - "Expeditor: Skip Version Bump"
         - "Expeditor: Skip All"
   - bash:.expeditor/update_version.sh:
       only_if: built_in:bump_version
   - built_in:update_changelog:
       ignore_labels:
-        - "Meta: Exclude From Changelog"
         - "Expeditor: Exclude From Changelog"
         - "Expeditor: Skip All"
+  - built_in:trigger_habitat_package_build:
+      ignore_labels:
+        - "Expeditor: Skip Build"
+        - "Expeditor: Skip All"
+      only_if: built_in:bump_version
   - built_in:trigger_omnibus_release_build:
       ignore_labels:
-        - "Omnibus: Skip Build"
         - "Expeditor: Skip Build"
         - "Expeditor: Skip All"
       only_if: built_in:bump_version
@@ -64,8 +72,8 @@ artifact_actions:
   promoted_to_current:
     - built_in:tag_docker_image
   promoted_to_stable:
-    - built_in:tag_docker_image
-    - built_in:publish_rubygems
     - built_in:rollover_changelog
     - bash:.expeditor/update_dockerfile.sh
+    - built_in:tag_docker_image
+    - built_in:publish_rubygems
     - built_in:notify_chefio_slack_channels
