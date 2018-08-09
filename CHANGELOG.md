@@ -1,26 +1,24 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.5.13 -->
-## [v2.5.13](https://github.com/chef/chef-dk/tree/v2.5.13) (2018-08-08)
-
-#### Merged Pull Requests
-- [SHACK-295] Hotfix ChefDK 2.5.13 [#1629](https://github.com/chef/chef-dk/pull/1629) ([tyler-ball](https://github.com/tyler-ball))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=2.5.3 -->
-### Changes since 2.5.3 release
-
-#### Merged Pull Requests
-- [SHACK-295] Hotfix ChefDK 2.5.13 [#1629](https://github.com/chef/chef-dk/pull/1629) ([tyler-ball](https://github.com/tyler-ball)) <!-- 2.5.13 -->
-- [SHACK-295] Updating dependencies for ChefDK 2.x release [#1628](https://github.com/chef/chef-dk/pull/1628) ([tyler-ball](https://github.com/tyler-ball)) <!-- 2.5.12 -->
-- Update to Chef 13.10.0 [#1623](https://github.com/chef/chef-dk/pull/1623) ([tas50](https://github.com/tas50)) <!-- 2.5.11 -->
-- Bump to latest test-kitchen, kitchen-digitalocean, kitchen-ec2, and knife-ec2 [#1622](https://github.com/chef/chef-dk/pull/1622) ([tas50](https://github.com/tas50)) <!-- 2.5.10 -->
-- Manually bump the version to 2.5.9 to fix expeditor [#1620](https://github.com/chef/chef-dk/pull/1620) ([tas50](https://github.com/tas50)) <!-- 2.5.9 -->
-- Update libxml2 to 2.9.8 [#1618](https://github.com/chef/chef-dk/pull/1618) ([tas50](https://github.com/tas50)) <!-- 2.5.8 -->
-- Bump deps to pull in nokogiri 1.8.4 [#1617](https://github.com/chef/chef-dk/pull/1617) ([tas50](https://github.com/tas50)) <!-- 2.5.7 -->
-- Bump gems / Ruby / openssl / Chef versions [#1598](https://github.com/chef/chef-dk/pull/1598) ([tas50](https://github.com/tas50)) <!-- 2.5.6 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v2.5.13](https://github.com/chef/chef-dk/tree/v2.5.13) (2018-08-09)
+
+#### Merged Pull Requests
+- Bump gems / Ruby / openssl / Chef versions [#1598](https://github.com/chef/chef-dk/pull/1598) ([tas50](https://github.com/tas50))
+- Bump deps to pull in nokogiri 1.8.4 [#1617](https://github.com/chef/chef-dk/pull/1617) ([tas50](https://github.com/tas50))
+- Update libxml2 to 2.9.8 [#1618](https://github.com/chef/chef-dk/pull/1618) ([tas50](https://github.com/tas50))
+- Manually bump the version to 2.5.9 to fix expeditor [#1620](https://github.com/chef/chef-dk/pull/1620) ([tas50](https://github.com/tas50))
+- Bump to latest test-kitchen, kitchen-digitalocean, kitchen-ec2, and knife-ec2 [#1622](https://github.com/chef/chef-dk/pull/1622) ([tas50](https://github.com/tas50))
+- Update to Chef 13.10.0 [#1623](https://github.com/chef/chef-dk/pull/1623) ([tas50](https://github.com/tas50))
+- [SHACK-295] Updating dependencies for ChefDK 2.x release [#1628](https://github.com/chef/chef-dk/pull/1628) ([tyler-ball](https://github.com/tyler-ball))
+- [SHACK-295] Hotfix ChefDK 2.5.13 [#1629](https://github.com/chef/chef-dk/pull/1629) ([tyler-ball](https://github.com/tyler-ball))
+<!-- latest_stable_release -->
+
 ## [v2.5.3](https://github.com/chef/chef-dk/tree/v2.5.3) (2018-03-07)
 
 #### Merged Pull Requests
@@ -39,7 +37,6 @@
 - Use Chef 13.8.3, chef-api 0.8.0, and kitchen-inspec 0.23.1 [#1511](https://github.com/chef/chef-dk/pull/1511) ([tas50](https://github.com/tas50))
 - Bump kitchen-dokken and ChefSpec [#1514](https://github.com/chef/chef-dk/pull/1514) ([tas50](https://github.com/tas50))
 - Pull in Chef 13.8.5 and knife-windows 1.9.1 [#1516](https://github.com/chef/chef-dk/pull/1516) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v2.4.17](https://github.com/chef/chef-dk/tree/v2.4.17) (2017-11-29)
 
