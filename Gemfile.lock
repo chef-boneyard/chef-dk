@@ -17,7 +17,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.0)
+    activesupport (5.2.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.102)
-      aws-sdk-resources (= 2.11.102)
-    aws-sdk-core (2.11.102)
+    aws-sdk (2.11.104)
+      aws-sdk-resources (= 2.11.104)
+    aws-sdk-core (2.11.104)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.102)
-      aws-sdk-core (= 2.11.102)
+    aws-sdk-resources (2.11.104)
+      aws-sdk-core (= 2.11.104)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -138,7 +138,7 @@ GEM
     chef-api (0.8.0)
       logify (~> 0.1)
       mime-types
-    chef-apply (0.1.18)
+    chef-apply (0.1.21)
       chef (>= 14.0)
       chef-dk (>= 3.0)
       chef-telemetry
@@ -379,7 +379,7 @@ GEM
     http-form_data (1.0.3)
     http_parser.rb (0.6.0)
     httpclient (2.8.3)
-    i18n (1.0.1)
+    i18n (1.1.0)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     inifile (3.0.0)
@@ -491,7 +491,7 @@ GEM
     mixlib-cli (1.7.0)
     mixlib-config (2.2.13)
       tomlrb
-    mixlib-install (3.11.2)
+    mixlib-install (3.11.5)
       mixlib-shellout
       mixlib-versioning
       thor
@@ -539,12 +539,12 @@ GEM
       shellany (~> 0.0)
     octokit (4.9.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (14.3.0)
+    ohai (14.4.0)
       chef-config (>= 12.8, < 15)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
       ipaddress
-      mixlib-cli
+      mixlib-cli (>= 1.7.0)
       mixlib-config (~> 2.0)
       mixlib-log (~> 2.0, >= 2.0.1)
       mixlib-shellout (~> 2.0)
