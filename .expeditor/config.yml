@@ -77,3 +77,128 @@ artifact_actions:
     - built_in:tag_docker_image
     - built_in:publish_rubygems
     - built_in:notify_chefio_slack_channels
+
+subscriptions:
+  - workload: ruby_gem_published:mixlib-archive-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:mixlib-authentication-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:mixlib-cli-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:mixlib-log-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:mixlib-shellout-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:chef-vault-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:chef-zero-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:ohai-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:inspec-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:train-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:win32-process-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:win32-service-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:win32-taskscheduler-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:ffi-yajl-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:libyajl2-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:cheffish-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: appbundler-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: chef-apply-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: chef-provisioning-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: chef-provisioning-aws-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: chef-provisioning-fog-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: chef-telemetry-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: chefstyle-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: cookstyle-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: knife-acl-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: knife-cloud-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: knife-ec2-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: knife-google-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: knife-opc-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: knife-push-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: knife-tidy-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: knife-vsphere-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: knife-windows-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: mixlib-install-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: mixlib-versioning-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: win32-event-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: win32-eventlog-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: win32-ipc-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: win32-mmap-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: win32-mutex-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: wmi-lite-*
+    actions:
+      - bash:.expeditor/update_dep.sh
