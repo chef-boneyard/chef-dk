@@ -66,18 +66,6 @@ namespace :dependencies do
     end
   end
 
-  def berks_update_task(task_name, dir)
-    desc "Update #{dir}/Berksfile.lock."
-    task task_name do
-      FileUtils.rm_f("#{dir}/Berksfile.lock")
-      Dir.chdir(dir) do
-        Bundler.with_clean_env do
-          sh "bundle exec berks install"
-        end
-      end
-    end
-  end
-
   bundle_update_locked_multiplatform_task :update_gemfile_lock, "."
   bundle_update_locked_multiplatform_task :update_omnibus_gemfile_lock, "omnibus"
   bundle_update_task :update_acceptance_gemfile_lock, "acceptance"
