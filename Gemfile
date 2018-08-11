@@ -53,6 +53,7 @@ group(:omnibus_package) do
   gem "chefspec", ">= 7.2.1"
   gem "fauxhai", ">= 6.5.0"
   gem "inspec", ">= 2.2.55"
+  gem "kitchen-azurerm", ">= 0.14"
   gem "kitchen-ec2", ">= 2.2.2"
   gem "kitchen-digitalocean", ">= 0.10.0"
   gem "kitchen-dokken", ">= 2.6.7"
