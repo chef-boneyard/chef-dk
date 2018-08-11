@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.8 -->
-## [v3.2.8](https://github.com/chef/chef-dk/tree/v3.2.8) (2018-08-09)
+<!-- latest_release 3.2.10 -->
+## [v3.2.10](https://github.com/chef/chef-dk/tree/v3.2.10) (2018-08-11)
 
 #### Merged Pull Requests
-- Updating dependencies to pull in latest chef-apply release [#1648](https://github.com/chef/chef-dk/pull/1648) ([tyler-ball](https://github.com/tyler-ball))
+- Add kitchen-azurerm plugin [#1651](https://github.com/chef/chef-dk/pull/1651) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Add kitchen-azurerm plugin [#1651](https://github.com/chef/chef-dk/pull/1651) ([tas50](https://github.com/tas50)) <!-- 3.2.10 -->
 - Updating dependencies to pull in latest chef-apply release [#1648](https://github.com/chef/chef-dk/pull/1648) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.8 -->
 - Pull in latest test-kitchen, fog-digitalocean, and berkshelf [#1647](https://github.com/chef/chef-dk/pull/1647) ([tas50](https://github.com/tas50)) <!-- 3.2.7 -->
 - Bump all the minimum versions to prevent downgrades [#1645](https://github.com/chef/chef-dk/pull/1645) ([tas50](https://github.com/tas50)) <!-- 3.2.6 -->
