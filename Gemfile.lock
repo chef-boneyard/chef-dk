@@ -270,7 +270,7 @@ GEM
       http-cookie (~> 1.0.0)
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
-    fauxhai (6.5.0)
+    fauxhai (6.6.0)
       net-ssh
     ffi (1.9.25)
     ffi (1.9.25-x64-mingw32)
@@ -412,7 +412,7 @@ GEM
     json (2.1.0)
     jwt (2.1.0)
     kartograph (0.2.7)
-    kitchen-azurerm (0.14.3)
+    kitchen-azurerm (0.14.4)
       azure_mgmt_network (~> 0.15, >= 0.15.0)
       azure_mgmt_resources (~> 0.15, >= 0.15.0)
       inifile (~> 3.0, >= 3.0.0)
@@ -776,7 +776,7 @@ GEM
       rubyzip (~> 1.1)
       winrm (~> 2.0)
     wmi-lite (1.0.0)
-    yard (0.9.15)
+    yard (0.9.16)
 
 PLATFORMS
   ruby
