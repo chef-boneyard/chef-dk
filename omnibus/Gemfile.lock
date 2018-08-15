@@ -31,13 +31,13 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     awesome_print (1.8.0)
-    aws-sdk (2.11.107)
-      aws-sdk-resources (= 2.11.107)
-    aws-sdk-core (2.11.107)
+    aws-sdk (2.11.108)
+      aws-sdk-resources (= 2.11.108)
+    aws-sdk-core (2.11.108)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.107)
-      aws-sdk-core (= 2.11.107)
+    aws-sdk-resources (2.11.108)
+      aws-sdk-core (= 2.11.108)
     aws-sigv4 (1.0.3)
     berkshelf (7.0.6)
       chef (>= 13.6.52)
@@ -232,7 +232,7 @@ GEM
     plist (3.4.0)
     progressbar (1.10.0)
     proxifier (1.0.3)
-    public_suffix (3.0.2)
+    public_suffix (3.0.3)
     rack (2.0.5)
     retryable (2.0.4)
     rspec (3.8.0)
@@ -342,12 +342,12 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  berkshelf
+  berkshelf (>= 7.0)
   kitchen-vagrant
   omnibus!
   omnibus-software!
   pedump
-  test-kitchen
+  test-kitchen (>= 1.23)
   winrm-elevated
 
 BUNDLED WITH
