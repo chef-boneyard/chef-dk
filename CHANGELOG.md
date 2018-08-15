@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.11 -->
-## [v3.2.11](https://github.com/chef/chef-dk/tree/v3.2.11) (2018-08-15)
+<!-- latest_release 3.2.12 -->
+## [v3.2.12](https://github.com/chef/chef-dk/tree/v3.2.12) (2018-08-15)
 
 #### Merged Pull Requests
-- Updating OpenSSL to 1.0.2p [#1654](https://github.com/chef/chef-dk/pull/1654) ([tyler-ball](https://github.com/tyler-ball))
+- Add vim-tiny to the Dockerfile [#1576](https://github.com/chef/chef-dk/pull/1576) ([vvchik](https://github.com/vvchik))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Add vim-tiny to the Dockerfile [#1576](https://github.com/chef/chef-dk/pull/1576) ([vvchik](https://github.com/vvchik)) <!-- 3.2.12 -->
 - Updating OpenSSL to 1.0.2p [#1654](https://github.com/chef/chef-dk/pull/1654) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.11 -->
 - Add kitchen-azurerm plugin [#1651](https://github.com/chef/chef-dk/pull/1651) ([tas50](https://github.com/tas50)) <!-- 3.2.10 -->
 - Updating dependencies to pull in latest chef-apply release [#1648](https://github.com/chef/chef-dk/pull/1648) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.8 -->
