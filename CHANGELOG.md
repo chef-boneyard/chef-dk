@@ -1,6 +1,6 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.14 -->
-## [v3.2.14](https://github.com/chef/chef-dk/tree/v3.2.14) (2018-08-17)
+<!-- latest_release 3.2.15 -->
+## [v3.2.15](https://github.com/chef/chef-dk/tree/v3.2.15) (2018-08-17)
 
 #### Merged Pull Requests
 - Use the rake dependency update task in Expeditor [#1658](https://github.com/chef/chef-dk/pull/1658) ([tas50](https://github.com/tas50))
