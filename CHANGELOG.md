@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.15 -->
-## [v3.2.15](https://github.com/chef/chef-dk/tree/v3.2.15) (2018-08-17)
+<!-- latest_release 3.2.16 -->
+## [v3.2.16](https://github.com/chef/chef-dk/tree/v3.2.16) (2018-08-20)
 
 #### Merged Pull Requests
-- Use the rake dependency update task in Expeditor [#1658](https://github.com/chef/chef-dk/pull/1658) ([tas50](https://github.com/tas50))
+- Pull in the new chef-provisioning-aws and chef-sugar [#1659](https://github.com/chef/chef-dk/pull/1659) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Pull in the new chef-provisioning-aws and chef-sugar [#1659](https://github.com/chef/chef-dk/pull/1659) ([tas50](https://github.com/tas50)) <!-- 3.2.16 -->
 - Use the rake dependency update task in Expeditor [#1658](https://github.com/chef/chef-dk/pull/1658) ([tas50](https://github.com/tas50)) <!-- 3.2.14 -->
 - Pull in the latest chef-provisioning, kitchen-vagrant, and train [#1657](https://github.com/chef/chef-dk/pull/1657) ([tas50](https://github.com/tas50)) <!-- 3.2.13 -->
 - Add vim-tiny to the Dockerfile [#1576](https://github.com/chef/chef-dk/pull/1576) ([vvchik](https://github.com/vvchik)) <!-- 3.2.12 -->
