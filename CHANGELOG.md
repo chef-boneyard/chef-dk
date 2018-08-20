@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.16 -->
-## [v3.2.16](https://github.com/chef/chef-dk/tree/v3.2.16) (2018-08-20)
+<!-- latest_release 3.2.17 -->
+## [v3.2.17](https://github.com/chef/chef-dk/tree/v3.2.17) (2018-08-20)
 
 #### Merged Pull Requests
-- Pull in the new chef-provisioning-aws and chef-sugar [#1659](https://github.com/chef/chef-dk/pull/1659) ([tas50](https://github.com/tas50))
+- expeditor update_deps: bundle install before we use rake [#1661](https://github.com/chef/chef-dk/pull/1661) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- expeditor update_deps: bundle install before we use rake [#1661](https://github.com/chef/chef-dk/pull/1661) ([tas50](https://github.com/tas50)) <!-- 3.2.17 -->
 - Pull in the new chef-provisioning-aws and chef-sugar [#1659](https://github.com/chef/chef-dk/pull/1659) ([tas50](https://github.com/tas50)) <!-- 3.2.16 -->
 - Use the rake dependency update task in Expeditor [#1658](https://github.com/chef/chef-dk/pull/1658) ([tas50](https://github.com/tas50)) <!-- 3.2.14 -->
 - Pull in the latest chef-provisioning, kitchen-vagrant, and train [#1657](https://github.com/chef/chef-dk/pull/1657) ([tas50](https://github.com/tas50)) <!-- 3.2.13 -->
