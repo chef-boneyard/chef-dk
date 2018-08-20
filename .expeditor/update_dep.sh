@@ -5,6 +5,7 @@ set -evx
 branch="expeditor/${GEM_NAME}_${VERSION}"
 git checkout -b "$branch"
 
+bundle install
 bundle exec rake dependencies:update
 
 git add .
