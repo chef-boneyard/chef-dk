@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.19 -->
-## [v3.2.19](https://github.com/chef/chef-dk/tree/v3.2.19) (2018-08-22)
+<!-- latest_release 3.2.20 -->
+## [v3.2.20](https://github.com/chef/chef-dk/tree/v3.2.20) (2018-08-24)
 
 #### Merged Pull Requests
-- CI bot submits dependency update PRs as obvious fixes [#1668](https://github.com/chef/chef-dk/pull/1668) ([tyler-ball](https://github.com/tyler-ball))
+- Bump inspec to 2.2.70 [#1671](https://github.com/chef/chef-dk/pull/1671) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Bump inspec to 2.2.70 [#1671](https://github.com/chef/chef-dk/pull/1671) ([chef-ci](https://github.com/chef-ci)) <!-- 3.2.20 -->
 - CI bot submits dependency update PRs as obvious fixes [#1668](https://github.com/chef/chef-dk/pull/1668) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.19 -->
 - Need to run expeditor scripts in Bash not Posix Shell [#1665](https://github.com/chef/chef-dk/pull/1665) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.18 -->
 - expeditor update_deps: bundle install before we use rake [#1661](https://github.com/chef/chef-dk/pull/1661) ([tas50](https://github.com/tas50)) <!-- 3.2.17 -->
