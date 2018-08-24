@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.21 -->
-## [v3.2.21](https://github.com/chef/chef-dk/tree/v3.2.21) (2018-08-24)
+<!-- latest_release unreleased -->
+## Unreleased
 
 #### Merged Pull Requests
-- Remove TK from the Announce Rake Task [#1673](https://github.com/chef/chef-dk/pull/1673) ([tas50](https://github.com/tas50))
+- Add missing license field to the Gemspec [#1674](https://github.com/chef/chef-dk/pull/1674) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Add missing license field to the Gemspec [#1674](https://github.com/chef/chef-dk/pull/1674) ([tas50](https://github.com/tas50)) <!-- 3.2.21 -->
 - Remove TK from the Announce Rake Task [#1673](https://github.com/chef/chef-dk/pull/1673) ([tas50](https://github.com/tas50)) <!-- 3.2.21 -->
 - Bump inspec to 2.2.70 [#1671](https://github.com/chef/chef-dk/pull/1671) ([chef-ci](https://github.com/chef-ci)) <!-- 3.2.20 -->
 - CI bot submits dependency update PRs as obvious fixes [#1668](https://github.com/chef/chef-dk/pull/1668) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.19 -->
