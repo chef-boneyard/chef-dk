@@ -32,7 +32,7 @@ directories_to_create = %w( cookbooks data_bags )
 directories_to_create += if context.use_roles
                            %w( roles environments )
                          else
-                           %w( policies )
+                           %w( policyfiles )
                          end
 
 directories_to_create.each do |tlo|

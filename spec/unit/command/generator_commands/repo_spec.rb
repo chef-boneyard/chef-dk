@@ -291,9 +291,9 @@ describe ChefDK::Command::GeneratorCommands::Repo do
           expect(File).to_not exist(File.join(repo_path, "environments"))
         end
 
-        describe "policies" do
+        describe "policyfiles" do
           describe "README.md" do
-            let(:file) { "policies/README.md" }
+            let(:file) { "policyfiles/README.md" }
 
             let(:expected_content) do
               <<-README
@@ -315,8 +315,8 @@ README
 
         let(:argv) { %w{new_repo --roles} }
 
-        it "does not create a policies directory" do
-          expect(File).to_not exist(File.join(repo_path, "policies"))
+        it "does not create a policyfiles directory" do
+          expect(File).to_not exist(File.join(repo_path, "policyfiles"))
         end
 
         describe "roles" do
