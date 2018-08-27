@@ -1,16 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.22 -->
-## [v3.2.22](https://github.com/chef/chef-dk/tree/v3.2.22) (2018-08-27)
+<!-- latest_release 3.2.23 -->
+## [v3.2.23](https://github.com/chef/chef-dk/tree/v3.2.23) (2018-08-27)
 
 #### Merged Pull Requests
-- Add DockerHub badges [#1675](https://github.com/chef/chef-dk/pull/1675) ([cheeseplus](https://github.com/cheeseplus))
-- Add missing license field to the Gemspec [#1674](https://github.com/chef/chef-dk/pull/1674) ([tas50](https://github.com/tas50))
+- Change policyfile generator to use &#39;policyfiles&#39; directory [#1590](https://github.com/chef/chef-dk/pull/1590) ([jonlives](https://github.com/jonlives))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Change policyfile generator to use &#39;policyfiles&#39; directory [#1590](https://github.com/chef/chef-dk/pull/1590) ([jonlives](https://github.com/jonlives)) <!-- 3.2.23 -->
 - Add DockerHub badges [#1675](https://github.com/chef/chef-dk/pull/1675) ([cheeseplus](https://github.com/cheeseplus)) <!-- 3.2.22 -->
 - Add missing license field to the Gemspec [#1674](https://github.com/chef/chef-dk/pull/1674) ([tas50](https://github.com/tas50)) <!-- 3.2.21 -->
 - Remove TK from the Announce Rake Task [#1673](https://github.com/chef/chef-dk/pull/1673) ([tas50](https://github.com/tas50)) <!-- 3.2.21 -->
