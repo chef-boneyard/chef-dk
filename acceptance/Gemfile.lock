@@ -12,13 +12,13 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     artifactory (2.8.2)
-    aws-sdk (2.11.115)
-      aws-sdk-resources (= 2.11.115)
-    aws-sdk-core (2.11.115)
+    aws-sdk (2.11.118)
+      aws-sdk-resources (= 2.11.118)
+    aws-sdk-core (2.11.118)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.115)
-      aws-sdk-core (= 2.11.115)
+    aws-sdk-resources (2.11.118)
+      aws-sdk-core (= 2.11.118)
     aws-sigv4 (1.0.3)
     berkshelf (6.3.4)
       buff-config (~> 2.0)
@@ -153,7 +153,7 @@ GEM
       multi_json (~> 1.10)
     method_source (0.9.0)
     minitar (0.6.1)
-    mixlib-archive (0.4.13)
+    mixlib-archive (0.4.16)
       mixlib-log
     mixlib-authentication (1.4.2)
     mixlib-cli (1.7.0)
@@ -332,4 +332,4 @@ DEPENDENCIES
   winrm-fs
 
 BUNDLED WITH
-   1.16.3
+   1.16.4
