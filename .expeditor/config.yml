@@ -79,7 +79,7 @@ artifact_actions:
     - built_in:notify_chefio_slack_channels
 
 subscriptions:
-  - workload: ruby_gem_published:chef-1*
+  - workload: artifact_published:stable:chef:14*
     actions:
       - bash:.expeditor/update_chef.sh
   - workload: ruby_gem_published:mixlib-archive-*
