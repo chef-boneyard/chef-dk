@@ -494,7 +494,7 @@ GEM
     mini_portile2 (2.3.0)
     minitar (0.6.1)
     minitest (5.11.3)
-    mixlib-archive (0.4.6)
+    mixlib-archive (0.4.16)
       mixlib-log
     mixlib-authentication (2.1.1)
     mixlib-cli (1.7.0)
@@ -831,7 +831,7 @@ DEPENDENCIES
   knife-vsphere (>= 2.1.1)
   knife-windows (>= 1.9.1)
   listen
-  mixlib-archive (= 0.4.6)
+  mixlib-archive (>= 0.4.16)
   mixlib-install
   mixlib-versioning
   net-ssh (>= 4.2.0)
