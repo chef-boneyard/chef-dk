@@ -22,7 +22,8 @@ sed -i -r "s/^\s*gem \"chef\".*/  gem \"chef\", \"= ${VERSION}\"/" Gemfile
 # the gem is actually available via bundler on rubygems.org.
 sleep 120
 
-bundle exec rake dependencies:update
+gem install rake
+rake dependencies:update_gemfile.lock
 
 git add .
 

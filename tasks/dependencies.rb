@@ -19,28 +19,11 @@ require "bundler"
 
 desc "Tasks to update and check dependencies"
 namespace :dependencies do
-
-  # Running update_ci on your local system wont' work. The best way to update
-  # dependencies locally is by running the dependency update script.
-  desc "Update all dependencies. dependencies:update to update as little as possible."
-  task :update do |t, rake_args|
-    # FIXME: probably broken, and needs less indirection
-    system((File.join(Dir.pwd, "ci", "dependency_update.sh")).to_s)
-  end
-
-  desc "Force update (when adding new gems to Gemfiles)"
-  task :force_update do |t, rake_args|
-    # FIXME: probably broken, and needs less indirection
-    FileUtils.rm_f(File.join(Dir.pwd, ".bundle", "config"))
-    system((File.join(Dir.pwd, "ci", "dependency_update.sh")).to_s)
-  end
-
   # Update all dependencies to the latest constraint-matching version
-  desc "Update all dependencies. dependencies:update to update as little as possible (CI-only)."
-  task update_ci: %w{
+  desc "Update all dependencies."
+  task update: %w{
                     dependencies:update_gemfile_lock
                     dependencies:update_omnibus_gemfile_lock
-                    dependencies:update_acceptance_gemfile_lock
                   }
 
   def bundle_update_locked_multiplatform_task(task_name, dir)
@@ -70,10 +53,4 @@ namespace :dependencies do
 
   bundle_update_locked_multiplatform_task :update_gemfile_lock, "."
   bundle_update_locked_multiplatform_task :update_omnibus_gemfile_lock, "omnibus"
-  bundle_update_task :update_acceptance_gemfile_lock, "acceptance"
 end
-
-desc "Update all dependencies and check for outdated gems."
-task dependencies_ci: [ "dependencies:update_ci" ]
-task dependencies: [ "dependencies:update" ]
-task update: [ "dependencies:update" ]
