@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.24 -->
-## [v3.2.24](https://github.com/chef/chef-dk/tree/v3.2.24) (2018-08-29)
+<!-- latest_release 3.2.25 -->
+## [v3.2.25](https://github.com/chef/chef-dk/tree/v3.2.25) (2018-08-30)
 
 #### Merged Pull Requests
-- Bump mixlib-archive to 0.4.16 [#1664](https://github.com/chef/chef-dk/pull/1664) ([bdwyertech](https://github.com/bdwyertech))
+- Simplify / fix rake task for updating gem dependencies [#1683](https://github.com/chef/chef-dk/pull/1683) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Simplify / fix rake task for updating gem dependencies [#1683](https://github.com/chef/chef-dk/pull/1683) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.2.25 -->
 - Bump mixlib-archive to 0.4.16 [#1664](https://github.com/chef/chef-dk/pull/1664) ([bdwyertech](https://github.com/bdwyertech)) <!-- 3.2.24 -->
 - Change policyfile generator to use &#39;policyfiles&#39; directory [#1590](https://github.com/chef/chef-dk/pull/1590) ([jonlives](https://github.com/jonlives)) <!-- 3.2.23 -->
 - Add DockerHub badges [#1675](https://github.com/chef/chef-dk/pull/1675) ([cheeseplus](https://github.com/cheeseplus)) <!-- 3.2.22 -->
