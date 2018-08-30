@@ -54,7 +54,7 @@ group(:omnibus_package) do
   # fixes.
   gem "chef", ">= 14.0"
   gem "cheffish", ">= 14.0.1"
-  gem "chefspec", ">= 7.2.1"
+  gem "chefspec", ">= 7.3.0"
   gem "fauxhai", ">= 6.5.0"
   gem "inspec", ">= 2.2.55"
   gem "kitchen-azurerm", ">= 0.14"
