@@ -23,7 +23,7 @@ sed -i -r "s/^\s*gem \"chef\".*/  gem \"chef\", \"= ${VERSION}\"/" Gemfile
 sleep 120
 
 gem install rake
-rake dependencies:update_gemfile.lock
+rake dependencies:update_gemfile_lock
 
 git add .
 

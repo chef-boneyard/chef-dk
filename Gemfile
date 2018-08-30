@@ -48,7 +48,11 @@ group(:omnibus_package) do
   gem "chef-provisioning-aws", ">= 3.0.2", group: :provisioning
   gem "chef-provisioning-fog", ">= 0.26.1", group: :provisioning
   gem "chef-vault", ">= 3.3.0"
-  gem "chef", "= 14.3.37"
+  # Expeditor manages the version of chef released to Rubygems. We only release 'stable' chef
+  # gems to Rubygems now, so letting this float on latest should always give us the latest
+  # stable release. May have to re-pin around major version bumping time, or during patch
+  # fixes.
+  gem "chef", ">= 14.0"
   gem "cheffish", ">= 14.0.1"
   gem "chefspec", ">= 7.2.1"
   gem "fauxhai", ">= 6.5.0"
@@ -101,6 +105,9 @@ group(:omnibus_package) do
   gem "winrm-elevated"
   gem "cucumber"
   gem "stove"
+
+  # TODO Remove this after https://github.com/fog/fog-openstack/issues/420 is fixed
+  gem "fog-openstack", "< 0.2.0"
 end
 
 # Everything except AIX
