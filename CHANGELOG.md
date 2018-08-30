@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.27 -->
-## [v3.2.27](https://github.com/chef/chef-dk/tree/v3.2.27) (2018-08-30)
+<!-- latest_release 3.2.28 -->
+## [v3.2.28](https://github.com/chef/chef-dk/tree/v3.2.28) (2018-08-30)
 
 #### Merged Pull Requests
-- Update Chef to 14.4.56 and fix expeditor auto updating [#1681](https://github.com/chef/chef-dk/pull/1681) ([tas50](https://github.com/tas50))
+- Switch docker container to Ubuntu 18.04 and fix Ruby path [#1684](https://github.com/chef/chef-dk/pull/1684) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Switch docker container to Ubuntu 18.04 and fix Ruby path [#1684](https://github.com/chef/chef-dk/pull/1684) ([tas50](https://github.com/tas50)) <!-- 3.2.28 -->
 - Update Chef to 14.4.56 and fix expeditor auto updating [#1681](https://github.com/chef/chef-dk/pull/1681) ([tas50](https://github.com/tas50)) <!-- 3.2.27 -->
 - Add a command that can debug why a cookbook gets a given identifier [#1682](https://github.com/chef/chef-dk/pull/1682) ([danielsdeleo](https://github.com/danielsdeleo)) <!-- 3.2.26 -->
 - Simplify / fix rake task for updating gem dependencies [#1683](https://github.com/chef/chef-dk/pull/1683) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.2.25 -->
