@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.115)
-      aws-sdk-resources (= 2.11.115)
-    aws-sdk-core (2.11.115)
+    aws-sdk (2.11.120)
+      aws-sdk-resources (= 2.11.120)
+    aws-sdk-core (2.11.120)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.115)
-      aws-sdk-core (= 2.11.115)
+    aws-sdk-resources (2.11.120)
+      aws-sdk-core (= 2.11.120)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -44,11 +44,11 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     azure_graph_rbac (0.17.0)
       ms_rest_azure (~> 0.11.0)
-    azure_mgmt_network (0.17.0)
+    azure_mgmt_network (0.17.1)
       ms_rest_azure (~> 0.11.0)
     azure_mgmt_resources (0.17.0)
       ms_rest_azure (~> 0.11.0)
-    backports (3.11.3)
+    backports (3.11.4)
     berkshelf (7.0.6)
       chef (>= 13.6.52)
       chef-config
@@ -308,7 +308,7 @@ GEM
     fog-json (1.2.0)
       fog-core
       multi_json (~> 1.10)
-    fog-openstack (0.1.27)
+    fog-openstack (0.2.0)
       fog-core (~> 1.45.0)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
@@ -660,7 +660,7 @@ GEM
       specinfra (~> 2.72)
     sfl (2.3)
     shellany (0.0.1)
-    signet (0.9.0)
+    signet (0.9.1)
       addressable (~> 2.3)
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
@@ -714,7 +714,7 @@ GEM
       winrm-fs (~> 1.0)
     treetop (1.6.10)
       polyglot (~> 0.3)
-    trollop (2.1.3)
+    trollop (2.9.9)
     tty-color (0.4.3)
     tty-cursor (0.6.0)
     tty-spinner (0.8.0)
@@ -867,4 +867,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.16.3
+   1.16.4
