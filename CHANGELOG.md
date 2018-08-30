@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.29 -->
-## [v3.2.29](https://github.com/chef/chef-dk/tree/v3.2.29) (2018-08-30)
+<!-- latest_release 3.2.30 -->
+## [v3.2.30](https://github.com/chef/chef-dk/tree/v3.2.30) (2018-08-30)
 
 #### Merged Pull Requests
-- Unpin Chef because Expeditor now manages stable pushes to Rubygems [#1685](https://github.com/chef/chef-dk/pull/1685) ([tyler-ball](https://github.com/tyler-ball))
+- Preparing release notes for 3.2 release [#1686](https://github.com/chef/chef-dk/pull/1686) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Preparing release notes for 3.2 release [#1686](https://github.com/chef/chef-dk/pull/1686) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.30 -->
 - Unpin Chef because Expeditor now manages stable pushes to Rubygems [#1685](https://github.com/chef/chef-dk/pull/1685) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.29 -->
 - Switch docker container to Ubuntu 18.04 and fix Ruby path [#1684](https://github.com/chef/chef-dk/pull/1684) ([tas50](https://github.com/tas50)) <!-- 3.2.28 -->
 - Update Chef to 14.4.56 and fix expeditor auto updating [#1681](https://github.com/chef/chef-dk/pull/1681) ([tas50](https://github.com/tas50)) <!-- 3.2.27 -->
