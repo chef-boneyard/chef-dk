@@ -55,5 +55,8 @@ ChefDK.commands do |c|
 
   c.builtin "undelete", :Undelete, desc: "Undo a delete command"
 
+  c.builtin "describe-cookbook", :DescribeCookbook, require_path: "chef-dk/command/describe_cookbook",
+                                                    desc: "Prints cookbook checksum information used for cookbook identifier"
+
   c.builtin "verify", :Verify, desc: "Test the embedded ChefDK applications", hidden: true
 end
