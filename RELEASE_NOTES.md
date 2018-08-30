@@ -1,3 +1,48 @@
+# ChefDK 3.2 Release Notes
+
+## Chef 14.4.56
+
+ChefDK now ships with Chef 14.4.56\. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
+## New Functionality
+
+* New `chef describe-cookbook` command to display the cookbook checksum.
+* Change policyfile generator to use 'policyfiles' directory instead of 'policies' directory
+
+## New Tooling
+
+### Chef Apply
+
+[Chef Apply](https://github.com/chef/chef-apply) is the new gem which provides ad-hoc node management via the `chef-run` binary. It is included in the ChefDK only as a stepping stone towards managing gem resolution in the Chef Workstation repository. Please continue to download and install Chef Workstation if you wish to use the ad-hoc functionality. No guarantees for backwards compatability or functionality are made for the Chef Apply gem when used via the ChefDK.
+
+### Kitchen AzureRM
+
+ChefDK now includes a driver for [Azure Resource Manager](https://github.com/test-kitchen/kitchen-azurerm). This allows Microsoft Azure resources to be provisioned prior to testing. This driver uses the new Microsoft Azure Resource Management REST API via the azure-sdk-for-ruby.
+
+## Updated Tooling
+
+### Test Kitchen
+
+Test Kitchen 1.23 now includes support for [lifecycle hooks](https://github.com/test-kitchen/test-kitchen/blob/master/RELEASE_NOTES.md#life-cycle-hooks).
+
+## Updated Components and Tools
+
+- `berkshelf`: 7.0.4 -> 7.0.6
+- `chef-provisioning`: 2.7.1 -> 2.7.2
+- `chef-provisioning-aws`: 3.0.2 -> 3.0.4
+- `chef-sugar`: 4.0.0 -> 4.1.0
+- `fauxhai`: 6.4.0 -> 6.6.0
+- `inspec`: 2.1.72 ->2.2.70
+- `kitchen-google`: 1.4.0 -> 1.5.0
+
+## Security Updates
+
+### OpenSSL
+
+OpenSSL updated to 1.0.2p to resolve:
+- Client DoS due to large DH parameter ([CVE-2018-0732](https://nvd.nist.gov/vuln/detail/CVE-2018-0732))
+- Cache timing vulnerability in RSA Key Generation ([CVE-2018-0737](https://nvd.nist.gov/vuln/detail/CVE-2018-0737))
+
 # ChefDK 3.1 Release Notes
 
 ## Chef 14.2.0
@@ -44,7 +89,11 @@ Test Kitchen 1.11.0 adds a new `ssh_gateway_port` config and fixed a bug on Unix
 
 ## Security Updates
 
-### ffi
+### OpenSSL
+
+OpenSSL updated to 1.0.2p to resolve:
+- Client DoS due to large DH parameter ([CVE-2018-0732](https://nvd.nist.gov/vuln/detail/CVE-2018-0732))
+- Cache timing vulnerability in RSA Key Generation ([CVE-2018-0737](https://nvd.nist.gov/vuln/detail/CVE-2018-0737))
 
 - `CVE-2018-1000201`: DLL loading issue which can be hijacked on Windows OS
 
