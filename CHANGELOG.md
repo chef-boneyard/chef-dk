@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.26 -->
-## [v3.2.26](https://github.com/chef/chef-dk/tree/v3.2.26) (2018-08-30)
+<!-- latest_release 3.2.27 -->
+## [v3.2.27](https://github.com/chef/chef-dk/tree/v3.2.27) (2018-08-30)
 
 #### Merged Pull Requests
-- Add a command that can debug why a cookbook gets a given identifier [#1682](https://github.com/chef/chef-dk/pull/1682) ([danielsdeleo](https://github.com/danielsdeleo))
+- Update Chef to 14.4.56 and fix expeditor auto updating [#1681](https://github.com/chef/chef-dk/pull/1681) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.1.0 -->
 ### Changes since 3.1.0 release
 
 #### Merged Pull Requests
+- Update Chef to 14.4.56 and fix expeditor auto updating [#1681](https://github.com/chef/chef-dk/pull/1681) ([tas50](https://github.com/tas50)) <!-- 3.2.27 -->
 - Add a command that can debug why a cookbook gets a given identifier [#1682](https://github.com/chef/chef-dk/pull/1682) ([danielsdeleo](https://github.com/danielsdeleo)) <!-- 3.2.26 -->
 - Simplify / fix rake task for updating gem dependencies [#1683](https://github.com/chef/chef-dk/pull/1683) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.2.25 -->
 - Bump mixlib-archive to 0.4.16 [#1664](https://github.com/chef/chef-dk/pull/1664) ([bdwyertech](https://github.com/bdwyertech)) <!-- 3.2.24 -->
