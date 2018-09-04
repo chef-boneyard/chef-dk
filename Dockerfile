@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 MAINTAINER Chef Software, Inc. <docker@chef.io>
 
 ARG CHANNEL=stable
-ARG VERSION=3.1.0
+ARG VERSION=3.2.30
 ENV DEBIAN_FRONTEND=noninteractive \
     PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:/root/.chefdk/gem/ruby/2.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 

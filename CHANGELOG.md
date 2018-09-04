@@ -1,55 +1,53 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.2.30 -->
-## [v3.2.30](https://github.com/chef/chef-dk/tree/v3.2.30) (2018-08-30)
-
-#### Merged Pull Requests
-- Preparing release notes for 3.2 release [#1686](https://github.com/chef/chef-dk/pull/1686) ([tyler-ball](https://github.com/tyler-ball))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.1.0 -->
-### Changes since 3.1.0 release
-
-#### Merged Pull Requests
-- Preparing release notes for 3.2 release [#1686](https://github.com/chef/chef-dk/pull/1686) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.30 -->
-- Unpin Chef because Expeditor now manages stable pushes to Rubygems [#1685](https://github.com/chef/chef-dk/pull/1685) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.29 -->
-- Switch docker container to Ubuntu 18.04 and fix Ruby path [#1684](https://github.com/chef/chef-dk/pull/1684) ([tas50](https://github.com/tas50)) <!-- 3.2.28 -->
-- Update Chef to 14.4.56 and fix expeditor auto updating [#1681](https://github.com/chef/chef-dk/pull/1681) ([tas50](https://github.com/tas50)) <!-- 3.2.27 -->
-- Add a command that can debug why a cookbook gets a given identifier [#1682](https://github.com/chef/chef-dk/pull/1682) ([danielsdeleo](https://github.com/danielsdeleo)) <!-- 3.2.26 -->
-- Simplify / fix rake task for updating gem dependencies [#1683](https://github.com/chef/chef-dk/pull/1683) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.2.25 -->
-- Bump mixlib-archive to 0.4.16 [#1664](https://github.com/chef/chef-dk/pull/1664) ([bdwyertech](https://github.com/bdwyertech)) <!-- 3.2.24 -->
-- Change policyfile generator to use &#39;policyfiles&#39; directory [#1590](https://github.com/chef/chef-dk/pull/1590) ([jonlives](https://github.com/jonlives)) <!-- 3.2.23 -->
-- Add DockerHub badges [#1675](https://github.com/chef/chef-dk/pull/1675) ([cheeseplus](https://github.com/cheeseplus)) <!-- 3.2.22 -->
-- Add missing license field to the Gemspec [#1674](https://github.com/chef/chef-dk/pull/1674) ([tas50](https://github.com/tas50)) <!-- 3.2.21 -->
-- Remove TK from the Announce Rake Task [#1673](https://github.com/chef/chef-dk/pull/1673) ([tas50](https://github.com/tas50)) <!-- 3.2.21 -->
-- Bump inspec to 2.2.70 [#1671](https://github.com/chef/chef-dk/pull/1671) ([chef-ci](https://github.com/chef-ci)) <!-- 3.2.20 -->
-- CI bot submits dependency update PRs as obvious fixes [#1668](https://github.com/chef/chef-dk/pull/1668) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.19 -->
-- Need to run expeditor scripts in Bash not Posix Shell [#1665](https://github.com/chef/chef-dk/pull/1665) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.18 -->
-- expeditor update_deps: bundle install before we use rake [#1661](https://github.com/chef/chef-dk/pull/1661) ([tas50](https://github.com/tas50)) <!-- 3.2.17 -->
-- Pull in the new chef-provisioning-aws and chef-sugar [#1659](https://github.com/chef/chef-dk/pull/1659) ([tas50](https://github.com/tas50)) <!-- 3.2.16 -->
-- Use the rake dependency update task in Expeditor [#1658](https://github.com/chef/chef-dk/pull/1658) ([tas50](https://github.com/tas50)) <!-- 3.2.14 -->
-- Pull in the latest chef-provisioning, kitchen-vagrant, and train [#1657](https://github.com/chef/chef-dk/pull/1657) ([tas50](https://github.com/tas50)) <!-- 3.2.13 -->
-- Add vim-tiny to the Dockerfile [#1576](https://github.com/chef/chef-dk/pull/1576) ([vvchik](https://github.com/vvchik)) <!-- 3.2.12 -->
-- Updating OpenSSL to 1.0.2p [#1654](https://github.com/chef/chef-dk/pull/1654) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.11 -->
-- Add kitchen-azurerm plugin [#1651](https://github.com/chef/chef-dk/pull/1651) ([tas50](https://github.com/tas50)) <!-- 3.2.10 -->
-- Updating dependencies to pull in latest chef-apply release [#1648](https://github.com/chef/chef-dk/pull/1648) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.2.8 -->
-- Pull in latest test-kitchen, fog-digitalocean, and berkshelf [#1647](https://github.com/chef/chef-dk/pull/1647) ([tas50](https://github.com/tas50)) <!-- 3.2.7 -->
-- Bump all the minimum versions to prevent downgrades [#1645](https://github.com/chef/chef-dk/pull/1645) ([tas50](https://github.com/tas50)) <!-- 3.2.6 -->
-- Pin ruby to 2.5.1 in habitat plan [#1646](https://github.com/chef/chef-dk/pull/1646) ([ryancragun](https://github.com/ryancragun)) <!-- 3.2.5 -->
-- Pull in the new knife-ec2 / updated fog-aws gem [#1644](https://github.com/chef/chef-dk/pull/1644) ([tas50](https://github.com/tas50)) <!-- 3.2.4 -->
-- bumping deps, pulling in berks patch release [#1643](https://github.com/chef/chef-dk/pull/1643) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.2.3 -->
-- Update train to remove google-cloud gem dep [#1640](https://github.com/chef/chef-dk/pull/1640) ([tas50](https://github.com/tas50)) <!-- 3.2.1 -->
-- Bump version to 3.2.0 [#1639](https://github.com/chef/chef-dk/pull/1639) ([tas50](https://github.com/tas50)) <!-- 3.2.0 -->
-- [SHACK-304] Expeditor version update needs to only update the ChefDK version [#1637](https://github.com/chef/chef-dk/pull/1637) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.1.8 -->
-- [SHACK-304] Habitat build fails with bundler error [#1636](https://github.com/chef/chef-dk/pull/1636) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.1.7 -->
-- [SHACK-304] Add Chef Apply as a gem dependency [#1631](https://github.com/chef/chef-dk/pull/1631) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.1.6 -->
-- Pull in the latest knife-google, kitchen-google, inspec and more [#1633](https://github.com/chef/chef-dk/pull/1633) ([tas50](https://github.com/tas50)) <!-- 3.1.5 -->
-- add windows habitat plan [#1595](https://github.com/chef/chef-dk/pull/1595) ([mwrock](https://github.com/mwrock)) <!-- 3.1.4 -->
-- Use new mixlib-config to resolve berkshelf errors on windows [#1625](https://github.com/chef/chef-dk/pull/1625) ([tas50](https://github.com/tas50)) <!-- 3.1.3 -->
-- Update to Chef 14.3.37 [#1624](https://github.com/chef/chef-dk/pull/1624) ([tas50](https://github.com/tas50)) <!-- 3.1.2 -->
-- Update mixlib-config / mixlib-install [#1619](https://github.com/chef/chef-dk/pull/1619) ([tas50](https://github.com/tas50)) <!-- 3.1.1 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.2.30](https://github.com/chef/chef-dk/tree/v3.2.30) (2018-09-04)
+
+#### Merged Pull Requests
+- Update mixlib-config / mixlib-install [#1619](https://github.com/chef/chef-dk/pull/1619) ([tas50](https://github.com/tas50))
+- Update to Chef 14.3.37 [#1624](https://github.com/chef/chef-dk/pull/1624) ([tas50](https://github.com/tas50))
+- Use new mixlib-config to resolve berkshelf errors on windows [#1625](https://github.com/chef/chef-dk/pull/1625) ([tas50](https://github.com/tas50))
+- add windows habitat plan [#1595](https://github.com/chef/chef-dk/pull/1595) ([mwrock](https://github.com/mwrock))
+- Pull in the latest knife-google, kitchen-google, inspec and more [#1633](https://github.com/chef/chef-dk/pull/1633) ([tas50](https://github.com/tas50))
+- [SHACK-304] Add Chef Apply as a gem dependency [#1631](https://github.com/chef/chef-dk/pull/1631) ([tyler-ball](https://github.com/tyler-ball))
+- [SHACK-304] Habitat build fails with bundler error [#1636](https://github.com/chef/chef-dk/pull/1636) ([tyler-ball](https://github.com/tyler-ball))
+- [SHACK-304] Expeditor version update needs to only update the ChefDK version [#1637](https://github.com/chef/chef-dk/pull/1637) ([tyler-ball](https://github.com/tyler-ball))
+- Bump version to 3.2.0 [#1639](https://github.com/chef/chef-dk/pull/1639) ([tas50](https://github.com/tas50))
+- Update train to remove google-cloud gem dep [#1640](https://github.com/chef/chef-dk/pull/1640) ([tas50](https://github.com/tas50))
+- bumping deps, pulling in berks patch release [#1643](https://github.com/chef/chef-dk/pull/1643) ([lamont-granquist](https://github.com/lamont-granquist))
+- Pull in the new knife-ec2 / updated fog-aws gem [#1644](https://github.com/chef/chef-dk/pull/1644) ([tas50](https://github.com/tas50))
+- Pin ruby to 2.5.1 in habitat plan [#1646](https://github.com/chef/chef-dk/pull/1646) ([ryancragun](https://github.com/ryancragun))
+- Bump all the minimum versions to prevent downgrades [#1645](https://github.com/chef/chef-dk/pull/1645) ([tas50](https://github.com/tas50))
+- Pull in latest test-kitchen, fog-digitalocean, and berkshelf [#1647](https://github.com/chef/chef-dk/pull/1647) ([tas50](https://github.com/tas50))
+- Updating dependencies to pull in latest chef-apply release [#1648](https://github.com/chef/chef-dk/pull/1648) ([tyler-ball](https://github.com/tyler-ball))
+- Add kitchen-azurerm plugin [#1651](https://github.com/chef/chef-dk/pull/1651) ([tas50](https://github.com/tas50))
+- Updating OpenSSL to 1.0.2p [#1654](https://github.com/chef/chef-dk/pull/1654) ([tyler-ball](https://github.com/tyler-ball))
+- Add vim-tiny to the Dockerfile [#1576](https://github.com/chef/chef-dk/pull/1576) ([vvchik](https://github.com/vvchik))
+- Pull in the latest chef-provisioning, kitchen-vagrant, and train [#1657](https://github.com/chef/chef-dk/pull/1657) ([tas50](https://github.com/tas50))
+- Use the rake dependency update task in Expeditor [#1658](https://github.com/chef/chef-dk/pull/1658) ([tas50](https://github.com/tas50))
+- Pull in the new chef-provisioning-aws and chef-sugar [#1659](https://github.com/chef/chef-dk/pull/1659) ([tas50](https://github.com/tas50))
+- expeditor update_deps: bundle install before we use rake [#1661](https://github.com/chef/chef-dk/pull/1661) ([tas50](https://github.com/tas50))
+- Need to run expeditor scripts in Bash not Posix Shell [#1665](https://github.com/chef/chef-dk/pull/1665) ([tyler-ball](https://github.com/tyler-ball))
+- CI bot submits dependency update PRs as obvious fixes [#1668](https://github.com/chef/chef-dk/pull/1668) ([tyler-ball](https://github.com/tyler-ball))
+- Bump inspec to 2.2.70 [#1671](https://github.com/chef/chef-dk/pull/1671) ([chef-ci](https://github.com/chef-ci))
+- Remove TK from the Announce Rake Task [#1673](https://github.com/chef/chef-dk/pull/1673) ([tas50](https://github.com/tas50))
+- Add missing license field to the Gemspec [#1674](https://github.com/chef/chef-dk/pull/1674) ([tas50](https://github.com/tas50))
+- Add DockerHub badges [#1675](https://github.com/chef/chef-dk/pull/1675) ([cheeseplus](https://github.com/cheeseplus))
+- Change policyfile generator to use &#39;policyfiles&#39; directory [#1590](https://github.com/chef/chef-dk/pull/1590) ([jonlives](https://github.com/jonlives))
+- Bump mixlib-archive to 0.4.16 [#1664](https://github.com/chef/chef-dk/pull/1664) ([bdwyertech](https://github.com/bdwyertech))
+- Simplify / fix rake task for updating gem dependencies [#1683](https://github.com/chef/chef-dk/pull/1683) ([lamont-granquist](https://github.com/lamont-granquist))
+- Add a command that can debug why a cookbook gets a given identifier [#1682](https://github.com/chef/chef-dk/pull/1682) ([danielsdeleo](https://github.com/danielsdeleo))
+- Update Chef to 14.4.56 and fix expeditor auto updating [#1681](https://github.com/chef/chef-dk/pull/1681) ([tas50](https://github.com/tas50))
+- Switch docker container to Ubuntu 18.04 and fix Ruby path [#1684](https://github.com/chef/chef-dk/pull/1684) ([tas50](https://github.com/tas50))
+- Unpin Chef because Expeditor now manages stable pushes to Rubygems [#1685](https://github.com/chef/chef-dk/pull/1685) ([tyler-ball](https://github.com/tyler-ball))
+- Preparing release notes for 3.2 release [#1686](https://github.com/chef/chef-dk/pull/1686) ([tyler-ball](https://github.com/tyler-ball))
+<!-- latest_stable_release -->
+
 ## [v3.1.0](https://github.com/chef/chef-dk/tree/v3.1.0) (2018-07-05)
 
 #### Merged Pull Requests
@@ -65,7 +63,6 @@
 - Update dependencies [#1609](https://github.com/chef/chef-dk/pull/1609) ([tas50](https://github.com/tas50))
 - Update Fauxhai, TK, and Foodcritic to the latest [#1612](https://github.com/chef/chef-dk/pull/1612) ([tas50](https://github.com/tas50))
 - Preparing 3.1 release [#1611](https://github.com/chef/chef-dk/pull/1611) ([tyler-ball](https://github.com/tyler-ball))
-<!-- latest_stable_release -->
 
 ## [v3.0.36](https://github.com/chef/chef-dk/tree/v3.0.36) (2018-05-21)
 
