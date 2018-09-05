@@ -204,7 +204,7 @@ GEM
     cheffish (14.0.1)
       chef-zero (~> 14.0)
       net-ssh
-    chefspec (7.2.1)
+    chefspec (7.3.0)
       chef (>= 12.14.89)
       fauxhai (>= 4)
       rspec (~> 3.0)
@@ -800,7 +800,7 @@ DEPENDENCIES
   chef-sugar
   chef-vault (>= 3.3.0)
   cheffish (>= 14.0.1)
-  chefspec (>= 7.2.1)
+  chefspec (>= 7.3.0)
   chefstyle
   cookstyle (>= 2.0.0)
   cucumber
