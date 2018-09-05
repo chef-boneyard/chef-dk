@@ -105,9 +105,6 @@ group(:omnibus_package) do
   gem "winrm-elevated"
   gem "cucumber"
   gem "stove"
-
-  # TODO Remove this after https://github.com/fog/fog-openstack/issues/420 is fixed
-  gem "fog-openstack", "< 0.2.0"
 end
 
 # Everything except AIX
