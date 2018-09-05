@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.3.0 -->
+## [v3.3.0](https://github.com/chef/chef-dk/tree/v3.3.0) (2018-09-05)
+
+#### Merged Pull Requests
+- Update to Foodcritic 14.1.0 [#1687](https://github.com/chef/chef-dk/pull/1687) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.2.30 -->
+### Changes since 3.2.30 release
+
+#### Merged Pull Requests
+- Update to Foodcritic 14.1.0 [#1687](https://github.com/chef/chef-dk/pull/1687) ([tas50](https://github.com/tas50)) <!-- 3.3.0 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
