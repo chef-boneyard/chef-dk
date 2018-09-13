@@ -1,6 +1,6 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.3 -->
-## [v3.3.3](https://github.com/chef/chef-dk/tree/v3.3.3) (2018-09-13)
+<!-- latest_release 3.3.4 -->
+## [v3.3.4](https://github.com/chef/chef-dk/tree/v3.3.4) (2018-09-13)
 
 #### Merged Pull Requests
 - Bump train to 1.4.37 [#1694](https://github.com/chef/chef-dk/pull/1694) ([chef-ci](https://github.com/chef-ci))
