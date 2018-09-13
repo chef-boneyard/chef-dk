@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.2 -->
-## [v3.3.2](https://github.com/chef/chef-dk/tree/v3.3.2) (2018-09-06)
+<!-- latest_release 3.3.3 -->
+## [v3.3.3](https://github.com/chef/chef-dk/tree/v3.3.3) (2018-09-13)
 
 #### Merged Pull Requests
-- Update fog-openstack, winrm-fs, inspec, and chefspec [#1692](https://github.com/chef/chef-dk/pull/1692) ([tas50](https://github.com/tas50))
+- Bump train to 1.4.37 [#1694](https://github.com/chef/chef-dk/pull/1694) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.2.30 -->
 ### Changes since 3.2.30 release
 
 #### Merged Pull Requests
+- Bump train to 1.4.37 [#1694](https://github.com/chef/chef-dk/pull/1694) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.3 -->
 - Update fog-openstack, winrm-fs, inspec, and chefspec [#1692](https://github.com/chef/chef-dk/pull/1692) ([tas50](https://github.com/tas50)) <!-- 3.3.2 -->
 - Bump chefspec to 7.3. [#1688](https://github.com/chef/chef-dk/pull/1688) ([coderanger](https://github.com/coderanger)) <!-- 3.3.1 -->
 - Update to Foodcritic 14.1.0 [#1687](https://github.com/chef/chef-dk/pull/1687) ([tas50](https://github.com/tas50)) <!-- 3.3.0 -->
