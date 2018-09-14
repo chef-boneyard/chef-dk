@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.5 -->
-## [v3.3.5](https://github.com/chef/chef-dk/tree/v3.3.5) (2018-09-14)
+<!-- latest_release 3.3.7 -->
+## [v3.3.7](https://github.com/chef/chef-dk/tree/v3.3.7) (2018-09-14)
 
 #### Merged Pull Requests
-- Bump train-core to 1.4.37 [#1695](https://github.com/chef/chef-dk/pull/1695) ([chef-ci](https://github.com/chef-ci))
+- Bump ohai to 14.5.0 [#1699](https://github.com/chef/chef-dk/pull/1699) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.2.30 -->
 ### Changes since 3.2.30 release
 
 #### Merged Pull Requests
+- Bump ohai to 14.5.0 [#1699](https://github.com/chef/chef-dk/pull/1699) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.7 -->
 - Bump train-core to 1.4.37 [#1695](https://github.com/chef/chef-dk/pull/1695) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.5 -->
 - Bump train to 1.4.37 [#1694](https://github.com/chef/chef-dk/pull/1694) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.3 -->
 - Update fog-openstack, winrm-fs, inspec, and chefspec [#1692](https://github.com/chef/chef-dk/pull/1692) ([tas50](https://github.com/tas50)) <!-- 3.3.2 -->
