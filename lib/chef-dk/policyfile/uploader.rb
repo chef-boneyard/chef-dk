@@ -41,6 +41,7 @@ module ChefDK
         @ui = ui || UI.null
         @policy_document_native_api = policy_document_native_api
 
+        @policy_lock_for_transport = nil
         @cookbook_versions_for_policy = nil
       end
 
@@ -49,7 +50,7 @@ module ChefDK
       end
 
       def upload
-        ui.msg("Uploading policy to policy group #{policy_group}")
+        ui.msg("Uploading policy #{policy_name} (#{short_revision_id}) to policy group #{policy_group}")
 
         if !using_policy_document_native_api?
           ui.msg(<<-DRAGONS)
@@ -73,7 +74,7 @@ DRAGONS
       end
 
       def upload_policy_native
-        http_client.put("/policy_groups/#{policy_group}/policies/#{policy_name}", policyfile_lock.to_lock)
+        http_client.put("/policy_groups/#{policy_group}/policies/#{policy_name}", policy_lock_for_transport)
       end
 
       def data_bag_create
@@ -84,7 +85,7 @@ DRAGONS
 
       def data_bag_item_create
         policy_id = "#{policy_name}-#{policy_group}"
-        lock_data = policyfile_lock.to_lock.dup
+        lock_data = policy_lock_for_transport.dup
 
         lock_data["id"] = policy_id
 
@@ -179,6 +180,14 @@ DRAGONS
       end
 
       private
+
+      def short_revision_id
+        policy_lock_for_transport["revision_id"][0, 10]
+      end
+
+      def policy_lock_for_transport
+        @policy_lock_for_transport ||= policyfile_lock.to_lock
+      end
 
       def list_cookbooks_url
         if using_policy_document_native_api?

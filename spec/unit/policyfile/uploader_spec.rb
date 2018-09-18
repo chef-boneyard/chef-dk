@@ -28,6 +28,7 @@ describe ChefDK::Policyfile::Uploader do
     {
       "name" => "example",
       "run_list" => [ "recipe[omnibus::default]" ],
+      "revision_id" => "f4b29d87c36de67cbfd9aa3147df77cebf9f719e8c884036b3cf34ba94773ca5",
       "cookbook_locks" => {
         "omnibus" => {
           "version" => "2.2.0",
