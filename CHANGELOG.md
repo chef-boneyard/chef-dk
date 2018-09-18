@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.10 -->
-## [v3.3.10](https://github.com/chef/chef-dk/tree/v3.3.10) (2018-09-17)
+<!-- latest_release 3.3.11 -->
+## [v3.3.11](https://github.com/chef/chef-dk/tree/v3.3.11) (2018-09-18)
 
 #### Merged Pull Requests
-- Bump inspec-core to 2.2.102 [#1702](https://github.com/chef/chef-dk/pull/1702) ([chef-ci](https://github.com/chef-ci))
+- Bump ohai to 14.5.4 [#1703](https://github.com/chef/chef-dk/pull/1703) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.2.30 -->
 ### Changes since 3.2.30 release
 
 #### Merged Pull Requests
+- Bump ohai to 14.5.4 [#1703](https://github.com/chef/chef-dk/pull/1703) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.11 -->
 - Bump inspec-core to 2.2.102 [#1702](https://github.com/chef/chef-dk/pull/1702) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.10 -->
 - Update chefspec to 7.3.2 [#1700](https://github.com/chef/chef-dk/pull/1700) ([tas50](https://github.com/tas50)) <!-- 3.3.9 -->
 - Update libarchive to 3.3.3 [#1698](https://github.com/chef/chef-dk/pull/1698) ([tas50](https://github.com/tas50)) <!-- 3.3.8 -->
