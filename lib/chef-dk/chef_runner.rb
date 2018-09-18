@@ -76,7 +76,7 @@ module ChefDK
 
     def configure
       Chef::Config.solo_legacy_mode = true
-      Chef::Config.cookbook_path = cookbook_path
+      Chef::Config.cookbook_path << cookbook_path
       Chef::Config.color = true
       Chef::Config.diff_disabled = true
 
