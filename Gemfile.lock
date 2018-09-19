@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.132)
-      aws-sdk-resources (= 2.11.132)
-    aws-sdk-core (2.11.132)
+    aws-sdk (2.11.133)
+      aws-sdk-resources (= 2.11.133)
+    aws-sdk-core (2.11.133)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.132)
-      aws-sdk-core (= 2.11.132)
+    aws-sdk-resources (2.11.133)
+      aws-sdk-core (= 2.11.133)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -194,7 +194,7 @@ GEM
       concurrent-ruby (~> 1.0)
       ffi-yajl (~> 2.2)
       http (~> 2.2)
-    chef-vault (3.3.0)
+    chef-vault (3.4.0)
     chef-zero (14.0.6)
       ffi-yajl (~> 2.2)
       hashie (>= 2.0, < 4.0)
@@ -265,7 +265,7 @@ GEM
     equatable (0.5.0)
     erubis (2.7.0)
     excon (0.62.0)
-    faraday (0.15.2)
+    faraday (0.15.3)
       multipart-post (>= 1.2, < 3)
     faraday-cookie_jar (0.0.6)
       faraday (>= 0.7.4)
@@ -870,4 +870,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.16.4
+   1.16.5
