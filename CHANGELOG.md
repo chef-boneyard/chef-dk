@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.12 -->
-## [v3.3.12](https://github.com/chef/chef-dk/tree/v3.3.12) (2018-09-18)
+<!-- latest_release 3.3.13 -->
+## [v3.3.13](https://github.com/chef/chef-dk/tree/v3.3.13) (2018-09-19)
 
 #### Merged Pull Requests
-- Include more information about the policy in `chef push` output [#1704](https://github.com/chef/chef-dk/pull/1704) ([danielsdeleo](https://github.com/danielsdeleo))
+- Bump inspec to 2.2.112 [#1706](https://github.com/chef/chef-dk/pull/1706) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.2.30 -->
 ### Changes since 3.2.30 release
 
 #### Merged Pull Requests
+- Bump inspec to 2.2.112 [#1706](https://github.com/chef/chef-dk/pull/1706) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.13 -->
 - Include more information about the policy in `chef push` output [#1704](https://github.com/chef/chef-dk/pull/1704) ([danielsdeleo](https://github.com/danielsdeleo)) <!-- 3.3.12 -->
 - Bump ohai to 14.5.4 [#1703](https://github.com/chef/chef-dk/pull/1703) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.11 -->
 - Bump inspec-core to 2.2.102 [#1702](https://github.com/chef/chef-dk/pull/1702) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.10 -->
