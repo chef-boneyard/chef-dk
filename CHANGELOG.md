@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.19 -->
-## [v3.3.19](https://github.com/chef/chef-dk/tree/v3.3.19) (2018-09-22)
+<!-- latest_release 3.3.20 -->
+## [v3.3.20](https://github.com/chef/chef-dk/tree/v3.3.20) (2018-09-22)
 
 #### Merged Pull Requests
-- Update chef generate cookbook to require Chef 13 [#1717](https://github.com/chef/chef-dk/pull/1717) ([tas50](https://github.com/tas50))
+- Add a deprecation warning for chef generate app / lwrp [#1719](https://github.com/chef/chef-dk/pull/1719) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.2.30 -->
 ### Changes since 3.2.30 release
 
 #### Merged Pull Requests
+- Add a deprecation warning for chef generate app / lwrp [#1719](https://github.com/chef/chef-dk/pull/1719) ([tas50](https://github.com/tas50)) <!-- 3.3.20 -->
 - Update chef generate cookbook to require Chef 13 [#1717](https://github.com/chef/chef-dk/pull/1717) ([tas50](https://github.com/tas50)) <!-- 3.3.19 -->
 - Bump chef-vault to 3.4.2 [#1714](https://github.com/chef/chef-dk/pull/1714) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.17 -->
 - Bump Chef to 14.5.27 [#1711](https://github.com/chef/chef-dk/pull/1711) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.16 -->
