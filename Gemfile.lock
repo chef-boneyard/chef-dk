@@ -194,7 +194,7 @@ GEM
       concurrent-ruby (~> 1.0)
       ffi-yajl (~> 2.2)
       http (~> 2.2)
-    chef-vault (3.4.0)
+    chef-vault (3.4.1)
     chef-zero (14.0.6)
       ffi-yajl (~> 2.2)
       hashie (>= 2.0, < 4.0)
@@ -801,7 +801,7 @@ DEPENDENCIES
   chef-provisioning-aws (>= 3.0.2)
   chef-provisioning-fog (>= 0.26.1)
   chef-sugar
-  chef-vault (>= 3.3.0)
+  chef-vault (>= 3.4.1)
   cheffish (>= 14.0.1)
   chefspec (>= 7.3.0)
   chefstyle
