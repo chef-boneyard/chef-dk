@@ -24,10 +24,32 @@ spdx_license =  case context.license
                   'All Rights Reserved'
                 end
 
+cookbook_urls = case context.git
+                when 'default'
+                  <<-EOF
+# The `issues_url` points to the location where issues for this cookbook are
+# tracked.  A `View Issues` link will be displayed on this cookbook's page when
+# uploaded to a Supermarket.
+#
+# issues_url 'https://github.com/<insert_org_here>/#{context.cookbook_name}/issues'
+# The `source_url` points to the development repository for this cookbook.  A
+# `View Source` link will be displayed on this cookbook's page when uploaded to
+# a Supermarket.
+#
+# source_url 'https://github.com/<insert_org_here>/#{context.cookbook_name}'
+EOF
+                else
+                  <<-EOF
+issues_url '#{URI.join(context.git, 'issues')}' if respond_to?(:issues_url)
+source_url '#{URI.join(context.git, '/')}' if respond_to?(:source_url)
+EOF
+                end
+
 template "#{cookbook_dir}/metadata.rb" do
   helpers(ChefDK::Generator::TemplateHelper)
   variables(
-    spdx_license: spdx_license
+    spdx_license: spdx_license,
+    cookbook_urls: cookbook_urls.strip
   )
   action :create_if_missing
 end
