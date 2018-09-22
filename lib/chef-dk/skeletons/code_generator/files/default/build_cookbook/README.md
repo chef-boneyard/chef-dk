@@ -10,9 +10,9 @@ In the parent directory to this build_cookbook, the `config.json` can be modifie
 
 ## Test Kitchen - Local Verify Testing
 
-This cookbook also has a `.kitchen.yml` which can be used to create local build nodes with Test Kitchen to perform the verification phases, `unit`, `syntax`, and `lint`. When running `kitchen converge`, the instances will be set up like Chef Delivery "build nodes" with the [delivery_build cookbook](https://github.com/chef-cookbooks/delivery_build). The reason for this is to make sure that the same exact kind of nodes are used by this build cookbook are run on the local workstation as would run Delivery. It will run `delivery job verify PHASE` for the parent project.
+This cookbook also has a `kitchen.yml` which can be used to create local build nodes with Test Kitchen to perform the verification phases, `unit`, `syntax`, and `lint`. When running `kitchen converge`, the instances will be set up like Chef Delivery "build nodes" with the [delivery_build cookbook](https://github.com/chef-cookbooks/delivery_build). The reason for this is to make sure that the same exact kind of nodes are used by this build cookbook are run on the local workstation as would run Delivery. It will run `delivery job verify PHASE` for the parent project.
 
-Modify the `.kitchen.yml` if necessary to change the platforms or other configuration to run the verify phases. After making changes in the parent project, `cd` into this directory (`.delivery/build_cookbook`), and run:
+Modify the `kitchen.yml` if necessary to change the platforms or other configuration to run the verify phases. After making changes in the parent project, `cd` into this directory (`.delivery/build_cookbook`), and run:
 
 ```
 kitchen test

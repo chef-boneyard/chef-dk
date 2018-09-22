@@ -14,7 +14,7 @@ if File.directory?(File.join(cookbook_dir, 'test', 'recipes'))
     It appears that you have InSpec tests located at "test/recipes". This location can
     cause issues with Foodcritic and has been deprecated in favor of "test/integration/default".
     Please move your existing InSpec tests to the newly created "test/integration/default"
-    directory, and update the 'inspec_tests' value in your .kitchen.yml file(s) to
+    directory, and update the 'inspec_tests' value in your kitchen.yml file(s) to
     point to "test/integration/default".
   EOH
 end

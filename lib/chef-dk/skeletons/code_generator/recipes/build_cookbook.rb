@@ -72,8 +72,8 @@ directory "#{build_cookbook_dir}/recipes"
 end
 
 # Test Kitchen build node
-cookbook_file "#{build_cookbook_dir}/.kitchen.yml" do
-  source 'build_cookbook/.kitchen.yml'
+cookbook_file "#{build_cookbook_dir}/kitchen.yml" do
+  source 'build_cookbook/kitchen.yml'
 end
 
 directory "#{build_cookbook_dir}/data_bags/keys" do
