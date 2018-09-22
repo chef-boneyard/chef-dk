@@ -46,14 +46,14 @@ module ChefDK
         generators << GeneratorCommand.new(name, class_name, description)
       end
 
-      generator(:app, :App, "Generate an application repo")
+      generator(:app, :App, "Generate an application repo - DEPRECATED")
       generator(:cookbook, :Cookbook, "Generate a single cookbook")
       generator(:recipe, :Recipe, "Generate a new recipe")
       generator(:attribute, :Attribute, "Generate an attributes file")
       generator(:template, :Template, "Generate a file template")
       generator(:file, :CookbookFile, "Generate a cookbook file")
       generator(:helpers, :Helpers, "Generate a cookbook helper file in libraries")
-      generator(:lwrp, :Resource, "Generate a custom resource")
+      generator(:lwrp, :Resource, "Generate a lightweight resource provider (LWRP) - DEPRECATED")
       generator(:resource, :Resource, "Generate a custom resource")
       generator(:repo, :Repo, "Generate a Chef code repository")
       generator(:policyfile, :Policyfile, "Generate a Policyfile for use with the install/push commands")
@@ -86,6 +86,7 @@ E
 
       def run(params)
         if ( generator_spec = generator_for(params[0]) )
+          puts "WARNING: The command 'chef generator #{params[0]}' is deprecated and will be removed from the next major release of Chef DK / Workstation (April 2019)\n\n" if %w{lwrp app}.include?(params[0])
           params.shift
           generator = GeneratorCommands.build(generator_spec.class_name, params)
           generator.run
