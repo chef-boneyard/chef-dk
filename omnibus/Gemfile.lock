@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 2f7131e7ec2043041771e752072c92062e48864a
+  revision: 8773058b6cafc053159bbe24851bc7eeb407d492
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -31,13 +31,13 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     awesome_print (1.8.0)
-    aws-sdk (2.11.130)
-      aws-sdk-resources (= 2.11.130)
-    aws-sdk-core (2.11.130)
+    aws-sdk (2.11.135)
+      aws-sdk-resources (= 2.11.135)
+    aws-sdk-core (2.11.135)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.130)
-      aws-sdk-core (= 2.11.130)
+    aws-sdk-resources (2.11.135)
+      aws-sdk-core (= 2.11.135)
     aws-sigv4 (1.0.3)
     berkshelf (7.0.6)
       chef (>= 13.6.52)
@@ -53,10 +53,10 @@ GEM
       solve (~> 4.0)
       thor (>= 0.20)
     builder (3.2.3)
-    chef (14.4.56)
+    chef (14.5.27)
       addressable
       bundler (>= 1.10)
-      chef-config (= 14.4.56)
+      chef-config (= 14.5.27)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -84,10 +84,10 @@ GEM
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (14.4.56-universal-mingw32)
+    chef (14.5.27-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 14.4.56)
+      chef-config (= 14.5.27)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -126,7 +126,7 @@ GEM
       win32-taskscheduler (~> 1.0.0)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (14.4.56)
+    chef-config (14.5.27)
       addressable
       fuzzyurl
       mixlib-config (>= 2.2.12, < 3.0)
@@ -144,7 +144,7 @@ GEM
     concurrent-ruby (1.0.5)
     diff-lcs (1.3)
     erubis (2.7.0)
-    faraday (0.15.2)
+    faraday (0.15.3)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
     ffi (1.9.25-x64-mingw32)
@@ -166,7 +166,7 @@ GEM
     ipaddress (0.8.3)
     iso8601 (0.11.0)
     jmespath (1.4.0)
-    kitchen-vagrant (1.3.3)
+    kitchen-vagrant (1.3.4)
       test-kitchen (~> 1.4)
     libyajl2 (1.2.0)
     license_scout (1.0.15)
@@ -211,7 +211,7 @@ GEM
     nori (2.6.0)
     octokit (4.12.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (14.5.0)
+    ohai (14.5.4)
       chef-config (>= 12.8, < 15)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
@@ -351,4 +351,4 @@ DEPENDENCIES
   winrm-elevated
 
 BUNDLED WITH
-   1.16.4
+   1.16.5
