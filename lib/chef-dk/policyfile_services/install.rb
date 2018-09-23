@@ -50,7 +50,7 @@ module ChefDK
         @policyfile_compiler = nil
       end
 
-      def run(cookbooks_to_update = [], update_strategy = "relaxed")
+      def run(cookbooks_to_update = [], exclude_deps = false)
         unless File.exist?(policyfile_expanded_path)
           # TODO: suggest next step. Add a generator/init command? Specify path to Policyfile.rb?
           # See card CC-232
@@ -62,7 +62,7 @@ module ChefDK
         elsif cookbooks_to_update.empty? # means update everything
           generate_lock_and_install
         else
-          update_lock_and_install(cookbooks_to_update, update_strategy)
+          update_lock_and_install(cookbooks_to_update, exclude_deps)
         end
       end
 
@@ -114,13 +114,12 @@ module ChefDK
         raise PolicyfileInstallError.new("Failed to generate Policyfile.lock", error)
       end
 
-      def update_lock_and_install(cookbooks_to_update, update_strategy)
-        ui.msg "Updating #{cookbooks_to_update.join(',')} cookbooks with #{update_strategy} strategy"
-        to_update = case update_strategy
-                    when "relaxed"
-                      policyfile_lock.solution_dependencies.transitive_deps(cookbooks_to_update)
-                    else
+      def update_lock_and_install(cookbooks_to_update, exclude_deps)
+        ui.msg "Updating #{cookbooks_to_update.join(',')} cookbooks #{exclude_deps ? '(excluding dependencies)' : ''}"
+        to_update = if exclude_deps
                       cookbooks_to_update
+                    else
+                      policyfile_lock.solution_dependencies.transitive_deps(cookbooks_to_update)
                     end
         prepare_constraints_for_update(to_update)
         prepare_constraints_for_policies

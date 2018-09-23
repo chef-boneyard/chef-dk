@@ -130,11 +130,11 @@ EOH
       # elsewhere. We only check constraints changes
       expect(install_service).to receive(:generate_lock_and_install)
 
-      expect { install_service.run(["top-level"], update_strategy) }.not_to raise_error
+      expect { install_service.run(["top-level"], exclude_deps) }.not_to raise_error
     end
 
-    context "with relaxed update strategy" do
-      let(:update_strategy) { "relaxed" }
+    context "without exclude-deps flag" do
+      let(:exclude_deps) { false }
 
       it_behaves_like "regular update operation"
 
@@ -147,8 +147,8 @@ EOH
       end
     end
 
-    context "with strict update strategy" do
-      let(:update_strategy) { "strict" }
+    context "with exclude-deps flag" do
+      let(:exclude_deps) { true }
 
       it_behaves_like "regular update operation"
 

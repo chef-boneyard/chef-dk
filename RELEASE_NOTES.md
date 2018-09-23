@@ -122,15 +122,10 @@ include_policy 'base_policy',
                path: 'policies/base/Policyfile.lock.json'
 ```
 
-## Policyfiles: `chef update` gains `--update-strategy` option
+## Policyfiles: `chef update` gains `--exclude-deps` flag
 
-This option can take two values:
-
-- 'relaxed' (default value). This was the behavior before this release
-`chef update Policyfile.rb apache2` will upgrade apache2 and all its
-dependencies
-- 'strict'. This behavior is very strict: it updates only the cookbook(s)
-mentionned in the command line.
+When using this, behavior is very strict: it updates only the cookbook(s)
+mentioned on command line.
 
 ## Updated Tooling
 
