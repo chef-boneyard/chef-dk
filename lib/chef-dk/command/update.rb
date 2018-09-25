@@ -67,6 +67,12 @@ BANNER
         default:      false,
         boolean:      true
 
+      option :exclude_deps,
+        long:         "--exclude-deps",
+        description:  "Only update cookbooks explicitely mentioned on the command line",
+        boolean:      true,
+        default:      false
+
       attr_reader :policyfile_relative_path
 
       attr_accessor :ui
@@ -84,7 +90,7 @@ BANNER
       def run(params = [])
         return 1 unless apply_params!(params)
         attributes_updater.run
-        installer.run(@cookbooks_to_update) unless update_attributes_only?
+        installer.run(@cookbooks_to_update, config[:exclude_deps]) unless update_attributes_only?
         0
       rescue PolicyfileServiceError => e
         handle_error(e)

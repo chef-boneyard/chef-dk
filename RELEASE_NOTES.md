@@ -122,6 +122,11 @@ include_policy 'base_policy',
                path: 'policies/base/Policyfile.lock.json'
 ```
 
+## Policyfiles: `chef update` gains `--exclude-deps` flag
+
+When using this, behavior is very strict: it updates only the cookbook(s)
+mentioned on command line.
+
 ## Updated Tooling
 
 ### Test Kitchen
