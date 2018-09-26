@@ -1,4 +1,4 @@
-# Documentation available at http://expeditor-docs.es.chef.io/
+# Documentation available at https://expeditor.chef.io/docs/getting-started/
 
 # The name of the product keys for this product (from mixlib-install)
 product_key: chefdk
@@ -16,18 +16,19 @@ docker_images:
   - chefdk
 
 github:
-  # cleanup PR branches post merge
-  delete_branch_on_merge: true
   # The file where the MAJOR.MINOR.PATCH version is kept. The version in this file
   # is bumped automatically via the `built_in:bump_version` merge_action.
   version_file: "VERSION"
   # The file where our CHANGELOG is kept. This file is updated automatically with
   # details from the Pull Request via the `built_in:update_changelog` merge_action.
   changelog_file: "CHANGELOG.md"
+  # This deletes the GitHub PR branch after successfully merged into the release branch
+  delete_branch_on_merge: true
   # The tag format to use (e.g. v1.0.0)
   version_tag_format: "v{{version}}"
-  # The Github Team primarily responsible for handling incoming Pull Requests.
-  maintainer_group: chef/client-core
+  # allow bumping the minor release via label
+  minor_bump_labels:
+    - "Expeditor: Bump Minor Version"
   # Which Github branches to build Omnibus releases from, and what versions
   # (as determined by the value in the VERSION file) those branches are responsible
   # for building.
@@ -55,16 +56,20 @@ merge_actions:
         - "Expeditor: Skip All"
       only_if: built_in:bump_version
 
-# These actions are taken, in the order specified, when an Omnibus artifact is promoted
-# within Chef's internal artifact storage system.
-artifact_actions:
-  promoted_to_unstable:
-    - built_in:build_docker_image
-  promoted_to_current:
-    - built_in:tag_docker_image
-  promoted_to_stable:
-    - built_in:rollover_changelog
-    - bash:.expeditor/update_dockerfile.sh
-    - built_in:tag_docker_image
-    - built_in:publish_rubygems
-    - built_in:notify_chefio_slack_channels
+subscriptions:
+  - workload: artifact_published:unstable:chefdk:2*
+    actions:
+      - built_in:build_docker_image
+  - workload: artifact_published:current:chefdk:2*
+    actions:
+      - built_in:tag_docker_image
+  - workload: artifact_published:stable:chefdk:2*
+    actions:
+      - built_in:rollover_changelog
+      - bash:.expeditor/update_dockerfile.sh
+      - built_in:tag_docker_image
+      - built_in:publish_rubygems
+      - built_in:notify_chefio_slack_channels
+  - workload: artifact_published:stable:chef:13*
+    actions:
+      - bash:.expeditor/update_chef.sh
