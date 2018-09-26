@@ -1,39 +1,37 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.23 -->
-## [v3.3.23](https://github.com/chef/chef-dk/tree/v3.3.23) (2018-09-26)
-
-#### Merged Pull Requests
-- add release notes for 3.3 [#1725](https://github.com/chef/chef-dk/pull/1725) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.2.30 -->
-### Changes since 3.2.30 release
-
-#### Merged Pull Requests
-- add release notes for 3.3 [#1725](https://github.com/chef/chef-dk/pull/1725) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.23 -->
-- Bump Chef to 14.5.33 [#1723](https://github.com/chef/chef-dk/pull/1723) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.22 -->
-- Add new option update-strategy for policy updates [#1594](https://github.com/chef/chef-dk/pull/1594) ([kamaradclimber](https://github.com/kamaradclimber)) <!-- 3.3.21 -->
-- Add a deprecation warning for chef generate app / lwrp [#1719](https://github.com/chef/chef-dk/pull/1719) ([tas50](https://github.com/tas50)) <!-- 3.3.20 -->
-- Update chef generate cookbook to require Chef 13 [#1717](https://github.com/chef/chef-dk/pull/1717) ([tas50](https://github.com/tas50)) <!-- 3.3.19 -->
-- Bump chef-vault to 3.4.2 [#1714](https://github.com/chef/chef-dk/pull/1714) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.17 -->
-- Bump Chef to 14.5.27 [#1711](https://github.com/chef/chef-dk/pull/1711) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.16 -->
-- Update chef-vault to 3.4.1 [#1712](https://github.com/chef/chef-dk/pull/1712) ([tas50](https://github.com/tas50)) <!-- 3.3.15 -->
-- Bump chef-vault to 3.4.0 [#1710](https://github.com/chef/chef-dk/pull/1710) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.14 -->
-- Bump inspec to 2.2.112 [#1706](https://github.com/chef/chef-dk/pull/1706) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.13 -->
-- Include more information about the policy in `chef push` output [#1704](https://github.com/chef/chef-dk/pull/1704) ([danielsdeleo](https://github.com/danielsdeleo)) <!-- 3.3.12 -->
-- Bump ohai to 14.5.4 [#1703](https://github.com/chef/chef-dk/pull/1703) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.11 -->
-- Bump inspec-core to 2.2.102 [#1702](https://github.com/chef/chef-dk/pull/1702) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.10 -->
-- Update chefspec to 7.3.2 [#1700](https://github.com/chef/chef-dk/pull/1700) ([tas50](https://github.com/tas50)) <!-- 3.3.9 -->
-- Update libarchive to 3.3.3 [#1698](https://github.com/chef/chef-dk/pull/1698) ([tas50](https://github.com/tas50)) <!-- 3.3.8 -->
-- Bump ohai to 14.5.0 [#1699](https://github.com/chef/chef-dk/pull/1699) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.7 -->
-- Bump train-core to 1.4.37 [#1695](https://github.com/chef/chef-dk/pull/1695) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.5 -->
-- Bump train to 1.4.37 [#1694](https://github.com/chef/chef-dk/pull/1694) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.3 -->
-- Update fog-openstack, winrm-fs, inspec, and chefspec [#1692](https://github.com/chef/chef-dk/pull/1692) ([tas50](https://github.com/tas50)) <!-- 3.3.2 -->
-- Bump chefspec to 7.3. [#1688](https://github.com/chef/chef-dk/pull/1688) ([coderanger](https://github.com/coderanger)) <!-- 3.3.1 -->
-- Update to Foodcritic 14.1.0 [#1687](https://github.com/chef/chef-dk/pull/1687) ([tas50](https://github.com/tas50)) <!-- 3.3.0 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.3.23](https://github.com/chef/chef-dk/tree/v3.3.23) (2018-09-26)
+
+#### Merged Pull Requests
+- Update to Foodcritic 14.1.0 [#1687](https://github.com/chef/chef-dk/pull/1687) ([tas50](https://github.com/tas50))
+- Bump chefspec to 7.3. [#1688](https://github.com/chef/chef-dk/pull/1688) ([coderanger](https://github.com/coderanger))
+- Update fog-openstack, winrm-fs, inspec, and chefspec [#1692](https://github.com/chef/chef-dk/pull/1692) ([tas50](https://github.com/tas50))
+- Bump train to 1.4.37 [#1694](https://github.com/chef/chef-dk/pull/1694) ([chef-ci](https://github.com/chef-ci))
+- Bump train-core to 1.4.37 [#1695](https://github.com/chef/chef-dk/pull/1695) ([chef-ci](https://github.com/chef-ci))
+- Bump ohai to 14.5.0 [#1699](https://github.com/chef/chef-dk/pull/1699) ([chef-ci](https://github.com/chef-ci))
+- Update libarchive to 3.3.3 [#1698](https://github.com/chef/chef-dk/pull/1698) ([tas50](https://github.com/tas50))
+- Update chefspec to 7.3.2 [#1700](https://github.com/chef/chef-dk/pull/1700) ([tas50](https://github.com/tas50))
+- Bump inspec-core to 2.2.102 [#1702](https://github.com/chef/chef-dk/pull/1702) ([chef-ci](https://github.com/chef-ci))
+- Bump ohai to 14.5.4 [#1703](https://github.com/chef/chef-dk/pull/1703) ([chef-ci](https://github.com/chef-ci))
+- Include more information about the policy in `chef push` output [#1704](https://github.com/chef/chef-dk/pull/1704) ([danielsdeleo](https://github.com/danielsdeleo))
+- Bump inspec to 2.2.112 [#1706](https://github.com/chef/chef-dk/pull/1706) ([chef-ci](https://github.com/chef-ci))
+- Bump chef-vault to 3.4.0 [#1710](https://github.com/chef/chef-dk/pull/1710) ([chef-ci](https://github.com/chef-ci))
+- Update chef-vault to 3.4.1 [#1712](https://github.com/chef/chef-dk/pull/1712) ([tas50](https://github.com/tas50))
+- Bump Chef to 14.5.27 [#1711](https://github.com/chef/chef-dk/pull/1711) ([chef-ci](https://github.com/chef-ci))
+- Bump chef-vault to 3.4.2 [#1714](https://github.com/chef/chef-dk/pull/1714) ([chef-ci](https://github.com/chef-ci))
+- Update chef generate cookbook to require Chef 13 [#1717](https://github.com/chef/chef-dk/pull/1717) ([tas50](https://github.com/tas50))
+- Add a deprecation warning for chef generate app / lwrp [#1719](https://github.com/chef/chef-dk/pull/1719) ([tas50](https://github.com/tas50))
+- Add new option update-strategy for policy updates [#1594](https://github.com/chef/chef-dk/pull/1594) ([kamaradclimber](https://github.com/kamaradclimber))
+- Bump Chef to 14.5.33 [#1723](https://github.com/chef/chef-dk/pull/1723) ([chef-ci](https://github.com/chef-ci))
+- add release notes for 3.3 [#1725](https://github.com/chef/chef-dk/pull/1725) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_stable_release -->
+
 ## [v3.2.30](https://github.com/chef/chef-dk/tree/v3.2.30) (2018-09-04)
 
 #### Merged Pull Requests
@@ -74,7 +72,6 @@
 - Switch docker container to Ubuntu 18.04 and fix Ruby path [#1684](https://github.com/chef/chef-dk/pull/1684) ([tas50](https://github.com/tas50))
 - Unpin Chef because Expeditor now manages stable pushes to Rubygems [#1685](https://github.com/chef/chef-dk/pull/1685) ([tyler-ball](https://github.com/tyler-ball))
 - Preparing release notes for 3.2 release [#1686](https://github.com/chef/chef-dk/pull/1686) ([tyler-ball](https://github.com/tyler-ball))
-<!-- latest_stable_release -->
 
 ## [v3.1.0](https://github.com/chef/chef-dk/tree/v3.1.0) (2018-07-05)
 
