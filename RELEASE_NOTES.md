@@ -1,3 +1,36 @@
+# ChefDK 3.3 Release Notes
+
+## Chef 14.5.33
+
+ChefDK now ships with Chef 14.5.33\. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
+## New Functionality
+
+* New option: `chef update --exclude-deps` for policyfiles will only update a cookbooks given on the command line.
+
+## Updated Tooling
+
+### ChefSpec
+
+ChefSpec 7.3.2 greatly simplifies the syntax as well as allows testing of custom resources.
+See the [README](https://github.com/chefspec/chefspec/blob/v7.3.2/README.md) and especially the section on
+[testing custom resoures](https://github.com/chefspec/chefspec/blob/v7.3.2/README.md#testing-a-custom-resource) for
+examples of the new syntax.
+
+## Updated Components and Tools
+
+* `chef-provisioning-aws`: 3.0.4 -> 3.0.6
+* `chef-vault`: 3.3.0 -> 3.4.2
+* `foodcritic`: 14.0.0 -> 14.1.0
+* `inspec`: 2.2.70 -> 2.2.112
+* `kitchen-inspec`: 0.23.1 -> 0.24.0
+* `kitchen-vagrant`: 1.3.3 -> 1.3.4
+
+## Deprecations
+
+* `chef generate app` - Application repos were a pattern that didn't take off.
+* `chef generate lwrp` - Use `chef generate resource`. Every supported release of Chef knows about custom resources. Custom resources are awesome. No one should be writing new LWRPs any more. LWRPS are not awesome.
+
 # ChefDK 3.2 Release Notes
 
 ## Chef 14.4.56
