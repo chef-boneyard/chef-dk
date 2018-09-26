@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.3.22 -->
-## [v3.3.22](https://github.com/chef/chef-dk/tree/v3.3.22) (2018-09-25)
+<!-- latest_release 3.3.23 -->
+## [v3.3.23](https://github.com/chef/chef-dk/tree/v3.3.23) (2018-09-26)
 
 #### Merged Pull Requests
-- Bump Chef to 14.5.33 [#1723](https://github.com/chef/chef-dk/pull/1723) ([chef-ci](https://github.com/chef-ci))
+- add release notes for 3.3 [#1725](https://github.com/chef/chef-dk/pull/1725) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.2.30 -->
 ### Changes since 3.2.30 release
 
 #### Merged Pull Requests
+- add release notes for 3.3 [#1725](https://github.com/chef/chef-dk/pull/1725) ([robbkidd](https://github.com/robbkidd)) <!-- 3.3.23 -->
 - Bump Chef to 14.5.33 [#1723](https://github.com/chef/chef-dk/pull/1723) ([chef-ci](https://github.com/chef-ci)) <!-- 3.3.22 -->
 - Add new option update-strategy for policy updates [#1594](https://github.com/chef/chef-dk/pull/1594) ([kamaradclimber](https://github.com/kamaradclimber)) <!-- 3.3.21 -->
 - Add a deprecation warning for chef generate app / lwrp [#1719](https://github.com/chef/chef-dk/pull/1719) ([tas50](https://github.com/tas50)) <!-- 3.3.20 -->
