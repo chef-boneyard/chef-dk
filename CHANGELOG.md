@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 2.6.0 -->
-## [v2.6.0](https://github.com/chef/chef-dk/tree/v2.6.0) (2018-09-26)
+<!-- latest_release 2.6.1 -->
+## [v2.6.1](https://github.com/chef/chef-dk/tree/v2.6.1) (2018-09-27)
 
 #### Merged Pull Requests
-- Update chef to 13.11 + rubyzip + update other deps [#1727](https://github.com/chef/chef-dk/pull/1727) ([tas50](https://github.com/tas50))
+- Preparing 2.6 release notes [#1729](https://github.com/chef/chef-dk/pull/1729) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=2.5.13 -->
 ### Changes since 2.5.13 release
 
 #### Merged Pull Requests
+- Preparing 2.6 release notes [#1729](https://github.com/chef/chef-dk/pull/1729) ([tyler-ball](https://github.com/tyler-ball)) <!-- 2.6.1 -->
 - Update chef to 13.11 + rubyzip + update other deps [#1727](https://github.com/chef/chef-dk/pull/1727) ([tas50](https://github.com/tas50)) <!-- 2.6.0 -->
 - Pull in multiple new knife/kitchen plugins [#1660](https://github.com/chef/chef-dk/pull/1660) ([tas50](https://github.com/tas50)) <!-- 2.5.15 -->
 - Updating OpenSSL to 1.0.2p [#1655](https://github.com/chef/chef-dk/pull/1655) ([tyler-ball](https://github.com/tyler-ball)) <!-- 2.5.14 -->
