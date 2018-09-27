@@ -1,3 +1,34 @@
+# ChefDK 2.6.1 Release Notes
+
+## Chef 13.11.3
+
+ChefDK now ships with Chef 13.11.3. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
+## Security Updates
+
+### LibArchive
+
+LibArchive has been updated to 3.3.3 to fix `CVE-2017-14501`, `CVE-2017-14502`, `CVE-2017-14503` and `CVE-2017-14166`.
+
+### OpenSSL
+
+OpenSSL has been updated to 1.0.2p to resolve `CVE-2018-0732` and `CVE-2018-0737`.
+
+### rubyzip
+
+Rubyzip has been updated to 1.2.2 to resolve `CVE-2018-1000544`.
+
+## Updated Components
+
+- `chef-provisioning` 2.7.1 -> 2.7.2
+- `chef-provisioning-aws` 3.0.2 -> 3.0.6
+- `kitchen-google` 1.4.0 -> 1.5.0
+- `kitchen-inspec` 0.23.1 -> 0.24.0
+- `kitchen-vagrant` 1.3.2 -> 1.3.3
+- `knife-ec2` 0.18.2 -> 0.19.10
+- `knife-google` 3.2.0 -> 3.3.0
+- `mixlib-install` 3.11.2 -> 3.11.5
+
 # ChefDK 2.5.13 Release Notes
 
 ## Chef 13.10.4
