@@ -1,3 +1,5 @@
+# Next Version (unreleased)
+
 # ChefDK 3.3 Release Notes
 
 ## Chef 14.5.33
@@ -6,7 +8,7 @@ ChefDK now ships with Chef 14.5.33\. See <https://docs.chef.io/release_notes.htm
 
 ## New Functionality
 
-* New option: `chef update --exclude-deps` for policyfiles will only update a cookbooks given on the command line.
+* New option: `chef update --exclude-deps` for policyfiles will only update the cookbook(s) given on the command line.
 
 ## Updated Tooling
 
