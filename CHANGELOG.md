@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.4 -->
-## [v3.4.4](https://github.com/chef/chef-dk/tree/v3.4.4) (2018-10-05)
+<!-- latest_release 3.4.5 -->
+## [v3.4.5](https://github.com/chef/chef-dk/tree/v3.4.5) (2018-10-05)
 
 #### Merged Pull Requests
-- clean up gem cache + docs before packaging [#1742](https://github.com/chef/chef-dk/pull/1742) ([lamont-granquist](https://github.com/lamont-granquist))
+- Update nokogiri, kitchen-google, kitchen-ec2, and kitchen-digitalocean [#1746](https://github.com/chef/chef-dk/pull/1746) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.23 -->
 ### Changes since 3.3.23 release
 
 #### Merged Pull Requests
+- Update nokogiri, kitchen-google, kitchen-ec2, and kitchen-digitalocean [#1746](https://github.com/chef/chef-dk/pull/1746) ([tas50](https://github.com/tas50)) <!-- 3.4.5 -->
 - clean up gem cache + docs before packaging [#1742](https://github.com/chef/chef-dk/pull/1742) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.4.4 -->
 - Update Foodcritic to 14.2.0 [#1739](https://github.com/chef/chef-dk/pull/1739) ([tas50](https://github.com/tas50)) <!-- 3.4.3 -->
 - Bump to the latest kitchen-azurerm [#1738](https://github.com/chef/chef-dk/pull/1738) ([tas50](https://github.com/tas50)) <!-- 3.4.2 -->
