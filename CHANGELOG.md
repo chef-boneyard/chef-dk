@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.3 -->
-## [v3.4.3](https://github.com/chef/chef-dk/tree/v3.4.3) (2018-10-04)
+<!-- latest_release 3.4.4 -->
+## [v3.4.4](https://github.com/chef/chef-dk/tree/v3.4.4) (2018-10-05)
 
 #### Merged Pull Requests
-- Update Foodcritic to 14.2.0 [#1739](https://github.com/chef/chef-dk/pull/1739) ([tas50](https://github.com/tas50))
+- clean up gem cache + docs before packaging [#1742](https://github.com/chef/chef-dk/pull/1742) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.23 -->
 ### Changes since 3.3.23 release
 
 #### Merged Pull Requests
+- clean up gem cache + docs before packaging [#1742](https://github.com/chef/chef-dk/pull/1742) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.4.4 -->
 - Update Foodcritic to 14.2.0 [#1739](https://github.com/chef/chef-dk/pull/1739) ([tas50](https://github.com/tas50)) <!-- 3.4.3 -->
 - Bump to the latest kitchen-azurerm [#1738](https://github.com/chef/chef-dk/pull/1738) ([tas50](https://github.com/tas50)) <!-- 3.4.2 -->
 - Update to the latest fauxhai and specinfra [#1734](https://github.com/chef/chef-dk/pull/1734) ([tas50](https://github.com/tas50)) <!-- 3.4.1 -->
