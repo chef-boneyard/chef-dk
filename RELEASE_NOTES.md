@@ -1,5 +1,17 @@
 # Next Version (unreleased)
 
+# Unreleased
+
+## Updated Tooling
+
+### Kitchen EC2
+
+Kitchen EC2 has been updated to better support Windows systems. The auto-generated security group will now include support for RDP and the log directory will alway be created.
+
+### Kitchen Google
+
+Kitchen Google now includes support for adding labels to instances with a new `labels` config that accepts labels as a hash.
+
 # ChefDK 3.3 Release Notes
 
 ## Chef 14.5.33
