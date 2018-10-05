@@ -79,6 +79,8 @@ if windows?
   dependency "ruby-windows-system-libraries"
 end
 
+dependency "chef-cleanup"
+
 package :rpm do
   signing_passphrase ENV["OMNIBUS_RPM_SIGNING_PASSPHRASE"]
 end

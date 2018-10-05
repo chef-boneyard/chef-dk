@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 8e69931190ce86dc3f6e1644127790638a954007
+  revision: 67a458d2e8a55b267fe0b47f6e1ec9c01e097137
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -31,13 +31,13 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     awesome_print (1.8.0)
-    aws-sdk (2.11.140)
-      aws-sdk-resources (= 2.11.140)
-    aws-sdk-core (2.11.140)
+    aws-sdk (2.11.144)
+      aws-sdk-resources (= 2.11.144)
+    aws-sdk-core (2.11.144)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.140)
-      aws-sdk-core (= 2.11.140)
+    aws-sdk-resources (2.11.144)
+      aws-sdk-core (= 2.11.144)
     aws-sigv4 (1.0.3)
     berkshelf (7.0.6)
       chef (>= 13.6.52)
@@ -84,48 +84,6 @@ GEM
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (14.5.33-universal-mingw32)
-      addressable
-      bundler (>= 1.10)
-      chef-config (= 14.5.33)
-      chef-zero (>= 13.0)
-      diff-lcs (~> 1.2, >= 1.2.4)
-      erubis (~> 2.7)
-      ffi (~> 1.9, >= 1.9.25)
-      ffi-yajl (~> 2.2)
-      highline (~> 1.6, >= 1.6.9)
-      iniparse (~> 1.4)
-      iso8601 (~> 0.11.0)
-      mixlib-archive (~> 0.4)
-      mixlib-authentication (~> 2.1)
-      mixlib-cli (~> 1.7)
-      mixlib-log (~> 2.0, >= 2.0.3)
-      mixlib-shellout (~> 2.4)
-      net-sftp (~> 2.1, >= 2.1.2)
-      net-ssh (~> 4.2)
-      net-ssh-multi (~> 1.2, >= 1.2.1)
-      ohai (~> 14.0)
-      plist (~> 3.2)
-      proxifier (~> 1.0)
-      rspec-core (~> 3.5, < 3.8)
-      rspec-expectations (~> 3.5, < 3.8)
-      rspec-mocks (~> 3.5, < 3.8)
-      rspec_junit_formatter (~> 0.2.0)
-      serverspec (~> 2.7)
-      specinfra (~> 2.10)
-      syslog-logger (~> 1.6)
-      uuidtools (~> 2.1.5)
-      win32-api (~> 1.5.3)
-      win32-dir (~> 0.5.0)
-      win32-event (~> 0.6.1)
-      win32-eventlog (= 0.6.3)
-      win32-mmap (~> 0.4.1)
-      win32-mutex (~> 0.4.2)
-      win32-process (~> 0.8.2)
-      win32-service (~> 1.0)
-      win32-taskscheduler (~> 1.0.0)
-      windows-api (~> 0.4.4)
-      wmi-lite (~> 1.0)
     chef-config (14.5.33)
       addressable
       fuzzyurl
@@ -147,10 +105,6 @@ GEM
     faraday (0.15.3)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
-    ffi (1.9.25-x64-mingw32)
-    ffi (1.9.25-x86-mingw32)
-    ffi-win32-extensions (1.0.3)
-      ffi
     ffi-yajl (2.3.1)
       libyajl2 (~> 1.2)
     fuzzyurl (0.9.0)
@@ -190,9 +144,6 @@ GEM
       thor
     mixlib-log (2.0.4)
     mixlib-shellout (2.4.0)
-    mixlib-shellout (2.4.0-universal-mingw32)
-      win32-process (~> 0.8.2)
-      wmi-lite (~> 1.0)
     mixlib-versioning (1.2.2)
     molinillo (0.6.6)
     multi_json (1.13.1)
@@ -275,7 +226,6 @@ GEM
       net-ssh (>= 2.7)
       net-telnet (= 0.1.1)
       sfl
-    structured_warnings (0.3.0)
     syslog-logger (1.6.8)
     systemu (2.6.5)
     test-kitchen (1.23.2)
@@ -293,29 +243,6 @@ GEM
       citrus (~> 3.0, > 3.0)
     tomlrb (1.2.7)
     uuidtools (2.1.5)
-    win32-api (1.5.3-universal-mingw32)
-    win32-dir (0.5.1)
-      ffi (>= 1.0.0)
-    win32-event (0.6.3)
-      win32-ipc (>= 0.6.0)
-    win32-eventlog (0.6.3)
-      ffi
-    win32-ipc (0.7.0)
-      ffi
-    win32-mmap (0.4.2)
-      ffi
-    win32-mutex (0.4.3)
-      win32-ipc (>= 0.6.0)
-    win32-process (0.8.3)
-      ffi (>= 1.0.0)
-    win32-service (1.0.1)
-      ffi
-      ffi-win32-extensions
-    win32-taskscheduler (1.0.10)
-      ffi
-      structured_warnings
-    windows-api (0.4.4)
-      win32-api (>= 1.4.5)
     winrm (2.2.3)
       builder (>= 2.1.2)
       erubis (~> 2.7)
@@ -338,8 +265,6 @@ GEM
 
 PLATFORMS
   ruby
-  x64-mingw32
-  x86-mingw32
 
 DEPENDENCIES
   berkshelf (>= 7.0)
@@ -351,4 +276,4 @@ DEPENDENCIES
   winrm-elevated
 
 BUNDLED WITH
-   1.16.5
+   1.16.1
