@@ -1,21 +1,20 @@
-ChefDK Omnibus project
-============================
+# ChefDK Omnibus project
+
 This project creates full-stack platform-specific packages for ChefDK.
 
 Note that the repository name is chef-dk but the omnibus project definition is
 chefdk. This is a historical artifact that may eventually get fixed.
 
-Installation
-------------
-You must have a sane Ruby 1.9+ environment with Bundler installed. Ensure all
-the required gems are installed:
+## Installation
+
+You must have a sane Ruby environment with Bundler installed. Ensure all the required gems are installed:
 
 ```shell
 $ bundle install --without development
 ```
 
-Usage
------
+## Usage
+
 ### Build
 
 You create a platform-specific package using the `build project` command:
@@ -24,23 +23,17 @@ You create a platform-specific package using the `build project` command:
 $ bundle exec omnibus build chefdk
 ```
 
-The platform/architecture type of the package created will match the platform
-where the `build project` command is invoked. For example, running this command
-on a MacBook Pro will generate a Mac OS X package. After the build completes
-packages will be available in the `pkg/` folder.
+The platform/architecture type of the package created will match the platform where the `build project` command is invoked. For example, running this command on a MacBook Pro will generate a macOS package. After the build completes packages will be available in the `pkg/` folder.
 
 ### Clean
 
-You can clean up all temporary files generated during the build process with
-the `clean` command:
+You can clean up all temporary files generated during the build process with the `clean` command:
 
 ```shell
 $ bundle exec omnibus clean chefdk
 ```
 
-Adding the `--purge` purge option removes __ALL__ files generated during the
-build including the project install directory (`/opt/chef`) and
-the package cache directory (`/var/cache/omnibus/pkg`):
+Adding the `--purge` purge option removes **ALL** files generated during the build including the project install directory (`/opt/chefdk`) and the package cache directory (`/var/cache/omnibus/pkg`):
 
 ```shell
 $ bundle exec omnibus clean chefdk --purge
@@ -48,9 +41,7 @@ $ bundle exec omnibus clean chefdk --purge
 
 ### Publish
 
-Omnibus has a built-in mechanism for releasing to a variety of "backends", such
-as Amazon S3 and Artifactory. You must set the proper credentials in your `omnibus.rb`
-config file or specify them via the command line.
+Omnibus has a built-in mechanism for releasing to a variety of "backends", such as Amazon S3 and Artifactory. You must set the proper credentials in your `omnibus.rb` config file or specify them via the command line.
 
 ```shell
 $ bundle exec omnibus publish path/to/*.deb --backend s3
@@ -58,36 +49,24 @@ $ bundle exec omnibus publish path/to/*.deb --backend s3
 
 ### Help
 
-Full help for the Omnibus command line interface can be accessed with the
-`help` command:
+Full help for the Omnibus command line interface can be accessed with the `help` command:
 
 ```shell
 $ bundle exec omnibus help
 ```
 
-Kitchen-based Build Environment
--------------------------------
-Every Omnibus project ships will a project-specific
-[Berksfile](http://berkshelf.com/) that will allow you to build your omnibus projects on all of the projects listed
-in the `.kitchen.yml`. You can add/remove additional platforms as needed by
-changing the list found in the `.kitchen.yml` `platforms` YAML stanza.
+## Kitchen-based Build Environment
 
-This build environment is designed to get you up-and-running quickly. However,
-there is nothing that restricts you to building on other platforms. Simply use
-the [omnibus cookbook](https://github.com/chef-cookbooks/omnibus) to setup
-your desired platform and execute the build steps listed above.
+Every Omnibus project ships will a project-specific [Berksfile](https://docs.chef.io/berkshelf.html) that will allow you to build your omnibus projects on all of the projects listed in the `kitchen.yml`. You can add/remove additional platforms as needed by changing the list found in the `kitchen.yml` `platforms` YAML stanza.
 
-The default build environment requires Test Kitchen and VirtualBox for local
-development. Test Kitchen also exposes the ability to provision instances using
-various cloud providers like AWS, DigitalOcean, or OpenStack. For more
-information, please see the [Test Kitchen documentation](http://kitchen.ci).
+This build environment is designed to get you up-and-running quickly. However, there is nothing that restricts you to building on other platforms. Simply use the [omnibus cookbook](https://github.com/chef-cookbooks/omnibus) to setup your desired platform and execute the build steps listed above.
 
-Once you have tweaked your `.kitchen.yml` (or `.kitchen.local.yml`) to your
-liking, you can bring up an individual build environment using the `kitchen`
-command.
+The default build environment requires Test Kitchen and VirtualBox for local development. Test Kitchen also exposes the ability to provision instances using various cloud providers like AWS, DigitalOcean, or OpenStack. For more information, please see the [Test Kitchen documentation](http://kitchen.ci).
+
+Once you have tweaked your `kitchen.yml` (or `kitchen.local.yml`) to your liking, you can bring up an individual build environment using the `kitchen` command.
 
 ```shell
-$ bundle exec kitchen converge chefdk-ubuntu-1204
+$ bundle exec kitchen converge chefdk-ubuntu-1804
 ```
 
 Then login to the instance and build the project as described in the Usage
@@ -122,13 +101,12 @@ C:\vagrant\code\chef-dk\omnibus>bundle install --without development
 C:\vagrant\code\chef-dk\omnibus>bundle exec omnibus build chefdk -l internal
 ```
 
-For a complete list of all commands and platforms, run `kitchen list` or
-`kitchen help`.
+For a complete list of all commands and platforms, run `kitchen list` or `kitchen help`.
 
-License
--------
+## License
+
 ```text
-Copyright 2012-2014 Chef Software, Inc.
+Copyright 2012-2018, Chef Software, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
