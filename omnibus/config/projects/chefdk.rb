@@ -83,6 +83,13 @@ dependency "chef-cleanup"
 
 package :rpm do
   signing_passphrase ENV["OMNIBUS_RPM_SIGNING_PASSPHRASE"]
+  compression_level 1
+  compression_type :xz
+end
+
+package :deb do
+  compression_level 1
+  compression_type :xz
 end
 
 package :pkg do
