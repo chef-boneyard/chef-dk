@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.6 -->
-## [v3.4.6](https://github.com/chef/chef-dk/tree/v3.4.6) (2018-10-06)
+<!-- latest_release 3.4.7 -->
+## [v3.4.7](https://github.com/chef/chef-dk/tree/v3.4.7) (2018-10-06)
 
 #### Merged Pull Requests
-- Update omnibus kitchen config to match chef-client [#1749](https://github.com/chef/chef-dk/pull/1749) ([tas50](https://github.com/tas50))
+- Enable deb/rpm compression [#1748](https://github.com/chef/chef-dk/pull/1748) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.23 -->
 ### Changes since 3.3.23 release
 
 #### Merged Pull Requests
+- Enable deb/rpm compression [#1748](https://github.com/chef/chef-dk/pull/1748) ([tas50](https://github.com/tas50)) <!-- 3.4.7 -->
 - Update omnibus kitchen config to match chef-client [#1749](https://github.com/chef/chef-dk/pull/1749) ([tas50](https://github.com/tas50)) <!-- 3.4.6 -->
 - Update nokogiri, kitchen-google, kitchen-ec2, and kitchen-digitalocean [#1746](https://github.com/chef/chef-dk/pull/1746) ([tas50](https://github.com/tas50)) <!-- 3.4.5 -->
 - clean up gem cache + docs before packaging [#1742](https://github.com/chef/chef-dk/pull/1742) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.4.4 -->
