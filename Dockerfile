@@ -23,6 +23,6 @@ RUN apt-get update && \
     wget --content-disposition "http://packages.chef.io/files/${CHANNEL}/chefdk/${VERSION}/ubuntu/18.04/chefdk_${VERSION}-1_amd64.deb" -O /tmp/chefdk.deb && \
     dpkg -i /tmp/chefdk.deb && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/*log /var/log/apt/* /var/lib/dpkg/*-old /var/cache/debconf/*-old
 
 CMD ["/bin/bash"]
