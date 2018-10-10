@@ -1,6 +1,6 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.9 -->
-## [v3.4.9](https://github.com/chef/chef-dk/tree/v3.4.9) (2018-10-10)
+<!-- latest_release 3.4.10 -->
+## [v3.4.10](https://github.com/chef/chef-dk/tree/v3.4.10) (2018-10-10)
 
 #### Merged Pull Requests
 - Manually updating dependencies b/c there was an Expeditor outtage earlier [#1750](https://github.com/chef/chef-dk/pull/1750) ([tyler-ball](https://github.com/tyler-ball))
