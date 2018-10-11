@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.146)
-      aws-sdk-resources (= 2.11.146)
-    aws-sdk-core (2.11.146)
+    aws-sdk (2.11.147)
+      aws-sdk-resources (= 2.11.147)
+    aws-sdk-core (2.11.147)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.146)
-      aws-sdk-core (= 2.11.146)
+    aws-sdk-resources (2.11.147)
+      aws-sdk-core (= 2.11.147)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -755,7 +755,7 @@ GEM
     win32-service (1.0.1)
       ffi
       ffi-win32-extensions
-    win32-taskscheduler (1.0.10)
+    win32-taskscheduler (1.0.12)
       ffi
       structured_warnings
     windows-api (0.4.4)
@@ -870,4 +870,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.16.6
+   1.16.5
