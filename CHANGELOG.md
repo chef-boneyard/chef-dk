@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.10 -->
-## [v3.4.10](https://github.com/chef/chef-dk/tree/v3.4.10) (2018-10-10)
+<!-- latest_release 3.4.11 -->
+## [v3.4.11](https://github.com/chef/chef-dk/tree/v3.4.11) (2018-10-11)
 
 #### Merged Pull Requests
-- Manually updating dependencies b/c there was an Expeditor outtage earlier [#1750](https://github.com/chef/chef-dk/pull/1750) ([tyler-ball](https://github.com/tyler-ball))
+- Bump win32-taskscheduler to 1.0.12 [#1751](https://github.com/chef/chef-dk/pull/1751) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.23 -->
 ### Changes since 3.3.23 release
 
 #### Merged Pull Requests
+- Bump win32-taskscheduler to 1.0.12 [#1751](https://github.com/chef/chef-dk/pull/1751) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.11 -->
 - Manually updating dependencies b/c there was an Expeditor outtage earlier [#1750](https://github.com/chef/chef-dk/pull/1750) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.4.9 -->
 - Delete logs and file backups in the Docker image [#1747](https://github.com/chef/chef-dk/pull/1747) ([tas50](https://github.com/tas50)) <!-- 3.4.8 -->
 - Enable deb/rpm compression [#1748](https://github.com/chef/chef-dk/pull/1748) ([tas50](https://github.com/tas50)) <!-- 3.4.7 -->
