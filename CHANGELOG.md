@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.12 -->
-## [v3.4.12](https://github.com/chef/chef-dk/tree/v3.4.12) (2018-10-11)
+<!-- latest_release 3.4.13 -->
+## [v3.4.13](https://github.com/chef/chef-dk/tree/v3.4.13) (2018-10-15)
 
 #### Merged Pull Requests
-- Bump ohai to 14.6.2 [#1752](https://github.com/chef/chef-dk/pull/1752) ([chef-ci](https://github.com/chef-ci))
+- Enable x86_64-linux-kernel2 habitat builds for chef-dk [#1743](https://github.com/chef/chef-dk/pull/1743) ([smacfarlane](https://github.com/smacfarlane))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.23 -->
 ### Changes since 3.3.23 release
 
 #### Merged Pull Requests
+- Enable x86_64-linux-kernel2 habitat builds for chef-dk [#1743](https://github.com/chef/chef-dk/pull/1743) ([smacfarlane](https://github.com/smacfarlane)) <!-- 3.4.13 -->
 - Bump ohai to 14.6.2 [#1752](https://github.com/chef/chef-dk/pull/1752) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.12 -->
 - Bump win32-taskscheduler to 1.0.12 [#1751](https://github.com/chef/chef-dk/pull/1751) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.11 -->
 - Manually updating dependencies b/c there was an Expeditor outtage earlier [#1750](https://github.com/chef/chef-dk/pull/1750) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.4.9 -->
