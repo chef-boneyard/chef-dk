@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.13 -->
-## [v3.4.13](https://github.com/chef/chef-dk/tree/v3.4.13) (2018-10-15)
+<!-- latest_release 3.4.14 -->
+## [v3.4.14](https://github.com/chef/chef-dk/tree/v3.4.14) (2018-10-15)
 
 #### Merged Pull Requests
-- Enable x86_64-linux-kernel2 habitat builds for chef-dk [#1743](https://github.com/chef/chef-dk/pull/1743) ([smacfarlane](https://github.com/smacfarlane))
+- Update dependencies to bring in new winrm-fs [#1759](https://github.com/chef/chef-dk/pull/1759) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.23 -->
 ### Changes since 3.3.23 release
 
 #### Merged Pull Requests
+- Update dependencies to bring in new winrm-fs [#1759](https://github.com/chef/chef-dk/pull/1759) ([tas50](https://github.com/tas50)) <!-- 3.4.14 -->
 - Enable x86_64-linux-kernel2 habitat builds for chef-dk [#1743](https://github.com/chef/chef-dk/pull/1743) ([smacfarlane](https://github.com/smacfarlane)) <!-- 3.4.13 -->
 - Bump ohai to 14.6.2 [#1752](https://github.com/chef/chef-dk/pull/1752) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.12 -->
 - Bump win32-taskscheduler to 1.0.12 [#1751](https://github.com/chef/chef-dk/pull/1751) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.11 -->
