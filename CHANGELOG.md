@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.15 -->
-## [v3.4.15](https://github.com/chef/chef-dk/tree/v3.4.15) (2018-10-16)
+<!-- latest_release 3.4.16 -->
+## [v3.4.16](https://github.com/chef/chef-dk/tree/v3.4.16) (2018-10-16)
 
 #### Merged Pull Requests
-- Fix chef-apply subscription [#1763](https://github.com/chef/chef-dk/pull/1763) ([jonsmorrow](https://github.com/jonsmorrow))
+- Fixing expeditor subscriptions to listen to proper events [#1765](https://github.com/chef/chef-dk/pull/1765) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.23 -->
 ### Changes since 3.3.23 release
 
 #### Merged Pull Requests
+- Fixing expeditor subscriptions to listen to proper events [#1765](https://github.com/chef/chef-dk/pull/1765) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.4.16 -->
 - Fix chef-apply subscription [#1763](https://github.com/chef/chef-dk/pull/1763) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.4.15 -->
 - Update dependencies to bring in new winrm-fs [#1759](https://github.com/chef/chef-dk/pull/1759) ([tas50](https://github.com/tas50)) <!-- 3.4.14 -->
 - Enable x86_64-linux-kernel2 habitat builds for chef-dk [#1743](https://github.com/chef/chef-dk/pull/1743) ([smacfarlane](https://github.com/smacfarlane)) <!-- 3.4.13 -->
