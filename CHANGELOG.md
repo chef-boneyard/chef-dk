@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.17 -->
-## [v3.4.17](https://github.com/chef/chef-dk/tree/v3.4.17) (2018-10-16)
+<!-- latest_release 3.4.18 -->
+## [v3.4.18](https://github.com/chef/chef-dk/tree/v3.4.18) (2018-10-16)
 
 #### Merged Pull Requests
-- Bump chef-apply to 0.2.0 [#1764](https://github.com/chef/chef-dk/pull/1764) ([chef-ci](https://github.com/chef-ci))
+- Turn of verify for chef-apply gem [#1766](https://github.com/chef/chef-dk/pull/1766) ([jonsmorrow](https://github.com/jonsmorrow))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.23 -->
 ### Changes since 3.3.23 release
 
 #### Merged Pull Requests
+- Turn of verify for chef-apply gem [#1766](https://github.com/chef/chef-dk/pull/1766) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.4.18 -->
 - Bump chef-apply to 0.2.0 [#1764](https://github.com/chef/chef-dk/pull/1764) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.17 -->
 - Fixing expeditor subscriptions to listen to proper events [#1765](https://github.com/chef/chef-dk/pull/1765) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.4.16 -->
 - Fix chef-apply subscription [#1763](https://github.com/chef/chef-dk/pull/1763) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.4.15 -->
