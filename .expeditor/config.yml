@@ -66,13 +66,13 @@ merge_actions:
       only_if: built_in:bump_version
 
 subscriptions:
-  - workload: artifact_published:unstable:chefdk:3*
+  - workload: artifact_published:unstable:chefdk:{{version_constraint}}
     actions:
       - built_in:build_docker_image
-  - workload: artifact_published:current:chefdk:3*
+  - workload: artifact_published:current:chefdk:{{version_constraint}}
     actions:
       - built_in:tag_docker_image
-  - workload: artifact_published:stable:chefdk:3*
+  - workload: artifact_published:stable:chefdk:{{version_constraint}}
     actions:
       - built_in:rollover_changelog
       - bash:.expeditor/update_dockerfile.sh
@@ -130,78 +130,78 @@ subscriptions:
   - workload: ruby_gem_published:cheffish-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: appbundler-*
+  - workload: ruby_gem_published:appbundler-*
     actions:
       - bash:.expeditor/update_dep.sh
   - workload: ruby_gem_published:chef-apply-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: chef-provisioning-*
+  - workload: ruby_gem_published:chef-provisioning-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: chef-provisioning-aws-*
+  - workload: ruby_gem_published:chef-provisioning-aws-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: chef-provisioning-fog-*
+  - workload: ruby_gem_published:chef-provisioning-fog-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: chef-telemetry-*
+  - workload: ruby_gem_published:chef-telemetry-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: chefstyle-*
+  - workload: ruby_gem_published:chefstyle-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: cookstyle-*
+  - workload: ruby_gem_published:cookstyle-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: knife-acl-*
+  - workload: ruby_gem_published:knife-acl-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: knife-cloud-*
+  - workload: ruby_gem_published:knife-cloud-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: knife-ec2-*
+  - workload: ruby_gem_published:knife-ec2-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: knife-google-*
+  - workload: ruby_gem_published:knife-google-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: knife-opc-*
+  - workload: ruby_gem_published:knife-opc-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: knife-push-*
+  - workload: ruby_gem_published:knife-push-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: knife-tidy-*
+  - workload: ruby_gem_published:knife-tidy-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: knife-vsphere-*
+  - workload: ruby_gem_published:knife-vsphere-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: knife-windows-*
+  - workload: ruby_gem_published:knife-windows-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: mixlib-install-*
+  - workload: ruby_gem_published:mixlib-install-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: mixlib-versioning-*
+  - workload: ruby_gem_published:mixlib-versioning-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: win32-event-*
+  - workload: ruby_gem_published:win32-event-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: win32-eventlog-*
+  - workload: ruby_gem_published:win32-eventlog-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: win32-ipc-*
+  - workload: ruby_gem_published:win32-ipc-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: win32-mmap-*
+  - workload: ruby_gem_published:win32-mmap-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: win32-mutex-*
+  - workload: ruby_gem_published:win32-mutex-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: wmi-lite-*
+  - workload: ruby_gem_published:wmi-lite-*
     actions:
       - bash:.expeditor/update_dep.sh
