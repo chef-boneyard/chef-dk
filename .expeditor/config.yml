@@ -133,7 +133,7 @@ subscriptions:
   - workload: appbundler-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: chef-apply-*
+  - workload: ruby_gem_published:chef-apply-*
     actions:
       - bash:.expeditor/update_dep.sh
   - workload: chef-provisioning-*
