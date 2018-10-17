@@ -142,7 +142,7 @@ GEM
     chef-api (0.8.0)
       logify (~> 0.1)
       mime-types
-    chef-apply (0.2.0)
+    chef-apply (0.2.1)
       chef (>= 14.0)
       chef-dk (>= 3.0)
       chef-telemetry
