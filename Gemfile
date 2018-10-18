@@ -28,7 +28,7 @@ group(:omnibus_package, :development, :test) do
   gem "yard"
   gem "guard"
   gem "cookstyle", ">= 2.0.0"
-  gem "foodcritic", ">= 12.1"
+  gem "foodcritic", "= 14.1.0"
   gem "ffi-libarchive"
 end
 
@@ -55,8 +55,8 @@ group(:omnibus_package) do
   gem "chef", "= 14.5.33"
   gem "cheffish", ">= 14.0.1"
   gem "chefspec", ">= 7.3.0"
-  gem "fauxhai", ">= 6.5.0"
-  gem "inspec", ">= 2.2.55"
+  gem "fauxhai", "= 6.6.0"
+  gem "inspec", "= 2.2.112"
   gem "kitchen-azurerm", ">= 0.14"
   gem "kitchen-ec2", ">= 2.2.2"
   gem "kitchen-digitalocean", ">= 0.10.0"
@@ -73,7 +73,7 @@ group(:omnibus_package) do
   gem "knife-opc", ">= 0.4.0"
   gem "knife-vsphere", ">= 2.1.1"
   gem "mixlib-archive", ">= 0.4.16"
-  gem "ohai", ">= 14.0.29"
+  gem "ohai", "= 14.5.4"
   gem "net-ssh", ">= 4.2.0"
   gem "test-kitchen", ">= 1.23.0"
   gem "listen"
@@ -83,6 +83,10 @@ group(:omnibus_package) do
   # dependency resolution occurs. Putting it elsewhere endangers older ChefDK issues of gem version
   # conflicts post-build.
   gem "chef-apply"
+
+  # Temporarily pinning this because 2.3.0 causes https://github.com/test-kitchen/test-kitchen/issues/1481
+  gem "winrm", "< 2.3.0"
+  gem "train", "= 1.4.37"
 
   # For Delivery build node
   gem "chef-sugar"

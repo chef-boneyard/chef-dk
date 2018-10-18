@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.136)
-      aws-sdk-resources (= 2.11.136)
-    aws-sdk-core (2.11.136)
+    aws-sdk (2.11.152)
+      aws-sdk-resources (= 2.11.152)
+    aws-sdk-core (2.11.152)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.136)
-      aws-sdk-core (= 2.11.136)
+    aws-sdk-resources (2.11.152)
+      aws-sdk-core (= 2.11.152)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -44,9 +44,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     azure_graph_rbac (0.17.0)
       ms_rest_azure (~> 0.11.0)
-    azure_mgmt_network (0.17.3)
+    azure_mgmt_network (0.17.4)
       ms_rest_azure (~> 0.11.0)
-    azure_mgmt_resources (0.17.1)
+    azure_mgmt_resources (0.17.2)
       ms_rest_azure (~> 0.11.0)
     backports (3.11.4)
     berkshelf (7.0.6)
@@ -142,7 +142,7 @@ GEM
     chef-api (0.8.0)
       logify (~> 0.1)
       mime-types
-    chef-apply (0.1.21)
+    chef-apply (0.2.1)
       chef (>= 14.0)
       chef-dk (>= 3.0)
       chef-telemetry
@@ -255,7 +255,7 @@ GEM
       multi_json
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    droplet_kit (2.4.0)
+    droplet_kit (2.6.0)
       activesupport (> 3.0, < 6)
       faraday (~> 0.9)
       kartograph (~> 0.2.3)
@@ -308,7 +308,7 @@ GEM
     fog-json (1.2.0)
       fog-core
       multi_json (~> 1.10)
-    fog-openstack (0.3.3)
+    fog-openstack (0.3.6)
       fog-core (>= 1.45, <= 2.1.0)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
@@ -384,7 +384,7 @@ GEM
     http-form_data (1.0.3)
     http_parser.rb (0.6.0)
     httpclient (2.8.3)
-    i18n (1.1.0)
+    i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     inifile (3.0.0)
@@ -416,25 +416,25 @@ GEM
     json (2.1.0)
     jwt (2.1.0)
     kartograph (0.2.7)
-    kitchen-azurerm (0.14.4)
+    kitchen-azurerm (0.14.5)
       azure_mgmt_network (~> 0.15, >= 0.15.0)
       azure_mgmt_resources (~> 0.15, >= 0.15.0)
       inifile (~> 3.0, >= 3.0.0)
       sshkey (~> 1, >= 1.0.0)
-    kitchen-digitalocean (0.10.0)
+    kitchen-digitalocean (0.10.1)
       droplet_kit (~> 2.3)
       test-kitchen (~> 1.17)
     kitchen-dokken (2.6.7)
       docker-api (~> 1.33)
       lockfile (~> 2.1)
       test-kitchen (~> 1.15)
-    kitchen-ec2 (2.2.2)
+    kitchen-ec2 (2.3.0)
       aws-sdk (~> 2)
       excon
       multi_json
       retryable (~> 2.0)
       test-kitchen (~> 1.4, >= 1.4.1)
-    kitchen-google (1.5.0)
+    kitchen-google (2.0.0)
       gcewinpass (~> 1.1)
       google-api-client (~> 0.19)
       test-kitchen
@@ -454,9 +454,9 @@ GEM
     knife-ec2 (0.19.10)
       fog-aws (>= 1, < 4)
       knife-windows (~> 1.0)
-    knife-google (3.3.0)
+    knife-google (3.3.3)
       gcewinpass (~> 1.1)
-      google-api-client (~> 0.19.8)
+      google-api-client (>= 0.19.8, < 0.25)
       knife-cloud (~> 1.2.0)
     knife-opc (0.4.0)
     knife-push (1.0.3)
@@ -496,7 +496,7 @@ GEM
     mini_portile2 (2.3.0)
     minitar (0.6.1)
     minitest (5.11.3)
-    mixlib-archive (0.4.16)
+    mixlib-archive (0.4.18)
       mixlib-log
     mixlib-authentication (2.1.1)
     mixlib-cli (1.7.0)
@@ -513,7 +513,7 @@ GEM
       wmi-lite (~> 1.0)
     mixlib-versioning (1.2.2)
     molinillo (0.6.6)
-    ms_rest (0.7.2)
+    ms_rest (0.7.3)
       concurrent-ruby (~> 1.0)
       faraday (~> 0.9)
       timeliness (~> 0.3)
@@ -538,17 +538,17 @@ GEM
       net-ssh-gateway (>= 1.2.0)
     net-telnet (0.1.1)
     netaddr (1.5.1)
-    nokogiri (1.8.4)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
-    nokogiri (1.8.4-x64-mingw32)
+    nokogiri (1.8.5-x64-mingw32)
       mini_portile2 (~> 2.3.0)
-    nokogiri (1.8.4-x86-mingw32)
+    nokogiri (1.8.5-x86-mingw32)
       mini_portile2 (~> 2.3.0)
     nori (2.6.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    octokit (4.12.0)
+    octokit (4.13.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     ohai (14.5.4)
       chef-config (>= 12.8, < 15)
@@ -662,7 +662,7 @@ GEM
       specinfra (~> 2.72)
     sfl (2.3)
     shellany (0.0.1)
-    signet (0.10.0)
+    signet (0.11.0)
       addressable (~> 2.3)
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
@@ -755,7 +755,7 @@ GEM
     win32-service (1.0.1)
       ffi
       ffi-win32-extensions
-    win32-taskscheduler (1.0.10)
+    win32-taskscheduler (1.0.12)
       ffi
       structured_warnings
     windows-api (0.4.4)
@@ -775,7 +775,7 @@ GEM
     winrm-elevated (1.1.0)
       winrm (~> 2.0)
       winrm-fs (~> 1.0)
-    winrm-fs (1.3.0)
+    winrm-fs (1.3.1)
       erubis (~> 2.7)
       logging (>= 1.6.1, < 3.0)
       rubyzip (~> 1.1)
@@ -810,12 +810,12 @@ DEPENDENCIES
   dco
   dep-selector-libgecode
   dep_selector
-  fauxhai (>= 6.5.0)
+  fauxhai (= 6.6.0)
   ffi-libarchive
   ffi-rzmq-core
-  foodcritic (>= 12.1)
+  foodcritic (= 14.1.0)
   guard
-  inspec (>= 2.2.55)
+  inspec (= 2.2.112)
   kitchen-azurerm (>= 0.14)
   kitchen-digitalocean (>= 0.10.0)
   kitchen-dokken (>= 2.6.7)
@@ -839,7 +839,7 @@ DEPENDENCIES
   mixlib-versioning
   net-ssh (>= 4.2.0)
   nokogiri
-  ohai (>= 14.0.29)
+  ohai (= 14.5.4)
   opscode-pushy-client (>= 2.4.11)
   pry
   pry-byebug
@@ -857,6 +857,7 @@ DEPENDENCIES
   ruby-shadow
   stove
   test-kitchen (>= 1.23.0)
+  train (= 1.4.37)
   win32-api
   win32-dir
   win32-event
@@ -865,9 +866,10 @@ DEPENDENCIES
   win32-service
   windows-api
   windows-pr
+  winrm (< 2.3.0)
   winrm-elevated
   winrm-fs
   yard
 
 BUNDLED WITH
-   1.16.5
+   1.16.6
