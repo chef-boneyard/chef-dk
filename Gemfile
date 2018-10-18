@@ -87,6 +87,7 @@ group(:omnibus_package) do
   # Temporarily pinning this because 2.3.0 causes https://github.com/test-kitchen/test-kitchen/issues/1481
   gem "winrm", "< 2.3.0"
   gem "train", "= 1.4.37"
+  gem "winrm-fs", "= 1.3.0"
 
   # For Delivery build node
   gem "chef-sugar"
@@ -105,7 +106,6 @@ group(:omnibus_package) do
   gem "pry-stack_explorer"
   gem "rb-readline"
   gem "rubocop"
-  gem "winrm-fs"
   gem "winrm-elevated"
   gem "cucumber"
   gem "stove"
