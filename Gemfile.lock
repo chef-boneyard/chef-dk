@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.151)
-      aws-sdk-resources (= 2.11.151)
-    aws-sdk-core (2.11.151)
+    aws-sdk (2.11.152)
+      aws-sdk-resources (= 2.11.152)
+    aws-sdk-core (2.11.152)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.151)
-      aws-sdk-core (= 2.11.151)
+    aws-sdk-resources (2.11.152)
+      aws-sdk-core (= 2.11.152)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -768,7 +768,7 @@ GEM
     windows-pr (1.2.6)
       win32-api (>= 1.4.5)
       windows-api (>= 0.4.0)
-    winrm (2.3.0)
+    winrm (2.2.3)
       builder (>= 2.1.2)
       erubis (~> 2.7)
       gssapi (~> 1.2)
@@ -870,6 +870,7 @@ DEPENDENCIES
   win32-service
   windows-api
   windows-pr
+  winrm (= 2.2.3)
   winrm-elevated
   winrm-fs
   yard
