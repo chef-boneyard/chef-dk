@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.21 -->
-## [v3.4.21](https://github.com/chef/chef-dk/tree/v3.4.21) (2018-10-17)
+<!-- latest_release 3.4.22 -->
+## [v3.4.22](https://github.com/chef/chef-dk/tree/v3.4.22) (2018-10-18)
 
 #### Merged Pull Requests
-- Bump chef-apply to 0.2.1 [#1770](https://github.com/chef/chef-dk/pull/1770) ([chef-ci](https://github.com/chef-ci))
+- Pin winrm to 2.2.3 to prevent Test Kitchen failures [#1773](https://github.com/chef/chef-dk/pull/1773) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.23 -->
 ### Changes since 3.3.23 release
 
 #### Merged Pull Requests
+- Pin winrm to 2.2.3 to prevent Test Kitchen failures [#1773](https://github.com/chef/chef-dk/pull/1773) ([tas50](https://github.com/tas50)) <!-- 3.4.22 -->
 - Bump chef-apply to 0.2.1 [#1770](https://github.com/chef/chef-dk/pull/1770) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.21 -->
 - Switch from chef-cleanup to ruby-cleanup definition [#1769](https://github.com/chef/chef-dk/pull/1769) ([tas50](https://github.com/tas50)) <!-- 3.4.20 -->
 - Update dependencies to the latest [#1768](https://github.com/chef/chef-dk/pull/1768) ([tas50](https://github.com/tas50)) <!-- 3.4.19 -->
