@@ -205,3 +205,30 @@ subscriptions:
   - workload: ruby_gem_published:wmi-lite-*
     actions:
       - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-azurerm-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-ec2-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-digitalocean-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-dokken-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-google-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-hyperv-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-inspec-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-vagrant-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:test-kitchen-*
+    actions:
+      - bash:.expeditor/update_dep.sh
