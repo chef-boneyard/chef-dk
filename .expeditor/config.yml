@@ -232,3 +232,12 @@ subscriptions:
   - workload: ruby_gem_published:test-kitchen-*
     actions:
       - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:foodcritic-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:chefspec-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:fauxhai-*
+    actions:
+      - bash:.expeditor/update_dep.sh
