@@ -79,9 +79,6 @@ group(:omnibus_package) do
   gem "listen"
   gem "dco"
 
-  # workaround failures in TK with the new gem for now 2018.10.18
-  gem "winrm", "= 2.2.3"
-
   # Right now we must import chef-apply as a gem into the ChefDK because this is where all the gem
   # dependency resolution occurs. Putting it elsewhere endangers older ChefDK issues of gem version
   # conflicts post-build.
