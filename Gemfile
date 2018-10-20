@@ -55,7 +55,7 @@ group(:omnibus_package) do
   gem "chef", "= 14.5.33"
   gem "cheffish", ">= 14.0.1"
   gem "chefspec", ">= 7.3.0"
-  gem "fauxhai", ">= 6.7"
+  gem "fauxhai", ">= 6.8"
   gem "inspec", ">= 2.3"
   gem "kitchen-azurerm", ">= 0.14"
   gem "kitchen-ec2", ">= 2.3"
