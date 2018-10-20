@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.28 -->
-## [v3.4.28](https://github.com/chef/chef-dk/tree/v3.4.28) (2018-10-19)
+<!-- latest_release 3.4.29 -->
+## [v3.4.29](https://github.com/chef/chef-dk/tree/v3.4.29) (2018-10-20)
 
 #### Merged Pull Requests
-- Bump chef-apply to 0.2.2 [#1786](https://github.com/chef/chef-dk/pull/1786) ([chef-ci](https://github.com/chef-ci))
+- Bump fauxhai to 6.9.0 [#1790](https://github.com/chef/chef-dk/pull/1790) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.23 -->
 ### Changes since 3.3.23 release
 
 #### Merged Pull Requests
+- Bump fauxhai to 6.9.0 [#1790](https://github.com/chef/chef-dk/pull/1790) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.29 -->
 - Bump chef-apply to 0.2.2 [#1786](https://github.com/chef/chef-dk/pull/1786) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.28 -->
 - Removing winrm pin [#1785](https://github.com/chef/chef-dk/pull/1785) ([cheeseplus](https://github.com/cheeseplus)) <!-- 3.4.27 -->
 - Update Ruby to 2.5.3 [#1776](https://github.com/chef/chef-dk/pull/1776) ([tas50](https://github.com/tas50)) <!-- 3.4.26 -->
