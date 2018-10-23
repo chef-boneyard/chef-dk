@@ -16,5 +16,5 @@
 #
 
 module ChefDK
-  VERSION = "3.4.32"
+  VERSION = "3.4.33"
 end
