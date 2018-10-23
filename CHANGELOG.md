@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.31 -->
-## [v3.4.31](https://github.com/chef/chef-dk/tree/v3.4.31) (2018-10-23)
+<!-- latest_release 3.4.32 -->
+## [v3.4.32](https://github.com/chef/chef-dk/tree/v3.4.32) (2018-10-23)
 
 #### Merged Pull Requests
-- Bump fauxhai to 6.9.1 [#1792](https://github.com/chef/chef-dk/pull/1792) ([chef-ci](https://github.com/chef-ci))
+- Bump kitchen-vagrant to 1.3.5 [#1794](https://github.com/chef/chef-dk/pull/1794) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.23 -->
 ### Changes since 3.3.23 release
 
 #### Merged Pull Requests
+- Bump kitchen-vagrant to 1.3.5 [#1794](https://github.com/chef/chef-dk/pull/1794) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.32 -->
 - Bump fauxhai to 6.9.1 [#1792](https://github.com/chef/chef-dk/pull/1792) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.31 -->
 - Bump knife-windows to 1.9.6 [#1791](https://github.com/chef/chef-dk/pull/1791) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.30 -->
 - Bump fauxhai to 6.9.0 [#1790](https://github.com/chef/chef-dk/pull/1790) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.29 -->
