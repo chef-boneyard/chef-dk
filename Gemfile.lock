@@ -442,7 +442,7 @@ GEM
       gcewinpass (~> 1.1)
       google-api-client (~> 0.19)
       test-kitchen
-    kitchen-hyperv (0.5.1)
+    kitchen-hyperv (0.5.2)
       test-kitchen (~> 1.4)
     kitchen-inspec (0.24.0)
       hashie (~> 3.4)
