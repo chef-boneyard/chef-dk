@@ -25,19 +25,19 @@ module ChefDK
 
     class DeletePolicyGroup < Base
 
-      banner(<<-BANNER)
-Usage: chef delete-policy-group POLICY_GROUP [options]
+      banner(<<~BANNER)
+        Usage: chef delete-policy-group POLICY_GROUP [options]
 
-`chef delete-policy-group POLICY_GROUP` deletes the policy group POLICY_GROUP on
-the configured Chef Server. Policy Revisions associated to the policy group are
-not deleted. The state of the policy group will be backed up locally, allowing
-you to undo this operation via the `chef undelete` command.
+        `chef delete-policy-group POLICY_GROUP` deletes the policy group POLICY_GROUP on
+        the configured Chef Server. Policy Revisions associated to the policy group are
+        not deleted. The state of the policy group will be backed up locally, allowing
+        you to undo this operation via the `chef undelete` command.
 
-See our detailed README for more information:
+        See our detailed README for more information:
 
-https://docs.chef.io/policyfile.html
+        https://docs.chef.io/policyfile.html
 
-Options:
+        Options:
 
 BANNER
 

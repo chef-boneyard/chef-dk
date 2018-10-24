@@ -43,37 +43,37 @@ module ChefDK
 
       SUPPORTED_SHELLS = %w{ bash fish zsh sh powershell posh}.map(&:freeze).freeze
 
-      banner(<<-HELP)
-Usage: chef shell-init
+      banner(<<~HELP)
+        Usage: chef shell-init
 
-`chef shell-init` modifies your shell environment to make ChefDK your default
-ruby.
+        `chef shell-init` modifies your shell environment to make ChefDK your default
+        ruby.
 
-  To enable for just the current shell session:
+          To enable for just the current shell session:
 
-    In sh, bash, and zsh:
-      eval "$(chef shell-init SHELL_NAME)"
-    In fish:
-      eval (chef shell-init fish)
-    In Powershell:
-      chef shell-init powershell | Invoke-Expression
+            In sh, bash, and zsh:
+              eval "$(chef shell-init SHELL_NAME)"
+            In fish:
+              eval (chef shell-init fish)
+            In Powershell:
+              chef shell-init powershell | Invoke-Expression
 
-  To permanently enable:
+          To permanently enable:
 
-    In sh, bash, and zsh:
-      echo 'eval "$(chef shell-init SHELL_NAME)"' >> ~/.YOUR_SHELL_RC_FILE
-    In fish:
-      echo 'eval (chef shell-init SHELL_NAME)' >> ~/.config/fish/config.fish
-    In Powershell
-      "chef shell-init powershell | Invoke-Expression" >> $PROFILE
+            In sh, bash, and zsh:
+              echo 'eval "$(chef shell-init SHELL_NAME)"' >> ~/.YOUR_SHELL_RC_FILE
+            In fish:
+              echo 'eval (chef shell-init SHELL_NAME)' >> ~/.config/fish/config.fish
+            In Powershell
+              "chef shell-init powershell | Invoke-Expression" >> $PROFILE
 
-OPTIONS:
+        OPTIONS:
 
 HELP
 
       option :omnibus_dir,
-        :long         => "--omnibus-dir OMNIBUS_DIR",
-        :description  => "Alternate path to omnibus install (used for testing)"
+        long: "--omnibus-dir OMNIBUS_DIR",
+        description: "Alternate path to omnibus install (used for testing)"
 
       def initialize
         super

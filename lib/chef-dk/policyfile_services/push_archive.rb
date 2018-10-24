@@ -86,12 +86,12 @@ module ChefDK
         policyfile_lock_path = File.join(staging_dir, "Policyfile.lock.json")
 
         if looks_like_old_format_archive?(staging_dir)
-          raise InvalidPolicyArchive, <<-MESSAGE
-This archive is in an unsupported format.
+          raise InvalidPolicyArchive, <<~MESSAGE
+            This archive is in an unsupported format.
 
-This archive was created with an older version of ChefDK. This version of
-ChefDK does not support archives in the older format. Re-create the archive
-with a newer version of ChefDK or downgrade ChefDK.
+            This archive was created with an older version of ChefDK. This version of
+            ChefDK does not support archives in the older format. Re-create the archive
+            with a newer version of ChefDK or downgrade ChefDK.
 MESSAGE
         end
 

@@ -27,19 +27,19 @@ module ChefDK
 
       include Configurable
 
-      banner(<<-E)
-Usage: chef push-archive POLICY_GROUP ARCHIVE_FILE [options]
+      banner(<<~E)
+        Usage: chef push-archive POLICY_GROUP ARCHIVE_FILE [options]
 
-`chef push-archive` publishes a policy archive to a Chef Server. Policy
-archives can be created with `chef export -a`. The policy will be applied to
-the given POLICY_GROUP, which is a set of nodes that share the same
-run_list and cookbooks.
+        `chef push-archive` publishes a policy archive to a Chef Server. Policy
+        archives can be created with `chef export -a`. The policy will be applied to
+        the given POLICY_GROUP, which is a set of nodes that share the same
+        run_list and cookbooks.
 
-For more information about Policyfiles, see our detailed README:
+        For more information about Policyfiles, see our detailed README:
 
-https://docs.chef.io/policyfile.html
+        https://docs.chef.io/policyfile.html
 
-Options:
+        Options:
 E
 
       option :config_file,

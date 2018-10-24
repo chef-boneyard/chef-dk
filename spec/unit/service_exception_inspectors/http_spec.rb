@@ -108,27 +108,27 @@ describe ChefDK::ServiceExceptionInspectors::HTTP do
     let(:response_body) { "this is the response" }
 
     it "shows the request in a format similar to HTTP messages" do
-      expected_request_string = <<-E
---- REQUEST DATA ----
-POST /organizations/chef-oss-dev/cookbooks
-content-type: application/json
-accept: application/json
+      expected_request_string = <<~E
+        --- REQUEST DATA ----
+        POST /organizations/chef-oss-dev/cookbooks
+        content-type: application/json
+        accept: application/json
 
-this is the request
+        this is the request
 
 E
       expect(inspector.extended_error_info).to include(expected_request_string)
     end
 
     it "shows the response in a format similar to HTTP messages" do
-      expected_response_string = <<-E
---- RESPONSE DATA ---
-400 Bad Request
-server: ngx_openresty
-date: Wed, 29 Oct 2014 22:27:47 GMT
+      expected_response_string = <<~E
+        --- RESPONSE DATA ---
+        400 Bad Request
+        server: ngx_openresty
+        date: Wed, 29 Oct 2014 22:27:47 GMT
 
 
-this is the response
+        this is the response
 E
       expect(inspector.extended_error_info).to include(expected_response_string)
     end

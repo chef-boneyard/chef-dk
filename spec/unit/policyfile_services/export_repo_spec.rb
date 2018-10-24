@@ -109,42 +109,42 @@ describe ChefDK::PolicyfileServices::ExportRepo do
       let(:revision_id) { "7da81d2c7bb97f904637f97e7f8b487fa4bb1ed682edea7087743dec84c254ec" }
 
       let(:lockfile_content) do
-        <<-E
-{
-  "revision_id": "#{revision_id}",
-  "name": "install-example",
-  "run_list": [
-    "recipe[local-cookbook::default]"
-  ],
-  "cookbook_locks": {
-    "local-cookbook": {
-      "version": "2.3.4",
-      "identifier": "1e9dfd1134735385b425c056cb5decef9081b92c",
-      "dotted_decimal_identifier": "42704157235437826.6970356709321892.63549625984142",
-      "source": "#{local_cookbook_path}",
-      "cache_key": null,
-      "scm_info": null,
-      "source_options": {
-        "path": "#{local_cookbook_path}"
-      }
-    }
-  },
-  "default_attributes": {},
-  "override_attributes": {},
-  "solution_dependencies": {
-    "Policyfile": [
-      [
-        "local-cookbook",
-        ">= 0.0.0"
-      ]
-    ],
-    "dependencies": {
-      "local-cookbook (2.3.4)": [
+        <<~E
+          {
+            "revision_id": "#{revision_id}",
+            "name": "install-example",
+            "run_list": [
+              "recipe[local-cookbook::default]"
+            ],
+            "cookbook_locks": {
+              "local-cookbook": {
+                "version": "2.3.4",
+                "identifier": "1e9dfd1134735385b425c056cb5decef9081b92c",
+                "dotted_decimal_identifier": "42704157235437826.6970356709321892.63549625984142",
+                "source": "#{local_cookbook_path}",
+                "cache_key": null,
+                "scm_info": null,
+                "source_options": {
+                  "path": "#{local_cookbook_path}"
+                }
+              }
+            },
+            "default_attributes": {},
+            "override_attributes": {},
+            "solution_dependencies": {
+              "Policyfile": [
+                [
+                  "local-cookbook",
+                  ">= 0.0.0"
+                ]
+              ],
+              "dependencies": {
+                "local-cookbook (2.3.4)": [
 
-      ]
-    }
-  }
-}
+                ]
+              }
+            }
+          }
 E
       end
 
@@ -268,32 +268,32 @@ E
           end
 
           it "creates a working local mode configuration file" do
-            expected_config_text = <<-CONFIG
-### Chef Client Configuration ###
-# The settings in this file will configure chef to apply the exported policy in
-# this directory. To use it, run:
-#
-# chef-client -z
-#
+            expected_config_text = <<~CONFIG
+              ### Chef Client Configuration ###
+              # The settings in this file will configure chef to apply the exported policy in
+              # this directory. To use it, run:
+              #
+              # chef-client -z
+              #
 
-policy_name 'install-example'
-policy_group 'local'
+              policy_name 'install-example'
+              policy_group 'local'
 
-use_policyfile true
-policy_document_native_api true
+              use_policyfile true
+              policy_document_native_api true
 
-# In order to use this repo, you need a version of Chef Client and Chef Zero
-# that supports policyfile "native mode" APIs:
-current_version = Gem::Version.new(Chef::VERSION)
-unless Gem::Requirement.new(">= 12.7").satisfied_by?(current_version)
-  puts("!" * 80)
-  puts(<<-MESSAGE)
-This Chef Repo requires features introduced in Chef 12.7, but you are using
-Chef \#{Chef::VERSION}. Please upgrade to Chef 12.7 or later.
-MESSAGE
-  puts("!" * 80)
-  exit!(1)
-end
+              # In order to use this repo, you need a version of Chef Client and Chef Zero
+              # that supports policyfile "native mode" APIs:
+              current_version = Gem::Version.new(Chef::VERSION)
+              unless Gem::Requirement.new(">= 12.7").satisfied_by?(current_version)
+                puts("!" * 80)
+                puts(<<-MESSAGE)
+              This Chef Repo requires features introduced in Chef 12.7, but you are using
+              Chef \#{Chef::VERSION}. Please upgrade to Chef 12.7 or later.
+              MESSAGE
+                puts("!" * 80)
+                exit!(1)
+              end
 
 CONFIG
             config_path = File.join(export_dir, ".chef", "config.rb")
@@ -317,8 +317,8 @@ CONFIG
 
           before do
             allow(export_service.policyfile_lock).to receive(:validate_cookbooks!).and_return(true)
-            expect(export_service).to receive(:create_repo_structure).
-              and_raise(Errno::EACCES.new("Permission denied @ rb_sysopen - /etc/foobarbaz.txt"))
+            expect(export_service).to receive(:create_repo_structure)
+              .and_raise(Errno::EACCES.new("Permission denied @ rb_sysopen - /etc/foobarbaz.txt"))
           end
 
           it "wraps the error in a custom error class" do

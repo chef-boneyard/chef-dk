@@ -118,7 +118,7 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
     end
   end
 
-  let(:lock_source_options) { { :path => "somelocation" } }
+  let(:lock_source_options) { { path: "somelocation" } }
 
   let(:included_policy_lock_name) { "included" }
 
@@ -141,8 +141,8 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
 
     allow(policyfile.dsl).to receive(:default_source).and_return([default_source_obj])
 
-    allow(default_source_obj).to receive(:universe_graph).
-      and_return(external_cookbook_universe)
+    allow(default_source_obj).to receive(:universe_graph)
+      .and_return(external_cookbook_universe)
 
     allow(default_source_obj).to receive(:null?).and_return(false)
     allow(default_source_obj).to receive(:preferred_cookbooks).and_return([])

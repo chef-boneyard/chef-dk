@@ -142,41 +142,41 @@ describe ChefDK::PolicyfileServices::Push do
       let(:local_cookbook_path) { File.join(fixtures_path, "local_path_cookbooks/local-cookbook") }
 
       let(:lockfile_content) do
-        <<-E
-{
-  "name": "install-example",
-  "run_list": [
-    "recipe[local-cookbook::default]"
-  ],
-  "cookbook_locks": {
-    "local-cookbook": {
-      "version": "2.3.4",
-      "identifier": "fab501cfaf747901bd82c1bc706beae7dc3a350c",
-      "dotted_decimal_identifier": "70567763561641081.489844270461035.258281553147148",
-      "source": "#{local_cookbook_path}",
-      "cache_key": null,
-      "scm_info": null,
-      "source_options": {
-        "path": "#{local_cookbook_path}"
-      }
-    }
-  },
-  "default_attributes": {},
-  "override_attributes": {},
-  "solution_dependencies": {
-    "Policyfile": [
-      [
-        "local-cookbook",
-        ">= 0.0.0"
-      ]
-    ],
-    "dependencies": {
-      "local-cookbook (2.3.4)": [
+        <<~E
+          {
+            "name": "install-example",
+            "run_list": [
+              "recipe[local-cookbook::default]"
+            ],
+            "cookbook_locks": {
+              "local-cookbook": {
+                "version": "2.3.4",
+                "identifier": "fab501cfaf747901bd82c1bc706beae7dc3a350c",
+                "dotted_decimal_identifier": "70567763561641081.489844270461035.258281553147148",
+                "source": "#{local_cookbook_path}",
+                "cache_key": null,
+                "scm_info": null,
+                "source_options": {
+                  "path": "#{local_cookbook_path}"
+                }
+              }
+            },
+            "default_attributes": {},
+            "override_attributes": {},
+            "solution_dependencies": {
+              "Policyfile": [
+                [
+                  "local-cookbook",
+                  ">= 0.0.0"
+                ]
+              ],
+              "dependencies": {
+                "local-cookbook (2.3.4)": [
 
-      ]
-    }
-  }
-}
+                ]
+              }
+            }
+          }
 E
       end
 
@@ -189,9 +189,9 @@ E
       before do
         expect(push_service).to receive(:http_client).and_return(http_client)
 
-        expect(ChefDK::Policyfile::Uploader).to receive(:new).
-               with(push_service.policyfile_lock, policy_group, http_client: http_client, ui: ui, policy_document_native_api: policy_document_native_api).
-               and_return(uploader)
+        expect(ChefDK::Policyfile::Uploader).to receive(:new)
+               .with(push_service.policyfile_lock, policy_group, http_client: http_client, ui: ui, policy_document_native_api: policy_document_native_api)
+               .and_return(uploader)
       end
 
       context "when the policy document native API is disabled" do

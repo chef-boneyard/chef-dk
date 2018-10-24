@@ -64,15 +64,15 @@ describe ChefDK::PolicyfileCompiler do
 
         it "has an error message with code context" do
           expect(policyfile.errors.size).to eq(1)
-          expected_message = <<-E
-Evaluation of policyfile 'TestPolicyfile.rb' raised an exception
-  Exception: RuntimeError "oops"
+          expected_message = <<~E
+            Evaluation of policyfile 'TestPolicyfile.rb' raised an exception
+              Exception: RuntimeError "oops"
 
-  Relevant Code:
-    1: raise 'oops'
+              Relevant Code:
+                1: raise 'oops'
 
-  Backtrace:
-    TestPolicyfile.rb:1:in `eval_policyfile'
+              Backtrace:
+                TestPolicyfile.rb:1:in `eval_policyfile'
 E
           expect(policyfile.errors.first).to eq(expected_message)
         end
@@ -466,9 +466,9 @@ E
           end
 
           it "emits an error" do
-            err = <<-MESSAGE
-Multiple sources are marked as the preferred source for some cookbooks. Only one source can be preferred for a cookbook.
-supermarket(https://supermarket.chef.io) and supermarket(https://mart.example) are both set as the preferred source for cookbook(s) 'foo'
+            err = <<~MESSAGE
+              Multiple sources are marked as the preferred source for some cookbooks. Only one source can be preferred for a cookbook.
+              supermarket(https://supermarket.chef.io) and supermarket(https://mart.example) are both set as the preferred source for cookbook(s) 'foo'
 MESSAGE
             expect(policyfile.errors).to eq([err])
           end
@@ -543,11 +543,11 @@ MESSAGE
       end
 
       it "has a conflicting sources error" do
-        expected = <<-EOH
-Cookbook 'foo' assigned to conflicting sources
+        expected = <<~EOH
+          Cookbook 'foo' assigned to conflicting sources
 
-Previous source: {:path=>"local_cookbooks/foo"}
-Conflicts with: {:chef_server=>"https://mychefserver.example.com"}
+          Previous source: {:path=>"local_cookbooks/foo"}
+          Conflicts with: {:chef_server=>"https://mychefserver.example.com"}
 EOH
         expect(policyfile.errors.size).to eq(1)
         expect(policyfile.errors.first).to eq(expected)

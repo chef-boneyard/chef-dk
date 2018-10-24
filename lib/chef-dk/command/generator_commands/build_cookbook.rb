@@ -30,9 +30,9 @@ module ChefDK
         attr_reader :cookbook_name_or_path
 
         option :pipeline,
-          :long => "--pipeline PIPELINE",
-          :description => "Use PIPELINE to set target branch to something other than master for the build_cookbook",
-          :default => "master"
+          long: "--pipeline PIPELINE",
+          description: "Use PIPELINE to set target branch to something other than master for the build_cookbook",
+          default: "master"
 
         options.merge!(SharedGeneratorOptions.options)
 

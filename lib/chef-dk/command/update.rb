@@ -28,23 +28,23 @@ module ChefDK
 
       include Configurable
 
-      banner(<<-BANNER)
-Usage: chef update [ POLICY_FILE ] [options] [cookbook_1] [...]
+      banner(<<~BANNER)
+        Usage: chef update [ POLICY_FILE ] [options] [cookbook_1] [...]
 
-`chef update` reads your `Policyfile.rb`, applies any changes, re-solves the
-dependencies and emits an updated `Policyfile.lock.json`. The new locked policy
-will reflect any changes to the `run_list` and pull in any cookbook updates
-that are compatible with the version constraints stated in your `Policyfile.rb`.
+        `chef update` reads your `Policyfile.rb`, applies any changes, re-solves the
+        dependencies and emits an updated `Policyfile.lock.json`. The new locked policy
+        will reflect any changes to the `run_list` and pull in any cookbook updates
+        that are compatible with the version constraints stated in your `Policyfile.rb`.
 
-Individual dependent cookbooks (and their dependencies) may be updated by
-passing their names after the POLICY_FILE. The POLICY_FILE parameter is
-mandatory if you want to update individual cookbooks.
+        Individual dependent cookbooks (and their dependencies) may be updated by
+        passing their names after the POLICY_FILE. The POLICY_FILE parameter is
+        mandatory if you want to update individual cookbooks.
 
-See our detailed README for more information:
+        See our detailed README for more information:
 
-https://docs.chef.io/policyfile.html
+        https://docs.chef.io/policyfile.html
 
-Options:
+        Options:
 
 BANNER
 

@@ -296,10 +296,10 @@ describe ChefDK::Command::GeneratorCommands::Repo do
             let(:file) { "policyfiles/README.md" }
 
             let(:expected_content) do
-              <<-README
-Create policyfiles here. When using a chef-repo, give your policyfiles
-the same filename as the name set in the policyfile itself, and use the
-`.rb` file extension.
+              <<~README
+                Create policyfiles here. When using a chef-repo, give your policyfiles
+                the same filename as the name set in the policyfile itself, and use the
+                `.rb` file extension.
 README
             end
 
@@ -324,16 +324,16 @@ README
             let(:file) { "roles/README.md" }
 
             let(:expected_content) do
-              <<-README
-Create roles here, in either the Role Ruby DSL (.rb) or JSON (.json) files. To install roles on the server, use knife.
+              <<~README
+                Create roles here, in either the Role Ruby DSL (.rb) or JSON (.json) files. To install roles on the server, use knife.
 
-For example, in this directory you'll find an example role file called `example.json` which can be uploaded to the Chef Server:
+                For example, in this directory you'll find an example role file called `example.json` which can be uploaded to the Chef Server:
 
-    knife role from file roles/example.json
+                    knife role from file roles/example.json
 
-For more information on roles, see the Chef wiki page:
+                For more information on roles, see the Chef wiki page:
 
-https://docs.chef.io/roles.html
+                https://docs.chef.io/roles.html
 README
             end
 
@@ -348,16 +348,16 @@ README
             let(:file) { "environments/README.md" }
 
             let(:expected_content) do
-              <<-README
-Create environments here, in either the Role Ruby DSL (.rb) or JSON (.json) files. To install environments on the server, use knife.
+              <<~README
+                Create environments here, in either the Role Ruby DSL (.rb) or JSON (.json) files. To install environments on the server, use knife.
 
-For example, in this directory you'll find an example environment file called `example.json` which can be uploaded to the Chef Server:
+                For example, in this directory you'll find an example environment file called `example.json` which can be uploaded to the Chef Server:
 
-    knife environment from file environments/example.json
+                    knife environment from file environments/example.json
 
-For more information on environments, see the Chef wiki page:
+                For more information on environments, see the Chef wiki page:
 
-https://docs.chef.io/environments.html
+                https://docs.chef.io/environments.html
 README
             end
 

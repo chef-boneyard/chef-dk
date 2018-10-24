@@ -176,13 +176,13 @@ module ChefDK
 
     def default_command_options
       {
-        :cwd => component_path,
-        :env => {
+        cwd: component_path,
+        env: {
           # Add the embedded/bin to the PATH so that bundle executable can
           # be found while running the tests.
           path_variable_key => omnibus_path,
         },
-        :timeout => 3600,
+        timeout: 3600,
       }
     end
 

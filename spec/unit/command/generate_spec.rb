@@ -41,7 +41,7 @@ class ChefDK::Command::GeneratorCommands::Example < ChefDK::Command::GeneratorCo
 
   def run
     parse_options(@argv)
-    { :argv => @argv, :ran_cmd => "example" }
+    { argv: @argv, ran_cmd: "example" }
   end
 end
 
@@ -74,11 +74,11 @@ describe ChefDK::Command::Generate do
 
   context "with a generator defined" do
     let(:expected_help_message) do
-      <<-E
-Usage: chef generate GENERATOR [options]
+      <<~E
+        Usage: chef generate GENERATOR [options]
 
-Available generators:
-  example  this is a test
+        Available generators:
+          example  this is a test
 E
     end
 

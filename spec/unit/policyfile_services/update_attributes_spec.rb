@@ -48,16 +48,16 @@ describe ChefDK::PolicyfileServices::UpdateAttributes do
   let(:local_cookbook_copy_path) { File.join(working_dir, "cookbooks/local-cookbook") }
 
   let(:policyfile_content) do
-    <<-E
-name 'install-example'
+    <<~E
+      name 'install-example'
 
-run_list 'local-cookbook'
+      run_list 'local-cookbook'
 
-cookbook 'local-cookbook', path: 'cookbooks/local-cookbook'
+      cookbook 'local-cookbook', path: 'cookbooks/local-cookbook'
 
-default["default_attr"] = "new_value_default"
+      default["default_attr"] = "new_value_default"
 
-override["override_attr"] = "new_value_override"
+      override["override_attr"] = "new_value_override"
 E
   end
 

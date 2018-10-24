@@ -25,19 +25,19 @@ module ChefDK
 
     class DeletePolicy < Base
 
-      banner(<<-BANNER)
-Usage: chef delete-policy POLICY_NAME [options]
+      banner(<<~BANNER)
+        Usage: chef delete-policy POLICY_NAME [options]
 
-`chef delete-policy POLICY_NAME` deletes all revisions of the policy
-`POLICY_NAME` on the configured Chef Server. All policy revisions will be
-backed up locally, allowing you to undo this operation via the `chef undelete`
-command.
+        `chef delete-policy POLICY_NAME` deletes all revisions of the policy
+        `POLICY_NAME` on the configured Chef Server. All policy revisions will be
+        backed up locally, allowing you to undo this operation via the `chef undelete`
+        command.
 
-See our detailed README for more information:
+        See our detailed README for more information:
 
-https://docs.chef.io/policyfile.html
+        https://docs.chef.io/policyfile.html
 
-Options:
+        Options:
 
 BANNER
 

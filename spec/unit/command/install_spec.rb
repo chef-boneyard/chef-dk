@@ -61,9 +61,9 @@ describe ChefDK::Command::Install do
     end
 
     it "loads the config from the given path" do
-      expect(Chef::WorkstationConfigLoader).to receive(:new).
-        with("~/.chef/alternate_config.rb").
-        and_return(chef_config_loader)
+      expect(Chef::WorkstationConfigLoader).to receive(:new)
+        .with("~/.chef/alternate_config.rb")
+        .and_return(chef_config_loader)
       expect(chef_config_loader).to receive(:load)
       expect(command.chef_config).to eq(Chef::Config)
     end
@@ -77,9 +77,9 @@ describe ChefDK::Command::Install do
     end
 
     it "creates the installer service with a `nil` policyfile path" do
-      expect(ChefDK::PolicyfileServices::Install).to receive(:new).
-        with(hash_including(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, config: Chef::Config)).
-        and_return(install_service)
+      expect(ChefDK::PolicyfileServices::Install).to receive(:new)
+        .with(hash_including(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, config: Chef::Config))
+        .and_return(install_service)
       expect(command.installer).to eq(install_service)
     end
 
@@ -94,9 +94,9 @@ describe ChefDK::Command::Install do
     end
 
     it "creates the installer service with the specified policyfile path" do
-      expect(ChefDK::PolicyfileServices::Install).to receive(:new).
-        with(hash_including(policyfile: "MyPolicy.rb", ui: command.ui, root_dir: Dir.pwd, config: Chef::Config)).
-        and_return(install_service)
+      expect(ChefDK::PolicyfileServices::Install).to receive(:new)
+        .with(hash_including(policyfile: "MyPolicy.rb", ui: command.ui, root_dir: Dir.pwd, config: Chef::Config))
+        .and_return(install_service)
       expect(command.installer).to eq(install_service)
     end
 
@@ -144,9 +144,9 @@ describe ChefDK::Command::Install do
       end
 
       it "displays the exception and cause" do
-        expected_error_text = <<-E
-Error: install failed
-Reason: (StandardError) some operation failed
+        expected_error_text = <<~E
+          Error: install failed
+          Reason: (StandardError) some operation failed
 
 E
 
@@ -159,9 +159,9 @@ E
         let(:params) { ["-D"] }
 
         it "displays the exception and cause with backtrace" do
-          expected_error_text = <<-E
-Error: install failed
-Reason: (StandardError) some operation failed
+          expected_error_text = <<~E
+            Error: install failed
+            Reason: (StandardError) some operation failed
 
 
 E

@@ -192,15 +192,15 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
 
         include_examples "a generated file", :cookbook_name do
           let(:line) do
-            <<-METADATA
-name 'build_cookbook'
-maintainer 'The Authors'
-maintainer_email 'you@example.com'
-license 'all_rights'
-version '0.1.0'
-chef_version '>= 13.0'
+            <<~METADATA
+              name 'build_cookbook'
+              maintainer 'The Authors'
+              maintainer_email 'you@example.com'
+              license 'all_rights'
+              version '0.1.0'
+              chef_version '>= 13.0'
 
-depends 'delivery-truck'
+              depends 'delivery-truck'
 METADATA
           end
         end
@@ -252,12 +252,12 @@ METADATA
 
         include_examples "a generated file", :cookbook_name do
           let(:line) do
-            <<-METADATA
-name 'build_cookbook'
-maintainer 'The Authors'
-maintainer_email 'you@example.com'
-license 'all_rights'
-version '0.1.0'
+            <<~METADATA
+              name 'build_cookbook'
+              maintainer 'The Authors'
+              maintainer_email 'you@example.com'
+              license 'all_rights'
+              version '0.1.0'
 METADATA
           end
         end

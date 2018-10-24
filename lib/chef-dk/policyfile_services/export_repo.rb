@@ -228,32 +228,32 @@ module ChefDK
 
       def create_client_rb
         File.open(client_rb_staging_path, "wb+") do |f|
-          f.print( <<-CONFIG )
-### Chef Client Configuration ###
-# The settings in this file will configure chef to apply the exported policy in
-# this directory. To use it, run:
-#
-# chef-client -z
-#
+          f.print( <<~CONFIG )
+            ### Chef Client Configuration ###
+            # The settings in this file will configure chef to apply the exported policy in
+            # this directory. To use it, run:
+            #
+            # chef-client -z
+            #
 
-policy_name '#{policy_name}'
-policy_group 'local'
+            policy_name '#{policy_name}'
+            policy_group 'local'
 
-use_policyfile true
-policy_document_native_api true
+            use_policyfile true
+            policy_document_native_api true
 
-# In order to use this repo, you need a version of Chef Client and Chef Zero
-# that supports policyfile "native mode" APIs:
-current_version = Gem::Version.new(Chef::VERSION)
-unless Gem::Requirement.new(">= 12.7").satisfied_by?(current_version)
-  puts("!" * 80)
-  puts(<<-MESSAGE)
-This Chef Repo requires features introduced in Chef 12.7, but you are using
-Chef \#{Chef::VERSION}. Please upgrade to Chef 12.7 or later.
-MESSAGE
-  puts("!" * 80)
-  exit!(1)
-end
+            # In order to use this repo, you need a version of Chef Client and Chef Zero
+            # that supports policyfile "native mode" APIs:
+            current_version = Gem::Version.new(Chef::VERSION)
+            unless Gem::Requirement.new(">= 12.7").satisfied_by?(current_version)
+              puts("!" * 80)
+              puts(<<-MESSAGE)
+            This Chef Repo requires features introduced in Chef 12.7, but you are using
+            Chef \#{Chef::VERSION}. Please upgrade to Chef 12.7 or later.
+            MESSAGE
+              puts("!" * 80)
+              exit!(1)
+            end
 
 CONFIG
         end
@@ -261,42 +261,42 @@ CONFIG
 
       def create_readme_md
         File.open(readme_staging_path, "wb+") do |f|
-          f.print( <<-README )
-# Exported Chef Repository for Policy '#{policy_name}'
+          f.print( <<~README )
+            # Exported Chef Repository for Policy '#{policy_name}'
 
-Policy revision: #{policyfile_lock.revision_id}
+            Policy revision: #{policyfile_lock.revision_id}
 
-This directory contains all the cookbooks and configuration necessary for Chef
-to converge a system using this exported policy. To converge a system with the
-exported policy, use a privileged account to run `chef-client -z` from the
-directory containing the exported policy.
+            This directory contains all the cookbooks and configuration necessary for Chef
+            to converge a system using this exported policy. To converge a system with the
+            exported policy, use a privileged account to run `chef-client -z` from the
+            directory containing the exported policy.
 
-## Contents:
+            ## Contents:
 
-### Policyfile.lock.json
+            ### Policyfile.lock.json
 
-A copy of the exported policy, used by the `chef push-archive` command.
+            A copy of the exported policy, used by the `chef push-archive` command.
 
-### .chef/config.rb
+            ### .chef/config.rb
 
-A configuration file for Chef Client. This file configures Chef Client to use
-the correct `policy_name` and `policy_group` for this exported repository. Chef
-Client will use this configuration automatically if you've set your working
-directory properly.
+            A configuration file for Chef Client. This file configures Chef Client to use
+            the correct `policy_name` and `policy_group` for this exported repository. Chef
+            Client will use this configuration automatically if you've set your working
+            directory properly.
 
-### cookbook_artifacts/
+            ### cookbook_artifacts/
 
-All of the cookbooks required by the policy will be stored in this directory.
+            All of the cookbooks required by the policy will be stored in this directory.
 
-### policies/
+            ### policies/
 
-A different copy of the exported policy, used by the `chef-client` command.
+            A different copy of the exported policy, used by the `chef-client` command.
 
-### policy_groups/
+            ### policy_groups/
 
-Policy groups are used by Chef Server to manage multiple revisions of the same
-policy. However, exported policies contain only a single policy revision, so
-this policy group name is hardcoded to "local" and should not be changed.
+            Policy groups are used by Chef Server to manage multiple revisions of the same
+            policy. However, exported policies contain only a single policy revision, so
+            this policy group name is hardcoded to "local" and should not be changed.
 
 README
         end

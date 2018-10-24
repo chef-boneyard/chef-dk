@@ -34,7 +34,7 @@ module ChefDK
     # Base class for CookbookLock implementations
     class CookbookLock
 
-      REQUIRED_LOCK_DATA_KEYS = %w{version identifier dotted_decimal_identifier cache_key source_options}
+      REQUIRED_LOCK_DATA_KEYS = %w{version identifier dotted_decimal_identifier cache_key source_options}.freeze
       REQUIRED_LOCK_DATA_KEYS.each(&:freeze)
       REQUIRED_LOCK_DATA_KEYS.freeze
 

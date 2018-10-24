@@ -25,19 +25,19 @@ module ChefDK
 
     class CleanPolicyRevisions < Base
 
-      banner(<<-BANNER)
-Usage: chef clean-policy-revisions [options]
+      banner(<<~BANNER)
+        Usage: chef clean-policy-revisions [options]
 
-`chef clean-policy-revisions` deletes orphaned policyfile revisions from the Chef
-Server. Orphaned policyfile revisions are not associated to any group, and
-therefore not in active use by any nodes. To list orphaned policyfile revisions
-before deleting them, use `chef show-policy --orphans`.
+        `chef clean-policy-revisions` deletes orphaned policyfile revisions from the Chef
+        Server. Orphaned policyfile revisions are not associated to any group, and
+        therefore not in active use by any nodes. To list orphaned policyfile revisions
+        before deleting them, use `chef show-policy --orphans`.
 
-See our detailed README for more information:
+        See our detailed README for more information:
 
-https://docs.chef.io/policyfile.html
+        https://docs.chef.io/policyfile.html
 
-Options:
+        Options:
 
 BANNER
 

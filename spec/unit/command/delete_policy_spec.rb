@@ -161,9 +161,9 @@ describe ChefDK::Command::DeletePolicy do
       it "prints a debugging message and exits non-zero" do
         expect(command.run(%w{example-policy})).to eq(1)
 
-        expected_output = <<-E
-Error: Failed to delete policy.
-Reason: (StandardError) some operation failed
+        expected_output = <<~E
+          Error: Failed to delete policy.
+          Reason: (StandardError) some operation failed
 
 E
 
@@ -175,9 +175,9 @@ E
         it "includes the backtrace in the error" do
           command.run(%w{ example-policy -D })
 
-          expected_output = <<-E
-Error: Failed to delete policy.
-Reason: (StandardError) some operation failed
+          expected_output = <<~E
+            Error: Failed to delete policy.
+            Reason: (StandardError) some operation failed
 
 
 E

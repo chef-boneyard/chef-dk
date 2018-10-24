@@ -134,10 +134,10 @@ describe ChefDK::PolicyfileServices::Undelete do
 
         timestamps = times.map { |t| t.utc.strftime("%Y%m%d%H%M%S") }
 
-        expected_output = <<-OUTPUT
-#{timestamps[2]}: delete-policy-group example3
-#{timestamps[1]}: delete-policy-group example2
-#{timestamps[0]}: delete-policy-group example1
+        expected_output = <<~OUTPUT
+          #{timestamps[2]}: delete-policy-group example3
+          #{timestamps[1]}: delete-policy-group example2
+          #{timestamps[0]}: delete-policy-group example1
 OUTPUT
         expect(ui.output).to eq(expected_output)
       end
@@ -193,9 +193,9 @@ OUTPUT
       end
 
       before do
-        expect(http_client).to receive(:put).
-          with("/policy_groups/example1/policies/appserver", policy_revision).
-          and_raise(http_exception)
+        expect(http_client).to receive(:put)
+          .with("/policy_groups/example1/policies/appserver", policy_revision)
+          .and_raise(http_exception)
       end
 
       it "raises an error" do
@@ -207,8 +207,8 @@ OUTPUT
     context "when the undelete is successful" do
 
       before do
-        expect(http_client).to receive(:put).
-          with("/policy_groups/example1/policies/appserver", policy_revision)
+        expect(http_client).to receive(:put)
+          .with("/policy_groups/example1/policies/appserver", policy_revision)
       end
 
       it "uploads all policies to the server" do
@@ -239,8 +239,8 @@ OUTPUT
         before do
           expect(undo_stack).to receive(:has_id?).with(undo_record_id).and_return(true)
           expect(undo_stack).to receive(:delete).with(undo_record_id).and_yield(undo_record1)
-          expect(http_client).to receive(:put).
-            with("/policy_groups/example1/policies/appserver", policy_revision)
+          expect(http_client).to receive(:put)
+            .with("/policy_groups/example1/policies/appserver", policy_revision)
         end
 
         it "uploads all policies to the server" do
@@ -286,8 +286,8 @@ OUTPUT
     context "when the revision to create doesn't exist" do
 
       before do
-        expect(http_client).to receive(:post).
-          with("/policies/appserver/revisions", policy_revision)
+        expect(http_client).to receive(:post)
+          .with("/policies/appserver/revisions", policy_revision)
       end
 
       it "uploads all policies to the server" do

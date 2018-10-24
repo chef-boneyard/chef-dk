@@ -79,9 +79,9 @@ describe ChefDK::Policyfile::LockApplier do
     it "does not provide the locked source options for that policy" do
       expect(included_policy_1).not_to receive(:apply_locked_source_options)
       expect(included_policy_2).to receive(:apply_locked_source_options).with(included_policy_lock_2["source_options"])
-      lock_applier.
-        with_unlocked_policies(["policy1"]).
-        apply!
+      lock_applier
+        .with_unlocked_policies(["policy1"])
+        .apply!
     end
   end
 
@@ -92,9 +92,9 @@ describe ChefDK::Policyfile::LockApplier do
     it "does not provide locked source options for any policies" do
       expect(included_policy_1).not_to receive(:apply_locked_source_options)
       expect(included_policy_2).not_to receive(:apply_locked_source_options).with(included_policy_lock_2["source_options"])
-      lock_applier.
-        with_unlocked_policies(:all).
-        apply!
+      lock_applier
+        .with_unlocked_policies(:all)
+        .apply!
     end
   end
 end

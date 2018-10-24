@@ -68,14 +68,14 @@ module Kitchen
       default_config :policyfile, "Policyfile.rb"
 
       default_config :chef_client_path do |provisioner|
-        provisioner.
-          remote_path_join(%W{#{provisioner[:chef_omnibus_root]} bin chef-client}).
-          tap { |path| path.concat(".bat") if provisioner.windows_os? }
+        provisioner
+          .remote_path_join(%W{#{provisioner[:chef_omnibus_root]} bin chef-client})
+          .tap { |path| path.concat(".bat") if provisioner.windows_os? }
       end
 
       default_config :ruby_bindir do |provisioner|
-        provisioner.
-          remote_path_join(%W{#{provisioner[:chef_omnibus_root]} embedded bin})
+        provisioner
+          .remote_path_join(%W{#{provisioner[:chef_omnibus_root]} embedded bin})
       end
 
       # (see Base#finalize_config!)
@@ -97,8 +97,8 @@ module Kitchen
       def run_command
         level = config[:log_level] == :info ? :auto : config[:log_level]
 
-        cmd = "#{sudo(config[:chef_client_path])} --local-mode".
-          tap { |str| str.insert(0, "& ") if powershell_shell? }
+        cmd = "#{sudo(config[:chef_client_path])} --local-mode"
+          .tap { |str| str.insert(0, "& ") if powershell_shell? }
 
         args = [
           "--config #{config[:root_path]}/client.rb",
@@ -118,8 +118,8 @@ module Kitchen
         end
 
         wrap_shell_code(
-          [cmd, *args].join(" ").
-          tap { |str| str.insert(0, reload_ps1_path) if windows_os? }
+          [cmd, *args].join(" ")
+          .tap { |str| str.insert(0, reload_ps1_path) if windows_os? }
         )
       end
 

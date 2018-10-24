@@ -114,15 +114,15 @@ describe ChefDK::Policyfile::Uploader do
 
       allow(cookbook_version).to receive(:identifier=).with(lock.identifier)
 
-      allow(ChefDK::Policyfile::ReadCookbookForCompatModeUpload).
-        to receive(:load).
-        with(name, dotted_decimal_id, cache_path).
-        and_return(cookbook_version)
+      allow(ChefDK::Policyfile::ReadCookbookForCompatModeUpload)
+        .to receive(:load)
+        .with(name, dotted_decimal_id, cache_path)
+        .and_return(cookbook_version)
 
-      allow(ChefDK::Policyfile::CookbookLoaderWithChefignore).
-        to receive(:load).
-        with(name, cache_path).
-        and_return(cookbook_version)
+      allow(ChefDK::Policyfile::CookbookLoaderWithChefignore)
+        .to receive(:load)
+        .with(name, cache_path)
+        .and_return(cookbook_version)
 
       cookbook_versions[name] = cookbook_version
       cookbook_locks[name] = lock
@@ -186,9 +186,9 @@ describe ChefDK::Policyfile::Uploader do
             expect(http_client).to receive(:get).with(list_cookbooks_url).and_return(existing_cookbook_on_remote)
 
             cookbook_uploader = instance_double("Chef::CookbookUploader")
-            expect(Chef::CookbookUploader).to receive(:new).
-              with(cookbook_versions.values, rest: http_client, policy_mode: policy_document_native_api).
-              and_return(cookbook_uploader)
+            expect(Chef::CookbookUploader).to receive(:new)
+              .with(cookbook_versions.values, rest: http_client, policy_mode: policy_document_native_api)
+              .and_return(cookbook_uploader)
             expect(cookbook_uploader).to receive(:upload_cookbooks)
 
             expect_policyfile_upload
@@ -228,9 +228,9 @@ describe ChefDK::Policyfile::Uploader do
             expect(http_client).to receive(:get).with(list_cookbooks_url).and_return(existing_cookbook_on_remote)
 
             cookbook_uploader = instance_double("Chef::CookbookUploader")
-            expect(Chef::CookbookUploader).to receive(:new).
-              with(expected_cookbooks_for_upload, rest: http_client, policy_mode: policy_document_native_api).
-              and_return(cookbook_uploader)
+            expect(Chef::CookbookUploader).to receive(:new)
+              .with(expected_cookbooks_for_upload, rest: http_client, policy_mode: policy_document_native_api)
+              .and_return(cookbook_uploader)
             expect(cookbook_uploader).to receive(:upload_cookbooks)
 
             expect_policyfile_upload
@@ -326,25 +326,25 @@ describe ChefDK::Policyfile::Uploader do
       it "uploads the policyfile as a data bag item" do
         response = double("Net::HTTP response", code: "404")
         error = Net::HTTPServerException.new("Not Found", response)
-        expect(http_client).to receive(:put).
-          with("data/policyfiles/example-unit-test", policyfile_as_data_bag_item).
-          and_raise(error)
-        expect(http_client).to receive(:post).
-          with("data/policyfiles", policyfile_as_data_bag_item)
+        expect(http_client).to receive(:put)
+          .with("data/policyfiles/example-unit-test", policyfile_as_data_bag_item)
+          .and_raise(error)
+        expect(http_client).to receive(:post)
+          .with("data/policyfiles", policyfile_as_data_bag_item)
 
         uploader.data_bag_item_create
       end
 
       it "replaces an existing policyfile on the server if it exists" do
-        expect(http_client).to receive(:put).
-          with("data/policyfiles/example-unit-test", policyfile_as_data_bag_item)
+        expect(http_client).to receive(:put)
+          .with("data/policyfiles/example-unit-test", policyfile_as_data_bag_item)
         uploader.data_bag_item_create
       end
 
       it "creates the data bag and item to upload the policy" do
         expect(http_client).to receive(:post).with("data", policyfiles_data_bag)
-        expect(http_client).to receive(:put).
-          with("data/policyfiles/example-unit-test", policyfile_as_data_bag_item)
+        expect(http_client).to receive(:put)
+          .with("data/policyfiles/example-unit-test", policyfile_as_data_bag_item)
         uploader.upload_policy
       end
 
@@ -386,8 +386,8 @@ describe ChefDK::Policyfile::Uploader do
         }
       end
       def expect_policyfile_upload
-        expect(http_client).to receive(:put).
-          with("/policy_groups/unit-test/policies/example", policyfile_lock_data)
+        expect(http_client).to receive(:put)
+          .with("/policy_groups/unit-test/policies/example", policyfile_lock_data)
       end
 
       it "enables native document mode for policyfiles" do
@@ -395,8 +395,8 @@ describe ChefDK::Policyfile::Uploader do
       end
 
       it "uploads the policyfile to the native API" do
-        expect(http_client).to receive(:put).
-          with("/policy_groups/unit-test/policies/example", policyfile_lock_data)
+        expect(http_client).to receive(:put)
+          .with("/policy_groups/unit-test/policies/example", policyfile_lock_data)
 
         uploader.upload_policy
       end

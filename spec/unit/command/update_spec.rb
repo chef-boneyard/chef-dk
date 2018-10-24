@@ -63,9 +63,9 @@ describe ChefDK::Command::Update do
     end
 
     it "loads the config from the given path" do
-      expect(Chef::WorkstationConfigLoader).to receive(:new).
-        with("~/.chef/alternate_config.rb").
-        and_return(chef_config_loader)
+      expect(Chef::WorkstationConfigLoader).to receive(:new)
+        .with("~/.chef/alternate_config.rb")
+        .and_return(chef_config_loader)
       expect(chef_config_loader).to receive(:load)
       expect(command.chef_config).to eq(Chef::Config)
     end
@@ -81,9 +81,9 @@ describe ChefDK::Command::Update do
     end
 
     it "creates an attributes update service object" do
-      expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new).
-        with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, chef_config: anything).
-        and_return(update_attrs_service)
+      expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new)
+        .with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, chef_config: anything)
+        .and_return(update_attrs_service)
       expect(command.attributes_updater).to eq(update_attrs_service)
     end
   end
@@ -95,9 +95,9 @@ describe ChefDK::Command::Update do
     end
 
     it "creates the installer service with a `nil` policyfile path" do
-      expect(ChefDK::PolicyfileServices::Install).to receive(:new).
-        with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, config: Chef::Config, overwrite: true).
-        and_return(install_service)
+      expect(ChefDK::PolicyfileServices::Install).to receive(:new)
+        .with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, config: Chef::Config, overwrite: true)
+        .and_return(install_service)
       expect(command.installer).to eq(install_service)
     end
 
@@ -112,9 +112,9 @@ describe ChefDK::Command::Update do
     end
 
     it "creates the installer service with the specified policyfile path" do
-      expect(ChefDK::PolicyfileServices::Install).to receive(:new).
-        with(policyfile: "MyPolicy.rb", ui: command.ui, root_dir: Dir.pwd, config: Chef::Config, overwrite: true).
-        and_return(install_service)
+      expect(ChefDK::PolicyfileServices::Install).to receive(:new)
+        .with(policyfile: "MyPolicy.rb", ui: command.ui, root_dir: Dir.pwd, config: Chef::Config, overwrite: true)
+        .and_return(install_service)
       expect(command.installer).to eq(install_service)
     end
 
@@ -132,9 +132,9 @@ describe ChefDK::Command::Update do
     context "when the command is successful" do
       before do
         expect(install_service).to receive(:run)
-        expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new).
-          with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, chef_config: anything).
-          and_return(update_attrs_service)
+        expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new)
+          .with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, chef_config: anything)
+          .and_return(update_attrs_service)
         expect(update_attrs_service).to receive(:run)
       end
 
@@ -159,9 +159,9 @@ describe ChefDK::Command::Update do
 
       before do
         expect(install_service).to receive(:run).and_raise(exception)
-        expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new).
-          with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, chef_config: anything).
-          and_return(update_attrs_service)
+        expect(ChefDK::PolicyfileServices::UpdateAttributes).to receive(:new)
+          .with(policyfile: nil, ui: command.ui, root_dir: Dir.pwd, chef_config: anything)
+          .and_return(update_attrs_service)
         expect(update_attrs_service).to receive(:run)
       end
 
@@ -170,9 +170,9 @@ describe ChefDK::Command::Update do
       end
 
       it "displays the exception and cause" do
-        expected_error_text = <<-E
-Error: install failed
-Reason: (StandardError) some operation failed
+        expected_error_text = <<~E
+          Error: install failed
+          Reason: (StandardError) some operation failed
 
 E
 
@@ -185,9 +185,9 @@ E
         let(:params) { ["-D"] }
 
         it "displays the exception and cause with backtrace" do
-          expected_error_text = <<-E
-Error: install failed
-Reason: (StandardError) some operation failed
+          expected_error_text = <<~E
+            Error: install failed
+            Reason: (StandardError) some operation failed
 
 
 E
@@ -248,9 +248,9 @@ E
       end
 
       it "displays the exception and cause" do
-        expected_error_text = <<-E
-Error: Failed to update Policyfile lock
-Reason: (StandardError) some operation failed
+        expected_error_text = <<~E
+          Error: Failed to update Policyfile lock
+          Reason: (StandardError) some operation failed
 
 E
 
@@ -263,9 +263,9 @@ E
         let(:params) { ["-a", "-D"] }
 
         it "displays the exception and cause with backtrace" do
-          expected_error_text = <<-E
-Error: Failed to update Policyfile lock
-Reason: (StandardError) some operation failed
+          expected_error_text = <<~E
+            Error: Failed to update Policyfile lock
+            Reason: (StandardError) some operation failed
 
 
 E

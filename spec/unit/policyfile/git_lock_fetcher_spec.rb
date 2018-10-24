@@ -29,41 +29,41 @@ describe ChefDK::Policyfile::GitLockFetcher do
   let(:repo) { "https://github.com/monkeynews/bananas" }
 
   let(:minimal_lockfile_json) do
-    <<-E
-{
-  "revision_id": "#{revision_id}",
-  "name": "install-example",
-  "run_list": [
-    "recipe[#{cookbook_name}::default]"
-  ],
-  "cookbook_locks": {
-    "#{cookbook_name}": {
-      "version": "2.3.4",
-      "identifier": "#{identifier}",
-      "dotted_decimal_identifier": "70567763561641081.489844270461035.258281553147148",
-      "cache_key": "#{cookbook_name}-#{git_revision}",
-      "source_options": {
-        "git": "#{repo}",
-        "revision": "#{git_revision}"
-      }
-    }
-  },
-  "default_attributes": {},
-  "override_attributes": {},
-  "solution_dependencies": {
-    "Policyfile": [
-      [
-        "#{cookbook_name}",
-        ">= 0.0.0"
-      ]
-    ],
-    "dependencies": {
-      "#{cookbook_name} (2.3.4)": [
+    <<~E
+      {
+        "revision_id": "#{revision_id}",
+        "name": "install-example",
+        "run_list": [
+          "recipe[#{cookbook_name}::default]"
+        ],
+        "cookbook_locks": {
+          "#{cookbook_name}": {
+            "version": "2.3.4",
+            "identifier": "#{identifier}",
+            "dotted_decimal_identifier": "70567763561641081.489844270461035.258281553147148",
+            "cache_key": "#{cookbook_name}-#{git_revision}",
+            "source_options": {
+              "git": "#{repo}",
+              "revision": "#{git_revision}"
+            }
+          }
+        },
+        "default_attributes": {},
+        "override_attributes": {},
+        "solution_dependencies": {
+          "Policyfile": [
+            [
+              "#{cookbook_name}",
+              ">= 0.0.0"
+            ]
+          ],
+          "dependencies": {
+            "#{cookbook_name} (2.3.4)": [
 
-      ]
-    }
-  }
-}
+            ]
+          }
+        }
+      }
     E
   end
 

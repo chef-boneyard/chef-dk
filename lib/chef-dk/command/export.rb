@@ -27,22 +27,22 @@ module ChefDK
 
       include Configurable
 
-      banner(<<-E)
-Usage: chef export [ POLICY_FILE ] DESTINATION_DIRECTORY [options]
+      banner(<<~E)
+        Usage: chef export [ POLICY_FILE ] DESTINATION_DIRECTORY [options]
 
-`chef export` creates a Chef Zero compatible Chef repository containing the
-cookbooks described in a Policyfile.lock.json. The exported repository also
-contains a .chef/config.rb which configures chef to apply your policy. Once the
-exported repo is copied to the target machine, you can apply the policy to the
-machine with:
+        `chef export` creates a Chef Zero compatible Chef repository containing the
+        cookbooks described in a Policyfile.lock.json. The exported repository also
+        contains a .chef/config.rb which configures chef to apply your policy. Once the
+        exported repo is copied to the target machine, you can apply the policy to the
+        machine with:
 
-`chef-client -z`.
+        `chef-client -z`.
 
-See our detailed README for more information:
+        See our detailed README for more information:
 
-https://docs.chef.io/policyfile.html
+        https://docs.chef.io/policyfile.html
 
-Options:
+        Options:
 
 E
 

@@ -61,10 +61,10 @@ module ChefDK
       generator(:'build-cookbook', :BuildCookbook, "Generate a build cookbook for use with Delivery")
 
       def self.banner_headline
-        <<-E
-Usage: chef generate GENERATOR [options]
+        <<~E
+          Usage: chef generate GENERATOR [options]
 
-Available generators:
+          Available generators:
 E
       end
 

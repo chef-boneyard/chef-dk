@@ -32,41 +32,41 @@ module ChefDK
       include Configurable
       include Policyfile::StorageConfigDelegation
 
-      banner(<<-BANNER)
-Usage: chef diff [POLICYFILE] [--head | --git GIT_REF | POLICY_GROUP | POLICY_GROUP...POLICY_GROUP ]
+      banner(<<~BANNER)
+        Usage: chef diff [POLICYFILE] [--head | --git GIT_REF | POLICY_GROUP | POLICY_GROUP...POLICY_GROUP ]
 
-`chef diff` displays an itemized diff comparing two revisions of a
-Policyfile lock.
+        `chef diff` displays an itemized diff comparing two revisions of a
+        Policyfile lock.
 
-When the `--git` option is given, `chef diff` either compares a given
-git reference against the current lockfile revision on disk or compares
-between two git references. Examples:
+        When the `--git` option is given, `chef diff` either compares a given
+        git reference against the current lockfile revision on disk or compares
+        between two git references. Examples:
 
-* `chef diff --git HEAD`: compares the current lock with the latest
-  commit on the current branch.
-* `chef diff --git master` compares the current lock with the latest
-  commit to master.
-* `chef diff --git v1.0.0`: compares the current lock with the revision
-  as of the `v1.0.0` tag.
-* `chef diff --git master...dev-branch` compares the Policyfile lock on
-  master with the revision on the `dev-branch` branch.
-* `chef diff --git v1.0.0...master` compares the Policyfile lock at the
-  `v1.0.0` tag with the lastest revision on the master branch.
+        * `chef diff --git HEAD`: compares the current lock with the latest
+          commit on the current branch.
+        * `chef diff --git master` compares the current lock with the latest
+          commit to master.
+        * `chef diff --git v1.0.0`: compares the current lock with the revision
+          as of the `v1.0.0` tag.
+        * `chef diff --git master...dev-branch` compares the Policyfile lock on
+          master with the revision on the `dev-branch` branch.
+        * `chef diff --git v1.0.0...master` compares the Policyfile lock at the
+          `v1.0.0` tag with the lastest revision on the master branch.
 
-`chef diff --head` is a shortcut for `chef diff --git HEAD`.
+        `chef diff --head` is a shortcut for `chef diff --git HEAD`.
 
-When no git-specific flag is given, `chef diff` either compares the
-current lockfile revision on disk to one on the server or compares two
-lockfiles on the server. Lockfiles on the Chef Server are specified by
-Policy Group. Examples:
+        When no git-specific flag is given, `chef diff` either compares the
+        current lockfile revision on disk to one on the server or compares two
+        lockfiles on the server. Lockfiles on the Chef Server are specified by
+        Policy Group. Examples:
 
-* `chef diff staging`: compares the current lock with the one currently
-  assigned to the `staging` Policy Group.
-* `chef diff production...staging` compares the lock currently assigned
-  to the `production` Policy Group to the lock currently assigned to the
-  `staging` Policy Group.
+        * `chef diff staging`: compares the current lock with the one currently
+          assigned to the `staging` Policy Group.
+        * `chef diff production...staging` compares the lock currently assigned
+          to the `production` Policy Group to the lock currently assigned to the
+          `staging` Policy Group.
 
-Options:
+        Options:
 BANNER
 
       option :git,

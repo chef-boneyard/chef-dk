@@ -48,15 +48,15 @@ describe ChefDK::PolicyfileServices::Install do
   end
 
   let(:policyfile_content) do
-    <<-EOH
-default_source :community
-name 'install-example'
+    <<~EOH
+      default_source :community
+      name 'install-example'
 
-run_list 'top-level'
+      run_list 'top-level'
 
-cookbook 'top-level'
-cookbook 'top-level-bis'
-cookbook 'b', '>= 1.2.3'
+      cookbook 'top-level'
+      cookbook 'top-level-bis'
+      cookbook 'b', '>= 1.2.3'
 EOH
   end
 

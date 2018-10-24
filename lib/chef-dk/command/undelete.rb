@@ -25,30 +25,30 @@ module ChefDK
 
     class Undelete < Base
 
-      banner(<<-BANNER)
-Usage: chef undelete [--list | --id ID] [options]
+      banner(<<~BANNER)
+        Usage: chef undelete [--list | --id ID] [options]
 
-`chef undelete` helps you recover quickly if you've deleted a policy or policy
-group in error. When run with no arguements, it lists the available undo
-operations. To undo the last delete operation, use `chef undelete --last`.
+        `chef undelete` helps you recover quickly if you've deleted a policy or policy
+        group in error. When run with no arguements, it lists the available undo
+        operations. To undo the last delete operation, use `chef undelete --last`.
 
-CAVEATS:
-`chef undelete` doesn't detect conflicts. If a deleted item has been recreated,
-running `chef undelete` will overwrite it.
+        CAVEATS:
+        `chef undelete` doesn't detect conflicts. If a deleted item has been recreated,
+        running `chef undelete` will overwrite it.
 
-Undo information does not include cookbooks that might be referenced by
-policies. If you have cleaned the policy cookbooks after the delete operation
-you want to reverse, `chef undelete` may not be able to fully restore the
-previous state.
+        Undo information does not include cookbooks that might be referenced by
+        policies. If you have cleaned the policy cookbooks after the delete operation
+        you want to reverse, `chef undelete` may not be able to fully restore the
+        previous state.
 
-The delete commands also do not store access control data, so you may have to
-manually reapply any ACL customizations you have made.
+        The delete commands also do not store access control data, so you may have to
+        manually reapply any ACL customizations you have made.
 
-See our detailed README for more information:
+        See our detailed README for more information:
 
-https://docs.chef.io/policyfile.html
+        https://docs.chef.io/policyfile.html
 
-Options:
+        Options:
 
 BANNER
 

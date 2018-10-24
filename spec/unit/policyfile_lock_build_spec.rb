@@ -202,12 +202,12 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
     end
 
     let(:expected_canonical_revision_string) do
-      <<-REVISION_STRING
-name:minimal_policyfile
-run-list-item:recipe[foo]
-cookbook:foo;id:467dc855408ce8b74f991c5dc2fd72a6aa369b60
-default_attributes:{}
-override_attributes:{}
+      <<~REVISION_STRING
+        name:minimal_policyfile
+        run-list-item:recipe[foo]
+        cookbook:foo;id:467dc855408ce8b74f991c5dc2fd72a6aa369b60
+        default_attributes:{}
+        override_attributes:{}
 REVISION_STRING
     end
 
@@ -289,12 +289,12 @@ REVISION_STRING
     end
 
     let(:expected_canonical_revision_string) do
-      <<-REVISION_STRING
-name:minimal_policyfile
-run-list-item:recipe[foo]
-cookbook:foo;id:467dc855408ce8b74f991c5dc2fd72a6aa369b60
-default_attributes:{"aaa":"aaa","bbb":null,"ccc":false,"ddd":true,"e":1.2,"f":5,"foo":"bar","g":1e+15,"nested":{"a":"b"}}
-override_attributes:{"foo2":"baz"}
+      <<~REVISION_STRING
+        name:minimal_policyfile
+        run-list-item:recipe[foo]
+        cookbook:foo;id:467dc855408ce8b74f991c5dc2fd72a6aa369b60
+        default_attributes:{"aaa":"aaa","bbb":null,"ccc":false,"ddd":true,"e":1.2,"f":5,"foo":"bar","g":1e+15,"nested":{"a":"b"}}
+        override_attributes:{"foo2":"baz"}
 REVISION_STRING
     end
 
@@ -380,12 +380,12 @@ REVISION_STRING
     end
 
     let(:expected_canonical_revision_string) do
-      <<-REVISION_STRING
-name:dev_cookbook
-run-list-item:recipe[bar]
-cookbook:bar;id:#{cookbook_bar_cksum}
-default_attributes:{}
-override_attributes:{}
+      <<~REVISION_STRING
+        name:dev_cookbook
+        run-list-item:recipe[bar]
+        cookbook:bar;id:#{cookbook_bar_cksum}
+        default_attributes:{}
+        override_attributes:{}
 REVISION_STRING
     end
 
@@ -480,13 +480,13 @@ REVISION_STRING
     end
 
     let(:expected_canonical_revision_string) do
-      <<-REVISION_STRING
-name:custom_identifier
-run-list-item:recipe[foo]
-cookbook:bar;id:0.1.0
-cookbook:foo;id:1.0.0
-default_attributes:{}
-override_attributes:{}
+      <<~REVISION_STRING
+        name:custom_identifier
+        run-list-item:recipe[foo]
+        cookbook:bar;id:0.1.0
+        cookbook:foo;id:1.0.0
+        default_attributes:{}
+        override_attributes:{}
 REVISION_STRING
     end
 
@@ -603,17 +603,17 @@ REVISION_STRING
     end
 
     let(:expected_canonical_revision_string) do
-      <<-REVISION_STRING
-name:basic_example
-run-list-item:recipe[foo]
-run-list-item:recipe[bar]
-run-list-item:recipe[baz::non_default]
-cookbook:bar;id:#{cookbook_bar_cksum}
-cookbook:baz;id:#{cookbook_baz_cksum}
-cookbook:dep_of_bar;id:#{cookbook_dep_of_bar_cksum}
-cookbook:foo;id:#{cookbook_foo_cksum}
-default_attributes:{}
-override_attributes:{}
+      <<~REVISION_STRING
+        name:basic_example
+        run-list-item:recipe[foo]
+        run-list-item:recipe[bar]
+        run-list-item:recipe[baz::non_default]
+        cookbook:bar;id:#{cookbook_bar_cksum}
+        cookbook:baz;id:#{cookbook_baz_cksum}
+        cookbook:dep_of_bar;id:#{cookbook_dep_of_bar_cksum}
+        cookbook:foo;id:#{cookbook_foo_cksum}
+        default_attributes:{}
+        override_attributes:{}
 REVISION_STRING
     end
 
@@ -735,12 +735,12 @@ REVISION_STRING
     end
 
     let(:expected_canonical_revision_string) do
-      <<-REVISION_STRING
-name:minimal_policyfile
-run-list-item:recipe[foo]
-cookbook:foo;id:#{cookbook_foo_cksum}
-default_attributes:{}
-override_attributes:{}
+      <<~REVISION_STRING
+        name:minimal_policyfile
+        run-list-item:recipe[foo]
+        cookbook:foo;id:#{cookbook_foo_cksum}
+        default_attributes:{}
+        override_attributes:{}
 REVISION_STRING
     end
 
@@ -805,13 +805,13 @@ REVISION_STRING
     end
 
     let(:expected_canonical_revision_string) do
-      <<-REVISION_STRING
-name:minimal_policyfile
-run-list-item:recipe[foo]
-named-run-list:rl2;run-list-item:recipe[foo::bar]
-cookbook:foo;id:#{cookbook_foo_cksum}
-default_attributes:{}
-override_attributes:{}
+      <<~REVISION_STRING
+        name:minimal_policyfile
+        run-list-item:recipe[foo]
+        named-run-list:rl2;run-list-item:recipe[foo::bar]
+        cookbook:foo;id:#{cookbook_foo_cksum}
+        default_attributes:{}
+        override_attributes:{}
 REVISION_STRING
     end
 
@@ -949,15 +949,15 @@ REVISION_STRING
     end
 
     let(:expected_canonical_revision_string) do
-      <<-REVISION_STRING
-name:my-policyfile
-run-list-item:recipe[foo::default]
-run-list-item:recipe[bar::default]
-named-run-list:rl2;run-list-item:recipe[bar::default]
-cookbook:bar;id:#{cookbook_bar_cksum}
-cookbook:foo;id:#{cookbook_foo_cksum}
-default_attributes:#{canonicalized_default_attrs}
-override_attributes:#{canonicalized_override_attrs}
+      <<~REVISION_STRING
+        name:my-policyfile
+        run-list-item:recipe[foo::default]
+        run-list-item:recipe[bar::default]
+        named-run-list:rl2;run-list-item:recipe[bar::default]
+        cookbook:bar;id:#{cookbook_bar_cksum}
+        cookbook:foo;id:#{cookbook_foo_cksum}
+        default_attributes:#{canonicalized_default_attrs}
+        override_attributes:#{canonicalized_override_attrs}
 REVISION_STRING
     end
 

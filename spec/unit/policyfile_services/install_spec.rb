@@ -43,12 +43,12 @@ describe ChefDK::PolicyfileServices::Install do
   end
 
   let(:policyfile_content) do
-    <<-E
-name 'install-example'
+    <<~E
+      name 'install-example'
 
-run_list 'local-cookbook'
+      run_list 'local-cookbook'
 
-cookbook 'local-cookbook', path: '#{local_cookbooks_root}/local-cookbook'
+      cookbook 'local-cookbook', path: '#{local_cookbooks_root}/local-cookbook'
 E
   end
 

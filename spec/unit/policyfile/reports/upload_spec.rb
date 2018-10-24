@@ -80,11 +80,11 @@ describe ChefDK::Policyfile::Reports::Upload do
     it "prints a table showing the re-used and uploaded cookbooks" do
       upload_report.show
 
-      expected_output = <<-E
-Using    short-name              10.11.12   (49582c3d)
-Using    a-longer-named-cookbook 1.0.0      (e4ac353b)
-Uploaded foo                     1.2.42     (cb61daeb)
-Uploaded barbazqux               12.34.5678 (1241ea6f)
+      expected_output = <<~E
+        Using    short-name              10.11.12   (49582c3d)
+        Using    a-longer-named-cookbook 1.0.0      (e4ac353b)
+        Uploaded foo                     1.2.42     (cb61daeb)
+        Uploaded barbazqux               12.34.5678 (1241ea6f)
 E
       expect(ui.output).to eq(expected_output)
     end

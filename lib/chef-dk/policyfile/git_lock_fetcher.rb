@@ -105,15 +105,15 @@ module ChefDK
       def lock_data
         @lock_data ||= fetch_lock_data.tap do |data|
           data["cookbook_locks"].each do |cookbook_name, cookbook_lock|
-            if cookbook_lock["source_options"].has_key?("path")
+            if cookbook_lock["source_options"].key?("path")
               cookbook_lock["source_options"].tap do |opt|
-                opt["git"]      = uri unless opt.has_key?("git")
-                opt["revision"] = revision unless opt.has_key?("revision")
-                opt["branch"]   = branch unless opt.has_key?("branch") || branch.nil?
-                opt["tag"]      = tag unless opt.has_key?("tag") || branch.nil?
-                opt["ref"]      = ref unless opt.has_key?("ref") || ref.nil?
+                opt["git"]      = uri unless opt.key?("git")
+                opt["revision"] = revision unless opt.key?("revision")
+                opt["branch"]   = branch unless opt.key?("branch") || branch.nil?
+                opt["tag"]      = tag unless opt.key?("tag") || branch.nil?
+                opt["ref"]      = ref unless opt.key?("ref") || ref.nil?
 
-                path_keys = %w{path rel}.map { |path_key| path_key if opt.has_key?(path_key) }.compact
+                path_keys = %w{path rel}.map { |path_key| path_key if opt.key?(path_key) }.compact
 
                 path_keys.each do |name|
                   # We can safely grab the entire cookbook when the Policyfile defines a cookbook path of itself (".")

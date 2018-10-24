@@ -128,12 +128,12 @@ module ChefDK
     def resolution_message(overlapping_cookbooks)
       example_source       = cookbook_sources.first
       source_key, location = example_source.default_source_args
-      <<-EXAMPLE
-You can set a preferred source to resolve this issue with code like:
+      <<~EXAMPLE
+        You can set a preferred source to resolve this issue with code like:
 
-default_source :#{source_key}, "#{location}" do |s|
-  s.preferred_for "#{overlapping_cookbooks.join('", "')}"
-end
+        default_source :#{source_key}, "#{location}" do |s|
+          s.preferred_for "#{overlapping_cookbooks.join('", "')}"
+        end
       EXAMPLE
     end
 

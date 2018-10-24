@@ -84,9 +84,9 @@ describe ChefDK::PolicyfileServices::RmPolicy do
 
       before do
         expect(http_client).to receive(:get).with("/policies/appserver").and_return(policy_revisions_data)
-        expect(http_client).to receive(:get).
-          with("/policies/appserver/revisions/2222222222222222222222222222222222222222222222222222222222222222").
-          and_raise(http_exception)
+        expect(http_client).to receive(:get)
+          .with("/policies/appserver/revisions/2222222222222222222222222222222222222222222222222222222222222222")
+          .and_raise(http_exception)
       end
 
       it "re-raises the error with a standardized exception class" do
@@ -182,9 +182,9 @@ describe ChefDK::PolicyfileServices::RmPolicy do
       expect(http_client).to receive(:get).with("/policies/appserver").and_return(policy_revisions_data)
       expect(http_client).to receive(:get).with("/policy_groups").and_return(policy_group_data)
 
-      expect(http_client).to receive(:get).
-        with("/policies/appserver/revisions/2222222222222222222222222222222222222222222222222222222222222222").
-        and_return(policy_appserver_2)
+      expect(http_client).to receive(:get)
+        .with("/policies/appserver/revisions/2222222222222222222222222222222222222222222222222222222222222222")
+        .and_return(policy_appserver_2)
       expect(http_client).to receive(:delete).with("/policies/appserver")
 
       expect(undo_stack).to receive(:push).with(undo_record)

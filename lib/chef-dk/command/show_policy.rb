@@ -26,22 +26,22 @@ module ChefDK
 
     class ShowPolicy < Base
 
-      banner(<<-BANNER)
-Usage: chef show-policy [POLICY_NAME [POLICY_GROUP]] [options]
+      banner(<<~BANNER)
+        Usage: chef show-policy [POLICY_NAME [POLICY_GROUP]] [options]
 
-`chef show-policy` Displays the revisions of policyfiles on the server. By
-default, only active policy revisions are shown. Use the `--orphans` options to
-show policy revisions that are not assigned to any policy group.
+        `chef show-policy` Displays the revisions of policyfiles on the server. By
+        default, only active policy revisions are shown. Use the `--orphans` options to
+        show policy revisions that are not assigned to any policy group.
 
-When both POLICY_NAME and POLICY_GROUP are given, the command shows the content
-of a the active policyfile lock for the given POLICY_GROUP. See also the `diff`
-command.
+        When both POLICY_NAME and POLICY_GROUP are given, the command shows the content
+        of a the active policyfile lock for the given POLICY_GROUP. See also the `diff`
+        command.
 
-See our detailed README for more information:
+        See our detailed README for more information:
 
-https://docs.chef.io/policyfile.html
+        https://docs.chef.io/policyfile.html
 
-Options:
+        Options:
 
 BANNER
 

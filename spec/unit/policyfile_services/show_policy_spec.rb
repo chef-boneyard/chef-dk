@@ -130,21 +130,21 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
         end
 
         it "prints a message to stderr that there are no active policies" do
-          expected_output = <<-OUTPUT
-appserver
-=========
+          expected_output = <<~OUTPUT
+            appserver
+            =========
 
-Policy appserver is not assigned to any groups
+            Policy appserver is not assigned to any groups
 
-load-balancer
-=============
+            load-balancer
+            =============
 
-Policy load-balancer is not assigned to any groups
+            Policy load-balancer is not assigned to any groups
 
-db
-==
+            db
+            ==
 
-Policy db is not assigned to any groups
+            Policy db is not assigned to any groups
 
 OUTPUT
           expect(ui.output).to eq(expected_output)
@@ -155,39 +155,39 @@ OUTPUT
           let(:show_orphans) { true }
 
           it "shows all policies as orphaned" do
-            expected_output = <<-OUTPUT
-appserver
-=========
+            expected_output = <<~OUTPUT
+              appserver
+              =========
 
-Policy appserver is not assigned to any groups
+              Policy appserver is not assigned to any groups
 
-Orphaned:
----------
+              Orphaned:
+              ---------
 
-* 1111111111
-* 2222222222
+              * 1111111111
+              * 2222222222
 
-load-balancer
-=============
+              load-balancer
+              =============
 
-Policy load-balancer is not assigned to any groups
+              Policy load-balancer is not assigned to any groups
 
-Orphaned:
----------
+              Orphaned:
+              ---------
 
-* 5555555555
-* 6666666666
+              * 5555555555
+              * 6666666666
 
-db
-==
+              db
+              ==
 
-Policy db is not assigned to any groups
+              Policy db is not assigned to any groups
 
-Orphaned:
----------
+              Orphaned:
+              ---------
 
-* 9999999999
-* aaaaaaaaaa
+              * 9999999999
+              * aaaaaaaaaa
 
 OUTPUT
             expect(ui.output).to eq(expected_output)
@@ -252,27 +252,27 @@ OUTPUT
         end
 
         it "shows each policy name, followed by a list of group_name -> revision" do
-          expected_output = <<-OUTPUT
-appserver
-=========
+          expected_output = <<~OUTPUT
+            appserver
+            =========
 
-* dev:      1111111111
-* staging:  2222222222
-* prod:     2222222222
+            * dev:      1111111111
+            * staging:  2222222222
+            * prod:     2222222222
 
-load-balancer
-=============
+            load-balancer
+            =============
 
-* dev:      5555555555
-* staging:  5555555555
-* prod:     6666666666
+            * dev:      5555555555
+            * staging:  5555555555
+            * prod:     6666666666
 
-db
-==
+            db
+            ==
 
-* dev:      9999999999
-* staging:  9999999999
-* prod:     aaaaaaaaaa
+            * dev:      9999999999
+            * staging:  9999999999
+            * prod:     aaaaaaaaaa
 
 OUTPUT
           expect(ui.output).to eq(expected_output)
@@ -322,27 +322,27 @@ OUTPUT
         end
 
         it "shows each policy name, followed by a list of group_name -> revision, followed by a list of orphaned policies" do
-          expected_output = <<-OUTPUT
-appserver
-=========
+          expected_output = <<~OUTPUT
+            appserver
+            =========
 
-* dev:      1111111111
-* staging:  2222222222
-* prod:     2222222222
+            * dev:      1111111111
+            * staging:  2222222222
+            * prod:     2222222222
 
-load-balancer
-=============
+            load-balancer
+            =============
 
-* dev:      5555555555
-* staging:  5555555555
-* prod:     6666666666
+            * dev:      5555555555
+            * staging:  5555555555
+            * prod:     6666666666
 
-db
-==
+            db
+            ==
 
-* dev:      9999999999
-* staging:  9999999999
-* prod:     aaaaaaaaaa
+            * dev:      9999999999
+            * staging:  9999999999
+            * prod:     aaaaaaaaaa
 
 OUTPUT
           expect(ui.output).to eq(expected_output)
@@ -353,42 +353,42 @@ OUTPUT
           let(:show_orphans) { true }
 
           it "shows each policy name, followed by a list of group_name -> revision, followed by a list of orphaned policies" do
-            expected_output = <<-OUTPUT
-appserver
-=========
+            expected_output = <<~OUTPUT
+              appserver
+              =========
 
-* dev:      1111111111
-* staging:  2222222222
-* prod:     2222222222
+              * dev:      1111111111
+              * staging:  2222222222
+              * prod:     2222222222
 
-Orphaned:
----------
+              Orphaned:
+              ---------
 
-* 3333333333
+              * 3333333333
 
-load-balancer
-=============
+              load-balancer
+              =============
 
-* dev:      5555555555
-* staging:  5555555555
-* prod:     6666666666
+              * dev:      5555555555
+              * staging:  5555555555
+              * prod:     6666666666
 
-Orphaned:
----------
+              Orphaned:
+              ---------
 
-* 7777777777
+              * 7777777777
 
-db
-==
+              db
+              ==
 
-* dev:      9999999999
-* staging:  9999999999
-* prod:     aaaaaaaaaa
+              * dev:      9999999999
+              * staging:  9999999999
+              * prod:     aaaaaaaaaa
 
-Orphaned:
----------
+              Orphaned:
+              ---------
 
-* bbbbbbbbbb
+              * bbbbbbbbbb
 
 OUTPUT
             expect(ui.output).to eq(expected_output)
@@ -441,34 +441,34 @@ OUTPUT
         end
 
         it "shows each policy name, followed by a list of group_name -> revision, omitting groups that don't have that policy" do
-          expected_output = <<-OUTPUT
-appserver
-=========
+          expected_output = <<~OUTPUT
+            appserver
+            =========
 
-* dev:      1111111111
-* staging:  2222222222
-* prod:     2222222222
+            * dev:      1111111111
+            * staging:  2222222222
+            * prod:     2222222222
 
-load-balancer
-=============
+            load-balancer
+            =============
 
-* dev:      5555555555
-* staging:  5555555555
-* prod:     6666666666
+            * dev:      5555555555
+            * staging:  5555555555
+            * prod:     6666666666
 
-db
-==
+            db
+            ==
 
-* dev:      9999999999
-* staging:  9999999999
-* prod:     aaaaaaaaaa
+            * dev:      9999999999
+            * staging:  9999999999
+            * prod:     aaaaaaaaaa
 
-memcache
-========
+            memcache
+            ========
 
-* dev:      dddddddddd
-* staging:  dddddddddd
-* prod:     *NOT APPLIED*
+            * dev:      dddddddddd
+            * staging:  dddddddddd
+            * prod:     *NOT APPLIED*
 
 OUTPUT
           expect(ui.output).to eq(expected_output)
@@ -509,11 +509,11 @@ OUTPUT
         end
 
         it "prints a message to stderr that there are no copies of the policy on the server" do
-          expected_output = <<-OUTPUT
-appserver
-=========
+          expected_output = <<~OUTPUT
+            appserver
+            =========
 
-No policies named 'appserver' are associated with a policy group
+            No policies named 'appserver' are associated with a policy group
 
 OUTPUT
 
@@ -559,11 +559,11 @@ OUTPUT
         end
 
         it "prints a message to stderr that there are no copies of the policy on the server" do
-          expected_output = <<-OUTPUT
-appserver
-=========
+          expected_output = <<~OUTPUT
+            appserver
+            =========
 
-No policies named 'appserver' are associated with a policy group
+            No policies named 'appserver' are associated with a policy group
 
 OUTPUT
 
@@ -589,11 +589,11 @@ OUTPUT
         end
 
         it "explains that no policies are assigned to a group" do
-          expected_output = <<-OUTPUT
-appserver
-=========
+          expected_output = <<~OUTPUT
+            appserver
+            =========
 
-No policies named 'appserver' are associated with a policy group
+            No policies named 'appserver' are associated with a policy group
 
 OUTPUT
 
@@ -628,13 +628,13 @@ OUTPUT
           }
         end
         it "lists each of the groups with the associated revision" do
-          expected_output = <<-OUTPUT
-appserver
-=========
+          expected_output = <<~OUTPUT
+            appserver
+            =========
 
-* dev:      2222222222
-* staging:  2222222222
-* prod:     2222222222
+            * dev:      2222222222
+            * staging:  2222222222
+            * prod:     2222222222
 
 OUTPUT
           expect(ui.output).to eq(expected_output)
@@ -670,13 +670,13 @@ OUTPUT
         end
 
         it "lists each of the groups with the associated revision" do
-          expected_output = <<-OUTPUT
-appserver
-=========
+          expected_output = <<~OUTPUT
+            appserver
+            =========
 
-* dev:      2222222222
-* staging:  2222222222
-* prod:     1111111111
+            * dev:      2222222222
+            * staging:  2222222222
+            * prod:     1111111111
 
 OUTPUT
           expect(ui.output).to eq(expected_output)
@@ -739,30 +739,30 @@ OUTPUT
           let(:summary_diff) { true }
 
           it "lists each of the groups and displays the version and identifier of the differing cookbooks" do
-            expected_output = <<-OUTPUT
-appserver
-=========
+            expected_output = <<~OUTPUT
+              appserver
+              =========
 
-dev:     2222222222
--------------------
+              dev:     2222222222
+              -------------------
 
-* apache2:         2.0.5 (aaa1230000)
-* yum:             4.5.2 (8675309999)
-* other_cookbook:  9.8.7 (1131130000)
+              * apache2:         2.0.5 (aaa1230000)
+              * yum:             4.5.2 (8675309999)
+              * other_cookbook:  9.8.7 (1131130000)
 
-staging: 2222222222
--------------------
+              staging: 2222222222
+              -------------------
 
-* apache2:         2.0.5 (aaa1230000)
-* yum:             4.5.2 (8675309999)
-* other_cookbook:  9.8.7 (1131130000)
+              * apache2:         2.0.5 (aaa1230000)
+              * yum:             4.5.2 (8675309999)
+              * other_cookbook:  9.8.7 (1131130000)
 
-prod:    1111111111
--------------------
+              prod:    1111111111
+              -------------------
 
-* apache2:         2.1.3 (abcdef0000)
-* yum:             4.5.6 (123abc0000)
-* other_cookbook:  *NONE*
+              * apache2:         2.1.3 (abcdef0000)
+              * yum:             4.5.6 (123abc0000)
+              * other_cookbook:  *NONE*
 
 OUTPUT
             expect(ui.output).to eq(expected_output)
@@ -774,18 +774,18 @@ OUTPUT
           let(:show_orphans) { true }
 
           it "lists each of the groups, then lists the orphaned revisions" do
-            expected_output = <<-OUTPUT
-appserver
-=========
+            expected_output = <<~OUTPUT
+              appserver
+              =========
 
-* dev:      2222222222
-* staging:  2222222222
-* prod:     1111111111
+              * dev:      2222222222
+              * staging:  2222222222
+              * prod:     1111111111
 
-Orphaned:
----------
+              Orphaned:
+              ---------
 
-* 3333333333
+              * 3333333333
 
 OUTPUT
 
