@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.34 -->
-## [v3.4.34](https://github.com/chef/chef-dk/tree/v3.4.34) (2018-10-23)
+<!-- latest_release 3.4.35 -->
+## [v3.4.35](https://github.com/chef/chef-dk/tree/v3.4.35) (2018-10-24)
 
 #### Merged Pull Requests
-- Bump kitchen-inspec to 0.25.0 and InSpec to 3.0 [#1796](https://github.com/chef/chef-dk/pull/1796) ([chef-ci](https://github.com/chef-ci))
+- Bump chefstyle to 0.11.0 and Foodcritic to 14.3 [#1799](https://github.com/chef/chef-dk/pull/1799) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.23 -->
 ### Changes since 3.3.23 release
 
 #### Merged Pull Requests
+- Bump chefstyle to 0.11.0 and Foodcritic to 14.3 [#1799](https://github.com/chef/chef-dk/pull/1799) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.35 -->
 - Bump kitchen-inspec to 0.25.0 and InSpec to 3.0 [#1796](https://github.com/chef/chef-dk/pull/1796) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.34 -->
 - Bump kitchen-hyperv to 0.5.2 [#1795](https://github.com/chef/chef-dk/pull/1795) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.33 -->
 - Bump kitchen-vagrant to 1.3.5 [#1794](https://github.com/chef/chef-dk/pull/1794) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.32 -->
