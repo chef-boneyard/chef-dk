@@ -37,7 +37,7 @@ module ChefDK
       attr_reader :chef_config
       attr_reader :ui
 
-      LOCATION_TYPES = [:path, :server, :git]
+      LOCATION_TYPES = [:path, :server, :git].freeze
 
       # Initialize a location spec
       #

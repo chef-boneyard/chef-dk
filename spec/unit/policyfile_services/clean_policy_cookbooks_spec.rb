@@ -183,15 +183,15 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
       end
 
       before do
-        allow(http_client).to receive(:get).
-          with("/policies/aar/revisions/37f9b658cdd1d9319bac8920581723efcc2014304b5f3827ee0779e10ffbdcc9").
-          and_return(policy_aar_37f9b65)
-        allow(http_client).to receive(:get).
-          with("/policies/jenkins/revisions/613f803bdd035d574df7fa6da525b38df45a74ca82b38b79655efed8a189e073").
-          and_return(policy_jenkins_613f803)
-        allow(http_client).to receive(:get).
-          with("/policies/jenkins/revisions/6fe753184c8946052d3231bb4212116df28d89a3a5f7ae52832ad408419dd5eb").
-          and_return(policy_jenkins_6fe7531)
+        allow(http_client).to receive(:get)
+          .with("/policies/aar/revisions/37f9b658cdd1d9319bac8920581723efcc2014304b5f3827ee0779e10ffbdcc9")
+          .and_return(policy_aar_37f9b65)
+        allow(http_client).to receive(:get)
+          .with("/policies/jenkins/revisions/613f803bdd035d574df7fa6da525b38df45a74ca82b38b79655efed8a189e073")
+          .and_return(policy_jenkins_613f803)
+        allow(http_client).to receive(:get)
+          .with("/policies/jenkins/revisions/6fe753184c8946052d3231bb4212116df28d89a3a5f7ae52832ad408419dd5eb")
+          .and_return(policy_jenkins_6fe7531)
       end
 
       context "and all cookbooks are active" do

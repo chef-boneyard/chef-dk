@@ -159,7 +159,7 @@ module ChefDK
       File.open(path, mode, &block)
     end
 
-    #@api private
+    # @api private
     # This method resets all the instance variables used. It
     # should only be used for testing
     def reset!

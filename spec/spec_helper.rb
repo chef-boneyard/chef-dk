@@ -38,11 +38,11 @@ RSpec.configure do |c|
 
   c.after(:all) { clear_tempdir }
 
-  c.filter_run :focus => true
+  c.filter_run focus: true
   c.run_all_when_everything_filtered = true
   # Tests that randomly fail, but may have value.
-  c.filter_run_excluding :volatile => true
-  c.filter_run_excluding :skip_on_windows => true if running_on_windows
+  c.filter_run_excluding volatile: true
+  c.filter_run_excluding skip_on_windows: true if running_on_windows
 
   c.mock_with(:rspec) do |mocks|
     mocks.verify_partial_doubles = true

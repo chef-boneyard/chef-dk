@@ -106,11 +106,11 @@ module ChefDK
 
         # @api private
         def metadata_rb
-          <<-METADATA
-name             '#{cookbook_name}'
-description      'Custom code generator cookbook for use with ChefDK'
-long_description 'Custom code generator cookbook for use with ChefDK'
-version          '0.1.0'
+          <<~METADATA
+            name             '#{cookbook_name}'
+            description      'Custom code generator cookbook for use with ChefDK'
+            long_description 'Custom code generator cookbook for use with ChefDK'
+            version          '0.1.0'
 
 METADATA
         end

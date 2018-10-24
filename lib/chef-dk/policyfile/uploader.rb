@@ -53,10 +53,10 @@ module ChefDK
         ui.msg("Uploading policy #{policy_name} (#{short_revision_id}) to policy group #{policy_group}")
 
         if !using_policy_document_native_api?
-          ui.msg(<<-DRAGONS)
-WARN: Uploading policy to policy group #{policy_group} in compatibility mode.
-Cookbooks will be uploaded with very large version numbers, which may be picked
-up by existing nodes.
+          ui.msg(<<~DRAGONS)
+            WARN: Uploading policy to policy group #{policy_group} in compatibility mode.
+            Cookbooks will be uploaded with very large version numbers, which may be picked
+            up by existing nodes.
 DRAGONS
         end
 

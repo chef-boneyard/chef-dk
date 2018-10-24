@@ -132,10 +132,10 @@ describe ChefDK::Command::Export do
       it "prints instructions for running chef-client in the repo" do
         command.run(params)
 
-        expected_message = <<-MESSAGE
-To converge this system with the exported policy, run:
-  cd /path/to/export
-  chef-client -z
+        expected_message = <<~MESSAGE
+          To converge this system with the exported policy, run:
+            cd /path/to/export
+            chef-client -z
 MESSAGE
         expect(ui.output).to include(expected_message)
       end
@@ -164,9 +164,9 @@ MESSAGE
       end
 
       it "displays the exception and cause" do
-        expected_error_text = <<-E
-Error: export failed
-Reason: (StandardError) some operation failed
+        expected_error_text = <<~E
+          Error: export failed
+          Reason: (StandardError) some operation failed
 
 E
 
@@ -179,9 +179,9 @@ E
         let(:params) { [ "path/to/export", "-D"] }
 
         it "displays the exception and cause with backtrace" do
-          expected_error_text = <<-E
-Error: export failed
-Reason: (StandardError) some operation failed
+          expected_error_text = <<~E
+            Error: export failed
+            Reason: (StandardError) some operation failed
 
 
 E

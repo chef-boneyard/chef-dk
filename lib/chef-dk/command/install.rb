@@ -27,21 +27,21 @@ module ChefDK
 
       include Configurable
 
-      banner(<<-E)
-Usage: chef install [ POLICY_FILE ] [options]
+      banner(<<~E)
+        Usage: chef install [ POLICY_FILE ] [options]
 
-`chef install` evaluates a `Policyfile.rb` to find a compatible set of
-cookbooks for the policy's run_list and caches them locally. It emits a
-Policyfile.lock.json describing the locked cookbook set. You can use the
-lockfile to install the locked cookbooks on another machine. You can also push
-the lockfile to a "policy group" on a Chef Server and apply that exact set of
-cookbooks to nodes in your infrastructure.
+        `chef install` evaluates a `Policyfile.rb` to find a compatible set of
+        cookbooks for the policy's run_list and caches them locally. It emits a
+        Policyfile.lock.json describing the locked cookbook set. You can use the
+        lockfile to install the locked cookbooks on another machine. You can also push
+        the lockfile to a "policy group" on a Chef Server and apply that exact set of
+        cookbooks to nodes in your infrastructure.
 
-See our detailed README for more information:
+        See our detailed README for more information:
 
-https://docs.chef.io/policyfile.html
+        https://docs.chef.io/policyfile.html
 
-Options:
+        Options:
 
 E
 

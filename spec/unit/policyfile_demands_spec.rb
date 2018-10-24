@@ -217,20 +217,20 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
     before do
       allow(policyfile).to receive(:default_source).and_return([default_source_obj])
 
-      allow(default_source_obj).to receive(:universe_graph).
-        and_return(trimmed_cookbook_universe)
+      allow(default_source_obj).to receive(:universe_graph)
+        .and_return(trimmed_cookbook_universe)
 
-      allow(default_source_obj).to receive(:preferred_source_for?).
-        with("remote-cb").
-        and_return(true)
+      allow(default_source_obj).to receive(:preferred_source_for?)
+        .with("remote-cb")
+        .and_return(true)
 
-      allow(default_source_obj).to receive(:source_options_for).
-        with("remote-cb", "1.1.1").
-        and_return(remote_cb_source_opts)
+      allow(default_source_obj).to receive(:source_options_for)
+        .with("remote-cb", "1.1.1")
+        .and_return(remote_cb_source_opts)
 
-      allow(ChefDK::Policyfile::CookbookLocationSpecification).to receive(:new).
-        with("remote-cb", "= 1.1.1", remote_cb_source_opts, policyfile.storage_config).
-        and_return(cb_location_spec)
+      allow(ChefDK::Policyfile::CookbookLocationSpecification).to receive(:new)
+        .with("remote-cb", "= 1.1.1", remote_cb_source_opts, policyfile.storage_config)
+        .and_return(cb_location_spec)
 
       allow(cb_location_spec).to receive(:installed?).and_return(true)
     end
@@ -240,9 +240,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       context "with an implied default recipe" do
 
         before do
-          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
-            with("default").
-            and_return(true)
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?)
+            .with("default")
+            .and_return(true)
         end
 
         let(:run_list) { ["remote-cb"] }
@@ -256,9 +256,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       context "with an explicit recipe name" do
 
         before do
-          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
-            with("this_exists").
-            and_return(true)
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?)
+            .with("this_exists")
+            .and_return(true)
         end
 
         let(:run_list) { ["remote-cb::this_exists"] }
@@ -272,9 +272,9 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
       context "with a fully qualified recipe name" do
 
         before do
-          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
-            with("this_exists").
-            and_return(true)
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?)
+            .with("this_exists")
+            .and_return(true)
         end
 
         let(:run_list) { ["recipe[remote-cb::this_exists]"] }
@@ -291,22 +291,22 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
       context "when the cookbook with a missing recipe appears once in the run list" do
         before do
-          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
-            with("this_recipe_doesnt_exist").
-            and_return(false)
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?)
+            .with("this_recipe_doesnt_exist")
+            .and_return(false)
         end
 
         let(:run_list) { ["remote-cb::this_recipe_doesnt_exist"] }
 
         it "emits an error" do
-          message = <<-MESSAGE
-The installed cookbooks do not contain all the recipes required by your run list(s):
-Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
-is missing the following required recipes:
-* this_recipe_doesnt_exist
+          message = <<~MESSAGE
+            The installed cookbooks do not contain all the recipes required by your run list(s):
+            Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
+            is missing the following required recipes:
+            * this_recipe_doesnt_exist
 
-You may have specified an incorrect recipe in your run list,
-or this recipe may not be available in that version of the cookbook
+            You may have specified an incorrect recipe in your run list,
+            or this recipe may not be available in that version of the cookbook
 MESSAGE
 
           expect { policyfile.install }.to raise_error do |e|
@@ -319,25 +319,25 @@ MESSAGE
       context "when there is one valid item and one invalid item in the run list" do
 
         before do
-          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
-            with("default").
-            and_return(true)
-          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
-            with("this_recipe_doesnt_exist").
-            and_return(false)
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?)
+            .with("default")
+            .and_return(true)
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?)
+            .with("this_recipe_doesnt_exist")
+            .and_return(false)
         end
 
         let(:run_list) { ["remote-cb::default", "remote-cb::this_recipe_doesnt_exist"] }
 
         it "emits an error" do
-          message = <<-MESSAGE
-The installed cookbooks do not contain all the recipes required by your run list(s):
-Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
-is missing the following required recipes:
-* this_recipe_doesnt_exist
+          message = <<~MESSAGE
+            The installed cookbooks do not contain all the recipes required by your run list(s):
+            Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
+            is missing the following required recipes:
+            * this_recipe_doesnt_exist
 
-You may have specified an incorrect recipe in your run list,
-or this recipe may not be available in that version of the cookbook
+            You may have specified an incorrect recipe in your run list,
+            or this recipe may not be available in that version of the cookbook
 MESSAGE
 
           expect { policyfile.install }.to raise_error do |e|
@@ -351,26 +351,26 @@ MESSAGE
       context "when there are multiple invalid items in the run list" do
 
         before do
-          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
-            with("this_recipe_doesnt_exist").
-            and_return(false)
-          expect(cb_location_spec).to receive(:cookbook_has_recipe?).
-            with("this_also_doesnt_exist").
-            and_return(false)
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?)
+            .with("this_recipe_doesnt_exist")
+            .and_return(false)
+          expect(cb_location_spec).to receive(:cookbook_has_recipe?)
+            .with("this_also_doesnt_exist")
+            .and_return(false)
         end
 
         let(:run_list) { ["remote-cb::this_recipe_doesnt_exist", "remote-cb::this_also_doesnt_exist"] }
 
         it "emits an error" do
-          message = <<-MESSAGE
-The installed cookbooks do not contain all the recipes required by your run list(s):
-Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
-is missing the following required recipes:
-* this_recipe_doesnt_exist
-* this_also_doesnt_exist
+          message = <<~MESSAGE
+            The installed cookbooks do not contain all the recipes required by your run list(s):
+            Cookbook 'remote-cb' = 1.1.1 {:artifactserver=>"https://supermarket.example/c/remote-cb/1.1.1/download", :version=>"1.1.1"}
+            is missing the following required recipes:
+            * this_recipe_doesnt_exist
+            * this_also_doesnt_exist
 
-You may have specified an incorrect recipe in your run list,
-or this recipe may not be available in that version of the cookbook
+            You may have specified an incorrect recipe in your run list,
+            or this recipe may not be available in that version of the cookbook
 MESSAGE
 
           expect { policyfile.install }.to raise_error do |e|
@@ -948,9 +948,9 @@ MESSAGE
         expected_source_options = { artifactserver: "https://chef.example/url", version: "1.1.1" }
 
         expect(community_source).to be_a(ChefDK::Policyfile::CommunityCookbookSource)
-        expect(community_source).to receive(:source_options_for).
-          with("remote-cb", "1.1.1").
-          and_return(expected_source_options)
+        expect(community_source).to receive(:source_options_for)
+          .with("remote-cb", "1.1.1")
+          .and_return(expected_source_options)
 
         location_spec = policyfile.create_spec_for_cookbook("remote-cb", "1.1.1")
         expect(location_spec.source_options).to eq(expected_source_options)
@@ -968,9 +968,9 @@ MESSAGE
         expected_repo_options = { path: "path/to/cookbook", version: "1.0.0" }
         repo_source = policyfile.default_source.last
         expect(repo_source).to be_a(ChefDK::Policyfile::ChefRepoCookbookSource)
-        expect(repo_source).to receive(:source_options_for).
-          with("repo-cookbook-one", "1.0.0").
-          and_return(expected_repo_options)
+        expect(repo_source).to receive(:source_options_for)
+          .with("repo-cookbook-one", "1.0.0")
+          .and_return(expected_repo_options)
 
         repo_cb_location = policyfile.create_spec_for_cookbook("repo-cookbook-one", "1.0.0")
         expect(repo_cb_location.source_options).to eq(expected_repo_options)
@@ -978,9 +978,9 @@ MESSAGE
         expected_server_options = { artifactserver: "https://chef.example/url", version: "1.1.1" }
         community_source = policyfile.default_source.first
         expect(community_source).to be_a(ChefDK::Policyfile::CommunityCookbookSource)
-        expect(community_source).to receive(:source_options_for).
-          with("remote-cb-two", "1.1.1").
-          and_return(expected_server_options)
+        expect(community_source).to receive(:source_options_for)
+          .with("remote-cb-two", "1.1.1")
+          .and_return(expected_server_options)
 
         remote_cb_location = policyfile.create_spec_for_cookbook("remote-cb-two", "1.1.1")
         expect(remote_cb_location.source_options).to eq(expected_server_options)
@@ -1053,16 +1053,16 @@ MESSAGE
           it "raises an error describing the conflict" do
             repo_path = File.expand_path("path/to/repo")
 
-            expected_err = <<-ERROR
-Source supermarket(https://supermarket.chef.io) and chef_repo(#{repo_path}) contain conflicting cookbooks:
-- remote-cb
-- remote-cb-two
+            expected_err = <<~ERROR
+              Source supermarket(https://supermarket.chef.io) and chef_repo(#{repo_path}) contain conflicting cookbooks:
+              - remote-cb
+              - remote-cb-two
 
-You can set a preferred source to resolve this issue with code like:
+              You can set a preferred source to resolve this issue with code like:
 
-default_source :supermarket, "https://supermarket.chef.io" do |s|
-  s.preferred_for "remote-cb", "remote-cb-two"
-end
+              default_source :supermarket, "https://supermarket.chef.io" do |s|
+                s.preferred_for "remote-cb", "remote-cb-two"
+              end
 ERROR
 
             expect { policyfile.remote_artifacts_graph }.to raise_error do |error|
@@ -1156,15 +1156,15 @@ ERROR
         it "raises an error describing the conflict" do
           repo_path = File.expand_path("path/to/repo")
 
-          expected_err = <<-ERROR
-Source supermarket(https://supermarket.chef.io) and chef_repo(#{repo_path}) contain conflicting cookbooks:
-- remote-cb-two
+          expected_err = <<~ERROR
+            Source supermarket(https://supermarket.chef.io) and chef_repo(#{repo_path}) contain conflicting cookbooks:
+            - remote-cb-two
 
-You can set a preferred source to resolve this issue with code like:
+            You can set a preferred source to resolve this issue with code like:
 
-default_source :supermarket, "https://supermarket.chef.io" do |s|
-  s.preferred_for "remote-cb-two"
-end
+            default_source :supermarket, "https://supermarket.chef.io" do |s|
+              s.preferred_for "remote-cb-two"
+            end
 ERROR
 
           expect { policyfile.remote_artifacts_graph }.to raise_error do |error|

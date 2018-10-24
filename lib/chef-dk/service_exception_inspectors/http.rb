@@ -32,17 +32,17 @@ module ChefDK
       end
 
       def extended_error_info
-        <<-END
---- REQUEST DATA ----
-#{http_method} #{uri}
-#{request_headers}
-#{req_body}
+        <<~END
+          --- REQUEST DATA ----
+          #{http_method} #{uri}
+          #{request_headers}
+          #{req_body}
 
---- RESPONSE DATA ---
-#{code} #{response_message}
-#{response_headers}
+          --- RESPONSE DATA ---
+          #{code} #{response_message}
+          #{response_headers}
 
-#{response_body}
+          #{response_body}
 
 END
       end

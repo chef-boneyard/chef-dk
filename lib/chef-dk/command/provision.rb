@@ -71,19 +71,19 @@ module ChefDK
       end
 
       def chef_config
-        config = <<-CONFIG
-# SSL Settings:
-ssl_verify_mode #{Chef::Config.ssl_verify_mode.inspect}
+        config = <<~CONFIG
+          # SSL Settings:
+          ssl_verify_mode #{Chef::Config.ssl_verify_mode.inspect}
 
 CONFIG
         if enable_policyfile
-          policyfile_config = <<-CONFIG
-# Policyfile Settings:
-use_policyfile true
-policy_document_native_api true
+          policyfile_config = <<~CONFIG
+            # Policyfile Settings:
+            use_policyfile true
+            policy_document_native_api true
 
-policy_group "#{policy_group}"
-policy_name "#{policy_name}"
+            policy_group "#{policy_group}"
+            policy_name "#{policy_name}"
 
 CONFIG
           config << policyfile_config
@@ -100,39 +100,39 @@ CONFIG
 
     class Provision < Base
 
-      banner(<<-E)
-Usage: chef provision POLICY_GROUP --policy-name POLICY_NAME [options]
-       chef provision POLICY_GROUP --sync [POLICYFILE_PATH] [options]
-       chef provision --no-policy [options]
+      banner(<<~E)
+        Usage: chef provision POLICY_GROUP --policy-name POLICY_NAME [options]
+               chef provision POLICY_GROUP --sync [POLICYFILE_PATH] [options]
+               chef provision --no-policy [options]
 
-`chef provision` invokes an embedded chef-client run to provision machines
-using Chef Provisioning. If not otherwise specified, `chef provision` will
-expect to find a cookbook named 'provision' in the current working directory.
-It runs a recipe in this cookbook which should use Chef Provisioning to create
-one or more machines (or other infrastructure).
+        `chef provision` invokes an embedded chef-client run to provision machines
+        using Chef Provisioning. If not otherwise specified, `chef provision` will
+        expect to find a cookbook named 'provision' in the current working directory.
+        It runs a recipe in this cookbook which should use Chef Provisioning to create
+        one or more machines (or other infrastructure).
 
-`chef provision` provides three forms of operation:
+        `chef provision` provides three forms of operation:
 
-### chef provision POLICY_GROUP --policy-name POLICY_NAME
+        ### chef provision POLICY_GROUP --policy-name POLICY_NAME
 
-In the first form of the command, `chef provision` creates machines that will
-operate in policyfile mode. The chef configuration passed to the cookbook will
-set the policy group and policy name as given.
+        In the first form of the command, `chef provision` creates machines that will
+        operate in policyfile mode. The chef configuration passed to the cookbook will
+        set the policy group and policy name as given.
 
-### chef provision POLICY_GROUP --sync [POLICYFILE_PATH] [options]
+        ### chef provision POLICY_GROUP --sync [POLICYFILE_PATH] [options]
 
-In the second form of the command, `chef provision` create machines that will
-operate in policyfile mode and syncronizes a local policyfile to the server
-before converging the machine(s) defined in the provision cookbook.
+        In the second form of the command, `chef provision` create machines that will
+        operate in policyfile mode and syncronizes a local policyfile to the server
+        before converging the machine(s) defined in the provision cookbook.
 
-### chef provision --no-policy [options]
+        ### chef provision --no-policy [options]
 
-In the third form of the command, `chef provision` expects to create machines
-that will not operate in policyfile mode.
+        In the third form of the command, `chef provision` expects to create machines
+        that will not operate in policyfile mode.
 
-Chef Provisioning is documented at https://docs.chef.io/provisioning.html
+        Chef Provisioning is documented at https://docs.chef.io/provisioning.html
 
-Options:
+        Options:
 
 E
       include Configurable

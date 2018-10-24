@@ -28,25 +28,25 @@ module ChefDK
       banner "Usage: chef verify [component, ...] [options]"
 
       option :omnibus_dir,
-        :long         => "--omnibus-dir OMNIBUS_DIR",
-        :description  => "Alternate path to omnibus install (used for testing)"
+        long: "--omnibus-dir OMNIBUS_DIR",
+        description: "Alternate path to omnibus install (used for testing)"
 
       option :unit,
-        :long         => "--unit",
-        :description  => "Run bundled app unit tests (only smoke tests run by default)"
+        long: "--unit",
+        description: "Run bundled app unit tests (only smoke tests run by default)"
 
       option :integration,
-        :long         => "--integration",
-        :description  => "Run integration tests. Possibly dangerous, for development systems only"
+        long: "--integration",
+        description: "Run integration tests. Possibly dangerous, for development systems only"
 
       option :verbose,
-        :long         => "--verbose",
-        :description  => "Display all test output, not just failing tests"
+        long: "--verbose",
+        description: "Display all test output, not just failing tests"
 
       class << self
         def add_component(name, _delete_me = nil)
           component = ComponentTest.new(name)
-          yield component if block_given? #delete this conditional
+          yield component if block_given? # delete this conditional
           component_map[name] = component
         end
 
@@ -124,25 +124,25 @@ module ChefDK
         c.smoke_test do
           tmpdir do |cwd|
             File.open(File.join(cwd, ".kitchen.yml"), "w+") do |f|
-              f.print(<<-KITCHEN_YML)
----
-driver:
-  name: dummy
-  network:
-    - ["forwarded_port", {guest: 80, host: 8080}]
+              f.print(<<~KITCHEN_YML)
+                ---
+                driver:
+                  name: dummy
+                  network:
+                    - ["forwarded_port", {guest: 80, host: 8080}]
 
-provisioner:
-  name: policyfile_zero
-  require_chef_omnibus: 12.3.0
+                provisioner:
+                  name: policyfile_zero
+                  require_chef_omnibus: 12.3.0
 
-platforms:
-  - name: ubuntu-14.04
+                platforms:
+                  - name: ubuntu-14.04
 
-suites:
-  - name: default
-    run_list:
-      - recipe[aar::default]
-    attributes:
+                suites:
+                  - name: default
+                    run_list:
+                      - recipe[aar::default]
+                    attributes:
 
 KITCHEN_YML
             end
@@ -206,13 +206,13 @@ KITCHEN_YML
 
           # construct a hash of { driver_name => [version1, version2, ...]}
           driver_versions = {}
-          Gem::Specification.all.map { |gs| [gs.name, gs.version] }.
-                                  select { |n| n[0] =~ /^chef-provisioning-/ }.
-                                  each { |gem, version| (driver_versions[gem] ||= []) << version }
+          Gem::Specification.all.map { |gs| [gs.name, gs.version] }
+                                  .select { |n| n[0] =~ /^chef-provisioning-/ }
+                                  .each { |gem, version| (driver_versions[gem] ||= []) << version }
 
-          drivers = Gem::Specification.all.map { |gs| gs.name }.
-                                           select { |n| n =~ /^chef-provisioning-/ }.
-                                           uniq
+          drivers = Gem::Specification.all.map { |gs| gs.name }
+                                           .select { |n| n =~ /^chef-provisioning-/ }
+                                           .uniq
 
           versions = Gem::Specification.find_all_by_name("chef-provisioning").map { |s| s.version }
           $VERBOSE = verbose
@@ -222,9 +222,9 @@ KITCHEN_YML
           # ------------
           # fail the verify if we have more than one version of chef-provisioning or any of its drivers.
           def format_gem_failure(name, versions)
-            <<-EOS
-#{name} has multiple versions installed:
-#{versions.sort.map { |gv| "    #{gv}" }.join("\n")}
+            <<~EOS
+              #{name} has multiple versions installed:
+              #{versions.sort.map { |gv| "    #{gv}" }.join("\n")}
             EOS
           end
 
@@ -236,10 +236,10 @@ KITCHEN_YML
           end
 
           if failures.size > 0
-            failures << <<-EOS
+            failures << <<~EOS
 
-Some applications may need or prefer different versions of the chef-provisioning gem or its drivers, so
-this multiple-version check can fail if a user has installed new versions of those libraries.
+              Some applications may need or prefer different versions of the chef-provisioning gem or its drivers, so
+              this multiple-version check can fail if a user has installed new versions of those libraries.
 EOS
           end
 
@@ -300,20 +300,20 @@ EOS
           tmpdir do |cwd|
             FileUtils.mkdir(File.join(cwd, "spec"))
             with_file(File.join(cwd, "spec", "spec_helper.rb")) do |f|
-              f.write <<-EOF
-require 'chefspec'
-require 'chefspec/berkshelf'
-require 'chefspec/cacher'
+              f.write <<~EOF
+                require 'chefspec'
+                require 'chefspec/berkshelf'
+                require 'chefspec/cacher'
 
-RSpec.configure do |config|
-    config.expect_with(:rspec) { |c| c.syntax = :expect }
-end
+                RSpec.configure do |config|
+                    config.expect_with(:rspec) { |c| c.syntax = :expect }
+                end
               EOF
             end
             FileUtils.touch(File.join(cwd, "Berksfile"))
             with_file(File.join(cwd, "spec", "foo_spec.rb")) do |f|
-              f.write <<-EOF
-require 'spec_helper'
+              f.write <<~EOF
+                require 'spec_helper'
               EOF
             end
             sh(embedded_bin("rspec"), cwd: cwd)
@@ -418,9 +418,9 @@ require 'spec_helper'
 
         # Commenting out the unit and integration tests for now until we figure
         # out the bundler error
-        #c.unit_test { sh("#{embedded_bin("bundle")} exec rake test:isolated") }
+        # c.unit_test { sh("#{embedded_bin("bundle")} exec rake test:isolated") }
         # This runs Test Kitchen (using kitchen-inspec) with some inspec tests
-        #c.integration_test { sh("#{embedded_bin("bundle")} exec rake test:vm") }
+        # c.integration_test { sh("#{embedded_bin("bundle")} exec rake test:vm") }
 
         # It would be nice to use a chef generator to create these specs, but
         # we dont have that yet.  So we do it manually.
@@ -513,11 +513,11 @@ require 'spec_helper'
         c.smoke_test do
           tmpdir do |cwd|
             with_file(File.join(cwd, "foo.rb")) do |f|
-              f.write <<-EOF
-require 'chef/sugar'
-log 'something' do
-  not_if  { _64_bit? }
-end
+              f.write <<~EOF
+                require 'chef/sugar'
+                log 'something' do
+                  not_if  { _64_bit? }
+                end
               EOF
             end
             sh("chef-apply foo.rb", cwd: cwd)
@@ -594,9 +594,9 @@ end
             end
 
             {
-              :component => component,
-              :results => results,
-              :component_status => component_status,
+              component: component,
+              results: results,
+              component_status: component_status,
             }
           end
 

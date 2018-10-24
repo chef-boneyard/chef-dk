@@ -124,14 +124,14 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
   end
 
   let(:policy1_location_spec) do
-    ChefDK::Policyfile::PolicyfileLocationSpecification.new("policy1", { :path => "somelocation" }, nil).tap do |spec|
+    ChefDK::Policyfile::PolicyfileLocationSpecification.new("policy1", { path: "somelocation" }, nil).tap do |spec|
       allow(spec).to receive(:valid?).and_return(true)
       allow(spec).to receive(:fetcher).and_return(policy1_fetcher)
     end
   end
 
   let(:policy2_location_spec) do
-    ChefDK::Policyfile::PolicyfileLocationSpecification.new("policy2", { :path => "somelocation" }, nil).tap do |spec|
+    ChefDK::Policyfile::PolicyfileLocationSpecification.new("policy2", { path: "somelocation" }, nil).tap do |spec|
       allow(spec).to receive(:valid?).and_return(true)
       allow(spec).to receive(:fetcher).and_return(policy2_fetcher)
     end
@@ -168,8 +168,8 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
     end
 
     it "returns the correct source options when the cookbook is included" do
-      expect(cookbook_source.source_options_for("cookbookA", "2.0.0")).to eq({ :version => "2.0.0" })
-      expect(cookbook_source.source_options_for("cookbookB", "1.0.0")).to eq({ :version => "1.0.0" })
+      expect(cookbook_source.source_options_for("cookbookA", "2.0.0")).to eq({ version: "2.0.0" })
+      expect(cookbook_source.source_options_for("cookbookB", "1.0.0")).to eq({ version: "1.0.0" })
     end
 
     it "has a universe with the used cookbooks" do
@@ -197,8 +197,8 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
       end
 
       it "returns the correct source options when the cookbook is included" do
-        expect(cookbook_source.source_options_for("cookbookA", "2.0.0")).to eq({ :version => "2.0.0" })
-        expect(cookbook_source.source_options_for("cookbookB", "1.0.0")).to eq({ :version => "1.0.0" })
+        expect(cookbook_source.source_options_for("cookbookA", "2.0.0")).to eq({ version: "2.0.0" })
+        expect(cookbook_source.source_options_for("cookbookB", "1.0.0")).to eq({ version: "1.0.0" })
       end
 
       it "has a universe with the used cookbooks" do

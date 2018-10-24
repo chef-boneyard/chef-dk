@@ -65,9 +65,9 @@ describe ChefDK::Command::Push do
       end
 
       it "configures the Push service" do
-        expect(ChefDK::PolicyfileServices::Push).to receive(:new).
-          with(policyfile: nil, ui: command.ui, policy_group: policy_group, config: chef_config, root_dir: Dir.pwd).
-          and_return(push_service)
+        expect(ChefDK::PolicyfileServices::Push).to receive(:new)
+          .with(policyfile: nil, ui: command.ui, policy_group: policy_group, config: chef_config, root_dir: Dir.pwd)
+          .and_return(push_service)
         expect(command.push).to eq(push_service)
       end
 
@@ -76,9 +76,9 @@ describe ChefDK::Command::Push do
         let(:params) { [policy_group, "MyPolicy.rb"] }
 
         it "configures the Push service with the given Policyfile" do
-          expect(ChefDK::PolicyfileServices::Push).to receive(:new).
-            with(policyfile: "MyPolicy.rb", ui: command.ui, policy_group: policy_group, config: chef_config, root_dir: Dir.pwd).
-            and_return(push_service)
+          expect(ChefDK::PolicyfileServices::Push).to receive(:new)
+            .with(policyfile: "MyPolicy.rb", ui: command.ui, policy_group: policy_group, config: chef_config, root_dir: Dir.pwd)
+            .and_return(push_service)
           expect(command.push).to eq(push_service)
         end
 
@@ -158,9 +158,9 @@ describe ChefDK::Command::Push do
         it "describes the error" do
           command.run(params)
 
-          expected_output = <<-E
-Error: push failed
-Reason: (StandardError) some operation failed
+          expected_output = <<~E
+            Error: push failed
+            Reason: (StandardError) some operation failed
 
 E
 
@@ -177,9 +177,9 @@ E
 
             command.run(params)
 
-            expected_output = <<-E
-Error: push failed
-Reason: (StandardError) some operation failed
+            expected_output = <<~E
+              Error: push failed
+              Reason: (StandardError) some operation failed
 
 
 E

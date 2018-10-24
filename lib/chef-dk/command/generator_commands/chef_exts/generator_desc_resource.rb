@@ -44,7 +44,7 @@ module ChefDK
         set_or_return(
           :message,
           arg,
-          :kind_of => String
+          kind_of: String
         )
       end
 

@@ -27,19 +27,19 @@ module ChefDK
 
       include Configurable
 
-      banner(<<-E)
-Usage: chef push POLICY_GROUP [ POLICY_FILE ] [options]
+      banner(<<~E)
+        Usage: chef push POLICY_GROUP [ POLICY_FILE ] [options]
 
-`chef push` Uploads an existing Policyfile.lock.json to a Chef Server, along
-with all the cookbooks contained in the policy lock. The policy lock is applied
-to a specific POLICY_GROUP, which is a set of nodes that share the same
-run_list and cookbooks.
+        `chef push` Uploads an existing Policyfile.lock.json to a Chef Server, along
+        with all the cookbooks contained in the policy lock. The policy lock is applied
+        to a specific POLICY_GROUP, which is a set of nodes that share the same
+        run_list and cookbooks.
 
-See our detailed README for more information:
+        See our detailed README for more information:
 
-https://docs.chef.io/policyfile.html
+        https://docs.chef.io/policyfile.html
 
-Options:
+        Options:
 
 E
 

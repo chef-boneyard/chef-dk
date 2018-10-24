@@ -17,7 +17,7 @@ module ChefDK
       end
 
       def run(params)
-        self.class.test_result = { :status => :success, :params => params }
+        self.class.test_result = { status: :success, params: params }
         23
       end
 

@@ -34,41 +34,41 @@ module ChefDK
       # You really want these to have default values, as
       # they will likely be used all over the place.
       option :license,
-        :short => "-I LICENSE",
-        :long => "--license LICENSE",
-        :description => "all_rights, apachev2, mit, gplv2, gplv3 - defaults to all_rights",
-        :proc => Proc.new { |l|
+        short: "-I LICENSE",
+        long: "--license LICENSE",
+        description: "all_rights, apachev2, mit, gplv2, gplv3 - defaults to all_rights",
+        proc: Proc.new { |l|
           l =~ /apache2/ ? "apachev2" : l
         },
-        :default => nil
+        default: nil
 
       option :copyright_holder,
-        :short => "-C COPYRIGHT",
-        :long => "--copyright COPYRIGHT",
-        :description => "Name of the copyright holder - defaults to 'The Authors'",
-        :default => nil
+        short: "-C COPYRIGHT",
+        long: "--copyright COPYRIGHT",
+        description: "Name of the copyright holder - defaults to 'The Authors'",
+        default: nil
 
       option :email,
-        :short => "-m EMAIL",
-        :long => "--email EMAIL",
-        :description => "Email address of the author - defaults to 'you@example.com'",
-        :default => nil
+        short: "-m EMAIL",
+        long: "--email EMAIL",
+        description: "Email address of the author - defaults to 'you@example.com'",
+        default: nil
 
       option :generator_cookbook,
-        :short => "-g GENERATOR_COOKBOOK_PATH",
-        :long  => "--generator-cookbook GENERATOR_COOKBOOK_PATH",
-        :description => "Use GENERATOR_COOKBOOK_PATH for the code_generator cookbook",
-        :default => nil,
-        :proc => Proc.new { |s| File.expand_path(s) },
-        :on => :tail
+        short: "-g GENERATOR_COOKBOOK_PATH",
+        long: "--generator-cookbook GENERATOR_COOKBOOK_PATH",
+        description: "Use GENERATOR_COOKBOOK_PATH for the code_generator cookbook",
+        default: nil,
+        proc: Proc.new { |s| File.expand_path(s) },
+        on: :tail
 
       generator_args = [] # accumulator variable
       option :generator_arg,
-        :short => "-a KEY=VALUE",
-        :long  => "--generator-arg KEY=VALUE",
-        :description => "Use to set arbitrary attribute KEY to VALUE in the code_generator cookbook",
-        :default => [],
-        :proc => Proc.new { |s| generator_args << s.split("=").map(&:strip) }
+        short: "-a KEY=VALUE",
+        long: "--generator-arg KEY=VALUE",
+        description: "Use to set arbitrary attribute KEY to VALUE in the code_generator cookbook",
+        default: [],
+        proc: Proc.new { |s| generator_args << s.split("=").map(&:strip) }
     end
 
     # ## GeneratorCommands

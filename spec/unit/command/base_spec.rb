@@ -28,10 +28,10 @@ describe ChefDK::Command::Base do
       description: "An option with a required argument"
 
     option :user,
-      :short        => "-u",
-      :long         => "--user",
-      :description  => "If the user exists",
-      :boolean      => true
+      short: "-u",
+      long: "--user",
+      description: "If the user exists",
+      boolean: true
 
     def run(params)
       parse_options(params)
@@ -102,12 +102,12 @@ describe ChefDK::Command::Base do
 
       expect(stderr).to eq("ERROR: invalid option: -foo\n\n")
 
-      expected = <<-E
-use me please
-    -a, --arg ARG                    An option with a required argument
-    -h, --help                       Show this message
-    -u, --user                       If the user exists
-    -v, --version                    Show chef version
+      expected = <<~E
+        use me please
+            -a, --arg ARG                    An option with a required argument
+            -h, --help                       Show this message
+            -u, --user                       If the user exists
+            -v, --version                    Show chef version
 
 E
       expect(stdout).to eq(expected)
@@ -122,12 +122,12 @@ E
 
       expect(stderr).to eq("ERROR: missing argument: -a\n\n")
 
-      expected = <<-E
-use me please
-    -a, --arg ARG                    An option with a required argument
-    -h, --help                       Show this message
-    -u, --user                       If the user exists
-    -v, --version                    Show chef version
+      expected = <<~E
+        use me please
+            -a, --arg ARG                    An option with a required argument
+            -h, --help                       Show this message
+            -u, --user                       If the user exists
+            -v, --version                    Show chef version
 
 E
       expect(stdout).to eq(expected)
@@ -139,15 +139,15 @@ E
   describe "when parsing Chef's configuration fails" do
 
     let(:exception_message) do
-      <<-MESSAGE
-You have an error in your config file /Users/ddeleo/.chef/config.rb (Chef::Exceptions::ConfigurationError)
+      <<~MESSAGE
+        You have an error in your config file /Users/ddeleo/.chef/config.rb (Chef::Exceptions::ConfigurationError)
 
-Mixlib::Config::UnknownConfigOptionError: Cannot set unsupported config value foo.
-  /Users/person/.chef/config.rb:50:in `from_string'
-Relevant file content:
- 49: chefdk.generator_cookbook "~/.chef/code_generator"
- 50: chefdk.foo "bar"
- 51:
+        Mixlib::Config::UnknownConfigOptionError: Cannot set unsupported config value foo.
+          /Users/person/.chef/config.rb:50:in `from_string'
+        Relevant file content:
+         49: chefdk.generator_cookbook "~/.chef/code_generator"
+         50: chefdk.foo "bar"
+         51:
 
 MESSAGE
     end

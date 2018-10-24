@@ -29,7 +29,7 @@ module ChefDK
       # API contract
       include StorageConfigDelegation
 
-      SOURCE_TYPES = [:git, :github, :path, :artifactserver, :chef_server, :chef_server_artifact, :artifactory]
+      SOURCE_TYPES = [:git, :github, :path, :artifactserver, :chef_server, :chef_server_artifact, :artifactory].freeze
 
       #--
       # Required by CookbookOmnifetch API contract

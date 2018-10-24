@@ -24,9 +24,9 @@ module ChefDK
       class Template < CookbookCodeFile
 
         option :source,
-          :short => "-s SOURCE_FILE",
-          :long  => "--source SOURCE_FILE",
-          :description => "Copy content from SOURCE_FILE"
+          short: "-s SOURCE_FILE",
+          long: "--source SOURCE_FILE",
+          description: "Copy content from SOURCE_FILE"
 
         banner "Usage: chef generate template [path/to/cookbook] NAME [options]"
 

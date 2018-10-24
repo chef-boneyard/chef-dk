@@ -31,24 +31,24 @@ module ChefDK
     include ChefDK::Helpers
     include Chef::Mixin::ShellOut
 
-    banner(<<-BANNER)
-Usage:
-    chef -h/--help
-    chef -v/--version
-    chef command [arguments...] [options...]
+    banner(<<~BANNER)
+      Usage:
+          chef -h/--help
+          chef -v/--version
+          chef command [arguments...] [options...]
 BANNER
 
     option :version,
-      :short        => "-v",
-      :long         => "--version",
-      :description  => "Show chef version",
-      :boolean      => true
+      short: "-v",
+      long: "--version",
+      description: "Show chef version",
+      boolean: true
 
     option :help,
-      :short        => "-h",
-      :long         => "--help",
-      :description  => "Show this message",
-      :boolean      => true
+      short: "-h",
+      long: "--help",
+      description: "Show this message",
+      boolean: true
 
     attr_reader :argv
 

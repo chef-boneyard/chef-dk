@@ -74,7 +74,7 @@ shared_examples_for "Cookbook Lock" do
       cookbook_lock.identifier = "my-opaque-id"
       cookbook_lock.dotted_decimal_identifier = "123.456.789"
       cookbook_lock.version = "1.2.3"
-      cookbook_lock.source_options = { :sourcekey => "location info" }
+      cookbook_lock.source_options = { sourcekey: "location info" }
     end
 
     it "includes the identifier in the lock data" do
@@ -90,7 +90,7 @@ shared_examples_for "Cookbook Lock" do
     end
 
     it "includes the source_options in lock data" do
-      expect(cookbook_lock_data["source_options"]).to eq({ :sourcekey => "location info" })
+      expect(cookbook_lock_data["source_options"]).to eq({ sourcekey: "location info" })
     end
 
     it "creates a CookbookLocationSpecification with the source and version data" do
@@ -449,7 +449,7 @@ describe ChefDK::Policyfile::ArchivedCookbook do
         # when getting the cookbook location spec, source options needs to have
         # symbolic keys, so a round trip via LocalCookbook#build_from_lock_data
         # will result in this being a symbol
-        :path => "../my_repo/nginx",
+        path: "../my_repo/nginx",
       },
       "cache_key" => nil,
       "scm_info" => {},

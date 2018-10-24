@@ -196,9 +196,9 @@ describe ChefDK::Command::Undelete do
       it "prints a debugging message and exits non-zero" do
         expect(command.run(params)).to eq(1)
 
-        expected_output = <<-E
-Error: Failed to undelete.
-Reason: (StandardError) some operation failed
+        expected_output = <<~E
+          Error: Failed to undelete.
+          Reason: (StandardError) some operation failed
 
 E
 
@@ -211,9 +211,9 @@ E
 
           command.run(params + %w{ -D })
 
-          expected_output = <<-E
-Error: Failed to undelete.
-Reason: (StandardError) some operation failed
+          expected_output = <<~E
+            Error: Failed to undelete.
+            Reason: (StandardError) some operation failed
 
 
 E

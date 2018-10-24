@@ -145,9 +145,9 @@ module ChefDK
       end
 
       def prepare_constraints_for_policies
-        Policyfile::LockApplier.
-          new(policyfile_lock, policyfile_compiler).
-          apply!
+        Policyfile::LockApplier
+          .new(policyfile_lock, policyfile_compiler)
+          .apply!
       end
 
       def install_from_lock

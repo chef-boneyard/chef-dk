@@ -21,215 +21,215 @@ require "chef-dk/policyfile/differ"
 describe ChefDK::Policyfile::Differ do
 
   let(:old_lock_json) do
-    <<-E
-{
-  "revision_id": "cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b",
-  "name": "jenkins",
-  "run_list": [
-    "recipe[java::default]",
-    "recipe[jenkins::master]",
-    "recipe[policyfile_demo::whatever]",
-    "recipe[policyfile_demo::default]"
-  ],
-  "named_run_lists": {
-    "update_jenkins": [
-      "recipe[jenkins::master]",
-      "recipe[policyfile_demo::default]"
-    ]
-  },
-  "cookbook_locks": {
-    "policyfile_demo": {
-      "version": "0.1.0",
-      "identifier": "ea96c99da079db9ff3cb22601638fabd5df49599",
-      "dotted_decimal_identifier": "66030937227426267.45022575077627448.275691232073113",
-      "source": "cookbooks/policyfile_demo",
-      "cache_key": null,
-      "scm_info": {
-        "scm": "git",
-        "remote": "git@github.com:danielsdeleo/policyfile-jenkins-demo.git",
-        "revision": "6f92fe8f24fd953a1c40ebb1d7cdb2a4fbbf4d4d",
-        "working_tree_clean": false,
-        "published": true,
-        "synchronized_remote_branches": [
-          "mine/master"
-        ]
-      },
-      "source_options": {
-        "path": "cookbooks/policyfile_demo"
-      }
-    },
-    "apt": {
-      "version": "2.7.0",
-      "identifier": "16c57abbd056543f7d5a15dabbb03261024a9c5e",
-      "dotted_decimal_identifier": "6409580415309396.17870749399956400.55392231660638",
-      "cache_key": "apt-2.7.0-supermarket.chef.io",
-      "origin": "https://supermarket.chef.io/api/v1/cookbooks/apt/versions/2.7.0/download",
-      "source_options": {
-        "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/apt/versions/2.7.0/download",
-        "version": "2.7.0"
-      }
-    },
-    "java": {
-      "version": "1.31.0",
-      "identifier": "9178a38ad3e3baa55b49c1b8d9f4bf6a43dbc358",
-      "dotted_decimal_identifier": "40946515427189690.46543743498115572.210463125914456",
-      "cache_key": "java-1.31.0-supermarket.chef.io",
-      "origin": "https://supermarket.chef.io/api/v1/cookbooks/java/versions/1.31.0/download",
-      "source_options": {
-        "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/java/versions/1.31.0/download",
-        "version": "1.31.0"
-      }
-    },
-    "jenkins": {
-      "version": "2.2.2",
-      "identifier": "0be380429add00d189b4431059ac967a60052323",
-      "dotted_decimal_identifier": "3346364756581632.58979677444790700.165452341125923",
-      "cache_key": "jenkins-2.2.2-supermarket.chef.io",
-      "origin": "https://supermarket.chef.io/api/v1/cookbooks/jenkins/versions/2.2.2/download",
-      "source_options": {
-        "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/jenkins/versions/2.2.2/download",
-        "version": "2.2.2"
-      }
-    },
-    "runit": {
-      "version": "1.5.18",
-      "identifier": "1a0aeb2c167a24e0c5120ca7b06ba8c4cff4610c",
-      "dotted_decimal_identifier": "7330354567739940.63267076095586411.185563255955724",
-      "cache_key": "runit-1.5.18-supermarket.chef.io",
-      "origin": "https://supermarket.chef.io/api/v1/cookbooks/runit/versions/1.5.18/download",
-      "source_options": {
-        "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/runit/versions/1.5.18/download",
-        "version": "1.5.18"
-      }
-    },
-    "build-essential": {
-      "version": "2.2.2",
-      "identifier": "d8ce58401d154378599b0fead81d2c390615602b",
-      "dotted_decimal_identifier": "61025473397593411.33875519727130653.48623426822187",
-      "cache_key": "build-essential-2.2.2-supermarket.chef.io",
-      "origin": "https://supermarket.chef.io/api/v1/cookbooks/build-essential/versions/2.2.2/download",
-      "source_options": {
-        "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/build-essential/versions/2.2.2/download",
-        "version": "2.2.2"
-      }
-    },
-    "yum": {
-      "version": "3.5.4",
-      "identifier": "f9c778c3cd3908071e0c55722682f96e653b5642",
-      "dotted_decimal_identifier": "70306590695962888.2003363158959746.274252540106306",
-      "cache_key": "yum-3.5.4-supermarket.chef.io",
-      "origin": "https://supermarket.chef.io/api/v1/cookbooks/yum/versions/3.5.4/download",
-      "source_options": {
-        "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/yum/versions/3.5.4/download",
-        "version": "3.5.4"
-      }
-    },
-    "yum-epel": {
-      "version": "0.6.0",
-      "identifier": "cd74f541ba0341abcc168c74471c349ca68f77b7",
-      "dotted_decimal_identifier": "57830966944203585.48356618235299612.57847413962679",
-      "cache_key": "yum-epel-0.6.0-supermarket.chef.io",
-      "origin": "https://supermarket.chef.io/api/v1/cookbooks/yum-epel/versions/0.6.0/download",
-      "source_options": {
-        "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/yum-epel/versions/0.6.0/download",
-        "version": "0.6.0"
-      }
-    }
-  },
-  "default_attributes": {
-    "greeting": "Attributes, f*** yeah"
-  },
-  "override_attributes": {
-    "attr_only_updating": "use -a"
-  },
-  "solution_dependencies": {
-    "Policyfile": [
-      [
-        "policyfile_demo",
-        ">= 0.0.0"
-      ],
-      [
-        "apt",
-        "= 2.7.0"
-      ],
-      [
-        "java",
-        "= 1.31.0"
-      ],
-      [
-        "jenkins",
-        "= 2.2.2"
-      ],
-      [
-        "runit",
-        "= 1.5.18"
-      ],
-      [
-        "build-essential",
-        "= 2.2.2"
-      ],
-      [
-        "yum",
-        "= 3.5.4"
-      ],
-      [
-        "yum-epel",
-        "= 0.6.0"
-      ]
-    ],
-    "dependencies": {
-      "apt (2.7.0)": [
-
-      ],
-      "java (1.31.0)": [
-
-      ],
-      "jenkins (2.2.2)": [
-        [
-          "apt",
-          "~> 2.0"
+    <<~E
+      {
+        "revision_id": "cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b",
+        "name": "jenkins",
+        "run_list": [
+          "recipe[java::default]",
+          "recipe[jenkins::master]",
+          "recipe[policyfile_demo::whatever]",
+          "recipe[policyfile_demo::default]"
         ],
-        [
-          "runit",
-          "~> 1.5"
-        ],
-        [
-          "yum",
-          "~> 3.0"
-        ]
-      ],
-      "runit (1.5.18)": [
-        [
-          "build-essential",
-          ">= 0.0.0"
-        ],
-        [
-          "yum",
-          "~> 3.0"
-        ],
-        [
-          "yum-epel",
-          ">= 0.0.0"
-        ]
-      ],
-      "build-essential (2.2.2)": [
+        "named_run_lists": {
+          "update_jenkins": [
+            "recipe[jenkins::master]",
+            "recipe[policyfile_demo::default]"
+          ]
+        },
+        "cookbook_locks": {
+          "policyfile_demo": {
+            "version": "0.1.0",
+            "identifier": "ea96c99da079db9ff3cb22601638fabd5df49599",
+            "dotted_decimal_identifier": "66030937227426267.45022575077627448.275691232073113",
+            "source": "cookbooks/policyfile_demo",
+            "cache_key": null,
+            "scm_info": {
+              "scm": "git",
+              "remote": "git@github.com:danielsdeleo/policyfile-jenkins-demo.git",
+              "revision": "6f92fe8f24fd953a1c40ebb1d7cdb2a4fbbf4d4d",
+              "working_tree_clean": false,
+              "published": true,
+              "synchronized_remote_branches": [
+                "mine/master"
+              ]
+            },
+            "source_options": {
+              "path": "cookbooks/policyfile_demo"
+            }
+          },
+          "apt": {
+            "version": "2.7.0",
+            "identifier": "16c57abbd056543f7d5a15dabbb03261024a9c5e",
+            "dotted_decimal_identifier": "6409580415309396.17870749399956400.55392231660638",
+            "cache_key": "apt-2.7.0-supermarket.chef.io",
+            "origin": "https://supermarket.chef.io/api/v1/cookbooks/apt/versions/2.7.0/download",
+            "source_options": {
+              "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/apt/versions/2.7.0/download",
+              "version": "2.7.0"
+            }
+          },
+          "java": {
+            "version": "1.31.0",
+            "identifier": "9178a38ad3e3baa55b49c1b8d9f4bf6a43dbc358",
+            "dotted_decimal_identifier": "40946515427189690.46543743498115572.210463125914456",
+            "cache_key": "java-1.31.0-supermarket.chef.io",
+            "origin": "https://supermarket.chef.io/api/v1/cookbooks/java/versions/1.31.0/download",
+            "source_options": {
+              "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/java/versions/1.31.0/download",
+              "version": "1.31.0"
+            }
+          },
+          "jenkins": {
+            "version": "2.2.2",
+            "identifier": "0be380429add00d189b4431059ac967a60052323",
+            "dotted_decimal_identifier": "3346364756581632.58979677444790700.165452341125923",
+            "cache_key": "jenkins-2.2.2-supermarket.chef.io",
+            "origin": "https://supermarket.chef.io/api/v1/cookbooks/jenkins/versions/2.2.2/download",
+            "source_options": {
+              "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/jenkins/versions/2.2.2/download",
+              "version": "2.2.2"
+            }
+          },
+          "runit": {
+            "version": "1.5.18",
+            "identifier": "1a0aeb2c167a24e0c5120ca7b06ba8c4cff4610c",
+            "dotted_decimal_identifier": "7330354567739940.63267076095586411.185563255955724",
+            "cache_key": "runit-1.5.18-supermarket.chef.io",
+            "origin": "https://supermarket.chef.io/api/v1/cookbooks/runit/versions/1.5.18/download",
+            "source_options": {
+              "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/runit/versions/1.5.18/download",
+              "version": "1.5.18"
+            }
+          },
+          "build-essential": {
+            "version": "2.2.2",
+            "identifier": "d8ce58401d154378599b0fead81d2c390615602b",
+            "dotted_decimal_identifier": "61025473397593411.33875519727130653.48623426822187",
+            "cache_key": "build-essential-2.2.2-supermarket.chef.io",
+            "origin": "https://supermarket.chef.io/api/v1/cookbooks/build-essential/versions/2.2.2/download",
+            "source_options": {
+              "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/build-essential/versions/2.2.2/download",
+              "version": "2.2.2"
+            }
+          },
+          "yum": {
+            "version": "3.5.4",
+            "identifier": "f9c778c3cd3908071e0c55722682f96e653b5642",
+            "dotted_decimal_identifier": "70306590695962888.2003363158959746.274252540106306",
+            "cache_key": "yum-3.5.4-supermarket.chef.io",
+            "origin": "https://supermarket.chef.io/api/v1/cookbooks/yum/versions/3.5.4/download",
+            "source_options": {
+              "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/yum/versions/3.5.4/download",
+              "version": "3.5.4"
+            }
+          },
+          "yum-epel": {
+            "version": "0.6.0",
+            "identifier": "cd74f541ba0341abcc168c74471c349ca68f77b7",
+            "dotted_decimal_identifier": "57830966944203585.48356618235299612.57847413962679",
+            "cache_key": "yum-epel-0.6.0-supermarket.chef.io",
+            "origin": "https://supermarket.chef.io/api/v1/cookbooks/yum-epel/versions/0.6.0/download",
+            "source_options": {
+              "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/yum-epel/versions/0.6.0/download",
+              "version": "0.6.0"
+            }
+          }
+        },
+        "default_attributes": {
+          "greeting": "Attributes, f*** yeah"
+        },
+        "override_attributes": {
+          "attr_only_updating": "use -a"
+        },
+        "solution_dependencies": {
+          "Policyfile": [
+            [
+              "policyfile_demo",
+              ">= 0.0.0"
+            ],
+            [
+              "apt",
+              "= 2.7.0"
+            ],
+            [
+              "java",
+              "= 1.31.0"
+            ],
+            [
+              "jenkins",
+              "= 2.2.2"
+            ],
+            [
+              "runit",
+              "= 1.5.18"
+            ],
+            [
+              "build-essential",
+              "= 2.2.2"
+            ],
+            [
+              "yum",
+              "= 3.5.4"
+            ],
+            [
+              "yum-epel",
+              "= 0.6.0"
+            ]
+          ],
+          "dependencies": {
+            "apt (2.7.0)": [
 
-      ],
-      "yum (3.5.4)": [
+            ],
+            "java (1.31.0)": [
 
-      ],
-      "yum-epel (0.6.0)": [
-        [
-          "yum",
-          "~> 3.0"
-        ]
-      ],
-      "policyfile_demo (0.1.0)": [
+            ],
+            "jenkins (2.2.2)": [
+              [
+                "apt",
+                "~> 2.0"
+              ],
+              [
+                "runit",
+                "~> 1.5"
+              ],
+              [
+                "yum",
+                "~> 3.0"
+              ]
+            ],
+            "runit (1.5.18)": [
+              [
+                "build-essential",
+                ">= 0.0.0"
+              ],
+              [
+                "yum",
+                "~> 3.0"
+              ],
+              [
+                "yum-epel",
+                ">= 0.0.0"
+              ]
+            ],
+            "build-essential (2.2.2)": [
 
-      ]
-    }
-  }
-}
+            ],
+            "yum (3.5.4)": [
+
+            ],
+            "yum-epel (0.6.0)": [
+              [
+                "yum",
+                "~> 3.0"
+              ]
+            ],
+            "policyfile_demo (0.1.0)": [
+
+            ]
+          }
+        }
+      }
     E
   end
 
@@ -283,8 +283,8 @@ describe ChefDK::Policyfile::Differ do
     end
 
     it "reports that there are no updates" do
-      expected_message = <<-E
-No changes for policy lock 'jenkins' between 'git: HEAD' and 'local disk'
+      expected_message = <<~E
+        No changes for policy lock 'jenkins' between 'git: HEAD' and 'local disk'
 E
       differ.run_report
       expect(output).to include(expected_message)
@@ -312,27 +312,27 @@ E
     end
 
     it "reports the updated rev_id and run_list" do
-      expected_message = <<-E
-Policy lock 'jenkins' differs between 'git: HEAD' and 'local disk':
+      expected_message = <<~E
+        Policy lock 'jenkins' differs between 'git: HEAD' and 'local disk':
 
-REVISION ID CHANGED
-===================
+        REVISION ID CHANGED
+        ===================
 
-@@ -1,2 +1,2 @@
--cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
-+304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
+        @@ -1,2 +1,2 @@
+        -cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
+        +304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
 
-RUN LIST CHANGED
-================
+        RUN LIST CHANGED
+        ================
 
-@@ -1,5 +1,7 @@
- recipe[java::default]
- recipe[jenkins::master]
--recipe[policyfile_demo::whatever]
- recipe[policyfile_demo::default]
-+recipe[one::one]
-+recipe[two::two]
-+recipe[three::three]
+        @@ -1,5 +1,7 @@
+         recipe[java::default]
+         recipe[jenkins::master]
+        -recipe[policyfile_demo::whatever]
+         recipe[policyfile_demo::default]
+        +recipe[one::one]
+        +recipe[two::two]
+        +recipe[three::three]
 
 E
       differ.run_report
@@ -363,33 +363,33 @@ E
       end
 
       it "prints the correct changes with context for the run list" do
-        expected_message = <<-E
-Policy lock 'jenkins' differs between 'git: HEAD' and 'local disk':
+        expected_message = <<~E
+          Policy lock 'jenkins' differs between 'git: HEAD' and 'local disk':
 
-REVISION ID CHANGED
-===================
+          REVISION ID CHANGED
+          ===================
 
-@@ -1,2 +1,2 @@
--cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
-+304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
+          @@ -1,2 +1,2 @@
+          -cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
+          +304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
 
-RUN LIST CHANGED
-================
+          RUN LIST CHANGED
+          ================
 
-@@ -1,5 +1,4 @@
- recipe[a::default]
--recipe[b::default]
- recipe[c::default]
- recipe[d::default]
- recipe[e::default]
-@@ -12,4 +11,8 @@
- recipe[l::default]
- recipe[m::default]
- recipe[n::default]
-+recipe[o::new]
-+recipe[p::new]
-+recipe[q::new]
-+recipe[r::new]
+          @@ -1,5 +1,4 @@
+           recipe[a::default]
+          -recipe[b::default]
+           recipe[c::default]
+           recipe[d::default]
+           recipe[e::default]
+          @@ -12,4 +11,8 @@
+           recipe[l::default]
+           recipe[m::default]
+           recipe[n::default]
+          +recipe[o::new]
+          +recipe[p::new]
+          +recipe[q::new]
+          +recipe[r::new]
 
 E
         differ.run_report
@@ -422,34 +422,34 @@ E
     end
 
     it "reports the updated revision_id and removed cookbooks" do
-      expected_message = <<-E
-Policy lock 'jenkins' differs between 'git: HEAD' and 'local disk':
+      expected_message = <<~E
+        Policy lock 'jenkins' differs between 'git: HEAD' and 'local disk':
 
-REVISION ID CHANGED
-===================
+        REVISION ID CHANGED
+        ===================
 
-@@ -1,2 +1,2 @@
--cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
-+304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
+        @@ -1,2 +1,2 @@
+        -cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
+        +304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
 
-REMOVED COOKBOOKS
-=================
+        REMOVED COOKBOOKS
+        =================
 
-apt
----
+        apt
+        ---
 
-@@ -1,12 +1 @@
--{
--  "version": "2.7.0",
--  "identifier": "16c57abbd056543f7d5a15dabbb03261024a9c5e",
--  "dotted_decimal_identifier": "6409580415309396.17870749399956400.55392231660638",
--  "cache_key": "apt-2.7.0-supermarket.chef.io",
--  "origin": "https://supermarket.chef.io/api/v1/cookbooks/apt/versions/2.7.0/download",
--  "source_options": {
--    "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/apt/versions/2.7.0/download",
--    "version": "2.7.0"
--  }
--}
+        @@ -1,12 +1 @@
+        -{
+        -  "version": "2.7.0",
+        -  "identifier": "16c57abbd056543f7d5a15dabbb03261024a9c5e",
+        -  "dotted_decimal_identifier": "6409580415309396.17870749399956400.55392231660638",
+        -  "cache_key": "apt-2.7.0-supermarket.chef.io",
+        -  "origin": "https://supermarket.chef.io/api/v1/cookbooks/apt/versions/2.7.0/download",
+        -  "source_options": {
+        -    "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/apt/versions/2.7.0/download",
+        -    "version": "2.7.0"
+        -  }
+        -}
 
 E
       differ.run_report
@@ -495,34 +495,34 @@ E
     end
 
     it "reports the updated revision_id and added cookbook" do
-      expected_message = <<-E
-Policy lock 'jenkins' differs between 'git: HEAD' and 'local disk':
+      expected_message = <<~E
+        Policy lock 'jenkins' differs between 'git: HEAD' and 'local disk':
 
-REVISION ID CHANGED
-===================
+        REVISION ID CHANGED
+        ===================
 
-@@ -1,2 +1,2 @@
--cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
-+304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
+        @@ -1,2 +1,2 @@
+        -cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
+        +304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
 
-ADDED COOKBOOKS
-===============
+        ADDED COOKBOOKS
+        ===============
 
-bluepill
---------
+        bluepill
+        --------
 
-@@ -1 +1,12 @@
-+{
-+  "version": "2.3.2",
-+  "identifier": "9c6990944d9a347dec8bd375e707ba0aecdc17cd",
-+  "dotted_decimal_identifier": "69437059924760478.24393100994078142.115593340606828",
-+  "cache_key": "bluepill-2.3.2-supermarket.chef.io",
-+  "origin": "https://supermarket.chef.io/api/v1/cookbooks/bluepill/versions/2.3.2/download",
-+  "source_options": {
-+    "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/bluepill/versions/2.3.2/download",
-+    "version": "2.3.2"
-+  }
-+}
+        @@ -1 +1,12 @@
+        +{
+        +  "version": "2.3.2",
+        +  "identifier": "9c6990944d9a347dec8bd375e707ba0aecdc17cd",
+        +  "dotted_decimal_identifier": "69437059924760478.24393100994078142.115593340606828",
+        +  "cache_key": "bluepill-2.3.2-supermarket.chef.io",
+        +  "origin": "https://supermarket.chef.io/api/v1/cookbooks/bluepill/versions/2.3.2/download",
+        +  "source_options": {
+        +    "artifactserver": "https://supermarket.chef.io/api/v1/cookbooks/bluepill/versions/2.3.2/download",
+        +    "version": "2.3.2"
+        +  }
+        +}
 
 E
       differ.run_report
@@ -557,32 +557,32 @@ E
     end
 
     it "reports the updated revision_id and modified policyfile_demo cookbook" do
-      expected_message = <<-E
-Policy lock 'jenkins' differs between 'git: HEAD' and 'local disk':
+      expected_message = <<~E
+        Policy lock 'jenkins' differs between 'git: HEAD' and 'local disk':
 
-REVISION ID CHANGED
-===================
+        REVISION ID CHANGED
+        ===================
 
-@@ -1,2 +1,2 @@
--cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
-+304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
+        @@ -1,2 +1,2 @@
+        -cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
+        +304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
 
-MODIFIED COOKBOOKS
-==================
+        MODIFIED COOKBOOKS
+        ==================
 
-policyfile_demo
----------------
+        policyfile_demo
+        ---------------
 
-@@ -1,7 +1,7 @@
- {
-   "version": "0.1.0",
--  "identifier": "ea96c99da079db9ff3cb22601638fabd5df49599",
--  "dotted_decimal_identifier": "66030937227426267.45022575077627448.275691232073113",
-+  "identifier": "f04cc40faf628253fe7d9566d66a1733fb1afbe9",
-+  "dotted_decimal_identifier": "67638399371010690.23642238397896298.25512023620585",
-   "source": "cookbooks/policyfile_demo",
-   "cache_key": null,
-   "scm_info": {
+        @@ -1,7 +1,7 @@
+         {
+           "version": "0.1.0",
+        -  "identifier": "ea96c99da079db9ff3cb22601638fabd5df49599",
+        -  "dotted_decimal_identifier": "66030937227426267.45022575077627448.275691232073113",
+        +  "identifier": "f04cc40faf628253fe7d9566d66a1733fb1afbe9",
+        +  "dotted_decimal_identifier": "67638399371010690.23642238397896298.25512023620585",
+           "source": "cookbooks/policyfile_demo",
+           "cache_key": null,
+           "scm_info": {
 
 E
       differ.run_report
@@ -610,25 +610,25 @@ E
     end
 
     it "reports the updated revision_id and modified attributes" do
-      expected_output = <<-E
-Policy lock 'jenkins' differs between 'git: HEAD' and 'local disk':
+      expected_output = <<~E
+        Policy lock 'jenkins' differs between 'git: HEAD' and 'local disk':
 
-REVISION ID CHANGED
-===================
+        REVISION ID CHANGED
+        ===================
 
-@@ -1,2 +1,2 @@
--cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
-+304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
+        @@ -1,2 +1,2 @@
+        -cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
+        +304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
 
-DEFAULT ATTRIBUTES CHANGED
-==========================
+        DEFAULT ATTRIBUTES CHANGED
+        ==========================
 
-@@ -1,4 +1,5 @@
- {
--  "greeting": "Attributes, f*** yeah"
-+  "greeting": "Attributes, f*** yeah",
-+  "new_attr": "hello"
- }
+        @@ -1,4 +1,5 @@
+         {
+        -  "greeting": "Attributes, f*** yeah"
+        +  "greeting": "Attributes, f*** yeah",
+        +  "new_attr": "hello"
+         }
 
 E
       differ.run_report
@@ -656,25 +656,25 @@ E
     end
 
     it "reports the updated revision_id and override_attributes" do
-      expected_output = <<-E
-Policy lock 'jenkins' differs between 'git: HEAD' and 'local disk':
+      expected_output = <<~E
+        Policy lock 'jenkins' differs between 'git: HEAD' and 'local disk':
 
-REVISION ID CHANGED
-===================
+        REVISION ID CHANGED
+        ===================
 
-@@ -1,2 +1,2 @@
--cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
-+304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
+        @@ -1,2 +1,2 @@
+        -cf4b8a020bdc1ba6914093a8a07a5514cce8a3a2979a967b1f32ea704a61785b
+        +304566f86a620aae85797a3c491a51fb8c6ecf996407e77b8063aa3ee59672c5
 
-OVERRIDE ATTRIBUTES CHANGED
-===========================
+        OVERRIDE ATTRIBUTES CHANGED
+        ===========================
 
-@@ -1,4 +1,5 @@
- {
--  "attr_only_updating": "use -a"
-+  "attr_only_updating": "use -a",
-+  "new_attr": "ALL THE DIFF"
- }
+        @@ -1,4 +1,5 @@
+         {
+        -  "attr_only_updating": "use -a"
+        +  "attr_only_updating": "use -a",
+        +  "new_attr": "ALL THE DIFF"
+         }
 
 E
 

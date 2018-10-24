@@ -188,9 +188,9 @@ describe ChefDK::Command::ShowPolicy do
       it "prints a debugging message and exits non-zero" do
         expect(command.run([])).to eq(1)
 
-        expected_output = <<-E
-Error: Failed to list policies
-Reason: (StandardError) some operation failed
+        expected_output = <<~E
+          Error: Failed to list policies
+          Reason: (StandardError) some operation failed
 
 E
 
@@ -203,9 +203,9 @@ E
 
           command.run(%w{ -D })
 
-          expected_output = <<-E
-Error: Failed to list policies
-Reason: (StandardError) some operation failed
+          expected_output = <<~E
+            Error: Failed to list policies
+            Reason: (StandardError) some operation failed
 
 
 E

@@ -60,7 +60,7 @@ describe ChefDK::Command::ShellInit do
         expect(stdout_io.string).to include(expected_environment_commands)
       end
 
-      it "does not emit any empty lines", :if => %w{powershell posh}.include?(shell) do
+      it "does not emit any empty lines", if: %w{powershell posh}.include?(shell) do
         command_instance.run(argv)
         stdout_io.string.each_line do |s|
           expect(s.strip).not_to be_empty
@@ -86,7 +86,7 @@ describe ChefDK::Command::ShellInit do
         expect(stdout_io.string).to include(expected_environment_commands)
       end
 
-      it "does not emit any empty lines", :if => %w{powershell posh}.include?(shell) do
+      it "does not emit any empty lines", if: %w{powershell posh}.include?(shell) do
         command_instance.run(argv)
         stdout_io.string.each_line do |s|
           expect(s.strip).not_to be_empty
@@ -101,11 +101,11 @@ describe ChefDK::Command::ShellInit do
     end
 
     let(:expected_environment_commands) do
-      <<-EOH
-export PATH="#{expected_path}"
-export GEM_ROOT="#{expected_gem_root}"
-export GEM_HOME="#{expected_gem_home}"
-export GEM_PATH="#{expected_gem_path}"
+      <<~EOH
+        export PATH="#{expected_path}"
+        export GEM_ROOT="#{expected_gem_root}"
+        export GEM_HOME="#{expected_gem_home}"
+        export GEM_PATH="#{expected_gem_path}"
 EOH
     end
     include_context "shell init script", shell
@@ -117,11 +117,11 @@ EOH
     end
 
     let(:expected_environment_commands) do
-      <<-EOH
-$env:PATH="#{expected_path}"
-$env:GEM_ROOT="#{expected_gem_root}"
-$env:GEM_HOME="#{expected_gem_home}"
-$env:GEM_PATH="#{expected_gem_path}"
+      <<~EOH
+        $env:PATH="#{expected_path}"
+        $env:GEM_ROOT="#{expected_gem_root}"
+        $env:GEM_HOME="#{expected_gem_home}"
+        $env:GEM_PATH="#{expected_gem_path}"
 EOH
     end
     include_context "shell init script", shell
@@ -151,20 +151,20 @@ EOH
       let(:argv) { [ "bash" ] }
 
       let(:expected_completion_function) do
-        <<-END_COMPLETION
-_chef_comp() {
-    local COMMANDS="exec env gem generate"
-    COMPREPLY=($(compgen -W "$COMMANDS" -- ${COMP_WORDS[COMP_CWORD]} ))
-}
-complete -F _chef_comp chef
+        <<~END_COMPLETION
+          _chef_comp() {
+              local COMMANDS="exec env gem generate"
+              COMPREPLY=($(compgen -W "$COMMANDS" -- ${COMP_WORDS[COMP_CWORD]} ))
+          }
+          complete -F _chef_comp chef
 END_COMPLETION
       end
 
       before do
         # Stub this or else we'd have to update the test every time a new command
         # is added.
-        allow(command_instance.shell_completion_template_context).to receive(:commands).
-          and_return(command_descriptions)
+        allow(command_instance.shell_completion_template_context).to receive(:commands)
+          .and_return(command_descriptions)
 
         allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
         allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
@@ -199,28 +199,28 @@ END_COMPLETION
       let(:argv) { [ "zsh" ] }
 
       let(:expected_completion_function) do
-        <<-END_COMPLETION
-function _chef() {
+        <<~END_COMPLETION
+          function _chef() {
 
-  local -a _1st_arguments
-  _1st_arguments=(
-      'exec:Runs the command in context of the embedded ruby'
-      'env:Prints environment variables used by ChefDK'
-      'gem:Runs the `gem` command in context of the embedded ruby'
-      'generate:Generate a new app, cookbook, or component'
-    )
+            local -a _1st_arguments
+            _1st_arguments=(
+                'exec:Runs the command in context of the embedded ruby'
+                'env:Prints environment variables used by ChefDK'
+                'gem:Runs the `gem` command in context of the embedded ruby'
+                'generate:Generate a new app, cookbook, or component'
+              )
 
-  _arguments \\
-    '(-v --version)'{-v,--version}'[version information]' \\
-    '*:: :->subcmds' && return 0
+            _arguments \\
+              '(-v --version)'{-v,--version}'[version information]' \\
+              '*:: :->subcmds' && return 0
 
-  if (( CURRENT == 1 )); then
-    _describe -t commands "chef subcommand" _1st_arguments
-    return
-  fi
-}
+            if (( CURRENT == 1 )); then
+              _describe -t commands "chef subcommand" _1st_arguments
+              return
+            fi
+          }
 
-compdef _chef chef
+          compdef _chef chef
 
         END_COMPLETION
       end
@@ -228,8 +228,8 @@ compdef _chef chef
       before do
         # Stub this or else we'd have to update the test every time a new command
         # is added.
-        allow(command_instance.shell_completion_template_context).to receive(:commands).
-          and_return(command_descriptions)
+        allow(command_instance.shell_completion_template_context).to receive(:commands)
+          .and_return(command_descriptions)
 
         allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
         allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)
@@ -248,11 +248,11 @@ compdef _chef chef
     end
     let(:expected_path) { [omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV["PATH"], git_bin_dir].join(":").split(":").join('" "') }
     let(:expected_environment_commands) do
-      <<-EOH
-set -gx PATH "#{expected_path}" 2>/dev/null;
-set -gx GEM_ROOT "#{expected_gem_root}";
-set -gx GEM_HOME "#{expected_gem_home}";
-set -gx GEM_PATH "#{expected_gem_path}";
+      <<~EOH
+        set -gx PATH "#{expected_path}" 2>/dev/null;
+        set -gx GEM_ROOT "#{expected_gem_root}";
+        set -gx GEM_HOME "#{expected_gem_home}";
+        set -gx GEM_PATH "#{expected_gem_path}";
 EOH
     end
 
@@ -275,26 +275,26 @@ EOH
       let(:argv) { [ "fish" ] }
 
       let(:expected_completion_function) do
-        <<-END_COMPLETION
-# Fish Shell command-line completions for ChefDK
+        <<~END_COMPLETION
+          # Fish Shell command-line completions for ChefDK
 
-function __fish_chef_no_command --description 'Test if chef has yet to be given the main command'
-  set -l cmd (commandline -opc)
-  test (count $cmd) -eq 1
-end
+          function __fish_chef_no_command --description 'Test if chef has yet to be given the main command'
+            set -l cmd (commandline -opc)
+            test (count $cmd) -eq 1
+          end
 
-complete -c chef -f -n '__fish_chef_no_command' -a exec -d "Runs the command in context of the embedded ruby"
-complete -c chef -f -n '__fish_chef_no_command' -a env -d "Prints environment variables used by ChefDK"
-complete -c chef -f -n '__fish_chef_no_command' -a gem -d "Runs the `gem` command in context of the embedded ruby"
-complete -c chef -f -n '__fish_chef_no_command' -a generate -d "Generate a new app, cookbook, or component"
+          complete -c chef -f -n '__fish_chef_no_command' -a exec -d "Runs the command in context of the embedded ruby"
+          complete -c chef -f -n '__fish_chef_no_command' -a env -d "Prints environment variables used by ChefDK"
+          complete -c chef -f -n '__fish_chef_no_command' -a gem -d "Runs the `gem` command in context of the embedded ruby"
+          complete -c chef -f -n '__fish_chef_no_command' -a generate -d "Generate a new app, cookbook, or component"
 END_COMPLETION
       end
 
       before do
         # Stub this or else we'd have to update the test every time a new command
         # is added.
-        allow(command_instance.shell_completion_template_context).to receive(:commands).
-          and_return(command_descriptions)
+        allow(command_instance.shell_completion_template_context).to receive(:commands)
+          .and_return(command_descriptions)
 
         allow(command_instance).to receive(:omnibus_embedded_bin_dir).and_return(omnibus_embedded_bin_dir)
         allow(command_instance).to receive(:omnibus_bin_dir).and_return(omnibus_bin_dir)

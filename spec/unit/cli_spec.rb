@@ -40,17 +40,17 @@ describe ChefDK::CLI do
   end
 
   let(:base_help_message) do
-    <<-E
-Usage:
-    chef -h/--help
-    chef -v/--version
-    chef command [arguments...] [options...]
+    <<~E
+      Usage:
+          chef -h/--help
+          chef -v/--version
+          chef command [arguments...] [options...]
 
 
-Available Commands:
-    verify   Test the embedded ChefDK applications
-    gem      Runs the `gem` command in context of the embedded ruby
-    example  Example subcommand for testing
+      Available Commands:
+          verify   Test the embedded ChefDK applications
+          gem      Runs the `gem` command in context of the embedded ruby
+          example  Example subcommand for testing
 E
   end
 

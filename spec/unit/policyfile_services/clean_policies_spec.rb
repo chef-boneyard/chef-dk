@@ -177,9 +177,9 @@ describe ChefDK::PolicyfileServices::CleanPolicies do
 
           it "deletes the orphaned policies" do
             clean_policies_service.run
-            expected_message = <<-MESSAGE
-DELETE appserver 4444444444444444444444444444444444444444444444444444444444444444
-DELETE load-balancer 7777777777777777777777777777777777777777777777777777777777777777
+            expected_message = <<~MESSAGE
+              DELETE appserver 4444444444444444444444444444444444444444444444444444444444444444
+              DELETE load-balancer 7777777777777777777777777777777777777777777777777777777777777777
 MESSAGE
             expect(ui.output).to eq(expected_message)
           end
@@ -204,24 +204,24 @@ MESSAGE
           end
 
           before do
-            expect(http_client).to receive(:delete).
-              with("/policies/appserver/revisions/4444444444444444444444444444444444444444444444444444444444444444").
-              and_raise(http_exception)
+            expect(http_client).to receive(:delete)
+              .with("/policies/appserver/revisions/4444444444444444444444444444444444444444444444444444444444444444")
+              .and_raise(http_exception)
             expect(http_client).to receive(:delete).with("/policies/load-balancer/revisions/7777777777777777777777777777777777777777777777777777777777777777")
           end
 
           it "deletes what it can, then raises an error" do
-            expected_message = <<-ERROR
-Failed to delete some policy revisions:
-- appserver (4444444444444444444444444444444444444444444444444444444444444444): Net::HTTPServerException 403 \"Unauthorized\"
+            expected_message = <<~ERROR
+              Failed to delete some policy revisions:
+              - appserver (4444444444444444444444444444444444444444444444444444444444444444): Net::HTTPServerException 403 \"Unauthorized\"
 ERROR
 
             expect { clean_policies_service.run }.to raise_error do |error|
               expect(error.message).to eq(expected_message)
             end
-            expected_message = <<-MESSAGE
-DELETE appserver 4444444444444444444444444444444444444444444444444444444444444444
-DELETE load-balancer 7777777777777777777777777777777777777777777777777777777777777777
+            expected_message = <<~MESSAGE
+              DELETE appserver 4444444444444444444444444444444444444444444444444444444444444444
+              DELETE load-balancer 7777777777777777777777777777777777777777777777777777777777777777
 MESSAGE
             expect(ui.output).to eq(expected_message)
           end

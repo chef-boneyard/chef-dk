@@ -10,12 +10,12 @@ inspec_dir = File.join(cookbook_dir, 'test', 'integration', 'default')
 inspec_path = File.join(inspec_dir, "#{context.new_file_basename}_test.rb")
 
 if File.directory?(File.join(cookbook_dir, 'test', 'recipes'))
-  Chef::Log.deprecation <<-EOH
-It appears that you have Inspec tests located at "test/recipes". This location can
-cause issues with Foodcritic and has been deprecated in favor of "test/integration/default".
-Please move your existing Inspec tests to the newly created "test/integration/default"
-directory, and update the 'inspec_tests' value in your .kitchen.yml file(s) to
-point to "test/integration/default".
+  Chef::Log.deprecation <<~EOH
+    It appears that you have Inspec tests located at "test/recipes". This location can
+    cause issues with Foodcritic and has been deprecated in favor of "test/integration/default".
+    Please move your existing Inspec tests to the newly created "test/integration/default"
+    directory, and update the 'inspec_tests' value in your .kitchen.yml file(s) to
+    point to "test/integration/default".
   EOH
 end
 

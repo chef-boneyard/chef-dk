@@ -27,16 +27,16 @@ module ChefDK
       include ChefDK::Helpers
 
       option :help,
-        :short        => "-h",
-        :long         => "--help",
-        :description  => "Show this message",
-        :boolean      => true
+        short: "-h",
+        long: "--help",
+        description: "Show this message",
+        boolean: true
 
       option :version,
-        :short        => "-v",
-        :long         => "--version",
-        :description  => "Show chef version",
-        :boolean      => true
+        short: "-v",
+        long: "--version",
+        description: "Show chef version",
+        boolean: true
 
       def initialize
         super

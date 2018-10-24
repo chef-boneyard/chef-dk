@@ -59,19 +59,19 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
   end
 
   let(:non_delivery_breadcrumb) do
-    <<-EOF
-Your cookbook is ready. Type `cd new_cookbook` to enter it.
+    <<~EOF
+      Your cookbook is ready. Type `cd new_cookbook` to enter it.
 
-There are several commands you can run to get started locally developing and testing your cookbook.
-Type `delivery local --help` to see a full list.
+      There are several commands you can run to get started locally developing and testing your cookbook.
+      Type `delivery local --help` to see a full list.
 
-Why not start by writing a test? Tests for the default recipe are stored at:
+      Why not start by writing a test? Tests for the default recipe are stored at:
 
-test/integration/default/default_test.rb
+      test/integration/default/default_test.rb
 
-If you'd prefer to dive right in, the default recipe can be found at:
+      If you'd prefer to dive right in, the default recipe can be found at:
 
-recipes/default.rb
+      recipes/default.rb
 EOF
   end
 
@@ -179,43 +179,43 @@ EOF
         let(:file) { File.join(tempdir, "new_cookbook", ".delivery", "project.toml") }
 
         let(:expected_content) do
-          <<-PROJECT_DOT_TOML
-# Delivery Prototype for Local Phases Execution
-#
-# The purpose of this file is to prototype a new way to execute
-# phases locally on your workstation. The delivery-cli will read
-# this file and execute the command(s) that are configured for
-# each phase. You can customize them by just modifying the phase
-# key on this file.
-#
-# By default these phases are configured for Cookbook Workflow only
-#
-# As this is still a prototype we are not modifying the current
-# config.json file and it will continue working as usual.
+          <<~PROJECT_DOT_TOML
+            # Delivery Prototype for Local Phases Execution
+            #
+            # The purpose of this file is to prototype a new way to execute
+            # phases locally on your workstation. The delivery-cli will read
+            # this file and execute the command(s) that are configured for
+            # each phase. You can customize them by just modifying the phase
+            # key on this file.
+            #
+            # By default these phases are configured for Cookbook Workflow only
+            #
+            # As this is still a prototype we are not modifying the current
+            # config.json file and it will continue working as usual.
 
-[local_phases]
-unit = "chef exec rspec spec/"
-lint = "chef exec cookstyle"
-# Foodcritic includes rules only appropriate for community cookbooks
-# uploaded to Supermarket. We turn off any rules tagged "supermarket"
-# by default. If you plan to share this cookbook you should remove
-# '-t ~supermarket' below to enable supermarket rules.
-syntax = "chef exec foodcritic . -t ~supermarket"
-provision = "chef exec kitchen create"
-deploy = "chef exec kitchen converge"
-smoke = "chef exec kitchen verify"
-# The functional phase is optional, you can define it by uncommenting
-# the line below and running the command: `delivery local functional`
-# functional = ""
-cleanup = "chef exec kitchen destroy"
+            [local_phases]
+            unit = "chef exec rspec spec/"
+            lint = "chef exec cookstyle"
+            # Foodcritic includes rules only appropriate for community cookbooks
+            # uploaded to Supermarket. We turn off any rules tagged "supermarket"
+            # by default. If you plan to share this cookbook you should remove
+            # '-t ~supermarket' below to enable supermarket rules.
+            syntax = "chef exec foodcritic . -t ~supermarket"
+            provision = "chef exec kitchen create"
+            deploy = "chef exec kitchen converge"
+            smoke = "chef exec kitchen verify"
+            # The functional phase is optional, you can define it by uncommenting
+            # the line below and running the command: `delivery local functional`
+            # functional = ""
+            cleanup = "chef exec kitchen destroy"
 
-# Remote project.toml file
-#
-# Specify a remote URI location for the `project.toml` file.
-# This is useful for teams that wish to centrally manage the behavior
-# of the `delivery local` command across many different projects.
-#
-# remote_file = "https://url/project.toml"
+            # Remote project.toml file
+            #
+            # Specify a remote URI location for the `project.toml` file.
+            # This is useful for teams that wish to centrally manage the behavior
+            # of the `delivery local` command across many different projects.
+            #
+            # remote_file = "https://url/project.toml"
 PROJECT_DOT_TOML
         end
 
@@ -230,24 +230,24 @@ PROJECT_DOT_TOML
         let(:file) { File.join(tempdir, "new_cookbook", ".delivery", "config.json") }
 
         let(:expected_content) do
-          <<-CONFIG_DOT_JSON
-{
-  "version": "2",
-  "build_cookbook": {
-    "name": "build_cookbook",
-    "path": ".delivery/build_cookbook"
-  },
-  "delivery-truck": {
-    "lint": {
-      "enable_cookstyle": true
-    }
-  },
-  "skip_phases": [],
-  "job_dispatch": {
-    "version": "v2"
-  },
-  "dependencies": []
-}
+          <<~CONFIG_DOT_JSON
+            {
+              "version": "2",
+              "build_cookbook": {
+                "name": "build_cookbook",
+                "path": ".delivery/build_cookbook"
+              },
+              "delivery-truck": {
+                "lint": {
+                  "enable_cookstyle": true
+                }
+              },
+              "skip_phases": [],
+              "job_dispatch": {
+                "version": "v2"
+              },
+              "dependencies": []
+            }
   CONFIG_DOT_JSON
         end
 
@@ -264,13 +264,13 @@ PROJECT_DOT_TOML
         end
 
         let(:expected_content) do
-          <<-CONFIG_DOT_JSON
-#
-# Cookbook:: build_cookbook
-# Recipe:: publish
-#
-# Copyright:: 2018, The Authors, All Rights Reserved.
-include_recipe 'delivery-truck::publish'
+          <<~CONFIG_DOT_JSON
+            #
+            # Cookbook:: build_cookbook
+            # Recipe:: publish
+            #
+            # Copyright:: 2018, The Authors, All Rights Reserved.
+            include_recipe 'delivery-truck::publish'
   CONFIG_DOT_JSON
         end
 
@@ -287,14 +287,14 @@ include_recipe 'delivery-truck::publish'
         end
 
         let(:expected_content) do
-          <<-CONFIG_DOT_JSON
-source 'https://supermarket.chef.io'
+          <<~CONFIG_DOT_JSON
+            source 'https://supermarket.chef.io'
 
-metadata
+            metadata
 
-group :delivery do
-  cookbook 'test', path: './test/fixtures/cookbooks/test'
-end
+            group :delivery do
+              cookbook 'test', path: './test/fixtures/cookbooks/test'
+            end
   CONFIG_DOT_JSON
         end
 
@@ -358,17 +358,17 @@ end
           expect(cookbook_generator.run).to eq(0)
         end
 
-        expected = <<-OUTPUT
-Generating cookbook new_cookbook
-- Ensuring correct cookbook file content
-- Committing cookbook files to git
-- Ensuring delivery configuration
-- Ensuring correct delivery build cookbook content
-- Adding delivery configuration to feature branch
-- Adding build cookbook to feature branch
-- Merging delivery content feature branch to master
+        expected = <<~OUTPUT
+          Generating cookbook new_cookbook
+          - Ensuring correct cookbook file content
+          - Committing cookbook files to git
+          - Ensuring delivery configuration
+          - Ensuring correct delivery build cookbook content
+          - Adding delivery configuration to feature branch
+          - Adding build cookbook to feature branch
+          - Merging delivery content feature branch to master
 
-#{non_delivery_breadcrumb}
+          #{non_delivery_breadcrumb}
 OUTPUT
 
         actual = stdout_io.string
@@ -410,17 +410,17 @@ OUTPUT
           expect(cookbook_generator.run).to eq(0)
         end
 
-        expected = <<-OUTPUT
-Generating cookbook new_cookbook
-- Ensuring correct cookbook file content
-- Committing cookbook files to git
-- Ensuring delivery configuration
-- Ensuring correct delivery build cookbook content
-- Adding delivery configuration to feature branch
-- Adding build cookbook to feature branch
-- Merging delivery content feature branch to master
+        expected = <<~OUTPUT
+          Generating cookbook new_cookbook
+          - Ensuring correct cookbook file content
+          - Committing cookbook files to git
+          - Ensuring delivery configuration
+          - Ensuring correct delivery build cookbook content
+          - Adding delivery configuration to feature branch
+          - Adding build cookbook to feature branch
+          - Merging delivery content feature branch to master
 
-Your cookbook is ready. To setup the pipeline, type `cd new_cookbook`, then run `delivery init`
+          Your cookbook is ready. To setup the pipeline, type `cd new_cookbook`, then run `delivery init`
 OUTPUT
 
         actual = stdout_io.string
@@ -525,23 +525,23 @@ OUTPUT
         let(:file) { File.join(tempdir, "new_cookbook", "Policyfile.rb") }
 
         let(:expected_content) do
-          <<-POLICYFILE_RB
-# Policyfile.rb - Describe how you want Chef to build your system.
-#
-# For more information on the Policyfile feature, visit
-# https://docs.chef.io/policyfile.html
+          <<~POLICYFILE_RB
+            # Policyfile.rb - Describe how you want Chef to build your system.
+            #
+            # For more information on the Policyfile feature, visit
+            # https://docs.chef.io/policyfile.html
 
-# A name that describes what the system you're building with Chef does.
-name 'new_cookbook'
+            # A name that describes what the system you're building with Chef does.
+            name 'new_cookbook'
 
-# Where to find external cookbooks:
-default_source :supermarket
+            # Where to find external cookbooks:
+            default_source :supermarket
 
-# run_list: chef-client will run these recipes in the order specified.
-run_list 'new_cookbook::default'
+            # run_list: chef-client will run these recipes in the order specified.
+            run_list 'new_cookbook::default'
 
-# Specify a custom source for a single cookbook:
-cookbook 'new_cookbook', path: '.'
+            # Specify a custom source for a single cookbook:
+            cookbook 'new_cookbook', path: '.'
 POLICYFILE_RB
         end
 
@@ -561,40 +561,40 @@ POLICYFILE_RB
       include_examples "kitchen_yml_and_integration_tests" do
 
         let(:expected_kitchen_yml_content) do
-          <<-KITCHEN_YML
----
-driver:
-  name: vagrant
+          <<~KITCHEN_YML
+            ---
+            driver:
+              name: vagrant
 
-## The forwarded_port port feature lets you connect to ports on the VM guest via
-## localhost on the host.
-## see also: https://docs.vagrantup.com/v2/networking/forwarded_ports.html
+            ## The forwarded_port port feature lets you connect to ports on the VM guest via
+            ## localhost on the host.
+            ## see also: https://docs.vagrantup.com/v2/networking/forwarded_ports.html
 
-#  network:
-#    - ["forwarded_port", {guest: 80, host: 8080}]
+            #  network:
+            #    - ["forwarded_port", {guest: 80, host: 8080}]
 
-provisioner:
-  name: chef_zero
+            provisioner:
+              name: chef_zero
 
-## require_chef_omnibus specifies a specific chef version to install. You can
-## also set this to `true` to always use the latest version.
-## see also: https://docs.chef.io/config_yml_kitchen.html
+            ## require_chef_omnibus specifies a specific chef version to install. You can
+            ## also set this to `true` to always use the latest version.
+            ## see also: https://docs.chef.io/config_yml_kitchen.html
 
-#  require_chef_omnibus: 12.8.1
+            #  require_chef_omnibus: 12.8.1
 
-verifier:
-  name: inspec
+            verifier:
+              name: inspec
 
-platforms:
-  - name: ubuntu-16.04
-  - name: centos-7
+            platforms:
+              - name: ubuntu-16.04
+              - name: centos-7
 
-suites:
-  - name: default
-    verifier:
-      inspec_tests:
-        - test/integration/default
-    attributes:
+            suites:
+              - name: default
+                verifier:
+                  inspec_tests:
+                    - test/integration/default
+                attributes:
 KITCHEN_YML
         end
 
@@ -603,10 +603,10 @@ KITCHEN_YML
       include_examples "chefspec_spec_helper_file" do
 
         let(:expected_chefspec_spec_helper_content) do
-          <<-SPEC_HELPER
-# frozen_string_literal: true
-require 'chefspec'
-require 'chefspec/policyfile'
+          <<~SPEC_HELPER
+            # frozen_string_literal: true
+            require 'chefspec'
+            require 'chefspec/policyfile'
 SPEC_HELPER
         end
 
@@ -623,11 +623,11 @@ SPEC_HELPER
         let(:file) { File.join(tempdir, "new_cookbook", "Berksfile") }
 
         let(:expected_content) do
-          <<-POLICYFILE_RB
-# frozen_string_literal: true
-source 'https://supermarket.chef.io'
+          <<~POLICYFILE_RB
+            # frozen_string_literal: true
+            source 'https://supermarket.chef.io'
 
-metadata
+            metadata
 POLICYFILE_RB
         end
 
@@ -647,33 +647,33 @@ POLICYFILE_RB
       include_examples "kitchen_yml_and_integration_tests" do
 
         let(:expected_kitchen_yml_content) do
-          <<-KITCHEN_YML
----
-driver:
-  name: vagrant
+          <<~KITCHEN_YML
+            ---
+            driver:
+              name: vagrant
 
-provisioner:
-  name: chef_zero
-  # You may wish to disable always updating cookbooks in CI or other testing environments.
-  # For example:
-  #   always_update_cookbooks: <%= !ENV['CI'] %>
-  always_update_cookbooks: true
+            provisioner:
+              name: chef_zero
+              # You may wish to disable always updating cookbooks in CI or other testing environments.
+              # For example:
+              #   always_update_cookbooks: <%= !ENV['CI'] %>
+              always_update_cookbooks: true
 
-verifier:
-  name: inspec
+            verifier:
+              name: inspec
 
-platforms:
-  - name: ubuntu-16.04
-  - name: centos-7
+            platforms:
+              - name: ubuntu-16.04
+              - name: centos-7
 
-suites:
-  - name: default
-    run_list:
-      - recipe[new_cookbook::default]
-    verifier:
-      inspec_tests:
-        - test/integration/default
-    attributes:
+            suites:
+              - name: default
+                run_list:
+                  - recipe[new_cookbook::default]
+                verifier:
+                  inspec_tests:
+                    - test/integration/default
+                attributes:
 KITCHEN_YML
         end
 
@@ -682,10 +682,10 @@ KITCHEN_YML
       include_examples "chefspec_spec_helper_file" do
 
         let(:expected_chefspec_spec_helper_content) do
-          <<-SPEC_HELPER
-# frozen_string_literal: true
-require 'chefspec'
-require 'chefspec/berkshelf'
+          <<~SPEC_HELPER
+            # frozen_string_literal: true
+            require 'chefspec'
+            require 'chefspec/berkshelf'
 SPEC_HELPER
         end
 

@@ -21,42 +21,42 @@ require "chef-dk/policyfile/comparison_base"
 describe "Policyfile Comparison Bases" do
 
   let(:minimal_lockfile_json) do
-    <<-E
-{
-  "revision_id": "6fe753184c8946052d3231bb4212116df28d89a3a5f7ae52832ad408419dd5eb",
-  "name": "install-example",
-  "run_list": [
-    "recipe[local-cookbook::default]"
-  ],
-  "cookbook_locks": {
-    "local-cookbook": {
-      "version": "2.3.4",
-      "identifier": "fab501cfaf747901bd82c1bc706beae7dc3a350c",
-      "dotted_decimal_identifier": "70567763561641081.489844270461035.258281553147148",
-      "source": "cookbooks/local-cookbook",
-      "cache_key": null,
-      "scm_info": null,
-      "source_options": {
-        "path": "cookbooks/local-cookbook"
-      }
-    }
-  },
-  "default_attributes": {},
-  "override_attributes": {},
-  "solution_dependencies": {
-    "Policyfile": [
-      [
-        "local-cookbook",
-        ">= 0.0.0"
-      ]
-    ],
-    "dependencies": {
-      "local-cookbook (2.3.4)": [
+    <<~E
+      {
+        "revision_id": "6fe753184c8946052d3231bb4212116df28d89a3a5f7ae52832ad408419dd5eb",
+        "name": "install-example",
+        "run_list": [
+          "recipe[local-cookbook::default]"
+        ],
+        "cookbook_locks": {
+          "local-cookbook": {
+            "version": "2.3.4",
+            "identifier": "fab501cfaf747901bd82c1bc706beae7dc3a350c",
+            "dotted_decimal_identifier": "70567763561641081.489844270461035.258281553147148",
+            "source": "cookbooks/local-cookbook",
+            "cache_key": null,
+            "scm_info": null,
+            "source_options": {
+              "path": "cookbooks/local-cookbook"
+            }
+          }
+        },
+        "default_attributes": {},
+        "override_attributes": {},
+        "solution_dependencies": {
+          "Policyfile": [
+            [
+              "local-cookbook",
+              ">= 0.0.0"
+            ]
+          ],
+          "dependencies": {
+            "local-cookbook (2.3.4)": [
 
-      ]
-    }
-  }
-}
+            ]
+          }
+        }
+      }
 E
   end
 
@@ -325,9 +325,9 @@ E
     context "when the policyfile lock is fetched from the server" do
 
       before do
-        expect(http_client).to receive(:get).
-          with("policy_groups/acceptance/policies/chatserver").
-          and_return(minimal_lockfile)
+        expect(http_client).to receive(:get)
+          .with("policy_groups/acceptance/policies/chatserver")
+          .and_return(minimal_lockfile)
       end
 
       it "returns the policyfile lock data" do

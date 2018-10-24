@@ -284,9 +284,9 @@ describe ChefDK::Command::Provision do
         end
 
         it "generates chef config with no policyfile options" do
-          expected_config = <<-CONFIG
-# SSL Settings:
-ssl_verify_mode :verify_peer
+          expected_config = <<~CONFIG
+            # SSL Settings:
+            ssl_verify_mode :verify_peer
 
 CONFIG
           expect(context.chef_config).to eq(expected_config)
@@ -303,9 +303,9 @@ CONFIG
         before do
           allow(chef_config_loader).to receive(:load)
 
-          allow(ChefDK::PolicyfileServices::Push).to receive(:new).
-            with(policyfile: given_policyfile_path, ui: ui, policy_group: given_policy_group, config: chef_config, root_dir: Dir.pwd).
-            and_return(push_service)
+          allow(ChefDK::PolicyfileServices::Push).to receive(:new)
+            .with(policyfile: given_policyfile_path, ui: ui, policy_group: given_policy_group, config: chef_config, root_dir: Dir.pwd)
+            .and_return(push_service)
 
           allow(push_service).to receive(:policy_data).and_return(policy_data)
 
@@ -358,16 +358,16 @@ CONFIG
           end
 
           it "generates chef config with policyfile options" do
-            expected_config = <<-CONFIG
-# SSL Settings:
-ssl_verify_mode :verify_peer
+            expected_config = <<~CONFIG
+              # SSL Settings:
+              ssl_verify_mode :verify_peer
 
-# Policyfile Settings:
-use_policyfile true
-policy_document_native_api true
+              # Policyfile Settings:
+              use_policyfile true
+              policy_document_native_api true
 
-policy_group "some-policy-group"
-policy_name "myapp"
+              policy_group "some-policy-group"
+              policy_name "myapp"
 
 CONFIG
             expect(context.chef_config).to eq(expected_config)
@@ -405,16 +405,16 @@ CONFIG
         end
 
         it "generates chef config with policyfile options" do
-          expected_config = <<-CONFIG
-# SSL Settings:
-ssl_verify_mode :verify_peer
+          expected_config = <<~CONFIG
+            # SSL Settings:
+            ssl_verify_mode :verify_peer
 
-# Policyfile Settings:
-use_policyfile true
-policy_document_native_api true
+            # Policyfile Settings:
+            use_policyfile true
+            policy_document_native_api true
 
-policy_group "some-policy-group"
-policy_name "myapp"
+            policy_group "some-policy-group"
+            policy_name "myapp"
 
 CONFIG
           expect(context.chef_config).to eq(expected_config)
@@ -493,9 +493,9 @@ CONFIG
       end
 
       it "prints an error and exits non-zero" do
-        expected_output = <<-E
-Error: push failed
-Reason: (StandardError) some operation failed
+        expected_output = <<~E
+          Error: push failed
+          Reason: (StandardError) some operation failed
 
 E
         expect(command.run(params)).to eq(1)

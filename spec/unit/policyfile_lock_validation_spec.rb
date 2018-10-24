@@ -114,14 +114,14 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
     # Validate the metadata is correct, so we know the test setup code
     # hasn't done something wrong.
     def ensure_metadata_as_expected!
-      expected_metadata_rb = <<-E
-name             'local-cookbook'
-maintainer       ''
-maintainer_email ''
-license          ''
-description      'Installs/Configures local-cookbook'
-long_description 'Installs/Configures local-cookbook'
-version          '2.3.4'
+      expected_metadata_rb = <<~E
+        name             'local-cookbook'
+        maintainer       ''
+        maintainer_email ''
+        license          ''
+        description      'Installs/Configures local-cookbook'
+        long_description 'Installs/Configures local-cookbook'
+        version          '2.3.4'
 
 E
       expect(IO.read(metadata_path)).to eq(expected_metadata_rb)
@@ -145,14 +145,14 @@ E
     context "when the cookbook has an incorrect name" do
 
       let(:new_metadata) do
-        <<-E
-name             'WRONG'
-maintainer       ''
-maintainer_email ''
-license          ''
-description      'Installs/Configures local-cookbook'
-long_description 'Installs/Configures local-cookbook'
-version          '2.3.4'
+        <<~E
+          name             'WRONG'
+          maintainer       ''
+          maintainer_email ''
+          license          ''
+          description      'Installs/Configures local-cookbook'
+          long_description 'Installs/Configures local-cookbook'
+          version          '2.3.4'
 
 E
       end
@@ -174,14 +174,14 @@ E
     context "when the cookbook has an updated version that violates no dependency constraints" do
 
       let(:new_metadata) do
-        <<-E
-name             'local-cookbook'
-maintainer       ''
-maintainer_email ''
-license          ''
-description      'Installs/Configures local-cookbook'
-long_description 'Installs/Configures local-cookbook'
-version          '2.3.5' # changed from 2.3.4
+        <<~E
+          name             'local-cookbook'
+          maintainer       ''
+          maintainer_email ''
+          license          ''
+          description      'Installs/Configures local-cookbook'
+          long_description 'Installs/Configures local-cookbook'
+          version          '2.3.5' # changed from 2.3.4
 
 E
       end
@@ -221,14 +221,14 @@ E
       end
 
       let(:new_metadata) do
-        <<-E
-name             'local-cookbook'
-maintainer       ''
-maintainer_email ''
-license          ''
-description      'Installs/Configures local-cookbook'
-long_description 'Installs/Configures local-cookbook'
-version          '3.0.0' # changed from 2.3.4, violates `~> 2.0` constraint
+        <<~E
+          name             'local-cookbook'
+          maintainer       ''
+          maintainer_email ''
+          license          ''
+          description      'Installs/Configures local-cookbook'
+          long_description 'Installs/Configures local-cookbook'
+          version          '3.0.0' # changed from 2.3.4, violates `~> 2.0` constraint
 
 E
       end
@@ -250,9 +250,9 @@ E
       let(:recipe_path) { File.join(local_cookbook_path, "recipes/default.rb") }
 
       let(:new_recipe) do
-        <<-E
-# This is totally new code,
-# it is different than the old code
+        <<~E
+          # This is totally new code,
+          # it is different than the old code
 
 E
       end
@@ -281,16 +281,16 @@ E
     context "when a :path source cookbook has added a dependency satisfied by the current cookbook set" do
 
       let(:new_metadata) do
-        <<-E
-name             'local-cookbook'
-maintainer       ''
-maintainer_email ''
-license          ''
-description      'Installs/Configures local-cookbook'
-long_description 'Installs/Configures local-cookbook'
-version          '2.3.4'
+        <<~E
+          name             'local-cookbook'
+          maintainer       ''
+          maintainer_email ''
+          license          ''
+          description      'Installs/Configures local-cookbook'
+          long_description 'Installs/Configures local-cookbook'
+          version          '2.3.4'
 
-depends "foo", "=1.0.0"
+          depends "foo", "=1.0.0"
 
 E
       end
@@ -328,16 +328,16 @@ E
     context "when a :path source cookbook has added a dependency not satisfied by the current cookbook set" do
 
       let(:new_metadata) do
-        <<-E
-name             'local-cookbook'
-maintainer       ''
-maintainer_email ''
-license          ''
-description      'Installs/Configures local-cookbook'
-long_description 'Installs/Configures local-cookbook'
-version          '2.3.4'
+        <<~E
+          name             'local-cookbook'
+          maintainer       ''
+          maintainer_email ''
+          license          ''
+          description      'Installs/Configures local-cookbook'
+          long_description 'Installs/Configures local-cookbook'
+          version          '2.3.4'
 
-depends "not-a-thing"
+          depends "not-a-thing"
 
 E
       end
@@ -368,16 +368,16 @@ E
       end
 
       let(:new_metadata) do
-        <<-E
-name             'local-cookbook'
-maintainer       ''
-maintainer_email ''
-license          ''
-description      'Installs/Configures local-cookbook'
-long_description 'Installs/Configures local-cookbook'
-version          '2.3.4'
+        <<~E
+          name             'local-cookbook'
+          maintainer       ''
+          maintainer_email ''
+          license          ''
+          description      'Installs/Configures local-cookbook'
+          long_description 'Installs/Configures local-cookbook'
+          version          '2.3.4'
 
-depends "foo", ">= 1.0.0"
+          depends "foo", ">= 1.0.0"
 
 E
       end
@@ -402,16 +402,16 @@ E
     context "when a :path source cookbook has modified a dep constraint and the new constraint is not satisfied" do
 
       let(:new_metadata) do
-        <<-E
-name             'local-cookbook'
-maintainer       ''
-maintainer_email ''
-license          ''
-description      'Installs/Configures local-cookbook'
-long_description 'Installs/Configures local-cookbook'
-version          '2.3.4'
+        <<~E
+          name             'local-cookbook'
+          maintainer       ''
+          maintainer_email ''
+          license          ''
+          description      'Installs/Configures local-cookbook'
+          long_description 'Installs/Configures local-cookbook'
+          version          '2.3.4'
 
-depends "foo", "~> 2.0"
+          depends "foo", "~> 2.0"
 
 E
       end
@@ -475,30 +475,30 @@ E
       end
 
       let(:new_metadata_local_cookbook) do
-        <<-E
-name             'local-cookbook'
-maintainer       ''
-maintainer_email ''
-license          ''
-description      'Installs/Configures local-cookbook'
-long_description 'Installs/Configures local-cookbook'
-version          '3.0.0' # changed from 2.3.4
+        <<~E
+          name             'local-cookbook'
+          maintainer       ''
+          maintainer_email ''
+          license          ''
+          description      'Installs/Configures local-cookbook'
+          long_description 'Installs/Configures local-cookbook'
+          version          '3.0.0' # changed from 2.3.4
 
 E
       end
 
       let(:new_metadata_another_local_cookbook) do
-        <<-E
-name             'another-local-cookbook'
-maintainer       ''
-maintainer_email ''
-license          ''
-description      'Installs/Configures another-local-cookbook'
-long_description 'Installs/Configures another-local-cookbook'
-version          '0.1.0'
+        <<~E
+          name             'another-local-cookbook'
+          maintainer       ''
+          maintainer_email ''
+          license          ''
+          description      'Installs/Configures another-local-cookbook'
+          long_description 'Installs/Configures another-local-cookbook'
+          version          '0.1.0'
 
-# This dep now requires the updated version of 'local-cookbook'
-depends 'local-cookbook', '= 3.0.0'
+          # This dep now requires the updated version of 'local-cookbook'
+          depends 'local-cookbook', '= 3.0.0'
 E
       end
 
@@ -541,14 +541,14 @@ E
     # Validate the metadata is correct, so we know the test setup code
     # hasn't done something wrong.
     def ensure_metadata_as_expected!
-      expected_metadata_rb = <<-E
-name             'foo'
-maintainer       ''
-maintainer_email ''
-license          ''
-description      'Installs/Configures foo'
-long_description 'Installs/Configures foo'
-version          '1.0.0'
+      expected_metadata_rb = <<~E
+        name             'foo'
+        maintainer       ''
+        maintainer_email ''
+        license          ''
+        description      'Installs/Configures foo'
+        long_description 'Installs/Configures foo'
+        version          '1.0.0'
 
 E
       expect(IO.read(metadata_path)).to eq(expected_metadata_rb)
@@ -580,16 +580,16 @@ E
       # function to let the user recover.
 
       let(:new_metadata) do
-        <<-E
-# This is a cached copy of an upstream cookbook, I should not be editing it but
-# YOLO
-name             'foo'
-maintainer       ''
-maintainer_email ''
-license          ''
-description      'Installs/Configures foo'
-long_description 'Installs/Configures foo'
-version          '1.0.0'
+        <<~E
+          # This is a cached copy of an upstream cookbook, I should not be editing it but
+          # YOLO
+          name             'foo'
+          maintainer       ''
+          maintainer_email ''
+          license          ''
+          description      'Installs/Configures foo'
+          long_description 'Installs/Configures foo'
+          version          '1.0.0'
 E
       end
 

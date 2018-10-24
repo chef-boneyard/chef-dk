@@ -180,11 +180,11 @@ describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
 
         metadata_path = File.join(target_dir, "metadata.rb")
         metadata_content = IO.read(metadata_path)
-        expected_metadata = <<-METADATA
-name             'my_cool_generator'
-description      'Custom code generator cookbook for use with ChefDK'
-long_description 'Custom code generator cookbook for use with ChefDK'
-version          '0.1.0'
+        expected_metadata = <<~METADATA
+          name             'my_cool_generator'
+          description      'Custom code generator cookbook for use with ChefDK'
+          long_description 'Custom code generator cookbook for use with ChefDK'
+          version          '0.1.0'
 
 METADATA
         expect(metadata_content).to eq(expected_metadata)

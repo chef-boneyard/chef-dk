@@ -120,9 +120,9 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
 
       before do
         expect(http_client).to receive(:get).with("/policy_groups").and_return(non_empty_policy_groups)
-        expect(http_client).to receive(:get).
-          with("/policies/appserver/revisions/2222222222222222222222222222222222222222222222222222222222222222").
-          and_raise(http_exception)
+        expect(http_client).to receive(:get)
+          .with("/policies/appserver/revisions/2222222222222222222222222222222222222222222222222222222222222222")
+          .and_raise(http_exception)
       end
 
       it "re-raises the error with a standardized exception class" do
@@ -198,15 +198,15 @@ describe ChefDK::PolicyfileServices::RmPolicyGroup do
     before do
       allow(rm_policy_group_service).to receive(:http_client).and_return(http_client)
       expect(http_client).to receive(:get).with("/policy_groups").and_return(non_empty_policy_groups)
-      expect(http_client).to receive(:get).
-        with("/policies/appserver/revisions/2222222222222222222222222222222222222222222222222222222222222222").
-        and_return(policy_appserver_2)
-      expect(http_client).to receive(:get).
-        with("/policies/load-balancer/revisions/5555555555555555555555555555555555555555555555555555555555555555").
-        and_return(policy_load_balancer_5)
-      expect(http_client).to receive(:get).
-        with("/policies/db/revisions/9999999999999999999999999999999999999999999999999999999999999999").
-        and_return(policy_db_9)
+      expect(http_client).to receive(:get)
+        .with("/policies/appserver/revisions/2222222222222222222222222222222222222222222222222222222222222222")
+        .and_return(policy_appserver_2)
+      expect(http_client).to receive(:get)
+        .with("/policies/load-balancer/revisions/5555555555555555555555555555555555555555555555555555555555555555")
+        .and_return(policy_load_balancer_5)
+      expect(http_client).to receive(:get)
+        .with("/policies/db/revisions/9999999999999999999999999999999999999999999999999999999999999999")
+        .and_return(policy_db_9)
 
       expect(http_client).to receive(:delete).with("/policy_groups/preprod")
       expect(undo_stack).to receive(:push).with(undo_record)

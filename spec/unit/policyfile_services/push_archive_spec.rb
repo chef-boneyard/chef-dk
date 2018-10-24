@@ -42,41 +42,41 @@ describe ChefDK::PolicyfileServices::PushArchive do
   end
 
   let(:valid_lockfile) do
-    <<-E
-{
-  "name": "install-example",
-  "run_list": [
-    "recipe[local-cookbook::default]"
-  ],
-  "cookbook_locks": {
-    "local-cookbook": {
-      "version": "2.3.4",
-      "identifier": "fab501cfaf747901bd82c1bc706beae7dc3a350c",
-      "dotted_decimal_identifier": "70567763561641081.489844270461035.258281553147148",
-      "source": "project-cookbooks/local-cookbook",
-      "cache_key": null,
-      "scm_info": null,
-      "source_options": {
-        "path": "project-cookbooks/local-cookbook"
-      }
-    }
-  },
-  "default_attributes": {},
-  "override_attributes": {},
-  "solution_dependencies": {
-    "Policyfile": [
-      [
-        "local-cookbook",
-        ">= 0.0.0"
-      ]
-    ],
-    "dependencies": {
-      "local-cookbook (2.3.4)": [
+    <<~E
+      {
+        "name": "install-example",
+        "run_list": [
+          "recipe[local-cookbook::default]"
+        ],
+        "cookbook_locks": {
+          "local-cookbook": {
+            "version": "2.3.4",
+            "identifier": "fab501cfaf747901bd82c1bc706beae7dc3a350c",
+            "dotted_decimal_identifier": "70567763561641081.489844270461035.258281553147148",
+            "source": "project-cookbooks/local-cookbook",
+            "cache_key": null,
+            "scm_info": null,
+            "source_options": {
+              "path": "project-cookbooks/local-cookbook"
+            }
+          }
+        },
+        "default_attributes": {},
+        "override_attributes": {},
+        "solution_dependencies": {
+          "Policyfile": [
+            [
+              "local-cookbook",
+              ">= 0.0.0"
+            ]
+          ],
+          "dependencies": {
+            "local-cookbook (2.3.4)": [
 
-      ]
-    }
-  }
-}
+            ]
+          }
+        }
+      }
 E
   end
 
@@ -283,12 +283,12 @@ E
             expect(exception.message).to eq("Failed to publish archived policy")
             expect(exception_cause).to be_a(ChefDK::InvalidPolicyArchive)
 
-            msg = <<-MESSAGE
-This archive is in an unsupported format.
+            msg = <<~MESSAGE
+              This archive is in an unsupported format.
 
-This archive was created with an older version of ChefDK. This version of
-ChefDK does not support archives in the older format. Re-create the archive
-with a newer version of ChefDK or downgrade ChefDK.
+              This archive was created with an older version of ChefDK. This version of
+              ChefDK does not support archives in the older format. Re-create the archive
+              with a newer version of ChefDK or downgrade ChefDK.
 MESSAGE
             expect(exception_cause.message).to eq(msg)
           end
@@ -330,8 +330,8 @@ MESSAGE
 
       expect(ChefDK::Policyfile::Uploader).to receive(:new).
         # TODO: need more verification that the policyfile.lock is right (?)
-        with(an_instance_of(ChefDK::PolicyfileLock), policy_group, http_client: http_client, ui: ui, policy_document_native_api: true).
-        and_return(uploader)
+        with(an_instance_of(ChefDK::PolicyfileLock), policy_group, http_client: http_client, ui: ui, policy_document_native_api: true)
+        .and_return(uploader)
 
       create_archive
     end
