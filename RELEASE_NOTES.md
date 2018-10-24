@@ -2,6 +2,10 @@
 
 # Unreleased
 
+## Platform Additions
+
+Enable macOS-10.14 (Mojave) tested packages.
+
 ## Updated Tooling
 
 ### Kitchen EC2
