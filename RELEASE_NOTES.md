@@ -11,6 +11,10 @@ ChefDK RPM and Debian packages are now compressed. Additionally many gems were u
 * .deb: 108 -> 84 (22%)
 * .rpm: 112 -> 86 (24%)
 
+## Platform Additions
+
+macOS 10.14 (Mojave) is now fully tested and packages are available on downloads.chef.io.
+
 ## Updated Tooling
 
 ### Fauxhai
