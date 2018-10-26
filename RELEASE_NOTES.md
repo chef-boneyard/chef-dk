@@ -1,8 +1,41 @@
-# Next Version (unreleased)
+# ChefDK 3.4 Release Notes
 
-# Unreleased
+## Chef 14.6.47
+
+ChefDK now ships with Chef 14.6.47\. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
+## Smaller package size
+
+ChefDK RPM and Debian packages are now compressed. Additionally many gems were updated to remove extraneous files that do not need to be included. The download size of packages has decreased accordingly (all measurements in megabytes):
+
+* .deb: 108 -> 84 (22%)
+* .rpm: 112 -> 86 (24%)
+
+## Platform Additions
+
+macOS 10.14 (Mojave) is now fully tested and packages are available on downloads.chef.io.
 
 ## Updated Tooling
+
+### Fauxhai
+
+Fauxhai has been updated from 6.6.0 to version 6.9.1. This update brings in the latest mocked Ohai run data for use with ChefSpec. This release adds data for Linux Mint 19, macOS 10.14, Solaris 5.11 (11.4 release), and SLES 15. This release also deprecates the following platforms for removal April 2018: Linux Mint 18.2, Gentoo 4.9.6, All versions of ios_xr, All versions of omnios, All versions of nexus, macOS 10.10, and Solaris 5.10. See https://github.com/chefspec/fauxhai/tree/master/lib/fauxhai/platforms for a complete list of non-deprecated platform data for use with ChefSpec.
+
+### Foodcritic
+
+Foodcritic has been updated from 14.1 to 14.3. This updates the metadata that ships with Foodcritic to provide the latest Chef 13.11 and 14.5 metadata, while removing metadata from older Chef releases. This update also removes the FC121 rule, which was causing confusion with community cookbook authors. This rule will be added back when Chef 13 goes EOL in April 2019.
+
+### inSpec 3
+
+This release updates Inspec from 2.2.112 to 3.0.12. This is a major milestone and includes the plugin system, global attributes, enhanced skip messaging, and more. Please head over to https://www.inspec.io/ for a full rundown.
+
+### Kitchen AzureRM
+
+The Kitchen AzureRM driver now supports the Shared Image Gallery.
+
+### Kitchen DigitalOcean
+
+The Kitchen DigitalOcean driver now supports FreeBSD 10.4 and 11.2 in Kitchen configs.
 
 ### Kitchen EC2
 
@@ -11,6 +44,17 @@ Kitchen EC2 has been updated to better support Windows systems. The auto-generat
 ### Kitchen Google
 
 Kitchen Google now includes support for adding labels to instances with a new `labels` config that accepts labels as a hash.
+
+### Knife Windows
+
+Knife Windows has improved Windows detection support to identify Windows 2012r2, 2016, and 10. Additionally when bootstrapping nodes, there is now support for using the client.d directories.
+
+## Security Updates
+
+Ruby has been updated to 2.5.3 to resolve the following vulnerabilities:
+
+- `CVE-2018-16396`: Tainted flags are not propagated in Array#pack and String#unpack with some directives
+- `CVE-2018-16395`: OpenSSL::X509::Name equality check does not work correctly
 
 # ChefDK 3.3 Release Notes
 
