@@ -241,3 +241,21 @@ subscriptions:
   - workload: ruby_gem_published:fauxhai-*
     actions:
       - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:berkshelf-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:dco-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:chef-sugar-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:opscode-pushy-client-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:nokogiri-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:stove-*
+    actions:
+      - bash:.expeditor/update_dep.sh
