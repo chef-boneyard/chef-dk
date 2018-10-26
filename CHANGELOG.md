@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.37 -->
-## [v3.4.37](https://github.com/chef/chef-dk/tree/v3.4.37) (2018-10-26)
+<!-- latest_release 3.4.38 -->
+## [v3.4.38](https://github.com/chef/chef-dk/tree/v3.4.38) (2018-10-26)
 
 #### Merged Pull Requests
-- Bump Chef to 14.6.47 [#1804](https://github.com/chef/chef-dk/pull/1804) ([chef-ci](https://github.com/chef-ci))
+- Add more gem release subscriptions [#1793](https://github.com/chef/chef-dk/pull/1793) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.3.23 -->
 ### Changes since 3.3.23 release
 
 #### Merged Pull Requests
+- Add more gem release subscriptions [#1793](https://github.com/chef/chef-dk/pull/1793) ([tas50](https://github.com/tas50)) <!-- 3.4.38 -->
 - Bump Chef to 14.6.47 [#1804](https://github.com/chef/chef-dk/pull/1804) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.37 -->
 - Bump inspec-core to 3.0.12 [#1801](https://github.com/chef/chef-dk/pull/1801) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.36 -->
 - Bump chefstyle to 0.11.0 and Foodcritic to 14.3 [#1799](https://github.com/chef/chef-dk/pull/1799) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.35 -->
