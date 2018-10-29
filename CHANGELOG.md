@@ -1,56 +1,54 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.4.38 -->
-## [v3.4.38](https://github.com/chef/chef-dk/tree/v3.4.38) (2018-10-26)
-
-#### Merged Pull Requests
-- Add more gem release subscriptions [#1793](https://github.com/chef/chef-dk/pull/1793) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.3.23 -->
-### Changes since 3.3.23 release
-
-#### Merged Pull Requests
-- Add more gem release subscriptions [#1793](https://github.com/chef/chef-dk/pull/1793) ([tas50](https://github.com/tas50)) <!-- 3.4.38 -->
-- Bump Chef to 14.6.47 [#1804](https://github.com/chef/chef-dk/pull/1804) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.37 -->
-- Bump inspec-core to 3.0.12 [#1801](https://github.com/chef/chef-dk/pull/1801) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.36 -->
-- Bump chefstyle to 0.11.0 and Foodcritic to 14.3 [#1799](https://github.com/chef/chef-dk/pull/1799) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.35 -->
-- Bump kitchen-inspec to 0.25.0 and InSpec to 3.0 [#1796](https://github.com/chef/chef-dk/pull/1796) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.34 -->
-- Bump kitchen-hyperv to 0.5.2 [#1795](https://github.com/chef/chef-dk/pull/1795) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.33 -->
-- Bump kitchen-vagrant to 1.3.5 [#1794](https://github.com/chef/chef-dk/pull/1794) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.32 -->
-- Bump fauxhai to 6.9.1 [#1792](https://github.com/chef/chef-dk/pull/1792) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.31 -->
-- Bump knife-windows to 1.9.6 [#1791](https://github.com/chef/chef-dk/pull/1791) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.30 -->
-- Bump fauxhai to 6.9.0 [#1790](https://github.com/chef/chef-dk/pull/1790) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.29 -->
-- Bump chef-apply to 0.2.2 [#1786](https://github.com/chef/chef-dk/pull/1786) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.28 -->
-- Removing winrm pin [#1785](https://github.com/chef/chef-dk/pull/1785) ([cheeseplus](https://github.com/cheeseplus)) <!-- 3.4.27 -->
-- Update Ruby to 2.5.3 [#1776](https://github.com/chef/chef-dk/pull/1776) ([tas50](https://github.com/tas50)) <!-- 3.4.26 -->
-- Bump train to 1.5.4 [#1777](https://github.com/chef/chef-dk/pull/1777) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.25 -->
-- Bump train-core to 1.5.4 [#1778](https://github.com/chef/chef-dk/pull/1778) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.24 -->
-- Bump mixlib-archive to 0.4.18 [#1775](https://github.com/chef/chef-dk/pull/1775) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.23 -->
-- Pin winrm to 2.2.3 to prevent Test Kitchen failures [#1773](https://github.com/chef/chef-dk/pull/1773) ([tas50](https://github.com/tas50)) <!-- 3.4.22 -->
-- Bump chef-apply to 0.2.1 [#1770](https://github.com/chef/chef-dk/pull/1770) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.21 -->
-- Switch from chef-cleanup to ruby-cleanup definition [#1769](https://github.com/chef/chef-dk/pull/1769) ([tas50](https://github.com/tas50)) <!-- 3.4.20 -->
-- Update dependencies to the latest [#1768](https://github.com/chef/chef-dk/pull/1768) ([tas50](https://github.com/tas50)) <!-- 3.4.19 -->
-- Turn of verify for chef-apply gem [#1766](https://github.com/chef/chef-dk/pull/1766) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.4.18 -->
-- Bump chef-apply to 0.2.0 [#1764](https://github.com/chef/chef-dk/pull/1764) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.17 -->
-- Fixing expeditor subscriptions to listen to proper events [#1765](https://github.com/chef/chef-dk/pull/1765) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.4.16 -->
-- Fix chef-apply subscription [#1763](https://github.com/chef/chef-dk/pull/1763) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.4.15 -->
-- Update dependencies to bring in new winrm-fs [#1759](https://github.com/chef/chef-dk/pull/1759) ([tas50](https://github.com/tas50)) <!-- 3.4.14 -->
-- Enable x86_64-linux-kernel2 habitat builds for chef-dk [#1743](https://github.com/chef/chef-dk/pull/1743) ([smacfarlane](https://github.com/smacfarlane)) <!-- 3.4.13 -->
-- Bump ohai to 14.6.2 [#1752](https://github.com/chef/chef-dk/pull/1752) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.12 -->
-- Bump win32-taskscheduler to 1.0.12 [#1751](https://github.com/chef/chef-dk/pull/1751) ([chef-ci](https://github.com/chef-ci)) <!-- 3.4.11 -->
-- Manually updating dependencies b/c there was an Expeditor outtage earlier [#1750](https://github.com/chef/chef-dk/pull/1750) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.4.9 -->
-- Delete logs and file backups in the Docker image [#1747](https://github.com/chef/chef-dk/pull/1747) ([tas50](https://github.com/tas50)) <!-- 3.4.8 -->
-- Enable deb/rpm compression [#1748](https://github.com/chef/chef-dk/pull/1748) ([tas50](https://github.com/tas50)) <!-- 3.4.7 -->
-- Update omnibus kitchen config to match chef-client [#1749](https://github.com/chef/chef-dk/pull/1749) ([tas50](https://github.com/tas50)) <!-- 3.4.6 -->
-- Update nokogiri, kitchen-google, kitchen-ec2, and kitchen-digitalocean [#1746](https://github.com/chef/chef-dk/pull/1746) ([tas50](https://github.com/tas50)) <!-- 3.4.5 -->
-- clean up gem cache + docs before packaging [#1742](https://github.com/chef/chef-dk/pull/1742) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.4.4 -->
-- Update Foodcritic to 14.2.0 [#1739](https://github.com/chef/chef-dk/pull/1739) ([tas50](https://github.com/tas50)) <!-- 3.4.3 -->
-- Bump to the latest kitchen-azurerm [#1738](https://github.com/chef/chef-dk/pull/1738) ([tas50](https://github.com/tas50)) <!-- 3.4.2 -->
-- Update to the latest fauxhai and specinfra [#1734](https://github.com/chef/chef-dk/pull/1734) ([tas50](https://github.com/tas50)) <!-- 3.4.1 -->
-- start section to collect notes for yet-to-be-released changes [#1728](https://github.com/chef/chef-dk/pull/1728) ([robbkidd](https://github.com/robbkidd)) <!-- 3.4.0 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.4.38](https://github.com/chef/chef-dk/tree/v3.4.38) (2018-10-29)
+
+#### Merged Pull Requests
+- start section to collect notes for yet-to-be-released changes [#1728](https://github.com/chef/chef-dk/pull/1728) ([robbkidd](https://github.com/robbkidd))
+- Update to the latest fauxhai and specinfra [#1734](https://github.com/chef/chef-dk/pull/1734) ([tas50](https://github.com/tas50))
+- Bump to the latest kitchen-azurerm [#1738](https://github.com/chef/chef-dk/pull/1738) ([tas50](https://github.com/tas50))
+- Update Foodcritic to 14.2.0 [#1739](https://github.com/chef/chef-dk/pull/1739) ([tas50](https://github.com/tas50))
+- clean up gem cache + docs before packaging [#1742](https://github.com/chef/chef-dk/pull/1742) ([lamont-granquist](https://github.com/lamont-granquist))
+- Update nokogiri, kitchen-google, kitchen-ec2, and kitchen-digitalocean [#1746](https://github.com/chef/chef-dk/pull/1746) ([tas50](https://github.com/tas50))
+- Update omnibus kitchen config to match chef-client [#1749](https://github.com/chef/chef-dk/pull/1749) ([tas50](https://github.com/tas50))
+- Enable deb/rpm compression [#1748](https://github.com/chef/chef-dk/pull/1748) ([tas50](https://github.com/tas50))
+- Delete logs and file backups in the Docker image [#1747](https://github.com/chef/chef-dk/pull/1747) ([tas50](https://github.com/tas50))
+- Manually updating dependencies b/c there was an Expeditor outtage earlier [#1750](https://github.com/chef/chef-dk/pull/1750) ([tyler-ball](https://github.com/tyler-ball))
+- Bump win32-taskscheduler to 1.0.12 [#1751](https://github.com/chef/chef-dk/pull/1751) ([chef-ci](https://github.com/chef-ci))
+- Bump ohai to 14.6.2 [#1752](https://github.com/chef/chef-dk/pull/1752) ([chef-ci](https://github.com/chef-ci))
+- Enable x86_64-linux-kernel2 habitat builds for chef-dk [#1743](https://github.com/chef/chef-dk/pull/1743) ([smacfarlane](https://github.com/smacfarlane))
+- Update dependencies to bring in new winrm-fs [#1759](https://github.com/chef/chef-dk/pull/1759) ([tas50](https://github.com/tas50))
+- Fix chef-apply subscription [#1763](https://github.com/chef/chef-dk/pull/1763) ([jonsmorrow](https://github.com/jonsmorrow))
+- Fixing expeditor subscriptions to listen to proper events [#1765](https://github.com/chef/chef-dk/pull/1765) ([tyler-ball](https://github.com/tyler-ball))
+- Bump chef-apply to 0.2.0 [#1764](https://github.com/chef/chef-dk/pull/1764) ([chef-ci](https://github.com/chef-ci))
+- Turn of verify for chef-apply gem [#1766](https://github.com/chef/chef-dk/pull/1766) ([jonsmorrow](https://github.com/jonsmorrow))
+- Update dependencies to the latest [#1768](https://github.com/chef/chef-dk/pull/1768) ([tas50](https://github.com/tas50))
+- Switch from chef-cleanup to ruby-cleanup definition [#1769](https://github.com/chef/chef-dk/pull/1769) ([tas50](https://github.com/tas50))
+- Bump chef-apply to 0.2.1 [#1770](https://github.com/chef/chef-dk/pull/1770) ([chef-ci](https://github.com/chef-ci))
+- Pin winrm to 2.2.3 to prevent Test Kitchen failures [#1773](https://github.com/chef/chef-dk/pull/1773) ([tas50](https://github.com/tas50))
+- Bump mixlib-archive to 0.4.18 [#1775](https://github.com/chef/chef-dk/pull/1775) ([chef-ci](https://github.com/chef-ci))
+- Bump train-core to 1.5.4 [#1778](https://github.com/chef/chef-dk/pull/1778) ([chef-ci](https://github.com/chef-ci))
+- Bump train to 1.5.4 [#1777](https://github.com/chef/chef-dk/pull/1777) ([chef-ci](https://github.com/chef-ci))
+- Update Ruby to 2.5.3 [#1776](https://github.com/chef/chef-dk/pull/1776) ([tas50](https://github.com/tas50))
+- Removing winrm pin [#1785](https://github.com/chef/chef-dk/pull/1785) ([cheeseplus](https://github.com/cheeseplus))
+- Bump chef-apply to 0.2.2 [#1786](https://github.com/chef/chef-dk/pull/1786) ([chef-ci](https://github.com/chef-ci))
+- Bump fauxhai to 6.9.0 [#1790](https://github.com/chef/chef-dk/pull/1790) ([chef-ci](https://github.com/chef-ci))
+- Bump knife-windows to 1.9.6 [#1791](https://github.com/chef/chef-dk/pull/1791) ([chef-ci](https://github.com/chef-ci))
+- Bump fauxhai to 6.9.1 [#1792](https://github.com/chef/chef-dk/pull/1792) ([chef-ci](https://github.com/chef-ci))
+- Bump kitchen-vagrant to 1.3.5 [#1794](https://github.com/chef/chef-dk/pull/1794) ([chef-ci](https://github.com/chef-ci))
+- Bump kitchen-hyperv to 0.5.2 [#1795](https://github.com/chef/chef-dk/pull/1795) ([chef-ci](https://github.com/chef-ci))
+- Bump kitchen-inspec to 0.25.0 and InSpec to 3.0 [#1796](https://github.com/chef/chef-dk/pull/1796) ([chef-ci](https://github.com/chef-ci))
+- Bump chefstyle to 0.11.0 and Foodcritic to 14.3 [#1799](https://github.com/chef/chef-dk/pull/1799) ([chef-ci](https://github.com/chef-ci))
+- Bump inspec-core to 3.0.12 [#1801](https://github.com/chef/chef-dk/pull/1801) ([chef-ci](https://github.com/chef-ci))
+- Bump Chef to 14.6.47 [#1804](https://github.com/chef/chef-dk/pull/1804) ([chef-ci](https://github.com/chef-ci))
+- Add more gem release subscriptions [#1793](https://github.com/chef/chef-dk/pull/1793) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v3.3.23](https://github.com/chef/chef-dk/tree/v3.3.23) (2018-09-26)
 
 #### Merged Pull Requests
@@ -75,7 +73,6 @@
 - Add new option update-strategy for policy updates [#1594](https://github.com/chef/chef-dk/pull/1594) ([kamaradclimber](https://github.com/kamaradclimber))
 - Bump Chef to 14.5.33 [#1723](https://github.com/chef/chef-dk/pull/1723) ([chef-ci](https://github.com/chef-ci))
 - add release notes for 3.3 [#1725](https://github.com/chef/chef-dk/pull/1725) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [v3.2.30](https://github.com/chef/chef-dk/tree/v3.2.30) (2018-09-04)
 
