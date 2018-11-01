@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.1 -->
-## [v3.5.1](https://github.com/chef/chef-dk/tree/v3.5.1) (2018-11-01)
+<!-- latest_release 3.5.2 -->
+## [v3.5.2](https://github.com/chef/chef-dk/tree/v3.5.2) (2018-11-01)
 
 #### Merged Pull Requests
-- Updating kitchen-vagrant to latest version [#1807](https://github.com/chef/chef-dk/pull/1807) ([tyler-ball](https://github.com/tyler-ball))
+- Bump win32-taskscheduler to 2.0.1 [#1809](https://github.com/chef/chef-dk/pull/1809) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.38 -->
 ### Changes since 3.4.38 release
 
 #### Merged Pull Requests
+- Bump win32-taskscheduler to 2.0.1 [#1809](https://github.com/chef/chef-dk/pull/1809) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.2 -->
 - Updating kitchen-vagrant to latest version [#1807](https://github.com/chef/chef-dk/pull/1807) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.5.1 -->
 - Bumping ChefDK minor version after 3.4 release [#1808](https://github.com/chef/chef-dk/pull/1808) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.5.0 -->
 <!-- release_rollup -->
