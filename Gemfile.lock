@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.159)
-      aws-sdk-resources (= 2.11.159)
-    aws-sdk-core (2.11.159)
+    aws-sdk (2.11.161)
+      aws-sdk-resources (= 2.11.161)
+    aws-sdk-core (2.11.161)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.159)
-      aws-sdk-core (= 2.11.159)
+    aws-sdk-resources (2.11.161)
+      aws-sdk-core (= 2.11.161)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -309,7 +309,7 @@ GEM
     fog-json (1.2.0)
       fog-core
       multi_json (~> 1.10)
-    fog-openstack (0.3.7)
+    fog-openstack (0.3.8)
       fog-core (>= 1.45, <= 2.1.0)
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
@@ -497,7 +497,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
     mini_portile2 (2.3.0)
-    minitar (0.6.1)
+    minitar (0.7)
     minitest (5.11.3)
     mixlib-archive (0.4.18)
       mixlib-log
@@ -575,7 +575,7 @@ GEM
     os (1.0.0)
     paint (1.0.1)
     parallel (1.12.1)
-    parser (2.5.1.2)
+    parser (2.5.3.0)
       ast (~> 2.4.0)
     parslet (1.8.2)
     pastel (0.7.2)
@@ -764,7 +764,7 @@ GEM
     win32-service (1.0.1)
       ffi
       ffi-win32-extensions
-    win32-taskscheduler (2.0.0)
+    win32-taskscheduler (2.0.1)
       ffi
       structured_warnings
     windows-api (0.4.4)
@@ -879,4 +879,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.16.6
+   1.17.1
