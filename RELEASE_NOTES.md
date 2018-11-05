@@ -1,3 +1,40 @@
+# ChefDK 2.6.2 Release Notes
+
+## Chef 13.12.3
+
+ChefDK now ships with Chef 13.12.3. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
+## Security Updates
+
+### Ruby
+
+Ruby has been updated to 2.4.4 to resolve `CVE-2018-16396` and `CVE-2018-16395`.
+
+## Smaller package size
+
+ChefDK RPM and Debian packages are now compressed. Additionally many gems were updated to remove extraneous files that do not need to be included. The download size of packages has decreased accordingly (all measurements in megabytes):
+
+* .deb: 108 -> 84 (22%)
+* .rpm: 112 -> 86 (24%)
+
+## Updated Tooling
+
+### Kitchen DigitalOcean
+
+The Kitchen DigitalOcean driver now supports FreeBSD 10.4 and 11.2 in Kitchen configs.
+
+### Kitchen EC2
+
+Kitchen EC2 has been updated to better support Windows systems. The auto-generated security group will now include support for RDP and the log directory will alway be created.
+
+### Kitchen Google
+
+Kitchen Google now includes support for adding labels to instances with a new `labels` config that accepts labels as a hash.
+
+### Knife Windows
+
+Knife Windows has improved Windows detection support to identify Windows 2012r2, 2016, and 10. Additionally when bootstrapping nodes, there is now support for using the client.d directories.
+
 # ChefDK 2.6.1 Release Notes
 
 ## Chef 13.11.3
