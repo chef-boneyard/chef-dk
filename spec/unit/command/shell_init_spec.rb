@@ -152,14 +152,6 @@ EOH
 
       let(:expected_completion_function) do
         <<~END_COMPLETION
-		#Chef tab-completion v1.1
-		#Created by Jose Luis Mantilla 2018
-		#email: joseluismantilla@gmail.com
-		#
-		#Features
-		#chef command tab-completion
-		#knife command filled out dynamically the first time according to the chefdk version and caching on home directory for improving speed.
-
 		_chef_comp() {
 			local cur prev opts
 			COMPREPLY=()
@@ -186,42 +178,6 @@ EOH
 			fi
 
 		}
-
-		_knife_completion()
-		{
-			local cur prev opts base
-			COMPREPLY=()
-			cur="${COMP_WORDS[COMP_CWORD]}"
-			prev="${COMP_WORDS[COMP_CWORD-1]}"
-			file_caching="/home/$USER/.knife.tmp"
-
-		if [[ $prev = "knife" ]]; then
-				if [ -f "$file_caching" ]; then
-					base=$(grep -E ^knife $file_caching|awk '{ print $2 }'|uniq )
-					COMPREPLY=( $(compgen -W "${base}" -- ${cur}) )
-				else
-					base="$(for x in $(knife |grep -E ^knife| awk '{ print $2 }'|uniq); do echo ${x}; done)"
-					COMPREPLY=( $(compgen -W "${base}" -- ${cur}) )
-					knife > $file_caching
-				fi
-			return 0
-		else
-			case "${prev}" in
-				gem)
-					opts="install list build help server"
-					COMPREPLY=( $(compgen -W "$opts" ${cur}) )
-					return 0
-				;;
-				* )
-					local running=$(grep $prev $file_caching|grep -E ^knife| awk '{ print $3 }'|uniq)
-					COMPREPLY=( $(compgen -W "${running}" -- ${cur}) )
-						return 0
-					;;
-			esac
-		fi
-		}
-
-		complete -F _knife_completion knife
 		complete -F _chef_comp chef
 END_COMPLETION
       end
