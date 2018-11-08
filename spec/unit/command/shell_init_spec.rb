@@ -152,7 +152,7 @@ EOH
 
       let(:expected_completion_function) do
         <<~END_COMPLETION
-	    #Chef tab-completion v1.1
+		#Chef tab-completion v1.1
 		#Created by Jose Luis Mantilla 2018
 		#email: joseluismantilla@gmail.com
 		#
@@ -161,7 +161,7 @@ EOH
 		#knife command filled out dynamically the first time according to the chefdk version and caching on home directory for improving speed.
 
 		_chef_comp() {
-			local cur prev opts 
+			local cur prev opts
 			COMPREPLY=()
 			cur="${COMP_WORDS[COMP_CWORD]}"
 			prev="${COMP_WORDS[COMP_CWORD-1]}"
