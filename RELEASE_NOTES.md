@@ -6,6 +6,12 @@
 
 ChefDK now ships with Chef 14.6.47\. See <https://docs.chef.io/release_notes.html> for more information on what's new.
 
+## Tab completion
+
+This is an improvement for all people to be able to support themselves with the tab completion of these commands and avoid being using the knife help that needs time to load their options.
+
+knife command is filled out dynamically the first time according to the chefdk version and caching in the home directory creating a .knife.tmp file for improving speed the next times that you use the tab for completion. 
+
 ## Smaller package size
 
 ChefDK RPM and Debian packages are now compressed. Additionally many gems were updated to remove extraneous files that do not need to be included. The download size of packages has decreased accordingly (all measurements in megabytes):
