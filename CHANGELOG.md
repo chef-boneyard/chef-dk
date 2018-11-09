@@ -1,6 +1,6 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.4 -->
-## [v3.5.4](https://github.com/chef/chef-dk/tree/v3.5.4) (2018-11-08)
+<!-- latest_release 3.5.5 -->
+## [v3.5.5](https://github.com/chef/chef-dk/tree/v3.5.5) (2018-11-09)
 
 #### Merged Pull Requests
 - Bump chef-client to 14.7 [#1818](https://github.com/chef/chef-dk/pull/1818) ([tas50](https://github.com/tas50))
