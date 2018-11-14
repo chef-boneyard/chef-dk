@@ -21,7 +21,7 @@ git checkout -b "$branch"
 gem install rake
 
 tries=6
-for i in {1..$tries}; do
+for (( i=1; i<=$tries; i+=1 )); do
   rake dependencies:update_gemfile_lock
   new_gem_included && break || sleep 20
   if [ $i -eq $tries ]; then
