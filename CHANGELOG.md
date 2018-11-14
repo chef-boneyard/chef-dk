@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.5 -->
-## [v3.5.5](https://github.com/chef/chef-dk/tree/v3.5.5) (2018-11-09)
+<!-- latest_release 3.5.6 -->
+## [v3.5.6](https://github.com/chef/chef-dk/tree/v3.5.6) (2018-11-14)
 
 #### Merged Pull Requests
-- Bump chef-client to 14.7 [#1818](https://github.com/chef/chef-dk/pull/1818) ([tas50](https://github.com/tas50))
+- send pipeline notifications to the Workstation team channel [#1823](https://github.com/chef/chef-dk/pull/1823) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.38 -->
 ### Changes since 3.4.38 release
 
 #### Merged Pull Requests
+- send pipeline notifications to the Workstation team channel [#1823](https://github.com/chef/chef-dk/pull/1823) ([robbkidd](https://github.com/robbkidd)) <!-- 3.5.6 -->
 - Bump chef-client to 14.7 [#1818](https://github.com/chef/chef-dk/pull/1818) ([tas50](https://github.com/tas50)) <!-- 3.5.4 -->
 - Bump inspec to 3.0.25 [#1813](https://github.com/chef/chef-dk/pull/1813) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.3 -->
 - Bump win32-taskscheduler to 2.0.1 [#1809](https://github.com/chef/chef-dk/pull/1809) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.2 -->
