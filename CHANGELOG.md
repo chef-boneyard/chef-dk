@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.6 -->
-## [v3.5.6](https://github.com/chef/chef-dk/tree/v3.5.6) (2018-11-14)
+<!-- latest_release 3.5.7 -->
+## [v3.5.7](https://github.com/chef/chef-dk/tree/v3.5.7) (2018-11-14)
 
 #### Merged Pull Requests
-- send pipeline notifications to the Workstation team channel [#1823](https://github.com/chef/chef-dk/pull/1823) ([robbkidd](https://github.com/robbkidd))
+- Fixing bug in expeditor script to update dependencies [#1827](https://github.com/chef/chef-dk/pull/1827) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.38 -->
 ### Changes since 3.4.38 release
 
 #### Merged Pull Requests
+- Fixing bug in expeditor script to update dependencies [#1827](https://github.com/chef/chef-dk/pull/1827) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.5.7 -->
 - send pipeline notifications to the Workstation team channel [#1823](https://github.com/chef/chef-dk/pull/1823) ([robbkidd](https://github.com/robbkidd)) <!-- 3.5.6 -->
 - Bump chef-client to 14.7 [#1818](https://github.com/chef/chef-dk/pull/1818) ([tas50](https://github.com/tas50)) <!-- 3.5.4 -->
 - Bump inspec to 3.0.25 [#1813](https://github.com/chef/chef-dk/pull/1813) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.3 -->
