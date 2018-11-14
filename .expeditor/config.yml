@@ -5,7 +5,7 @@ product_key: chefdk
 
 # Slack channel in Chef Software slack to send notifications about build failures, etc
 slack:
-  notify_channel: chef-notify
+  notify_channel: chef-ws-notify
 
 # Which Ruby Gems, built when the Omnibus package is built, to publish to rubygems.org
 # This publish is triggered by the `built_in:publish_rubygems` artifact_action.
