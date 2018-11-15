@@ -18,7 +18,7 @@ ENV LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8
 
 RUN apt-get update && \
-    apt-get install -y  git rsync ssh vim-tiny wget && \
+    apt-get install -y git graphviz rsync ssh vim-tiny wget && \
     ln -s /usr/bin/vi /usr/bin/vim && \
     wget --content-disposition "http://packages.chef.io/files/${CHANNEL}/chefdk/${VERSION}/ubuntu/18.04/chefdk_${VERSION}-1_amd64.deb" -O /tmp/chefdk.deb && \
     dpkg -i /tmp/chefdk.deb && \
