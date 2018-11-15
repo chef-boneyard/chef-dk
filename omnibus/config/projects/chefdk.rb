@@ -55,6 +55,7 @@ else
 end
 
 dependency "chef-dk"
+dependency "chef-dk-gem-versions"
 
 dependency "gem-permissions"
 dependency "rubygems-customization"
