@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.8 -->
-## [v3.5.8](https://github.com/chef/chef-dk/tree/v3.5.8) (2018-11-15)
+<!-- latest_release 3.5.9 -->
+## [v3.5.9](https://github.com/chef/chef-dk/tree/v3.5.9) (2018-11-15)
 
 #### Merged Pull Requests
-- Add rsync to docker image to support kitchen-dokken [#1821](https://github.com/chef/chef-dk/pull/1821) ([bdwyertech](https://github.com/bdwyertech))
+- Add graphviz to docker image to support berks viz [#1822](https://github.com/chef/chef-dk/pull/1822) ([burdandrei](https://github.com/burdandrei))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.38 -->
 ### Changes since 3.4.38 release
 
 #### Merged Pull Requests
+- Add graphviz to docker image to support berks viz [#1822](https://github.com/chef/chef-dk/pull/1822) ([burdandrei](https://github.com/burdandrei)) <!-- 3.5.9 -->
 - Add rsync to docker image to support kitchen-dokken [#1821](https://github.com/chef/chef-dk/pull/1821) ([bdwyertech](https://github.com/bdwyertech)) <!-- 3.5.8 -->
 - Fixing bug in expeditor script to update dependencies [#1827](https://github.com/chef/chef-dk/pull/1827) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.5.7 -->
 - send pipeline notifications to the Workstation team channel [#1823](https://github.com/chef/chef-dk/pull/1823) ([robbkidd](https://github.com/robbkidd)) <!-- 3.5.6 -->
