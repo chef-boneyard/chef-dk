@@ -1,10 +1,21 @@
 # Unreleased Version
 
+# ChefDK 3.5 Release Notes
+
+## Chef 14.7.17
+
+ChefDK now ships with Chef 14.7.17. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
+## Docker image updates
+
+The [chef/chefdk](https://hub.docker.com/r/chef/chefdk) Docker image now includes graphviz (to support `berks viz`) and rsync (to support `kitchen-dokken`) which makes it a little bigger, but also a little more useful in development and test pipelines.
+
+
 # ChefDK 3.4 Release Notes
 
 ## Chef 14.6.47
 
-ChefDK now ships with Chef 14.6.47\. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+ChefDK now ships with Chef 14.6.47. See <https://docs.chef.io/release_notes.html> for more information on what's new.
 
 ## Smaller package size
 
@@ -62,7 +73,7 @@ Ruby has been updated to 2.5.3 to resolve the following vulnerabilities:
 
 ## Chef 14.5.33
 
-ChefDK now ships with Chef 14.5.33\. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+ChefDK now ships with Chef 14.5.33. See <https://docs.chef.io/release_notes.html> for more information on what's new.
 
 ## New Functionality
 
@@ -95,7 +106,7 @@ examples of the new syntax.
 
 ## Chef 14.4.56
 
-ChefDK now ships with Chef 14.4.56\. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+ChefDK now ships with Chef 14.4.56. See <https://docs.chef.io/release_notes.html> for more information on what's new.
 
 ## New Functionality
 
@@ -140,7 +151,7 @@ OpenSSL updated to 1.0.2p to resolve:
 
 ## Chef 14.2.0
 
-ChefDK now ships with Chef 14.2.0\. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+ChefDK now ships with Chef 14.2.0. See <https://docs.chef.io/release_notes.html> for more information on what's new.
 
 ## Habitat packages available
 
@@ -194,7 +205,7 @@ OpenSSL updated to 1.0.2p to resolve:
 
 ## Chef 14.1.1
 
-ChefDK now ships with Chef 14.1.1\. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+ChefDK now ships with Chef 14.1.1. See <https://docs.chef.io/release_notes.html> for more information on what's new.
 
 ## Updated Operating System support
 
