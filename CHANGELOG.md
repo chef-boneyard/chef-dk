@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.11 -->
-## [v3.5.11](https://github.com/chef/chef-dk/tree/v3.5.11) (2018-11-15)
+<!-- latest_release 3.5.12 -->
+## [v3.5.12](https://github.com/chef/chef-dk/tree/v3.5.12) (2018-11-15)
 
 #### Merged Pull Requests
-- Bump chef-zero to 14.0.11 [#1829](https://github.com/chef/chef-dk/pull/1829) ([chef-ci](https://github.com/chef-ci))
+- Bump inspec to 3.0.52 [#1831](https://github.com/chef/chef-dk/pull/1831) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.38 -->
 ### Changes since 3.4.38 release
 
 #### Merged Pull Requests
+- Bump inspec to 3.0.52 [#1831](https://github.com/chef/chef-dk/pull/1831) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.12 -->
 - Bump chef-zero to 14.0.11 [#1829](https://github.com/chef/chef-dk/pull/1829) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.11 -->
 - Writing out ChefDK bundle gems to a json file for easy parsing [#1828](https://github.com/chef/chef-dk/pull/1828) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.5.10 -->
 - Add graphviz to docker image to support berks viz [#1822](https://github.com/chef/chef-dk/pull/1822) ([burdandrei](https://github.com/burdandrei)) <!-- 3.5.9 -->
