@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.9 -->
-## [v3.5.9](https://github.com/chef/chef-dk/tree/v3.5.9) (2018-11-15)
+<!-- latest_release 3.5.10 -->
+## [v3.5.10](https://github.com/chef/chef-dk/tree/v3.5.10) (2018-11-15)
 
 #### Merged Pull Requests
-- Add graphviz to docker image to support berks viz [#1822](https://github.com/chef/chef-dk/pull/1822) ([burdandrei](https://github.com/burdandrei))
+- Writing out ChefDK bundle gems to a json file for easy parsing [#1828](https://github.com/chef/chef-dk/pull/1828) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.38 -->
 ### Changes since 3.4.38 release
 
 #### Merged Pull Requests
+- Writing out ChefDK bundle gems to a json file for easy parsing [#1828](https://github.com/chef/chef-dk/pull/1828) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.5.10 -->
 - Add graphviz to docker image to support berks viz [#1822](https://github.com/chef/chef-dk/pull/1822) ([burdandrei](https://github.com/burdandrei)) <!-- 3.5.9 -->
 - Add rsync to docker image to support kitchen-dokken [#1821](https://github.com/chef/chef-dk/pull/1821) ([bdwyertech](https://github.com/bdwyertech)) <!-- 3.5.8 -->
 - Fixing bug in expeditor script to update dependencies [#1827](https://github.com/chef/chef-dk/pull/1827) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.5.7 -->
