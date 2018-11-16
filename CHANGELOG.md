@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.12 -->
-## [v3.5.12](https://github.com/chef/chef-dk/tree/v3.5.12) (2018-11-15)
+<!-- latest_release 3.5.13 -->
+## [v3.5.13](https://github.com/chef/chef-dk/tree/v3.5.13) (2018-11-16)
 
 #### Merged Pull Requests
-- Bump inspec to 3.0.52 [#1831](https://github.com/chef/chef-dk/pull/1831) ([chef-ci](https://github.com/chef-ci))
+- update release notes for 3.5 [#1830](https://github.com/chef/chef-dk/pull/1830) ([robbkidd](https://github.com/robbkidd))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.4.38 -->
 ### Changes since 3.4.38 release
 
 #### Merged Pull Requests
+- update release notes for 3.5 [#1830](https://github.com/chef/chef-dk/pull/1830) ([robbkidd](https://github.com/robbkidd)) <!-- 3.5.13 -->
 - Bump inspec to 3.0.52 [#1831](https://github.com/chef/chef-dk/pull/1831) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.12 -->
 - Bump chef-zero to 14.0.11 [#1829](https://github.com/chef/chef-dk/pull/1829) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.11 -->
 - Writing out ChefDK bundle gems to a json file for easy parsing [#1828](https://github.com/chef/chef-dk/pull/1828) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.5.10 -->
