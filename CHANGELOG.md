@@ -1,31 +1,29 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.5.13 -->
-## [v3.5.13](https://github.com/chef/chef-dk/tree/v3.5.13) (2018-11-16)
-
-#### Merged Pull Requests
-- update release notes for 3.5 [#1830](https://github.com/chef/chef-dk/pull/1830) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.4.38 -->
-### Changes since 3.4.38 release
-
-#### Merged Pull Requests
-- update release notes for 3.5 [#1830](https://github.com/chef/chef-dk/pull/1830) ([robbkidd](https://github.com/robbkidd)) <!-- 3.5.13 -->
-- Bump inspec to 3.0.52 [#1831](https://github.com/chef/chef-dk/pull/1831) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.12 -->
-- Bump chef-zero to 14.0.11 [#1829](https://github.com/chef/chef-dk/pull/1829) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.11 -->
-- Writing out ChefDK bundle gems to a json file for easy parsing [#1828](https://github.com/chef/chef-dk/pull/1828) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.5.10 -->
-- Add graphviz to docker image to support berks viz [#1822](https://github.com/chef/chef-dk/pull/1822) ([burdandrei](https://github.com/burdandrei)) <!-- 3.5.9 -->
-- Add rsync to docker image to support kitchen-dokken [#1821](https://github.com/chef/chef-dk/pull/1821) ([bdwyertech](https://github.com/bdwyertech)) <!-- 3.5.8 -->
-- Fixing bug in expeditor script to update dependencies [#1827](https://github.com/chef/chef-dk/pull/1827) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.5.7 -->
-- send pipeline notifications to the Workstation team channel [#1823](https://github.com/chef/chef-dk/pull/1823) ([robbkidd](https://github.com/robbkidd)) <!-- 3.5.6 -->
-- Bump chef-client to 14.7 [#1818](https://github.com/chef/chef-dk/pull/1818) ([tas50](https://github.com/tas50)) <!-- 3.5.4 -->
-- Bump inspec to 3.0.25 [#1813](https://github.com/chef/chef-dk/pull/1813) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.3 -->
-- Bump win32-taskscheduler to 2.0.1 [#1809](https://github.com/chef/chef-dk/pull/1809) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.2 -->
-- Updating kitchen-vagrant to latest version [#1807](https://github.com/chef/chef-dk/pull/1807) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.5.1 -->
-- Bumping ChefDK minor version after 3.4 release [#1808](https://github.com/chef/chef-dk/pull/1808) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.5.0 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.5.13](https://github.com/chef/chef-dk/tree/v3.5.13) (2018-11-16)
+
+#### Merged Pull Requests
+- Bumping ChefDK minor version after 3.4 release [#1808](https://github.com/chef/chef-dk/pull/1808) ([tyler-ball](https://github.com/tyler-ball))
+- Updating kitchen-vagrant to latest version [#1807](https://github.com/chef/chef-dk/pull/1807) ([tyler-ball](https://github.com/tyler-ball))
+- Bump win32-taskscheduler to 2.0.1 [#1809](https://github.com/chef/chef-dk/pull/1809) ([chef-ci](https://github.com/chef-ci))
+- Bump inspec to 3.0.25 [#1813](https://github.com/chef/chef-dk/pull/1813) ([chef-ci](https://github.com/chef-ci))
+- Bump chef-client to 14.7 [#1818](https://github.com/chef/chef-dk/pull/1818) ([tas50](https://github.com/tas50))
+- send pipeline notifications to the Workstation team channel [#1823](https://github.com/chef/chef-dk/pull/1823) ([robbkidd](https://github.com/robbkidd))
+- Fixing bug in expeditor script to update dependencies [#1827](https://github.com/chef/chef-dk/pull/1827) ([tyler-ball](https://github.com/tyler-ball))
+- Add rsync to docker image to support kitchen-dokken [#1821](https://github.com/chef/chef-dk/pull/1821) ([bdwyertech](https://github.com/bdwyertech))
+- Add graphviz to docker image to support berks viz [#1822](https://github.com/chef/chef-dk/pull/1822) ([burdandrei](https://github.com/burdandrei))
+- Writing out ChefDK bundle gems to a json file for easy parsing [#1828](https://github.com/chef/chef-dk/pull/1828) ([tyler-ball](https://github.com/tyler-ball))
+- Bump chef-zero to 14.0.11 [#1829](https://github.com/chef/chef-dk/pull/1829) ([chef-ci](https://github.com/chef-ci))
+- Bump inspec to 3.0.52 [#1831](https://github.com/chef/chef-dk/pull/1831) ([chef-ci](https://github.com/chef-ci))
+- update release notes for 3.5 [#1830](https://github.com/chef/chef-dk/pull/1830) ([robbkidd](https://github.com/robbkidd))
+<!-- latest_stable_release -->
+
 ## [v3.4.38](https://github.com/chef/chef-dk/tree/v3.4.38) (2018-10-29)
 
 #### Merged Pull Requests
@@ -67,7 +65,6 @@
 - Bump inspec-core to 3.0.12 [#1801](https://github.com/chef/chef-dk/pull/1801) ([chef-ci](https://github.com/chef-ci))
 - Bump Chef to 14.6.47 [#1804](https://github.com/chef/chef-dk/pull/1804) ([chef-ci](https://github.com/chef-ci))
 - Add more gem release subscriptions [#1793](https://github.com/chef/chef-dk/pull/1793) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v3.3.23](https://github.com/chef/chef-dk/tree/v3.3.23) (2018-09-26)
 
