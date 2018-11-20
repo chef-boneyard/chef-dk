@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.5.14 -->
+## [v3.5.14](https://github.com/chef/chef-dk/tree/v3.5.14) (2018-11-20)
+
+#### Merged Pull Requests
+- Bump knife-google to 3.3.6 [#1834](https://github.com/chef/chef-dk/pull/1834) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.5.13 -->
+### Changes since 3.5.13 release
+
+#### Merged Pull Requests
+- Bump knife-google to 3.3.6 [#1834](https://github.com/chef/chef-dk/pull/1834) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.14 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
