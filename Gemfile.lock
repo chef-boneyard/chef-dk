@@ -458,7 +458,7 @@ GEM
     knife-ec2 (0.19.10)
       fog-aws (>= 1, < 4)
       knife-windows (~> 1.0)
-    knife-google (3.3.6)
+    knife-google (3.3.7)
       gcewinpass (~> 1.1)
       google-api-client (>= 0.19.8, < 0.25)
       knife-cloud (~> 1.2.0)
