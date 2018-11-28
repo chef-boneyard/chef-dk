@@ -432,7 +432,7 @@ GEM
       docker-api (~> 1.33)
       lockfile (~> 2.1)
       test-kitchen (~> 1.15)
-    kitchen-ec2 (2.3.2)
+    kitchen-ec2 (2.3.3)
       aws-sdk (~> 2)
       excon
       multi_json
