@@ -2,8 +2,7 @@
 
 ## New Functionality
 
-* `chef generate cookbook` now supports a `--kitchen CONFIGURATION` flag, which allows you to
-  specify a `dokken` or `vagrant` kitchen configuration.  The default remains `vagrant`.
+* `chef generate cookbook` now supports a `--kitchen CONFIGURATION` flag, which allows you to specify a `dokken` or `vagrant` kitchen configuration.  The default remains `vagrant`.
 
 ## Updated Tooling
 
@@ -12,8 +11,7 @@
 Berkshelf has been updated to 7.0.7 and includes the following enhancements:
 
 * Relative URL now supported in `location_path`
-* `berks outdated` now supports an `--all`  flag which will include outdated dependencies that won't
-  satisfy version constraints set in the Berksfile.
+* `berks outdated` now supports an `--all` flag, which will include outdated dependencies that won't satisfy version constraints set in the Berksfile.
 
 # ChefDK 3.5 Release Notes
 
