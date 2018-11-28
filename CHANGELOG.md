@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.0 -->
-## [v3.6.0](https://github.com/chef/chef-dk/tree/v3.6.0) (2018-11-28)
+<!-- latest_release 3.6.1 -->
+## [v3.6.1](https://github.com/chef/chef-dk/tree/v3.6.1) (2018-11-28)
 
 #### Merged Pull Requests
-- Update to openssl 1.0.2q [#1839](https://github.com/chef/chef-dk/pull/1839) ([tas50](https://github.com/tas50))
+- Bump knife-cloud to 1.2.3 [#1842](https://github.com/chef/chef-dk/pull/1842) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Bump knife-cloud to 1.2.3 [#1842](https://github.com/chef/chef-dk/pull/1842) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.1 -->
 - Update to openssl 1.0.2q [#1839](https://github.com/chef/chef-dk/pull/1839) ([tas50](https://github.com/tas50)) <!-- 3.6.0 -->
 - Bump knife-ec2 to 0.19.12 [#1840](https://github.com/chef/chef-dk/pull/1840) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.17 -->
 - Bump berkshelf to 7.0.7 [#1837](https://github.com/chef/chef-dk/pull/1837) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.16 -->
