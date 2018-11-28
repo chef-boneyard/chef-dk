@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.2 -->
-## [v3.6.2](https://github.com/chef/chef-dk/tree/v3.6.2) (2018-11-28)
+<!-- latest_release 3.6.3 -->
+## [v3.6.3](https://github.com/chef/chef-dk/tree/v3.6.3) (2018-11-28)
 
 #### Merged Pull Requests
-- Adds a kitchen flag that gives options for different kitchen configs [#1517](https://github.com/chef/chef-dk/pull/1517) ([burtlo](https://github.com/burtlo))
+- [kitchen-ec2 to 2.3.2] fix x86_64 architecture default for image search (resolves arm64 appearing as default) [#1843](https://github.com/chef/chef-dk/pull/1843) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- [kitchen-ec2 to 2.3.2] fix x86_64 architecture default for image search (resolves arm64 appearing as default) [#1843](https://github.com/chef/chef-dk/pull/1843) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.3 -->
 - Adds a kitchen flag that gives options for different kitchen configs [#1517](https://github.com/chef/chef-dk/pull/1517) ([burtlo](https://github.com/burtlo)) <!-- 3.6.2 -->
 - Bump knife-cloud to 1.2.3 [#1842](https://github.com/chef/chef-dk/pull/1842) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.1 -->
 - Update to openssl 1.0.2q [#1839](https://github.com/chef/chef-dk/pull/1839) ([tas50](https://github.com/tas50)) <!-- 3.6.0 -->
