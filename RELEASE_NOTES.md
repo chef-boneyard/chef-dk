@@ -1,10 +1,9 @@
 # Unreleased Version
 
-# ChefDK 3.5 Release Notes
+## New Functionality
 
-## Chef 14.7.17
-
-ChefDK now ships with Chef 14.7.17. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+* `chef generate cookbook` now supports a `--kitchen CONFIGURATION` flag, which allows you to
+  specify a `dokken` or `vagrant` kitchen configuration.  The default remains `vagrant`.
 
 ## Updated Tooling
 
@@ -16,10 +15,15 @@ Berkshelf has been updated to 7.0.7 and includes the following enhancements:
 * `berks outdated` now supports an `--all`  flag which will include outdated dependencies that won't
   satisfy version constraints set in the Berksfile.
 
+# ChefDK 3.5 Release Notes
+
+## Chef 14.7.17
+
+ChefDK now ships with Chef 14.7.17. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
 ## Docker image updates
 
 The [chef/chefdk](https://hub.docker.com/r/chef/chefdk) Docker image now includes graphviz (to support `berks viz`) and rsync (to support `kitchen-dokken`) which makes it a little bigger, but also a little more useful in development and test pipelines.
-
 
 # ChefDK 3.4 Release Notes
 
