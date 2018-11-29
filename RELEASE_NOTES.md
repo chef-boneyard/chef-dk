@@ -13,6 +13,10 @@ Berkshelf has been updated to 7.0.7 and includes the following enhancements:
 * Relative URL now supported in `location_path`
 * `berks outdated` now supports an `--all` flag, which will include outdated dependencies that won't satisfy version constraints set in the Berksfile.
 
+### Kitchen-ec2
+
+The Test Kitchen driver for EC2 has been updated to add support for the new `arm64` architectures.
+
 # ChefDK 3.5 Release Notes
 
 ## Chef 14.7.17
