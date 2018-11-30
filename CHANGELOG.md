@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.5 -->
-## [v3.6.5](https://github.com/chef/chef-dk/tree/v3.6.5) (2018-11-30)
+<!-- latest_release 3.6.6 -->
+## [v3.6.6](https://github.com/chef/chef-dk/tree/v3.6.6) (2018-11-30)
 
 #### Merged Pull Requests
-- [inspec to 3.0.61] improve windows support &amp; several bugfixes [#1846](https://github.com/chef/chef-dk/pull/1846) ([chef-ci](https://github.com/chef-ci))
+- Bump test-kitchen to 1.23.3 with improvements for WinRM [#1847](https://github.com/chef/chef-dk/pull/1847) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Bump test-kitchen to 1.23.3 with improvements for WinRM [#1847](https://github.com/chef/chef-dk/pull/1847) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.6 -->
 - [inspec to 3.0.61] improve windows support &amp; several bugfixes [#1846](https://github.com/chef/chef-dk/pull/1846) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.5 -->
 - Bump kitchen-ec2 to 2.3.3 to add support for arm64 architecture  [#1844](https://github.com/chef/chef-dk/pull/1844) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.4 -->
 - [kitchen-ec2 to 2.3.2] fix x86_64 architecture default for image search (resolves arm64 appearing as default) [#1843](https://github.com/chef/chef-dk/pull/1843) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.3 -->
