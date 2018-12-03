@@ -455,7 +455,7 @@ GEM
       excon (>= 0.50)
       knife-windows (>= 1.0)
       mixlib-shellout
-    knife-ec2 (0.19.12)
+    knife-ec2 (0.19.15)
       fog-aws (>= 1, < 4)
       knife-windows (~> 1.0)
     knife-google (3.3.7)
