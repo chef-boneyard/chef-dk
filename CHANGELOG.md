@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.7 -->
-## [v3.6.7](https://github.com/chef/chef-dk/tree/v3.6.7) (2018-12-03)
+<!-- latest_release 3.6.8 -->
+## [v3.6.8](https://github.com/chef/chef-dk/tree/v3.6.8) (2018-12-03)
 
 #### Merged Pull Requests
-- Bump foodcritic to 15.0.0 to include just the latest Chef release metadata [#1848](https://github.com/chef/chef-dk/pull/1848) ([chef-ci](https://github.com/chef-ci))
+- Bump knife-ec2 to 0.19.15 to slim the install size [#1849](https://github.com/chef/chef-dk/pull/1849) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Bump knife-ec2 to 0.19.15 to slim the install size [#1849](https://github.com/chef/chef-dk/pull/1849) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.8 -->
 - Bump foodcritic to 15.0.0 to include just the latest Chef release metadata [#1848](https://github.com/chef/chef-dk/pull/1848) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.7 -->
 - Bump test-kitchen to 1.23.3 with improvements for WinRM [#1847](https://github.com/chef/chef-dk/pull/1847) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.6 -->
 - [inspec to 3.0.61] improve windows support &amp; several bugfixes [#1846](https://github.com/chef/chef-dk/pull/1846) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.5 -->
