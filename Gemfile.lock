@@ -684,7 +684,7 @@ GEM
       sfl
     sshkey (1.9.0)
     sslshake (1.2.0)
-    stove (6.1.0)
+    stove (7.0.0)
       chef-api (~> 0.5)
       logify (~> 0.2)
     structured_warnings (0.3.0)
