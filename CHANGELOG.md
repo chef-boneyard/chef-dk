@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.10 -->
-## [v3.6.10](https://github.com/chef/chef-dk/tree/v3.6.10) (2018-12-03)
+<!-- latest_release 3.6.11 -->
+## [v3.6.11](https://github.com/chef/chef-dk/tree/v3.6.11) (2018-12-03)
 
 #### Merged Pull Requests
-- Bump stove to 6.1.0 to slim the install size [#1851](https://github.com/chef/chef-dk/pull/1851) ([chef-ci](https://github.com/chef-ci))
+- Bump stove to 7.0.0 to ship metadata.rb to supermarket and remove the yank command [#1852](https://github.com/chef/chef-dk/pull/1852) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Bump stove to 7.0.0 to ship metadata.rb to supermarket and remove the yank command [#1852](https://github.com/chef/chef-dk/pull/1852) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.11 -->
 - Bump stove to 6.1.0 to slim the install size [#1851](https://github.com/chef/chef-dk/pull/1851) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.10 -->
 - Bump knife-push to 1.1.1 to slim the install size [#1850](https://github.com/chef/chef-dk/pull/1850) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.9 -->
 - Bump knife-ec2 to 0.19.15 to slim the install size [#1849](https://github.com/chef/chef-dk/pull/1849) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.8 -->
