@@ -22,7 +22,10 @@ gemspec
 gem "bundler"
 
 group(:omnibus_package, :development, :test) do
-  gem "rake"
+  # we pin rake as a copy of rake is installed from the ruby source
+  # if you bump the ruby version you should confirm we don't end up with
+  # two rake gems installed again
+  gem "rake", "<= 12.3.0"
   gem "pry"
   gem "rdoc"
   gem "yard"
