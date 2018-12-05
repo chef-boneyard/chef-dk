@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.14 -->
-## [v3.6.14](https://github.com/chef/chef-dk/tree/v3.6.14) (2018-12-05)
+<!-- latest_release 3.6.15 -->
+## [v3.6.15](https://github.com/chef/chef-dk/tree/v3.6.15) (2018-12-05)
 
 #### Merged Pull Requests
-- Bump chef-sugar to 4.2.0 to added parallels? helper and improve raspi detection [#1855](https://github.com/chef/chef-dk/pull/1855) ([chef-ci](https://github.com/chef-ci))
+- Bump ohai to 14.8.10 for improved platform and virtualization detection [#1856](https://github.com/chef/chef-dk/pull/1856) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Bump ohai to 14.8.10 for improved platform and virtualization detection [#1856](https://github.com/chef/chef-dk/pull/1856) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.15 -->
 - Bump chef-sugar to 4.2.0 to added parallels? helper and improve raspi detection [#1855](https://github.com/chef/chef-dk/pull/1855) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.14 -->
 - Prevent rake from being packaged twice in DK [#1853](https://github.com/chef/chef-dk/pull/1853) ([tas50](https://github.com/tas50)) <!-- 3.6.13 -->
 - Bump kitchen-ec2 to 2.3.4 to slim the install size [#1854](https://github.com/chef/chef-dk/pull/1854) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.12 -->
