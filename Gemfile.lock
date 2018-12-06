@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (2.8.2)
     ast (2.4.0)
-    aws-sdk (2.11.185)
-      aws-sdk-resources (= 2.11.185)
-    aws-sdk-core (2.11.185)
+    aws-sdk (2.11.186)
+      aws-sdk-resources (= 2.11.186)
+    aws-sdk-core (2.11.186)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.185)
-      aws-sdk-core (= 2.11.185)
+    aws-sdk-resources (2.11.186)
+      aws-sdk-core (= 2.11.186)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -190,7 +190,7 @@ GEM
       fog-xenserver
       retryable
       winrm-elevated
-    chef-sugar (4.2.0)
+    chef-sugar (4.2.1)
     chef-telemetry (0.1.0)
       chef-config
       concurrent-ruby (~> 1.0)
