@@ -513,8 +513,8 @@ GEM
       mixlib-versioning
       thor
     mixlib-log (2.0.4)
-    mixlib-shellout (2.4.0)
-    mixlib-shellout (2.4.0-universal-mingw32)
+    mixlib-shellout (2.4.2)
+    mixlib-shellout (2.4.2-universal-mingw32)
       win32-process (~> 0.8.2)
       wmi-lite (~> 1.0)
     mixlib-versioning (1.2.2)
