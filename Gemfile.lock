@@ -734,7 +734,7 @@ GEM
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uber (0.1.0)
-    ubuntu_ami (0.4.1)
+    ubuntu_ami (0.4.2)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
@@ -793,7 +793,7 @@ GEM
       logging (>= 1.6.1, < 3.0)
       rubyzip (~> 1.1)
       winrm (~> 2.0)
-    wmi-lite (1.0.0)
+    wmi-lite (1.0.1)
     xmlrpc (0.3.0)
     yard (0.9.16)
 
