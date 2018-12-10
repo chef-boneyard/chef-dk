@@ -22,12 +22,14 @@ gemspec
 gem "bundler"
 
 group(:omnibus_package, :development, :test) do
-  # we pin rake as a copy of rake is installed from the ruby source
-  # if you bump the ruby version you should confirm we don't end up with
-  # two rake gems installed again
+  # we pin these gems as they are installed in the ruby source and if we let them
+  # float we'll end up with 2 copies shipped in DK. When we bump Ruby we need to
+  # look at these pins and adjust them
   gem "rake", "<= 12.3.0"
+  gem "rdoc", "<= 6.0.1"
+  gem "minitest", "<= 5.10.3"
+
   gem "pry"
-  gem "rdoc"
   gem "yard"
   gem "guard"
   gem "cookstyle", ">= 2.0.0"
