@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.18 -->
-## [v3.6.18](https://github.com/chef/chef-dk/tree/v3.6.18) (2018-12-07)
+<!-- latest_release 3.6.19 -->
+## [v3.6.19](https://github.com/chef/chef-dk/tree/v3.6.19) (2018-12-10)
 
 #### Merged Pull Requests
-- Bump inspec to 3.0.64 with habitat improvements and a smaller on disk size [#1860](https://github.com/chef/chef-dk/pull/1860) ([chef-ci](https://github.com/chef-ci))
+- Bump chef-provisioning-fog, mixlib-shellout, and ffi-libarchive to slim install size [#1863](https://github.com/chef/chef-dk/pull/1863) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Bump chef-provisioning-fog, mixlib-shellout, and ffi-libarchive to slim install size [#1863](https://github.com/chef/chef-dk/pull/1863) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.19 -->
 - Bump inspec to 3.0.64 with habitat improvements and a smaller on disk size [#1860](https://github.com/chef/chef-dk/pull/1860) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.18 -->
 - Bump chef-provisioning-aws to 3.0.7 to slim the install size [#1859](https://github.com/chef/chef-dk/pull/1859) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.17 -->
 - Bump chef-sugar to 4.2.1 [#1858](https://github.com/chef/chef-dk/pull/1858) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.16 -->
