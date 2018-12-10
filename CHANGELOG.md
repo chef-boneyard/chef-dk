@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.21 -->
-## [v3.6.21](https://github.com/chef/chef-dk/tree/v3.6.21) (2018-12-10)
+<!-- latest_release 3.6.22 -->
+## [v3.6.22](https://github.com/chef/chef-dk/tree/v3.6.22) (2018-12-10)
 
 #### Merged Pull Requests
-- Update Solve and Semverse to slim the install size [#1865](https://github.com/chef/chef-dk/pull/1865) ([tas50](https://github.com/tas50))
+- Prevent shipping two copies of rdoc and minitest gems [#1866](https://github.com/chef/chef-dk/pull/1866) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Prevent shipping two copies of rdoc and minitest gems [#1866](https://github.com/chef/chef-dk/pull/1866) ([tas50](https://github.com/tas50)) <!-- 3.6.22 -->
 - Update Solve and Semverse to slim the install size [#1865](https://github.com/chef/chef-dk/pull/1865) ([tas50](https://github.com/tas50)) <!-- 3.6.21 -->
 - Bump wmi-lite to 1.0.1 to slim the install size [#1864](https://github.com/chef/chef-dk/pull/1864) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.20 -->
 - Bump chef-provisioning-fog, mixlib-shellout, and ffi-libarchive to slim install size [#1863](https://github.com/chef/chef-dk/pull/1863) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.19 -->
