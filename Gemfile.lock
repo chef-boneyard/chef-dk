@@ -692,7 +692,7 @@ GEM
     systemu (2.6.5)
     term-ansicolor (1.7.0)
       tins (~> 1.0)
-    test-kitchen (1.23.3)
+    test-kitchen (1.23.4)
       mixlib-install (~> 3.6)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
