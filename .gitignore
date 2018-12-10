@@ -5,6 +5,7 @@ pkg/*
 *.gem
 */tags
 *~
+gem_graph.png
 
 # You should check in your Gemfile.lock in applications, and not in gems
 /Gemfile.local
