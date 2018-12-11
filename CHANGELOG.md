@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.26 -->
-## [v3.6.26](https://github.com/chef/chef-dk/tree/v3.6.26) (2018-12-11)
+<!-- latest_release 3.6.27 -->
+## [v3.6.27](https://github.com/chef/chef-dk/tree/v3.6.27) (2018-12-11)
 
 #### Merged Pull Requests
-- Bump test-kitchen to 1.23.5 to fix appbundling in DK builds [#1871](https://github.com/chef/chef-dk/pull/1871) ([chef-ci](https://github.com/chef-ci))
+- Bump chefspec to 7.3.3 [#1872](https://github.com/chef/chef-dk/pull/1872) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Bump chefspec to 7.3.3 [#1872](https://github.com/chef/chef-dk/pull/1872) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.27 -->
 - Bump test-kitchen to 1.23.5 to fix appbundling in DK builds [#1871](https://github.com/chef/chef-dk/pull/1871) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.26 -->
 - Bump kitchen-google to 2.0.1 to slim the install size [#1869](https://github.com/chef/chef-dk/pull/1869) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.25 -->
 - Bump knife-ec2 to 0.19.16 to slim the install size [#1868](https://github.com/chef/chef-dk/pull/1868) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.24 -->
