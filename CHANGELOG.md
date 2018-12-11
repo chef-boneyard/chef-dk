@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.23 -->
-## [v3.6.23](https://github.com/chef/chef-dk/tree/v3.6.23) (2018-12-11)
+<!-- latest_release 3.6.24 -->
+## [v3.6.24](https://github.com/chef/chef-dk/tree/v3.6.24) (2018-12-11)
 
 #### Merged Pull Requests
-- Bump test-kitchen to 1.23.4 to reduce the size of the DK installation [#1867](https://github.com/chef/chef-dk/pull/1867) ([chef-ci](https://github.com/chef-ci))
+- Bump knife-ec2 to 0.19.16 to slim the install size [#1868](https://github.com/chef/chef-dk/pull/1868) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Bump knife-ec2 to 0.19.16 to slim the install size [#1868](https://github.com/chef/chef-dk/pull/1868) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.24 -->
 - Bump test-kitchen to 1.23.4 to reduce the size of the DK installation [#1867](https://github.com/chef/chef-dk/pull/1867) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.23 -->
 - Prevent shipping two copies of rdoc and minitest gems [#1866](https://github.com/chef/chef-dk/pull/1866) ([tas50](https://github.com/tas50)) <!-- 3.6.22 -->
 - Update Solve and Semverse to slim the install size [#1865](https://github.com/chef/chef-dk/pull/1865) ([tas50](https://github.com/tas50)) <!-- 3.6.21 -->
