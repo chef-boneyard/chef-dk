@@ -677,7 +677,7 @@ GEM
     solve (4.0.2)
       molinillo (~> 0.6)
       semverse (>= 1.1, < 4.0)
-    specinfra (2.76.3)
+    specinfra (2.76.4)
       net-scp
       net-ssh (>= 2.7)
       net-telnet (= 0.1.1)
@@ -692,7 +692,7 @@ GEM
     systemu (2.6.5)
     term-ansicolor (1.7.0)
       tins (~> 1.0)
-    test-kitchen (1.23.4)
+    test-kitchen (1.23.5)
       mixlib-install (~> 3.6)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
