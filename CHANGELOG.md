@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.30 -->
-## [v3.6.30](https://github.com/chef/chef-dk/tree/v3.6.30) (2018-12-12)
+<!-- latest_release 3.6.31 -->
+## [v3.6.31](https://github.com/chef/chef-dk/tree/v3.6.31) (2018-12-12)
 
 #### Merged Pull Requests
-- Bump kitchen-azurerm to 0.14.6 to support tags and resolve errors fetching IP during node create [#1874](https://github.com/chef/chef-dk/pull/1874) ([chef-ci](https://github.com/chef-ci))
+- Update to artifactory 3.0 to slim the install size [#1875](https://github.com/chef/chef-dk/pull/1875) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Update to artifactory 3.0 to slim the install size [#1875](https://github.com/chef/chef-dk/pull/1875) ([tas50](https://github.com/tas50)) <!-- 3.6.31 -->
 - Bump kitchen-azurerm to 0.14.6 to support tags and resolve errors fetching IP during node create [#1874](https://github.com/chef/chef-dk/pull/1874) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.30 -->
 - Don&#39;t ship omnibus_overrides or readme in the gemfile [#1857](https://github.com/chef/chef-dk/pull/1857) ([tas50](https://github.com/tas50)) <!-- 3.6.29 -->
 - Bump cookstyle to 3.0.1 [#1873](https://github.com/chef/chef-dk/pull/1873) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.28 -->
