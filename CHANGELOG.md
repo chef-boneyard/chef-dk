@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.32 -->
-## [v3.6.32](https://github.com/chef/chef-dk/tree/v3.6.32) (2018-12-12)
+<!-- latest_release 3.6.33 -->
+## [v3.6.33](https://github.com/chef/chef-dk/tree/v3.6.33) (2018-12-12)
 
 #### Merged Pull Requests
-- Bump mixlib-archive to 0.4.19 and mixlib-shellout to 2.4.4 to slim the install size [#1877](https://github.com/chef/chef-dk/pull/1877) ([chef-ci](https://github.com/chef-ci))
+- Remove the Rake gemtasks since we use expeditor [#1870](https://github.com/chef/chef-dk/pull/1870) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Remove the Rake gemtasks since we use expeditor [#1870](https://github.com/chef/chef-dk/pull/1870) ([tas50](https://github.com/tas50)) <!-- 3.6.33 -->
 - Bump mixlib-archive to 0.4.19 and mixlib-shellout to 2.4.4 to slim the install size [#1877](https://github.com/chef/chef-dk/pull/1877) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.32 -->
 - Update to artifactory 3.0 to slim the install size [#1875](https://github.com/chef/chef-dk/pull/1875) ([tas50](https://github.com/tas50)) <!-- 3.6.31 -->
 - Bump kitchen-azurerm to 0.14.6 to support tags and resolve errors fetching IP during node create [#1874](https://github.com/chef/chef-dk/pull/1874) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.30 -->
