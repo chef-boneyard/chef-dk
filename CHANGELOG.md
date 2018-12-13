@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.34 -->
-## [v3.6.34](https://github.com/chef/chef-dk/tree/v3.6.34) (2018-12-13)
+<!-- latest_release 3.6.35 -->
+## [v3.6.35](https://github.com/chef/chef-dk/tree/v3.6.35) (2018-12-13)
 
 #### Merged Pull Requests
-- Bump Chef to 14.8.12 [#1878](https://github.com/chef/chef-dk/pull/1878) ([chef-ci](https://github.com/chef-ci))
+- Update to inspec 3.1.3 for new UI experience [#1879](https://github.com/chef/chef-dk/pull/1879) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Update to inspec 3.1.3 for new UI experience [#1879](https://github.com/chef/chef-dk/pull/1879) ([tas50](https://github.com/tas50)) <!-- 3.6.35 -->
 - Bump Chef to 14.8.12 [#1878](https://github.com/chef/chef-dk/pull/1878) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.34 -->
 - Remove the Rake gemtasks since we use expeditor [#1870](https://github.com/chef/chef-dk/pull/1870) ([tas50](https://github.com/tas50)) <!-- 3.6.33 -->
 - Bump mixlib-archive to 0.4.19 and mixlib-shellout to 2.4.4 to slim the install size [#1877](https://github.com/chef/chef-dk/pull/1877) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.32 -->
