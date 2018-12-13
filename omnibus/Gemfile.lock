@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 8cb4ba11226f61a78d6ef71a83353b95c8fdd528
+  revision: 23e12509574a66f079b00fc4f99cc8665a4ed50e
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -9,10 +9,10 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 708e9c7413c83a6e19a40e212ad884c78a905a5d
+  revision: 5ac799cdcc5a7865b452daa96f92812144dccb3d
   branch: master
   specs:
-    omnibus (6.0.8)
+    omnibus (6.0.10)
       aws-sdk-s3 (~> 1)
       chef-sugar (>= 3.3)
       cleanroom (~> 1.0)
@@ -60,10 +60,10 @@ GEM
       solve (~> 4.0)
       thor (>= 0.20)
     builder (3.2.3)
-    chef (14.7.17)
+    chef (14.8.12)
       addressable
       bundler (>= 1.10)
-      chef-config (= 14.7.17)
+      chef-config (= 14.8.12)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -90,10 +90,10 @@ GEM
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (14.7.17-universal-mingw32)
+    chef (14.8.12-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 14.7.17)
+      chef-config (= 14.8.12)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -133,7 +133,7 @@ GEM
       win32-taskscheduler (~> 2.0)
       windows-api (~> 0.4.4)
       wmi-lite (~> 1.0)
-    chef-config (14.7.17)
+    chef-config (14.8.12)
       addressable
       fuzzyurl
       mixlib-config (>= 2.2.12, < 3.0)
@@ -185,9 +185,9 @@ GEM
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
     minitar (0.7)
-    mixlib-archive (0.4.18)
+    mixlib-archive (0.4.19)
       mixlib-log
-    mixlib-archive (0.4.18-universal-mingw32)
+    mixlib-archive (0.4.19-universal-mingw32)
       mixlib-log
     mixlib-authentication (2.1.1)
     mixlib-cli (1.7.0)
@@ -198,8 +198,8 @@ GEM
       mixlib-versioning
       thor
     mixlib-log (2.0.4)
-    mixlib-shellout (2.4.2)
-    mixlib-shellout (2.4.2-universal-mingw32)
+    mixlib-shellout (2.4.4)
+    mixlib-shellout (2.4.4-universal-mingw32)
       win32-process (~> 0.8.2)
       wmi-lite (~> 1.0)
     mixlib-versioning (1.2.2)
@@ -363,4 +363,4 @@ DEPENDENCIES
   winrm-elevated
 
 BUNDLED WITH
-   1.17.1
+   1.17.2
