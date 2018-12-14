@@ -99,6 +99,10 @@ do_install() {
   bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin test-kitchen
   bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin berkshelf
   bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin inspec
+  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin cookstyle
+  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin chef-apply
+  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin chef-vault
+  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin dco
 
   if [[ `readlink /usr/bin/env` = "$(pkg_path_for coreutils)/bin/env" ]]; then
     build_line "Removing the symlink we created for '/usr/bin/env'"
@@ -119,6 +123,7 @@ do_install() {
   wrap_ruby_bin "foodcritic"
   wrap_ruby_bin "inspec"
   wrap_ruby_bin "chef-resource-inspector"
+  wrap_ruby_bin "dco"
 }
 
 # Stubs
