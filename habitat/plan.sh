@@ -84,7 +84,8 @@ do_build() {
 
   bundle install --without dep_selector --no-deployment --jobs 2 --retry 5 --path $pkg_prefix
 
-  bundle exec 'rake install:local'
+  gem build chef-dk.gemspec
+  gem install chef-dk-*.gem
 }
 
 do_install() {
@@ -117,6 +118,7 @@ do_install() {
   wrap_ruby_bin "berks"
   wrap_ruby_bin "foodcritic"
   wrap_ruby_bin "inspec"
+  wrap_ruby_bin "chef-resource-inspector"
 }
 
 # Stubs
