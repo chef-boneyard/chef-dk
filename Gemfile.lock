@@ -519,7 +519,7 @@ GEM
     mixlib-shellout (2.4.4-universal-mingw32)
       win32-process (~> 0.8.2)
       wmi-lite (~> 1.0)
-    mixlib-versioning (1.2.2)
+    mixlib-versioning (1.2.7)
     molinillo (0.6.6)
     ms_rest (0.7.3)
       concurrent-ruby (~> 1.0)
