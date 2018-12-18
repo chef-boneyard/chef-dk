@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.38 -->
-## [v3.6.38](https://github.com/chef/chef-dk/tree/v3.6.38) (2018-12-17)
+<!-- latest_release 3.6.39 -->
+## [v3.6.39](https://github.com/chef/chef-dk/tree/v3.6.39) (2018-12-18)
 
 #### Merged Pull Requests
-- Bump nokogiri to 1.9.0 to reduce size / speedup operations [#1884](https://github.com/chef/chef-dk/pull/1884) ([chef-ci](https://github.com/chef-ci))
+- Update mixlib-config, mixlib-log, and nokogiri to reduce install size [#1886](https://github.com/chef/chef-dk/pull/1886) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Update mixlib-config, mixlib-log, and nokogiri to reduce install size [#1886](https://github.com/chef/chef-dk/pull/1886) ([tas50](https://github.com/tas50)) <!-- 3.6.39 -->
 - Bump nokogiri to 1.9.0 to reduce size / speedup operations [#1884](https://github.com/chef/chef-dk/pull/1884) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.38 -->
 - Update cookstyle and update habtitat plan to match omnibus [#1883](https://github.com/chef/chef-dk/pull/1883) ([tas50](https://github.com/tas50)) <!-- 3.6.37 -->
 - Fix the habitat plan to not use rake install [#1881](https://github.com/chef/chef-dk/pull/1881) ([tas50](https://github.com/tas50)) <!-- 3.6.36 -->
