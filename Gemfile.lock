@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (3.0.0)
     ast (2.4.0)
-    aws-sdk (2.11.192)
-      aws-sdk-resources (= 2.11.192)
-    aws-sdk-core (2.11.192)
+    aws-sdk (2.11.193)
+      aws-sdk-resources (= 2.11.193)
+    aws-sdk-core (2.11.193)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.192)
-      aws-sdk-core (= 2.11.192)
+    aws-sdk-resources (2.11.193)
+      aws-sdk-core (= 2.11.193)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -508,7 +508,7 @@ GEM
       mixlib-log
     mixlib-authentication (2.1.1)
     mixlib-cli (1.7.0)
-    mixlib-config (2.2.13)
+    mixlib-config (2.2.18)
       tomlrb
     mixlib-install (3.11.5)
       mixlib-shellout
