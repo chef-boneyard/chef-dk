@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 5b205da971d1564041c02ea329d3204378841643
+  revision: f54ca7cd82d0e49ac62f8380d9c56d05048db9fd
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -202,7 +202,7 @@ GEM
     mixlib-shellout (2.4.4-universal-mingw32)
       win32-process (~> 0.8.2)
       wmi-lite (~> 1.0)
-    mixlib-versioning (1.2.2)
+    mixlib-versioning (1.2.7)
     molinillo (0.6.6)
     multi_json (1.13.1)
     multipart-post (2.0.0)
