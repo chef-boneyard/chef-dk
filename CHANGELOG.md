@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.40 -->
-## [v3.6.40](https://github.com/chef/chef-dk/tree/v3.6.40) (2018-12-18)
+<!-- latest_release 3.6.41 -->
+## [v3.6.41](https://github.com/chef/chef-dk/tree/v3.6.41) (2018-12-18)
 
 #### Merged Pull Requests
-- Bump kitchen-azurerm to 0.14.7 [#1887](https://github.com/chef/chef-dk/pull/1887) ([chef-ci](https://github.com/chef-ci))
+- Update mixlib-versioning to 1.2.7 to slim the install size [#1888](https://github.com/chef/chef-dk/pull/1888) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Update mixlib-versioning to 1.2.7 to slim the install size [#1888](https://github.com/chef/chef-dk/pull/1888) ([tas50](https://github.com/tas50)) <!-- 3.6.41 -->
 - Bump kitchen-azurerm to 0.14.7 [#1887](https://github.com/chef/chef-dk/pull/1887) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.40 -->
 - Update mixlib-config, mixlib-log, and nokogiri to reduce install size [#1886](https://github.com/chef/chef-dk/pull/1886) ([tas50](https://github.com/tas50)) <!-- 3.6.39 -->
 - Bump nokogiri to 1.9.0 to reduce size / speedup operations [#1884](https://github.com/chef/chef-dk/pull/1884) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.38 -->
