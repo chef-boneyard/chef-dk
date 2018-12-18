@@ -514,7 +514,7 @@ GEM
       mixlib-shellout
       mixlib-versioning
       thor
-    mixlib-log (2.0.4)
+    mixlib-log (2.0.9)
     mixlib-shellout (2.4.4)
     mixlib-shellout (2.4.4-universal-mingw32)
       win32-process (~> 0.8.2)
@@ -547,11 +547,11 @@ GEM
       net-ssh-gateway (>= 1.2.0)
     net-telnet (0.1.1)
     netaddr (1.5.1)
-    nokogiri (1.9.0)
+    nokogiri (1.9.1)
       mini_portile2 (~> 2.4.0)
-    nokogiri (1.9.0-x64-mingw32)
+    nokogiri (1.9.1-x64-mingw32)
       mini_portile2 (~> 2.4.0)
-    nokogiri (1.9.0-x86-mingw32)
+    nokogiri (1.9.1-x86-mingw32)
       mini_portile2 (~> 2.4.0)
     nori (2.6.0)
     notiffany (0.1.1)
