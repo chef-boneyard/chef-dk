@@ -91,6 +91,9 @@ subscriptions:
   - workload: ruby_gem_published:mixlib-cli-*
     actions:
       - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:mixlib-config-*
+    actions:
+      - bash:.expeditor/update_dep.sh
   - workload: ruby_gem_published:mixlib-log-*
     actions:
       - bash:.expeditor/update_dep.sh
