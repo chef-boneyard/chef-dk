@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.47 -->
-## [v3.6.47](https://github.com/chef/chef-dk/tree/v3.6.47) (2018-12-19)
+<!-- latest_release 3.6.48 -->
+## [v3.6.48](https://github.com/chef/chef-dk/tree/v3.6.48) (2018-12-19)
 
 #### Merged Pull Requests
-- Bump license_scout to 1.0.20 for licensing tests [#1889](https://github.com/chef/chef-dk/pull/1889) ([tas50](https://github.com/tas50))
+- Bump train to 1.6.3 to expand winrm support and reduce install size on disk [#1890](https://github.com/chef/chef-dk/pull/1890) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Bump train to 1.6.3 to expand winrm support and reduce install size on disk [#1890](https://github.com/chef/chef-dk/pull/1890) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.48 -->
 - Bump license_scout to 1.0.20 for licensing tests [#1889](https://github.com/chef/chef-dk/pull/1889) ([tas50](https://github.com/tas50)) <!-- 3.6.42 -->
 - Update mixlib-versioning to 1.2.7 to slim the install size [#1888](https://github.com/chef/chef-dk/pull/1888) ([tas50](https://github.com/tas50)) <!-- 3.6.41 -->
 - Bump kitchen-azurerm to 0.14.7 [#1887](https://github.com/chef/chef-dk/pull/1887) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.40 -->
