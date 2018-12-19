@@ -1,6 +1,6 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.45 -->
-## [v3.6.45](https://github.com/chef/chef-dk/tree/v3.6.45) (2018-12-19)
+<!-- latest_release 3.6.46 -->
+## [v3.6.46](https://github.com/chef/chef-dk/tree/v3.6.46) (2018-12-19)
 
 #### Merged Pull Requests
 - Bump license_scout to 1.0.20 for licensing tests [#1889](https://github.com/chef/chef-dk/pull/1889) ([tas50](https://github.com/tas50))
