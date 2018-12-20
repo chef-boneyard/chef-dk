@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.49 -->
-## [v3.6.49](https://github.com/chef/chef-dk/tree/v3.6.49) (2018-12-20)
+<!-- latest_release 3.6.50 -->
+## [v3.6.50](https://github.com/chef/chef-dk/tree/v3.6.50) (2018-12-20)
 
 #### Merged Pull Requests
-- Bump kitchen-ec2 to 2.4.0 for amazon2 &amp; windows server 1709/1803 support [#1891](https://github.com/chef/chef-dk/pull/1891) ([chef-ci](https://github.com/chef-ci))
+- Bump knife-opc to 0.4.1 to improve knife help messaging [#1892](https://github.com/chef/chef-dk/pull/1892) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Bump knife-opc to 0.4.1 to improve knife help messaging [#1892](https://github.com/chef/chef-dk/pull/1892) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.50 -->
 - Bump kitchen-ec2 to 2.4.0 for amazon2 &amp; windows server 1709/1803 support [#1891](https://github.com/chef/chef-dk/pull/1891) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.49 -->
 - Bump train to 1.6.3 to expand winrm support and reduce install size on disk [#1890](https://github.com/chef/chef-dk/pull/1890) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.48 -->
 - Bump license_scout to 1.0.20 for licensing tests [#1889](https://github.com/chef/chef-dk/pull/1889) ([tas50](https://github.com/tas50)) <!-- 3.6.42 -->
