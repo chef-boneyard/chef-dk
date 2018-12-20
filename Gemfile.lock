@@ -464,7 +464,7 @@ GEM
       gcewinpass (~> 1.1)
       google-api-client (>= 0.19.8, < 0.25)
       knife-cloud (~> 1.2.0)
-    knife-opc (0.4.0)
+    knife-opc (0.4.1)
     knife-push (1.1.2)
       chef (>= 13.0)
     knife-spork (1.7.2)
