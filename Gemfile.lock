@@ -392,7 +392,7 @@ GEM
     ice_nine (0.11.2)
     inifile (3.0.0)
     iniparse (1.4.4)
-    inspec (3.1.3)
+    inspec (3.2.6)
       addressable (~> 2.4)
       faraday (>= 0.9.0)
       faraday_middleware (~> 0.12.2)
@@ -413,7 +413,7 @@ GEM
       term-ansicolor
       thor (~> 0.20)
       tomlrb (~> 1.2)
-      train (~> 1.5, >= 1.5.11)
+      train (~> 1.5, >= 1.6.3)
       tty-prompt (~> 0.17)
       tty-table (~> 0.10)
     ipaddress (0.8.3)
