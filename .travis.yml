@@ -15,7 +15,7 @@ before_install:
   - gem --version
   - rm -f .bundle/config
 
-bundler_args: --without changelog docgen guard maintenance omnibus_package tools aix bsd mac_os_x solaris windows --frozen
+bundler_args: --without omnibus_package tools aix bsd mac_os_x solaris windows --frozen
 
 env:
   global:
