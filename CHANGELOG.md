@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.52 -->
-## [v3.6.52](https://github.com/chef/chef-dk/tree/v3.6.52) (2018-12-21)
+<!-- latest_release 3.6.53 -->
+## [v3.6.53](https://github.com/chef/chef-dk/tree/v3.6.53) (2018-12-26)
 
 #### Merged Pull Requests
-- Bump fauxhai to 6.10.0 [#1894](https://github.com/chef/chef-dk/pull/1894) ([chef-ci](https://github.com/chef-ci))
+- Update plist, tomlrb, and unicode-display_width to new smaller versions [#1897](https://github.com/chef/chef-dk/pull/1897) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Update plist, tomlrb, and unicode-display_width to new smaller versions [#1897](https://github.com/chef/chef-dk/pull/1897) ([tas50](https://github.com/tas50)) <!-- 3.6.53 -->
 - Bump fauxhai to 6.10.0 [#1894](https://github.com/chef/chef-dk/pull/1894) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.52 -->
 - Bump inspec to 3.2.6 to add aws_sqs_queue resource and add new winrm connection options [#1893](https://github.com/chef/chef-dk/pull/1893) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.51 -->
 - Bump knife-opc to 0.4.1 to improve knife help messaging [#1892](https://github.com/chef/chef-dk/pull/1892) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.50 -->
