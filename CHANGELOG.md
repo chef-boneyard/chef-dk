@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.56 -->
-## [v3.6.56](https://github.com/chef/chef-dk/tree/v3.6.56) (2018-12-27)
+<!-- latest_release 3.6.57 -->
+## [v3.6.57](https://github.com/chef/chef-dk/tree/v3.6.57) (2018-12-27)
 
 #### Merged Pull Requests
-- Bump chefspec to 7.3.4 to fix chef-dk verification tests [#1902](https://github.com/chef/chef-dk/pull/1902) ([chef-ci](https://github.com/chef-ci))
+- Bump chef-sugar to 5.0.0 [#1903](https://github.com/chef/chef-dk/pull/1903) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.5.13 -->
 ### Changes since 3.5.13 release
 
 #### Merged Pull Requests
+- Bump chef-sugar to 5.0.0 [#1903](https://github.com/chef/chef-dk/pull/1903) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.57 -->
 - Bump chefspec to 7.3.4 to fix chef-dk verification tests [#1902](https://github.com/chef/chef-dk/pull/1902) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.56 -->
 - Bump foodcritic to 15.1 to add Chef 14.8 metadata and bump stove to 7.0.1 to fix error messages not printing [#1900](https://github.com/chef/chef-dk/pull/1900) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.55 -->
 - Bump test-kitchen to 1.24.0 to improve error messages for missing plugins [#1898](https://github.com/chef/chef-dk/pull/1898) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.54 -->
