@@ -1,4 +1,26 @@
-# Unreleased Version
+# ChefDK 3.6 Release Notes
+
+## Chef 14.8.12
+
+ChefDK now ships with Chef 14.8.12. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
+## Security Updates
+
+### OpenSSL
+
+OpenSSL updated to 1.0.2q to resolve:
+- Microarchitecture timing vulnerability in ECC scalar multiplication ([CVE-2018-5407](https://nvd.nist.gov/vuln/detail/CVE-2018-5407))
+- Timing vulnerability in DSA signature generation ([CVE-2018-0734](https://nvd.nist.gov/vuln/detail/CVE-2018-0734))
+
+## New Functionality
+
+* New option: `chef generate cookbook --kitchen (dokken|vagrant)` Generate cookbooks with a specific kitchen configuration (defaults to vagrant).
+
+## Updated Components and Tools
+
+* `kitchen-ec2`: 3.0.6 -> 3.0.6
+* `inspec`: 3.0.52 -> 3.2.6
+* `test-kitchen`: 1.23.2 -> 1.24.0
 
 # ChefDK 3.5 Release Notes
 
