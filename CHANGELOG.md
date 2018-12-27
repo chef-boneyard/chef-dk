@@ -1,75 +1,73 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.6.57 -->
-## [v3.6.57](https://github.com/chef/chef-dk/tree/v3.6.57) (2018-12-27)
-
-#### Merged Pull Requests
-- Bump chef-sugar to 5.0.0 [#1903](https://github.com/chef/chef-dk/pull/1903) ([chef-ci](https://github.com/chef-ci))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.5.13 -->
-### Changes since 3.5.13 release
-
-#### Merged Pull Requests
-- Bump chef-sugar to 5.0.0 [#1903](https://github.com/chef/chef-dk/pull/1903) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.57 -->
-- Bump chefspec to 7.3.4 to fix chef-dk verification tests [#1902](https://github.com/chef/chef-dk/pull/1902) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.56 -->
-- Bump foodcritic to 15.1 to add Chef 14.8 metadata and bump stove to 7.0.1 to fix error messages not printing [#1900](https://github.com/chef/chef-dk/pull/1900) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.55 -->
-- Bump test-kitchen to 1.24.0 to improve error messages for missing plugins [#1898](https://github.com/chef/chef-dk/pull/1898) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.54 -->
-- Update plist, tomlrb, and unicode-display_width to new smaller versions [#1897](https://github.com/chef/chef-dk/pull/1897) ([tas50](https://github.com/tas50)) <!-- 3.6.53 -->
-- Bump fauxhai to 6.10.0 [#1894](https://github.com/chef/chef-dk/pull/1894) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.52 -->
-- Bump inspec to 3.2.6 to add aws_sqs_queue resource and add new winrm connection options [#1893](https://github.com/chef/chef-dk/pull/1893) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.51 -->
-- Bump knife-opc to 0.4.1 to improve knife help messaging [#1892](https://github.com/chef/chef-dk/pull/1892) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.50 -->
-- Bump kitchen-ec2 to 2.4.0 for amazon2 &amp; windows server 1709/1803 support [#1891](https://github.com/chef/chef-dk/pull/1891) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.49 -->
-- Bump train to 1.6.3 to expand winrm support and reduce install size on disk [#1890](https://github.com/chef/chef-dk/pull/1890) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.48 -->
-- Bump license_scout to 1.0.20 for licensing tests [#1889](https://github.com/chef/chef-dk/pull/1889) ([tas50](https://github.com/tas50)) <!-- 3.6.42 -->
-- Update mixlib-versioning to 1.2.7 to slim the install size [#1888](https://github.com/chef/chef-dk/pull/1888) ([tas50](https://github.com/tas50)) <!-- 3.6.41 -->
-- Bump kitchen-azurerm to 0.14.7 [#1887](https://github.com/chef/chef-dk/pull/1887) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.40 -->
-- Update mixlib-config, mixlib-log, and nokogiri to reduce install size [#1886](https://github.com/chef/chef-dk/pull/1886) ([tas50](https://github.com/tas50)) <!-- 3.6.39 -->
-- Bump nokogiri to 1.9.0 to reduce size / speedup operations [#1884](https://github.com/chef/chef-dk/pull/1884) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.38 -->
-- Update cookstyle and update habtitat plan to match omnibus [#1883](https://github.com/chef/chef-dk/pull/1883) ([tas50](https://github.com/tas50)) <!-- 3.6.37 -->
-- Fix the habitat plan to not use rake install [#1881](https://github.com/chef/chef-dk/pull/1881) ([tas50](https://github.com/tas50)) <!-- 3.6.36 -->
-- Update to inspec 3.1.3 for new UI experience [#1879](https://github.com/chef/chef-dk/pull/1879) ([tas50](https://github.com/tas50)) <!-- 3.6.35 -->
-- Bump Chef to 14.8.12 [#1878](https://github.com/chef/chef-dk/pull/1878) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.34 -->
-- Remove the Rake gemtasks since we use expeditor [#1870](https://github.com/chef/chef-dk/pull/1870) ([tas50](https://github.com/tas50)) <!-- 3.6.33 -->
-- Bump mixlib-archive to 0.4.19 and mixlib-shellout to 2.4.4 to slim the install size [#1877](https://github.com/chef/chef-dk/pull/1877) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.32 -->
-- Update to artifactory 3.0 to slim the install size [#1875](https://github.com/chef/chef-dk/pull/1875) ([tas50](https://github.com/tas50)) <!-- 3.6.31 -->
-- Bump kitchen-azurerm to 0.14.6 to support tags and resolve errors fetching IP during node create [#1874](https://github.com/chef/chef-dk/pull/1874) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.30 -->
-- Don&#39;t ship omnibus_overrides or readme in the gemfile [#1857](https://github.com/chef/chef-dk/pull/1857) ([tas50](https://github.com/tas50)) <!-- 3.6.29 -->
-- Bump cookstyle to 3.0.1 [#1873](https://github.com/chef/chef-dk/pull/1873) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.28 -->
-- Bump chefspec to 7.3.3 [#1872](https://github.com/chef/chef-dk/pull/1872) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.27 -->
-- Bump test-kitchen to 1.23.5 to fix appbundling in DK builds [#1871](https://github.com/chef/chef-dk/pull/1871) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.26 -->
-- Bump kitchen-google to 2.0.1 to slim the install size [#1869](https://github.com/chef/chef-dk/pull/1869) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.25 -->
-- Bump knife-ec2 to 0.19.16 to slim the install size [#1868](https://github.com/chef/chef-dk/pull/1868) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.24 -->
-- Bump test-kitchen to 1.23.4 to reduce the size of the DK installation [#1867](https://github.com/chef/chef-dk/pull/1867) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.23 -->
-- Prevent shipping two copies of rdoc and minitest gems [#1866](https://github.com/chef/chef-dk/pull/1866) ([tas50](https://github.com/tas50)) <!-- 3.6.22 -->
-- Update Solve and Semverse to slim the install size [#1865](https://github.com/chef/chef-dk/pull/1865) ([tas50](https://github.com/tas50)) <!-- 3.6.21 -->
-- Bump wmi-lite to 1.0.1 to slim the install size [#1864](https://github.com/chef/chef-dk/pull/1864) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.20 -->
-- Bump chef-provisioning-fog, mixlib-shellout, and ffi-libarchive to slim install size [#1863](https://github.com/chef/chef-dk/pull/1863) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.19 -->
-- Bump inspec to 3.0.64 with habitat improvements and a smaller on disk size [#1860](https://github.com/chef/chef-dk/pull/1860) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.18 -->
-- Bump chef-provisioning-aws to 3.0.7 to slim the install size [#1859](https://github.com/chef/chef-dk/pull/1859) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.17 -->
-- Bump chef-sugar to 4.2.1 [#1858](https://github.com/chef/chef-dk/pull/1858) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.16 -->
-- Bump ohai to 14.8.10 for improved platform and virtualization detection [#1856](https://github.com/chef/chef-dk/pull/1856) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.15 -->
-- Bump chef-sugar to 4.2.0 to added parallels? helper and improve raspi detection [#1855](https://github.com/chef/chef-dk/pull/1855) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.14 -->
-- Prevent rake from being packaged twice in DK [#1853](https://github.com/chef/chef-dk/pull/1853) ([tas50](https://github.com/tas50)) <!-- 3.6.13 -->
-- Bump kitchen-ec2 to 2.3.4 to slim the install size [#1854](https://github.com/chef/chef-dk/pull/1854) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.12 -->
-- Bump stove to 7.0.0 to ship metadata.rb to supermarket and remove the yank command [#1852](https://github.com/chef/chef-dk/pull/1852) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.11 -->
-- Bump stove to 6.1.0 to slim the install size [#1851](https://github.com/chef/chef-dk/pull/1851) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.10 -->
-- Bump knife-push to 1.1.1 to slim the install size [#1850](https://github.com/chef/chef-dk/pull/1850) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.9 -->
-- Bump knife-ec2 to 0.19.15 to slim the install size [#1849](https://github.com/chef/chef-dk/pull/1849) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.8 -->
-- Bump foodcritic to 15.0.0 to include just the latest Chef release metadata [#1848](https://github.com/chef/chef-dk/pull/1848) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.7 -->
-- Bump test-kitchen to 1.23.3 with improvements for WinRM [#1847](https://github.com/chef/chef-dk/pull/1847) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.6 -->
-- [inspec to 3.0.61] improve windows support &amp; several bugfixes [#1846](https://github.com/chef/chef-dk/pull/1846) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.5 -->
-- Bump kitchen-ec2 to 2.3.3 to add support for arm64 architecture  [#1844](https://github.com/chef/chef-dk/pull/1844) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.4 -->
-- [kitchen-ec2 to 2.3.2] fix x86_64 architecture default for image search (resolves arm64 appearing as default) [#1843](https://github.com/chef/chef-dk/pull/1843) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.3 -->
-- Adds a kitchen flag that gives options for different kitchen configs [#1517](https://github.com/chef/chef-dk/pull/1517) ([burtlo](https://github.com/burtlo)) <!-- 3.6.2 -->
-- Bump knife-cloud to 1.2.3 [#1842](https://github.com/chef/chef-dk/pull/1842) ([chef-ci](https://github.com/chef-ci)) <!-- 3.6.1 -->
-- Update to openssl 1.0.2q [#1839](https://github.com/chef/chef-dk/pull/1839) ([tas50](https://github.com/tas50)) <!-- 3.6.0 -->
-- Bump knife-ec2 to 0.19.12 [#1840](https://github.com/chef/chef-dk/pull/1840) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.17 -->
-- Bump berkshelf to 7.0.7 [#1837](https://github.com/chef/chef-dk/pull/1837) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.16 -->
-- Update repository contributing.md, code of conduct, PR template [#1833](https://github.com/chef/chef-dk/pull/1833) ([marcparadise](https://github.com/marcparadise)) <!-- 3.5.15 -->
-- Bump knife-google to 3.3.6 [#1834](https://github.com/chef/chef-dk/pull/1834) ([chef-ci](https://github.com/chef-ci)) <!-- 3.5.14 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.6.57](https://github.com/chef/chef-dk/tree/v3.6.57) (2018-12-27)
+
+#### Merged Pull Requests
+- Bump knife-google to 3.3.6 [#1834](https://github.com/chef/chef-dk/pull/1834) ([chef-ci](https://github.com/chef-ci))
+- Update repository contributing.md, code of conduct, PR template [#1833](https://github.com/chef/chef-dk/pull/1833) ([marcparadise](https://github.com/marcparadise))
+- Bump berkshelf to 7.0.7 [#1837](https://github.com/chef/chef-dk/pull/1837) ([chef-ci](https://github.com/chef-ci))
+- Bump knife-ec2 to 0.19.12 [#1840](https://github.com/chef/chef-dk/pull/1840) ([chef-ci](https://github.com/chef-ci))
+- Update to openssl 1.0.2q [#1839](https://github.com/chef/chef-dk/pull/1839) ([tas50](https://github.com/tas50))
+- Bump knife-cloud to 1.2.3 [#1842](https://github.com/chef/chef-dk/pull/1842) ([chef-ci](https://github.com/chef-ci))
+- Adds a kitchen flag that gives options for different kitchen configs [#1517](https://github.com/chef/chef-dk/pull/1517) ([burtlo](https://github.com/burtlo))
+- [kitchen-ec2 to 2.3.2] fix x86_64 architecture default for image search (resolves arm64 appearing as default) [#1843](https://github.com/chef/chef-dk/pull/1843) ([chef-ci](https://github.com/chef-ci))
+- Bump kitchen-ec2 to 2.3.3 to add support for arm64 architecture  [#1844](https://github.com/chef/chef-dk/pull/1844) ([chef-ci](https://github.com/chef-ci))
+- [inspec to 3.0.61] improve windows support &amp; several bugfixes [#1846](https://github.com/chef/chef-dk/pull/1846) ([chef-ci](https://github.com/chef-ci))
+- Bump test-kitchen to 1.23.3 with improvements for WinRM [#1847](https://github.com/chef/chef-dk/pull/1847) ([chef-ci](https://github.com/chef-ci))
+- Bump foodcritic to 15.0.0 to include just the latest Chef release metadata [#1848](https://github.com/chef/chef-dk/pull/1848) ([chef-ci](https://github.com/chef-ci))
+- Bump knife-ec2 to 0.19.15 to slim the install size [#1849](https://github.com/chef/chef-dk/pull/1849) ([chef-ci](https://github.com/chef-ci))
+- Bump knife-push to 1.1.1 to slim the install size [#1850](https://github.com/chef/chef-dk/pull/1850) ([chef-ci](https://github.com/chef-ci))
+- Bump stove to 6.1.0 to slim the install size [#1851](https://github.com/chef/chef-dk/pull/1851) ([chef-ci](https://github.com/chef-ci))
+- Bump stove to 7.0.0 to ship metadata.rb to supermarket and remove the yank command [#1852](https://github.com/chef/chef-dk/pull/1852) ([chef-ci](https://github.com/chef-ci))
+- Bump kitchen-ec2 to 2.3.4 to slim the install size [#1854](https://github.com/chef/chef-dk/pull/1854) ([chef-ci](https://github.com/chef-ci))
+- Prevent rake from being packaged twice in DK [#1853](https://github.com/chef/chef-dk/pull/1853) ([tas50](https://github.com/tas50))
+- Bump chef-sugar to 4.2.0 to added parallels? helper and improve raspi detection [#1855](https://github.com/chef/chef-dk/pull/1855) ([chef-ci](https://github.com/chef-ci))
+- Bump ohai to 14.8.10 for improved platform and virtualization detection [#1856](https://github.com/chef/chef-dk/pull/1856) ([chef-ci](https://github.com/chef-ci))
+- Bump chef-sugar to 4.2.1 [#1858](https://github.com/chef/chef-dk/pull/1858) ([chef-ci](https://github.com/chef-ci))
+- Bump chef-provisioning-aws to 3.0.7 to slim the install size [#1859](https://github.com/chef/chef-dk/pull/1859) ([chef-ci](https://github.com/chef-ci))
+- Bump inspec to 3.0.64 with habitat improvements and a smaller on disk size [#1860](https://github.com/chef/chef-dk/pull/1860) ([chef-ci](https://github.com/chef-ci))
+- Bump chef-provisioning-fog, mixlib-shellout, and ffi-libarchive to slim install size [#1863](https://github.com/chef/chef-dk/pull/1863) ([chef-ci](https://github.com/chef-ci))
+- Bump wmi-lite to 1.0.1 to slim the install size [#1864](https://github.com/chef/chef-dk/pull/1864) ([chef-ci](https://github.com/chef-ci))
+- Update Solve and Semverse to slim the install size [#1865](https://github.com/chef/chef-dk/pull/1865) ([tas50](https://github.com/tas50))
+- Prevent shipping two copies of rdoc and minitest gems [#1866](https://github.com/chef/chef-dk/pull/1866) ([tas50](https://github.com/tas50))
+- Bump test-kitchen to 1.23.4 to reduce the size of the DK installation [#1867](https://github.com/chef/chef-dk/pull/1867) ([chef-ci](https://github.com/chef-ci))
+- Bump knife-ec2 to 0.19.16 to slim the install size [#1868](https://github.com/chef/chef-dk/pull/1868) ([chef-ci](https://github.com/chef-ci))
+- Bump kitchen-google to 2.0.1 to slim the install size [#1869](https://github.com/chef/chef-dk/pull/1869) ([chef-ci](https://github.com/chef-ci))
+- Bump test-kitchen to 1.23.5 to fix appbundling in DK builds [#1871](https://github.com/chef/chef-dk/pull/1871) ([chef-ci](https://github.com/chef-ci))
+- Bump chefspec to 7.3.3 [#1872](https://github.com/chef/chef-dk/pull/1872) ([chef-ci](https://github.com/chef-ci))
+- Bump cookstyle to 3.0.1 [#1873](https://github.com/chef/chef-dk/pull/1873) ([chef-ci](https://github.com/chef-ci))
+- Don&#39;t ship omnibus_overrides or readme in the gemfile [#1857](https://github.com/chef/chef-dk/pull/1857) ([tas50](https://github.com/tas50))
+- Bump kitchen-azurerm to 0.14.6 to support tags and resolve errors fetching IP during node create [#1874](https://github.com/chef/chef-dk/pull/1874) ([chef-ci](https://github.com/chef-ci))
+- Update to artifactory 3.0 to slim the install size [#1875](https://github.com/chef/chef-dk/pull/1875) ([tas50](https://github.com/tas50))
+- Bump mixlib-archive to 0.4.19 and mixlib-shellout to 2.4.4 to slim the install size [#1877](https://github.com/chef/chef-dk/pull/1877) ([chef-ci](https://github.com/chef-ci))
+- Remove the Rake gemtasks since we use expeditor [#1870](https://github.com/chef/chef-dk/pull/1870) ([tas50](https://github.com/tas50))
+- Bump Chef to 14.8.12 [#1878](https://github.com/chef/chef-dk/pull/1878) ([chef-ci](https://github.com/chef-ci))
+- Update to inspec 3.1.3 for new UI experience [#1879](https://github.com/chef/chef-dk/pull/1879) ([tas50](https://github.com/tas50))
+- Fix the habitat plan to not use rake install [#1881](https://github.com/chef/chef-dk/pull/1881) ([tas50](https://github.com/tas50))
+- Update cookstyle and update habtitat plan to match omnibus [#1883](https://github.com/chef/chef-dk/pull/1883) ([tas50](https://github.com/tas50))
+- Bump nokogiri to 1.9.0 to reduce size / speedup operations [#1884](https://github.com/chef/chef-dk/pull/1884) ([chef-ci](https://github.com/chef-ci))
+- Update mixlib-config, mixlib-log, and nokogiri to reduce install size [#1886](https://github.com/chef/chef-dk/pull/1886) ([tas50](https://github.com/tas50))
+- Bump kitchen-azurerm to 0.14.7 [#1887](https://github.com/chef/chef-dk/pull/1887) ([chef-ci](https://github.com/chef-ci))
+- Update mixlib-versioning to 1.2.7 to slim the install size [#1888](https://github.com/chef/chef-dk/pull/1888) ([tas50](https://github.com/tas50))
+- Bump license_scout to 1.0.20 for licensing tests [#1889](https://github.com/chef/chef-dk/pull/1889) ([tas50](https://github.com/tas50))
+- Bump train to 1.6.3 to expand winrm support and reduce install size on disk [#1890](https://github.com/chef/chef-dk/pull/1890) ([chef-ci](https://github.com/chef-ci))
+- Bump kitchen-ec2 to 2.4.0 for amazon2 &amp; windows server 1709/1803 support [#1891](https://github.com/chef/chef-dk/pull/1891) ([chef-ci](https://github.com/chef-ci))
+- Bump knife-opc to 0.4.1 to improve knife help messaging [#1892](https://github.com/chef/chef-dk/pull/1892) ([chef-ci](https://github.com/chef-ci))
+- Bump inspec to 3.2.6 to add aws_sqs_queue resource and add new winrm connection options [#1893](https://github.com/chef/chef-dk/pull/1893) ([chef-ci](https://github.com/chef-ci))
+- Bump fauxhai to 6.10.0 [#1894](https://github.com/chef/chef-dk/pull/1894) ([chef-ci](https://github.com/chef-ci))
+- Update plist, tomlrb, and unicode-display_width to new smaller versions [#1897](https://github.com/chef/chef-dk/pull/1897) ([tas50](https://github.com/tas50))
+- Bump test-kitchen to 1.24.0 to improve error messages for missing plugins [#1898](https://github.com/chef/chef-dk/pull/1898) ([chef-ci](https://github.com/chef-ci))
+- Bump foodcritic to 15.1 to add Chef 14.8 metadata and bump stove to 7.0.1 to fix error messages not printing [#1900](https://github.com/chef/chef-dk/pull/1900) ([chef-ci](https://github.com/chef-ci))
+- Bump chefspec to 7.3.4 to fix chef-dk verification tests [#1902](https://github.com/chef/chef-dk/pull/1902) ([chef-ci](https://github.com/chef-ci))
+- Bump chef-sugar to 5.0.0 [#1903](https://github.com/chef/chef-dk/pull/1903) ([chef-ci](https://github.com/chef-ci))
+<!-- latest_stable_release -->
+
 ## [v3.5.13](https://github.com/chef/chef-dk/tree/v3.5.13) (2018-11-16)
 
 #### Merged Pull Requests
@@ -86,7 +84,6 @@
 - Bump chef-zero to 14.0.11 [#1829](https://github.com/chef/chef-dk/pull/1829) ([chef-ci](https://github.com/chef-ci))
 - Bump inspec to 3.0.52 [#1831](https://github.com/chef/chef-dk/pull/1831) ([chef-ci](https://github.com/chef-ci))
 - update release notes for 3.5 [#1830](https://github.com/chef/chef-dk/pull/1830) ([robbkidd](https://github.com/robbkidd))
-<!-- latest_stable_release -->
 
 ## [v3.4.38](https://github.com/chef/chef-dk/tree/v3.4.38) (2018-10-29)
 
