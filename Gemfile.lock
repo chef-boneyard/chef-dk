@@ -190,7 +190,7 @@ GEM
       fog-xenserver
       retryable
       winrm-elevated
-    chef-sugar (4.2.1)
+    chef-sugar (5.0.0)
     chef-telemetry (0.1.0)
       chef-config
       concurrent-ruby (~> 1.0)
