@@ -206,7 +206,7 @@ GEM
     cheffish (14.0.4)
       chef-zero (~> 14.0)
       net-ssh
-    chefspec (7.3.3)
+    chefspec (7.3.4)
       chef (>= 12.16.42)
       fauxhai (>= 4)
       rspec (~> 3.0)
