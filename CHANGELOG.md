@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.6.58 -->
+## [v3.6.58](https://github.com/chef/chef-dk/tree/v3.6.58) (2018-12-28)
+
+#### Merged Pull Requests
+- Adding release notes for 3.6 release [#1904](https://github.com/chef/chef-dk/pull/1904) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.6.57 -->
+### Changes since 3.6.57 release
+
+#### Merged Pull Requests
+- Adding release notes for 3.6 release [#1904](https://github.com/chef/chef-dk/pull/1904) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.6.58 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
