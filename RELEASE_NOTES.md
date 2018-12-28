@@ -12,15 +12,67 @@ OpenSSL updated to 1.0.2q to resolve:
 - Microarchitecture timing vulnerability in ECC scalar multiplication ([CVE-2018-5407](https://nvd.nist.gov/vuln/detail/CVE-2018-5407))
 - Timing vulnerability in DSA signature generation ([CVE-2018-0734](https://nvd.nist.gov/vuln/detail/CVE-2018-0734))
 
-## New Functionality
+## New Chef Command Functionality
 
 * New option: `chef generate cookbook --kitchen (dokken|vagrant)` Generate cookbooks with a specific kitchen configuration (defaults to vagrant).
 
 ## Updated Components and Tools
 
-* `kitchen-ec2`: 3.0.6 -> 3.0.6
-* `inspec`: 3.0.52 -> 3.2.6
-* `test-kitchen`: 1.23.2 -> 1.24.0
+### chef-client 14.8
+
+chef-client has been updated from 14.7 to 14.8, which includes resources improvements and bug fixes throughout.
+
+### InSpec 3.2.6
+
+- Added new aws_sqs_queue resource. Thanks [@amitsaha](https://github.com/amitsaha)
+- Exposed additional WinRM options for transport, basic auth, and SSPI. Thanks [@frezbo](https://github.com/frezbo)
+- Improved UI experience throughout including new CLI flags --color/--no-color and --interactive/--no-interactive
+
+### Berkshelf 7.0.7
+
+- Added `berks outdated --all` command to get a list of outdated dependencies, including those that wouldn't satisfy the version constraints set in Berksfile. Thanks [@jeroenj](https://github.com/jeroenj)
+
+### Fauxhai 6.10.0
+
+- Added Fedora 29 Ohai dump for use in ChefSpec
+
+### chef-sugar 5.0
+
+- Added a new parallels? helper. Thanks [@ehanlon](https://github.com/ehanlon)
+- Added support for the Raspberry Pi 1 and Zero to armhf? helper
+- Added a centos_final? helper. Thanks [@kareiva](https://github.com/kareiva)
+
+### Foodcritic 15.1
+
+- Updated the Chef metadata to 13.12 / 14.8 and removed all other Chef metadata
+
+### kitchen-azurerm 0.14.7
+
+- Resolved failures in the plugin by updating the azure API gems
+
+### kitchen-ec2 2.4.0
+
+- Added support for arm64 architecture instances
+- Support Windows Server 1709 and 1803 image searching. Thanks [@xtimon](https://github.com/xtimon)
+- Support Amazon Linux 2.0 image searching. Use the platform 'amazon2'. Thanks [@pschaumburg](https://github.com/pschaumburg)
+
+### knife-ec2 0.19.16
+
+- Allow passing the `--bootstrap-template` option during node bootstrapping
+
+### knife-google 3.3.7
+
+- Allow running knife google zone list, region list, region quotas, project quotas to run without specifyig the `gce_zone` option
+
+### stove 7.0.1
+
+- The yank command has been removed as this command causes large downstream impact to other users and should not be part of the tooling
+- The metadata.rb file will now be included in uploads to match the behavior of berkshelf 7+
+
+### test-kitchen 1.24
+
+- Added support for the Chef 13+ root aliases. With this chance you can now test a cookbook with a simple recipe.rb and attributes.rb file.
+- Improve WinRM support with retries and graceful connection cleanup. Thanks [@bdwyertech](https://github.com/bdwyertech) and [@dwoz](https://github.com/dwoz)
 
 # ChefDK 3.5 Release Notes
 
@@ -31,7 +83,6 @@ ChefDK now ships with Chef 14.7.17. See <https://docs.chef.io/release_notes.html
 ## Docker image updates
 
 The [chef/chefdk](https://hub.docker.com/r/chef/chefdk) Docker image now includes graphviz (to support `berks viz`) and rsync (to support `kitchen-dokken`) which makes it a little bigger, but also a little more useful in development and test pipelines.
-
 
 # ChefDK 3.4 Release Notes
 
