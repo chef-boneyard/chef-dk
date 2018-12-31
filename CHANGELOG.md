@@ -1,8 +1,9 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release unreleased -->
-## Unreleased
+<!-- latest_release 3.7.1 -->
+## [v3.7.1](https://github.com/chef/chef-dk/tree/v3.7.1) (2018-12-31)
 
 #### Merged Pull Requests
+- Bump kitchen-azurerm to 0.14.8 to support Azure Managed Service Identities &amp; VM tags [#1906](https://github.com/chef/chef-dk/pull/1906) ([chef-ci](https://github.com/chef-ci))
 - Bumping to 3.7 for new minor version development [#1905](https://github.com/chef/chef-dk/pull/1905) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
@@ -10,6 +11,7 @@
 ### Changes since 3.6.57 release
 
 #### Merged Pull Requests
+- Bump kitchen-azurerm to 0.14.8 to support Azure Managed Service Identities &amp; VM tags [#1906](https://github.com/chef/chef-dk/pull/1906) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.1 -->
 - Bumping to 3.7 for new minor version development [#1905](https://github.com/chef/chef-dk/pull/1905) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.7.0 -->
 - Adding release notes for 3.6 release [#1904](https://github.com/chef/chef-dk/pull/1904) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.6.58 -->
 <!-- release_rollup -->
