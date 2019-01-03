@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.7.3 -->
-## [v3.7.3](https://github.com/chef/chef-dk/tree/v3.7.3) (2019-01-03)
+<!-- latest_release 3.7.4 -->
+## [v3.7.4](https://github.com/chef/chef-dk/tree/v3.7.4) (2019-01-03)
 
 #### Merged Pull Requests
-- Cleanup the omnibus definition for DK [#1882](https://github.com/chef/chef-dk/pull/1882) ([tas50](https://github.com/tas50))
+- Remove the acceptance files from the install [#1895](https://github.com/chef/chef-dk/pull/1895) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.6.57 -->
 ### Changes since 3.6.57 release
 
 #### Merged Pull Requests
+- Remove the acceptance files from the install [#1895](https://github.com/chef/chef-dk/pull/1895) ([tas50](https://github.com/tas50)) <!-- 3.7.4 -->
 - Cleanup the omnibus definition for DK [#1882](https://github.com/chef/chef-dk/pull/1882) ([tas50](https://github.com/tas50)) <!-- 3.7.3 -->
 - Don&#39;t ship the rake tasks in the gem artifact [#1899](https://github.com/chef/chef-dk/pull/1899) ([tas50](https://github.com/tas50)) <!-- 3.7.2 -->
 - Bump kitchen-azurerm to 0.14.8 to support Azure Managed Service Identities &amp; VM tags [#1906](https://github.com/chef/chef-dk/pull/1906) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.1 -->
