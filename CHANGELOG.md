@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.7.5 -->
-## [v3.7.5](https://github.com/chef/chef-dk/tree/v3.7.5) (2019-01-03)
+<!-- latest_release 3.7.6 -->
+## [v3.7.6](https://github.com/chef/chef-dk/tree/v3.7.6) (2019-01-03)
 
 #### Merged Pull Requests
-- Update rubygems to 2.7.7 and bundler to 1.17.3 [#1908](https://github.com/chef/chef-dk/pull/1908) ([tyler-ball](https://github.com/tyler-ball))
+- Bump chef-telemetry to 0.1.7 [#1907](https://github.com/chef/chef-dk/pull/1907) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.6.57 -->
 ### Changes since 3.6.57 release
 
 #### Merged Pull Requests
+- Bump chef-telemetry to 0.1.7 [#1907](https://github.com/chef/chef-dk/pull/1907) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.6 -->
 - Update rubygems to 2.7.7 and bundler to 1.17.3 [#1908](https://github.com/chef/chef-dk/pull/1908) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.7.5 -->
 - Remove the acceptance files from the install [#1895](https://github.com/chef/chef-dk/pull/1895) ([tas50](https://github.com/tas50)) <!-- 3.7.4 -->
 - Cleanup the omnibus definition for DK [#1882](https://github.com/chef/chef-dk/pull/1882) ([tas50](https://github.com/tas50)) <!-- 3.7.3 -->
