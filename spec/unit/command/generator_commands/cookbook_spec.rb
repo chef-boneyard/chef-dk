@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -269,7 +269,7 @@ PROJECT_DOT_TOML
             # Cookbook:: build_cookbook
             # Recipe:: publish
             #
-            # Copyright:: 2018, The Authors, All Rights Reserved.
+            # Copyright:: 2019, The Authors, All Rights Reserved.
             include_recipe 'delivery-truck::publish'
   CONFIG_DOT_JSON
         end

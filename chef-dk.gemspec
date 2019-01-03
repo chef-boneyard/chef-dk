@@ -34,9 +34,9 @@ Gem::Specification.new do |gem|
   gem.files = %w{Rakefile LICENSE warning.txt} +
     Dir.glob("Gemfile*") + # Includes Gemfile and locks
     Dir.glob("*.gemspec") +
-    Dir.glob("{lib,spec,acceptance}/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
+    Dir.glob("{lib,spec}/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
   gem.executables   = %w{ chef }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.test_files    = gem.files.grep(%r{^spec/})
   gem.require_paths = ["lib"]
 
   gem.add_dependency "mixlib-cli", "~> 1.7"
