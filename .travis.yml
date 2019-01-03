@@ -11,7 +11,7 @@ addons:
 # Early warning system to catch if Rubygems breaks something
 before_install:
   - gem update --system $(grep rubygems omnibus_overrides.rb | cut -d'"' -f2)
-  - gem install bundler # https://github.com/travis-ci/travis-ci/issues/8969
+  - gem install bundler --version $(grep bundler omnibus_overrides.rb | cut -d'"' -f2) # https://github.com/travis-ci/travis-ci/issues/8969
   - gem --version
   - rm -f .bundle/config
 
