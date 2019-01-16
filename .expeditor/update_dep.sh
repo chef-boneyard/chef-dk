@@ -18,11 +18,11 @@ function new_gem_included() {
 branch="expeditor/${GEM_NAME}_${VERSION}"
 git checkout -b "$branch"
 
-gem install rake
+bundle install
 
 tries=12
 for (( i=1; i<=$tries; i+=1 )); do
-  rake dependencies:update_gemfile_lock
+  bundle exec rake dependencies:update_gemfile_lock
   new_gem_included && break || sleep 20
   if [ $i -eq $tries ]; then
     echo "Searching for '${GEM_NAME} (${VERSION})' ${i} times and did not find it"
