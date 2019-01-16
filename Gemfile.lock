@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (3.0.0)
     ast (2.4.0)
-    aws-sdk (2.11.204)
-      aws-sdk-resources (= 2.11.204)
-    aws-sdk-core (2.11.204)
+    aws-sdk (2.11.206)
+      aws-sdk-resources (= 2.11.206)
+    aws-sdk-core (2.11.206)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.204)
-      aws-sdk-core (= 2.11.204)
+    aws-sdk-resources (2.11.206)
+      aws-sdk-core (= 2.11.206)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -46,7 +46,7 @@ GEM
       ms_rest_azure (~> 0.11.0)
     azure_mgmt_key_vault (0.17.2)
       ms_rest_azure (~> 0.11.0)
-    azure_mgmt_network (0.18.2)
+    azure_mgmt_network (0.18.3)
       ms_rest_azure (~> 0.11.0)
     azure_mgmt_resources (0.17.2)
       ms_rest_azure (~> 0.11.0)
@@ -191,7 +191,7 @@ GEM
       retryable
       winrm-elevated
     chef-sugar (5.0.0)
-    chef-telemetry (0.1.7)
+    chef-telemetry (0.1.8)
       chef-config
       concurrent-ruby (~> 1.0)
       ffi-yajl (~> 2.2)
@@ -210,7 +210,7 @@ GEM
       chef (>= 12.16.42)
       fauxhai (>= 4)
       rspec (~> 3.0)
-    chefstyle (0.11.0)
+    chefstyle (0.11.2)
       rubocop (= 0.55.0)
     citrus (3.0.2)
     cleanroom (1.0.0)
@@ -387,7 +387,7 @@ GEM
     http-form_data (1.0.3)
     http_parser.rb (0.6.0)
     httpclient (2.8.3)
-    i18n (1.5.1)
+    i18n (1.5.2)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     inifile (3.0.0)
@@ -472,7 +472,7 @@ GEM
       chef (>= 11.0.0)
       diffy (>= 3.0.1)
       git (>= 1.2.5)
-    knife-tidy (1.2.0)
+    knife-tidy (2.0.0)
     knife-vsphere (2.1.1)
       chef-vault (>= 2.6.0)
       filesize (~> 0.1.1)
@@ -579,7 +579,7 @@ GEM
     os (1.0.0)
     paint (1.0.1)
     parallel (1.12.1)
-    parser (2.5.3.0)
+    parser (2.6.0.0)
       ast (~> 2.4.0)
     parslet (1.8.2)
     pastel (0.7.2)
@@ -680,14 +680,14 @@ GEM
     solve (4.0.2)
       molinillo (~> 0.6)
       semverse (>= 1.1, < 4.0)
-    specinfra (2.76.7)
+    specinfra (2.76.9)
       net-scp
       net-ssh (>= 2.7)
       net-telnet (= 0.1.1)
       sfl
     sshkey (1.9.0)
     sslshake (1.2.0)
-    stove (7.0.1)
+    stove (7.1.0)
       chef-api (~> 0.5)
       logify (~> 0.2)
     strings (0.1.4)
@@ -775,7 +775,7 @@ GEM
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
     win32-api (1.5.3-universal-mingw32)
-    win32-certstore (0.2.1)
+    win32-certstore (0.2.2)
       ffi
       mixlib-shellout
     win32-dir (0.5.1)
@@ -821,7 +821,7 @@ GEM
       rubyzip (~> 1.1)
       winrm (~> 2.0)
     wisper (2.0.0)
-    wmi-lite (1.0.1)
+    wmi-lite (1.0.2)
     xmlrpc (0.3.0)
     yard (0.9.16)
 
@@ -912,4 +912,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.17.2
+   2.0.1
