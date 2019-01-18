@@ -131,10 +131,6 @@ describe ChefDK::CLI do
           "version_output" => "Chef: 12.0.3",
           "expected_version" => "12.0.3",
         },
-        "delivery" => {
-          "version_output" => "delivery #{delivery_version}",
-          "expected_version" => delivery_version,
-        },
         "berks" => {
           "version_output" => "3.2.3",
           "expected_version" => "3.2.3",
@@ -146,6 +142,10 @@ describe ChefDK::CLI do
         "inspec" => {
           "version_output" => "1.19.1\n\nYour version of InSpec is out of date! The latest version is 1.21.0.",
           "expected_version" => "1.19.1",
+        },
+        "delivery" => {
+          "version_output" => "delivery #{delivery_version}",
+          "expected_version" => delivery_version,
         },
       }
     end
@@ -228,6 +228,35 @@ describe ChefDK::CLI do
       params = %w{with some args --and-an-option}
       run_cli(23)
       expect(test_result[:params]).to eq(params)
+    end
+  end
+
+  context "#expected_components" do
+    let(:everything_except_delivery) do
+      [ "chef-client", "berks",
+                                        "kitchen", "inspec" ] end
+    let(:everything) { everything_except_delivery.dup.push("delivery") }
+
+    context "when running from a habitat package" do
+      before do
+        allow(subject).to receive(:habitat_install?).and_return true
+        allow(subject).to receive(:omnibus_install?).and_return false
+      end
+      it "should include everything except delivery" do
+        expect(subject.expected_components).to eq everything_except_delivery
+      end
+
+    end
+
+    context "when running from an omnibus package" do
+      before do
+        allow(subject).to receive(:habitat_install?).and_return false
+        allow(subject).to receive(:omnibus_install?).and_return true
+      end
+      it "should include everything" do
+        expect(subject.expected_components).to eq everything
+      end
+
     end
   end
 

@@ -96,8 +96,7 @@ module ChefDK
 
     def show_version
       msg("Chef Development Kit Version: #{ChefDK::VERSION}")
-
-      ["chef-client", "delivery", "berks", "kitchen", "inspec"].each do |component|
+      expected_components.each do |component|
         result = Bundler.with_clean_env { shell_out("#{component} --version") }
         if result.exitstatus != 0
           msg("#{component} version: ERROR")
@@ -106,6 +105,12 @@ module ChefDK
           msg("#{component} version: #{version}")
         end
       end
+    end
+
+    def expected_components
+      components = ["chef-client", "berks", "kitchen", "inspec"]
+      components << "delivery" unless habitat_install?
+      components
     end
 
     def show_help

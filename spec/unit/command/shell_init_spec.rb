@@ -39,6 +39,18 @@ describe ChefDK::Command::ShellInit do
 
     before do
       allow(::Dir).to receive(:exist?).and_call_original
+
+      # REVIEW TODO - sanity check
+      #
+      # the below :omnibus_install? is added due to a change in behavior  where
+      # we only add the omnibus paths to PATH if we can identify this
+      # as an omnibus-based install.  Previously we were doing it
+      # unconditionally, and the omnibus_*_dir mocks would prevent
+      # us from hitting the 'not installed via omnibus' path.
+      #
+      # Setting this flag allowoos us to ... continue not hitting that path.
+      # Seems a thing we want coverage for, but I can add that in a separate PR
+      allow(command_instance).to receive(:omnibus_install?).and_return true
     end
 
     context "with no explicit omnibus directory" do

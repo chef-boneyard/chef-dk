@@ -48,11 +48,20 @@ module ChefDK
     end
 
     #
-    # Locates the omnibus directories
+    # Returns true if this DK installation is identified as
+    # an omnibus package
     #
-
     def omnibus_install?
       File.exist?(omnibus_chefdk_location)
+    end
+
+    #
+    # Returns true if this DK/WS installation is identified as a
+    # habitat package.  Expects environment variable
+    # 'VIA_HABITAT', which gets set in the wrapper scripts
+    # generated in plan.sh
+    def habitat_install?
+      ENV["VIA_HABITAT"] == "true"
     end
 
     def omnibus_root
@@ -103,8 +112,17 @@ module ChefDK
     # somewhere else that we can append to the end of the path.
     # This is only a temporary solution - see https://github.com/chef/chef-dk/issues/854
     # for a better proposed solution.
+    # Note that we are not including git in the path of the habitat packages,
+    # as we begin to move away from embedding git.
     def git_bin_dir
-      @git_bin_dir ||= File.expand_path(File.join(omnibus_root, "gitbin"))
+      @git_bin_dir ||=
+        begin
+          if habitat_install?
+            ""
+          else
+            File.expand_path(File.join(omnibus_root, "gitbin"))
+          end
+        end
     end
 
     # In our Windows ChefDK omnibus package we include Git For Windows, which
@@ -113,16 +131,37 @@ module ChefDK
       @git_windows_bin_dir ||= File.expand_path(File.join(omnibus_root, "embedded", "git", "usr", "bin"))
     end
 
+    def habitat_embedded_bin_dir
+      @habitat_embedded_bin_dir ||= ENV["HAB_WS_EMBEDDED_BIN_DIR"]
+    end
+
+    def habitat_bin_dir
+      @habitat_bin_dir ||= ENV["HAB_WS_BIN_DIR"]
+    end
+
     #
-    # environment vars for omnibus
-    #
+    # provides sane environment variables for running
+    # Workstation and DK tools.
     def omnibus_env
       @omnibus_env ||=
         begin
           user_bin_dir = File.expand_path(File.join(Gem.user_dir, "bin"))
-          path = [ omnibus_bin_dir, user_bin_dir, omnibus_embedded_bin_dir, ENV["PATH"] ]
-          path << git_bin_dir if Dir.exist?(git_bin_dir)
-          path << git_windows_bin_dir if Dir.exist?(git_windows_bin_dir)
+          path = []
+
+          # REVIEW TODO - sanity check
+          #
+          #        cases where the omnibus install exists alongside the hab install
+          #        will get wonky.  Perhaps the omnibus_install? check should be modified to
+          #        check the path of the current ruby executable, looking for platform-appropriate
+          #        "/opt/chef-dk|workstation" in the string?
+          path << omnibus_bin_dir if omnibus_install?
+          path << habitat_bin_dir if habitat_install?
+          path << user_bin_dir
+          path << omnibus_embedded_bin_dir if omnibus_install?
+          path << habitat_embedded_bin_dir if habitat_install?
+          path << ENV["PATH"]
+          path << git_bin_dir if Dir.exist?(git_bin_dir) && omnibus_install?
+          path << git_windows_bin_dir if Dir.exist?(git_windows_bin_dir) && omnibus_install?
           {
             "PATH" => path.join(File::PATH_SEPARATOR),
             "GEM_ROOT" => Gem.default_dir,
