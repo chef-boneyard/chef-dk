@@ -174,7 +174,7 @@ describe ChefDK::Command::Update do
           Error: install failed
           Reason: (StandardError) some operation failed
 
-E
+        E
 
         command.run
         expect(ui.output).to eq(expected_error_text)
@@ -190,7 +190,7 @@ E
             Reason: (StandardError) some operation failed
 
 
-E
+          E
 
           expected_error_text << backtrace.join("\n") << "\n"
 
@@ -252,7 +252,7 @@ E
           Error: Failed to update Policyfile lock
           Reason: (StandardError) some operation failed
 
-E
+        E
 
         command.run
         expect(ui.output).to eq(expected_error_text)
@@ -268,7 +268,7 @@ E
             Reason: (StandardError) some operation failed
 
 
-E
+          E
 
           expected_error_text << backtrace.join("\n") << "\n"
 

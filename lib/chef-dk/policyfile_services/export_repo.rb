@@ -255,7 +255,7 @@ module ChefDK
               exit!(1)
             end
 
-CONFIG
+          CONFIG
         end
       end
 
@@ -298,7 +298,7 @@ CONFIG
             policy. However, exported policies contain only a single policy revision, so
             this policy group name is hardcoded to "local" and should not be changed.
 
-README
+          README
         end
       end
 

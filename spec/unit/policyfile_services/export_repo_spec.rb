@@ -145,7 +145,7 @@ describe ChefDK::PolicyfileServices::ExportRepo do
               }
             }
           }
-E
+        E
       end
 
       it "reads the lockfile data" do
@@ -295,7 +295,7 @@ E
                 exit!(1)
               end
 
-CONFIG
+            CONFIG
             config_path = File.join(export_dir, ".chef", "config.rb")
             expect(File).to exist(config_path)
             expect(IO.read(config_path)).to eq(expected_config_text)

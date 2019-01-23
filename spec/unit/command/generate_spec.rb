@@ -79,7 +79,7 @@ describe ChefDK::Command::Generate do
 
         Available generators:
           example  this is a test
-E
+      E
     end
 
     before do

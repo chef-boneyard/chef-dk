@@ -136,7 +136,7 @@ describe ChefDK::Command::Export do
           To converge this system with the exported policy, run:
             cd /path/to/export
             chef-client -z
-MESSAGE
+        MESSAGE
         expect(ui.output).to include(expected_message)
       end
     end
@@ -168,7 +168,7 @@ MESSAGE
           Error: export failed
           Reason: (StandardError) some operation failed
 
-E
+        E
 
         command.run(params)
         expect(ui.output).to eq(expected_error_text)
@@ -184,7 +184,7 @@ E
             Reason: (StandardError) some operation failed
 
 
-E
+          E
 
           expected_error_text << backtrace.join("\n") << "\n"
 

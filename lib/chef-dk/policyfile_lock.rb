@@ -65,7 +65,7 @@ module ChefDK
       end
     end
 
-    RUN_LIST_ITEM_FORMAT = /\Arecipe\[[^\s]+::[^\s]+\]\Z/
+    RUN_LIST_ITEM_FORMAT = /\Arecipe\[[^\s]+::[^\s]+\]\Z/.freeze
 
     def self.build(storage_config)
       lock = new(storage_config)

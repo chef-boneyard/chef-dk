@@ -180,7 +180,7 @@ describe ChefDK::PolicyfileServices::CleanPolicies do
             expected_message = <<~MESSAGE
               DELETE appserver 4444444444444444444444444444444444444444444444444444444444444444
               DELETE load-balancer 7777777777777777777777777777777777777777777777777777777777777777
-MESSAGE
+            MESSAGE
             expect(ui.output).to eq(expected_message)
           end
 
@@ -214,7 +214,7 @@ MESSAGE
             expected_message = <<~ERROR
               Failed to delete some policy revisions:
               - appserver (4444444444444444444444444444444444444444444444444444444444444444): Net::HTTPServerException 403 \"Unauthorized\"
-ERROR
+            ERROR
 
             expect { clean_policies_service.run }.to raise_error do |error|
               expect(error.message).to eq(expected_message)
@@ -222,7 +222,7 @@ ERROR
             expected_message = <<~MESSAGE
               DELETE appserver 4444444444444444444444444444444444444444444444444444444444444444
               DELETE load-balancer 7777777777777777777777777777777777777777777777777777777777777777
-MESSAGE
+            MESSAGE
             expect(ui.output).to eq(expected_message)
           end
 

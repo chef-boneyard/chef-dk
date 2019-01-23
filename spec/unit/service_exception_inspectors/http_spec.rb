@@ -116,7 +116,7 @@ describe ChefDK::ServiceExceptionInspectors::HTTP do
 
         this is the request
 
-E
+      E
       expect(inspector.extended_error_info).to include(expected_request_string)
     end
 
@@ -129,7 +129,7 @@ E
 
 
         this is the response
-E
+      E
       expect(inspector.extended_error_info).to include(expected_response_string)
     end
 

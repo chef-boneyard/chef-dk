@@ -285,7 +285,7 @@ describe ChefDK::Policyfile::Differ do
     it "reports that there are no updates" do
       expected_message = <<~E
         No changes for policy lock 'jenkins' between 'git: HEAD' and 'local disk'
-E
+      E
       differ.run_report
       expect(output).to include(expected_message)
     end
@@ -334,7 +334,7 @@ E
         +recipe[two::two]
         +recipe[three::three]
 
-E
+      E
       differ.run_report
       expect(output).to eq(expected_message)
     end
@@ -391,7 +391,7 @@ E
           +recipe[q::new]
           +recipe[r::new]
 
-E
+        E
         differ.run_report
         expect(output).to eq(expected_message)
       end
@@ -451,7 +451,7 @@ E
         -  }
         -}
 
-E
+      E
       differ.run_report
       expect(output).to eq(expected_message)
     end
@@ -524,7 +524,7 @@ E
         +  }
         +}
 
-E
+      E
       differ.run_report
       expect(output).to eq(expected_message)
     end
@@ -584,7 +584,7 @@ E
            "cache_key": null,
            "scm_info": {
 
-E
+      E
       differ.run_report
       expect(output).to eq(expected_message)
     end
@@ -630,7 +630,7 @@ E
         +  "new_attr": "hello"
          }
 
-E
+      E
       differ.run_report
       expect(output).to eq(expected_output)
     end
@@ -676,7 +676,7 @@ E
         +  "new_attr": "ALL THE DIFF"
          }
 
-E
+      E
 
       differ.run_report
       expect(output).to eq(expected_output)

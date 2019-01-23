@@ -77,7 +77,7 @@ describe ChefDK::PolicyfileServices::PushArchive do
           }
         }
       }
-E
+    E
   end
 
   let(:archive_files) { [] }
@@ -289,7 +289,7 @@ E
               This archive was created with an older version of ChefDK. This version of
               ChefDK does not support archives in the older format. Re-create the archive
               with a newer version of ChefDK or downgrade ChefDK.
-MESSAGE
+            MESSAGE
             expect(exception_cause.message).to eq(msg)
           end
 

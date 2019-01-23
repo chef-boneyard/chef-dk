@@ -138,7 +138,7 @@ describe ChefDK::PolicyfileServices::Undelete do
           #{timestamps[2]}: delete-policy-group example3
           #{timestamps[1]}: delete-policy-group example2
           #{timestamps[0]}: delete-policy-group example1
-OUTPUT
+        OUTPUT
         expect(ui.output).to eq(expected_output)
       end
 

@@ -58,7 +58,7 @@ describe ChefDK::PolicyfileServices::UpdateAttributes do
       default["default_attr"] = "new_value_default"
 
       override["override_attr"] = "new_value_override"
-E
+    E
   end
 
   let(:ui) { TestHelpers::TestUI.new }

@@ -72,7 +72,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       If you'd prefer to dive right in, the default recipe can be found at:
 
       recipes/default.rb
-EOF
+    EOF
   end
 
   subject(:cookbook_generator) do
@@ -216,7 +216,7 @@ EOF
             # of the `delivery local` command across many different projects.
             #
             # remote_file = "https://url/project.toml"
-PROJECT_DOT_TOML
+          PROJECT_DOT_TOML
         end
 
         it "exists with default config for Cookbook Workflow" do
@@ -248,7 +248,7 @@ PROJECT_DOT_TOML
               },
               "dependencies": []
             }
-  CONFIG_DOT_JSON
+          CONFIG_DOT_JSON
         end
 
         it "configures delivery to use a local build cookbook" do
@@ -271,7 +271,7 @@ PROJECT_DOT_TOML
             #
             # Copyright:: 2019, The Authors, All Rights Reserved.
             include_recipe 'delivery-truck::publish'
-  CONFIG_DOT_JSON
+          CONFIG_DOT_JSON
         end
 
         it "delegates functionality to delivery-truck" do
@@ -295,7 +295,7 @@ PROJECT_DOT_TOML
             group :delivery do
               cookbook 'test', path: './test/fixtures/cookbooks/test'
             end
-  CONFIG_DOT_JSON
+          CONFIG_DOT_JSON
         end
 
         it "sets the sources for delivery library cookbooks to github" do
@@ -369,7 +369,7 @@ PROJECT_DOT_TOML
           - Merging delivery content feature branch to master
 
           #{non_delivery_breadcrumb}
-OUTPUT
+        OUTPUT
 
         actual = stdout_io.string
 
@@ -421,7 +421,7 @@ OUTPUT
           - Merging delivery content feature branch to master
 
           Your cookbook is ready. To setup the pipeline, type `cd new_cookbook`, then run `delivery init`
-OUTPUT
+        OUTPUT
 
         actual = stdout_io.string
 
@@ -542,7 +542,7 @@ OUTPUT
 
             # Specify a custom source for a single cookbook:
             cookbook 'new_cookbook', path: '.'
-POLICYFILE_RB
+          POLICYFILE_RB
         end
 
         before do
@@ -595,7 +595,7 @@ POLICYFILE_RB
                   inspec_tests:
                     - test/integration/default
                 attributes:
-KITCHEN_YML
+          KITCHEN_YML
         end
 
       end
@@ -607,7 +607,7 @@ KITCHEN_YML
             # frozen_string_literal: true
             require 'chefspec'
             require 'chefspec/policyfile'
-SPEC_HELPER
+          SPEC_HELPER
         end
 
       end
@@ -628,7 +628,7 @@ SPEC_HELPER
             source 'https://supermarket.chef.io'
 
             metadata
-POLICYFILE_RB
+          POLICYFILE_RB
         end
 
         before do
@@ -674,7 +674,7 @@ POLICYFILE_RB
                   inspec_tests:
                     - test/integration/default
                 attributes:
-KITCHEN_YML
+          KITCHEN_YML
         end
 
       end
@@ -686,7 +686,7 @@ KITCHEN_YML
             # frozen_string_literal: true
             require 'chefspec'
             require 'chefspec/berkshelf'
-SPEC_HELPER
+          SPEC_HELPER
         end
 
       end

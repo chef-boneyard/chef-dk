@@ -28,7 +28,7 @@ module ChefDK
 
       class Cookbook
 
-        VALID_STRING_FORMAT = /\A[^\s]+ \([^\s]+\)\Z/
+        VALID_STRING_FORMAT = /\A[^\s]+ \([^\s]+\)\Z/.freeze
 
         def self.valid_str?(str)
           !!(str =~ VALID_STRING_FORMAT)

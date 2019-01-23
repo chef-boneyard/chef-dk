@@ -51,7 +51,7 @@ describe ChefDK::CLI do
           verify   Test the embedded ChefDK applications
           gem      Runs the `gem` command in context of the embedded ruby
           example  Example subcommand for testing
-E
+    E
   end
 
   let(:version_message) { "Chef Development Kit Version: #{ChefDK::VERSION}\n" }

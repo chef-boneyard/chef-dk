@@ -73,7 +73,7 @@ describe ChefDK::PolicyfileCompiler do
 
               Backtrace:
                 TestPolicyfile.rb:1:in `eval_policyfile'
-E
+          E
           expect(policyfile.errors.first).to eq(expected_message)
         end
       end
@@ -469,7 +469,7 @@ E
             err = <<~MESSAGE
               Multiple sources are marked as the preferred source for some cookbooks. Only one source can be preferred for a cookbook.
               supermarket(https://supermarket.chef.io) and supermarket(https://mart.example) are both set as the preferred source for cookbook(s) 'foo'
-MESSAGE
+            MESSAGE
             expect(policyfile.errors).to eq([err])
           end
 
@@ -548,7 +548,7 @@ MESSAGE
 
           Previous source: {:path=>"local_cookbooks/foo"}
           Conflicts with: {:chef_server=>"https://mychefserver.example.com"}
-EOH
+        EOH
         expect(policyfile.errors.size).to eq(1)
         expect(policyfile.errors.first).to eq(expected)
       end

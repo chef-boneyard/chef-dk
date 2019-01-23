@@ -300,7 +300,7 @@ describe ChefDK::Command::GeneratorCommands::Repo do
                 Create policyfiles here. When using a chef-repo, give your policyfiles
                 the same filename as the name set in the policyfile itself, and use the
                 `.rb` file extension.
-README
+              README
             end
 
             it "has the right contents" do
@@ -334,7 +334,7 @@ README
                 For more information on roles, see the Chef wiki page:
 
                 https://docs.chef.io/roles.html
-README
+              README
             end
 
             it "has the right contents" do
@@ -358,7 +358,7 @@ README
                 For more information on environments, see the Chef wiki page:
 
                 https://docs.chef.io/environments.html
-README
+              README
             end
 
             it "has the right contents" do

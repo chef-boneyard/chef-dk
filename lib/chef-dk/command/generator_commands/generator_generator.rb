@@ -112,7 +112,7 @@ module ChefDK
             long_description 'Custom code generator cookbook for use with ChefDK'
             version          '0.1.0'
 
-METADATA
+          METADATA
         end
 
         def custom_cookbook_name?

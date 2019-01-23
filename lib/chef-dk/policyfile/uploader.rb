@@ -57,7 +57,7 @@ module ChefDK
             WARN: Uploading policy to policy group #{policy_group} in compatibility mode.
             Cookbooks will be uploaded with very large version numbers, which may be picked
             up by existing nodes.
-DRAGONS
+          DRAGONS
         end
 
         upload_cookbooks

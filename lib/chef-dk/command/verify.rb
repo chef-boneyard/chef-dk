@@ -144,7 +144,7 @@ module ChefDK
                       - recipe[aar::default]
                     attributes:
 
-KITCHEN_YML
+              KITCHEN_YML
             end
 
             sh("kitchen list", cwd: cwd)
@@ -240,7 +240,7 @@ KITCHEN_YML
 
               Some applications may need or prefer different versions of the chef-provisioning gem or its drivers, so
               this multiple-version check can fail if a user has installed new versions of those libraries.
-EOS
+            EOS
           end
 
           # ------------

@@ -43,7 +43,7 @@ module ChefDK
 
         Options:
 
-BANNER
+      BANNER
 
       option :show_orphans,
         short:        "-o",

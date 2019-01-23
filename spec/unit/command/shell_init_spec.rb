@@ -106,7 +106,7 @@ describe ChefDK::Command::ShellInit do
         export GEM_ROOT="#{expected_gem_root}"
         export GEM_HOME="#{expected_gem_home}"
         export GEM_PATH="#{expected_gem_path}"
-EOH
+      EOH
     end
     include_context "shell init script", shell
   end
@@ -122,7 +122,7 @@ EOH
         $env:GEM_ROOT="#{expected_gem_root}"
         $env:GEM_HOME="#{expected_gem_home}"
         $env:GEM_PATH="#{expected_gem_path}"
-EOH
+      EOH
     end
     include_context "shell init script", shell
   end
@@ -157,7 +157,7 @@ EOH
               COMPREPLY=($(compgen -W "$COMMANDS" -- ${COMP_WORDS[COMP_CWORD]} ))
           }
           complete -F _chef_comp chef
-END_COMPLETION
+        END_COMPLETION
       end
 
       before do
@@ -253,7 +253,7 @@ END_COMPLETION
         set -gx GEM_ROOT "#{expected_gem_root}";
         set -gx GEM_HOME "#{expected_gem_home}";
         set -gx GEM_PATH "#{expected_gem_path}";
-EOH
+      EOH
     end
 
     include_context "shell init script", "fish"
@@ -287,7 +287,7 @@ EOH
           complete -c chef -f -n '__fish_chef_no_command' -a env -d "Prints environment variables used by ChefDK"
           complete -c chef -f -n '__fish_chef_no_command' -a gem -d "Runs the `gem` command in context of the embedded ruby"
           complete -c chef -f -n '__fish_chef_no_command' -a generate -d "Generate a new app, cookbook, or component"
-END_COMPLETION
+        END_COMPLETION
       end
 
       before do
