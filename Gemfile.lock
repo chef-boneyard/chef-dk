@@ -68,10 +68,10 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (10.0.2)
-    chef (14.8.12)
+    chef (14.9.13)
       addressable
       bundler (>= 1.10)
-      chef-config (= 14.8.12)
+      chef-config (= 14.9.13)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -79,7 +79,7 @@ GEM
       ffi-yajl (~> 2.2)
       highline (~> 1.6, >= 1.6.9)
       iniparse (~> 1.4)
-      mixlib-archive (~> 0.4)
+      mixlib-archive (>= 0.4, < 2.0)
       mixlib-authentication (~> 2.1)
       mixlib-cli (~> 1.7)
       mixlib-log (~> 2.0, >= 2.0.3)
@@ -98,10 +98,10 @@ GEM
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (14.8.12-universal-mingw32)
+    chef (14.9.13-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 14.8.12)
+      chef-config (= 14.9.13)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -110,7 +110,7 @@ GEM
       highline (~> 1.6, >= 1.6.9)
       iniparse (~> 1.4)
       iso8601 (~> 0.12.1)
-      mixlib-archive (~> 0.4)
+      mixlib-archive (>= 0.4, < 2.0)
       mixlib-authentication (~> 2.1)
       mixlib-cli (~> 1.7)
       mixlib-log (~> 2.0, >= 2.0.3)
@@ -157,7 +157,7 @@ GEM
       toml-rb
       train
       tty-spinner
-    chef-config (14.8.12)
+    chef-config (14.9.13)
       addressable
       fuzzyurl
       mixlib-config (>= 2.2.12, < 3.0)
@@ -837,7 +837,7 @@ DEPENDENCIES
   artifactory
   berkshelf (>= 7.0.5)
   bundler
-  chef (= 14.8.12)
+  chef (= 14.9.13)
   chef-apply
   chef-dk!
   chef-provisioning (>= 2.7.1)
