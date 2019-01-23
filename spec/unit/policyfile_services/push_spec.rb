@@ -177,7 +177,7 @@ describe ChefDK::PolicyfileServices::Push do
               }
             }
           }
-E
+        E
       end
 
       let(:http_client) { instance_double(Chef::ServerAPI) }

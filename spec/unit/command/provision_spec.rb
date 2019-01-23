@@ -288,7 +288,7 @@ describe ChefDK::Command::Provision do
             # SSL Settings:
             ssl_verify_mode :verify_peer
 
-CONFIG
+          CONFIG
           expect(context.chef_config).to eq(expected_config)
         end
 
@@ -369,7 +369,7 @@ CONFIG
               policy_group "some-policy-group"
               policy_name "myapp"
 
-CONFIG
+            CONFIG
             expect(context.chef_config).to eq(expected_config)
           end
 
@@ -416,7 +416,7 @@ CONFIG
             policy_group "some-policy-group"
             policy_name "myapp"
 
-CONFIG
+          CONFIG
           expect(context.chef_config).to eq(expected_config)
         end
 
@@ -497,7 +497,7 @@ CONFIG
           Error: push failed
           Reason: (StandardError) some operation failed
 
-E
+        E
         expect(command.run(params)).to eq(1)
         expect(ui.output).to include(expected_output)
       end

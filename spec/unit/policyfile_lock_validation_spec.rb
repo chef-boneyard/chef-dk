@@ -123,7 +123,7 @@ describe ChefDK::PolicyfileLock, "validating locked cookbooks" do
         long_description 'Installs/Configures local-cookbook'
         version          '2.3.4'
 
-E
+      E
       expect(IO.read(metadata_path)).to eq(expected_metadata_rb)
     end
 
@@ -154,7 +154,7 @@ E
           long_description 'Installs/Configures local-cookbook'
           version          '2.3.4'
 
-E
+        E
       end
 
       before do
@@ -183,7 +183,7 @@ E
           long_description 'Installs/Configures local-cookbook'
           version          '2.3.5' # changed from 2.3.4
 
-E
+        E
       end
 
       before do
@@ -230,7 +230,7 @@ E
           long_description 'Installs/Configures local-cookbook'
           version          '3.0.0' # changed from 2.3.4, violates `~> 2.0` constraint
 
-E
+        E
       end
 
       before do
@@ -254,7 +254,7 @@ E
           # This is totally new code,
           # it is different than the old code
 
-E
+        E
       end
 
       before do
@@ -292,7 +292,7 @@ E
 
           depends "foo", "=1.0.0"
 
-E
+        E
       end
 
       before do
@@ -339,7 +339,7 @@ E
 
           depends "not-a-thing"
 
-E
+        E
       end
 
       before do
@@ -379,7 +379,7 @@ E
 
           depends "foo", ">= 1.0.0"
 
-E
+        E
       end
 
       before do
@@ -413,7 +413,7 @@ E
 
           depends "foo", "~> 2.0"
 
-E
+        E
       end
 
       before do
@@ -484,7 +484,7 @@ E
           long_description 'Installs/Configures local-cookbook'
           version          '3.0.0' # changed from 2.3.4
 
-E
+        E
       end
 
       let(:new_metadata_another_local_cookbook) do
@@ -499,7 +499,7 @@ E
 
           # This dep now requires the updated version of 'local-cookbook'
           depends 'local-cookbook', '= 3.0.0'
-E
+        E
       end
 
       let(:metadata_path_another_local_cookbook) do
@@ -550,7 +550,7 @@ E
         long_description 'Installs/Configures foo'
         version          '1.0.0'
 
-E
+      E
       expect(IO.read(metadata_path)).to eq(expected_metadata_rb)
     end
 
@@ -590,7 +590,7 @@ E
           description      'Installs/Configures foo'
           long_description 'Installs/Configures foo'
           version          '1.0.0'
-E
+        E
       end
 
       before do

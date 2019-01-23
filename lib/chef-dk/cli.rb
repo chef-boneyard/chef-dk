@@ -36,7 +36,7 @@ module ChefDK
           chef -h/--help
           chef -v/--version
           chef command [arguments...] [options...]
-BANNER
+    BANNER
 
     option :version,
       short: "-v",

@@ -67,7 +67,7 @@ module ChefDK
           `staging` Policy Group.
 
         Options:
-BANNER
+      BANNER
 
       option :git,
         short:       "-g GIT_REF",

@@ -41,7 +41,7 @@ module ChefDK
 
         Options:
 
-E
+      E
 
       option :config_file,
         short:       "-c CONFIG_FILE",

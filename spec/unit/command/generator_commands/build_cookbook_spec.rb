@@ -201,7 +201,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
               chef_version '>= 13.0'
 
               depends 'delivery-truck'
-METADATA
+            METADATA
           end
         end
       end
@@ -258,7 +258,7 @@ METADATA
               maintainer_email 'you@example.com'
               license 'all_rights'
               version '0.1.0'
-METADATA
+            METADATA
           end
         end
       end

@@ -65,7 +65,7 @@ module ChefDK
           Usage: chef generate GENERATOR [options]
 
           Available generators:
-E
+        E
       end
 
       def self.generator_list

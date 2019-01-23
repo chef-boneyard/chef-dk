@@ -44,7 +44,7 @@ module ChefDK
 
         Options:
 
-E
+      E
 
       option :archive,
         short:       "-a",

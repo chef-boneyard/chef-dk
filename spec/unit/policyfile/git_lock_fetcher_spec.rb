@@ -78,7 +78,7 @@ describe ChefDK::Policyfile::GitLockFetcher do
   let(:minimal_lockfile_modified) do
     minimal_lockfile.tap do |lockfile|
       lockfile["cookbook_locks"][cookbook_name]["source_options"] = {
-        "git"      => repo,
+        "git" => repo,
         "revision" => git_revision,
       }
     end
@@ -87,11 +87,11 @@ describe ChefDK::Policyfile::GitLockFetcher do
   let(:minimal_lockfile_with_scm_info) do
     minimal_lockfile_modified.tap do |lockfile|
       lockfile["cookbook_locks"][cookbook_name]["scm_info"] = {
-        "scm"                          => "git",
-        "remote"                       => repo,
-        "revision"                     => git_revision,
-        "working_tree_clean"           => true,
-        "published"                    => true,
+        "scm" => "git",
+        "remote" => repo,
+        "revision" => git_revision,
+        "working_tree_clean" => true,
+        "published" => true,
         "synchronized_remote_branches" => [
           "origin/master",
         ],
@@ -101,7 +101,7 @@ describe ChefDK::Policyfile::GitLockFetcher do
 
   let(:source_options) do
     {
-      git:      repo,
+      git: repo,
       revision: git_revision,
     }
   end
@@ -142,7 +142,7 @@ describe ChefDK::Policyfile::GitLockFetcher do
           relative_path_fetcher.lock_data["cookbook_locks"][cookbook_name]["source_options"]
         ).to match(
                {
-                 "git"      => repo,
+                 "git" => repo,
                  "revision" => git_revision,
                }
              )

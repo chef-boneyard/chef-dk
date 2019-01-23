@@ -40,7 +40,7 @@ module ChefDK
         https://docs.chef.io/policyfile.html
 
         Options:
-E
+      E
 
       option :config_file,
         short:       "-c CONFIG_FILE",

@@ -57,7 +57,7 @@ describe ChefDK::PolicyfileServices::Install do
       cookbook 'top-level'
       cookbook 'top-level-bis'
       cookbook 'b', '>= 1.2.3'
-EOH
+    EOH
   end
 
   def cookbook_lock(name, version)

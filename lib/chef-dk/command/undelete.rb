@@ -50,7 +50,7 @@ module ChefDK
 
         Options:
 
-BANNER
+      BANNER
 
       option :undo_last,
         short:        "-l",

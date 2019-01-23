@@ -59,7 +59,7 @@ describe ChefDK::Policyfile::ChefServerLockFetcher do
           }
         }
       }
-E
+    E
   end
 
   def minimal_lockfile

@@ -89,7 +89,7 @@ module ChefDK
             WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
             See the License for the specific language governing permissions and
             limitations under the License.
-EOH
+          EOH
         when "mit"
           result = <<~EOH
             The MIT License (MIT)
@@ -113,7 +113,7 @@ EOH
             LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
             OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
             THE SOFTWARE.
-EOH
+          EOH
         when "gplv2"
           result = <<~EOH
             Copyright:: #{year},  #{copyright_holder}
@@ -131,7 +131,7 @@ EOH
             You should have received a copy of the GNU General Public License along
             with this program; if not, write to the Free Software Foundation, Inc.,
             51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-EOH
+          EOH
         when "gplv3"
           result = <<~EOH
             Copyright:: #{year},  #{copyright_holder}
@@ -148,7 +148,7 @@ EOH
 
             You should have received a copy of the GNU General Public License
             along with this program.  If not, see <http://www.gnu.org/licenses/>.
-EOH
+          EOH
         else
           raise ArgumentError, "Invalid generator.license setting: #{license}.  See available licenses at https://docs.chef.io/ctl_chef.html#chef-generate-cookbook"
         end

@@ -57,7 +57,7 @@ describe ChefDK::Policyfile::LocalLockFetcher do
           }
         }
       }
-E
+    E
   end
 
   def minimal_lockfile

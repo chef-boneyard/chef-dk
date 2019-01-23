@@ -92,7 +92,7 @@ module ChefDK
             This archive was created with an older version of ChefDK. This version of
             ChefDK does not support archives in the older format. Re-create the archive
             with a newer version of ChefDK or downgrade ChefDK.
-MESSAGE
+          MESSAGE
         end
 
         unless File.exist?(policyfile_lock_path)

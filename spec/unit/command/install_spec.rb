@@ -148,7 +148,7 @@ describe ChefDK::Command::Install do
           Error: install failed
           Reason: (StandardError) some operation failed
 
-E
+        E
 
         command.run
         expect(ui.output).to eq(expected_error_text)
@@ -164,7 +164,7 @@ E
             Reason: (StandardError) some operation failed
 
 
-E
+          E
 
           expected_error_text << backtrace.join("\n") << "\n"
 

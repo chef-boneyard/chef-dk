@@ -208,7 +208,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
         cookbook:foo;id:467dc855408ce8b74f991c5dc2fd72a6aa369b60
         default_attributes:{}
         override_attributes:{}
-REVISION_STRING
+      REVISION_STRING
     end
 
     let(:expected_revision_id) do
@@ -278,9 +278,9 @@ REVISION_STRING
           "ddd" => true,
           "ccc" => false,
           "bbb" => nil,
-          "e"   => 1.2,
-          "f"   => 5,
-          "g"   => 1_000_000_000_000_000.0,
+          "e" => 1.2,
+          "f" => 5,
+          "g" => 1_000_000_000_000_000.0,
           "nested" => { "a" => "b" },
         }
         p.override_attributes = { "foo2" => "baz" }
@@ -295,7 +295,7 @@ REVISION_STRING
         cookbook:foo;id:467dc855408ce8b74f991c5dc2fd72a6aa369b60
         default_attributes:{"aaa":"aaa","bbb":null,"ccc":false,"ddd":true,"e":1.2,"f":5,"foo":"bar","g":1e+15,"nested":{"a":"b"}}
         override_attributes:{"foo2":"baz"}
-REVISION_STRING
+      REVISION_STRING
     end
 
     let(:expected_revision_id) do
@@ -327,9 +327,9 @@ REVISION_STRING
           "ddd" => true,
           "ccc" => false,
           "bbb" => nil,
-          "e"   => 1.2,
-          "f"   => 5,
-          "g"   => 1_000_000_000_000_000.0,
+          "e" => 1.2,
+          "f" => 5,
+          "g" => 1_000_000_000_000_000.0,
           "nested" => { "a" => "b" },
         },
         "override_attributes" => { "foo2" => "baz" },
@@ -386,7 +386,7 @@ REVISION_STRING
         cookbook:bar;id:#{cookbook_bar_cksum}
         default_attributes:{}
         override_attributes:{}
-REVISION_STRING
+      REVISION_STRING
     end
 
     let(:expected_revision_id) do
@@ -487,7 +487,7 @@ REVISION_STRING
         cookbook:foo;id:1.0.0
         default_attributes:{}
         override_attributes:{}
-REVISION_STRING
+      REVISION_STRING
     end
 
     let(:expected_revision_id) do
@@ -614,7 +614,7 @@ REVISION_STRING
         cookbook:foo;id:#{cookbook_foo_cksum}
         default_attributes:{}
         override_attributes:{}
-REVISION_STRING
+      REVISION_STRING
     end
 
     let(:expected_revision_id) do
@@ -741,7 +741,7 @@ REVISION_STRING
         cookbook:foo;id:#{cookbook_foo_cksum}
         default_attributes:{}
         override_attributes:{}
-REVISION_STRING
+      REVISION_STRING
     end
 
     let(:expected_revision_id) do
@@ -812,7 +812,7 @@ REVISION_STRING
         cookbook:foo;id:#{cookbook_foo_cksum}
         default_attributes:{}
         override_attributes:{}
-REVISION_STRING
+      REVISION_STRING
     end
 
     let(:expected_revision_id) do
@@ -958,7 +958,7 @@ REVISION_STRING
         cookbook:foo;id:#{cookbook_foo_cksum}
         default_attributes:#{canonicalized_default_attrs}
         override_attributes:#{canonicalized_override_attrs}
-REVISION_STRING
+      REVISION_STRING
     end
 
     let(:expected_revision_id) do

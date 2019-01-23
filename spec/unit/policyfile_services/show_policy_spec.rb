@@ -146,7 +146,7 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
 
             Policy db is not assigned to any groups
 
-OUTPUT
+          OUTPUT
           expect(ui.output).to eq(expected_output)
         end
 
@@ -189,7 +189,7 @@ OUTPUT
               * 9999999999
               * aaaaaaaaaa
 
-OUTPUT
+            OUTPUT
             expect(ui.output).to eq(expected_output)
           end
         end
@@ -274,7 +274,7 @@ OUTPUT
             * staging:  9999999999
             * prod:     aaaaaaaaaa
 
-OUTPUT
+          OUTPUT
           expect(ui.output).to eq(expected_output)
         end
 
@@ -344,7 +344,7 @@ OUTPUT
             * staging:  9999999999
             * prod:     aaaaaaaaaa
 
-OUTPUT
+          OUTPUT
           expect(ui.output).to eq(expected_output)
         end
 
@@ -390,7 +390,7 @@ OUTPUT
 
               * bbbbbbbbbb
 
-OUTPUT
+            OUTPUT
             expect(ui.output).to eq(expected_output)
           end
 
@@ -470,7 +470,7 @@ OUTPUT
             * staging:  dddddddddd
             * prod:     *NOT APPLIED*
 
-OUTPUT
+          OUTPUT
           expect(ui.output).to eq(expected_output)
         end
 
@@ -515,7 +515,7 @@ OUTPUT
 
             No policies named 'appserver' are associated with a policy group
 
-OUTPUT
+          OUTPUT
 
           expect(ui.output).to eq(expected_output)
         end
@@ -565,7 +565,7 @@ OUTPUT
 
             No policies named 'appserver' are associated with a policy group
 
-OUTPUT
+          OUTPUT
 
           expect(ui.output).to eq(expected_output)
         end
@@ -595,7 +595,7 @@ OUTPUT
 
             No policies named 'appserver' are associated with a policy group
 
-OUTPUT
+          OUTPUT
 
           expect(ui.output).to eq(expected_output)
         end
@@ -636,7 +636,7 @@ OUTPUT
             * staging:  2222222222
             * prod:     2222222222
 
-OUTPUT
+          OUTPUT
           expect(ui.output).to eq(expected_output)
         end
 
@@ -678,7 +678,7 @@ OUTPUT
             * staging:  2222222222
             * prod:     1111111111
 
-OUTPUT
+          OUTPUT
           expect(ui.output).to eq(expected_output)
         end
 
@@ -764,7 +764,7 @@ OUTPUT
               * yum:             4.5.6 (123abc0000)
               * other_cookbook:  *NONE*
 
-OUTPUT
+            OUTPUT
             expect(ui.output).to eq(expected_output)
           end
         end
@@ -787,7 +787,7 @@ OUTPUT
 
               * 3333333333
 
-OUTPUT
+            OUTPUT
 
             expect(ui.output).to eq(expected_output)
           end

@@ -307,7 +307,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
             You may have specified an incorrect recipe in your run list,
             or this recipe may not be available in that version of the cookbook
-MESSAGE
+          MESSAGE
 
           expect { policyfile.install }.to raise_error do |e|
             expect(e).to be_a(ChefDK::CookbookDoesNotContainRequiredRecipe)
@@ -338,7 +338,7 @@ MESSAGE
 
             You may have specified an incorrect recipe in your run list,
             or this recipe may not be available in that version of the cookbook
-MESSAGE
+          MESSAGE
 
           expect { policyfile.install }.to raise_error do |e|
             expect(e).to be_a(ChefDK::CookbookDoesNotContainRequiredRecipe)
@@ -371,7 +371,7 @@ MESSAGE
 
             You may have specified an incorrect recipe in your run list,
             or this recipe may not be available in that version of the cookbook
-MESSAGE
+          MESSAGE
 
           expect { policyfile.install }.to raise_error do |e|
             expect(e).to be_a(ChefDK::CookbookDoesNotContainRequiredRecipe)
@@ -1063,7 +1063,7 @@ MESSAGE
               default_source :supermarket, "https://supermarket.chef.io" do |s|
                 s.preferred_for "remote-cb", "remote-cb-two"
               end
-ERROR
+            ERROR
 
             expect { policyfile.remote_artifacts_graph }.to raise_error do |error|
               expect(error).to be_a(ChefDK::CookbookSourceConflict)
@@ -1165,7 +1165,7 @@ ERROR
             default_source :supermarket, "https://supermarket.chef.io" do |s|
               s.preferred_for "remote-cb-two"
             end
-ERROR
+          ERROR
 
           expect { policyfile.remote_artifacts_graph }.to raise_error do |error|
             expect(error).to be_a(ChefDK::CookbookSourceConflict)

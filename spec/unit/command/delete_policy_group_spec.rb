@@ -165,7 +165,7 @@ describe ChefDK::Command::DeletePolicyGroup do
           Error: Failed to delete policy group
           Reason: (StandardError) some operation failed
 
-E
+        E
 
         expect(ui.output).to eq(expected_output)
       end
@@ -180,7 +180,7 @@ E
             Reason: (StandardError) some operation failed
 
 
-E
+          E
           expected_output << backtrace.join("\n") << "\n"
 
           expect(ui.output).to eq(expected_output)

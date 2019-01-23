@@ -39,7 +39,7 @@ module ChefDK
 
         Options:
 
-BANNER
+      BANNER
 
       option :config_file,
         short:        "-c CONFIG_FILE",

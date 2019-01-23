@@ -49,7 +49,7 @@ describe ChefDK::PolicyfileServices::Install do
       run_list 'local-cookbook'
 
       cookbook 'local-cookbook', path: '#{local_cookbooks_root}/local-cookbook'
-E
+    E
   end
 
   let(:overwrite) { false }

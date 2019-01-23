@@ -109,7 +109,7 @@ describe ChefDK::Command::Base do
             -u, --user                       If the user exists
             -v, --version                    Show chef version
 
-E
+      E
       expect(stdout).to eq(expected)
     end
 
@@ -129,7 +129,7 @@ E
             -u, --user                       If the user exists
             -v, --version                    Show chef version
 
-E
+      E
       expect(stdout).to eq(expected)
 
     end
@@ -149,7 +149,7 @@ E
          50: chefdk.foo "bar"
          51:
 
-MESSAGE
+      MESSAGE
     end
 
     let(:exception) { Chef::Exceptions::ConfigurationError.new(exception_message) }

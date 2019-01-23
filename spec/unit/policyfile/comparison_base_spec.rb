@@ -57,7 +57,7 @@ describe "Policyfile Comparison Bases" do
           }
         }
       }
-E
+    E
   end
 
   let(:minimal_lockfile) { FFI_Yajl::Parser.parse(minimal_lockfile_json) }

@@ -134,7 +134,7 @@ describe ChefDK::Command::GeneratorCommands::Policyfile do
 
         # Specify a custom source for a single cookbook:
         # cookbook 'example_cookbook', path: '../cookbooks/example_cookbook'
-POLICYFILE_RB
+      POLICYFILE_RB
     end
 
     before do

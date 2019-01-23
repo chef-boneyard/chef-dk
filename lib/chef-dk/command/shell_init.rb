@@ -69,7 +69,7 @@ module ChefDK
 
         OPTIONS:
 
-HELP
+      HELP
 
       option :omnibus_dir,
         long: "--omnibus-dir OMNIBUS_DIR",

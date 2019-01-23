@@ -44,7 +44,7 @@ module ChefDK
 
           #{response_body}
 
-END
+        END
       end
 
       def response

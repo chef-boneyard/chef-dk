@@ -85,7 +85,7 @@ describe ChefDK::Policyfile::Reports::Upload do
         Using    a-longer-named-cookbook 1.0.0      (e4ac353b)
         Uploaded foo                     1.2.42     (cb61daeb)
         Uploaded barbazqux               12.34.5678 (1241ea6f)
-E
+      E
       expect(ui.output).to eq(expected_output)
     end
 

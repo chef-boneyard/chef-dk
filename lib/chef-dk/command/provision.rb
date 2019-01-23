@@ -75,7 +75,7 @@ module ChefDK
           # SSL Settings:
           ssl_verify_mode #{Chef::Config.ssl_verify_mode.inspect}
 
-CONFIG
+        CONFIG
         if enable_policyfile
           policyfile_config = <<~CONFIG
             # Policyfile Settings:
@@ -85,7 +85,7 @@ CONFIG
             policy_group "#{policy_group}"
             policy_name "#{policy_name}"
 
-CONFIG
+          CONFIG
           config << policyfile_config
         end
 
@@ -134,7 +134,7 @@ CONFIG
 
         Options:
 
-E
+      E
       include Configurable
 
       option :config_file,
@@ -185,7 +185,7 @@ E
         long:         "--target REMOTE_HOST",
         description:  "Set hostname or IP of the host to converge (may be overriden by provisioning cookbook)"
 
-      OPT_SEPARATOR = /[=\s]+/
+      OPT_SEPARATOR = /[=\s]+/.freeze
 
       def self.split_opt(key_value)
         key, _separator, value = key_value.partition(OPT_SEPARATOR)
