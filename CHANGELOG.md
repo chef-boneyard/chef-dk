@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.7.10 -->
-## [v3.7.10](https://github.com/chef/chef-dk/tree/v3.7.10) (2019-01-23)
+<!-- latest_release 3.7.11 -->
+## [v3.7.11](https://github.com/chef/chef-dk/tree/v3.7.11) (2019-01-23)
 
 #### Merged Pull Requests
-- Bump chef-apply to 0.2.7 [#1923](https://github.com/chef/chef-dk/pull/1923) ([chef-ci](https://github.com/chef-ci))
+- Bump Chef to 14.9.13 [#1922](https://github.com/chef/chef-dk/pull/1922) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.6.57 -->
 ### Changes since 3.6.57 release
 
 #### Merged Pull Requests
+- Bump Chef to 14.9.13 [#1922](https://github.com/chef/chef-dk/pull/1922) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.11 -->
 - Bump chef-apply to 0.2.7 [#1923](https://github.com/chef/chef-dk/pull/1923) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.10 -->
 - Bump nokogiri to 1.10.1 [#1914](https://github.com/chef/chef-dk/pull/1914) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.9 -->
 - Bump chef-apply to 0.2.6 [#1911](https://github.com/chef/chef-dk/pull/1911) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.8 -->
