@@ -1,3 +1,11 @@
+# UNRELEASED Release Notes
+
+## Updated Components and Tools
+
+### Ruby 2.6.0
+
+Ruby has been updated to 2.6.0.
+
 # ChefDK 3.6 Release Notes
 
 ## Chef 14.8.12
