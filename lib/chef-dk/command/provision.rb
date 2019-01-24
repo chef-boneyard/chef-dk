@@ -101,6 +101,8 @@ module ChefDK
     class Provision < Base
 
       banner(<<~E)
+        DEPRECATED: This command is deprecated and will be removed in ChefDK 4.
+
         Usage: chef provision POLICY_GROUP --policy-name POLICY_NAME [options]
                chef provision POLICY_GROUP --sync [POLICYFILE_PATH] [options]
                chef provision --no-policy [options]
@@ -226,6 +228,7 @@ module ChefDK
       end
 
       def run(params = [])
+        ui.msg("DEPRECATED: This command is deprecated and will be removed in ChefDK 4.")
         return 1 unless apply_params!(params)
         chef_config # force chef config to load
         return 1 unless check_cookbook_and_recipe_path

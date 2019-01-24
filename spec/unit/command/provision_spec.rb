@@ -549,7 +549,7 @@ describe ChefDK::Command::Provision do
 
         it "exits 0" do
           return_value = command.run(params)
-          expect(ui.output).to eq("")
+          expect(ui.output).to eq("DEPRECATED: This command is deprecated and will be removed in ChefDK 4.\n")
           expect(return_value).to eq(0)
         end
 
@@ -561,7 +561,7 @@ describe ChefDK::Command::Provision do
 
         it "exits 0" do
           return_value = command.run(params)
-          expect(ui.output).to eq("")
+          expect(ui.output).to eq("DEPRECATED: This command is deprecated and will be removed in ChefDK 4.\n")
           expect(return_value).to eq(0)
         end
       end
@@ -577,7 +577,7 @@ describe ChefDK::Command::Provision do
 
         it "exits 0" do
           return_value = command.run(params)
-          expect(ui.output).to eq("")
+          expect(ui.output).to eq("DEPRECATED: This command is deprecated and will be removed in ChefDK 4.\n")
           expect(return_value).to eq(0)
         end
 
