@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.7.12 -->
-## [v3.7.12](https://github.com/chef/chef-dk/tree/v3.7.12) (2019-01-28)
+<!-- latest_release 3.7.13 -->
+## [v3.7.13](https://github.com/chef/chef-dk/tree/v3.7.13) (2019-01-28)
 
 #### Merged Pull Requests
-- Bump inspec to 3.3.14 to add additional resources [#1928](https://github.com/chef/chef-dk/pull/1928) ([chef-ci](https://github.com/chef-ci))
+- Bump kitchen-inspec to 1.0.1 with support for bastian hosts [#1926](https://github.com/chef/chef-dk/pull/1926) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.6.57 -->
 ### Changes since 3.6.57 release
 
 #### Merged Pull Requests
+- Bump kitchen-inspec to 1.0.1 with support for bastian hosts [#1926](https://github.com/chef/chef-dk/pull/1926) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.13 -->
 - Bump inspec to 3.3.14 to add additional resources [#1928](https://github.com/chef/chef-dk/pull/1928) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.12 -->
 - Bump Chef to 14.9.13 [#1922](https://github.com/chef/chef-dk/pull/1922) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.11 -->
 - Bump chef-apply to 0.2.7 [#1923](https://github.com/chef/chef-dk/pull/1923) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.10 -->
