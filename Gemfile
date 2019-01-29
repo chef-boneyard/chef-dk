@@ -32,7 +32,8 @@ group(:omnibus_package, :development, :test) do
   gem "pry"
   gem "yard"
   gem "guard"
-  gem "cookstyle", ">= 2.0.0"
+  # Cookstyle 4.0 includes non-backwards compatable changes so we need to pin to 3.x.
+  gem "cookstyle", "~> 3.0"
   gem "foodcritic", ">= 12.1"
   gem "ffi-libarchive"
 end
