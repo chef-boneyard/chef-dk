@@ -52,16 +52,16 @@ merge_actions:
       only_if: built_in:bump_version
   - built_in:update_changelog:
       ignore_labels:
-        - "Expeditor: Exclude From Changelog"
+        - "Expeditor: Skip Changelog"
         - "Expeditor: Skip All"
   - built_in:trigger_habitat_package_build:
       ignore_labels:
-        - "Expeditor: Skip Build"
+        - "Expeditor: Skip Habitat"
         - "Expeditor: Skip All"
       only_if: built_in:bump_version
   - built_in:trigger_omnibus_release_build:
       ignore_labels:
-        - "Expeditor: Skip Build"
+        - "Expeditor: Skip Omnibus"
         - "Expeditor: Skip All"
       only_if: built_in:bump_version
 
