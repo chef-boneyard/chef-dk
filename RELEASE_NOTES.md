@@ -1,3 +1,9 @@
+# ChefDK 3.7 Release Notes
+
+## Deprecations
+
+* `chef provision` - Chef Provisioning has been in maintenance mode since 2015 and due to the age of it's dependencies it cannot be included in ChefDK 4 which is scheduled for an April release. Additional information on the future of Chef Provisioning will be announced in the coming weeks.
+
 # ChefDK 3.6 Release Notes
 
 ## Chef 14.8.12
