@@ -144,7 +144,7 @@ GEM
     chef-api (0.9.0)
       logify (~> 0.1)
       mime-types
-    chef-apply (0.2.7)
+    chef-apply (0.2.8)
       chef (>= 14.0)
       chef-dk (>= 3.0)
       chef-telemetry
@@ -914,4 +914,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.17.3
+   2.0.1
