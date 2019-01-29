@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.7.17 -->
-## [v3.7.17](https://github.com/chef/chef-dk/tree/v3.7.17) (2019-01-29)
+<!-- latest_release 3.7.18 -->
+## [v3.7.18](https://github.com/chef/chef-dk/tree/v3.7.18) (2019-01-29)
 
 #### Merged Pull Requests
-- Rubygems pin back to 2.7.7 [#1934](https://github.com/chef/chef-dk/pull/1934) ([jaymalasinha](https://github.com/jaymalasinha))
+- Bump chef-apply to 0.2.8 [#1932](https://github.com/chef/chef-dk/pull/1932) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.6.57 -->
 ### Changes since 3.6.57 release
 
 #### Merged Pull Requests
+- Bump chef-apply to 0.2.8 [#1932](https://github.com/chef/chef-dk/pull/1932) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.18 -->
 - Rubygems pin back to 2.7.7 [#1934](https://github.com/chef/chef-dk/pull/1934) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 3.7.17 -->
 - Update rust for delivery cli [#1931](https://github.com/chef/chef-dk/pull/1931) ([markan](https://github.com/markan)) <!-- 3.7.16 -->
 - Bump kitchen-vagrant to 1.4.0 to resolve Bluetooth audio interuptions with VirtualBox [#1929](https://github.com/chef/chef-dk/pull/1929) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.15 -->
