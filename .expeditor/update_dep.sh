@@ -15,14 +15,16 @@ function new_gem_included() {
   git diff | grep -E '^\+' | grep "${GEM_NAME} (${VERSION})"
 }
 
+gem install bundler -v 1.17.3 --no-document
+
 branch="expeditor/${GEM_NAME}_${VERSION}"
 git checkout -b "$branch"
 
-bundle install
+bundle _1.17.3_ install
 
 tries=12
 for (( i=1; i<=$tries; i+=1 )); do
-  bundle exec rake dependencies:update_gemfile_lock
+  bundle _1.17.3_ exec rake dependencies:update_gemfile_lock
   new_gem_included && break || sleep 20
   if [ $i -eq $tries ]; then
     echo "Searching for '${GEM_NAME} (${VERSION})' ${i} times and did not find it"

@@ -13,17 +13,24 @@ set -evx
 
 branch="expeditor/chef_${VERSION}"
 git checkout -b "$branch"
+GEM_NAME="chef"
 
 # make sure we have rake for the tasks later
-bundle install
-sed -i -r "s/^\s*gem \"chef\".*/  gem \"chef\", \"= ${VERSION}\"/" Gemfile
+gem install bundler -v 1.17.3 --no-document
+bundle _1.17.3_ install
+sed -i -r "s/^\s*gem \"chef\".*/  gem \"${GEM_NAME}\", \"= ${VERSION}\"/" Gemfile
 
-# it appears that the gem that triggers this script fires off this script before
-# the gem is actually available via bundler on rubygems.org.
-sleep 240
-
-gem install rake
-rake dependencies:update_gemfile_lock
+tries=12
+for (( i=1; i<=$tries; i+=1 )); do
+  bundle _1.17.3_ exec rake dependencies:update_gemfile_lock
+  new_gem_included && break || sleep 20
+  if [ $i -eq $tries ]; then
+    echo "Searching for '${GEM_NAME} (${VERSION})' ${i} times and did not find it"
+    exit 1
+  else
+    echo "Searched ${i} times for '${GEM_NAME} (${VERSION})'"
+  fi
+done
 
 git add .
 
