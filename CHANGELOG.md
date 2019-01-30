@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.7.22 -->
-## [v3.7.22](https://github.com/chef/chef-dk/tree/v3.7.22) (2019-01-30)
+<!-- latest_release 3.7.23 -->
+## [v3.7.23](https://github.com/chef/chef-dk/tree/v3.7.23) (2019-01-30)
 
 #### Merged Pull Requests
-- Upgrade rubygems to 2.7.8 [#1942](https://github.com/chef/chef-dk/pull/1942) ([jonsmorrow](https://github.com/jonsmorrow))
+- Preparing release notes for 3.7 release [#1933](https://github.com/chef/chef-dk/pull/1933) ([jonsmorrow](https://github.com/jonsmorrow))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.6.57 -->
 ### Changes since 3.6.57 release
 
 #### Merged Pull Requests
+- Preparing release notes for 3.7 release [#1933](https://github.com/chef/chef-dk/pull/1933) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.7.23 -->
 - Upgrade rubygems to 2.7.8 [#1942](https://github.com/chef/chef-dk/pull/1942) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.7.22 -->
 - Bump Chef to 14.10.9 and InSpec to 3.4.1 [#1940](https://github.com/chef/chef-dk/pull/1940) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.21 -->
 - Pin Cookstyle to 3.x [#1938](https://github.com/chef/chef-dk/pull/1938) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.7.20 -->
