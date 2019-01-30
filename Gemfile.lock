@@ -274,7 +274,7 @@ GEM
       http-cookie (~> 1.0.0)
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
-    fauxhai (6.10.0)
+    fauxhai (6.11.0)
       net-ssh
     ffi (1.10.0)
     ffi (1.10.0-x64-mingw32)
@@ -763,9 +763,9 @@ GEM
     ubuntu_ami (0.4.2)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.5)
-    unf_ext (0.0.7.5-x64-mingw32)
-    unf_ext (0.0.7.5-x86-mingw32)
+    unf_ext (0.0.7.2)
+    unf_ext (0.0.7.2-x64-mingw32)
+    unf_ext (0.0.7.2-x86-mingw32)
     unicode-display_width (1.4.1)
     unicode_utils (1.4.0)
     uuidtools (2.1.5)
@@ -851,7 +851,7 @@ DEPENDENCIES
   dco
   dep-selector-libgecode
   dep_selector
-  fauxhai (>= 6.7)
+  fauxhai (~> 6.11)
   ffi-libarchive
   ffi-rzmq-core
   foodcritic (>= 12.1)
