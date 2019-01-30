@@ -78,6 +78,11 @@ do_build() {
   export GEM_PATH=${_bundler_dir}:${GEM_HOME}
 
   export NOKOGIRI_CONFIG="--use-system-libraries --with-zlib-dir=${_zlib_dir} --with-xslt-dir=${_libxslt_dir} --with-xml2-include=${_libxml2_dir}/include/libxml2 --with-xml2-lib=${_libxml2_dir}/lib"
+  
+  ## Force bundler version 1.17.3
+  gem install bundler --version 1.17.3 --silent
+  bundle --version
+  
   bundle config --local build.nokogiri "${NOKOGIRI_CONFIG}"
 
   bundle config --local silence_root_warning 1
