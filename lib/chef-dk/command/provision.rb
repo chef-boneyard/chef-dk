@@ -187,7 +187,7 @@ module ChefDK
         long:         "--target REMOTE_HOST",
         description:  "Set hostname or IP of the host to converge (may be overriden by provisioning cookbook)"
 
-      OPT_SEPARATOR = /[=\s]+/.freeze
+      OPT_SEPARATOR = /[=\s]+/
 
       def self.split_opt(key_value)
         key, _separator, value = key_value.partition(OPT_SEPARATOR)

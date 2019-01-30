@@ -27,7 +27,7 @@ module ChefDK
   module Policyfile
     class DSL
 
-      RUN_LIST_ITEM_COMPONENT = %r{^[.[:alnum:]_-]+$}.freeze
+      RUN_LIST_ITEM_COMPONENT = %r{^[.[:alnum:]_-]+$}
 
       include StorageConfigDelegation
 
