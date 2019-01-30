@@ -1,5 +1,34 @@
 # ChefDK 3.7 Release Notes
 
+## Chef 14.10.9
+
+ChefDK now ships with Chef 14.10.9. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
+## InSpec 3.4.1
+
+ChefDK now ships with Inspec 3.4.1. See <https://github.com/inspec/inspec/releases/tag/v3.4.1> for more information on what's new.
+
+## Updated Components and Tools
+
+### kitchen-inspec 1.0.1
+
+Support bastion configuration in transport options.
+
+### kitchen-vagrant 1.4.0
+
+This fixes audio for virtualbox users by disabling audio in virtualbox by default to prevent interrupting the host's Bluetooth audio.
+
+### kitchen-azurerm 0.14.8
+
+Support Azure Managed Identities and apply vm_tags to all resources in resource group.
+
+### Other updates
+
+* `bundler`: 1.16.1 -> 1.17.3
+* `chef-apply`: 0.2.4 -> 0.2.7
+* `kitchen-tidy`: 1.2.0 -> 2.0.0
+* `rubygems`: 2.7.6 -> 2.7.8
+
 ## Deprecations
 
 * `chef provision` - Chef Provisioning has been in maintenance mode since 2015 and due to the age of it's dependencies it cannot be included in ChefDK 4 which is scheduled for an April release. Additional information on the future of Chef Provisioning will be announced in the coming weeks.
