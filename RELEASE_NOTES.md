@@ -1,3 +1,5 @@
+# Pending ChefDK 3.8 Release Notes
+
 # ChefDK 3.7 Release Notes
 
 ## Chef 14.10.9
