@@ -1,43 +1,41 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.7.23 -->
-## [v3.7.23](https://github.com/chef/chef-dk/tree/v3.7.23) (2019-01-30)
-
-#### Merged Pull Requests
-- Preparing release notes for 3.7 release [#1933](https://github.com/chef/chef-dk/pull/1933) ([jonsmorrow](https://github.com/jonsmorrow))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.6.57 -->
-### Changes since 3.6.57 release
-
-#### Merged Pull Requests
-- Preparing release notes for 3.7 release [#1933](https://github.com/chef/chef-dk/pull/1933) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.7.23 -->
-- Upgrade rubygems to 2.7.8 [#1942](https://github.com/chef/chef-dk/pull/1942) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.7.22 -->
-- Bump Chef to 14.10.9 and InSpec to 3.4.1 [#1940](https://github.com/chef/chef-dk/pull/1940) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.21 -->
-- Pin Cookstyle to 3.x [#1938](https://github.com/chef/chef-dk/pull/1938) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.7.20 -->
-- Pin bundler back to 1.17.3. [#1935](https://github.com/chef/chef-dk/pull/1935) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.7.19 -->
-- Bump chef-apply to 0.2.8 [#1932](https://github.com/chef/chef-dk/pull/1932) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.18 -->
-- Rubygems pin back to 2.7.7 [#1934](https://github.com/chef/chef-dk/pull/1934) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 3.7.17 -->
-- Update rust for delivery cli [#1931](https://github.com/chef/chef-dk/pull/1931) ([markan](https://github.com/markan)) <!-- 3.7.16 -->
-- Bump kitchen-vagrant to 1.4.0 to resolve Bluetooth audio interuptions with VirtualBox [#1929](https://github.com/chef/chef-dk/pull/1929) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.15 -->
-- Deprecating the &#39;chef provision&#39; command [#1925](https://github.com/chef/chef-dk/pull/1925) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.7.14 -->
-- Bump kitchen-inspec to 1.0.1 with support for bastian hosts [#1926](https://github.com/chef/chef-dk/pull/1926) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.13 -->
-- Bump inspec to 3.3.14 to add additional resources [#1928](https://github.com/chef/chef-dk/pull/1928) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.12 -->
-- Bump Chef to 14.9.13 [#1922](https://github.com/chef/chef-dk/pull/1922) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.11 -->
-- Bump chef-apply to 0.2.7 [#1923](https://github.com/chef/chef-dk/pull/1923) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.10 -->
-- Bump nokogiri to 1.10.1 [#1914](https://github.com/chef/chef-dk/pull/1914) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.9 -->
-- Bump chef-apply to 0.2.6 [#1911](https://github.com/chef/chef-dk/pull/1911) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.8 -->
-- Bump nokogiri to 1.10.0 for bugfixes [#1909](https://github.com/chef/chef-dk/pull/1909) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.7 -->
-- Bump chef-telemetry to 0.1.7 [#1907](https://github.com/chef/chef-dk/pull/1907) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.6 -->
-- Update rubygems to 2.7.7 and bundler to 1.17.3 [#1908](https://github.com/chef/chef-dk/pull/1908) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.7.5 -->
-- Remove the acceptance files from the install [#1895](https://github.com/chef/chef-dk/pull/1895) ([tas50](https://github.com/tas50)) <!-- 3.7.4 -->
-- Cleanup the omnibus definition for DK [#1882](https://github.com/chef/chef-dk/pull/1882) ([tas50](https://github.com/tas50)) <!-- 3.7.3 -->
-- Don&#39;t ship the rake tasks in the gem artifact [#1899](https://github.com/chef/chef-dk/pull/1899) ([tas50](https://github.com/tas50)) <!-- 3.7.2 -->
-- Bump kitchen-azurerm to 0.14.8 to support Azure Managed Service Identities &amp; VM tags [#1906](https://github.com/chef/chef-dk/pull/1906) ([chef-ci](https://github.com/chef-ci)) <!-- 3.7.1 -->
-- Bumping to 3.7 for new minor version development [#1905](https://github.com/chef/chef-dk/pull/1905) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.7.0 -->
-- Adding release notes for 3.6 release [#1904](https://github.com/chef/chef-dk/pull/1904) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.6.58 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.7.23](https://github.com/chef/chef-dk/tree/v3.7.23) (2019-01-30)
+
+#### Merged Pull Requests
+- Adding release notes for 3.6 release [#1904](https://github.com/chef/chef-dk/pull/1904) ([tyler-ball](https://github.com/tyler-ball))
+- Bumping to 3.7 for new minor version development [#1905](https://github.com/chef/chef-dk/pull/1905) ([tyler-ball](https://github.com/tyler-ball))
+- Bump kitchen-azurerm to 0.14.8 to support Azure Managed Service Identities &amp; VM tags [#1906](https://github.com/chef/chef-dk/pull/1906) ([chef-ci](https://github.com/chef-ci))
+- Don&#39;t ship the rake tasks in the gem artifact [#1899](https://github.com/chef/chef-dk/pull/1899) ([tas50](https://github.com/tas50))
+- Cleanup the omnibus definition for DK [#1882](https://github.com/chef/chef-dk/pull/1882) ([tas50](https://github.com/tas50))
+- Remove the acceptance files from the install [#1895](https://github.com/chef/chef-dk/pull/1895) ([tas50](https://github.com/tas50))
+- Update rubygems to 2.7.7 and bundler to 1.17.3 [#1908](https://github.com/chef/chef-dk/pull/1908) ([tyler-ball](https://github.com/tyler-ball))
+- Bump chef-telemetry to 0.1.7 [#1907](https://github.com/chef/chef-dk/pull/1907) ([chef-ci](https://github.com/chef-ci))
+- Bump nokogiri to 1.10.0 for bugfixes [#1909](https://github.com/chef/chef-dk/pull/1909) ([chef-ci](https://github.com/chef-ci))
+- Bump chef-apply to 0.2.6 [#1911](https://github.com/chef/chef-dk/pull/1911) ([chef-ci](https://github.com/chef-ci))
+- Bump nokogiri to 1.10.1 [#1914](https://github.com/chef/chef-dk/pull/1914) ([chef-ci](https://github.com/chef-ci))
+- Bump chef-apply to 0.2.7 [#1923](https://github.com/chef/chef-dk/pull/1923) ([chef-ci](https://github.com/chef-ci))
+- Bump Chef to 14.9.13 [#1922](https://github.com/chef/chef-dk/pull/1922) ([chef-ci](https://github.com/chef-ci))
+- Bump inspec to 3.3.14 to add additional resources [#1928](https://github.com/chef/chef-dk/pull/1928) ([chef-ci](https://github.com/chef-ci))
+- Bump kitchen-inspec to 1.0.1 with support for bastian hosts [#1926](https://github.com/chef/chef-dk/pull/1926) ([chef-ci](https://github.com/chef-ci))
+- Deprecating the &#39;chef provision&#39; command [#1925](https://github.com/chef/chef-dk/pull/1925) ([tyler-ball](https://github.com/tyler-ball))
+- Bump kitchen-vagrant to 1.4.0 to resolve Bluetooth audio interuptions with VirtualBox [#1929](https://github.com/chef/chef-dk/pull/1929) ([chef-ci](https://github.com/chef-ci))
+- Update rust for delivery cli [#1931](https://github.com/chef/chef-dk/pull/1931) ([markan](https://github.com/markan))
+- Rubygems pin back to 2.7.7 [#1934](https://github.com/chef/chef-dk/pull/1934) ([jaymalasinha](https://github.com/jaymalasinha))
+- Bump chef-apply to 0.2.8 [#1932](https://github.com/chef/chef-dk/pull/1932) ([chef-ci](https://github.com/chef-ci))
+- Pin bundler back to 1.17.3. [#1935](https://github.com/chef/chef-dk/pull/1935) ([jonsmorrow](https://github.com/jonsmorrow))
+- Pin Cookstyle to 3.x [#1938](https://github.com/chef/chef-dk/pull/1938) ([jonsmorrow](https://github.com/jonsmorrow))
+- Bump Chef to 14.10.9 and InSpec to 3.4.1 [#1940](https://github.com/chef/chef-dk/pull/1940) ([chef-ci](https://github.com/chef-ci))
+- Upgrade rubygems to 2.7.8 [#1942](https://github.com/chef/chef-dk/pull/1942) ([jonsmorrow](https://github.com/jonsmorrow))
+- Preparing release notes for 3.7 release [#1933](https://github.com/chef/chef-dk/pull/1933) ([jonsmorrow](https://github.com/jonsmorrow))
+<!-- latest_stable_release -->
+
 ## [v3.6.57](https://github.com/chef/chef-dk/tree/v3.6.57) (2018-12-27)
 
 #### Merged Pull Requests
@@ -98,7 +96,6 @@
 - Bump foodcritic to 15.1 to add Chef 14.8 metadata and bump stove to 7.0.1 to fix error messages not printing [#1900](https://github.com/chef/chef-dk/pull/1900) ([chef-ci](https://github.com/chef-ci))
 - Bump chefspec to 7.3.4 to fix chef-dk verification tests [#1902](https://github.com/chef/chef-dk/pull/1902) ([chef-ci](https://github.com/chef-ci))
 - Bump chef-sugar to 5.0.0 [#1903](https://github.com/chef/chef-dk/pull/1903) ([chef-ci](https://github.com/chef-ci))
-<!-- latest_stable_release -->
 
 ## [v3.5.13](https://github.com/chef/chef-dk/tree/v3.5.13) (2018-11-16)
 
