@@ -32,8 +32,7 @@ group(:omnibus_package, :development, :test) do
   gem "pry"
   gem "yard"
   gem "guard"
-  # Cookstyle 4.0 includes non-backwards compatable changes so we need to pin to 3.x.
-  gem "cookstyle", "~> 3.0"
+  gem "cookstyle", "~> 3.0" # bump this on the next DK major release
   gem "foodcritic", ">= 12.1"
   gem "ffi-libarchive"
 end
@@ -61,7 +60,7 @@ group(:omnibus_package) do
   gem "chef", "= 14.10.9"
   gem "cheffish", ">= 14.0.1"
   gem "chefspec", ">= 7.3.0"
-  gem "fauxhai", ">= 6.7"
+  gem "fauxhai", "~> 6.11" # bump this on the next DK major release
   gem "inspec", ">= 2.3"
   gem "kitchen-azurerm", ">= 0.14"
   gem "kitchen-ec2", ">= 2.3"
