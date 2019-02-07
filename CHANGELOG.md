@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.8.2 -->
-## [v3.8.2](https://github.com/chef/chef-dk/tree/v3.8.2) (2019-02-07)
+<!-- latest_release 3.8.3 -->
+## [v3.8.3](https://github.com/chef/chef-dk/tree/v3.8.3) (2019-02-07)
 
 #### Merged Pull Requests
-- Bump inspec to 3.5.0 [#1949](https://github.com/chef/chef-dk/pull/1949) ([chef-ci](https://github.com/chef-ci))
+- Bump mixlib-install to 3.11.11 [#1951](https://github.com/chef/chef-dk/pull/1951) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.7.23 -->
 ### Changes since 3.7.23 release
 
 #### Merged Pull Requests
+- Bump mixlib-install to 3.11.11 [#1951](https://github.com/chef/chef-dk/pull/1951) ([chef-ci](https://github.com/chef-ci)) <!-- 3.8.3 -->
 - Bump inspec to 3.5.0 [#1949](https://github.com/chef/chef-dk/pull/1949) ([chef-ci](https://github.com/chef-ci)) <!-- 3.8.2 -->
 - Update Fauxhai to 6.11 and lock it there [#1945](https://github.com/chef/chef-dk/pull/1945) ([tas50](https://github.com/tas50)) <!-- 3.8.1 -->
 - Bump version to 3.8.0 due to expeditor failure. [#1947](https://github.com/chef/chef-dk/pull/1947) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.8.0 -->
