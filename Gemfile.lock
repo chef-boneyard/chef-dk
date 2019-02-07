@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (3.0.0)
     ast (2.4.0)
-    aws-sdk (2.11.214)
-      aws-sdk-resources (= 2.11.214)
-    aws-sdk-core (2.11.214)
+    aws-sdk (2.11.215)
+      aws-sdk-resources (= 2.11.215)
+    aws-sdk-core (2.11.215)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.214)
-      aws-sdk-core (= 2.11.214)
+    aws-sdk-resources (2.11.215)
+      aws-sdk-core (= 2.11.215)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -51,6 +51,9 @@ GEM
     azure_mgmt_resources (0.17.2)
       ms_rest_azure (~> 0.11.0)
     backports (3.11.4)
+    bcrypt_pbkdf (1.0.0)
+    bcrypt_pbkdf (1.0.0-x64-mingw32)
+    bcrypt_pbkdf (1.0.0-x86-mingw32)
     berkshelf (7.0.7)
       chef (>= 13.6.52)
       chef-config
@@ -472,7 +475,7 @@ GEM
       chef (>= 11.0.0)
       diffy (>= 3.0.1)
       git (>= 1.2.5)
-    knife-tidy (2.0.0)
+    knife-tidy (2.0.1)
     knife-vsphere (2.1.1)
       chef-vault (>= 2.6.0)
       filesize (~> 0.1.1)
@@ -612,6 +615,10 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     rb-readline (0.5.5)
+    rbnacl (6.0.1)
+      ffi
+    rbnacl-libsodium (1.0.16)
+      rbnacl (>= 3.0.1)
     rbvmomi (1.13.0)
       builder (~> 3.0)
       json (>= 1.8)
@@ -833,6 +840,7 @@ PLATFORMS
 DEPENDENCIES
   appbundler
   artifactory
+  bcrypt_pbkdf
   berkshelf (>= 7.0.5)
   bundler
   chef (= 14.10.9)
@@ -889,6 +897,8 @@ DEPENDENCIES
   pry-stack_explorer
   rake (<= 12.3.0)
   rb-readline
+  rbnacl
+  rbnacl-libsodium
   rdoc (<= 6.0.1)
   rdp-ruby-wmi
   rspec-core (~> 3.0)
