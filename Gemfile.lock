@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (3.0.0)
     ast (2.4.0)
-    aws-sdk (2.11.215)
-      aws-sdk-resources (= 2.11.215)
-    aws-sdk-core (2.11.215)
+    aws-sdk (2.11.217)
+      aws-sdk-resources (= 2.11.217)
+    aws-sdk-core (2.11.217)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.215)
-      aws-sdk-core (= 2.11.215)
+    aws-sdk-resources (2.11.217)
+      aws-sdk-core (= 2.11.217)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -395,7 +395,7 @@ GEM
     ice_nine (0.11.2)
     inifile (3.0.0)
     iniparse (1.4.4)
-    inspec (3.5.0)
+    inspec (3.6.4)
       addressable (~> 2.4)
       faraday (>= 0.9.0)
       faraday_middleware (~> 0.12.2)
@@ -416,7 +416,7 @@ GEM
       term-ansicolor
       thor (~> 0.20)
       tomlrb (~> 1.2)
-      train (~> 1.5, = 1.7.1)
+      train (~> 1.5, >= 1.7.2)
       tty-prompt (~> 0.17)
       tty-table (~> 0.10)
     ipaddress (0.8.3)
@@ -725,7 +725,7 @@ GEM
     toml-rb (1.1.2)
       citrus (~> 3.0, > 3.0)
     tomlrb (1.2.8)
-    train (1.7.1)
+    train (1.7.2)
       aws-sdk (~> 2)
       azure_graph_rbac (~> 0.16)
       azure_mgmt_key_vault (~> 0.17)
@@ -922,4 +922,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.17.3
+   2.0.1
