@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.8.8 -->
-## [v3.8.8](https://github.com/chef/chef-dk/tree/v3.8.8) (2019-02-21)
+<!-- latest_release 3.8.9 -->
+## [v3.8.9](https://github.com/chef/chef-dk/tree/v3.8.9) (2019-02-21)
 
 #### Merged Pull Requests
-- Preparing for 3.8 release. [#1962](https://github.com/chef/chef-dk/pull/1962) ([jonsmorrow](https://github.com/jonsmorrow))
+- Bump all the deps to current [#1963](https://github.com/chef/chef-dk/pull/1963) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.7.23 -->
 ### Changes since 3.7.23 release
 
 #### Merged Pull Requests
+- Bump all the deps to current [#1963](https://github.com/chef/chef-dk/pull/1963) ([tas50](https://github.com/tas50)) <!-- 3.8.9 -->
 - Preparing for 3.8 release. [#1962](https://github.com/chef/chef-dk/pull/1962) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.8.8 -->
 - Bump kitchen-digitalocean to 0.10.2 [#1960](https://github.com/chef/chef-dk/pull/1960) ([chef-ci](https://github.com/chef-ci)) <!-- 3.8.7 -->
 - Update hab ruby to 2.5.3 [#1961](https://github.com/chef/chef-dk/pull/1961) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.8.6 -->
