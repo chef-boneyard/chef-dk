@@ -125,8 +125,7 @@ end
 # For consistency with Chef-Client we exclude this on Solaris
 # (yeah, we don't build ChefDK on Solaris, but lets be consistent and have this group)
 group(:ed25519) do
-  gem "rbnacl-libsodium"
-  gem "rbnacl", "~> 5.0" # pin to 5.x until we can replace rbnacl-libsodium
+  gem "rbnacl"
   gem "bcrypt_pbkdf"
 end
 

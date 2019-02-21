@@ -50,6 +50,9 @@ dependency "libarchive"
 # For opscode-pushy-client
 dependency "libzmq"
 
+# ed25519
+dependency "libsodium"
+
 # ruby and bundler and friends
 dependency "ruby"
 dependency "rubygems"
