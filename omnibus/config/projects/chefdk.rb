@@ -106,7 +106,7 @@ package :msi do
 end
 
 package :appx do
-  signing_identity "E05FF095D07F233B78EB322132BFF0F035E11B5B", machine_store: true
+  skip_packager true
 end
 
 compress :dmg
