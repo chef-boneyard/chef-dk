@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.8.9 -->
-## [v3.8.9](https://github.com/chef/chef-dk/tree/v3.8.9) (2019-02-21)
+<!-- latest_release 3.8.10 -->
+## [v3.8.10](https://github.com/chef/chef-dk/tree/v3.8.10) (2019-02-21)
 
 #### Merged Pull Requests
-- Bump all the deps to current [#1963](https://github.com/chef/chef-dk/pull/1963) ([tas50](https://github.com/tas50))
+- pin rbnacl to 5.x [#1964](https://github.com/chef/chef-dk/pull/1964) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.7.23 -->
 ### Changes since 3.7.23 release
 
 #### Merged Pull Requests
+- pin rbnacl to 5.x [#1964](https://github.com/chef/chef-dk/pull/1964) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.8.10 -->
 - Bump all the deps to current [#1963](https://github.com/chef/chef-dk/pull/1963) ([tas50](https://github.com/tas50)) <!-- 3.8.9 -->
 - Preparing for 3.8 release. [#1962](https://github.com/chef/chef-dk/pull/1962) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.8.8 -->
 - Bump kitchen-digitalocean to 0.10.2 [#1960](https://github.com/chef/chef-dk/pull/1960) ([chef-ci](https://github.com/chef-ci)) <!-- 3.8.7 -->
