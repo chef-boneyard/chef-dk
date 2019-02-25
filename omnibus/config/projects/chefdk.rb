@@ -75,6 +75,7 @@ dependency "stunnel" if fips_mode?
 # compilations that use ./configure et all (the msys env) to break
 if windows?
   override :"ruby-windows-devkit", version: "4.5.2-20111229-1559" if windows_arch_i386?
+  dependency "rbnacl-libsodium-fix"
   dependency "ruby-windows-devkit"
   dependency "ruby-windows-devkit-bash"
   dependency "ruby-windows-system-libraries"
