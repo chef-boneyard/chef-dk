@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (3.0.0)
     ast (2.4.0)
-    aws-sdk (2.11.225)
-      aws-sdk-resources (= 2.11.225)
-    aws-sdk-core (2.11.225)
+    aws-sdk (2.11.222)
+      aws-sdk-resources (= 2.11.222)
+    aws-sdk-core (2.11.222)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.225)
-      aws-sdk-core (= 2.11.225)
+    aws-sdk-resources (2.11.222)
+      aws-sdk-core (= 2.11.222)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -50,7 +50,7 @@ GEM
       ms_rest_azure (~> 0.11.0)
     azure_mgmt_resources (0.17.2)
       ms_rest_azure (~> 0.11.0)
-    backports (3.12.0)
+    backports (3.11.4)
     bcrypt_pbkdf (1.0.0)
     bcrypt_pbkdf (1.0.0-x64-mingw32)
     bcrypt_pbkdf (1.0.0-x86-mingw32)
@@ -70,7 +70,7 @@ GEM
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
-    byebug (11.0.0)
+    byebug (10.0.2)
     chef (14.10.9)
       addressable
       bundler (>= 1.10)
@@ -595,8 +595,8 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    pry-byebug (3.7.0)
-      byebug (~> 11.0)
+    pry-byebug (3.6.0)
+      byebug (~> 10.0)
       pry (~> 0.10)
     pry-remote (0.1.8)
       pry (~> 0.9)
@@ -615,7 +615,7 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     rb-readline (0.5.5)
-    rbnacl (5.0.0)
+    rbnacl (6.0.1)
       ffi
     rbnacl-libsodium (1.0.16)
       rbnacl (>= 3.0.1)
@@ -897,7 +897,7 @@ DEPENDENCIES
   pry-stack_explorer
   rake (<= 12.3.0)
   rb-readline
-  rbnacl (~> 5.0)
+  rbnacl
   rbnacl-libsodium
   rdoc (<= 6.0.1)
   rdp-ruby-wmi
