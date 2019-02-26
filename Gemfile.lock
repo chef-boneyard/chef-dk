@@ -30,13 +30,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (3.0.0)
     ast (2.4.0)
-    aws-sdk (2.11.225)
-      aws-sdk-resources (= 2.11.225)
-    aws-sdk-core (2.11.225)
+    aws-sdk (2.11.228)
+      aws-sdk-resources (= 2.11.228)
+    aws-sdk-core (2.11.228)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.225)
-      aws-sdk-core (= 2.11.225)
+    aws-sdk-resources (2.11.228)
+      aws-sdk-core (= 2.11.228)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -46,14 +46,11 @@ GEM
       ms_rest_azure (~> 0.11.0)
     azure_mgmt_key_vault (0.17.2)
       ms_rest_azure (~> 0.11.0)
-    azure_mgmt_network (0.18.3)
+    azure_mgmt_network (0.18.4)
       ms_rest_azure (~> 0.11.0)
     azure_mgmt_resources (0.17.2)
       ms_rest_azure (~> 0.11.0)
     backports (3.12.0)
-    bcrypt_pbkdf (1.0.0)
-    bcrypt_pbkdf (1.0.0-x64-mingw32)
-    bcrypt_pbkdf (1.0.0-x86-mingw32)
     berkshelf (7.0.7)
       chef (>= 13.6.52)
       chef-config
@@ -422,7 +419,7 @@ GEM
     ipaddress (0.8.3)
     iso8601 (0.12.1)
     jmespath (1.4.0)
-    json (2.1.0)
+    json (2.2.0)
     jwt (2.1.0)
     kartograph (0.2.7)
     kitchen-azurerm (0.14.8)
@@ -581,7 +578,7 @@ GEM
       uuidtools
     os (1.0.0)
     paint (1.0.1)
-    parallel (1.13.0)
+    parallel (1.14.0)
     parser (2.6.0.0)
       ast (~> 2.4.0)
     parslet (1.8.2)
@@ -615,10 +612,6 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     rb-readline (0.5.5)
-    rbnacl (5.0.0)
-      ffi
-    rbnacl-libsodium (1.0.16)
-      rbnacl (>= 3.0.1)
     rbvmomi (1.13.0)
       builder (~> 3.0)
       json (>= 1.8)
@@ -770,9 +763,9 @@ GEM
     ubuntu_ami (0.4.2)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.2)
-    unf_ext (0.0.7.2-x64-mingw32)
-    unf_ext (0.0.7.2-x86-mingw32)
+    unf_ext (0.0.7.5)
+    unf_ext (0.0.7.5-x64-mingw32)
+    unf_ext (0.0.7.5-x86-mingw32)
     unicode-display_width (1.4.1)
     unicode_utils (1.4.0)
     uuidtools (2.1.5)
@@ -840,7 +833,6 @@ PLATFORMS
 DEPENDENCIES
   appbundler
   artifactory
-  bcrypt_pbkdf
   berkshelf (>= 7.0.5)
   bundler
   chef (= 14.10.9)
@@ -897,8 +889,6 @@ DEPENDENCIES
   pry-stack_explorer
   rake (<= 12.3.0)
   rb-readline
-  rbnacl (~> 5.0)
-  rbnacl-libsodium
   rdoc (<= 6.0.1)
   rdp-ruby-wmi
   rspec-core (~> 3.0)
