@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.8.13 -->
-## [v3.8.13](https://github.com/chef/chef-dk/tree/v3.8.13) (2019-02-27)
+<!-- latest_release 3.8.14 -->
+## [v3.8.14](https://github.com/chef/chef-dk/tree/v3.8.14) (2019-02-27)
 
 #### Merged Pull Requests
-- Update to openssl 1.0.2r for resolve CVE-2019-1559 [#1971](https://github.com/chef/chef-dk/pull/1971) ([tas50](https://github.com/tas50))
+- Bump mixlib-archive to 0.4.20 [#1973](https://github.com/chef/chef-dk/pull/1973) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.7.23 -->
 ### Changes since 3.7.23 release
 
 #### Merged Pull Requests
+- Bump mixlib-archive to 0.4.20 [#1973](https://github.com/chef/chef-dk/pull/1973) ([chef-ci](https://github.com/chef-ci)) <!-- 3.8.14 -->
 - Update to openssl 1.0.2r for resolve CVE-2019-1559 [#1971](https://github.com/chef/chef-dk/pull/1971) ([tas50](https://github.com/tas50)) <!-- 3.8.13 -->
 - Bump libxml2 to 2.9.9 [#1967](https://github.com/chef/chef-dk/pull/1967) ([tas50](https://github.com/tas50)) <!-- 3.8.12 -->
 - Rollback the addition of ed25519 support gems [#1970](https://github.com/chef/chef-dk/pull/1970) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.8.11 -->
