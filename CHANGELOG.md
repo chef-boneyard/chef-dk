@@ -1,34 +1,32 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.8.14 -->
-## [v3.8.14](https://github.com/chef/chef-dk/tree/v3.8.14) (2019-02-27)
-
-#### Merged Pull Requests
-- Bump mixlib-archive to 0.4.20 [#1973](https://github.com/chef/chef-dk/pull/1973) ([chef-ci](https://github.com/chef-ci))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.7.23 -->
-### Changes since 3.7.23 release
-
-#### Merged Pull Requests
-- Bump mixlib-archive to 0.4.20 [#1973](https://github.com/chef/chef-dk/pull/1973) ([chef-ci](https://github.com/chef-ci)) <!-- 3.8.14 -->
-- Update to openssl 1.0.2r for resolve CVE-2019-1559 [#1971](https://github.com/chef/chef-dk/pull/1971) ([tas50](https://github.com/tas50)) <!-- 3.8.13 -->
-- Bump libxml2 to 2.9.9 [#1967](https://github.com/chef/chef-dk/pull/1967) ([tas50](https://github.com/tas50)) <!-- 3.8.12 -->
-- Rollback the addition of ed25519 support gems [#1970](https://github.com/chef/chef-dk/pull/1970) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.8.11 -->
-- pin rbnacl to 5.x [#1964](https://github.com/chef/chef-dk/pull/1964) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.8.10 -->
-- Bump all the deps to current [#1963](https://github.com/chef/chef-dk/pull/1963) ([tas50](https://github.com/tas50)) <!-- 3.8.9 -->
-- Preparing for 3.8 release. [#1962](https://github.com/chef/chef-dk/pull/1962) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.8.8 -->
-- Bump kitchen-digitalocean to 0.10.2 [#1960](https://github.com/chef/chef-dk/pull/1960) ([chef-ci](https://github.com/chef-ci)) <!-- 3.8.7 -->
-- Update hab ruby to 2.5.3 [#1961](https://github.com/chef/chef-dk/pull/1961) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.8.6 -->
-- Bump inspec to 3.6.6 [#1958](https://github.com/chef/chef-dk/pull/1958) ([chef-ci](https://github.com/chef-ci)) <!-- 3.8.5 -->
-- add ed25519 gemset [#1955](https://github.com/chef/chef-dk/pull/1955) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 3.8.4 -->
-- Bump mixlib-install to 3.11.11 [#1951](https://github.com/chef/chef-dk/pull/1951) ([chef-ci](https://github.com/chef-ci)) <!-- 3.8.3 -->
-- Bump inspec to 3.5.0 [#1949](https://github.com/chef/chef-dk/pull/1949) ([chef-ci](https://github.com/chef-ci)) <!-- 3.8.2 -->
-- Update Fauxhai to 6.11 and lock it there [#1945](https://github.com/chef/chef-dk/pull/1945) ([tas50](https://github.com/tas50)) <!-- 3.8.1 -->
-- Bump version to 3.8.0 due to expeditor failure. [#1947](https://github.com/chef/chef-dk/pull/1947) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.8.0 -->
-- Bumping to 3.8 for new minor version development. [#1946](https://github.com/chef/chef-dk/pull/1946) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.7.24 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.8.14](https://github.com/chef/chef-dk/tree/v3.8.14) (2019-02-27)
+
+#### Merged Pull Requests
+- Bumping to 3.8 for new minor version development. [#1946](https://github.com/chef/chef-dk/pull/1946) ([jonsmorrow](https://github.com/jonsmorrow))
+- Bump version to 3.8.0 due to expeditor failure. [#1947](https://github.com/chef/chef-dk/pull/1947) ([jonsmorrow](https://github.com/jonsmorrow))
+- Update Fauxhai to 6.11 and lock it there [#1945](https://github.com/chef/chef-dk/pull/1945) ([tas50](https://github.com/tas50))
+- Bump inspec to 3.5.0 [#1949](https://github.com/chef/chef-dk/pull/1949) ([chef-ci](https://github.com/chef-ci))
+- Bump mixlib-install to 3.11.11 [#1951](https://github.com/chef/chef-dk/pull/1951) ([chef-ci](https://github.com/chef-ci))
+- add ed25519 gemset [#1955](https://github.com/chef/chef-dk/pull/1955) ([lamont-granquist](https://github.com/lamont-granquist))
+- Bump inspec to 3.6.6 [#1958](https://github.com/chef/chef-dk/pull/1958) ([chef-ci](https://github.com/chef-ci))
+- Update hab ruby to 2.5.3 [#1961](https://github.com/chef/chef-dk/pull/1961) ([jonsmorrow](https://github.com/jonsmorrow))
+- Bump kitchen-digitalocean to 0.10.2 [#1960](https://github.com/chef/chef-dk/pull/1960) ([chef-ci](https://github.com/chef-ci))
+- Preparing for 3.8 release. [#1962](https://github.com/chef/chef-dk/pull/1962) ([jonsmorrow](https://github.com/jonsmorrow))
+- Bump all the deps to current [#1963](https://github.com/chef/chef-dk/pull/1963) ([tas50](https://github.com/tas50))
+- pin rbnacl to 5.x [#1964](https://github.com/chef/chef-dk/pull/1964) ([lamont-granquist](https://github.com/lamont-granquist))
+- Rollback the addition of ed25519 support gems [#1970](https://github.com/chef/chef-dk/pull/1970) ([jonsmorrow](https://github.com/jonsmorrow))
+- Bump libxml2 to 2.9.9 [#1967](https://github.com/chef/chef-dk/pull/1967) ([tas50](https://github.com/tas50))
+- Update to openssl 1.0.2r for resolve CVE-2019-1559 [#1971](https://github.com/chef/chef-dk/pull/1971) ([tas50](https://github.com/tas50))
+- Bump mixlib-archive to 0.4.20 [#1973](https://github.com/chef/chef-dk/pull/1973) ([chef-ci](https://github.com/chef-ci))
+<!-- latest_stable_release -->
+
 ## [v3.7.23](https://github.com/chef/chef-dk/tree/v3.7.23) (2019-01-30)
 
 #### Merged Pull Requests
@@ -57,7 +55,6 @@
 - Bump Chef to 14.10.9 and InSpec to 3.4.1 [#1940](https://github.com/chef/chef-dk/pull/1940) ([chef-ci](https://github.com/chef-ci))
 - Upgrade rubygems to 2.7.8 [#1942](https://github.com/chef/chef-dk/pull/1942) ([jonsmorrow](https://github.com/jonsmorrow))
 - Preparing release notes for 3.7 release [#1933](https://github.com/chef/chef-dk/pull/1933) ([jonsmorrow](https://github.com/jonsmorrow))
-<!-- latest_stable_release -->
 
 ## [v3.6.57](https://github.com/chef/chef-dk/tree/v3.6.57) (2018-12-27)
 
