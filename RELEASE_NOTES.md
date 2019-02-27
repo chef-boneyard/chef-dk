@@ -1,9 +1,5 @@
 # ChefDK 3.8 Release Notes
 
-## New Functionality
-
-Added support for Ed25519 SSH keys.
-
 ## Updated Components and Tools
 
 ### InSpec 3.6.6
@@ -22,6 +18,12 @@ ChefDK now ships with Inspec 3.6.6. See <https://github.com/inspec/inspec/releas
 
 * `kitchen-digitalocean`: 0.10.1 -> 0.10.2
 * `mixlib-install`: 3.11.5 -> 3.11.11
+
+## Security Updates
+
+### OpenSSL
+
+OpenSSL updated to 1.0.2r to resolve [CVE-2019-1559](https://nvd.nist.gov/vuln/detail/CVE-2019-1559)
 
 # ChefDK 3.7 Release Notes
 
