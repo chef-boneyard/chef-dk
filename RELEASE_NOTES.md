@@ -14,6 +14,10 @@ ChefDK now ships with Inspec 3.6.6. See <https://github.com/inspec/inspec/releas
 * Updated the fetcher logic to be compatible with ChefSpec 7.3+. Thanks @oscar123mendoza
 * Removed duplicate json data in gentoo 4.9.6
 
+### Mixlib-archive 0.4.20
+
+* Fixes issue #1913. No longer producess corrupted archives on windows. Thanks @kenmacleod for the fix!
+
 ### Other updates
 
 * `kitchen-digitalocean`: 0.10.1 -> 0.10.2
