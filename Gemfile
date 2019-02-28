@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2016 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,7 +32,7 @@ group(:omnibus_package, :development, :test) do
   gem "pry"
   gem "yard"
   gem "guard"
-  gem "cookstyle", "~> 3.0" # bump this on the next DK major release
+  gem "cookstyle", "~> 4.0" # bump this on the next DK major release
   gem "foodcritic", ">= 12.1"
   gem "ffi-libarchive"
 end
@@ -57,16 +57,16 @@ group(:omnibus_package) do
   gem "chef", "= 14.10.9"
   gem "cheffish", ">= 14.0.1"
   gem "chefspec", ">= 7.3.0"
-  gem "fauxhai", "~> 6.11" # bump this on the next DK major release
-  gem "inspec", ">= 2.3"
+  gem "fauxhai", "~> 7.0" # bump this on the next DK major release
+  gem "inspec", ">= 3.0"
   gem "kitchen-azurerm", ">= 0.14"
   gem "kitchen-ec2", ">= 2.3"
   gem "kitchen-digitalocean", ">= 0.10.0"
   gem "kitchen-dokken", ">= 2.6.7"
   gem "kitchen-google", ">= 2.0.0"
   gem "kitchen-hyperv", ">= 0.5.1"
-  gem "kitchen-inspec", ">= 0.24"
-  gem "kitchen-vagrant", ">= 1.3.2"
+  gem "kitchen-inspec", ">= 1.0"
+  gem "kitchen-vagrant", ">= 1.4"
   gem "knife-acl", ">= 1.0.3"
   gem "knife-ec2", ">= 0.19.10"
   gem "knife-google", ">= 3.3.3"
@@ -77,7 +77,7 @@ group(:omnibus_package) do
   gem "mixlib-archive", ">= 0.4.16"
   gem "ohai", ">= 14.0.29"
   gem "net-ssh", ">= 4.2.0"
-  gem "test-kitchen", ">= 1.23.0"
+  gem "test-kitchen", ">= 1.23"
   gem "listen"
   gem "dco"
 
