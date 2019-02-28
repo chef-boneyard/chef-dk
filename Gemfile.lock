@@ -4,7 +4,6 @@ PATH
     chef-dk (3.8.18)
       addressable (>= 2.3.5, < 2.6)
       chef (~> 14.0)
-      chef-provisioning (~> 2.0)
       cookbook-omnifetch (~> 0.5)
       diff-lcs (~> 1.0)
       ffi-yajl (>= 1.0, < 3.0)
@@ -30,13 +29,13 @@ GEM
       mixlib-shellout (~> 2.0)
     artifactory (3.0.0)
     ast (2.4.0)
-    aws-sdk (2.11.229)
-      aws-sdk-resources (= 2.11.229)
-    aws-sdk-core (2.11.229)
+    aws-sdk (2.11.230)
+      aws-sdk-resources (= 2.11.230)
+    aws-sdk-core (2.11.230)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.229)
-      aws-sdk-core (= 2.11.229)
+    aws-sdk-resources (2.11.230)
+      aws-sdk-core (= 2.11.230)
     aws-sigv4 (1.0.3)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -163,33 +162,6 @@ GEM
       mixlib-config (>= 2.2.12, < 3.0)
       mixlib-shellout (~> 2.0)
       tomlrb (~> 1.2)
-    chef-provisioning (2.7.4)
-      cheffish (>= 4.0, < 15.0)
-      inifile (>= 2.0.2)
-      mixlib-install (>= 1.0)
-      net-scp (~> 1.0)
-      net-ssh (>= 2.9, < 5.0)
-      net-ssh-gateway (> 1.2, < 3.0)
-      winrm (~> 2.0)
-      winrm-elevated (~> 1.0)
-      winrm-fs (~> 1.0)
-    chef-provisioning-aws (3.0.7)
-      aws-sdk (>= 2.2.18, < 3.0)
-      chef-provisioning (>= 1.0, < 3.0)
-      retryable (~> 2.0, >= 2.0.1)
-      ubuntu_ami (~> 0.4, >= 0.4.1)
-    chef-provisioning-fog (0.26.3)
-      chef-provisioning (>= 1.0, < 3.0)
-      cheffish (>= 13.1.0, < 15.0)
-      fog-digitalocean
-      fog-joyent
-      fog-openstack
-      fog-rackspace
-      fog-scaleway
-      fog-softlayer
-      fog-xenserver
-      retryable
-      winrm-elevated
     chef-sugar (5.0.0)
     chef-telemetry (0.1.8)
       chef-config
@@ -290,45 +262,19 @@ GEM
     ffi-yajl (2.3.1)
       libyajl2 (~> 1.2)
     filesize (0.1.1)
-    fog-aws (2.0.1)
-      fog-core (~> 1.38)
-      fog-json (~> 1.0)
+    fog-aws (3.3.0)
+      fog-core (~> 2.1)
+      fog-json (~> 1.1)
       fog-xml (~> 0.1)
       ipaddress (~> 0.8)
-    fog-core (1.45.0)
+    fog-core (2.1.2)
       builder
       excon (~> 0.58)
       formatador (~> 0.2)
-    fog-digitalocean (0.4.0)
-      fog-core
-      fog-json
-      fog-xml
-      ipaddress (>= 0.5)
-    fog-joyent (0.0.1)
-      fog-core (~> 1.42)
-      fog-json (>= 1.0)
+      mime-types
     fog-json (1.2.0)
       fog-core
       multi_json (~> 1.10)
-    fog-openstack (0.3.10)
-      fog-core (>= 1.45, <= 2.1.0)
-      fog-json (>= 1.0)
-      ipaddress (>= 0.8)
-    fog-rackspace (0.1.6)
-      fog-core (>= 1.35)
-      fog-json (>= 1.0)
-      fog-xml (>= 0.1)
-      ipaddress (>= 0.8)
-    fog-scaleway (0.5.0)
-      fog-core (~> 1.42)
-      fog-json (~> 1.0)
-    fog-softlayer (1.1.4)
-      fog-core
-      fog-json
-    fog-xenserver (1.0.0)
-      fog-core
-      fog-xml
-      xmlrpc
     fog-xml (0.1.3)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
@@ -760,12 +706,11 @@ GEM
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uber (0.1.0)
-    ubuntu_ami (0.4.2)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.5)
-    unf_ext (0.0.7.5-x64-mingw32)
-    unf_ext (0.0.7.5-x86-mingw32)
+    unf_ext (0.0.7.2)
+    unf_ext (0.0.7.2-x64-mingw32)
+    unf_ext (0.0.7.2-x86-mingw32)
     unicode-display_width (1.4.1)
     unicode_utils (1.4.0)
     uuidtools (2.1.5)
@@ -822,7 +767,6 @@ GEM
       winrm (~> 2.0)
     wisper (2.0.0)
     wmi-lite (1.0.2)
-    xmlrpc (0.3.0)
     yard (0.9.18)
 
 PLATFORMS
@@ -838,9 +782,6 @@ DEPENDENCIES
   chef (= 14.10.9)
   chef-apply
   chef-dk!
-  chef-provisioning (>= 2.7.1)
-  chef-provisioning-aws (>= 3.0.2)
-  chef-provisioning-fog (>= 0.26.1)
   chef-sugar
   chef-vault (>= 3.4.1)
   cheffish (>= 14.0.1)
