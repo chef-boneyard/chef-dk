@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.8.16 -->
-## [v3.8.16](https://github.com/chef/chef-dk/tree/v3.8.16) (2019-02-28)
+<!-- latest_release 3.8.17 -->
+## [v3.8.17](https://github.com/chef/chef-dk/tree/v3.8.17) (2019-02-28)
 
 #### Merged Pull Requests
-- Fix `# # encoding` in cookbook generator [#1975](https://github.com/chef/chef-dk/pull/1975) ([jerryaldrichiii](https://github.com/jerryaldrichiii))
+- Update liblzma to 5.2.4 to match chef [#1977](https://github.com/chef/chef-dk/pull/1977) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Update liblzma to 5.2.4 to match chef [#1977](https://github.com/chef/chef-dk/pull/1977) ([tas50](https://github.com/tas50)) <!-- 3.8.17 -->
 - Fix `# # encoding` in cookbook generator [#1975](https://github.com/chef/chef-dk/pull/1975) ([jerryaldrichiii](https://github.com/jerryaldrichiii)) <!-- 3.8.16 -->
 - Change `Inspec` to `InSpec` in cookbook generator [#1974](https://github.com/chef/chef-dk/pull/1974) ([jerryaldrichiii](https://github.com/jerryaldrichiii)) <!-- 3.8.15 -->
 <!-- release_rollup -->
