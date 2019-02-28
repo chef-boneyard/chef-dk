@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.8.15 -->
+## [v3.8.15](https://github.com/chef/chef-dk/tree/v3.8.15) (2019-02-28)
+
+#### Merged Pull Requests
+- Change `Inspec` to `InSpec` in cookbook generator [#1974](https://github.com/chef/chef-dk/pull/1974) ([jerryaldrichiii](https://github.com/jerryaldrichiii))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.8.14 -->
+### Changes since 3.8.14 release
+
+#### Merged Pull Requests
+- Change `Inspec` to `InSpec` in cookbook generator [#1974](https://github.com/chef/chef-dk/pull/1974) ([jerryaldrichiii](https://github.com/jerryaldrichiii)) <!-- 3.8.15 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
