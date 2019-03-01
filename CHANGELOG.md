@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.1 -->
-## [v4.0.1](https://github.com/chef/chef-dk/tree/v4.0.1) (2019-02-28)
+<!-- latest_release 4.0.2 -->
+## [v4.0.2](https://github.com/chef/chef-dk/tree/v4.0.2) (2019-03-01)
 
 #### Merged Pull Requests
-- Update to the latest major releases of Cookstyle / Fauxhai [#1979](https://github.com/chef/chef-dk/pull/1979) ([tas50](https://github.com/tas50))
+- Add kitchen-vcenter and knife-vcenter gems [#1980](https://github.com/chef/chef-dk/pull/1980) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Add kitchen-vcenter and knife-vcenter gems [#1980](https://github.com/chef/chef-dk/pull/1980) ([tas50](https://github.com/tas50)) <!-- 4.0.2 -->
 - Update to the latest major releases of Cookstyle / Fauxhai [#1979](https://github.com/chef/chef-dk/pull/1979) ([tas50](https://github.com/tas50)) <!-- 4.0.1 -->
 - Remove chef-provisioning from DK [#1614](https://github.com/chef/chef-dk/pull/1614) ([tas50](https://github.com/tas50)) <!-- 4.0.0 -->
 - Prepare DK to branch chefdk-3 as the stable branch [#1978](https://github.com/chef/chef-dk/pull/1978) ([tas50](https://github.com/tas50)) <!-- 3.8.18 -->
