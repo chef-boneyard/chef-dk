@@ -179,6 +179,9 @@ subscriptions:
   - workload: ruby_gem_published:knife-vsphere-*
     actions:
       - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:knife-vsphere-*
+    actions:
+      - bash:.expeditor/update_dep.sh
   - workload: ruby_gem_published:knife-windows-*
     actions:
       - bash:.expeditor/update_dep.sh
@@ -228,6 +231,9 @@ subscriptions:
     actions:
       - bash:.expeditor/update_dep.sh
   - workload: ruby_gem_published:kitchen-vagrant-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-vcenter-*
     actions:
       - bash:.expeditor/update_dep.sh
   - workload: ruby_gem_published:test-kitchen-*
