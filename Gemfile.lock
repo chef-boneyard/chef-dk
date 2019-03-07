@@ -76,10 +76,10 @@ GEM
     celluloid-io (0.16.2)
       celluloid (>= 0.16.0)
       nio4r (>= 1.1.0)
-    chef (13.12.3)
+    chef (13.12.14)
       addressable
       bundler (>= 1.10)
-      chef-config (= 13.12.3)
+      chef-config (= 13.12.14)
       chef-zero (~> 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -106,10 +106,10 @@ GEM
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (13.12.3-universal-mingw32)
+    chef (13.12.14-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 13.12.3)
+      chef-config (= 13.12.14)
       chef-zero (~> 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -150,7 +150,7 @@ GEM
     chef-api (0.9.0)
       logify (~> 0.1)
       mime-types
-    chef-config (13.12.3)
+    chef-config (13.12.14)
       addressable
       fuzzyurl
       mixlib-config (>= 2.2.12, < 3.0)
@@ -734,7 +734,7 @@ DEPENDENCIES
   artifactory
   berkshelf (~> 6.3.1)
   bundler
-  chef (= 13.12.3)
+  chef (= 13.12.14)
   chef-dk!
   chef-provisioning (>= 2.4.0)
   chef-provisioning-aws (>= 3.0.0)
@@ -804,4 +804,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.16.6
+   1.17.3
