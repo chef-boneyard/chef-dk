@@ -1,5 +1,5 @@
 #
-# Copyright 2014-2017, Chef Software Inc.
+# Copyright 2014-2018, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -50,17 +50,6 @@ build do
   # clever.
   make "distclean", env: env
 
-  # AIX needs /opt/freeware/bin only for patch
-  if aix?
-    patch_env = env.dup
-    patch_env["PATH"] = "/opt/freeware/bin:#{env['PATH']}"
-
-    # But only needs the below for 1.9.5
-    if version == "1.9.5"
-      patch source: "aix-strcmp-in-dirc.patch", plevel: 1, env: patch_env
-    end
-  end
-
   config_hash = {
     # Universal options
     NO_GETTEXT: "YesPlease",
@@ -82,11 +71,6 @@ build do
     config_hash["PTHREAD_LIBS"] = "-pthread"
     config_hash["USE_ST_TIMESPEC"] = "YesPlease"
     config_hash["HAVE_BSD_SYSCTL"] = "YesPlease"
-    config_hash["NO_R_TO_GCC_LINKER"] = "YesPlease"
-  elsif solaris?
-    env["CC"] = "gcc"
-    env["SHELL_PATH"] = "#{install_dir}/embedded/bin/bash"
-    config_hash["NEEDS_SOCKET"] = "YesPlease"
     config_hash["NO_R_TO_GCC_LINKER"] = "YesPlease"
   elsif aix?
     env["CC"] = "xlc_r"
