@@ -1,3 +1,53 @@
+# ChefDK 2.7 Release Notes
+
+## Chef 13.12.14
+
+ChefDK now ships with Chef 13.12.14. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
+## Security Updates
+
+### OpenSSL
+
+OpenSSL has been updated to 1.0.2r in order to resolve [CVE-2019-1559](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1559) and [CVE-2018-5407](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-5407)
+
+### RubyGems
+
+RubyGems has been updated to 2.7.9 in order to resolve the following CVEs:
+  - [CVE-2019-8320](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-8320): Delete directory using symlink when decompressing tar
+  - [CVE-2019-8321](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-8321): Escape sequence injection vulnerability in verbose
+  - [CVE-2019-8322](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-8322): Escape sequence injection vulnerability in gem owner
+  - [CVE-2019-8323](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-8323): Escape sequence injection vulnerability in API response handling
+  - [CVE-2019-8324](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-8324): Installing a malicious gem may lead to arbitrary code execution
+  - [CVE-2019-8325](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-8325): Escape sequence injection vulnerability in errors
+
+## Updated libraries
+
+- libxml2 2.9.8 -> 2.9.9
+- liblzma 5.2.3 -> 5.2.4
+- ca-certs updated to 2019-01-22 for new roots
+
+## Updated Tools
+
+### Stove 7.1.0
+
+Stove 7.1.0 now includes the metadata.rb file in uploads to the Supermarket and also removes the yank command as yanking of cookbooks has been removed from Supermarket and is generally a bad practice.
+
+### Chef Provisioning
+
+Chef Provisioning has been updated to 2.7.6 with fixes for macOS machines and a new ready_only action for reading a machine without provisioning it.
+
+### kitchen-ec2
+
+kitchen-ec2 has been udpated to 2.4.0 with support for Amazon Linux 2.0 and Chef Server 1709/1803 image searching.
+
+### knife-google
+
+knife-google has been updated to 3.3.7 to allow using the knife various list commands to run without having to specify a gce_zone.
+
+### kitchen-inspec
+
+kitchen-inspec has been updated to 1.0.1 with support for passing in inspec attributes and support for using bastion hosts to execute inspec checks.
+
 # ChefDK 2.6.2 Release Notes
 
 ## Chef 13.12.3
