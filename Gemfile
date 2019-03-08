@@ -89,8 +89,10 @@ group(:omnibus_package) do
   gem "rubocop"
   gem "winrm-fs"
   gem "winrm-elevated"
-  gem "cucumber"
   gem "stove"
+
+  # to resolve appbundle conflicts between Foodcritic and Test Kitchen
+  gem "cucumber", "~> 2.1"
 end
 
 # Everything except AIX
