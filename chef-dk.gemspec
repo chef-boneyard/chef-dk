@@ -26,12 +26,12 @@ Gem::Specification.new do |gem|
   gem.email         = [ "dan@chef.io", "lamont@chef.io", "serdar@chef.io"]
   gem.description   = "A streamlined development and deployment workflow for Chef platform."
   gem.summary       = gem.description
+  gem.license       = "Apache-2.0"
   gem.homepage      = "https://www.chef.io/"
 
   gem.required_ruby_version = ">= 2.3"
 
-  gem.files = %w{Rakefile LICENSE README.md warning.txt} +
-    %w{omnibus_overrides.rb} +
+  gem.files = %w{Rakefile LICENSE warning.txt} +
     Dir.glob("Gemfile*") + # Includes Gemfile and locks
     Dir.glob("*.gemspec") +
     Dir.glob("{lib,spec,acceptance,tasks}/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
