@@ -22,23 +22,23 @@ env:
 
 matrix:
   include:
-    - rvm: 2.4.5
-      env:
-        RSPEC: 1
-      script: bundle exec rspec
     - rvm: 2.5.5
       env:
         RSPEC: 1
       script: bundle exec rspec
-    - rvm: 2.5.5
+    - rvm: 2.6.2
+      env:
+        RSPEC: 1
+      script: bundle exec rspec
+    - rvm: 2.6.2
       env:
         CHEFSTYLE: 1
       script: bundle exec rake style:chefstyle
-    - rvm: 2.5.5
+    - rvm: 2.6.2
       env:
         COOKSTYLE: 1
       script: bundle exec rake style:cookstyle
-    - rvm: 2.5.5
+    - rvm: 2.6.2
       env:
         FOODCRITIC: 1
       script: bundle exec rake style:foodcritic
