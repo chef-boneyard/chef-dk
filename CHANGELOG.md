@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.4 -->
-## [v4.0.4](https://github.com/chef/chef-dk/tree/v4.0.4) (2019-03-21)
+<!-- latest_release 4.0.5 -->
+## [v4.0.5](https://github.com/chef/chef-dk/tree/v4.0.5) (2019-03-21)
 
 #### Merged Pull Requests
-- Require Ruby 2.5+, bump ruby to 2.5.5, bump deps [#1990](https://github.com/chef/chef-dk/pull/1990) ([tas50](https://github.com/tas50))
+- Bump Test Kitchen to 2.0 and kitchen-ec2 to 2.5.0 [#2005](https://github.com/chef/chef-dk/pull/2005) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Bump Test Kitchen to 2.0 and kitchen-ec2 to 2.5.0 [#2005](https://github.com/chef/chef-dk/pull/2005) ([tas50](https://github.com/tas50)) <!-- 4.0.5 -->
 - Require Ruby 2.5+, bump ruby to 2.5.5, bump deps [#1990](https://github.com/chef/chef-dk/pull/1990) ([tas50](https://github.com/tas50)) <!-- 4.0.4 -->
 - Update rubygems to 3.0.2 [#1981](https://github.com/chef/chef-dk/pull/1981) ([tas50](https://github.com/tas50)) <!-- 4.0.3 -->
 - Add kitchen-vcenter and knife-vcenter gems [#1980](https://github.com/chef/chef-dk/pull/1980) ([tas50](https://github.com/tas50)) <!-- 4.0.2 -->
