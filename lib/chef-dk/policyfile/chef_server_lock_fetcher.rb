@@ -28,7 +28,7 @@ module ChefDK
       attr_accessor :source_options
       attr_accessor :chef_config
 
-      # Initialize a LocalLockFetcher
+      # Initialize a ChefServerLockFetcher
       #
       # @param name [String] The name of the policyfile
       # @param source_options [Hash] A hash with a :server key pointing at the chef server,
@@ -67,7 +67,7 @@ module ChefDK
         errors.empty?
       end
 
-      # Check the options provided when craeting this class for errors
+      # Check the options provided when creating this class for errors
       #
       # @return [Array<String>] A list of errors found
       def errors
