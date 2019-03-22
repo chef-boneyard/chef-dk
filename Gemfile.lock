@@ -135,13 +135,13 @@ GEM
     artifactory (3.0.0)
     ast (2.4.0)
     aws-eventstream (1.0.2)
-    aws-sdk (2.11.244)
-      aws-sdk-resources (= 2.11.244)
-    aws-sdk-core (2.11.244)
+    aws-sdk (2.11.245)
+      aws-sdk-resources (= 2.11.245)
+    aws-sdk-core (2.11.245)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.244)
-      aws-sdk-core (= 2.11.244)
+    aws-sdk-resources (2.11.245)
+      aws-sdk-core (= 2.11.245)
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
     axiom-types (0.1.1)
@@ -371,7 +371,7 @@ GEM
     ice_nine (0.11.2)
     inifile (3.0.0)
     iniparse (1.4.4)
-    inspec (3.7.1)
+    inspec (3.7.11)
       addressable (~> 2.4)
       faraday (>= 0.9.0)
       faraday_middleware (~> 0.12.2)
@@ -792,7 +792,7 @@ GEM
       win32-ipc (>= 0.6.0)
     win32-process (0.8.3)
       ffi (>= 1.0.0)
-    win32-service (1.0.1)
+    win32-service (2.1.2)
       ffi
       ffi-win32-extensions
     win32-taskscheduler (2.0.4)
@@ -910,4 +910,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.17.3
+   2.0.1
