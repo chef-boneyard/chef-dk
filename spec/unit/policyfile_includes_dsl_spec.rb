@@ -78,6 +78,48 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
     end
   end
 
+  describe "when include_policy specifies a remote policy" do
+    describe "and the included policy is correctly configured" do
+      let(:included_policies) { [["foo", { remote: "http://example.local/foo.lock.json" }]] }
+
+      it "has an included policy" do
+        expect(policyfile.included_policies.length).to eq(1)
+      end
+
+      it "uses a remote fetcher" do
+        expect(policyfile.included_policies[0].fetcher).to be_a(ChefDK::Policyfile::RemoteLockFetcher)
+      end
+
+      it "has a fetcher with no errors" do
+        expect(policyfile.included_policies[0].fetcher.errors).to eq([])
+      end
+
+      it "has a fetcher that is valid" do
+        expect(policyfile.included_policies[0].fetcher.valid?).to eq(true)
+      end
+    end
+
+    describe "and the included policy and policy_revision_id are correctly configured" do
+      let(:included_policies) { [["foo", { remote: "http://example.local/foo.lock.json", policy_revision_id: "bar" }]] }
+
+      it "has an included policy" do
+        expect(policyfile.included_policies.length).to eq(1)
+      end
+
+      it "uses a remote fetcher" do
+        expect(policyfile.included_policies[0].fetcher).to be_a(ChefDK::Policyfile::RemoteLockFetcher)
+      end
+
+      it "has a fetcher with no errors" do
+        expect(policyfile.included_policies[0].fetcher.errors).to eq([])
+      end
+
+      it "has a fetcher that is valid" do
+        expect(policyfile.included_policies[0].fetcher.valid?).to eq(true)
+      end
+    end
+  end
+
   describe "when include_policy specifies a policy on a chef server" do
     let(:included_policies) { [["foo", { server: "http://example.com", policy_name: "foo" }]] }
     describe "and policy_revision_id and policy_group are missing" do
