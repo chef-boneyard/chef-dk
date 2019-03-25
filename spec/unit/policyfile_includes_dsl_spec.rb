@@ -40,7 +40,7 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
     describe "and the included policy is correctly configured" do
       let(:included_policies) { [["foo", { path: "./foo.lock.json" }]] }
 
-      it "has a included policy" do
+      it "has an included policy" do
         expect(policyfile.included_policies.length).to eq(1)
       end
 
@@ -57,6 +57,25 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
       end
     end
 
+    describe "and the included policy and policy_revision_id are correctly configured" do
+      let(:included_policies) { [["foo", { path: "./foo.lock.json", policy_revision_id: "bar" }]] }
+
+      it "has an included policy" do
+        expect(policyfile.included_policies.length).to eq(1)
+      end
+
+      it "uses a local fetcher" do
+        expect(policyfile.included_policies[0].fetcher).to be_a(ChefDK::Policyfile::LocalLockFetcher)
+      end
+
+      it "has a fetcher with no errors" do
+        expect(policyfile.included_policies[0].fetcher.errors).to eq([])
+      end
+
+      it "has a fetcher that is valid" do
+        expect(policyfile.included_policies[0].fetcher.valid?).to eq(true)
+      end
+    end
   end
 
   describe "when include_policy specifies a policy on a chef server" do
