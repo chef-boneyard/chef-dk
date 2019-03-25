@@ -85,6 +85,19 @@ module ChefDK
         end
       end
 
+      def validate_revision_id(included_id)
+        expected_id = source_options[:policy_revision_id]
+        if expected_id
+          if included_id.eql?(expected_id) # are they the same?
+            return
+          elsif included_id[0, 10].eql?(expected_id) # did they use the 10 char substring
+            return
+          else
+            raise ChefDK::InvalidLockfile, "Expected policy_revision_id '#{expected_id}' does not match included_policy '#{included_id}'."
+          end
+        end
+      end
+
       private
 
       # Transforms cookbook paths to a path relative to the current
@@ -126,18 +139,6 @@ module ChefDK
         Pathname.new(source_options[:path]).expand_path(storage_config.relative_paths_root)
       end
 
-      def validate_revision_id(included_id)
-        expected_id = source_options[:policy_revision_id]
-        if expected_id
-          if included_id.eql?(expected_id) # are they the same?
-            return
-          elsif included_id[0, 10].eql?(expected_id) # did they use the 10 char substring
-            return
-          else
-            raise ChefDK::InvalidLockfile, "Expected policy_revision_id '#{expected_id}' does not match included_policy '#{included_id}'."
-          end
-        end
-      end
     end
   end
 end
