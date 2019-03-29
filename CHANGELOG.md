@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.6 -->
-## [v4.0.6](https://github.com/chef/chef-dk/tree/v4.0.6) (2019-03-21)
+<!-- latest_release 4.0.7 -->
+## [v4.0.7](https://github.com/chef/chef-dk/tree/v4.0.7) (2019-03-29)
 
 #### Merged Pull Requests
-- Pull in Chef 15 from git [#2006](https://github.com/chef/chef-dk/pull/2006) ([tas50](https://github.com/tas50))
+- Update InSpec to 3.7.11 and Test Kitchen to 2.0.1 [#2011](https://github.com/chef/chef-dk/pull/2011) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Update InSpec to 3.7.11 and Test Kitchen to 2.0.1 [#2011](https://github.com/chef/chef-dk/pull/2011) ([tas50](https://github.com/tas50)) <!-- 4.0.7 -->
 - Pull in Chef 15 from git [#2006](https://github.com/chef/chef-dk/pull/2006) ([tas50](https://github.com/tas50)) <!-- 4.0.6 -->
 - Bump Test Kitchen to 2.0 and kitchen-ec2 to 2.5.0 [#2005](https://github.com/chef/chef-dk/pull/2005) ([tas50](https://github.com/tas50)) <!-- 4.0.5 -->
 - Require Ruby 2.5+, bump ruby to 2.5.5, bump deps [#1990](https://github.com/chef/chef-dk/pull/1990) ([tas50](https://github.com/tas50)) <!-- 4.0.4 -->
