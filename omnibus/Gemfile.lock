@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 3d5181c28da3fdf602f86096c00d3a7c666b538c
+  revision: 3f3bd5dd6d17212f2b90a2e45c63bf97224b48e6
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -9,10 +9,10 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: c824e911af6dab44e9866a5e05d2e0217518a76f
+  revision: 7ad32798cd5893191e4b9bfc5b53e4cc8f32646b
   branch: master
   specs:
-    omnibus (6.0.21)
+    omnibus (6.0.23)
       aws-sdk-s3 (~> 1)
       chef-sugar (>= 3.3)
       cleanroom (~> 1.0)
@@ -32,8 +32,8 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     awesome_print (1.8.0)
     aws-eventstream (1.0.2)
-    aws-partitions (1.146.0)
-    aws-sdk-core (3.48.2)
+    aws-partitions (1.148.0)
+    aws-sdk-core (3.48.3)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.1)
@@ -41,7 +41,7 @@ GEM
     aws-sdk-kms (1.16.0)
       aws-sdk-core (~> 3, >= 3.48.2)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.35.0)
+    aws-sdk-s3 (1.36.0)
       aws-sdk-core (~> 3, >= 3.48.2)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
@@ -177,7 +177,7 @@ GEM
     kitchen-vagrant (1.5.1)
       test-kitchen (>= 1.4, < 3)
     libyajl2 (1.2.0)
-    license_scout (1.0.22)
+    license_scout (1.0.24)
       ffi-yajl (~> 2.2)
       mixlib-shellout (~> 2.2)
       toml-rb (~> 1.0)
@@ -219,7 +219,7 @@ GEM
       net-ssh-gateway (>= 1.2.0)
     net-telnet (0.1.1)
     nori (2.6.0)
-    octokit (4.13.0)
+    octokit (4.14.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     ohai (14.8.11)
       chef-config (>= 12.8, < 15)
@@ -280,7 +280,7 @@ GEM
     solve (4.0.2)
       molinillo (~> 0.6)
       semverse (>= 1.1, < 4.0)
-    specinfra (2.76.9)
+    specinfra (2.77.0)
       net-scp
       net-ssh (>= 2.7)
       net-telnet (= 0.1.1)

@@ -25,14 +25,14 @@ group(:omnibus_package, :development, :test) do
   # we pin these gems as they are installed in the ruby source and if we let them
   # float we'll end up with 2 copies shipped in DK. When we bump Ruby we need to
   # look at these pins and adjust them
-  gem "rake", "<= 12.3.0"
+  gem "rake", "<= 12.3.2"
   gem "rdoc", "<= 6.0.1"
   gem "minitest", "<= 5.10.3"
 
   gem "pry"
   gem "yard"
   gem "guard"
-  gem "cookstyle", "~> 4.0" # bump this on the next DK major release
+  gem "cookstyle", "~> 4.0"
   gem "foodcritic", ">= 12.1"
   gem "ffi-libarchive"
 end
