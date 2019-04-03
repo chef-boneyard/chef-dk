@@ -74,7 +74,7 @@ module ChefDK
 
       # @return [String] of the policyfile lock data
       def lock_data
-        FFI_Yajl::Parser.new.parse(content).tap do |data|
+        fetch_lock_data.tap do |data|
           validate_revision_id(data["revision_id"])
           data["cookbook_locks"].each do |cookbook_name, cookbook_lock|
             cookbook_path = cookbook_lock["source_options"]["path"]
@@ -139,6 +139,9 @@ module ChefDK
         Pathname.new(source_options[:path]).expand_path(storage_config.relative_paths_root)
       end
 
+      def fetch_lock_data
+        FFI_Yajl::Parser.new.parse(content)
+      end
     end
   end
 end
