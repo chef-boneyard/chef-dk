@@ -40,19 +40,6 @@ module ChefDK
         error_messages
       end
 
-      # @return [String] of the policyfile lock data
-      def lock_data
-        @lock_data ||= fetch_lock_data.tap do |data|
-          validate_revision_id(data["revision_id"])
-          data["cookbook_locks"].each do |cookbook_name, cookbook_lock|
-            cookbook_path = cookbook_lock["source_options"]["path"]
-            if !cookbook_path.nil?
-              cookbook_lock["source_options"]["path"] = transform_path(cookbook_path)
-            end
-          end
-        end
-      end
-
       private
 
       def fetch_lock_data
