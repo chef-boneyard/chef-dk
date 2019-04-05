@@ -9,6 +9,7 @@ cache:
 
 environment:
   matrix:
+    - ruby_version: "26-x64"
     - ruby_version: "25-x64"
 
 clone_folder: c:\projects\chefdk
@@ -18,7 +19,7 @@ branches:
   only:
     - master
     - chefdk-3
-    - chefdk-3
+    - chefdk-2
 
 install:
   - systeminfo
