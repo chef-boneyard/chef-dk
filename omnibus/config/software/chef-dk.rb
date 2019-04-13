@@ -64,13 +64,13 @@ build do
 
   gem "build chef-dk.gemspec", env: env
 
-  gem "install chef*.gem --no-ri --no-rdoc --verbose", env: env
+  gem "install chef*.gem --no-document --verbose", env: env
 
   env["NOKOGIRI_USE_SYSTEM_LIBRARIES"] = "true"
 
-  appbundle "chef", lockdir: project_dir, gem: "chef", without: %w{integration docgen development maintenance travis}, env: env
+  appbundle "chef", lockdir: project_dir, gem: "chef", without: %w{integration docgen maintenance ci travis}, env: env
   appbundle "foodcritic", lockdir: project_dir, gem: "foodcritic", without: %w{development}, env: env
-  appbundle "test-kitchen", lockdir: project_dir, gem: "test-kitchen", without: %w{integration changelog debug docs chefstyle}, env: env
+  appbundle "test-kitchen", lockdir: project_dir, gem: "test-kitchen", without: %w{changelog debug docs}, env: env
   appbundle "inspec", lockdir: project_dir, gem: "inspec", without: %w{deploy tools maintenance integration}, env: env
 
   %w{chef-dk chef-vault ohai opscode-pushy-client cookstyle dco berkshelf}.each do |gem|
