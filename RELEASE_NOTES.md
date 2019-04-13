@@ -25,6 +25,7 @@ RubyGems has been updated to 2.7.9 in order to resolve the following CVEs:
 - libxml2 2.9.8 -> 2.9.9
 - liblzma 5.2.3 -> 5.2.4
 - ca-certs updated to 2019-01-22 for new roots
+- ruby 2.4.5 -> 2.4.6
 
 ## Updated Tools
 
