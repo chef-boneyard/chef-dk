@@ -32,10 +32,10 @@ github:
   version_tag_format: "v{{version}}"
   # allow bumping the minor release via label
   minor_bump_labels:
-    - "Expeditor: Bump Minor Version"
+    - "Expeditor: Bump Version Minor"
   # allow bumping the major release via label
   major_bump_labels:
-    - "Expeditor: Bump Major Version"
+    - "Expeditor: Bump Version Major"
   # Which Github branches to build Omnibus releases from, and what versions
   # (as determined by the value in the VERSION file) those branches are responsible
   # for building.
