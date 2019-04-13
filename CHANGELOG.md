@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.8.18 -->
-## [v3.8.18](https://github.com/chef/chef-dk/tree/v3.8.18) (2019-02-28)
+<!-- latest_release 3.8.19 -->
+## [v3.8.19](https://github.com/chef/chef-dk/tree/v3.8.19) (2019-04-13)
 
 #### Merged Pull Requests
-- Prepare DK to branch chefdk-3 as the stable branch [#1978](https://github.com/chef/chef-dk/pull/1978) ([tas50](https://github.com/tas50))
+- Use Ruby 2.5.5, Chef 14.11, and other newer deps [#2019](https://github.com/chef/chef-dk/pull/2019) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Use Ruby 2.5.5, Chef 14.11, and other newer deps [#2019](https://github.com/chef/chef-dk/pull/2019) ([tas50](https://github.com/tas50)) <!-- 3.8.19 -->
 - Prepare DK to branch chefdk-3 as the stable branch [#1978](https://github.com/chef/chef-dk/pull/1978) ([tas50](https://github.com/tas50)) <!-- 3.8.18 -->
 - Update liblzma to 5.2.4 to match chef [#1977](https://github.com/chef/chef-dk/pull/1977) ([tas50](https://github.com/tas50)) <!-- 3.8.17 -->
 - Fix `# # encoding` in cookbook generator [#1975](https://github.com/chef/chef-dk/pull/1975) ([jerryaldrichiii](https://github.com/jerryaldrichiii)) <!-- 3.8.16 -->
