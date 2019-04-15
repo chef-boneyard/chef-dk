@@ -97,7 +97,7 @@ GEM
       excon (>= 0.47.0)
       multi_json
     erubis (2.7.0)
-    excon (0.63.0)
+    excon (0.64.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.10.0)
