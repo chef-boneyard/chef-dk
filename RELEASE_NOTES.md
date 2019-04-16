@@ -1,3 +1,52 @@
+# ChefDK 3.9 Release Notes
+
+## Updated Components and Tools
+
+### Chef 14.12.3
+
+ChefDK now ships with Chef 14.12.3. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+
+### InSpec 3.9.0
+
+ChefDK now ships with Inspec 3.9.0. See <https://github.com/inspec/inspec/releases/tag/v3.9.0> for more information on what's new.
+
+### Ruby 2.5.5
+
+Ruby has been updated from 2.5.3 to 2.5.5, which includes a large number of bug fixes.
+
+### kitchen-hyperv
+
+kitchen-hyperv has been updated to 0.5.3 which now automatically disables snapshots on the VMs and properly waits for the IP to be set.
+
+### kitchen-vagrant
+
+kitchen-vagrant has been updated to 1.5.1 which adds support for using the new bento/amazonlinux-2 box when setting the platform to amazonlinux-2.
+
+### kitchen-ec2
+
+kitchen-ec2 has been updated to 2.5.0 with support for Amazon Linux 2.0 image searching using the platform 'amazon2'. This release also adds supports Windows Server 1709 and 1803 image searching.
+
+### knife-vsphere
+
+knife-vsphere has been updated to 2.1.3, which adds support for knife's `bootstrap_template` flag and removes the legacy `distro` and `template_file` flags.
+
+### Push Jobs Client
+
+Push Jobs Client has been updated to 2.5.6 which includes a significant optimizations and minor bug fixes.
+
+## Security Updates
+
+### Rubygems 2.7.9
+
+Rubygems has been updated from 2.7.8 to 2.7.9 to resolves the following CVEs:
+
+- CVE-2019-8320: Delete directory using symlink when decompressing tar
+- CVE-2019-8321: Escape sequence injection vulnerability in verbose
+- CVE-2019-8322: Escape sequence injection vulnerability in gem owner
+- CVE-2019-8323: Escape sequence injection vulnerability in API response handling
+- CVE-2019-8324: Installing a malicious gem may lead to arbitrary code execution
+- CVE-2019-8325: Escape sequence injection vulnerability in errors
+
 # ChefDK 3.8 Release Notes
 
 ## Updated Components and Tools
@@ -12,11 +61,11 @@ ChefDK now ships with Inspec 3.6.6. See <https://github.com/inspec/inspec/releas
 * Updated Windows7, 8.1, and 10, 2008 R2, 2012, 2012 R2, and 2016 to Chef 14.10.
 * Update Oracle Linux 6.8/7.2/7.3/7.4 to Ohai 14.8 in EC2
 * Updated the fetcher logic to be compatible with ChefSpec 7.3+. Thanks @oscar123mendoza
-* Removed duplicate json data in gentoo 4.9.6
+* Removed duplicate json data in Gentoo 4.9.6
 
 ### Mixlib-archive 0.4.20
 
-* Fixes issue #1913. No longer producess corrupted archives on windows. Thanks @kenmacleod for the fix!
+* Fixes issue #1913. No longer produces corrupted archives on windows. Thanks @kenmacleod for the fix!
 
 ### Other updates
 
@@ -191,7 +240,7 @@ The Kitchen DigitalOcean driver now supports FreeBSD 10.4 and 11.2 in Kitchen co
 
 ### Kitchen EC2
 
-Kitchen EC2 has been updated to better support Windows systems. The auto-generated security group will now include support for RDP and the log directory will alway be created.
+Kitchen EC2 has been updated to better support Windows systems. The auto-generated security group will now include support for RDP and the log directory will always be created.
 
 ### Kitchen Google
 
@@ -256,7 +305,7 @@ ChefDK now ships with Chef 14.4.56. See <https://docs.chef.io/release_notes.html
 
 ### Chef Apply
 
-[Chef Apply](https://github.com/chef/chef-apply) is the new gem which provides ad-hoc node management via the `chef-run` binary. It is included in the ChefDK only as a stepping stone towards managing gem resolution in the Chef Workstation repository. Please continue to download and install Chef Workstation if you wish to use the ad-hoc functionality. No guarantees for backwards compatability or functionality are made for the Chef Apply gem when used via the ChefDK.
+[Chef Apply](https://github.com/chef/chef-apply) is the new gem which provides ad-hoc node management via the `chef-run` binary. It is included in the ChefDK only as a stepping stone towards managing gem resolution in the Chef Workstation repository. Please continue to download and install Chef Workstation if you wish to use the ad-hoc functionality. No guarantees for backwards compatibility or functionality are made for the Chef Apply gem when used via the ChefDK.
 
 ### Kitchen AzureRM
 
@@ -304,11 +353,11 @@ On macOS you can install ChefDK using `brew cask install chef/chef/chefdk`. This
 
 ### Fauxhai
 
-Fauxhai 6.4.0 brings support for 3 new platforms - CentOS 7.5, Debian 8.11, and FreeBSD 11.2. It also updates the dumps for Amazon Linux, Redhat, SLES, and Ubuntu to match Chef 14.2 output. Finally it deprecates FreeBSD 10.3.
+Fauxhai 6.4.0 brings support for 3 new platforms - CentOS 7.5, Debian 8.11, and FreeBSD 11.2. It also updates the dumps for Amazon Linux, RedHat, SLES, and Ubuntu to match Chef 14.2 output. Finally it deprecates FreeBSD 10.3.
 
 ### Foodcritic
 
-Foodcritic 14.0.0 adds support for Chef 14.2 metadata, makes it the default, and removes old Chef 13 metadata. It also updated rules for clarity, removed an unecessary rule, and added a new rule saying when cookbooks have unecessary dependencies now that resources moved into core Chef. See the [changelog](https://github.com/Foodcritic/foodcritic/blob/master/CHANGELOG.md#1400-2018-06-28) for a full list of changes.
+Foodcritic 14.0.0 adds support for Chef 14.2 metadata, makes it the default, and removes old Chef 13 metadata. It also updated rules for clarity, removed an unnecessary rule, and added a new rule saying when cookbooks have unnecessary dependencies now that resources moved into core Chef. See the [changelog](https://github.com/Foodcritic/foodcritic/blob/master/CHANGELOG.md#1400-2018-06-28) for a full list of changes.
 
 ### knife-acl
 
@@ -394,7 +443,7 @@ Cookstyle has been updated to 3.0, which updates the underlying RuboCop engine t
 
 ### Berkshelf
 
-Berkshelf has been updated to 7.0.2.  Berkshelf 7 moves to using the same libraries as the Chef Client, ensuring consistent behaviour - for instance, ensuring that chefignore files work the same - and enabling a quicker turnaround on bug fixes.  The “Actor crashed” failures of celluloid will no longer be produced by Berkshelf.
+Berkshelf has been updated to 7.0.2.  Berkshelf 7 moves to using the same libraries as the Chef Client, ensuring consistent behavior - for instance, ensuring that chefignore files work the same - and enabling a quicker turnaround on bug fixes.  The “Actor crashed” failures of celluloid will no longer be produced by Berkshelf.
 
 ### VMware vSphere support
 
