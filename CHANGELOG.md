@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.12 -->
-## [v4.0.12](https://github.com/chef/chef-dk/tree/v4.0.12) (2019-04-23)
+<!-- latest_release 4.0.13 -->
+## [v4.0.13](https://github.com/chef/chef-dk/tree/v4.0.13) (2019-04-23)
 
 #### Merged Pull Requests
-- Pin bundler back to 1.17.3. [#2031](https://github.com/chef/chef-dk/pull/2031) ([jonsmorrow](https://github.com/jonsmorrow))
+- Remove chefdk-2 branch testing [#1985](https://github.com/chef/chef-dk/pull/1985) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Remove chefdk-2 branch testing [#1985](https://github.com/chef/chef-dk/pull/1985) ([tas50](https://github.com/tas50)) <!-- 4.0.13 -->
 - Pin bundler back to 1.17.3. [#2031](https://github.com/chef/chef-dk/pull/2031) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 4.0.12 -->
 - Bump Chef to 14.12.9 [#2029](https://github.com/chef/chef-dk/pull/2029) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.11 -->
 - Pull in Test Kitchen 2.1 and others [#2028](https://github.com/chef/chef-dk/pull/2028) ([tas50](https://github.com/tas50)) <!-- 4.0.10 -->
