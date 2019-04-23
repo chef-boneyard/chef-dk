@@ -1,15 +1,24 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.3 -->
-## [v4.0.3](https://github.com/chef/chef-dk/tree/v4.0.3) (2019-03-01)
+<!-- latest_release 4.0.12 -->
+## [v4.0.12](https://github.com/chef/chef-dk/tree/v4.0.12) (2019-04-23)
 
 #### Merged Pull Requests
-- Update rubygems to 3.0.2 [#1981](https://github.com/chef/chef-dk/pull/1981) ([tas50](https://github.com/tas50))
+- Pin bundler back to 1.17.3. [#2031](https://github.com/chef/chef-dk/pull/2031) ([jonsmorrow](https://github.com/jonsmorrow))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Pin bundler back to 1.17.3. [#2031](https://github.com/chef/chef-dk/pull/2031) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 4.0.12 -->
+- Bump Chef to 14.12.9 [#2029](https://github.com/chef/chef-dk/pull/2029) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.11 -->
+- Pull in Test Kitchen 2.1 and others [#2028](https://github.com/chef/chef-dk/pull/2028) ([tas50](https://github.com/tas50)) <!-- 4.0.10 -->
+- Update Ruby to 2.6 and Rubygems to 3.0.3 [#2014](https://github.com/chef/chef-dk/pull/2014) ([tas50](https://github.com/tas50)) <!-- 4.0.9 -->
+- Update chef generate cookbooks chefignore file [#2002](https://github.com/chef/chef-dk/pull/2002) ([tas50](https://github.com/tas50)) <!-- 4.0.8 -->
+- Update InSpec to 3.7.11 and Test Kitchen to 2.0.1 [#2011](https://github.com/chef/chef-dk/pull/2011) ([tas50](https://github.com/tas50)) <!-- 4.0.7 -->
+- Pull in Chef 15 from git [#2006](https://github.com/chef/chef-dk/pull/2006) ([tas50](https://github.com/tas50)) <!-- 4.0.6 -->
+- Bump Test Kitchen to 2.0 and kitchen-ec2 to 2.5.0 [#2005](https://github.com/chef/chef-dk/pull/2005) ([tas50](https://github.com/tas50)) <!-- 4.0.5 -->
+- Require Ruby 2.5+, bump ruby to 2.5.5, bump deps [#1990](https://github.com/chef/chef-dk/pull/1990) ([tas50](https://github.com/tas50)) <!-- 4.0.4 -->
 - Update rubygems to 3.0.2 [#1981](https://github.com/chef/chef-dk/pull/1981) ([tas50](https://github.com/tas50)) <!-- 4.0.3 -->
 - Add kitchen-vcenter and knife-vcenter gems [#1980](https://github.com/chef/chef-dk/pull/1980) ([tas50](https://github.com/tas50)) <!-- 4.0.2 -->
 - Update to the latest major releases of Cookstyle / Fauxhai [#1979](https://github.com/chef/chef-dk/pull/1979) ([tas50](https://github.com/tas50)) <!-- 4.0.1 -->

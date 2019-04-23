@@ -9,6 +9,7 @@ cache:
 
 environment:
   matrix:
+    - ruby_version: "26-x64"
     - ruby_version: "25-x64"
 
 clone_folder: c:\projects\chefdk
@@ -29,8 +30,6 @@ install:
   - appveyor DownloadFile http://curl.haxx.se/ca/cacert.pem -FileName C:\cacert.pem
   - set SSL_CERT_FILE=C:\cacert.pem
   - SET BUNDLE_WITHOUT=tools:integration:travis:style:omnibus_package:aix:bsd:linux:mac_os_x:solaris
-  - gem update --system
-  - gem update bundler # Need to update to 2.0 until they make it backwards compatible with 1.x lock files
   - bundle config --local path vendor/bundle # use the cache we define above
   - bundle install || bundle install || bundle install
 

@@ -25,14 +25,14 @@ group(:omnibus_package, :development, :test) do
   # we pin these gems as they are installed in the ruby source and if we let them
   # float we'll end up with 2 copies shipped in DK. When we bump Ruby we need to
   # look at these pins and adjust them
-  gem "rake", "<= 12.3.0"
+  gem "rake", "<= 12.3.2"
   gem "rdoc", "<= 6.0.1"
   gem "minitest", "<= 5.10.3"
 
   gem "pry"
   gem "yard"
   gem "guard"
-  gem "cookstyle", "~> 4.0" # bump this on the next DK major release
+  gem "cookstyle", "~> 4.0"
   gem "foodcritic", ">= 12.1"
   gem "ffi-libarchive"
 end
@@ -54,10 +54,10 @@ group(:omnibus_package) do
   # gems to Rubygems now, so letting this float on latest should always give us the latest
   # stable release. May have to re-pin around major version bumping time, or during patch
   # fixes.
-  gem "chef", "= 14.10.9"
+  gem "chef", "= 14.12.9"
   gem "cheffish", ">= 14.0.1"
   gem "chefspec", ">= 7.3.0"
-  gem "fauxhai", "~> 7.0" # bump this on the next DK major release
+  gem "fauxhai", "~> 7.0"
   gem "inspec", ">= 3.0"
   gem "kitchen-azurerm", ">= 0.14"
   gem "kitchen-ec2", ">= 2.3"
@@ -77,7 +77,7 @@ group(:omnibus_package) do
   gem "knife-vsphere", ">= 2.1.1"
   gem "knife-vcenter", ">= 2.0"
   gem "mixlib-archive", ">= 0.4.16"
-  gem "ohai", ">= 14.0.29"
+  gem "ohai", ">= 14"
   gem "net-ssh", ">= 4.2.0"
   gem "test-kitchen", ">= 1.23"
   gem "listen"
@@ -92,7 +92,7 @@ group(:omnibus_package) do
   gem "chef-sugar"
   gem "mixlib-versioning"
   gem "artifactory"
-  gem "opscode-pushy-client", ">= 2.4.11"
+  gem "opscode-pushy-client", ">= 2.1"
   gem "ffi-rzmq-core"
   gem "knife-push"
 
