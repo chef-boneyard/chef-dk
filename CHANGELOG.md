@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.10 -->
-## [v4.0.10](https://github.com/chef/chef-dk/tree/v4.0.10) (2019-04-19)
+<!-- latest_release 4.0.11 -->
+## [v4.0.11](https://github.com/chef/chef-dk/tree/v4.0.11) (2019-04-23)
 
 #### Merged Pull Requests
-- Pull in Test Kitchen 2.1 and others [#2028](https://github.com/chef/chef-dk/pull/2028) ([tas50](https://github.com/tas50))
+- Bump Chef to 14.12.9 [#2029](https://github.com/chef/chef-dk/pull/2029) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Bump Chef to 14.12.9 [#2029](https://github.com/chef/chef-dk/pull/2029) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.11 -->
 - Pull in Test Kitchen 2.1 and others [#2028](https://github.com/chef/chef-dk/pull/2028) ([tas50](https://github.com/tas50)) <!-- 4.0.10 -->
 - Update Ruby to 2.6 and Rubygems to 3.0.3 [#2014](https://github.com/chef/chef-dk/pull/2014) ([tas50](https://github.com/tas50)) <!-- 4.0.9 -->
 - Update chef generate cookbooks chefignore file [#2002](https://github.com/chef/chef-dk/pull/2002) ([tas50](https://github.com/tas50)) <!-- 4.0.8 -->
