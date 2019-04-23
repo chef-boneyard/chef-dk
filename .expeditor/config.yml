@@ -41,8 +41,6 @@ github:
         version_constraint: 4.*
     - chefdk-3:
         version_constraint: 3.*
-    - chefdk-2:
-        version_constraint: 2.*
 
 # These actions are taken, in order they are specified, anytime a Pull Request is merged.
 merge_actions:

@@ -19,7 +19,6 @@ branches:
   only:
     - master
     - chefdk-3
-    - chefdk-2
 
 install:
   - systeminfo
