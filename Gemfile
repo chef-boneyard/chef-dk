@@ -82,6 +82,10 @@ group(:omnibus_package) do
   gem "test-kitchen", ">= 1.23"
   gem "listen"
   gem "dco"
+  
+  # ed25519 ssh key support done here as it's a native gem we can't put in train
+  gem "ed25519"
+  gem "bcrypt_pbkdf"
 
   # Right now we must import chef-apply as a gem into the ChefDK because this is where all the gem
   # dependency resolution occurs. Putting it elsewhere endangers older ChefDK issues of gem version
