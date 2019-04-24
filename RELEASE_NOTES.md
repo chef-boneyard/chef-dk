@@ -1,3 +1,13 @@
+# ChefDK 4.0 WIP Release Notes
+
+**4.0 is not out yet. These are work in progress release notes**
+
+## Breaking Changes
+
+### Chef Provisioning
+
+Chef Provisioning is no longer included with Chef DK, and will be officially end of life on August 31, 2019. The source code of Chef Provisioning and the drivers have been moved into the chef-boneyard GitHub organization and will not be further maintained. Current users of Chef Provisioning should contact your Chef Customer Success Manager or Account Representative to review your options.
+
 # ChefDK 3.8 Release Notes
 
 ## Updated Components and Tools
