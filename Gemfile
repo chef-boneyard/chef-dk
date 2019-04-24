@@ -58,9 +58,9 @@ group(:omnibus_package) do
   gem "cheffish", ">= 14.0.1"
   gem "chefspec", ">= 7.3.0"
   gem "fauxhai", "~> 7.0"
-  gem "inspec", ">= 3.0"
+  gem "inspec", ">= 4.0.0.a", "< 5" # remove the pre dep here when we ship inspec 4
   gem "kitchen-azurerm", ">= 0.14"
-  gem "kitchen-ec2", ">= 2.3"
+  gem "kitchen-ec2", ">= 3.0.0.a", "< 4" # remove the pre dep here when we ship kitchen-ec2 3.0
   gem "kitchen-digitalocean", ">= 0.10.0"
   gem "kitchen-dokken", ">= 2.6.7"
   gem "kitchen-google", ">= 2.0.0"
@@ -82,7 +82,7 @@ group(:omnibus_package) do
   gem "test-kitchen", ">= 1.23"
   gem "listen"
   gem "dco"
-  
+
   # ed25519 ssh key support done here as it's a native gem we can't put in train
   gem "ed25519"
   gem "bcrypt_pbkdf"
