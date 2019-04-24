@@ -27,7 +27,7 @@ GEM
       gyoku (>= 0.4.0)
       nokogiri
     app_conf (0.4.2)
-    appbundler (0.12.3)
+    appbundler (0.12.5)
       mixlib-cli (>= 1.4, < 3.0)
       mixlib-shellout (>= 2.0, < 4.0)
     artifactory (3.0.0)
@@ -1000,4 +1000,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.17.3
+   2.0.1
