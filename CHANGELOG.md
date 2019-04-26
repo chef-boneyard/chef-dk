@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.14 -->
-## [v4.0.14](https://github.com/chef/chef-dk/tree/v4.0.14) (2019-04-24)
+<!-- latest_release 4.0.15 -->
+## [v4.0.15](https://github.com/chef/chef-dk/tree/v4.0.15) (2019-04-26)
 
 #### Merged Pull Requests
-- Pull in InSpec 4, kitchen-ec2 3 and the ed25519 gems [#2033](https://github.com/chef/chef-dk/pull/2033) ([tas50](https://github.com/tas50))
+- Make chef verify temporarily accept the inspec license [#2036](https://github.com/chef/chef-dk/pull/2036) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Make chef verify temporarily accept the inspec license [#2036](https://github.com/chef/chef-dk/pull/2036) ([tas50](https://github.com/tas50)) <!-- 4.0.15 -->
 - Pull in InSpec 4, kitchen-ec2 3 and the ed25519 gems [#2033](https://github.com/chef/chef-dk/pull/2033) ([tas50](https://github.com/tas50)) <!-- 4.0.14 -->
 - Remove chefdk-2 branch testing [#1985](https://github.com/chef/chef-dk/pull/1985) ([tas50](https://github.com/tas50)) <!-- 4.0.13 -->
 - Pin bundler back to 1.17.3. [#2031](https://github.com/chef/chef-dk/pull/2031) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 4.0.12 -->
