@@ -63,7 +63,7 @@ group(:omnibus_package) do
   gem "fauxhai", "~> 6.11" # bump this on the next DK major release
   gem "inspec", ">= 2.3"
   gem "kitchen-azurerm", ">= 0.14"
-  gem "kitchen-ec2", ">= 2.3"
+  gem "kitchen-ec2", ">= 2.3", "< 3.0"
   gem "kitchen-digitalocean", ">= 0.10.0"
   gem "kitchen-dokken", ">= 2.6.7"
   gem "kitchen-google", ">= 2.0.0"
