@@ -57,13 +57,13 @@ group(:omnibus_package) do
   # gems to Rubygems now, so letting this float on latest should always give us the latest
   # stable release. May have to re-pin around major version bumping time, or during patch
   # fixes.
-  gem "chef", "= 14.12.3"
+  gem "chef", "= 14.12.9"
   gem "cheffish", ">= 14.0.1"
   gem "chefspec", ">= 7.3.0"
   gem "fauxhai", "~> 6.11" # bump this on the next DK major release
   gem "inspec", ">= 2.3"
   gem "kitchen-azurerm", ">= 0.14"
-  gem "kitchen-ec2", ">= 2.3"
+  gem "kitchen-ec2", ">= 2.3", "< 3.0"
   gem "kitchen-digitalocean", ">= 0.10.0"
   gem "kitchen-dokken", ">= 2.6.7"
   gem "kitchen-google", ">= 2.0.0"
