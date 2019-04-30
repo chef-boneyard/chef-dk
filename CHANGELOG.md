@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.16 -->
-## [v4.0.16](https://github.com/chef/chef-dk/tree/v4.0.16) (2019-04-26)
+<!-- latest_release 4.0.17 -->
+## [v4.0.17](https://github.com/chef/chef-dk/tree/v4.0.17) (2019-04-30)
 
 #### Merged Pull Requests
-- Add Test Kitchen 2.2 with support for the Chef 15 license [#2038](https://github.com/chef/chef-dk/pull/2038) ([tas50](https://github.com/tas50))
+- Update ruby to 2.6.3 and InSpec to 4.3.2 [#2041](https://github.com/chef/chef-dk/pull/2041) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Update ruby to 2.6.3 and InSpec to 4.3.2 [#2041](https://github.com/chef/chef-dk/pull/2041) ([tas50](https://github.com/tas50)) <!-- 4.0.17 -->
 - Add Test Kitchen 2.2 with support for the Chef 15 license [#2038](https://github.com/chef/chef-dk/pull/2038) ([tas50](https://github.com/tas50)) <!-- 4.0.16 -->
 - Make chef verify temporarily accept the inspec license [#2036](https://github.com/chef/chef-dk/pull/2036) ([tas50](https://github.com/tas50)) <!-- 4.0.15 -->
 - Pull in InSpec 4, kitchen-ec2 3 and the ed25519 gems [#2033](https://github.com/chef/chef-dk/pull/2033) ([tas50](https://github.com/tas50)) <!-- 4.0.14 -->
