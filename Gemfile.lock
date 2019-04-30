@@ -396,7 +396,7 @@ GEM
     ice_nine (0.11.2)
     inifile (3.0.0)
     iniparse (1.4.4)
-    inspec (4.2.0.preview)
+    inspec (4.3.2)
       addressable (~> 2.4)
       faraday (>= 0.9.0)
       faraday_middleware (~> 0.12.2)
@@ -943,7 +943,7 @@ DEPENDENCIES
   ffi-rzmq-core
   foodcritic (>= 12.1)
   guard
-  inspec (>= 4.0.0.a, < 5)
+  inspec (~> 4.3)
   kitchen-azurerm (>= 0.14)
   kitchen-digitalocean (>= 0.10.0)
   kitchen-dokken (>= 2.6.7)
