@@ -423,6 +423,8 @@ GEM
       train-habitat (~> 0.1)
       tty-prompt (~> 0.17)
       tty-table (~> 0.10)
+    inspec-bin (4.3.2)
+      inspec (= 4.3.2)
     ipaddress (0.8.3)
     iso8601 (0.12.1)
     jaro_winkler (1.5.2)
@@ -944,6 +946,7 @@ DEPENDENCIES
   foodcritic (>= 12.1)
   guard
   inspec (~> 4.3)
+  inspec-bin (~> 4.3)
   kitchen-azurerm (>= 0.14)
   kitchen-digitalocean (>= 0.10.0)
   kitchen-dokken (>= 2.6.7)
