@@ -28,7 +28,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.5.2)
+    addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
     awesome_print (1.8.0)
     aws-eventstream (1.0.3)
@@ -280,9 +280,9 @@ GEM
     ruby-progressbar (1.10.0)
     rubyntlm (0.6.2)
     rubyzip (1.2.2)
-    sawyer (0.8.1)
-      addressable (>= 2.3.5, < 2.6)
-      faraday (~> 0.8, < 1.0)
+    sawyer (0.8.2)
+      addressable (>= 2.3.5)
+      faraday (> 0.8, < 2.0)
     semverse (3.0.0)
     serverspec (2.41.3)
       multi_json
