@@ -61,7 +61,7 @@ group(:omnibus_package) do
   gem "inspec-bin", "~> 4.3" # the actual inspec CLI binary
   gem "inspec", "~> 4.3"
   gem "kitchen-azurerm", ">= 0.14"
-  gem "kitchen-ec2", ">= 3.0.0.a", "< 4" # remove the pre dep here when we ship kitchen-ec2 3.0
+  gem "kitchen-ec2", ">= 3.0", "< 4"
   gem "kitchen-digitalocean", ">= 0.10.0"
   gem "kitchen-dokken", ">= 2.6.7"
   gem "kitchen-google", ">= 2.0.0"

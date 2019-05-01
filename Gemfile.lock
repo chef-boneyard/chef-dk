@@ -444,7 +444,7 @@ GEM
       docker-api (~> 1.33)
       lockfile (~> 2.1)
       test-kitchen (>= 1.15, < 3)
-    kitchen-ec2 (3.0.0.preview)
+    kitchen-ec2 (3.0.0)
       aws-sdk-ec2 (~> 1.0)
       excon
       multi_json
@@ -504,7 +504,7 @@ GEM
       winrm (~> 2.1)
       winrm-elevated (~> 1.0)
     libyajl2 (1.2.0)
-    license-acceptance (1.0.0)
+    license-acceptance (1.0.2)
       pastel (~> 0.7)
       tomlrb (~> 1.2)
       tty-box (~> 0.3)
@@ -950,7 +950,7 @@ DEPENDENCIES
   kitchen-azurerm (>= 0.14)
   kitchen-digitalocean (>= 0.10.0)
   kitchen-dokken (>= 2.6.7)
-  kitchen-ec2 (>= 3.0.0.a, < 4)
+  kitchen-ec2 (>= 3.0, < 4)
   kitchen-google (>= 2.0.0)
   kitchen-hyperv (>= 0.5.1)
   kitchen-inspec (>= 1.0)
