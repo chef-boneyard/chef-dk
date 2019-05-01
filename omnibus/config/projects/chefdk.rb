@@ -47,6 +47,10 @@ dependency "delivery-cli"
 # This is a build-time dependency, so we won't leave it behind:
 dependency "rust-uninstall"
 
+# necessary for vsphere-automation-* -> typhoeus -> ethon (libcurl wrapper)
+# if ethon isn't necessary in the future we can remove this dep
+dependency "curl"
+
 # Leave for last so system git is used for most of the build.
 if windows?
   dependency "git-windows"
