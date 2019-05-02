@@ -34,11 +34,11 @@ group(:omnibus_package, :development, :test) do
   gem "guard"
   gem "cookstyle", "~> 3.0" # bump this on the next DK major release
   gem "foodcritic", ">= 12.1"
-  gem "ffi-libarchive"
+  gem "ffi-libarchive", ">= 0.4.0"
 end
 
 group(:dep_selector) do
-  gem "dep_selector"
+  gem "dep_selector", ">= 1.0.0"
   gem "dep-selector-libgecode"
 end
 
@@ -47,7 +47,7 @@ end
 # We should only be using "~>" to work around bugs, or temporarily pinning some tech debt.
 # We equality pin the chef gem itself to assert which version we're shipping.
 group(:omnibus_package) do
-  gem "appbundler"
+  gem "appbundler", ">= 0.12"
   gem "berkshelf", ">= 7.0.5"
   gem "chef-provisioning", ">= 2.7.1", group: :provisioning
   gem "chef-provisioning-aws", ">= 3.0.2", group: :provisioning
@@ -61,7 +61,7 @@ group(:omnibus_package) do
   gem "cheffish", ">= 14.0.1"
   gem "chefspec", ">= 7.3.0"
   gem "fauxhai", "~> 6.11" # bump this on the next DK major release
-  gem "inspec", ">= 2.3"
+  gem "inspec", "~> 3.9"
   gem "kitchen-azurerm", ">= 0.14"
   gem "kitchen-ec2", ">= 2.3", "< 3.0"
   gem "kitchen-digitalocean", ">= 0.10.0"
