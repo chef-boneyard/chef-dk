@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: d69c192f4d66fe070ff946778853be32734d4928
+  revision: 330e1d8e37898577de97323bd1416f014c571289
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -181,7 +181,7 @@ GEM
     kitchen-vagrant (1.5.1)
       test-kitchen (>= 1.4, < 3)
     libyajl2 (1.2.0)
-    license-acceptance (1.0.2)
+    license-acceptance (1.0.3)
       pastel (~> 0.7)
       tomlrb (~> 1.2)
       tty-box (~> 0.3)
@@ -306,7 +306,7 @@ GEM
     structured_warnings (0.3.0)
     syslog-logger (1.6.8)
     systemu (2.6.5)
-    test-kitchen (2.2.0)
+    test-kitchen (2.2.1)
       bcrypt_pbkdf (~> 1.0)
       ed25519 (~> 1.2)
       license-acceptance (>= 0.2.16, < 2.0)
