@@ -736,7 +736,7 @@ GEM
     systemu (2.6.5)
     term-ansicolor (1.7.1)
       tins (~> 1.0)
-    test-kitchen (2.2.1)
+    test-kitchen (2.2.2)
       bcrypt_pbkdf (~> 1.0)
       ed25519 (~> 1.2)
       license-acceptance (>= 0.2.16, < 2.0)
@@ -1004,4 +1004,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.17.3
+   2.0.1
