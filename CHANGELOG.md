@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.9.2 -->
-## [v3.9.2](https://github.com/chef/chef-dk/tree/v3.9.2) (2019-04-29)
+<!-- latest_release 3.9.3 -->
+## [v3.9.3](https://github.com/chef/chef-dk/tree/v3.9.3) (2019-05-02)
 
 #### Merged Pull Requests
-- Update all dependencies to the latest [#2040](https://github.com/chef/chef-dk/pull/2040) ([tas50](https://github.com/tas50))
+- Pin inspec and other gems to prevent bundler hanging [#2045](https://github.com/chef/chef-dk/pull/2045) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.9.0 -->
 ### Changes since 3.9.0 release
 
 #### Merged Pull Requests
+- Pin inspec and other gems to prevent bundler hanging [#2045](https://github.com/chef/chef-dk/pull/2045) ([tas50](https://github.com/tas50)) <!-- 3.9.3 -->
 - Update all dependencies to the latest [#2040](https://github.com/chef/chef-dk/pull/2040) ([tas50](https://github.com/tas50)) <!-- 3.9.2 -->
 - Bring in Chef 14.12.9 and other newer deps [#2039](https://github.com/chef/chef-dk/pull/2039) ([tas50](https://github.com/tas50)) <!-- 3.9.1 -->
 <!-- release_rollup -->
