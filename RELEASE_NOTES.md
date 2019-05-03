@@ -2,6 +2,18 @@
 
 **4.0 is not out yet. These are work in progress release notes**
 
+## Updated Components and Tools
+
+### InSpec 4
+
+## Chef 15
+
+### Fauxhai 7.1
+
+### Test Kitchen 2.2
+
+### Kitchen-ec2 3.0
+
 ## Breaking Changes
 
 ### Chef Provisioning
