@@ -68,7 +68,6 @@ group(:omnibus_package) do
   gem "kitchen-hyperv", ">= 0.5.1"
   gem "kitchen-inspec", ">= 1.0"
   gem "kitchen-vagrant", ">= 1.4"
-  gem "kitchen-vcenter", ">= 2.0"
   gem "knife-acl", ">= 1.0.3"
   gem "knife-ec2", ">= 0.19.10"
   gem "knife-google", ">= 3.3.3"
@@ -76,13 +75,18 @@ group(:omnibus_package) do
   gem "knife-windows", ">= 1.9.1"
   gem "knife-opc", ">= 0.4.0"
   gem "knife-vsphere", ">= 2.1.1"
-  gem "knife-vcenter", ">= 2.0"
   gem "mixlib-archive", ">= 0.4.16"
   gem "ohai", ">= 14"
   gem "net-ssh", ">= 4.2.0"
   gem "test-kitchen", ">= 1.23"
   gem "listen"
   gem "dco"
+
+  # many layers down these bring in ethon which uses ffi / libcurl and breaks on windows
+  # we want to get this working, but for now it's disabled so we can get a build out
+  # make sure to add curl back to the omnibus def before enabling this again
+  # gem "knife-vcenter", ">= 2.0"
+  # gem "kitchen-vcenter", ">= 2.0"
 
   # ed25519 ssh key support done here as it's a native gem we can't put in train
   gem "ed25519"
