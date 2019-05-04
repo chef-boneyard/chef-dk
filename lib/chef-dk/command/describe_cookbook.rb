@@ -74,7 +74,7 @@ module ChefDK
         mdrb_path = File.join(cookbook_path, "metadata.rb")
         mdjson_path = File.join(cookbook_path, "metadata.json")
 
-        if !File.exist?(mdrb_path) && !File.exist?(mdjson_path)
+        unless File.exist?(mdrb_path) || File.exist?(mdjson_path)
           ui.err("Given cookbook path '#{cookbook_path}' does not appear to be a cookbook, it does not contain a metadata.rb or metadata.json")
           return false
         end
