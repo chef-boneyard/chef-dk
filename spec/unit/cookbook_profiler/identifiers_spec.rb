@@ -43,9 +43,9 @@ describe ChefDK::CookbookProfiler::Identifiers do
   let(:cookbook_files_with_cksums) do
     # Entries must be sorted lexically.
     {
-      ".kitchen.yml" => "85ba09a085dab072722cb197e04fa805",
       "README.md" => "0f15038071e5a131bef176cbe2a956d1",
       "chefignore" => "03485640b005eb1083c76518764053dd",
+      "kitchen.yml" => "85ba09a085dab072722cb197e04fa805",
       "metadata.rb" => "4879d0004b177546cfbcfb2fd26df7c8",
       "recipes/default.rb" => "9a0f27d741deaca21461073f7452474f",
     }
@@ -71,11 +71,11 @@ describe ChefDK::CookbookProfiler::Identifiers do
   end
 
   it "generates a Hash of the cookbook's content" do
-    expect(identifiers.content_identifier).to eq("467dc855408ce8b74f991c5dc2fd72a6aa369b60")
+    expect(identifiers.content_identifier).to eq("f24326bbf81d67fcab6a5615c75092d1c6da81cc")
   end
 
   it "generates a dotted decimal representation of the content hash" do
-    expect(identifiers.dotted_decimal_identifier).to eq("19841547746970856.51597439762547453.126060145843040")
+    expect(identifiers.dotted_decimal_identifier).to eq("68190778005396839.71120167330236240.161429682029004")
   end
 
 end

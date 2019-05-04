@@ -215,7 +215,7 @@ describe ChefDK::Command::GeneratorCommands::Repo do
         let(:file) { ".chef-repo.txt" }
 
         it "explains why it's there" do
-          expect(file_contents).to include("This file gives ChefDK's generators a hint")
+          expect(file_contents).to include("This file gives Chef DK's generators a hint")
         end
       end
 

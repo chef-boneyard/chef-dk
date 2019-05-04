@@ -32,7 +32,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
   let(:expected_cookbook_file_relpaths) do
     %w{
       .gitignore
-      .kitchen.yml
+      kitchen.yml
       test
       test/integration
       test/integration/default/default_test.rb
@@ -475,9 +475,9 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
             end
           end
 
-          let(:file) { File.join(tempdir, "new_cookbook", ".kitchen.yml") }
+          let(:file) { File.join(tempdir, "new_cookbook", "kitchen.yml") }
 
-          it "creates a .kitchen.yml with the expected content" do
+          it "creates a kitchen.yml with the expected content" do
             expect(IO.read(file)).to eq(expected_kitchen_yml_content)
           end
 

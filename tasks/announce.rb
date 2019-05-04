@@ -45,11 +45,6 @@ class ReleaseAnnouncement
 end
 
 namespace :announce do
-  desc "Generate the Prerelease Announcement (version: X.Y.Z, release_date: YYYY-MM-DD)"
-  task :prerelease, :version, :release_date do |t, args|
-    ReleaseAnnouncement.new(args[:version], args[:release_date], "prerelease").render
-  end
-
   desc "Generate the Release Announcement (version: X.Y.Z)"
   task :release, :version do |t, args|
     ReleaseAnnouncement.new(args[:version], nil, "release").render

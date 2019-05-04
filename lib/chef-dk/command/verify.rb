@@ -123,7 +123,7 @@ module ChefDK
 
         c.smoke_test do
           tmpdir do |cwd|
-            File.open(File.join(cwd, ".kitchen.yml"), "w+") do |f|
+            File.open(File.join(cwd, "kitchen.yml"), "w+") do |f|
               f.print(<<~KITCHEN_YML)
                 ---
                 driver:
