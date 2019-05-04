@@ -27,7 +27,7 @@ RSpec.shared_context "fixture cookbooks checksums" do
     decimal_integers.join(".")
   end
 
-  let(:cookbook_foo_cksum) { "467dc855408ce8b74f991c5dc2fd72a6aa369b60" }
+  let(:cookbook_foo_cksum) { "f24326bbf81d67fcab6a5615c75092d1c6da81cc" }
 
   let(:cookbook_foo_cksum_dotted) { id_to_dotted(cookbook_foo_cksum) }
 

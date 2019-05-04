@@ -71,11 +71,11 @@ describe ChefDK::CookbookProfiler::Identifiers do
   end
 
   it "generates a Hash of the cookbook's content" do
-    expect(identifiers.content_identifier).to eq("467dc855408ce8b74f991c5dc2fd72a6aa369b60")
+    expect(identifiers.content_identifier).to eq("f24326bbf81d67fcab6a5615c75092d1c6da81cc")
   end
 
   it "generates a dotted decimal representation of the content hash" do
-    expect(identifiers.dotted_decimal_identifier).to eq("19841547746970856.51597439762547453.126060145843040")
+    expect(identifiers.dotted_decimal_identifier).to eq("68190778005396839.71120167330236240.161429682029004")
   end
 
 end

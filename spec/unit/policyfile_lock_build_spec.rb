@@ -205,7 +205,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       <<~REVISION_STRING
         name:minimal_policyfile
         run-list-item:recipe[foo]
-        cookbook:foo;id:467dc855408ce8b74f991c5dc2fd72a6aa369b60
+        cookbook:foo;id:f24326bbf81d67fcab6a5615c75092d1c6da81cc
         default_attributes:{}
         override_attributes:{}
       REVISION_STRING
@@ -292,7 +292,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
       <<~REVISION_STRING
         name:minimal_policyfile
         run-list-item:recipe[foo]
-        cookbook:foo;id:467dc855408ce8b74f991c5dc2fd72a6aa369b60
+        cookbook:foo;id:f24326bbf81d67fcab6a5615c75092d1c6da81cc
         default_attributes:{"aaa":"aaa","bbb":null,"ccc":false,"ddd":true,"e":1.2,"f":5,"foo":"bar","g":1e+15,"nested":{"a":"b"}}
         override_attributes:{"foo2":"baz"}
       REVISION_STRING
