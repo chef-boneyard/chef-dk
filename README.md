@@ -82,11 +82,6 @@ need.
 
 The following generators are built-in:
 
-* `chef generate app` Creates an "application" layout that supports
-multiple cookbooks. This is a somewhat experimental compromise between
-the one-repo-per-cookbook and monolithic-chef-repo styles of cookbook
-management.
-
 * `chef generate cookbook` Creates a single cookbook.
 * `chef generate recipe` Creates a new recipe file in an existing
 cookbook.
@@ -97,8 +92,6 @@ cookbook. Use the `-s SOURCE` option to copy a source file's content to
 populate the template.
 * `chef generate file` Creates a new cookbook file in an existing
 cookbook. Supports the `-s SOURCE` option similar to template.
-* `chef generate lwrp` Creates a new LWRP resource and provider in an
-existing cookbook.
 
 The `chef generate` command also accepts additional `--generator-arg key=value`
 pairs that can be used to supply ad-hoc data to a generator cookbook.
