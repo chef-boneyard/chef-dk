@@ -34,7 +34,7 @@ template spec_path do
   action :create_if_missing
 end
 
-# Inspec
+# InSpec
 directory inspec_dir do
   recursive true
 end

@@ -26,7 +26,7 @@ Chef Provisioning is no longer included with Chef DK, and will be officially end
 
 ### InSpec 3.6.6
 
-ChefDK now ships with Inspec 3.6.6. See <https://github.com/inspec/inspec/releases/tag/v3.6.6> for more information on what's new.
+ChefDK now ships with InSpec 3.6.6. See <https://github.com/inspec/inspec/releases/tag/v3.6.6> for more information on what's new.
 
 ### Fauxhai 6.11.0
 
@@ -59,7 +59,7 @@ ChefDK now ships with Chef 14.10.9. See <https://docs.chef.io/release_notes.html
 
 ## InSpec 3.4.1
 
-ChefDK now ships with Inspec 3.4.1. See <https://github.com/inspec/inspec/releases/tag/v3.4.1> for more information on what's new.
+ChefDK now ships with InSpec 3.4.1. See <https://github.com/inspec/inspec/releases/tag/v3.4.1> for more information on what's new.
 
 ## Updated Components and Tools
 
@@ -201,7 +201,7 @@ Foodcritic has been updated from 14.1 to 14.3. This updates the metadata that sh
 
 ### inSpec 3
 
-This release updates Inspec from 2.2.112 to 3.0.12. This is a major milestone and includes the plugin system, global attributes, enhanced skip messaging, and more. Please head over to https://www.inspec.io/ for a full rundown.
+This release updates InSpec from 2.2.112 to 3.0.12. This is a major milestone and includes the plugin system, global attributes, enhanced skip messaging, and more. Please head over to https://www.inspec.io/ for a full rundown.
 
 ### Kitchen AzureRM
 

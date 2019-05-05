@@ -85,7 +85,7 @@ template "#{cookbook_dir}/kitchen.yml" do
   action :create_if_missing
 end
 
-# Inspec
+# InSpec
 directory "#{cookbook_dir}/test/integration/default" do
   recursive true
 end
