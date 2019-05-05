@@ -35,21 +35,22 @@ module ChefDK
         option :policy_only,
           short:        "-p",
           long:         "--policy-only",
-          description:  "Create a repository for policy only, not cookbooks",
+          description:  "Create a repository to store Policyfiles only, not cookbooks.",
           default:      false
 
         option :roles,
           short:        "-r",
           long:         "--roles",
-          description:  "Create roles and environments directories instead of using policyfiles",
+          description:  "Create roles and environments directories instead of using Policyfiles.",
+          default:      true,
           default:      nil
 
         option :policy,
           short:        "-P",
           long:         "--policy",
-          description:  "Use policyfiles instead of Berkshelf",
+          description:  "Use Policyfiles instead of roles and environments.",
           boolean:      true,
-          default:      nil
+          default:      true
 
         options.merge!(SharedGeneratorOptions.options)
 
