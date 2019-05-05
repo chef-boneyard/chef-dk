@@ -38,19 +38,19 @@ module ChefDK
         option :berks,
           short:       "-b",
           long:        "--berks",
-          description: "Generate cookbooks with berkshelf integration",
+          description: "Generate cookbooks using Berkshelf dependency resolution.",
           boolean:     true,
           default:     nil
 
         option :kitchen,
           long:        "--kitchen CONFIGURATION",
-          description: "Generate cookbooks with a specific kitchen configuration (dokken|vagrant) - defaults to vagrant",
+          description: "Generate cookbooks with a specific Test Kitchen configuration (dokken|vagrant) - defaults to vagrant",
           default:     "vagrant"
 
         option :policy,
           short:        "-P",
           long:         "--policy",
-          description:  "Use policyfiles instead of Berkshelf",
+          description:  "Generate a cookbook using Policyfile dependency resolution.",
           boolean:      true,
           default:      nil
 
