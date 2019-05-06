@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.23 -->
-## [v4.0.23](https://github.com/chef/chef-dk/tree/v4.0.23) (2019-05-06)
+<!-- latest_release 4.0.24 -->
+## [v4.0.24](https://github.com/chef/chef-dk/tree/v4.0.24) (2019-05-06)
 
 #### Merged Pull Requests
-- Remove the deprecated app and lwrp generators [#2049](https://github.com/chef/chef-dk/pull/2049) ([tas50](https://github.com/tas50))
+- Fix the dep bumping rake task to work with the correct bundler [#2051](https://github.com/chef/chef-dk/pull/2051) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Fix the dep bumping rake task to work with the correct bundler [#2051](https://github.com/chef/chef-dk/pull/2051) ([tas50](https://github.com/tas50)) <!-- 4.0.24 -->
 - Remove the deprecated app and lwrp generators [#2049](https://github.com/chef/chef-dk/pull/2049) ([tas50](https://github.com/tas50)) <!-- 4.0.23 -->
 - Update cookbook templates to use Ubuntu 18.04 [#2048](https://github.com/chef/chef-dk/pull/2048) ([tas50](https://github.com/tas50)) <!-- 4.0.22 -->
 - Update generator to use kitchen.yml not .kitchen.yml [#1715](https://github.com/chef/chef-dk/pull/1715) ([tas50](https://github.com/tas50)) <!-- 4.0.21 -->
