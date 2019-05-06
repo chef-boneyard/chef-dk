@@ -81,183 +81,183 @@ subscriptions:
       - built_in:promote_habitat_packages
       - built_in:publish_rubygems
       - built_in:notify_chefio_slack_channels
-  # - workload: artifact_published:stable:chef:14*
-  #   actions:
-  #     - bash:.expeditor/update_chef.sh
-  # - workload: ruby_gem_published:mixlib-archive-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:mixlib-authentication-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:mixlib-cli-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:mixlib-config-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:mixlib-log-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:mixlib-shellout-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:chef-vault-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:chef-zero-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:ohai-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:inspec-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:train-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:win32-process-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:win32-service-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:win32-taskscheduler-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:ffi-yajl-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:libyajl2-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:cheffish-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:appbundler-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:chef-apply-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:chef-telemetry-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:chefstyle-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:cookstyle-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:knife-acl-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:knife-cloud-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:knife-ec2-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:knife-google-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:knife-opc-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:knife-push-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:knife-tidy-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:knife-vsphere-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:knife-vsphere-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:knife-windows-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:mixlib-install-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:mixlib-versioning-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:win32-event-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:win32-eventlog-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:win32-ipc-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:win32-mmap-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:win32-mutex-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:wmi-lite-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:kitchen-azurerm-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:kitchen-ec2-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:kitchen-digitalocean-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:kitchen-dokken-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:kitchen-google-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:kitchen-hyperv-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:kitchen-inspec-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:kitchen-vagrant-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:kitchen-vcenter-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:test-kitchen-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:foodcritic-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:chefspec-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:fauxhai-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:berkshelf-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:dco-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:chef-sugar-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:opscode-pushy-client-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:nokogiri-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
-  # - workload: ruby_gem_published:stove-*
-  #   actions:
-  #     - bash:.expeditor/update_dep.sh
+  - workload: artifact_published:stable:chef:14*
+    actions:
+      - bash:.expeditor/update_chef.sh
+  - workload: ruby_gem_published:mixlib-archive-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:mixlib-authentication-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:mixlib-cli-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:mixlib-config-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:mixlib-log-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:mixlib-shellout-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:chef-vault-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:chef-zero-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:ohai-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:inspec-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:train-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:win32-process-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:win32-service-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:win32-taskscheduler-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:ffi-yajl-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:libyajl2-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:cheffish-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:appbundler-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:chef-apply-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:chef-telemetry-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:chefstyle-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:cookstyle-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:knife-acl-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:knife-cloud-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:knife-ec2-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:knife-google-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:knife-opc-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:knife-push-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:knife-tidy-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:knife-vsphere-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:knife-vsphere-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:knife-windows-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:mixlib-install-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:mixlib-versioning-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:win32-event-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:win32-eventlog-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:win32-ipc-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:win32-mmap-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:win32-mutex-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:wmi-lite-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-azurerm-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-ec2-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-digitalocean-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-dokken-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-google-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-hyperv-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-inspec-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-vagrant-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:kitchen-vcenter-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:test-kitchen-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:foodcritic-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:chefspec-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:fauxhai-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:berkshelf-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:dco-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:chef-sugar-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:opscode-pushy-client-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:nokogiri-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:stove-*
+    actions:
+      - bash:.expeditor/update_dep.sh
