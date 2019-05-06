@@ -47,9 +47,9 @@ The change we'll use for an example is to install the `zsh` package. Write a fai
 require 'spec_helper'
 
 describe 'godzilla::default' do
-  context 'When all attributes are default, on Ubuntu 16.04' do
+  context 'When all attributes are default, on Ubuntu 18.04' do
     let(:chef_run) do
-      runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '16.04')
+      runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '18.04')
       runner.converge(described_recipe)
     end
 

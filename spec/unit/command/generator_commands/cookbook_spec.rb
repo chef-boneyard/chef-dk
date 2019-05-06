@@ -586,7 +586,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
               name: inspec
 
             platforms:
-              - name: ubuntu-16.04
+              - name: ubuntu-18.04
               - name: centos-7
 
             suites:
@@ -663,7 +663,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
               name: inspec
 
             platforms:
-              - name: ubuntu-16.04
+              - name: ubuntu-18.04
               - name: centos-7
 
             suites:

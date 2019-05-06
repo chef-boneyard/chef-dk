@@ -11,7 +11,7 @@ provisioner:
   product_name: chefdk
 
 platforms:
-  - name: ubuntu-16.04
+  - name: ubuntu-18.04
   - name: centos-7
 
 suites:
