@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.21 -->
-## [v4.0.21](https://github.com/chef/chef-dk/tree/v4.0.21) (2019-05-04)
+<!-- latest_release 4.0.22 -->
+## [v4.0.22](https://github.com/chef/chef-dk/tree/v4.0.22) (2019-05-06)
 
 #### Merged Pull Requests
-- Update generator to use kitchen.yml not .kitchen.yml [#1715](https://github.com/chef/chef-dk/pull/1715) ([tas50](https://github.com/tas50))
+- Update cookbook templates to use Ubuntu 18.04 [#2048](https://github.com/chef/chef-dk/pull/2048) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Update cookbook templates to use Ubuntu 18.04 [#2048](https://github.com/chef/chef-dk/pull/2048) ([tas50](https://github.com/tas50)) <!-- 4.0.22 -->
 - Update generator to use kitchen.yml not .kitchen.yml [#1715](https://github.com/chef/chef-dk/pull/1715) ([tas50](https://github.com/tas50)) <!-- 4.0.21 -->
 - Remove kitchen-vcenter and knife-vcenter for now  [#2046](https://github.com/chef/chef-dk/pull/2046) ([tas50](https://github.com/tas50)) <!-- 4.0.20 -->
 - Appbundler inspec-bin not inspec [#2043](https://github.com/chef/chef-dk/pull/2043) ([tas50](https://github.com/tas50)) <!-- 4.0.19 -->
