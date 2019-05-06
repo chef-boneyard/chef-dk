@@ -729,7 +729,7 @@ GEM
     toml-rb (1.1.2)
       citrus (~> 3.0, > 3.0)
     tomlrb (1.2.8)
-    train (2.0.12)
+    train (2.1.0)
       azure_graph_rbac (~> 0.16)
       azure_mgmt_key_vault (~> 0.17)
       azure_mgmt_resources (~> 0.15)
