@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 context = ChefDK::Generator.context
 repo_dir = File.join(context.repo_root, context.repo_name)
 
@@ -29,10 +28,10 @@ end
 
 directories_to_create = %w( cookbooks data_bags )
 
-directories_to_create += if context.use_roles
-                           %w( roles environments )
-                         else
+directories_to_create += if context.use_policy
                            %w( policyfiles )
+                         else
+                           %w( roles environments )
                          end
 
 directories_to_create.each do |tlo|

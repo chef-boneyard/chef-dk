@@ -42,7 +42,6 @@ module ChefDK
           short:        "-r",
           long:         "--roles",
           description:  "Create roles and environments directories instead of using Policyfiles.",
-          default:      true,
           default:      nil
 
         option :policy,
@@ -50,14 +49,14 @@ module ChefDK
           long:         "--policy",
           description:  "Use Policyfiles instead of roles and environments.",
           boolean:      true,
-          default:      true
+          default:      nil
 
         options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
           @params_valid = true
           @repo_name = nil
-          @use_roles = true
+          @use_policy = true
           super
         end
 
@@ -77,7 +76,7 @@ module ChefDK
           super
           Generator.add_attr_to_context(:repo_root, repo_root)
           Generator.add_attr_to_context(:repo_name, repo_name)
-          Generator.add_attr_to_context(:use_roles, use_roles?)
+          Generator.add_attr_to_context(:use_policy, use_policy?)
         end
 
         def recipe
@@ -96,8 +95,8 @@ module ChefDK
           File.expand_path(repo_name_or_path, Dir.pwd)
         end
 
-        def use_roles?
-          @use_roles
+        def use_policy?
+          @use_policy
         end
 
         def read_and_validate_params
@@ -110,8 +109,8 @@ module ChefDK
             err("Roles and Policyfiles are exclusive. Please only select one.")
             @params_valid = false
           end
-          if config[:policy]
-            @use_roles = false
+          if config[:roles]
+            @use_policy = false
           end
         end
 

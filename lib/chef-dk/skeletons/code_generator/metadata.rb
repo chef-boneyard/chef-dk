@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 name             'code_generator'
 maintainer       'Chef Software, Inc.'
 maintainer_email 'dev@chef.io'
