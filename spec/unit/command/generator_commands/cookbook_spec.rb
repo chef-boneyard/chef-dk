@@ -63,9 +63,9 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       Your cookbook is ready. Type `cd new_cookbook` to enter it.
 
       There are several commands you can run to get started locally developing and testing your cookbook.
-      Type `delivery local --help` to see a full list.
+      Type `delivery local --help` to see a full list of local testing commands.
 
-      Why not start by writing a test? Tests for the default recipe are stored at:
+      Why not start by writing an InSpec test? Tests for the default recipe are stored at:
 
       test/integration/default/default_test.rb
 
