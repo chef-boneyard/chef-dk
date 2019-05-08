@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.25 -->
-## [v4.0.25](https://github.com/chef/chef-dk/tree/v4.0.25) (2019-05-07)
+<!-- latest_release 4.0.26 -->
+## [v4.0.26](https://github.com/chef/chef-dk/tree/v4.0.26) (2019-05-08)
 
 #### Merged Pull Requests
-- Fix describe-cookbook to support cookbooks with metadata.json [#2047](https://github.com/chef/chef-dk/pull/2047) ([teknofire](https://github.com/teknofire))
+- Update the omnibus build license to the Chef EULA [#2053](https://github.com/chef/chef-dk/pull/2053) ([btm](https://github.com/btm))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Update the omnibus build license to the Chef EULA [#2053](https://github.com/chef/chef-dk/pull/2053) ([btm](https://github.com/btm)) <!-- 4.0.26 -->
 - Fix describe-cookbook to support cookbooks with metadata.json [#2047](https://github.com/chef/chef-dk/pull/2047) ([teknofire](https://github.com/teknofire)) <!-- 4.0.25 -->
 - Fix the dep bumping rake task to work with the correct bundler [#2051](https://github.com/chef/chef-dk/pull/2051) ([tas50](https://github.com/tas50)) <!-- 4.0.24 -->
 - Remove the deprecated app and lwrp generators [#2049](https://github.com/chef/chef-dk/pull/2049) ([tas50](https://github.com/tas50)) <!-- 4.0.23 -->
