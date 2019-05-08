@@ -19,7 +19,7 @@ friendly_name "Chef Development Kit"
 maintainer "Chef Software, Inc. <maintainers@chef.io>"
 homepage "https://www.chef.io"
 license "Chef EULA"
-license_file "https://www.chef.io/end-user-license-agreement/"
+license_file "CHEF-EULA.md"
 
 build_iteration 1
 require_relative "../../../lib/chef-dk/version"
