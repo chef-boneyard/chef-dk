@@ -33,7 +33,7 @@ namespace :dependencies do
       # in the lock file we be updated in an incompatible way. Bundler 2.1 *may* fix this issue for us.
       bundler_version = `grep bundler omnibus_overrides.rb | cut -d'"' -f2`
       gem "bundler", "~> #{bundler_version}"
-      
+
       Dir.chdir(dir) do
         Bundler.with_clean_env do
           rm_f "#{dir}/Gemfile.lock"

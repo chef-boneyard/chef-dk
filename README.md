@@ -6,6 +6,12 @@
 [![Docker Stars](https://img.shields.io/docker/stars/chef/chefdk.svg?maxAge=2592000)](https://hub.docker.com/r/chef/chefdk)
 [![Docker Pulls](https://img.shields.io/docker/pulls/chef/chefdk.svg?maxAge=2592000)](https://hub.docker.com/r/chef/chefdk)
 
+**Umbrella Project**: [Workstation](https://github.com/chef/chef-oss-practices/blob/master/projects/chef-workstation.md)
+
+* **[Project State](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** Active
+* **Issues [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
+* **Pull Request [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
+
 Chef Development Kit (ChefDK) brings Chef and the development tools developed by the Chef Community together and acts as the consistent interface to this awesomeness. This awesomeness is composed of:
 
 * [Chef][]
