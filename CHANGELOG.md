@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.29 -->
-## [v4.0.29](https://github.com/chef/chef-dk/tree/v4.0.29) (2019-05-09)
+<!-- latest_release 4.0.30 -->
+## [v4.0.30](https://github.com/chef/chef-dk/tree/v4.0.30) (2019-05-09)
 
 #### Merged Pull Requests
-- Fix expeditor updating + bump gem deps [#2059](https://github.com/chef/chef-dk/pull/2059) ([tas50](https://github.com/tas50))
+- Make generate repo default to policyfiles + cleanup generated readme content [#2050](https://github.com/chef/chef-dk/pull/2050) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Make generate repo default to policyfiles + cleanup generated readme content [#2050](https://github.com/chef/chef-dk/pull/2050) ([tas50](https://github.com/tas50)) <!-- 4.0.30 -->
 - Fix expeditor updating + bump gem deps [#2059](https://github.com/chef/chef-dk/pull/2059) ([tas50](https://github.com/tas50)) <!-- 4.0.29 -->
 - Update Test Kitchen to 2.2.3 [#2057](https://github.com/chef/chef-dk/pull/2057) ([tas50](https://github.com/tas50)) <!-- 4.0.28 -->
 - Convert Chef EULA to a local file [#2058](https://github.com/chef/chef-dk/pull/2058) ([btm](https://github.com/btm)) <!-- 4.0.27 -->
