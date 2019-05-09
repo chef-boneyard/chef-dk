@@ -57,7 +57,7 @@ module ChefDK
 
         When no git-specific flag is given, `chef diff` either compares the
         current lockfile revision on disk to one on the server or compares two
-        lockfiles on the server. Lockfiles on the Chef Server are specified by
+        lockfiles on the server. Lockfiles on the Chef Infra Server are specified by
         Policy Group. Examples:
 
         * `chef diff staging`: compares the current lock with the one currently

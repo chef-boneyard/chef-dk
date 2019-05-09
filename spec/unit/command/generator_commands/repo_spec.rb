@@ -327,7 +327,7 @@ describe ChefDK::Command::GeneratorCommands::Repo do
               <<~README
                 Create roles here, in either the Role Ruby DSL (.rb) or JSON (.json) files. To install roles on the server, use knife.
 
-                For example, in this directory you'll find an example role file called `example.json` which can be uploaded to the Chef Infra Server:
+                For example, in this directory, you'll find an example role file called `example.json` which can be uploaded to the Chef Infra Server:
 
                     knife role from file roles/example.json
 
@@ -351,7 +351,7 @@ describe ChefDK::Command::GeneratorCommands::Repo do
               <<~README
                 Create environments here, in either the Role Ruby DSL (.rb) or JSON (.json) files. To install environments on the Chef Infra Server, use the knife command.
 
-                For example, in this directory you'll find an example environment file called `example.json` which can be uploaded to the Chef Infra Server:
+                For example, in this directory, you'll find an example environment file called `example.json` which can be uploaded to the Chef Infra Server:
 
                     knife environment from file environments/example.json
 

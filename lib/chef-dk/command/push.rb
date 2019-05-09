@@ -30,7 +30,7 @@ module ChefDK
       banner(<<~E)
         Usage: chef push POLICY_GROUP [ POLICY_FILE ] [options]
 
-        `chef push` Uploads an existing Policyfile.lock.json to a Chef Server, along
+        `chef push` Uploads an existing Policyfile.lock.json to a Chef Infra Server, along
         with all the cookbooks contained in the policy lock. The policy lock is applied
         to a specific POLICY_GROUP, which is a set of nodes that share the same
         run_list and cookbooks.
