@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 context = ChefDK::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
 recipe_path = File.join(cookbook_dir, 'recipes', "#{context.new_file_basename}.rb")
@@ -34,7 +32,7 @@ template spec_path do
   action :create_if_missing
 end
 
-# Inspec
+# InSpec
 directory inspec_dir do
   recursive true
 end

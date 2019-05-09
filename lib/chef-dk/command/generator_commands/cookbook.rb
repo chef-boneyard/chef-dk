@@ -38,19 +38,19 @@ module ChefDK
         option :berks,
           short:       "-b",
           long:        "--berks",
-          description: "Generate cookbooks with berkshelf integration",
+          description: "Generate cookbooks using Berkshelf dependency resolution.",
           boolean:     true,
           default:     nil
 
         option :kitchen,
           long:        "--kitchen CONFIGURATION",
-          description: "Generate cookbooks with a specific kitchen configuration (dokken|vagrant) - defaults to vagrant",
+          description: "Generate cookbooks with a specific Test Kitchen configuration (dokken|vagrant) - defaults to vagrant",
           default:     "vagrant"
 
         option :policy,
           short:        "-P",
           long:         "--policy",
-          description:  "Use policyfiles instead of Berkshelf",
+          description:  "Generate a cookbook using Policyfile dependency resolution.",
           boolean:      true,
           default:      nil
 
@@ -108,8 +108,8 @@ module ChefDK
           else
             msg("Your cookbook is ready. Type `cd #{cookbook_name_or_path}` to enter it.")
             msg("\nThere are several commands you can run to get started locally developing and testing your cookbook.")
-            msg("Type `delivery local --help` to see a full list.")
-            msg("\nWhy not start by writing a test? Tests for the default recipe are stored at:\n")
+            msg("Type `delivery local --help` to see a full list of local testing commands.")
+            msg("\nWhy not start by writing an InSpec test? Tests for the default recipe are stored at:\n")
             msg("test/integration/default/default_test.rb")
             msg("\nIf you'd prefer to dive right in, the default recipe can be found at:")
             msg("\nrecipes/default.rb\n")

@@ -63,9 +63,9 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       Your cookbook is ready. Type `cd new_cookbook` to enter it.
 
       There are several commands you can run to get started locally developing and testing your cookbook.
-      Type `delivery local --help` to see a full list.
+      Type `delivery local --help` to see a full list of local testing commands.
 
-      Why not start by writing a test? Tests for the default recipe are stored at:
+      Why not start by writing an InSpec test? Tests for the default recipe are stored at:
 
       test/integration/default/default_test.rb
 
@@ -270,6 +270,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
             # Recipe:: publish
             #
             # Copyright:: 2019, The Authors, All Rights Reserved.
+
             include_recipe 'delivery-truck::publish'
           CONFIG_DOT_JSON
         end
@@ -568,7 +569,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
             ## The forwarded_port port feature lets you connect to ports on the VM guest via
             ## localhost on the host.
-            ## see also: https://docs.vagrantup.com/v2/networking/forwarded_ports.html
+            ## see also: https://www.vagrantup.com/docs/networking/forwarded_ports.html
 
             #  network:
             #    - ["forwarded_port", {guest: 80, host: 8080}]
@@ -576,11 +577,10 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
             provisioner:
               name: chef_zero
 
-            ## require_chef_omnibus specifies a specific chef version to install. You can
-            ## also set this to `true` to always use the latest version.
-            ## see also: https://docs.chef.io/config_yml_kitchen.html
-
-            #  require_chef_omnibus: 12.8.1
+              ## product_name and product_version specifies a specific Chef product and version to install.
+              ## see the Chef documentation for more details: https://docs.chef.io/config_yml_kitchen.html
+              #  product_name: chef
+              #  product_version: 15
 
             verifier:
               name: inspec
@@ -604,7 +604,6 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
         let(:expected_chefspec_spec_helper_content) do
           <<~SPEC_HELPER
-            # frozen_string_literal: true
             require 'chefspec'
             require 'chefspec/policyfile'
           SPEC_HELPER
@@ -624,7 +623,6 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
         let(:expected_content) do
           <<~POLICYFILE_RB
-            # frozen_string_literal: true
             source 'https://supermarket.chef.io'
 
             metadata
@@ -659,6 +657,11 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
               #   always_update_cookbooks: <%= !ENV['CI'] %>
               always_update_cookbooks: true
 
+              ## product_name and product_version specifies a specific Chef product and version to install.
+              ## see the Chef documentation for more details: https://docs.chef.io/config_yml_kitchen.html
+              #  product_name: chef
+              #  product_version: 15
+
             verifier:
               name: inspec
 
@@ -683,7 +686,6 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
         let(:expected_chefspec_spec_helper_content) do
           <<~SPEC_HELPER
-            # frozen_string_literal: true
             require 'chefspec'
             require 'chefspec/berkshelf'
           SPEC_HELPER

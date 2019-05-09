@@ -29,7 +29,7 @@ module ChefDK
         Usage: chef delete-policy POLICY_NAME [options]
 
         `chef delete-policy POLICY_NAME` deletes all revisions of the policy
-        `POLICY_NAME` on the configured Chef Server. All policy revisions will be
+        `POLICY_NAME` on the configured Chef Infra Server. All policy revisions will be
         backed up locally, allowing you to undo this operation via the `chef undelete`
         command.
 

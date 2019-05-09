@@ -135,13 +135,13 @@ cookbooks that provide the desired recipes and meet dependency
 constraints, and emits a `Policyfile.lock.json` describing the expanded
 run list and locked cookbook set. The `Policyfile.lock.json` can be used
 to install the cookbooks on another machine. The policy lock can be
-uploaded to a Chef Server (via the `chef push` command) to apply the
+uploaded to a Chef Infra Server (via the `chef push` command) to apply the
 expanded run list and locked cookbook set to nodes in your
 infrastructure. See the POLICYFILE_README.md for further details.
 
 ### `chef push`
 `chef push POLICY_GROUP` uploads a Policyfile.lock.json along with the cookbooks it
-references to a Chef Server. The policy lock is applied to a
+references to a Chef Infra Server. The policy lock is applied to a
 `POLICY_GROUP`, which is a set of nodes that share the same run list and
 cookbook set. This command operates in compatibility mode and has the
 same caveats as `chef install`. See the POLICYFILE_README.md for further
@@ -154,7 +154,7 @@ cause only attributes from the Policyfile.rb to be updated.
 
 ### `chef diff`
 `chef diff` shows an itemized diff between Policyfile locks. It can
-compare Policyfile locks from local disk, git, and/or the Chef Server,
+compare Policyfile locks from local disk, git, and/or the Chef Infra Server,
 based on the options given.
 
 #### `chef verify`

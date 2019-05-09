@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 name 'example'
 description 'An example cookbook'
 maintainer 'Example maintainer'

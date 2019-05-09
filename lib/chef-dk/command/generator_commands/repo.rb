@@ -35,19 +35,19 @@ module ChefDK
         option :policy_only,
           short:        "-p",
           long:         "--policy-only",
-          description:  "Create a repository for policy only, not cookbooks",
+          description:  "Create a repository to store Policyfiles only, not cookbooks.",
           default:      false
 
         option :roles,
           short:        "-r",
           long:         "--roles",
-          description:  "Create roles and environments directories instead of using policyfiles",
+          description:  "Create roles and environments directories instead of using Policyfiles.",
           default:      nil
 
         option :policy,
           short:        "-P",
           long:         "--policy",
-          description:  "Use policyfiles instead of Berkshelf",
+          description:  "Use Policyfiles instead of roles and environments.",
           boolean:      true,
           default:      nil
 
@@ -56,7 +56,7 @@ module ChefDK
         def initialize(params)
           @params_valid = true
           @repo_name = nil
-          @use_roles = true
+          @use_policy = true
           super
         end
 
@@ -76,7 +76,7 @@ module ChefDK
           super
           Generator.add_attr_to_context(:repo_root, repo_root)
           Generator.add_attr_to_context(:repo_name, repo_name)
-          Generator.add_attr_to_context(:use_roles, use_roles?)
+          Generator.add_attr_to_context(:use_policy, use_policy?)
         end
 
         def recipe
@@ -95,8 +95,8 @@ module ChefDK
           File.expand_path(repo_name_or_path, Dir.pwd)
         end
 
-        def use_roles?
-          @use_roles
+        def use_policy?
+          @use_policy
         end
 
         def read_and_validate_params
@@ -109,8 +109,8 @@ module ChefDK
             err("Roles and Policyfiles are exclusive. Please only select one.")
             @params_valid = false
           end
-          if config[:policy]
-            @use_roles = false
+          if config[:roles]
+            @use_policy = false
           end
         end
 

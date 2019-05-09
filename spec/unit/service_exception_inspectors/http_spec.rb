@@ -93,7 +93,7 @@ describe ChefDK::ServiceExceptionInspectors::HTTP do
 
   end
 
-  context "with a JSON response body in the standard Chef Server format" do
+  context "with a JSON response body in the standard Chef Infra Server format" do
 
     let(:response_body) { %q[{"error":["Field 'name' invalid"]}] }
 

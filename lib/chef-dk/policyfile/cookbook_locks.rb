@@ -54,7 +54,7 @@ module ChefDK
       attr_accessor :identifier
 
       # A string in "X.Y.Z" version number format that uniquely identifies the
-      # cookbook version. This is for compatibility with Chef Server 11.x,
+      # cookbook version. This is for compatibility with Chef Infra Server 11.x,
       # where cookbooks are stored by x.y.z version numbers.
       attr_accessor :dotted_decimal_identifier
 

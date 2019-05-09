@@ -33,7 +33,7 @@ module ChefDK
 
     class ExportRepo
 
-      # Policy groups provide namespaces for policies so that a Chef Server can
+      # Policy groups provide namespaces for policies so that a Chef Infra Server can
       # have multiple active iterations of a policy at once, but we don't need
       # this when serving a single exported policy via Chef Zero, so hardcode
       # it to a "well known" value:
@@ -294,7 +294,7 @@ module ChefDK
 
             ### policy_groups/
 
-            Policy groups are used by Chef Server to manage multiple revisions of the same
+            Policy groups are used by Chef Infra Server to manage multiple revisions of the same
             policy. However, exported policies contain only a single policy revision, so
             this policy group name is hardcoded to "local" and should not be changed.
 

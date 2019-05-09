@@ -1,4 +1,4 @@
-Create policyfiles here. When using a chef-repo, give your policyfiles
+Create Policyfiles here. When using a chef-repo, give your Policyfiles
 the same filename as the name set in the policyfile itself, and use the
 `.rb` file extension.
 
