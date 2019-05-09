@@ -2,6 +2,16 @@
 
 **4.0 is not out yet. These are work in progress release notes**
 
+## Improved Chef Generate command
+
+The `chef generate` command has been updated to produce cookbooks and repositories the match Chef's best practices.
+  - `chef generate repo` now generates a Chef repository with Policyfiles by default. You can revert to the previous roles / environment behavior with the `--roles` flag.
+  - `chef generate cookbook` now includes ChefSpecs that utilize the ChefSpec 7.3+ format. This is a much simpler syntax that requires less updating as older platforms are deprecated.
+  - `chef generate cookbook` no longer creates cookbbook files with the unecessary `frozen_string_literal: true` comments.
+  - `chef generate cookbook` now generates cookbooks with metadata requiring Chef 14 or later.
+  - `chef generate cookbook --kitchen dokken` now generates a fully working kitchen-dokken config.
+  - `chef generate cookbook` now generates Test Kitchen configs with the `product_name`/`product_version` method of specifying Chef Infra Client releases as `require_chef_omnibus` will be removed in the next major Test Kitchen release.
+
 ## Updated Components and Tools
 
 ### InSpec 4
