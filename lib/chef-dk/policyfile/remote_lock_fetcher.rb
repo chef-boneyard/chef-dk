@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 
+require "chef-dk/policyfile/local_lock_fetcher"
 require "chef-dk/policyfile_lock"
 require "chef-dk/exceptions"
 require "chef/http"

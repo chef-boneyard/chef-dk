@@ -130,6 +130,19 @@ describe ChefDK::Policyfile::LocalLockFetcher do
             expect { fetcher.lock_data }.to raise_error(ChefDK::LocalPolicyfileLockNotFound)
           end
         end
+
+        context "and the policy_revision_id does not match" do
+          let(:source_options) do
+            {
+              path: lock_file_path,
+              policy_revision_id: "foo",
+            }
+          end
+
+          it "raises an error" do
+            expect { fetcher.lock_data }.to raise_error(ChefDK::InvalidLockfile, /Expected policy_revision_id/)
+          end
+        end
       end
 
       context "when the path is a directory" do
@@ -165,6 +178,19 @@ describe ChefDK::Policyfile::LocalLockFetcher do
 
           it "raises an error" do
             expect { fetcher.lock_data }.to raise_error(ChefDK::LocalPolicyfileLockNotFound, /provide the file name as part of the path/)
+          end
+        end
+
+        context "and the policy_revision_id does not match" do
+          let(:source_options) do
+            {
+              path: Pathname.new(lock_file_path).dirname.to_s,
+              policy_revision_id: "foo",
+            }
+          end
+
+          it "raises an error" do
+            expect { fetcher.lock_data }.to raise_error(ChefDK::InvalidLockfile, /Expected policy_revision_id/)
           end
         end
       end
