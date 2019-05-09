@@ -256,7 +256,7 @@ describe ChefDK::Command::GeneratorCommands::Repo do
           let(:file) { "cookbooks/example/recipes/default.rb" }
 
           it "has the right contents" do
-            expect(file_contents).to match(/log "Welcome to Chef, \#\{node\['example'\]\['name'\]\}!" do/)
+            expect(file_contents).to match(/log "Welcome to Chef Infra Client, \#\{node\['example'\]\['name'\]\}!" do/)
           end
         end
       end
