@@ -229,7 +229,7 @@ module ChefDK
       def create_client_rb
         File.open(client_rb_staging_path, "wb+") do |f|
           f.print( <<~CONFIG )
-            ### Chef Client Configuration ###
+            ### Chef Infra Client Configuration ###
             # The settings in this file will configure chef to apply the exported policy in
             # this directory. To use it, run:
             #
@@ -279,9 +279,9 @@ module ChefDK
 
             ### .chef/config.rb
 
-            A configuration file for Chef Client. This file configures Chef Client to use
-            the correct `policy_name` and `policy_group` for this exported repository. Chef
-            Client will use this configuration automatically if you've set your working
+            A configuration file for Chef Infra Client. This file configures Chef Infra Client to
+            use the correct `policy_name` and `policy_group` for this exported repository. Chef
+            Infra Client will use this configuration automatically if you've set your working
             directory properly.
 
             ### cookbook_artifacts/

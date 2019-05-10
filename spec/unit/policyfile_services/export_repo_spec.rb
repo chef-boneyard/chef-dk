@@ -269,7 +269,7 @@ describe ChefDK::PolicyfileServices::ExportRepo do
 
           it "creates a working local mode configuration file" do
             expected_config_text = <<~CONFIG
-              ### Chef Client Configuration ###
+              ### Chef Infra Client Configuration ###
               # The settings in this file will configure chef to apply the exported policy in
               # this directory. To use it, run:
               #

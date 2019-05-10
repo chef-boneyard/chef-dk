@@ -14,7 +14,7 @@
 
 Chef Development Kit (ChefDK) brings Chef and the development tools developed by the Chef Community together and acts as the consistent interface to this awesomeness. This awesomeness is composed of:
 
-* [Chef][]
+* [Chef Infra Client][]
 * [Berkshelf][]
 * [Test Kitchen][]
 * [ChefSpec][]
@@ -79,7 +79,7 @@ some helpful bits of functionality already included in the `chef`
 command:
 
 #### `chef generate`
-The generate subcommand generates skeleton Chef code
+The generate subcommand generates skeleton Chef Infra code
 layouts so you can skip repetitive boilerplate and get down to
 automating your infrastructure quickly. Unlike other generators, it only
 generates the minimum required files when creating a cookbook so you can
@@ -185,7 +185,7 @@ environment, you can continue to do so. Just ensure that the ChefDK
 provided applications appear first in your `PATH` before any
 gem-installed versions and you're good to go.
 
-If you'd like to use ChefDK as your primary Ruby/Chef development
+If you'd like to use ChefDK as your primary Ruby/Chef Infra development
 environment, however, you can do so by initializing your shell with
 ChefDK's environment.
 
@@ -322,8 +322,8 @@ packaging, and building works.
 - - -
 
 [Berkshelf]: https://docs.chef.io/berkshelf.html "Berkshelf"
-[Chef]: https://www.chef.io/chef/ "Chef"
-[ChefDK]: https://downloads.chef.io/chefdk "Chef Development Kit"
+[Chef Infra Client]: https://www.chef.io/products/chef-infra/ "Chef Infra Client"
+[ChefDK]: https://downloads.chef.io/chefdk/ "Chef Development Kit"
 [Chef Documentation]: https://docs.chef.io "Chef Documentation"
 [ChefSpec]: http://chefspec.github.io/chefspec/ "ChefSpec"
 [Cookstyle]: https://docs.chef.io/cookstyle.html "Cookstyle"
