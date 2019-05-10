@@ -78,7 +78,7 @@ module ChefDK
         def initialize(params)
           @params_valid = true
           @cookbook_name = nil
-          @berks_mode = true
+          @policy_mode = true
           @enable_delivery = true
           @verbose = false
           super
@@ -134,7 +134,7 @@ module ChefDK
 
           Generator.add_attr_to_context(:verbose, verbose?)
 
-          Generator.add_attr_to_context(:use_berkshelf, berks_mode?)
+          Generator.add_attr_to_context(:use_policyfile, policy_mode?)
           Generator.add_attr_to_context(:pipeline, pipeline)
           Generator.add_attr_to_context(:kitchen, kitchen)
         end
@@ -175,8 +175,8 @@ module ChefDK
           File.expand_path(cookbook_name_or_path, Dir.pwd)
         end
 
-        def berks_mode?
-          @berks_mode
+        def policy_mode?
+          @policy_mode
         end
 
         def enable_delivery?
@@ -224,8 +224,8 @@ module ChefDK
             @params_valid = false
           end
 
-          if config[:policy]
-            @berks_mode = false
+          if config[:berks]
+            @policy_mode = false
           end
 
           if config[:verbose]
