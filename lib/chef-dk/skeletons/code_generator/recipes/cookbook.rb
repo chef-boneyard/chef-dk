@@ -45,20 +45,17 @@ end
 # chefignore
 cookbook_file "#{cookbook_dir}/chefignore"
 
-if context.use_berkshelf
-
-  # Berks
-  cookbook_file "#{cookbook_dir}/Berksfile" do
-    action :create_if_missing
-  end
-else
-
+if context.use_policyfile
   # Policyfile
   template "#{cookbook_dir}/Policyfile.rb" do
     source 'Policyfile.rb.erb'
     helpers(ChefDK::Generator::TemplateHelper)
   end
-
+else
+  # Berks
+  cookbook_file "#{cookbook_dir}/Berksfile" do
+    action :create_if_missing
+  end
 end
 
 # LICENSE
@@ -73,10 +70,10 @@ template "#{cookbook_dir}/kitchen.yml" do
   if context.kitchen == 'dokken'
     # kitchen-dokken configuration works with berkshelf and policyfiles
     source 'kitchen_dokken.yml.erb'
-  elsif context.use_berkshelf
-    source 'kitchen.yml.erb'
-  else
+  elsif context.use_policyfile
     source 'kitchen_policyfile.yml.erb'
+  else
+    source 'kitchen.yml.erb'
   end
 
   helpers(ChefDK::Generator::TemplateHelper)
@@ -100,10 +97,10 @@ directory "#{cookbook_dir}/spec/unit/recipes" do
 end
 
 cookbook_file "#{cookbook_dir}/spec/spec_helper.rb" do
-  if context.use_berkshelf
-    source 'spec_helper.rb'
-  else
+  if context.use_policyfile
     source 'spec_helper_policyfile.rb'
+  else
+    source 'spec_helper.rb'
   end
 
   action :create_if_missing
