@@ -74,7 +74,7 @@ cd .delivery/build_cookbook
 kitchen converge
 ```
 
-This will take some time at first, because the VMs need to be created, Chef installed, the Delivery CLI installed, etc. Later runs will be faster until they are destroyed. It will also fail on the first VM, as expected, because we wrote the test first. Now edit the parent cookbook project's default recipe to install `zsh`.
+This will take some time at first, because the VMs need to be created, Chef Infra Client installed, the Delivery CLI installed, etc. Later runs will be faster until they are destroyed. It will also fail on the first VM, as expected, because we wrote the test first. Now edit the parent cookbook project's default recipe to install `zsh`.
 
 ```
 cd ../../
@@ -114,7 +114,7 @@ Recipe: test::default
 
 Running handlers:
 Running handlers complete
-Chef Client finished, 3/32 resources updated in 54.665445968 seconds
+Chef Infra Client finished, 3/32 resources updated in 54.665445968 seconds
 Finished converging <default-centos-71> (1m26.83s).
 ```
 
