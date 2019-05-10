@@ -208,7 +208,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
             # Remote project.toml file
             #
-            # Instead of the local phases above you may specify a remote URI location for
+            # Instead of the local phases above, you may specify a remote URI location for
             # the `project.toml` file. This is useful for teams that wish to centrally
             # manage the behavior of the `delivery local` command across many different
             # projects.
