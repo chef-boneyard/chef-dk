@@ -13,9 +13,9 @@ current_dir = File.dirname(__FILE__)
 cookbook_path ["#{current_dir}/../cookbooks"]
 ```
 
-Which will set `current_dir` to the location of the knife.rb file itself (e.g. `~/chef-repo/.chef/knife.rb`).
+Which will set `current_dir` to the location of the config.rb (previously knife.rb) file itself (e.g. `~/chef-repo/.chef/config.rb`).
 
-Configure knife to use your preferred copyright holder, email contact and license. Add the following lines to `.chef/knife.rb`.
+Configure knife to use your preferred copyright holder, email contact and license. Add the following lines to `.chef/config.rb`.
 
 ```
 cookbook_copyright "Example, Com."
