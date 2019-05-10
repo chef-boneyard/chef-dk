@@ -36,7 +36,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       test
       test/integration
       test/integration/default/default_test.rb
-      Berksfile
+      Policyfile.rb
       chefignore
       LICENSE
       metadata.rb
@@ -647,6 +647,13 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
             ---
             driver:
               name: vagrant
+
+            ## The forwarded_port port feature lets you connect to ports on the VM guest via
+            ## localhost on the host.
+            ## see also: https://www.vagrantup.com/docs/networking/forwarded_ports.html
+
+            #  network:
+            #    - ["forwarded_port", {guest: 80, host: 8080}]
 
             provisioner:
               name: chef_zero
