@@ -1,6 +1,10 @@
 context = ChefDK::Generator.context
 repo_dir = File.join(context.repo_root, context.repo_name)
 
+silence_chef_formatter unless context.verbose
+
+generator_desc('Ensuring correct Chef Infra repo file content')
+
 # repo root dir
 directory repo_dir
 

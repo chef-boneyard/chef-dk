@@ -51,12 +51,20 @@ module ChefDK
           boolean:      true,
           default:      nil
 
+        option :verbose,
+          short:        "-V",
+          long:         "--verbose",
+          description:  "Show detailed output from the generator",
+          boolean:      true,
+          default:      false
+
         options.merge!(SharedGeneratorOptions.options)
 
         def initialize(params)
           @params_valid = true
           @repo_name = nil
           @use_policy = true
+          @verbose = false
           super
         end
 
@@ -64,7 +72,10 @@ module ChefDK
           read_and_validate_params
           if params_valid?
             setup_context
+            msg("Generating Chef Infra repo #{repo_name}")
             chef_runner.converge
+            msg("")
+            msg("Your new Chef Infra repo is ready! Type `cd #{repo_name}` to enter it.")
             0
           else
             err(opt_parser)
@@ -74,6 +85,7 @@ module ChefDK
 
         def setup_context
           super
+          Generator.add_attr_to_context(:verbose, verbose?)
           Generator.add_attr_to_context(:repo_root, repo_root)
           Generator.add_attr_to_context(:repo_name, repo_name)
           Generator.add_attr_to_context(:use_policy, use_policy?)
@@ -97,6 +109,10 @@ module ChefDK
 
         def use_policy?
           @use_policy
+        end
+
+        def verbose?
+          @verbose
         end
 
         def read_and_validate_params

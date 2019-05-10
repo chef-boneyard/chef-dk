@@ -13,6 +13,7 @@ The `chef generate` command has been updated to produce cookbooks and repositori
   - `chef generate cookbook --kitchen dokken` now generates a fully working kitchen-dokken config.
   - `chef generate cookbook` now generates Test Kitchen configs with the `product_name`/`product_version` method of specifying Chef Infra Client releases as `require_chef_omnibus` will be removed in the next major Test Kitchen release.
   - `chef generate cookbook_file` no longer places the specified file in a "default" folder as these aren't needed in Chef Infra Client 12 and later.
+  - `chef generate repo` no longer outputs the full Chef Infra Client run information while generating the repository. Similar to the `cookbook` command you can view this verbose output with the `--verbose` flag.
 
 ## Updated Components and Tools
 
