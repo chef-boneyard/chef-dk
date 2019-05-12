@@ -3,7 +3,7 @@ cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
 
 silence_chef_formatter unless context.verbose
 
-generator_desc('Ensuring correct cookbook file content')
+generator_desc('Ensuring correct cookbook content')
 
 # cookbook root dir
 directory cookbook_dir
@@ -122,6 +122,17 @@ template "#{cookbook_dir}/recipes/default.rb" do
   action :create_if_missing
 end
 
+# the same will be done below if workflow was enabled so avoid double work and skip this
+unless context.enable_workflow
+  directory "#{cookbook_dir}/.delivery"
+
+  # Adding the delivery local-mode config
+  cookbook_file "#{cookbook_dir}/.delivery/project.toml" do
+    source 'delivery-project.toml'
+    not_if { File.exist?("#{cookbook_dir}/.delivery/project.toml") }
+  end
+end
+
 # git
 if context.have_git
   unless context.skip_git_init
@@ -153,4 +164,4 @@ if context.have_git
   end
 end
 
-include_recipe '::build_cookbook' if context.enable_delivery
+include_recipe '::build_cookbook' if context.enable_workflow

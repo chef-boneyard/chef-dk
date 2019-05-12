@@ -25,7 +25,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
 
   include_context("setup_git_committer_config")
 
-  let(:argv) { %w{delivery_project} }
+  let(:argv) { %w{workflow_project} }
 
   let(:stdout_io) { StringIO.new }
   let(:stderr_io) { StringIO.new }
@@ -67,7 +67,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
 
   let(:expected_cookbook_files) do
     expected_cookbook_file_relpaths.map do |relpath|
-      File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", relpath)
+      File.join(tempdir, "workflow_project", ".delivery", "build_cookbook", relpath)
     end
   end
 
@@ -110,9 +110,9 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
 
   context "when given the name of the delivery project" do
 
-    let(:argv) { %w{delivery_project} }
+    let(:argv) { %w{workflow_project} }
 
-    let(:project_dir) { File.join(tempdir, "delivery_project") }
+    let(:project_dir) { File.join(tempdir, "workflow_project") }
 
     before do
       reset_tempdir
@@ -122,7 +122,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
     it "configures the generator context" do
       cookbook_generator.read_and_validate_params
       cookbook_generator.setup_context
-      expect(generator_context.delivery_project_dir).to eq(File.join(Dir.pwd, "delivery_project"))
+      expect(generator_context.workflow_project_dir).to eq(File.join(Dir.pwd, "workflow_project"))
     end
 
     it "creates a build cookbook" do
@@ -130,7 +130,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
         allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
         expect(cookbook_generator.run).to eq(0)
       end
-      generated_files = Dir.glob("#{tempdir}/delivery_project/**/*", File::FNM_DOTMATCH)
+      generated_files = Dir.glob("#{tempdir}/workflow_project/**/*", File::FNM_DOTMATCH)
       expected_cookbook_files.each do |expected_file|
         expect(generated_files).to include(expected_file)
       end
@@ -162,7 +162,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
           end
         end
 
-        let(:file) { File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", "kitchen.yml") }
+        let(:file) { File.join(tempdir, "workflow_project", ".delivery", "build_cookbook", "kitchen.yml") }
 
         it "creates a kitchen.yml with the expected content" do
           expect(IO.read(file)).to eq(expected_kitchen_yml_content)
@@ -173,7 +173,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
 
     context "when the delivery project is a cookbook" do
 
-      let(:parent_metadata_rb) { File.join(tempdir, "delivery_project", "metadata.rb") }
+      let(:parent_metadata_rb) { File.join(tempdir, "workflow_project", "metadata.rb") }
 
       before do
         FileUtils.touch(parent_metadata_rb)
@@ -188,7 +188,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
       end
 
       describe "metadata.rb" do
-        let(:file) { File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", "metadata.rb") }
+        let(:file) { File.join(tempdir, "workflow_project", ".delivery", "build_cookbook", "metadata.rb") }
 
         include_examples "a generated file", :cookbook_name do
           let(:line) do
@@ -228,7 +228,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
             syntax.rb
             unit.rb
           }.each do |phase_recipe|
-            recipe_file = File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", "recipes", phase_recipe)
+            recipe_file = File.join(tempdir, "workflow_project", ".delivery", "build_cookbook", "recipes", phase_recipe)
             phase = File.basename(phase_recipe, ".rb")
             expected_content = %Q{include_recipe 'delivery-truck::#{phase}'}
             expect(IO.read(recipe_file)).to include(expected_content)
@@ -248,7 +248,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
       end
 
       describe "metadata.rb" do
-        let(:file) { File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", "metadata.rb") }
+        let(:file) { File.join(tempdir, "workflow_project", ".delivery", "build_cookbook", "metadata.rb") }
 
         include_examples "a generated file", :cookbook_name do
           let(:line) do
@@ -285,7 +285,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
             syntax.rb
             unit.rb
           }.each do |phase_recipe|
-            recipe_file = File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", "recipes", phase_recipe)
+            recipe_file = File.join(tempdir, "workflow_project", ".delivery", "build_cookbook", "recipes", phase_recipe)
             expect(IO.read(recipe_file)).to_not include("include_recipe")
           end
         end
@@ -360,7 +360,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
   end
 
   context "when given a path including the .delivery directory" do
-    let(:argv) { [ File.join(tempdir, "delivery_project", ".delivery", "build_cookbook") ] }
+    let(:argv) { [ File.join(tempdir, "workflow_project", ".delivery", "build_cookbook") ] }
 
     before do
       reset_tempdir
@@ -369,7 +369,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
     it "correctly sets the delivery project dir to the parent of the .delivery dir" do
       cookbook_generator.read_and_validate_params
       cookbook_generator.setup_context
-      expect(generator_context.delivery_project_dir).to eq(File.join(tempdir, "delivery_project"))
+      expect(generator_context.workflow_project_dir).to eq(File.join(tempdir, "workflow_project"))
     end
 
   end

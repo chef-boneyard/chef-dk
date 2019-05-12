@@ -1,11 +1,11 @@
 context = ChefDK::Generator.context
-delivery_project_dir = context.delivery_project_dir
+workflow_project_dir = context.workflow_project_dir
 pipeline = context.pipeline
-dot_delivery_dir = File.join(delivery_project_dir, '.delivery')
+dot_delivery_dir = File.join(workflow_project_dir, '.delivery')
 config_json = File.join(dot_delivery_dir, 'config.json')
 project_toml = File.join(dot_delivery_dir, 'project.toml')
 
-generator_desc('Ensuring delivery configuration')
+generator_desc('Ensuring delivery CLI configuration')
 
 directory dot_delivery_dir
 
@@ -14,13 +14,13 @@ cookbook_file config_json do
   not_if { File.exist?(config_json) }
 end
 
-# Adding a new prototype file for delivery-cli local commands
+# Adding the delivery local-mode config
 cookbook_file project_toml do
   source 'delivery-project.toml'
   not_if { File.exist?(project_toml) }
 end
 
-generator_desc('Ensuring correct delivery build cookbook content')
+generator_desc('Ensuring correct Workflow (Delivery) build cookbook content')
 
 build_cookbook_dir = File.join(dot_delivery_dir, 'build_cookbook')
 
@@ -112,64 +112,64 @@ end
 # * db22790 Add generated cookbook content
 # ```
 #
-if context.have_git && context.delivery_project_git_initialized && !context.skip_git_init
+if context.have_git && context.workflow_project_git_initialized && !context.skip_git_init
 
   generator_desc('Adding delivery configuration to feature branch')
 
   execute('git-create-feature-branch') do
     command('git checkout -t -b add-delivery-configuration')
-    cwd delivery_project_dir
-    not_if { shell_out('git branch', cwd: delivery_project_dir).stdout.match(/add-delivery-configuration/) }
+    cwd workflow_project_dir
+    not_if { shell_out('git branch', cwd: workflow_project_dir).stdout.match(/add-delivery-configuration/) }
   end
 
   execute('git-add-delivery-config-json') do
     command('git add .delivery/config.json')
-    cwd delivery_project_dir
-    only_if { shell_out('git status -u --porcelain', cwd: delivery_project_dir).stdout.match(%r{.delivery/config.json}) }
+    cwd workflow_project_dir
+    only_if { shell_out('git status -u --porcelain', cwd: workflow_project_dir).stdout.match(%r{.delivery/config.json}) }
   end
 
   # Adding the new prototype file to the feature branch
   # so it gets checked in with the delivery config commit
   execute('git-add-delivery-project-toml') do
     command('git add .delivery/project.toml')
-    cwd delivery_project_dir
-    only_if { shell_out('git status -u --porcelain', cwd: delivery_project_dir).stdout.match(%r{.delivery/project.toml}) }
+    cwd workflow_project_dir
+    only_if { shell_out('git status -u --porcelain', cwd: workflow_project_dir).stdout.match(%r{.delivery/project.toml}) }
   end
 
   execute('git-commit-delivery-config') do
     command('git commit -m "Add generated delivery configuration"')
-    cwd delivery_project_dir
-    only_if { shell_out('git status -u --porcelain', cwd: delivery_project_dir).stdout.match(/config\.json|project\.toml/) }
+    cwd workflow_project_dir
+    only_if { shell_out('git status -u --porcelain', cwd: workflow_project_dir).stdout.match(/config\.json|project\.toml/) }
   end
 
   generator_desc('Adding build cookbook to feature branch')
 
   execute('git-add-delivery-build-cookbook-files') do
     command('git add .delivery')
-    cwd delivery_project_dir
-    only_if { shell_out('git status -u --porcelain', cwd: delivery_project_dir).stdout.match(/\.delivery/) }
+    cwd workflow_project_dir
+    only_if { shell_out('git status -u --porcelain', cwd: workflow_project_dir).stdout.match(/\.delivery/) }
   end
 
   execute('git-commit-delivery-build-cookbook') do
     command('git commit -m "Add generated delivery build cookbook"')
-    cwd delivery_project_dir
-    only_if { shell_out('git status -u --porcelain', cwd: delivery_project_dir).stdout.match(/\.delivery/) }
+    cwd workflow_project_dir
+    only_if { shell_out('git status -u --porcelain', cwd: workflow_project_dir).stdout.match(/\.delivery/) }
   end
 
   execute("git-return-to-#{pipeline}-branch") do
     command("git checkout #{pipeline}")
-    cwd delivery_project_dir
+    cwd workflow_project_dir
   end
 
   generator_desc('Merging delivery content feature branch to master')
 
   execute('git-merge-delivery-config-branch') do
     command('git merge --no-ff add-delivery-configuration')
-    cwd delivery_project_dir
+    cwd workflow_project_dir
   end
 
   execute('git-remove-delivery-config-branch') do
     command('git branch -D add-delivery-configuration')
-    cwd delivery_project_dir
+    cwd workflow_project_dir
   end
 end

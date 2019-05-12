@@ -50,16 +50,16 @@ module ChefDK
         option :policy,
           short:        "-P",
           long:         "--policy",
-          description:  "Generate a cookbook using Policyfile dependency resolution.",
+          description:  "Generate a cookbook using Policyfile dependency resolution (default).",
           boolean:      true,
           default:      nil
 
-        option :delivery,
-          short:        "-d",
-          long:         "--delivery",
-          description:  "This option has no effect and exists only for compatibility with past releases",
+        option :workflow,
+          short:        "-w",
+          long:         "--workflow",
+          description:  "Generate a cookbook with a full Chef Workflow (Delivery) build cookbook.",
           boolean:      true,
-          default:      true
+          default:      false
 
         option :verbose,
           short:        "-V",
@@ -69,9 +69,9 @@ module ChefDK
           default:      false
 
         option :pipeline,
-          long: "--pipeline PIPELINE",
-          description: "Use PIPELINE to set target branch to something other than master for the build_cookbook",
-          default: "master"
+          long:         "--pipeline PIPELINE",
+          description:  "Use PIPELINE to set target branch to something other than master for the Workflow build_cookbook",
+          default:      "master"
 
         options.merge!(SharedGeneratorOptions.options)
 
@@ -79,7 +79,6 @@ module ChefDK
           @params_valid = true
           @cookbook_name = nil
           @policy_mode = true
-          @enable_delivery = true
           @verbose = false
           super
         end
@@ -127,10 +126,10 @@ module ChefDK
           Generator.add_attr_to_context(:policy_run_list, policy_run_list)
           Generator.add_attr_to_context(:policy_local_cookbook, ".")
 
-          Generator.add_attr_to_context(:enable_delivery, enable_delivery?)
-          Generator.add_attr_to_context(:delivery_project_dir, cookbook_full_path)
+          Generator.add_attr_to_context(:enable_workflow, enable_workflow?)
+          Generator.add_attr_to_context(:workflow_project_dir, cookbook_full_path)
           Generator.add_attr_to_context(:build_cookbook_parent_is_cookbook, true)
-          Generator.add_attr_to_context(:delivery_project_git_initialized, have_git? && !cookbook_path_in_git_repo?)
+          Generator.add_attr_to_context(:workflow_project_git_initialized, have_git? && !cookbook_path_in_git_repo?)
 
           Generator.add_attr_to_context(:verbose, verbose?)
 
@@ -179,8 +178,8 @@ module ChefDK
           @policy_mode
         end
 
-        def enable_delivery?
-          @enable_delivery
+        def enable_workflow?
+          config[:workflow]
         end
 
         def verbose?

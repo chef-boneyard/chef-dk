@@ -59,9 +59,9 @@ module ChefDK
 
         def setup_context
           super
-          Generator.add_attr_to_context(:delivery_project_dir, delivery_project_dir)
+          Generator.add_attr_to_context(:workflow_project_dir, workflow_project_dir)
 
-          Generator.add_attr_to_context(:delivery_project_git_initialized, delivery_project_git_initialized?)
+          Generator.add_attr_to_context(:workflow_project_git_initialized, workflow_project_git_initialized?)
           Generator.add_attr_to_context(:build_cookbook_parent_is_cookbook, build_cookbook_parent_is_cookbook?)
 
           Generator.add_attr_to_context(:pipeline, pipeline)
@@ -76,13 +76,13 @@ module ChefDK
         end
 
         def build_cookbook_parent_is_cookbook?
-          metadata_json_path = File.join(delivery_project_dir, "metadata.json")
-          metadata_rb_path = File.join(delivery_project_dir, "metadata.rb")
+          metadata_json_path = File.join(workflow_project_dir, "metadata.json")
+          metadata_rb_path = File.join(workflow_project_dir, "metadata.rb")
 
           File.exist?(metadata_json_path) || File.exist?(metadata_rb_path)
         end
 
-        def delivery_project_dir
+        def workflow_project_dir
           project_dir = File.expand_path(cookbook_name_or_path, Dir.pwd)
           # Detect if we were invoked with arguments like
           #
@@ -103,8 +103,8 @@ module ChefDK
           project_dir
         end
 
-        def delivery_project_git_initialized?
-          File.exist?(File.join(delivery_project_dir, ".git"))
+        def workflow_project_git_initialized?
+          File.exist?(File.join(workflow_project_dir, ".git"))
         end
 
         def read_and_validate_params

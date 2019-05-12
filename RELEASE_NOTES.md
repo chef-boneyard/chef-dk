@@ -29,6 +29,7 @@ The `chef generate` command has been updated to produce cookbooks and repositori
   - `chef generate cookbook` now generates a cookbook with a Policyfile and no Berksfile by default. You can revert to the previous behavior with the `--berks` flag.
   - `chef generate cookbook` now includes ChefSpecs that utilize the ChefSpec 7.3+ format. This is a much simpler syntax that requires less updating as older platforms are deprecated.
   - `chef generate cookbook` no longer creates cookbbook files with the unecessary `frozen_string_literal: true` comments.
+  - `chef generate cookbook` no longer generates a full Workflow (Delivery) build cookbook by default. A new `--workflow` flag has been added to allow generating the build cookbook. This flag replaces the previously unused `--delivery` flag.
   - `chef generate cookbook` now generates cookbooks with metadata requiring Chef 14 or later.
   - `chef generate cookbook --kitchen dokken` now generates a fully working kitchen-dokken config.
   - `chef generate cookbook` now generates Test Kitchen configs with the `product_name`/`product_version` method of specifying Chef Infra Client releases as `require_chef_omnibus` will be removed in the next major Test Kitchen release.

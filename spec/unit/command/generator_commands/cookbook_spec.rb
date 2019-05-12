@@ -163,155 +163,239 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       end
     end
 
-    context "by default configure for delivery" do
+    context "when passed workflow option" do
 
-      let(:dot_delivery) { File.join(tempdir, "new_cookbook", ".delivery") }
+      context "generates a workflow (delivery) cookbook" do
 
-      before do
-        Dir.chdir(tempdir) do
-          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          expect(cookbook_generator.run).to eq(0)
+        let(:argv) { %w{new_cookbook --workflow} }
+
+        let(:dot_delivery) { File.join(tempdir, "new_cookbook", ".delivery") }
+
+        before do
+          Dir.chdir(tempdir) do
+            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+            expect(cookbook_generator.run).to eq(0)
+          end
+        end
+
+        describe ".delivery/project.toml" do
+
+          let(:file) { File.join(tempdir, "new_cookbook", ".delivery", "project.toml") }
+
+          let(:expected_content) do
+            <<~PROJECT_DOT_TOML
+              # Delivery for Local Phases Execution
+              #
+              # This file allows you to execute test phases locally on a workstation or
+              # in a CI pipeline. The delivery-cli will read this file and execute the
+              # command(s) that are configured for each phase. You can customize them
+              # by just modifying the phase key on this file.
+              #
+              # By default these phases are configured for Cookbook Workflow only
+              #
+
+              [local_phases]
+              unit = "chef exec rspec spec/"
+              lint = "chef exec cookstyle"
+              # Foodcritic includes rules only appropriate for community cookbooks
+              # uploaded to Supermarket. We turn off any rules tagged "supermarket"
+              # by default. If you plan to share this cookbook you should remove
+              # '-t ~supermarket' below to enable supermarket rules.
+              syntax = "chef exec foodcritic . -t ~supermarket"
+              provision = "chef exec kitchen create"
+              deploy = "chef exec kitchen converge"
+              smoke = "chef exec kitchen verify"
+              # The functional phase is optional, you can define it by uncommenting
+              # the line below and running the command: `delivery local functional`
+              # functional = ""
+              cleanup = "chef exec kitchen destroy"
+
+              # Remote project.toml file
+              #
+              # Instead of the local phases above, you may specify a remote URI location for
+              # the `project.toml` file. This is useful for teams that wish to centrally
+              # manage the behavior of the `delivery local` command across many different
+              # projects.
+              #
+              # remote_file = "https://url/project.toml"
+            PROJECT_DOT_TOML
+          end
+
+          it "exists with default config for Cookbook Workflow" do
+            expect(IO.read(file)).to eq(expected_content)
+          end
+
+        end
+
+        describe ".delivery/config.json" do
+
+          let(:file) { File.join(tempdir, "new_cookbook", ".delivery", "config.json") }
+
+          let(:expected_content) do
+            <<~CONFIG_DOT_JSON
+              {
+                "version": "2",
+                "build_cookbook": {
+                  "name": "build_cookbook",
+                  "path": ".delivery/build_cookbook"
+                },
+                "delivery-truck": {
+                  "lint": {
+                    "enable_cookstyle": true
+                  }
+                },
+                "skip_phases": [],
+                "job_dispatch": {
+                  "version": "v2"
+                },
+                "dependencies": []
+              }
+            CONFIG_DOT_JSON
+          end
+
+          it "configures delivery to use a local build cookbook" do
+            expect(IO.read(file)).to eq(expected_content)
+          end
+
+        end
+
+        describe "build cookbook recipes" do
+
+          let(:file) do
+            File.join(dot_delivery, "build_cookbook", "recipes", "publish.rb")
+          end
+
+          let(:expected_content) do
+            <<~CONFIG_DOT_JSON
+              #
+              # Cookbook:: build_cookbook
+              # Recipe:: publish
+              #
+              # Copyright:: 2019, The Authors, All Rights Reserved.
+
+              include_recipe 'delivery-truck::publish'
+            CONFIG_DOT_JSON
+          end
+
+          it "delegates functionality to delivery-truck" do
+            expect(IO.read(file)).to include(expected_content)
+          end
+
+        end
+
+        describe "build cookbook Berksfile" do
+
+          let(:file) do
+            File.join(dot_delivery, "build_cookbook", "Berksfile")
+          end
+
+          let(:expected_content) do
+            <<~CONFIG_DOT_JSON
+              source 'https://supermarket.chef.io'
+
+              metadata
+
+              group :workflow do
+                cookbook 'test', path: './test/fixtures/cookbooks/test'
+              end
+            CONFIG_DOT_JSON
+          end
+
+          it "sets the sources for delivery library cookbooks to github" do
+            expect(IO.read(file)).to include(expected_content)
+          end
+
         end
       end
 
-      describe ".delivery/project.toml" do
+      context "when no delivery CLI configuration is present" do
 
-        let(:file) { File.join(tempdir, "new_cookbook", ".delivery", "project.toml") }
+        let(:argv) { %w{new_cookbook --workflow} }
 
-        let(:expected_content) do
-          <<~PROJECT_DOT_TOML
-            # Delivery for Local Phases Execution
-            #
-            # This file allows you to execute test phases locally on a workstation or
-            # in a CI pipeline. The delivery-cli will read this file and execute the
-            # command(s) that are configured for each phase. You can customize them
-            # by just modifying the phase key on this file.
-            #
-            # By default these phases are configured for Cookbook Workflow only
-            #
-
-            [local_phases]
-            unit = "chef exec rspec spec/"
-            lint = "chef exec cookstyle"
-            # Foodcritic includes rules only appropriate for community cookbooks
-            # uploaded to Supermarket. We turn off any rules tagged "supermarket"
-            # by default. If you plan to share this cookbook you should remove
-            # '-t ~supermarket' below to enable supermarket rules.
-            syntax = "chef exec foodcritic . -t ~supermarket"
-            provision = "chef exec kitchen create"
-            deploy = "chef exec kitchen converge"
-            smoke = "chef exec kitchen verify"
-            # The functional phase is optional, you can define it by uncommenting
-            # the line below and running the command: `delivery local functional`
-            # functional = ""
-            cleanup = "chef exec kitchen destroy"
-
-            # Remote project.toml file
-            #
-            # Instead of the local phases above, you may specify a remote URI location for
-            # the `project.toml` file. This is useful for teams that wish to centrally
-            # manage the behavior of the `delivery local` command across many different
-            # projects.
-            #
-            # remote_file = "https://url/project.toml"
-          PROJECT_DOT_TOML
+        it "detects no delivery config" do
+          Dir.chdir(tempdir) do
+            expect(cookbook_generator.have_delivery_config?).to be(false)
+          end
         end
 
-        it "exists with default config for Cookbook Workflow" do
-          expect(IO.read(file)).to eq(expected_content)
-        end
+        it "emits concise output" do
+          Dir.chdir(tempdir) do
+            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+            expect(cookbook_generator.run).to eq(0)
+          end
 
+          expected = <<~OUTPUT
+            Generating cookbook new_cookbook
+            - Ensuring correct cookbook content
+            - Committing cookbook files to git
+            - Ensuring delivery CLI configuration
+            - Ensuring correct Workflow (Delivery) build cookbook content
+            - Adding delivery configuration to feature branch
+            - Adding build cookbook to feature branch
+            - Merging delivery content feature branch to master
+
+            #{non_delivery_breadcrumb}
+          OUTPUT
+
+          actual = stdout_io.string
+
+          # the formatter will add escape sequences to turn off any colors
+          actual.gsub!("\e[0m", "")
+          expect(actual).to eq(expected)
+        end
       end
 
-      describe ".delivery/config.json" do
+      context "when a delivery CLI config is present" do
 
-        let(:file) { File.join(tempdir, "new_cookbook", ".delivery", "config.json") }
+        # Setup a situation like this:
+        # there is a dir for the delivery organization with the
+        # `.delivery/cli.toml` in it. Inside that is another dir (maybe IRL this
+        # would be "cookbooks"), then we create the cookbook inside that.
 
-        let(:expected_content) do
-          <<~CONFIG_DOT_JSON
-            {
-              "version": "2",
-              "build_cookbook": {
-                "name": "build_cookbook",
-                "path": ".delivery/build_cookbook"
-              },
-              "delivery-truck": {
-                "lint": {
-                  "enable_cookstyle": true
-                }
-              },
-              "skip_phases": [],
-              "job_dispatch": {
-                "version": "v2"
-              },
-              "dependencies": []
-            }
-          CONFIG_DOT_JSON
+        let(:argv) { %w{new_cookbook --workflow} }
+
+        let(:tempdir_subdir) { File.join(tempdir, "subdirectory") }
+
+        let(:dot_delivery_dir) { File.join(tempdir, ".delivery") }
+
+        let(:dot_delivery_cli_toml) { File.join(dot_delivery_dir, "cli.toml") }
+
+        before do
+          Dir.mkdir(tempdir_subdir)
+          Dir.mkdir(dot_delivery_dir)
+          FileUtils.touch(dot_delivery_cli_toml)
         end
 
-        it "configures delivery to use a local build cookbook" do
-          expect(IO.read(file)).to eq(expected_content)
+        it "detects the delivery config" do
+          Dir.chdir(tempdir_subdir) do
+            expect(cookbook_generator.have_delivery_config?).to be(true)
+          end
         end
 
-      end
+        it "emits concise output" do
+          Dir.chdir(tempdir) do
+            allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
+            expect(cookbook_generator.run).to eq(0)
+          end
 
-      describe "build cookbook recipes" do
+          expected = <<~OUTPUT
+            Generating cookbook new_cookbook
+            - Ensuring correct cookbook content
+            - Committing cookbook files to git
+            - Ensuring delivery CLI configuration
+            - Ensuring correct Workflow (Delivery) build cookbook content
+            - Adding delivery configuration to feature branch
+            - Adding build cookbook to feature branch
+            - Merging delivery content feature branch to master
 
-        let(:file) do
-          File.join(dot_delivery, "build_cookbook", "recipes", "publish.rb")
-        end
+            Your cookbook is ready. To setup the pipeline, type `cd new_cookbook`, then run `delivery init`
+          OUTPUT
 
-        let(:expected_content) do
-          <<~CONFIG_DOT_JSON
-            #
-            # Cookbook:: build_cookbook
-            # Recipe:: publish
-            #
-            # Copyright:: 2019, The Authors, All Rights Reserved.
+          actual = stdout_io.string
 
-            include_recipe 'delivery-truck::publish'
-          CONFIG_DOT_JSON
-        end
-
-        it "delegates functionality to delivery-truck" do
-          expect(IO.read(file)).to include(expected_content)
-        end
-
-      end
-
-      describe "build cookbook Berksfile" do
-
-        let(:file) do
-          File.join(dot_delivery, "build_cookbook", "Berksfile")
-        end
-
-        let(:expected_content) do
-          <<~CONFIG_DOT_JSON
-            source 'https://supermarket.chef.io'
-
-            metadata
-
-            group :delivery do
-              cookbook 'test', path: './test/fixtures/cookbooks/test'
-            end
-          CONFIG_DOT_JSON
-        end
-
-        it "sets the sources for delivery library cookbooks to github" do
-          expect(IO.read(file)).to include(expected_content)
-        end
-
-      end
-    end
-
-    context "when passed delivery option" do
-
-      let(:argv) { %w{new_cookbook --delivery} }
-
-      it "still works with no action" do
-        Dir.chdir(tempdir) do
-          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          expect(cookbook_generator.run).to eq(0)
+          # the formatter will add escape sequences to turn off any colors
+          actual.gsub!("\e[0m", "")
+          expect(actual).to eq(expected)
         end
       end
     end
@@ -340,93 +424,6 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
         actual = stdout_io.string
 
         expect(actual).to include(expected_line)
-      end
-    end
-
-    context "when no delivery CLI configuration is present" do
-
-      it "detects no delivery config" do
-        Dir.chdir(tempdir) do
-          expect(cookbook_generator.have_delivery_config?).to be(false)
-        end
-      end
-
-      it "emits concise output" do
-        Dir.chdir(tempdir) do
-          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          expect(cookbook_generator.run).to eq(0)
-        end
-
-        expected = <<~OUTPUT
-          Generating cookbook new_cookbook
-          - Ensuring correct cookbook file content
-          - Committing cookbook files to git
-          - Ensuring delivery configuration
-          - Ensuring correct delivery build cookbook content
-          - Adding delivery configuration to feature branch
-          - Adding build cookbook to feature branch
-          - Merging delivery content feature branch to master
-
-          #{non_delivery_breadcrumb}
-        OUTPUT
-
-        actual = stdout_io.string
-
-        # the formatter will add escape sequences to turn off any colors
-        actual.gsub!("\e[0m", "")
-        expect(actual).to eq(expected)
-      end
-    end
-
-    context "when a delivery CLI config is present" do
-
-      # Setup a situation like this:
-      # there is a dir for the delivery organization with the
-      # `.delivery/cli.toml` in it. Inside that is another dir (maybe IRL this
-      # would be "cookbooks"), then we create the cookbook inside that.
-
-      let(:tempdir_subdir) { File.join(tempdir, "subdirectory") }
-
-      let(:dot_delivery_dir) { File.join(tempdir, ".delivery") }
-
-      let(:dot_delivery_cli_toml) { File.join(dot_delivery_dir, "cli.toml") }
-
-      before do
-        Dir.mkdir(tempdir_subdir)
-        Dir.mkdir(dot_delivery_dir)
-        FileUtils.touch(dot_delivery_cli_toml)
-      end
-
-      it "detects the delivery config" do
-        Dir.chdir(tempdir_subdir) do
-          expect(cookbook_generator.have_delivery_config?).to be(true)
-        end
-      end
-
-      it "emits concise output" do
-        Dir.chdir(tempdir) do
-          allow(cookbook_generator.chef_runner).to receive(:stdout).and_return(stdout_io)
-          expect(cookbook_generator.run).to eq(0)
-        end
-
-        expected = <<~OUTPUT
-          Generating cookbook new_cookbook
-          - Ensuring correct cookbook file content
-          - Committing cookbook files to git
-          - Ensuring delivery configuration
-          - Ensuring correct delivery build cookbook content
-          - Adding delivery configuration to feature branch
-          - Adding build cookbook to feature branch
-          - Merging delivery content feature branch to master
-
-          Your cookbook is ready. To setup the pipeline, type `cd new_cookbook`, then run `delivery init`
-        OUTPUT
-
-        actual = stdout_io.string
-
-        # the formatter will add escape sequences to turn off any colors
-        actual.gsub!("\e[0m", "")
-        expect(actual).to eq(expected)
       end
     end
 
