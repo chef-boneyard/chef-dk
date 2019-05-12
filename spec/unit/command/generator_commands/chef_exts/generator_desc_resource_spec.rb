@@ -72,26 +72,10 @@ describe ChefDK::ChefResource::GeneratorDesc do
       expect(resource.identity).to eq(message)
     end
 
-  end
-
-  describe "provider" do
-
-    let(:provider) do
-      ChefDK::ChefProvider::GeneratorDesc.new(resource, run_context)
-    end
-
-    it "supports why run" do
-      expect(provider.whyrun_supported?).to be(true)
-    end
-
-    it "does nothing for load current resource" do
-      expect(provider.load_current_resource).to be(true)
-    end
-
     it "writes the message to the formatter" do
-      provider.action_write
+      resource.action_write
       expect(stdout.string).to include(message)
     end
-  end
 
+  end
 end
