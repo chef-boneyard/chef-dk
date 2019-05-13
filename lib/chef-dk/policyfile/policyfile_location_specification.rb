@@ -66,7 +66,7 @@ module ChefDK
                        if source_options[:path] && !source_options[:git]
                          Policyfile::LocalLockFetcher.new(name, source_options, storage_config)
                        elsif source_options[:remote]
-                         Policyfile::RemoteLockFetcher.new(name, source_options, storage_config)
+                         Policyfile::RemoteLockFetcher.new(name, source_options)
                        elsif source_options[:server]
                          Policyfile::ChefServerLockFetcher.new(name, source_options, chef_config)
                        elsif source_options[:git]

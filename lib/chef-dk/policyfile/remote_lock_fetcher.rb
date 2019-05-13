@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require "chef-dk/policyfile/local_lock_fetcher"
 require "chef-dk/policyfile_lock"
+require "chef-dk/policyfile/lock_fetcher_mixin"
 require "chef-dk/exceptions"
 require "chef/http"
 require "tempfile"
@@ -24,9 +24,28 @@ require "tempfile"
 module ChefDK
   module Policyfile
 
-    # A policyfile lock fetcher that can read a lock from a remote location
-    # essentially the same as the LocalLockFetcher, it copies the file a locally
-    class RemoteLockFetcher < LocalLockFetcher
+    # A policyfile lock fetcher that can read a lock from a remote location.
+    class RemoteLockFetcher
+      include LockFetcherMixin
+
+      attr_reader :name
+      attr_reader :source_options
+
+      # Initialize a RemoteLockFetcher
+      #
+      # @param name [String] The name of the policyfile
+      # @param source_options [Hash] A hash with a :path key pointing at the location
+      #                              of the lock
+      def initialize(name, source_options)
+        @name = name
+        @source_options = source_options
+      end
+
+      # @return [True] if there were no errors with the provided source_options
+      # @return [False] if there were errors with the provided source_options
+      def valid?
+        errors.empty?
+      end
 
       # Check the options provided when creating this class for errors
       #
@@ -39,6 +58,32 @@ module ChefDK
         end
 
         error_messages
+      end
+
+      # @return [Hash] The source_options that describe how to fetch this exact lock again
+      def source_options_for_lock
+        source_options
+      end
+
+      # Applies source options from a lock file. This is used to make sure that the same
+      # policyfile lock is loaded that was locked
+      #
+      # @param options_from_lock [Hash] The source options loaded from a policyfile lock
+      def apply_locked_source_options(options_from_lock)
+        # There are no options the lock could provide
+      end
+
+      # @return [String] of the policyfile lock data
+      def lock_data
+        fetch_lock_data.tap do |data|
+          validate_revision_id(data["revision_id"], source_options)
+          data["cookbook_locks"].each do |cookbook_name, cookbook_lock|
+            cookbook_path = cookbook_lock["source_options"]["path"]
+            if !cookbook_path.nil?
+              raise ChefDK::InvalidLockfile, "Invalid cookbook path: #{cookbook_path}. Remote Policyfiles should only use remote cookbooks."
+            end
+          end
+        end
       end
 
       private
