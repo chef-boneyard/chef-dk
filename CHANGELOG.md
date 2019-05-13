@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.36 -->
-## [v4.0.36](https://github.com/chef/chef-dk/tree/v4.0.36) (2019-05-13)
+<!-- latest_release 4.0.37 -->
+## [v4.0.37](https://github.com/chef/chef-dk/tree/v4.0.37) (2019-05-13)
 
 #### Merged Pull Requests
-- Modernize the chef resource used to log during generate commands [#2068](https://github.com/chef/chef-dk/pull/2068) ([tas50](https://github.com/tas50))
+- Bump test-kitchen to 2.2.4 [#2069](https://github.com/chef/chef-dk/pull/2069) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Bump test-kitchen to 2.2.4 [#2069](https://github.com/chef/chef-dk/pull/2069) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.37 -->
 - Modernize the chef resource used to log during generate commands [#2068](https://github.com/chef/chef-dk/pull/2068) ([tas50](https://github.com/tas50)) <!-- 4.0.36 -->
 - Update command help / contents to make sense in Workstation [#2067](https://github.com/chef/chef-dk/pull/2067) ([tas50](https://github.com/tas50)) <!-- 4.0.35 -->
 - Make chef generate repo quiet by default [#2066](https://github.com/chef/chef-dk/pull/2066) ([tas50](https://github.com/tas50)) <!-- 4.0.34 -->
