@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.34 -->
-## [v4.0.34](https://github.com/chef/chef-dk/tree/v4.0.34) (2019-05-13)
+<!-- latest_release 4.0.35 -->
+## [v4.0.35](https://github.com/chef/chef-dk/tree/v4.0.35) (2019-05-13)
 
 #### Merged Pull Requests
-- Make chef generate repo quiet by default [#2066](https://github.com/chef/chef-dk/pull/2066) ([tas50](https://github.com/tas50))
+- Update command help / contents to make sense in Workstation [#2067](https://github.com/chef/chef-dk/pull/2067) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Update command help / contents to make sense in Workstation [#2067](https://github.com/chef/chef-dk/pull/2067) ([tas50](https://github.com/tas50)) <!-- 4.0.35 -->
 - Make chef generate repo quiet by default [#2066](https://github.com/chef/chef-dk/pull/2066) ([tas50](https://github.com/tas50)) <!-- 4.0.34 -->
 - Generate cookbooks with policyfiles by default [#2065](https://github.com/chef/chef-dk/pull/2065) ([tas50](https://github.com/tas50)) <!-- 4.0.33 -->
 - More branding fixes + generator improvements [#2064](https://github.com/chef/chef-dk/pull/2064) ([tas50](https://github.com/tas50)) <!-- 4.0.32 -->
