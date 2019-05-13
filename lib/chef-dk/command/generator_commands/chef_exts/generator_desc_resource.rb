@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2016 Chef Software Inc.
+# Copyright:: Copyright (c) 2016-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +16,6 @@
 #
 
 require "chef/resource"
-require "chef/provider"
 
 module ChefDK
   module ChefResource
@@ -28,58 +27,14 @@ module ChefDK
     # As the name implies, it is used to describe the steps that the generator
     # takes to create a cookbook.
     class GeneratorDesc < Chef::Resource
+      resource_name :generator_desc
 
-      resource_name(:generator_desc)
-
-      identity_attr(:message)
-
-      default_action(:write)
-
-      def initialize(name, run_context = nil)
-        super
-        @message = name
-      end
-
-      def message(arg = nil)
-        set_or_return(
-          :message,
-          arg,
-          kind_of: String
-        )
-      end
-
-    end
-  end
-
-  module ChefProvider
-
-    # Chef log provider, allows logging to chef's logs from recipes
-    class GeneratorDesc < Chef::Provider
-
-      provides :generator_desc
-
-      def whyrun_supported?
-        true
-      end
-
-      # No concept of a 'current' resource for logs, this is a no-op
-      #
-      # === Return
-      # true:: Always return true
-      def load_current_resource
-        true
-      end
+      property :message, String, name_property: true
 
       # Write the log to Chef's log
-      #
-      # === Return
-      # true:: Always return true
-      def action_write
+      action :write do
         run_context.events.subscribers.first.puts_line("- #{new_resource.message}")
-        new_resource.updated_by_last_action(true)
       end
-
     end
-
   end
 end

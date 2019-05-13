@@ -36,9 +36,7 @@ describe ChefDK::ChefResource::GeneratorDesc do
 
   let(:stderr) { StringIO.new }
 
-  let(:null_formatter) do
-    Chef::Formatters.new(:null, stdout, stderr)
-  end
+  let(:null_formatter) { Chef::Formatters.new(:null, stdout, stderr) }
 
   let(:events) do
     Chef::EventDispatch::Dispatcher.new.tap do |d|
@@ -48,15 +46,13 @@ describe ChefDK::ChefResource::GeneratorDesc do
 
   let(:cookbook_collection) { Chef::CookbookCollection.new }
 
-  let(:run_context) do
-    Chef::RunContext.new(node, cookbook_collection, events)
-  end
+  let(:run_context) { Chef::RunContext.new(node, cookbook_collection, events) }
 
   let(:message) { "this part of the cookbook does a thing" }
 
-  let(:resource) do
-    described_class.new(message, run_context)
-  end
+  let(:resource) { described_class.new(message, run_context) }
+
+  let(:provider) { resource.provider_for_action(:write) }
 
   describe "resource" do
 
@@ -72,26 +68,10 @@ describe ChefDK::ChefResource::GeneratorDesc do
       expect(resource.identity).to eq(message)
     end
 
-  end
-
-  describe "provider" do
-
-    let(:provider) do
-      ChefDK::ChefProvider::GeneratorDesc.new(resource, run_context)
-    end
-
-    it "supports why run" do
-      expect(provider.whyrun_supported?).to be(true)
-    end
-
-    it "does nothing for load current resource" do
-      expect(provider.load_current_resource).to be(true)
-    end
-
     it "writes the message to the formatter" do
       provider.action_write
       expect(stdout.string).to include(message)
     end
-  end
 
+  end
 end
