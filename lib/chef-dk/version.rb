@@ -16,5 +16,5 @@
 #
 
 module ChefDK
-  VERSION = "4.0.35".freeze
+  VERSION = "4.0.36".freeze
 end
