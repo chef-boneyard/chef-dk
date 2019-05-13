@@ -73,12 +73,31 @@ describe ChefDK::Policyfile::RemoteLockFetcher do
       expect(Chef::HTTP).to receive(:new).with(source_options[:remote]).and_return(http)
     end
 
-    subject(:fetcher) { described_class.new("foo", source_options, storage_config) }
+    subject(:fetcher) { described_class.new("foo", source_options) }
 
     context "when the http.get returns valid json" do
-      it "returns the parsed json" do
-        expect(http).to receive(:get).with("").and_return(minimal_lockfile_json)
-        expect(fetcher.lock_data).to eq(minimal_lockfile)
+      context "source_options does not include 'path'" do
+        it "returns the parsed json" do
+          expect(http).to receive(:get).with("").and_return(minimal_lockfile_json)
+          expect(fetcher.lock_data).to eq(minimal_lockfile)
+        end
+      end
+
+      context "source_options includes 'path'" do
+        let(:minimal_lockfile_json_w_path) do
+          FFI_Yajl::Encoder.encode(
+            minimal_lockfile.tap do |lockfile|
+              lockfile["cookbook_locks"]["remote-cookbook"]["source_options"] = {
+                "path" => "../remote-cookbook",
+              }
+            end
+          )
+        end
+
+        it "raises ChefDK::InvalidLockfile" do
+          expect(http).to receive(:get).with("").and_return(minimal_lockfile_json_w_path)
+          expect { fetcher.lock_data } .to raise_error(ChefDK::InvalidLockfile, /Invalid cookbook path/)
+        end
       end
     end
 
@@ -107,5 +126,4 @@ describe ChefDK::Policyfile::RemoteLockFetcher do
       end
     end
   end
-
 end

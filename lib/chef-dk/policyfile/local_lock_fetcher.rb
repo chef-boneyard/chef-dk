@@ -16,6 +16,7 @@
 #
 
 require "chef-dk/policyfile_lock"
+require "chef-dk/policyfile/lock_fetcher_mixin"
 require "chef-dk/exceptions"
 
 module ChefDK
@@ -23,6 +24,7 @@ module ChefDK
 
     # A policyfile lock fetcher that can read a lock from a local disk
     class LocalLockFetcher
+      include LockFetcherMixin
 
       attr_reader :name
       attr_reader :source_options
@@ -32,7 +34,7 @@ module ChefDK
       #
       # @param name [String] The name of the policyfile
       # @param source_options [Hash] A hash with a :path key pointing at the location
-      # of the lock and optionally a :policy_revision_id for validation purposes
+      #                              of the lock
       # @param storage_config [StorageConfig]
       def initialize(name, source_options, storage_config)
         @name = name
@@ -46,7 +48,7 @@ module ChefDK
         errors.empty?
       end
 
-      # Check the options provided when creating this class for errors
+      # Check the options provided when craeting this class for errors
       #
       # @return [Array<String>] A list of errors found
       def errors
@@ -74,26 +76,13 @@ module ChefDK
 
       # @return [String] of the policyfile lock data
       def lock_data
-        fetch_lock_data.tap do |data|
-          validate_revision_id(data["revision_id"])
+        FFI_Yajl::Parser.new.parse(content).tap do |data|
+          validate_revision_id(data["revision_id"], source_options)
           data["cookbook_locks"].each do |cookbook_name, cookbook_lock|
             cookbook_path = cookbook_lock["source_options"]["path"]
             if !cookbook_path.nil?
               cookbook_lock["source_options"]["path"] = transform_path(cookbook_path)
             end
-          end
-        end
-      end
-
-      def validate_revision_id(included_id)
-        expected_id = source_options[:policy_revision_id]
-        if expected_id
-          if included_id.eql?(expected_id) # are they the same?
-            return
-          elsif included_id[0, 10].eql?(expected_id) # did they use the 10 char substring
-            return
-          else
-            raise ChefDK::InvalidLockfile, "Expected policy_revision_id '#{expected_id}' does not match included_policy '#{included_id}'."
           end
         end
       end
@@ -137,10 +126,6 @@ module ChefDK
 
       def abs_path
         Pathname.new(source_options[:path]).expand_path(storage_config.relative_paths_root)
-      end
-
-      def fetch_lock_data
-        FFI_Yajl::Parser.new.parse(content)
       end
     end
   end
