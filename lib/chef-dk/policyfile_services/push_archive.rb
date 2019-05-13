@@ -90,8 +90,8 @@ module ChefDK
             This archive is in an unsupported format.
 
             This archive was created with an older version of ChefDK. This version of
-            ChefDK does not support archives in the older format. Re-create the archive
-            with a newer version of ChefDK or downgrade ChefDK.
+            ChefDK does not support archives in the older format. Please Re-create the
+            archive with a newer version of ChefDK or Workstation.
           MESSAGE
         end
 

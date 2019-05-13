@@ -115,7 +115,7 @@ describe ChefDK::Command::GeneratorCommands::Policyfile do
 
     let(:expected_policyfile_content) do
       <<~POLICYFILE_RB
-        # Policyfile.rb - Describe how you want Chef to build your system.
+        # Policyfile.rb - Describe how you want Chef Infra Client to build your system.
         #
         # For more information on the Policyfile feature, visit
         # https://docs.chef.io/policyfile.html

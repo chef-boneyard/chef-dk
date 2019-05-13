@@ -287,8 +287,8 @@ describe ChefDK::PolicyfileServices::PushArchive do
               This archive is in an unsupported format.
 
               This archive was created with an older version of ChefDK. This version of
-              ChefDK does not support archives in the older format. Re-create the archive
-              with a newer version of ChefDK or downgrade ChefDK.
+              ChefDK does not support archives in the older format. Please Re-create the
+              archive with a newer version of ChefDK or Workstation.
             MESSAGE
             expect(exception_cause.message).to eq(msg)
           end
