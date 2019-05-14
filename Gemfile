@@ -33,7 +33,7 @@ group(:omnibus_package, :development, :test) do
   gem "yard"
   gem "guard"
   gem "cookstyle", "~> 4.0"
-  gem "foodcritic", ">= 12.1"
+  gem "foodcritic", ">= 16.0"
   gem "ffi-libarchive"
 end
 
