@@ -57,7 +57,7 @@ module ChefDK
       super() # mixlib-cli #initialize doesn't allow arguments
     end
 
-    def run
+    def run(enforce_license: false)
       sanity_check!
 
       subcommand_name, *subcommand_params = argv
@@ -70,7 +70,7 @@ module ChefDK
         handle_options
       elsif have_command?(subcommand_name)
         subcommand = instantiate_subcommand(subcommand_name)
-        exit_code = subcommand.run_with_default_options(subcommand_params)
+        exit_code = subcommand.run_with_default_options(enforce_license, subcommand_params)
         exit normalized_exit_code(exit_code)
       else
         err "Unknown command `#{subcommand_name}'."

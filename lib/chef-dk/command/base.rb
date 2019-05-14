@@ -19,12 +19,15 @@ require "mixlib/cli"
 require "chef-dk/helpers"
 require "chef-dk/version"
 require "chef/exceptions"
+require "license_acceptance/acceptor"
+require "license_acceptance/cli_flags/mixlib_cli"
 
 module ChefDK
   module Command
     class Base
       include Mixlib::CLI
       include ChefDK::Helpers
+      include LicenseAcceptance::CLIFlags::MixlibCLI
 
       option :help,
         short: "-h",
@@ -47,7 +50,7 @@ module ChefDK
       # In order to control this behavior, make sure the default options are
       # handled here.
       #
-      def run_with_default_options(params = [ ])
+      def run_with_default_options(enforce_license, params = [ ])
         if needs_help?(params)
           msg(opt_parser.to_s)
           0
@@ -55,6 +58,7 @@ module ChefDK
           msg("Chef Development Kit Version: #{ChefDK::VERSION}")
           0
         else
+          check_license_acceptance if enforce_license
           run(params)
         end
       rescue Chef::Exceptions::ConfigurationError => e
@@ -72,6 +76,10 @@ module ChefDK
 
       def needs_version?(params)
         params.include?("-v") || params.include?("--version")
+      end
+
+      def check_license_acceptance
+        LicenseAcceptance::Acceptor.check_and_persist!("chef-dk", ChefDK::VERSION.to_s)
       end
 
     end

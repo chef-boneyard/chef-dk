@@ -34,6 +34,10 @@ module ChefDK
         @ui = UI.new
       end
 
+      def check_license_acceptance
+        # Do not need to accept the license for checking the environment
+      end
+
       def run(params)
         info = {}
         info["Chef Development Kit"] = Hash.new.tap do |chefdk_env|

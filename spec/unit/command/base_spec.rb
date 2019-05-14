@@ -42,6 +42,7 @@ describe ChefDK::Command::Base do
   let(:stderr_io) { StringIO.new }
   let(:stdout_io) { StringIO.new }
   let(:command_instance) { TestCommand.new() }
+  let(:enforce_license) { false }
 
   def stdout
     stdout_io.string
@@ -57,7 +58,7 @@ describe ChefDK::Command::Base do
   end
 
   def run_command(options)
-    command_instance.run_with_default_options(options)
+    command_instance.run_with_default_options(enforce_license, options)
   end
 
   it "should print the banner for -h" do
@@ -95,6 +96,16 @@ describe ChefDK::Command::Base do
     expect(stdout).to eq("thanks for passing me true\n")
   end
 
+  describe "when enforce_license is true" do
+    let(:enforce_license) { true }
+
+    it "calls the license acceptance library" do
+      expect(LicenseAcceptance::Acceptor).to receive(:check_and_persist!).with("chef-dk", ChefDK::VERSION.to_s)
+      run_command([])
+      expect(stdout).to eq("thanks for passing me \n")
+    end
+  end
+
   describe "when given invalid options" do
 
     it "prints the help banner and exits gracefully" do
@@ -105,6 +116,7 @@ describe ChefDK::Command::Base do
       expected = <<~E
         use me please
             -a, --arg ARG                    An option with a required argument
+                --chef-license ACCEPTANCE    Accept the license for this product and any contained products ('accept', 'accept-no-persist', or 'accept-silent')
             -h, --help                       Show this message
             -u, --user                       If the user exists
             -v, --version                    Show chef version
@@ -125,6 +137,7 @@ describe ChefDK::Command::Base do
       expected = <<~E
         use me please
             -a, --arg ARG                    An option with a required argument
+                --chef-license ACCEPTANCE    Accept the license for this product and any contained products ('accept', 'accept-no-persist', or 'accept-silent')
             -h, --help                       Show this message
             -u, --user                       If the user exists
             -v, --version                    Show chef version

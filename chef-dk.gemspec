@@ -49,6 +49,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "cookbook-omnifetch", "~> 0.5"
   gem.add_dependency "diff-lcs", "~> 1.0"
   gem.add_dependency "paint", "~> 1.0"
+  gem.add_dependency "license-acceptance", "~> 1.0", ">= 1.0.6"
 
   %w{rspec-core rspec-expectations rspec-mocks}.each do |dev_gem|
     gem.add_development_dependency dev_gem, "~> 3.0"

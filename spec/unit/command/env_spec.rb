@@ -36,7 +36,7 @@ describe ChefDK::Command::Env do
   end
 
   def run_command
-    command_instance.run_with_default_options(command_options)
+    command_instance.run_with_default_options(false, command_options)
   end
 
   it "has a usage banner" do

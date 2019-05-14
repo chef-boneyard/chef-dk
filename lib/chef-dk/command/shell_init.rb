@@ -80,6 +80,10 @@ module ChefDK
         @shell_completion_template_context = nil
       end
 
+      def check_license_acceptance
+        # Do not need to accept the license for setting up the shell
+      end
+
       def omnibus_root
         config[:omnibus_dir] || super
       end
