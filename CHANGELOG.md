@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.39 -->
-## [v4.0.39](https://github.com/chef/chef-dk/tree/v4.0.39) (2019-05-14)
+<!-- latest_release 4.0.40 -->
+## [v4.0.40](https://github.com/chef/chef-dk/tree/v4.0.40) (2019-05-14)
 
 #### Merged Pull Requests
-- Pull in Chef 15.0.293 and Foodcritic 16 [#2072](https://github.com/chef/chef-dk/pull/2072) ([tas50](https://github.com/tas50))
+- Revert the Gemfile.lock back to 1.17.3 [#2077](https://github.com/chef/chef-dk/pull/2077) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Revert the Gemfile.lock back to 1.17.3 [#2077](https://github.com/chef/chef-dk/pull/2077) ([tas50](https://github.com/tas50)) <!-- 4.0.40 -->
 - Pull in Chef 15.0.293 and Foodcritic 16 [#2072](https://github.com/chef/chef-dk/pull/2072) ([tas50](https://github.com/tas50)) <!-- 4.0.39 -->
 - Prevent double bundler by pinning to 1.17.2 [#2070](https://github.com/chef/chef-dk/pull/2070) ([tas50](https://github.com/tas50)) <!-- 4.0.38 -->
 - Bump test-kitchen to 2.2.4 [#2069](https://github.com/chef/chef-dk/pull/2069) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.37 -->
