@@ -136,7 +136,6 @@ gem "chefstyle", group: :test
 # correctly
 platforms :mswin, :mingw do
   gem "rdp-ruby-wmi"
-  gem "windows-api"
   gem "windows-pr"
   gem "win32-api"
   gem "win32-dir"

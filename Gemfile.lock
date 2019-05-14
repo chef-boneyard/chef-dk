@@ -927,7 +927,6 @@ DEPENDENCIES
   win32-mutex
   win32-process (~> 0.8.2)
   win32-service
-  windows-api
   windows-pr
   winrm-elevated
   winrm-fs
