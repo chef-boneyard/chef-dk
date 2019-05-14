@@ -101,7 +101,7 @@ group(:omnibus_package) do
   gem "chef-sugar"
   gem "mixlib-versioning"
   gem "artifactory"
-  gem "opscode-pushy-client", git: "https://github.com/chef/opscode-pushy-client.git", branch: "master"
+  gem "opscode-pushy-client", ">= 3.0.0.pre", "< 4" # before we ship make sure to make this ~> 3.0
   gem "ffi-rzmq-core"
   gem "knife-push"
 
