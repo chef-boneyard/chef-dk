@@ -33,7 +33,7 @@ group(:omnibus_package, :development, :test) do
   gem "yard"
   gem "guard"
   gem "cookstyle", "~> 3.0" # bump this on the next DK major release
-  gem "foodcritic", ">= 12.1"
+  gem "foodcritic", "< 16"
   gem "ffi-libarchive", ">= 0.4.0"
 end
 
