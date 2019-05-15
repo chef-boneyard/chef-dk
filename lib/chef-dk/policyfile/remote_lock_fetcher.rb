@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2017 Chef Software Inc.
+# Copyright:: Copyright (c) 2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,28 +18,27 @@
 require "chef-dk/policyfile_lock"
 require "chef-dk/policyfile/lock_fetcher_mixin"
 require "chef-dk/exceptions"
+require "chef/http"
+require "tempfile"
 
 module ChefDK
   module Policyfile
 
-    # A policyfile lock fetcher that can read a lock from a local disk
-    class LocalLockFetcher
+    # A policyfile lock fetcher that can read a lock from a remote location.
+    class RemoteLockFetcher
       include LockFetcherMixin
 
       attr_reader :name
       attr_reader :source_options
-      attr_reader :storage_config
 
-      # Initialize a LocalLockFetcher
+      # Initialize a RemoteLockFetcher
       #
       # @param name [String] The name of the policyfile
       # @param source_options [Hash] A hash with a :path key pointing at the location
       #                              of the lock
-      # @param storage_config [StorageConfig]
-      def initialize(name, source_options, storage_config)
+      def initialize(name, source_options)
         @name = name
         @source_options = source_options
-        @storage_config = storage_config
       end
 
       # @return [True] if there were no errors with the provided source_options
@@ -48,13 +47,13 @@ module ChefDK
         errors.empty?
       end
 
-      # Check the options provided when craeting this class for errors
+      # Check the options provided when creating this class for errors
       #
       # @return [Array<String>] A list of errors found
       def errors
         error_messages = []
 
-        [:path].each do |key|
+        [:remote].each do |key|
           error_messages << "include_policy for #{name} is missing key #{key}" unless source_options[key]
         end
 
@@ -76,12 +75,12 @@ module ChefDK
 
       # @return [String] of the policyfile lock data
       def lock_data
-        FFI_Yajl::Parser.new.parse(content).tap do |data|
+        fetch_lock_data.tap do |data|
           validate_revision_id(data["revision_id"], source_options)
           data["cookbook_locks"].each do |cookbook_name, cookbook_lock|
             cookbook_path = cookbook_lock["source_options"]["path"]
             if !cookbook_path.nil?
-              cookbook_lock["source_options"]["path"] = transform_path(cookbook_path)
+              raise ChefDK::InvalidLockfile, "Invalid cookbook path: #{cookbook_path}. Remote Policyfiles should only use remote cookbooks."
             end
           end
         end
@@ -89,43 +88,20 @@ module ChefDK
 
       private
 
-      # Transforms cookbook paths to a path relative to the current
-      # cookbook for which we are generating a new lock file.
-      # Eg: '../cookbooks/base_cookbook'
-      #
-      # @param path_to_transform [String] Path to dependent cookbook.
-      # @return [Pathname] Path to dependent cookbook relative to the current cookbook/Policyfile.
-      def transform_path(path_to_transform)
-        cur_path = Pathname.new(storage_config.relative_paths_root)
-        include_path = Pathname.new(path).dirname
-        include_path.relative_path_from(cur_path).join(path_to_transform).to_s
-      end
-
-      def content
-        IO.read(path)
-      end
-
-      def path
-        @path ||= begin
-          path = abs_path
-          if path.directory?
-            path = path.join("#{name}.lock.json")
-            if !path.file?
-              raise ChefDK::LocalPolicyfileLockNotFound.new(
-                "Expected to find file #{name}.lock.json inside #{source_options[:path]}. If the file name is different than this, provide the file name as part of the path.")
-            end
-          else
-            if !path.file?
-              raise ChefDK::LocalPolicyfileLockNotFound.new(
-                "The provided path #{source_options[:path]} does not exist.")
-            end
-          end
-          path
+      def fetch_lock_data
+        FFI_Yajl::Parser.parse(http_client.get(""))
+      rescue Net::ProtocolError => e
+        if e.respond_to?(:response) && e.response.code.to_s == "404"
+          raise ChefDK::PolicyfileLockDownloadError.new("No remote policyfile lock '#{name}' found at #{http_client.url}")
+        else
+          raise ChefDK::PolicyfileLockDownloadError.new("HTTP error attempting to fetch policyfile lock from #{http_client.url}")
         end
+      rescue => e
+        raise e
       end
 
-      def abs_path
-        Pathname.new(source_options[:path]).expand_path(storage_config.relative_paths_root)
+      def http_client
+        @http_client ||= Chef::HTTP.new(source_options[:remote])
       end
     end
   end

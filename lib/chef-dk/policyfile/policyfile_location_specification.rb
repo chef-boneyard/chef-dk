@@ -17,6 +17,7 @@
 
 require "chef-dk/policyfile_lock"
 require "chef-dk/policyfile/local_lock_fetcher"
+require "chef-dk/policyfile/remote_lock_fetcher"
 require "chef-dk/policyfile/chef_server_lock_fetcher"
 require "chef-dk/policyfile/git_lock_fetcher"
 require "chef-dk/exceptions"
@@ -37,7 +38,7 @@ module ChefDK
       attr_reader :chef_config
       attr_reader :ui
 
-      LOCATION_TYPES = [:path, :server, :git].freeze
+      LOCATION_TYPES = [:path, :remote, :server, :git].freeze
 
       # Initialize a location spec
       #
@@ -64,6 +65,8 @@ module ChefDK
         @fetcher ||= begin
                        if source_options[:path] && !source_options[:git]
                          Policyfile::LocalLockFetcher.new(name, source_options, storage_config)
+                       elsif source_options[:remote]
+                         Policyfile::RemoteLockFetcher.new(name, source_options)
                        elsif source_options[:server]
                          Policyfile::ChefServerLockFetcher.new(name, source_options, chef_config)
                        elsif source_options[:git]
