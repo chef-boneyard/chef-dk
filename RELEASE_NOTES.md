@@ -1,3 +1,15 @@
+# ChefDK 3.10 Release Notes
+
+## New Policy File Functionality
+
+`include_policy` now supports `:remote` policy files. This new functionality allows you to include policy files over http. Remote policy files require remote cookbooks and `install` will fail otherwise if the included policy file includes cookbooks with paths. Thanks [@mattray](https://github.com/mattray)!
+
+### Other updates
+
+* `kitchen-vagrant`: 1.5.1 -> 1.5.2
+* `mixlib-install`: 3.11.12 -> 3.11.18
+* `ohai`: 14.8.11 -> 14.8.12
+
 # ChefDK 3.9 Release Notes
 
 ## Updated Components and Tools
