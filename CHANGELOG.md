@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.10.0 -->
-## [v3.10.0](https://github.com/chef/chef-dk/tree/v3.10.0) (2019-05-15)
+<!-- latest_release 3.10.1 -->
+## [v3.10.1](https://github.com/chef/chef-dk/tree/v3.10.1) (2019-05-15)
 
 #### Merged Pull Requests
-- Update kitchen-vagrant, mixlib-cli, mixlib-install, and ohai [#2078](https://github.com/chef/chef-dk/pull/2078) ([tas50](https://github.com/tas50))
+- Release notes for 3.10 [#2083](https://github.com/chef/chef-dk/pull/2083) ([jonsmorrow](https://github.com/jonsmorrow))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.9.0 -->
 ### Changes since 3.9.0 release
 
 #### Merged Pull Requests
+- Release notes for 3.10 [#2083](https://github.com/chef/chef-dk/pull/2083) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.10.1 -->
 - Update kitchen-vagrant, mixlib-cli, mixlib-install, and ohai [#2078](https://github.com/chef/chef-dk/pull/2078) ([tas50](https://github.com/tas50)) <!-- 3.10.0 -->
 - RFC097 include_policy with remote sources and validating policy_revision_id with path [#2052](https://github.com/chef/chef-dk/pull/2052) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.9.4 -->
 - Pin inspec and other gems to prevent bundler hanging [#2045](https://github.com/chef/chef-dk/pull/2045) ([tas50](https://github.com/tas50)) <!-- 3.9.3 -->
