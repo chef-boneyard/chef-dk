@@ -17,6 +17,7 @@ git checkout -b "$branch"
 # make sure we have rake for the tasks later
 bundle install
 sed -i -r "s/^\s*gem \"chef\".*/  gem \"chef\", \"= ${EXPEDITOR_VERSION}\"/" Gemfile
+sed -i -r "s/^\s*gem \"chef-bin\".*/  gem \"chef-bin\", \"= ${EXPEDITOR_VERSION}\"/" Gemfile
 
 # it appears that the gem that triggers this script fires off this script before
 # the gem is actually available via bundler on rubygems.org.

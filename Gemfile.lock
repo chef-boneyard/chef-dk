@@ -205,6 +205,8 @@ GEM
       toml-rb
       train
       tty-spinner
+    chef-bin (15.0.298)
+      chef (= 15.0.298)
     chef-config (15.0.298)
       addressable
       fuzzyurl
@@ -578,7 +580,7 @@ GEM
       plist (~> 3.1)
       systemu (~> 2.6.4)
       wmi-lite (~> 1.0)
-    opscode-pushy-client (3.0.0.pre)
+    opscode-pushy-client (2.99.0)
       chef (>= 14.0, < 16.0)
       ffi-rzmq
       ohai (>= 14.0, < 16.0)
@@ -863,6 +865,7 @@ DEPENDENCIES
   bundler
   chef (= 15.0.298)
   chef-apply
+  chef-bin (= 15.0.298)
   chef-dk!
   chef-sugar
   chef-vault (>= 3.4.1)
