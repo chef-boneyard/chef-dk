@@ -365,7 +365,7 @@ module ChefDK
           c.smoke_test do
             tmpdir do |cwd|
               sh!("#{embedded_bin("git")} config -l")
-              sh!("#{embedded_bin("git")} clone https://github.com/chef/chef-provisioning", cwd: cwd)
+              sh!("#{embedded_bin("git")} clone https://github.com/chef/license-acceptance", cwd: cwd)
             end
           end
         end
@@ -375,7 +375,7 @@ module ChefDK
           c.smoke_test do
             tmpdir do |cwd|
               sh!("#{File.join(omnibus_root, "gitbin", "git")} config -l")
-              sh!("#{File.join(omnibus_root, "gitbin", "git")} clone https://github.com/chef/chef-provisioning", cwd: cwd)
+              sh!("#{File.join(omnibus_root, "gitbin", "git")} clone https://github.com/chef/license-acceptance", cwd: cwd)
 
               # If /usr/bin/git is a symlink, fail the test.
               # Note that this test cannot go last because it does not return a

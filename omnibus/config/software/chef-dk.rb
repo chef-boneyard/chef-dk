@@ -1,3 +1,19 @@
+#
+# Copyright 2014-2019, Chef Software Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 name "chef-dk"
 default_version "local_source"
 
@@ -7,7 +23,7 @@ license :project_license
 # the local git checkout. This is what you'd want to occur by default if you
 # just ran omnibus build locally.
 version("local_source") do
-  source path: File.expand_path("../..", project.files_path),
+  source path: "#{project.files_path}/../..",
          # Since we are using the local repo, we try to not copy any files
          # that are generated in the process of bundle installing omnibus.
          # If the install steps are well-behaved, this should not matter
@@ -20,7 +36,7 @@ end
 
 # For any version other than "local_source", fetch from github.
 if version != "local_source"
-  source git: "git://github.com/chef/chef-dk.git"
+  source git: "https://github.com/chef/chef-dk.git"
 end
 
 # For nokogiri
@@ -28,7 +44,6 @@ dependency "libxml2"
 dependency "libxslt"
 dependency "liblzma"
 dependency "zlib"
-dependency "libarchive"
 
 #
 # NOTE: NO GEM DEPENDENCIES
@@ -72,12 +87,13 @@ build do
 
   env["NOKOGIRI_USE_SYSTEM_LIBRARIES"] = "true"
 
-  appbundle "chef", lockdir: project_dir, gem: "chef", without: %w{integration docgen maintenance ci travis}, env: env
+  appbundle "chef", lockdir: project_dir, gem: "chef", without: %w{docgen chefstyle}, env: env
+
   appbundle "foodcritic", lockdir: project_dir, gem: "foodcritic", without: %w{development}, env: env
   appbundle "test-kitchen", lockdir: project_dir, gem: "test-kitchen", without: %w{changelog debug docs}, env: env
   appbundle "inspec", lockdir: project_dir, gem: "inspec-bin", without: %w{deploy tools maintenance integration}, env: env
 
-  %w{chef-dk chef-apply chef-vault ohai opscode-pushy-client cookstyle dco berkshelf}.each do |gem|
+  %w{chef-bin chef-dk chef-apply chef-vault ohai opscode-pushy-client cookstyle dco berkshelf}.each do |gem|
     appbundle gem, lockdir: project_dir, gem: gem, without: %w{changelog}, env: env
   end
 
