@@ -168,7 +168,7 @@ module ChefDK
         c.smoke_test do
           tmpdir do |cwd|
             FileUtils.touch(File.join(cwd, "apply.rb"))
-            sh("#{bin("chef-apply")} apply.rb", cwd: cwd)
+            sh("#{bin("chef-apply")} apply.rb --chef-license 'accept-no-persist'", cwd: cwd)
           end
         end
       end
@@ -423,7 +423,7 @@ module ChefDK
                 end
               EOF
             end
-            sh("chef-apply foo.rb", cwd: cwd)
+            sh("chef-apply foo.rb --chef-license 'accept-no-persist'", cwd: cwd)
           end
         end
       end

@@ -73,7 +73,7 @@ GEM
     aws-sdk-rds (1.52.0)
       aws-sdk-core (~> 3, >= 3.52.1)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.38.0)
+    aws-sdk-s3 (1.39.0)
       aws-sdk-core (~> 3, >= 3.52.1)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
@@ -118,11 +118,11 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (11.0.1)
-    chef (15.0.298)
+    chef (15.0.300)
       addressable
       bcrypt_pbkdf (~> 1.0)
       bundler (>= 1.10)
-      chef-config (= 15.0.298)
+      chef-config (= 15.0.300)
       chef-zero (>= 14.0.11)
       diff-lcs (~> 1.2, >= 1.2.4)
       ed25519 (~> 1.2)
@@ -148,11 +148,11 @@ GEM
       train-core (~> 2.0, >= 2.0.12)
       tty-screen (~> 0.6)
       uuidtools (~> 2.1.5)
-    chef (15.0.298-universal-mingw32)
+    chef (15.0.300-universal-mingw32)
       addressable
       bcrypt_pbkdf (~> 1.0)
       bundler (>= 1.10)
-      chef-config (= 15.0.298)
+      chef-config (= 15.0.300)
       chef-zero (>= 14.0.11)
       diff-lcs (~> 1.2, >= 1.2.4)
       ed25519 (~> 1.2)
@@ -207,9 +207,9 @@ GEM
       toml-rb
       train
       tty-spinner
-    chef-bin (15.0.298)
-      chef (= 15.0.298)
-    chef-config (15.0.298)
+    chef-bin (15.0.300)
+      chef (= 15.0.300)
+    chef-config (15.0.300)
       addressable
       fuzzyurl
       mixlib-config (>= 2.2.12, < 4.0)
@@ -865,9 +865,9 @@ DEPENDENCIES
   bcrypt_pbkdf
   berkshelf (>= 7.0.5)
   bundler
-  chef (= 15.0.298)
+  chef (= 15.0.300)
   chef-apply
-  chef-bin (= 15.0.298)
+  chef-bin (= 15.0.300)
   chef-dk!
   chef-sugar
   chef-vault (>= 3.4.1)
