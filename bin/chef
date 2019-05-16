@@ -22,4 +22,4 @@ Kernel.trap(:INT) { print("\n"); exit 1 }
 $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
 require "chef-dk/cli"
 
-ChefDK::CLI.new(ARGV.clone).run
+ChefDK::CLI.new(ARGV.clone).run(enforce_license: true)

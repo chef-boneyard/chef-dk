@@ -7,6 +7,7 @@ PATH
       cookbook-omnifetch (~> 0.5)
       diff-lcs (~> 1.0)
       ffi-yajl (>= 1.0, < 3.0)
+      license-acceptance (~> 1.0, >= 1.0.11)
       minitar (~> 0.6)
       mixlib-cli (>= 1.7, < 3.0)
       mixlib-shellout (>= 2.0, < 4.0)

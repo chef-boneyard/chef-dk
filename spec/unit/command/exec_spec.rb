@@ -24,7 +24,7 @@ describe ChefDK::Command::Exec do
   let(:command_options) { [] }
 
   def run_command
-    command_instance.run_with_default_options(command_options)
+    command_instance.run_with_default_options(false, command_options)
   end
 
   it "has a usage banner" do
