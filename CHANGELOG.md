@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.43 -->
-## [v4.0.43](https://github.com/chef/chef-dk/tree/v4.0.43) (2019-05-16)
+<!-- latest_release 4.0.44 -->
+## [v4.0.44](https://github.com/chef/chef-dk/tree/v4.0.44) (2019-05-16)
 
 #### Merged Pull Requests
-- Update Chef to 15.0.298 and push jobs to 2.99 [#2085](https://github.com/chef/chef-dk/pull/2085) ([tas50](https://github.com/tas50))
+- Add chef-bin dependency [#2084](https://github.com/chef/chef-dk/pull/2084) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Add chef-bin dependency [#2084](https://github.com/chef/chef-dk/pull/2084) ([tas50](https://github.com/tas50)) <!-- 4.0.44 -->
 - Update Chef to 15.0.298 and push jobs to 2.99 [#2085](https://github.com/chef/chef-dk/pull/2085) ([tas50](https://github.com/tas50)) <!-- 4.0.43 -->
 - Bump train to 2.1.2 [#2081](https://github.com/chef/chef-dk/pull/2081) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.42 -->
 - Bump test-kitchen to 2.2.5 [#2080](https://github.com/chef/chef-dk/pull/2080) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.41 -->
