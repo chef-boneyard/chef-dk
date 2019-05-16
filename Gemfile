@@ -54,7 +54,7 @@ group(:omnibus_package) do
   # gems to Rubygems now, so letting this float on latest should always give us the latest
   # stable release. May have to re-pin around major version bumping time, or during patch
   # fixes.
-  gem "chef", "= 15.0.293"
+  gem "chef", "= 15.0.298"
   gem "cheffish", ">= 14.0.1"
   gem "chefspec", ">= 7.3.0"
   gem "fauxhai", "~> 7.0"
@@ -101,7 +101,7 @@ group(:omnibus_package) do
   gem "chef-sugar"
   gem "mixlib-versioning"
   gem "artifactory"
-  gem "opscode-pushy-client", ">= 3.0.0.pre", "< 4" # before we ship make sure to make this ~> 3.0
+  gem "opscode-pushy-client", ">= 2.99"
   gem "ffi-rzmq-core"
   gem "knife-push"
 
