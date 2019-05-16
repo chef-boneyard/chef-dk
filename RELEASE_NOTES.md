@@ -16,11 +16,11 @@
 
 ### Chef 14.12.3
 
-ChefDK now ships with Chef 14.12.3. See <https://docs.chef.io/release_notes.html> for more information on what's new.
+ChefDK now ships with Chef 14.12.3. See [Chef 14.12 release notes](https://docs.chef.io/release_notes.html) for more information on what's new.
 
 ### InSpec 3.9.0
 
-ChefDK now ships with Inspec 3.9.0. See <https://github.com/inspec/inspec/releases/tag/v3.9.0> for more information on what's new.
+ChefDK now ships with InSpec 3.9.0. See [InSpec 3.9.0 release details](https://github.com/inspec/inspec/releases/tag/v3.9.0) for more information on what's new.
 
 ### Ruby 2.5.5
 
@@ -28,11 +28,11 @@ Ruby has been updated from 2.5.3 to 2.5.5, which includes a large number of bug 
 
 ### kitchen-hyperv
 
-kitchen-hyperv has been updated to 0.5.3 which now automatically disables snapshots on the VMs and properly waits for the IP to be set.
+kitchen-hyperv has been updated to 0.5.3, which now automatically disables snapshots on the VMs and properly waits for the IP to be set.
 
 ### kitchen-vagrant
 
-kitchen-vagrant has been updated to 1.5.1 which adds support for using the new bento/amazonlinux-2 box when setting the platform to amazonlinux-2.
+kitchen-vagrant has been updated to 1.5.1, which adds support for using the new bento/amazonlinux-2 box when setting the platform to amazonlinux-2.
 
 ### kitchen-ec2
 
@@ -44,7 +44,7 @@ knife-vsphere has been updated to 2.1.3, which adds support for knife's `bootstr
 
 ### Push Jobs Client
 
-Push Jobs Client has been updated to 2.5.6 which includes a significant optimizations and minor bug fixes.
+Push Jobs Client has been updated to 2.5.6, which includes significant optimizations and minor bug fixes.
 
 ## Security Updates
 
@@ -65,7 +65,7 @@ Rubygems has been updated from 2.7.8 to 2.7.9 to resolves the following CVEs:
 
 ### InSpec 3.6.6
 
-ChefDK now ships with Inspec 3.6.6. See <https://github.com/inspec/inspec/releases/tag/v3.6.6> for more information on what's new.
+ChefDK now ships with Inspec 3.6.6. See [InSpec 3.6.6 release details](https://github.com/inspec/inspec/releases/tag/v3.6.6) for more information on what's new.
 
 ### Fauxhai 6.11.0
 
