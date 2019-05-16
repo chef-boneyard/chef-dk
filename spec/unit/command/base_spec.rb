@@ -106,6 +106,16 @@ describe ChefDK::Command::Base do
     end
   end
 
+  describe "when enforce_license is false" do
+    let(:enforce_license) { false }
+
+    it "does not call the license acceptance library" do
+      expect(LicenseAcceptance::Acceptor).to_not receive(:check_and_persist!)
+      run_command([])
+      expect(stdout).to eq("thanks for passing me \n")
+    end
+  end
+
   describe "when given invalid options" do
 
     it "prints the help banner and exits gracefully" do
