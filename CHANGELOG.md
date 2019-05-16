@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.46 -->
-## [v4.0.46](https://github.com/chef/chef-dk/tree/v4.0.46) (2019-05-16)
+<!-- latest_release 4.0.47 -->
+## [v4.0.47](https://github.com/chef/chef-dk/tree/v4.0.47) (2019-05-16)
 
 #### Merged Pull Requests
-- Adding license acceptance support to ChefDK [#2074](https://github.com/chef/chef-dk/pull/2074) ([tyler-ball](https://github.com/tyler-ball))
+- Update Chef Infra Client to 15.0.300 [#2090](https://github.com/chef/chef-dk/pull/2090) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Update Chef Infra Client to 15.0.300 [#2090](https://github.com/chef/chef-dk/pull/2090) ([tas50](https://github.com/tas50)) <!-- 4.0.47 -->
 - Adding license acceptance support to ChefDK [#2074](https://github.com/chef/chef-dk/pull/2074) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.0.46 -->
 - Bump chef-apply to 0.2.13 [#2089](https://github.com/chef/chef-dk/pull/2089) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.45 -->
 - Add chef-bin dependency [#2084](https://github.com/chef/chef-dk/pull/2084) ([tas50](https://github.com/tas50)) <!-- 4.0.44 -->
