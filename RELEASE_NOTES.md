@@ -43,7 +43,7 @@ Chef Provisioning is no longer included with Chef DK, and will be officially end
 
 * `kitchen-vagrant`: 1.5.1 -> 1.5.2
 * `mixlib-install`: 3.11.12 -> 3.11.18
-* `ohai`: 14.8.11 -> 14.8.12
+* `chef`: 14.12.3 -> 14.12.9
 
 # ChefDK 3.9 Release Notes
 
