@@ -423,7 +423,7 @@ module ChefDK
                 end
               EOF
             end
-            sh("chef-apply foo.rb --chef-license 'accept-no-persist'", cwd: cwd)
+            sh("#{bin("chef-apply")} foo.rb --chef-license 'accept-no-persist'", cwd: cwd)
           end
         end
       end
