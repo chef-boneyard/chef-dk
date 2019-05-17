@@ -17,8 +17,5 @@ FOR %%E IN (_ORIGINAL_GEM_PATH, BUNDLE_BIN_PATH, BUNDLE_GEMFILE, GEM_HOME, GEM_P
 REM ; Ensure the msys2 build dlls are not on the path
 SET PATH=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\opscode\chefdk\bin
 
-REM ; Accept the Chef EULA for testing purposes
-SET CHEF_LICENSE="accept-no-persist"
-
 REM ; Run this last so the correct exit code is propagated
-chef verify
+chef verify --chef-license 'accept-no-persist'
