@@ -4,7 +4,7 @@
 
 ## Improved Chef Generate command
 
-The `chef generate` command has been updated to produce cookbooks and repositories the match Chef's best practices.
+The `chef generate` command has been updated to produce cookbooks and repositories that match Chef's best practices.
   - `chef generate repo` now generates a Chef repository with Policyfiles by default. You can revert to the previous roles / environment behavior with the `--roles` flag.
   - `chef generate cookbook` now generates a cookbook with a Policyfile and no Berksfile by default. You can revert to the previous behavior with the `--berks` flag.
   - `chef generate cookbook` now includes ChefSpecs that utilize the ChefSpec 7.3+ format. This is a much simpler syntax that requires less updating as older platforms are deprecated.
@@ -23,7 +23,7 @@ The `chef generate` command has been updated to produce cookbooks and repositori
 
 ### Fauxhai 7.2
 
-Fauxhai has been updated from 6.11 to 7.2. This removes all platforms that were previously marked as deprecated so if you've noticed deprecation warnings during your ChefSpec tests you will need to update those specs for the latest [supported Faxhai platforms](https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md). This release also adds the following new platform releases for testing in ChefSpec:
+Fauxhai has been updated from 6.11 to 7.2. This removes all platforms that were previously marked as deprecated. So if you've noticed deprecation warnings during your ChefSpec tests, you will need to update those specs for the latest [supported Faxhai platforms](https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md). This release also adds the following new platform releases for testing in ChefSpec:
   - RHEL 6.10 and 8.0
   - openSUSE 15.0
   - CentOS 6.10
@@ -32,11 +32,11 @@ Fauxhai has been updated from 6.11 to 7.2. This removes all platforms that were 
 
 ### Test Kitchen 2.2
 
-Test Kitchen has been updated from 1.24 to 2.2.5. This update adds support for accepting the Chef Infra Client and InSpec EULAs during testing, as well as support for newer `ed25519` format SSH keys on guests. The newer release does remove support for the legacy Librarian depsolver, and testing of Chef Infra Client 10/11 releases in some scenarios. See the [Test Kitchen Release Notes](https://github.com/test-kitchen/test-kitchen/blob/master/RELEASE_NOTES.md#test-kitchen-22-release-notes) for additional details on this release.
+Test Kitchen has been updated from 1.24 to 2.2.5. This update adds support for accepting the Chef Infra Client and Chef InSpec EULAs during testing, as well as support for newer `ed25519` format SSH keys on guests. The newer release does remove support for the legacy Librarian depsolver and testing of Chef Infra Client 10/11 releases in some scenarios. See the [Test Kitchen Release Notes](https://github.com/test-kitchen/test-kitchen/blob/master/RELEASE_NOTES.md#test-kitchen-22-release-notes) for additional details on this release.
 
 ### Kitchen-ec2 3.0
 
-Kitchen-ec2 has been updated to 3.0 which uses the newer aws-sdk-v3 and includes a large number of improvements to the driver including improved hostname detection, backoff retries, additional security group configuration options, and more. See the [kitchen-ec2 Changelog](https://github.com/test-kitchen/kitchen-ec2/blob/master/CHANGELOG.md#v300-2019-05-01) for additional details.
+Kitchen-ec2 has been updated to 3.0, which uses the newer `aws-sdk-v3` and includes a large number of improvements to the driver including improved hostname detection, backoff retries, additional security group configuration options, and more. See the [kitchen-ec2 Changelog](https://github.com/test-kitchen/kitchen-ec2/blob/master/CHANGELOG.md#v300-2019-05-01) for additional details.
 
 ## Breaking Changes
 
