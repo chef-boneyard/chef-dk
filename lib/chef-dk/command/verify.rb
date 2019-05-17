@@ -342,7 +342,7 @@ module ChefDK
               INSPEC_TEST
             end
             # TODO when we appbundle inspec, no longer `chef exec`
-            sh("#{bin("chef")} exec #{embedded_bin("inspec")} exec . --chef-license=accept-no-persist", cwd: cwd)
+            sh("#{bin("chef")} exec #{embedded_bin("inspec")} exec .", cwd: cwd)
           end
         end
       end
@@ -423,7 +423,7 @@ module ChefDK
                 end
               EOF
             end
-            sh("#{bin("chef-apply")} foo.rb --chef-license 'accept-no-persist'", cwd: cwd)
+            sh("#{bin("chef-apply")} foo.rb", cwd: cwd)
           end
         end
       end
