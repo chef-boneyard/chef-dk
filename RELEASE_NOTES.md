@@ -19,11 +19,15 @@ The `chef generate` command has been updated to produce cookbooks and repositori
 
 ### Chef InSpec 4
 
+Chef InSpec has been updated to 4.3.2 which includes the new InSpec AWS resource pack with **59** new AWS resources, multi-region support, and named credentials support. This release also includes support for auditing systems that use `ed25519` SSH keys.
+
 ### Chef Infra Client 15
 
-### Fauxhai 7.2
+Chef Infra Client has been updated to Chef 15 with **8** new resources, target mode prototype functionality, `ed25519` SSH key support, and more. See the [Chef Infra Client 15 Release Notes](https://github.com/chef/chef/blob/master/RELEASE_NOTES.md#chef-infra-client-150293) for more details.
 
-Fauxhai has been updated from 6.11 to 7.2. This removes all platforms that were previously marked as deprecated. So if you've noticed deprecation warnings during your ChefSpec tests, you will need to update those specs for the latest [supported Faxhai platforms](https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md). This release also adds the following new platform releases for testing in ChefSpec:
+### Fauxhai 7.3
+
+Fauxhai has been updated from 6.11 to 7.3. This removes all platforms that were previously marked as deprecated. So if you've noticed deprecation warnings during your ChefSpec tests, you will need to update those specs for the latest [supported Faxhai platforms](https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md). This release also adds the following new platform releases for testing in ChefSpec:
   - RHEL 6.10 and 8.0
   - openSUSE 15.0
   - CentOS 6.10
