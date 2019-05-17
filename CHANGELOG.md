@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.48 -->
-## [v4.0.48](https://github.com/chef/chef-dk/tree/v4.0.48) (2019-05-17)
+<!-- latest_release 4.0.49 -->
+## [v4.0.49](https://github.com/chef/chef-dk/tree/v4.0.49) (2019-05-17)
 
 #### Merged Pull Requests
-- Accept the Chef EULA for CI pipeline testing [#2091](https://github.com/chef/chef-dk/pull/2091) ([tyler-ball](https://github.com/tyler-ball))
+- Accept the license in CI and remove old acceptance tests [#2092](https://github.com/chef/chef-dk/pull/2092) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Accept the license in CI and remove old acceptance tests [#2092](https://github.com/chef/chef-dk/pull/2092) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 4.0.49 -->
 - Accept the Chef EULA for CI pipeline testing [#2091](https://github.com/chef/chef-dk/pull/2091) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.0.48 -->
 - Update Chef Infra Client to 15.0.300 [#2090](https://github.com/chef/chef-dk/pull/2090) ([tas50](https://github.com/tas50)) <!-- 4.0.47 -->
 - Adding license acceptance support to ChefDK [#2074](https://github.com/chef/chef-dk/pull/2074) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.0.46 -->
