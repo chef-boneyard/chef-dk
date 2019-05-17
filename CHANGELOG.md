@@ -1,24 +1,22 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.10.1 -->
-## [v3.10.1](https://github.com/chef/chef-dk/tree/v3.10.1) (2019-05-15)
-
-#### Merged Pull Requests
-- Release notes for 3.10 [#2083](https://github.com/chef/chef-dk/pull/2083) ([jonsmorrow](https://github.com/jonsmorrow))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.9.0 -->
-### Changes since 3.9.0 release
-
-#### Merged Pull Requests
-- Release notes for 3.10 [#2083](https://github.com/chef/chef-dk/pull/2083) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.10.1 -->
-- Update kitchen-vagrant, mixlib-cli, mixlib-install, and ohai [#2078](https://github.com/chef/chef-dk/pull/2078) ([tas50](https://github.com/tas50)) <!-- 3.10.0 -->
-- RFC097 include_policy with remote sources and validating policy_revision_id with path [#2052](https://github.com/chef/chef-dk/pull/2052) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.9.4 -->
-- Pin inspec and other gems to prevent bundler hanging [#2045](https://github.com/chef/chef-dk/pull/2045) ([tas50](https://github.com/tas50)) <!-- 3.9.3 -->
-- Update all dependencies to the latest [#2040](https://github.com/chef/chef-dk/pull/2040) ([tas50](https://github.com/tas50)) <!-- 3.9.2 -->
-- Bring in Chef 14.12.9 and other newer deps [#2039](https://github.com/chef/chef-dk/pull/2039) ([tas50](https://github.com/tas50)) <!-- 3.9.1 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.10.1](https://github.com/chef/chef-dk/tree/v3.10.1) (2019-05-17)
+
+#### Merged Pull Requests
+- Bring in Chef 14.12.9 and other newer deps [#2039](https://github.com/chef/chef-dk/pull/2039) ([tas50](https://github.com/tas50))
+- Update all dependencies to the latest [#2040](https://github.com/chef/chef-dk/pull/2040) ([tas50](https://github.com/tas50))
+- Pin inspec and other gems to prevent bundler hanging [#2045](https://github.com/chef/chef-dk/pull/2045) ([tas50](https://github.com/tas50))
+- RFC097 include_policy with remote sources and validating policy_revision_id with path [#2052](https://github.com/chef/chef-dk/pull/2052) ([jonsmorrow](https://github.com/jonsmorrow))
+- Update kitchen-vagrant, mixlib-cli, mixlib-install, and ohai [#2078](https://github.com/chef/chef-dk/pull/2078) ([tas50](https://github.com/tas50))
+- Release notes for 3.10 [#2083](https://github.com/chef/chef-dk/pull/2083) ([jonsmorrow](https://github.com/jonsmorrow))
+<!-- latest_stable_release -->
+
 ## [v3.9.0](https://github.com/chef/chef-dk/tree/v3.9.0) (2019-04-16)
 
 #### Merged Pull Requests
@@ -28,7 +26,6 @@
 - Prepare DK to branch chefdk-3 as the stable branch [#1978](https://github.com/chef/chef-dk/pull/1978) ([tas50](https://github.com/tas50))
 - Use Ruby 2.5.5, Chef 14.11, and other newer deps [#2019](https://github.com/chef/chef-dk/pull/2019) ([tas50](https://github.com/tas50))
 - Update Chef to 14.12.3 + InSpec to 3.9.3 + other fixes / updates [#2020](https://github.com/chef/chef-dk/pull/2020) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v3.8.14](https://github.com/chef/chef-dk/tree/v3.8.14) (2019-02-27)
 
