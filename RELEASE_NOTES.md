@@ -2,10 +2,6 @@
 
 **4.0 is not out yet. These are work in progress release notes**
 
-## New Policy File Functionality
-
-`include_policy` now supports `:remote` policy files. This new functionality allows you to include policy files over http. Remote policy files require remote cookbooks and `install` will fail otherwise if the included policy file includes cookbooks with paths. Thanks [@mattray](https://github.com/mattray)!
-
 ## Improved Chef Generate command
 
 The `chef generate` command has been updated to produce cookbooks and repositories the match Chef's best practices.
