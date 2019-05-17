@@ -21,15 +21,26 @@ The `chef generate` command has been updated to produce cookbooks and repositori
 
 ## Updated Components and Tools
 
-### InSpec 4
+### Chef InSpec 4
 
-## Chef 15
+### Chef Infra Client 15
 
-### Fauxhai 7.1
+### Fauxhai 7.2
+
+Fauxhai has been updated from 6.11 to 7.2. This removes all platforms that were previously marked as deprecated so if you've noticed deprecation warnings during your ChefSpec tests you will need to update those specs for the latest [supported Faxhai platforms](https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md). This release also adds the following new platform releases for testing in ChefSpec:
+  - RHEL 6.10 and 8.0
+  - openSUSE 15.0
+  - CentOS 6.10
+  - Debian 9.8 / 9.9
+  - Oracle Linux 6.10, 7.5, and 7.6
 
 ### Test Kitchen 2.2
 
+Test Kitchen has been updated from 1.24 to 2.2.5. This update adds support for accepting the Chef Infra Client and InSpec EULAs during testing, as well as support for newer `ed25519` format SSH keys on guests. The newer release does remove support for the legacy Librarian depsolver, and testing of Chef Infra Client 10/11 releases in some scenarios. See the [Test Kitchen Release Notes](https://github.com/test-kitchen/test-kitchen/blob/master/RELEASE_NOTES.md#test-kitchen-22-release-notes) for additional details on this release.
+
 ### Kitchen-ec2 3.0
+
+Kitchen-ec2 has been updated to 3.0 which uses the newer aws-sdk-v3 and includes a large number of improvements to the driver including improved hostname detection, backoff retries, additional security group configuration options, and more. See the [kitchen-ec2 Changelog](https://github.com/test-kitchen/kitchen-ec2/blob/master/CHANGELOG.md#v300-2019-05-01) for additional details.
 
 ## Breaking Changes
 
