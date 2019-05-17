@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.52 -->
-## [v4.0.52](https://github.com/chef/chef-dk/tree/v4.0.52) (2019-05-17)
+<!-- latest_release 4.0.53 -->
+## [v4.0.53](https://github.com/chef/chef-dk/tree/v4.0.53) (2019-05-17)
 
 #### Merged Pull Requests
-- Accept the DK license during testing with the CLI flags [#2094](https://github.com/chef/chef-dk/pull/2094) ([tas50](https://github.com/tas50))
+- Bump fauxhai to 7.3.0 [#2097](https://github.com/chef/chef-dk/pull/2097) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Bump fauxhai to 7.3.0 [#2097](https://github.com/chef/chef-dk/pull/2097) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.53 -->
 - Accept the DK license during testing with the CLI flags [#2094](https://github.com/chef/chef-dk/pull/2094) ([tas50](https://github.com/tas50)) <!-- 4.0.52 -->
 - RFC097 include_policy with remote sources and validating policy_revision_id with path [#2086](https://github.com/chef/chef-dk/pull/2086) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 4.0.51 -->
 - Accept the license in CI and remove old acceptance tests [#2092](https://github.com/chef/chef-dk/pull/2092) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 4.0.49 -->
