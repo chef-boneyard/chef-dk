@@ -33,6 +33,7 @@ done
 # If is it set; we run the acceptance tests, otherwise run rspec tests.
 if [ "x$ACCEPTANCE" != "x" ]; then
   export PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:$PATH
+  export CHEF_LICENSE="accept-no-persist"
 
   # Don't run the chef acceptance tests in chef-dk (until rainbow gem debacle is over)
   # for GEM_NAME in chef chef-dk
