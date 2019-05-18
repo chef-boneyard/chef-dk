@@ -181,6 +181,7 @@ module ChefDK
           # Add the embedded/bin to the PATH so that bundle executable can
           # be found while running the tests.
           path_variable_key => omnibus_path,
+          "CHEF_LICENSE" => "accept-no-persist",
         },
         timeout: 3600,
       }
