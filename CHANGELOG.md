@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.54 -->
-## [v4.0.54](https://github.com/chef/chef-dk/tree/v4.0.54) (2019-05-17)
+<!-- latest_release 4.0.55 -->
+## [v4.0.55](https://github.com/chef/chef-dk/tree/v4.0.55) (2019-05-18)
 
 #### Merged Pull Requests
-- Use bin chef-apply in testing [#2095](https://github.com/chef/chef-dk/pull/2095) ([jaymalasinha](https://github.com/jaymalasinha))
+- &#39;chef verify&#39; strips all the environment so add CHEF_LICENSE back [#2099](https://github.com/chef/chef-dk/pull/2099) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- &#39;chef verify&#39; strips all the environment so add CHEF_LICENSE back [#2099](https://github.com/chef/chef-dk/pull/2099) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.0.55 -->
 - Use bin chef-apply in testing [#2095](https://github.com/chef/chef-dk/pull/2095) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 4.0.54 -->
 - Bump fauxhai to 7.3.0 [#2097](https://github.com/chef/chef-dk/pull/2097) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.53 -->
 - Accept the DK license during testing with the CLI flags [#2094](https://github.com/chef/chef-dk/pull/2094) ([tas50](https://github.com/tas50)) <!-- 4.0.52 -->
