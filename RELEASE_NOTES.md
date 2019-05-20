@@ -1,6 +1,4 @@
-# ChefDK 4.0 WIP Release Notes
-
-**4.0 is not out yet. These are work in progress release notes**
+# ChefDK 4.0 Release Notes
 
 ## Improved Chef Generate command
 
@@ -47,6 +45,22 @@ Kitchen-ec2 has been updated to 3.0, which uses the newer `aws-sdk-v3` and inclu
 ### Chef Provisioning
 
 Chef Provisioning is no longer included with Chef DK, and will be officially end of life on August 31, 2019. The source code of Chef Provisioning and the drivers have been moved into the chef-boneyard GitHub organization and will not be further maintained. Current users of Chef Provisioning should contact your Chef Customer Success Manager or Account Representative to review your options.
+
+### `knife bootstrap` against cloud providers
+
+`knife bootstrap` was
+[rewritten](https://github.com/chef/chef/blob/cfbb01cb5648297835941679bc9638d3a823ad5e/RELEASE_NOTES.md#knife-bootstrap)
+in Chef Infra Client 15. The `knife-*` cloud providers need to be updated to use this new API. As of ChefDK 4.0 `knife
+bootstrap` functionality against the cloud providers will be broken. We will fix this ASAP in a ChefDK 4.1 release. The
+only gem *not* affected is the `knife-windows` gem. It has already been re-written to leverage the new bootstrap
+library.
+
+Affected gems:
+* `knife-ec2`
+* `knife-google`
+* `knife-vsphere`
+
+If you leverage this functionality please wait to update ChefDK until 4.1 is released with fixes for these gems.
 
 # ChefDK 3.10 Release Notes
 
