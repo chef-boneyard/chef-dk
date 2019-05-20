@@ -48,12 +48,12 @@ Chef Provisioning is no longer included with Chef DK, and will be officially end
 
 ### `knife bootstrap` against cloud providers
 
-`knife bootstrap` was
-[rewritten](https://github.com/chef/chef/blob/cfbb01cb5648297835941679bc9638d3a823ad5e/RELEASE_NOTES.md#knife-bootstrap)
-in Chef Infra Client 15. The `knife-*` cloud providers need to be updated to use this new API. As of ChefDK 4.0, `knife
-bootstrap` functionality against the cloud providers will be broken. We will fix this ASAP in a ChefDK 4.1 release. The
-only gem *not* affected is the `knife-windows` gem. It has already been re-written to leverage the new bootstrap
-library.
+`knife bootstrap` was [rewritten](https://github.com/chef/chef/blob/cfbb01cb5648297835941679bc9638d3a823ad5e/RELEASE_NOTES.md#knife-bootstrap) in Chef Infra Client 15.
+The `knife-*` cloud providers need to be updated to use this new API.
+As of ChefDK 4.0, `knife bootstrap` functionality against the cloud providers will be broken.
+We will fix this ASAP in a ChefDK 4.1 release.
+The only gem *not* affected is the `knife-windows` gem.
+It has already been re-written to leverage the new bootstrap library.
 
 Affected gems:
 * `knife-ec2`
