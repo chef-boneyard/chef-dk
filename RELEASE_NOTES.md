@@ -1,6 +1,26 @@
-# ChefDK 4.0 WIP Release Notes
+# ChefDK 4.0 Release Notes
 
-**4.0 is not out yet. These are work in progress release notes**
+## Breaking Changes
+
+### Chef Provisioning
+
+Chef Provisioning is no longer included with Chef DK, and will be officially end of life on August 31, 2019. The source code of Chef Provisioning and the drivers have been moved into the chef-boneyard GitHub organization and will not be further maintained. Current users of Chef Provisioning should contact your Chef Customer Success Manager or Account Representative to review your options.
+
+### `knife bootstrap` against cloud providers
+
+`knife bootstrap` was [rewritten](https://github.com/chef/chef/blob/cfbb01cb5648297835941679bc9638d3a823ad5e/RELEASE_NOTES.md#knife-bootstrap) in Chef Infra Client 15.
+The `knife-*` cloud providers need to be updated to use this new API.
+As of ChefDK 4.0, `knife bootstrap` functionality against the cloud providers will be broken.
+We will fix this ASAP in a ChefDK 4.1 release.
+The only gem *not* affected is the `knife-windows` gem.
+It has already been re-written to leverage the new bootstrap library.
+
+Affected gems:
+* `knife-ec2`
+* `knife-google`
+* `knife-vsphere`
+
+If you leverage this functionality, please wait to update ChefDK until 4.1 is released with fixes for these gems.
 
 ## Improved Chef Generate command
 
@@ -41,12 +61,6 @@ Test Kitchen has been updated from 1.24 to 2.2.5. This update adds support for a
 ### Kitchen-ec2 3.0
 
 Kitchen-ec2 has been updated to 3.0, which uses the newer `aws-sdk-v3` and includes a large number of improvements to the driver including improved hostname detection, backoff retries, additional security group configuration options, and more. See the [kitchen-ec2 Changelog](https://github.com/test-kitchen/kitchen-ec2/blob/master/CHANGELOG.md#v300-2019-05-01) for additional details.
-
-## Breaking Changes
-
-### Chef Provisioning
-
-Chef Provisioning is no longer included with Chef DK, and will be officially end of life on August 31, 2019. The source code of Chef Provisioning and the drivers have been moved into the chef-boneyard GitHub organization and will not be further maintained. Current users of Chef Provisioning should contact your Chef Customer Success Manager or Account Representative to review your options.
 
 # ChefDK 3.10 Release Notes
 
