@@ -63,6 +63,17 @@ Test Kitchen has been updated from 1.24 to 2.2.5. This update adds support for a
 
 Kitchen-ec2 has been updated to 3.0, which uses the newer `aws-sdk-v3` and includes a large number of improvements to the driver including improved hostname detection, backoff retries, additional security group configuration options, and more. See the [kitchen-ec2 Changelog](https://github.com/test-kitchen/kitchen-ec2/blob/master/CHANGELOG.md#v300-2019-05-01) for additional details.
 
+### kitchen-dokken 2.6.9
+
+Kitchen-dokken has been updated to 2.6.9 with a new config option `pull_platform_image`, which allows you to disable pulling the platform Docker image on every Test Kitchen converge / test. This is particularly useful for local platform image testing.
+
+kitchen.yml example:
+```yaml
+driver:
+  name: dokken
+  pull_platform_image: false
+```
+
 # ChefDK 3.10 Release Notes
 
 ## New Policy File Functionality
