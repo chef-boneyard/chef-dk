@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.59 -->
-## [v4.0.59](https://github.com/chef/chef-dk/tree/v4.0.59) (2019-05-24)
+<!-- latest_release 4.0.60 -->
+## [v4.0.60](https://github.com/chef/chef-dk/tree/v4.0.60) (2019-05-24)
 
 #### Merged Pull Requests
-- Update license-acceptance gem to handle users specifying mixlib version as a channel [#2104](https://github.com/chef/chef-dk/pull/2104) ([tyler-ball](https://github.com/tyler-ball))
+- Do not request license when users shell-init [#2105](https://github.com/chef/chef-dk/pull/2105) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Do not request license when users shell-init [#2105](https://github.com/chef/chef-dk/pull/2105) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.0.60 -->
 - Update license-acceptance gem to handle users specifying mixlib version as a channel [#2104](https://github.com/chef/chef-dk/pull/2104) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.0.59 -->
 - Don&#39;t generate a full workflow build cookbook by default [#2096](https://github.com/chef/chef-dk/pull/2096) ([tas50](https://github.com/tas50)) <!-- 4.0.58 -->
 - Bump kitchen-dokken to 2.6.9 [#2103](https://github.com/chef/chef-dk/pull/2103) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.57 -->
