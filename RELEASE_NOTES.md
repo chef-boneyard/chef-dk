@@ -27,7 +27,7 @@ If you leverage this functionality, please wait to update ChefDK until 4.1 is re
 The `chef generate` command has been updated to produce cookbooks and repositories that match Chef's best practices.
   - `chef generate repo` now generates a Chef repository with Policyfiles by default. You can revert to the previous roles / environment behavior with the `--roles` flag.
   - `chef generate cookbook` now generates a cookbook with a Policyfile and no Berksfile by default. You can revert to the previous behavior with the `--berks` flag.
-  - `chef generate cookbook` now includes ChefSpecs that utilize the ChefSpec 7.3+ format. This is a much simpler syntax that requires less updating as older platforms are deprecated.
+  - `chef generate cookbook` now includes ChefSpecs that utilize the ChefSpec 7.3+ format. This is a much simpler syntax that requires less updating of specs as older platforms are deprecated.
   - `chef generate cookbook` no longer creates cookbbook files with the unecessary `frozen_string_literal: true` comments.
   - `chef generate cookbook` no longer generates a full Workflow (Delivery) build cookbook by default. A new `--workflow` flag has been added to allow generating the build cookbook. This flag replaces the previously unused `--delivery` flag.
   - `chef generate cookbook` now generates cookbooks with metadata requiring Chef 14 or later.
