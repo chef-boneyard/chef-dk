@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.57 -->
-## [v4.0.57](https://github.com/chef/chef-dk/tree/v4.0.57) (2019-05-23)
+<!-- latest_release 4.0.58 -->
+## [v4.0.58](https://github.com/chef/chef-dk/tree/v4.0.58) (2019-05-24)
 
 #### Merged Pull Requests
-- Bump kitchen-dokken to 2.6.9 [#2103](https://github.com/chef/chef-dk/pull/2103) ([chef-ci](https://github.com/chef-ci))
+- Don&#39;t generate a full workflow build cookbook by default [#2096](https://github.com/chef/chef-dk/pull/2096) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.8.14 -->
 ### Changes since 3.8.14 release
 
 #### Merged Pull Requests
+- Don&#39;t generate a full workflow build cookbook by default [#2096](https://github.com/chef/chef-dk/pull/2096) ([tas50](https://github.com/tas50)) <!-- 4.0.58 -->
 - Bump kitchen-dokken to 2.6.9 [#2103](https://github.com/chef/chef-dk/pull/2103) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.57 -->
 - Bump train to 2.1.7 [#2101](https://github.com/chef/chef-dk/pull/2101) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.56 -->
 - &#39;chef verify&#39; strips all the environment so add CHEF_LICENSE back [#2099](https://github.com/chef/chef-dk/pull/2099) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.0.55 -->
