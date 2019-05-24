@@ -174,6 +174,11 @@ module ChefDK
       def powershell_export(var, val)
         emit_shell_cmd(%Q{$env:#{var}="#{val}"})
       end
+
+      def check_license_acceptance
+        # It gives a very weird error if users try to eval the shell-init command and it requests the
+        # license from them. Instead, let users shell-init without accepting the license.
+      end
     end
   end
 end
