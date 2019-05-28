@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 4.0.61 -->
+## [v4.0.61](https://github.com/chef/chef-dk/tree/v4.0.61) (2019-05-28)
+
+#### Merged Pull Requests
+- Update libcurl to 7.65, openssl to 1.0.2s, and ca-certs to 2019-05-11 [#2107](https://github.com/chef/chef-dk/pull/2107) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=4.0.60 -->
+### Changes since 4.0.60 release
+
+#### Merged Pull Requests
+- Update libcurl to 7.65, openssl to 1.0.2s, and ca-certs to 2019-05-11 [#2107](https://github.com/chef/chef-dk/pull/2107) ([tas50](https://github.com/tas50)) <!-- 4.0.61 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
