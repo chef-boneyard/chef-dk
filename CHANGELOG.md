@@ -1,82 +1,80 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.60 -->
-## [v4.0.60](https://github.com/chef/chef-dk/tree/v4.0.60) (2019-05-24)
-
-#### Merged Pull Requests
-- Do not request license when users shell-init [#2105](https://github.com/chef/chef-dk/pull/2105) ([tyler-ball](https://github.com/tyler-ball))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.8.14 -->
-### Changes since 3.8.14 release
-
-#### Merged Pull Requests
-- Do not request license when users shell-init [#2105](https://github.com/chef/chef-dk/pull/2105) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.0.60 -->
-- Update license-acceptance gem to handle users specifying mixlib version as a channel [#2104](https://github.com/chef/chef-dk/pull/2104) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.0.59 -->
-- Don&#39;t generate a full workflow build cookbook by default [#2096](https://github.com/chef/chef-dk/pull/2096) ([tas50](https://github.com/tas50)) <!-- 4.0.58 -->
-- Bump kitchen-dokken to 2.6.9 [#2103](https://github.com/chef/chef-dk/pull/2103) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.57 -->
-- Bump train to 2.1.7 [#2101](https://github.com/chef/chef-dk/pull/2101) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.56 -->
-- &#39;chef verify&#39; strips all the environment so add CHEF_LICENSE back [#2099](https://github.com/chef/chef-dk/pull/2099) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.0.55 -->
-- Use bin chef-apply in testing [#2095](https://github.com/chef/chef-dk/pull/2095) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 4.0.54 -->
-- Bump fauxhai to 7.3.0 [#2097](https://github.com/chef/chef-dk/pull/2097) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.53 -->
-- Accept the DK license during testing with the CLI flags [#2094](https://github.com/chef/chef-dk/pull/2094) ([tas50](https://github.com/tas50)) <!-- 4.0.52 -->
-- RFC097 include_policy with remote sources and validating policy_revision_id with path [#2086](https://github.com/chef/chef-dk/pull/2086) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 4.0.51 -->
-- Accept the license in CI and remove old acceptance tests [#2092](https://github.com/chef/chef-dk/pull/2092) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 4.0.49 -->
-- Accept the Chef EULA for CI pipeline testing [#2091](https://github.com/chef/chef-dk/pull/2091) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.0.48 -->
-- Update Chef Infra Client to 15.0.300 [#2090](https://github.com/chef/chef-dk/pull/2090) ([tas50](https://github.com/tas50)) <!-- 4.0.47 -->
-- Adding license acceptance support to ChefDK [#2074](https://github.com/chef/chef-dk/pull/2074) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.0.46 -->
-- Bump chef-apply to 0.2.13 [#2089](https://github.com/chef/chef-dk/pull/2089) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.45 -->
-- Add chef-bin dependency [#2084](https://github.com/chef/chef-dk/pull/2084) ([tas50](https://github.com/tas50)) <!-- 4.0.44 -->
-- Update Chef to 15.0.298 and push jobs to 2.99 [#2085](https://github.com/chef/chef-dk/pull/2085) ([tas50](https://github.com/tas50)) <!-- 4.0.43 -->
-- Bump train to 2.1.2 [#2081](https://github.com/chef/chef-dk/pull/2081) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.42 -->
-- Bump test-kitchen to 2.2.5 [#2080](https://github.com/chef/chef-dk/pull/2080) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.41 -->
-- Revert the Gemfile.lock back to 1.17.3 [#2077](https://github.com/chef/chef-dk/pull/2077) ([tas50](https://github.com/tas50)) <!-- 4.0.40 -->
-- Pull in Chef 15.0.293 and Foodcritic 16 [#2072](https://github.com/chef/chef-dk/pull/2072) ([tas50](https://github.com/tas50)) <!-- 4.0.39 -->
-- Prevent double bundler by pinning to 1.17.2 [#2070](https://github.com/chef/chef-dk/pull/2070) ([tas50](https://github.com/tas50)) <!-- 4.0.38 -->
-- Bump test-kitchen to 2.2.4 [#2069](https://github.com/chef/chef-dk/pull/2069) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.37 -->
-- Modernize the chef resource used to log during generate commands [#2068](https://github.com/chef/chef-dk/pull/2068) ([tas50](https://github.com/tas50)) <!-- 4.0.36 -->
-- Update command help / contents to make sense in Workstation [#2067](https://github.com/chef/chef-dk/pull/2067) ([tas50](https://github.com/tas50)) <!-- 4.0.35 -->
-- Make chef generate repo quiet by default [#2066](https://github.com/chef/chef-dk/pull/2066) ([tas50](https://github.com/tas50)) <!-- 4.0.34 -->
-- Generate cookbooks with policyfiles by default [#2065](https://github.com/chef/chef-dk/pull/2065) ([tas50](https://github.com/tas50)) <!-- 4.0.33 -->
-- More branding fixes + generator improvements [#2064](https://github.com/chef/chef-dk/pull/2064) ([tas50](https://github.com/tas50)) <!-- 4.0.32 -->
-- Update mixlib-install to 3.11.18 [#2063](https://github.com/chef/chef-dk/pull/2063) ([tas50](https://github.com/tas50)) <!-- 4.0.31 -->
-- Make generate repo default to policyfiles + cleanup generated readme content [#2050](https://github.com/chef/chef-dk/pull/2050) ([tas50](https://github.com/tas50)) <!-- 4.0.30 -->
-- Fix expeditor updating + bump gem deps [#2059](https://github.com/chef/chef-dk/pull/2059) ([tas50](https://github.com/tas50)) <!-- 4.0.29 -->
-- Update Test Kitchen to 2.2.3 [#2057](https://github.com/chef/chef-dk/pull/2057) ([tas50](https://github.com/tas50)) <!-- 4.0.28 -->
-- Convert Chef EULA to a local file [#2058](https://github.com/chef/chef-dk/pull/2058) ([btm](https://github.com/btm)) <!-- 4.0.27 -->
-- Update the omnibus build license to the Chef EULA [#2053](https://github.com/chef/chef-dk/pull/2053) ([btm](https://github.com/btm)) <!-- 4.0.26 -->
-- Fix describe-cookbook to support cookbooks with metadata.json [#2047](https://github.com/chef/chef-dk/pull/2047) ([teknofire](https://github.com/teknofire)) <!-- 4.0.25 -->
-- Fix the dep bumping rake task to work with the correct bundler [#2051](https://github.com/chef/chef-dk/pull/2051) ([tas50](https://github.com/tas50)) <!-- 4.0.24 -->
-- Remove the deprecated app and lwrp generators [#2049](https://github.com/chef/chef-dk/pull/2049) ([tas50](https://github.com/tas50)) <!-- 4.0.23 -->
-- Update cookbook templates to use Ubuntu 18.04 [#2048](https://github.com/chef/chef-dk/pull/2048) ([tas50](https://github.com/tas50)) <!-- 4.0.22 -->
-- Update generator to use kitchen.yml not .kitchen.yml [#1715](https://github.com/chef/chef-dk/pull/1715) ([tas50](https://github.com/tas50)) <!-- 4.0.21 -->
-- Remove kitchen-vcenter and knife-vcenter for now  [#2046](https://github.com/chef/chef-dk/pull/2046) ([tas50](https://github.com/tas50)) <!-- 4.0.20 -->
-- Appbundler inspec-bin not inspec [#2043](https://github.com/chef/chef-dk/pull/2043) ([tas50](https://github.com/tas50)) <!-- 4.0.19 -->
-- Make sure we have curl on windows hosts as well [#2042](https://github.com/chef/chef-dk/pull/2042) ([tas50](https://github.com/tas50)) <!-- 4.0.18 -->
-- Update ruby to 2.6.3 and InSpec to 4.3.2 [#2041](https://github.com/chef/chef-dk/pull/2041) ([tas50](https://github.com/tas50)) <!-- 4.0.17 -->
-- Add Test Kitchen 2.2 with support for the Chef 15 license [#2038](https://github.com/chef/chef-dk/pull/2038) ([tas50](https://github.com/tas50)) <!-- 4.0.16 -->
-- Make chef verify temporarily accept the inspec license [#2036](https://github.com/chef/chef-dk/pull/2036) ([tas50](https://github.com/tas50)) <!-- 4.0.15 -->
-- Pull in InSpec 4, kitchen-ec2 3 and the ed25519 gems [#2033](https://github.com/chef/chef-dk/pull/2033) ([tas50](https://github.com/tas50)) <!-- 4.0.14 -->
-- Remove chefdk-2 branch testing [#1985](https://github.com/chef/chef-dk/pull/1985) ([tas50](https://github.com/tas50)) <!-- 4.0.13 -->
-- Pin bundler back to 1.17.3. [#2031](https://github.com/chef/chef-dk/pull/2031) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 4.0.12 -->
-- Bump Chef to 14.12.9 [#2029](https://github.com/chef/chef-dk/pull/2029) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.11 -->
-- Pull in Test Kitchen 2.1 and others [#2028](https://github.com/chef/chef-dk/pull/2028) ([tas50](https://github.com/tas50)) <!-- 4.0.10 -->
-- Update Ruby to 2.6 and Rubygems to 3.0.3 [#2014](https://github.com/chef/chef-dk/pull/2014) ([tas50](https://github.com/tas50)) <!-- 4.0.9 -->
-- Update chef generate cookbooks chefignore file [#2002](https://github.com/chef/chef-dk/pull/2002) ([tas50](https://github.com/tas50)) <!-- 4.0.8 -->
-- Update InSpec to 3.7.11 and Test Kitchen to 2.0.1 [#2011](https://github.com/chef/chef-dk/pull/2011) ([tas50](https://github.com/tas50)) <!-- 4.0.7 -->
-- Pull in Chef 15 from git [#2006](https://github.com/chef/chef-dk/pull/2006) ([tas50](https://github.com/tas50)) <!-- 4.0.6 -->
-- Bump Test Kitchen to 2.0 and kitchen-ec2 to 2.5.0 [#2005](https://github.com/chef/chef-dk/pull/2005) ([tas50](https://github.com/tas50)) <!-- 4.0.5 -->
-- Require Ruby 2.5+, bump ruby to 2.5.5, bump deps [#1990](https://github.com/chef/chef-dk/pull/1990) ([tas50](https://github.com/tas50)) <!-- 4.0.4 -->
-- Update rubygems to 3.0.2 [#1981](https://github.com/chef/chef-dk/pull/1981) ([tas50](https://github.com/tas50)) <!-- 4.0.3 -->
-- Add kitchen-vcenter and knife-vcenter gems [#1980](https://github.com/chef/chef-dk/pull/1980) ([tas50](https://github.com/tas50)) <!-- 4.0.2 -->
-- Update to the latest major releases of Cookstyle / Fauxhai [#1979](https://github.com/chef/chef-dk/pull/1979) ([tas50](https://github.com/tas50)) <!-- 4.0.1 -->
-- Remove chef-provisioning from DK [#1614](https://github.com/chef/chef-dk/pull/1614) ([tas50](https://github.com/tas50)) <!-- 4.0.0 -->
-- Prepare DK to branch chefdk-3 as the stable branch [#1978](https://github.com/chef/chef-dk/pull/1978) ([tas50](https://github.com/tas50)) <!-- 3.8.18 -->
-- Update liblzma to 5.2.4 to match chef [#1977](https://github.com/chef/chef-dk/pull/1977) ([tas50](https://github.com/tas50)) <!-- 3.8.17 -->
-- Fix `# # encoding` in cookbook generator [#1975](https://github.com/chef/chef-dk/pull/1975) ([jerryaldrichiii](https://github.com/jerryaldrichiii)) <!-- 3.8.16 -->
-- Change `Inspec` to `InSpec` in cookbook generator [#1974](https://github.com/chef/chef-dk/pull/1974) ([jerryaldrichiii](https://github.com/jerryaldrichiii)) <!-- 3.8.15 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v4.0.60](https://github.com/chef/chef-dk/tree/v4.0.60) (2019-05-28)
+
+#### Merged Pull Requests
+- Change `Inspec` to `InSpec` in cookbook generator [#1974](https://github.com/chef/chef-dk/pull/1974) ([jerryaldrichiii](https://github.com/jerryaldrichiii))
+- Fix `# # encoding` in cookbook generator [#1975](https://github.com/chef/chef-dk/pull/1975) ([jerryaldrichiii](https://github.com/jerryaldrichiii))
+- Update liblzma to 5.2.4 to match chef [#1977](https://github.com/chef/chef-dk/pull/1977) ([tas50](https://github.com/tas50))
+- Prepare DK to branch chefdk-3 as the stable branch [#1978](https://github.com/chef/chef-dk/pull/1978) ([tas50](https://github.com/tas50))
+- Remove chef-provisioning from DK [#1614](https://github.com/chef/chef-dk/pull/1614) ([tas50](https://github.com/tas50))
+- Update to the latest major releases of Cookstyle / Fauxhai [#1979](https://github.com/chef/chef-dk/pull/1979) ([tas50](https://github.com/tas50))
+- Add kitchen-vcenter and knife-vcenter gems [#1980](https://github.com/chef/chef-dk/pull/1980) ([tas50](https://github.com/tas50))
+- Update rubygems to 3.0.2 [#1981](https://github.com/chef/chef-dk/pull/1981) ([tas50](https://github.com/tas50))
+- Require Ruby 2.5+, bump ruby to 2.5.5, bump deps [#1990](https://github.com/chef/chef-dk/pull/1990) ([tas50](https://github.com/tas50))
+- Bump Test Kitchen to 2.0 and kitchen-ec2 to 2.5.0 [#2005](https://github.com/chef/chef-dk/pull/2005) ([tas50](https://github.com/tas50))
+- Pull in Chef 15 from git [#2006](https://github.com/chef/chef-dk/pull/2006) ([tas50](https://github.com/tas50))
+- Update InSpec to 3.7.11 and Test Kitchen to 2.0.1 [#2011](https://github.com/chef/chef-dk/pull/2011) ([tas50](https://github.com/tas50))
+- Update chef generate cookbooks chefignore file [#2002](https://github.com/chef/chef-dk/pull/2002) ([tas50](https://github.com/tas50))
+- Update Ruby to 2.6 and Rubygems to 3.0.3 [#2014](https://github.com/chef/chef-dk/pull/2014) ([tas50](https://github.com/tas50))
+- Pull in Test Kitchen 2.1 and others [#2028](https://github.com/chef/chef-dk/pull/2028) ([tas50](https://github.com/tas50))
+- Bump Chef to 14.12.9 [#2029](https://github.com/chef/chef-dk/pull/2029) ([chef-ci](https://github.com/chef-ci))
+- Pin bundler back to 1.17.3. [#2031](https://github.com/chef/chef-dk/pull/2031) ([jonsmorrow](https://github.com/jonsmorrow))
+- Remove chefdk-2 branch testing [#1985](https://github.com/chef/chef-dk/pull/1985) ([tas50](https://github.com/tas50))
+- Pull in InSpec 4, kitchen-ec2 3 and the ed25519 gems [#2033](https://github.com/chef/chef-dk/pull/2033) ([tas50](https://github.com/tas50))
+- Make chef verify temporarily accept the inspec license [#2036](https://github.com/chef/chef-dk/pull/2036) ([tas50](https://github.com/tas50))
+- Add Test Kitchen 2.2 with support for the Chef 15 license [#2038](https://github.com/chef/chef-dk/pull/2038) ([tas50](https://github.com/tas50))
+- Update ruby to 2.6.3 and InSpec to 4.3.2 [#2041](https://github.com/chef/chef-dk/pull/2041) ([tas50](https://github.com/tas50))
+- Make sure we have curl on windows hosts as well [#2042](https://github.com/chef/chef-dk/pull/2042) ([tas50](https://github.com/tas50))
+- Appbundler inspec-bin not inspec [#2043](https://github.com/chef/chef-dk/pull/2043) ([tas50](https://github.com/tas50))
+- Remove kitchen-vcenter and knife-vcenter for now  [#2046](https://github.com/chef/chef-dk/pull/2046) ([tas50](https://github.com/tas50))
+- Update generator to use kitchen.yml not .kitchen.yml [#1715](https://github.com/chef/chef-dk/pull/1715) ([tas50](https://github.com/tas50))
+- Update cookbook templates to use Ubuntu 18.04 [#2048](https://github.com/chef/chef-dk/pull/2048) ([tas50](https://github.com/tas50))
+- Remove the deprecated app and lwrp generators [#2049](https://github.com/chef/chef-dk/pull/2049) ([tas50](https://github.com/tas50))
+- Fix the dep bumping rake task to work with the correct bundler [#2051](https://github.com/chef/chef-dk/pull/2051) ([tas50](https://github.com/tas50))
+- Fix describe-cookbook to support cookbooks with metadata.json [#2047](https://github.com/chef/chef-dk/pull/2047) ([teknofire](https://github.com/teknofire))
+- Update the omnibus build license to the Chef EULA [#2053](https://github.com/chef/chef-dk/pull/2053) ([btm](https://github.com/btm))
+- Convert Chef EULA to a local file [#2058](https://github.com/chef/chef-dk/pull/2058) ([btm](https://github.com/btm))
+- Update Test Kitchen to 2.2.3 [#2057](https://github.com/chef/chef-dk/pull/2057) ([tas50](https://github.com/tas50))
+- Fix expeditor updating + bump gem deps [#2059](https://github.com/chef/chef-dk/pull/2059) ([tas50](https://github.com/tas50))
+- Make generate repo default to policyfiles + cleanup generated readme content [#2050](https://github.com/chef/chef-dk/pull/2050) ([tas50](https://github.com/tas50))
+- Update mixlib-install to 3.11.18 [#2063](https://github.com/chef/chef-dk/pull/2063) ([tas50](https://github.com/tas50))
+- More branding fixes + generator improvements [#2064](https://github.com/chef/chef-dk/pull/2064) ([tas50](https://github.com/tas50))
+- Generate cookbooks with policyfiles by default [#2065](https://github.com/chef/chef-dk/pull/2065) ([tas50](https://github.com/tas50))
+- Make chef generate repo quiet by default [#2066](https://github.com/chef/chef-dk/pull/2066) ([tas50](https://github.com/tas50))
+- Update command help / contents to make sense in Workstation [#2067](https://github.com/chef/chef-dk/pull/2067) ([tas50](https://github.com/tas50))
+- Modernize the chef resource used to log during generate commands [#2068](https://github.com/chef/chef-dk/pull/2068) ([tas50](https://github.com/tas50))
+- Bump test-kitchen to 2.2.4 [#2069](https://github.com/chef/chef-dk/pull/2069) ([chef-ci](https://github.com/chef-ci))
+- Prevent double bundler by pinning to 1.17.2 [#2070](https://github.com/chef/chef-dk/pull/2070) ([tas50](https://github.com/tas50))
+- Pull in Chef 15.0.293 and Foodcritic 16 [#2072](https://github.com/chef/chef-dk/pull/2072) ([tas50](https://github.com/tas50))
+- Revert the Gemfile.lock back to 1.17.3 [#2077](https://github.com/chef/chef-dk/pull/2077) ([tas50](https://github.com/tas50))
+- Bump test-kitchen to 2.2.5 [#2080](https://github.com/chef/chef-dk/pull/2080) ([chef-ci](https://github.com/chef-ci))
+- Bump train to 2.1.2 [#2081](https://github.com/chef/chef-dk/pull/2081) ([chef-ci](https://github.com/chef-ci))
+- Update Chef to 15.0.298 and push jobs to 2.99 [#2085](https://github.com/chef/chef-dk/pull/2085) ([tas50](https://github.com/tas50))
+- Add chef-bin dependency [#2084](https://github.com/chef/chef-dk/pull/2084) ([tas50](https://github.com/tas50))
+- Bump chef-apply to 0.2.13 [#2089](https://github.com/chef/chef-dk/pull/2089) ([chef-ci](https://github.com/chef-ci))
+- Adding license acceptance support to ChefDK [#2074](https://github.com/chef/chef-dk/pull/2074) ([tyler-ball](https://github.com/tyler-ball))
+- Update Chef Infra Client to 15.0.300 [#2090](https://github.com/chef/chef-dk/pull/2090) ([tas50](https://github.com/tas50))
+- Accept the Chef EULA for CI pipeline testing [#2091](https://github.com/chef/chef-dk/pull/2091) ([tyler-ball](https://github.com/tyler-ball))
+- Accept the license in CI and remove old acceptance tests [#2092](https://github.com/chef/chef-dk/pull/2092) ([lamont-granquist](https://github.com/lamont-granquist))
+- RFC097 include_policy with remote sources and validating policy_revision_id with path [#2086](https://github.com/chef/chef-dk/pull/2086) ([jonsmorrow](https://github.com/jonsmorrow))
+- Accept the DK license during testing with the CLI flags [#2094](https://github.com/chef/chef-dk/pull/2094) ([tas50](https://github.com/tas50))
+- Bump fauxhai to 7.3.0 [#2097](https://github.com/chef/chef-dk/pull/2097) ([chef-ci](https://github.com/chef-ci))
+- Use bin chef-apply in testing [#2095](https://github.com/chef/chef-dk/pull/2095) ([jaymalasinha](https://github.com/jaymalasinha))
+- &#39;chef verify&#39; strips all the environment so add CHEF_LICENSE back [#2099](https://github.com/chef/chef-dk/pull/2099) ([tyler-ball](https://github.com/tyler-ball))
+- Bump train to 2.1.7 [#2101](https://github.com/chef/chef-dk/pull/2101) ([chef-ci](https://github.com/chef-ci))
+- Bump kitchen-dokken to 2.6.9 [#2103](https://github.com/chef/chef-dk/pull/2103) ([chef-ci](https://github.com/chef-ci))
+- Don&#39;t generate a full workflow build cookbook by default [#2096](https://github.com/chef/chef-dk/pull/2096) ([tas50](https://github.com/tas50))
+- Update license-acceptance gem to handle users specifying mixlib version as a channel [#2104](https://github.com/chef/chef-dk/pull/2104) ([tyler-ball](https://github.com/tyler-ball))
+- Do not request license when users shell-init [#2105](https://github.com/chef/chef-dk/pull/2105) ([tyler-ball](https://github.com/tyler-ball))
+<!-- latest_stable_release -->
+
 ## [v3.8.14](https://github.com/chef/chef-dk/tree/v3.8.14) (2019-02-27)
 
 #### Merged Pull Requests
@@ -96,7 +94,6 @@
 - Bump libxml2 to 2.9.9 [#1967](https://github.com/chef/chef-dk/pull/1967) ([tas50](https://github.com/tas50))
 - Update to openssl 1.0.2r for resolve CVE-2019-1559 [#1971](https://github.com/chef/chef-dk/pull/1971) ([tas50](https://github.com/tas50))
 - Bump mixlib-archive to 0.4.20 [#1973](https://github.com/chef/chef-dk/pull/1973) ([chef-ci](https://github.com/chef-ci))
-<!-- latest_stable_release -->
 
 ## [v3.7.23](https://github.com/chef/chef-dk/tree/v3.7.23) (2019-01-30)
 
