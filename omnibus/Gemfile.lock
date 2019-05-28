@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 02869232bd219e8018f7d16b222a6af7403f0ad8
+  revision: 4187714031ef65026ea91a38ce2b6b2087f8be7f
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -184,7 +184,7 @@ GEM
     kitchen-vagrant (1.5.2)
       test-kitchen (>= 1.4, < 3)
     libyajl2 (1.2.0)
-    license-acceptance (1.0.11)
+    license-acceptance (1.0.12)
       pastel (~> 0.7)
       tomlrb (~> 1.2)
       tty-box (~> 0.3)
@@ -255,12 +255,12 @@ GEM
       progressbar
       zhexdump (>= 0.0.2)
     plist (3.5.0)
-    progressbar (1.10.0)
+    progressbar (1.10.1)
     proxifier (1.0.3)
-    public_suffix (3.0.3)
+    public_suffix (3.1.0)
     rack (2.0.7)
     retryable (3.0.4)
-    ruby-progressbar (1.10.0)
+    ruby-progressbar (1.10.1)
     rubyntlm (0.6.2)
     rubyzip (1.2.3)
     sawyer (0.8.2)
