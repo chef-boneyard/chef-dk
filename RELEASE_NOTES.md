@@ -4,7 +4,7 @@
 
 ### Chef EULA
 
-Usage of ChefDK 4.0, Chef Infra Client 15, and InSpec 4 require accepting the [Chef EULA](https://docs.chef.io/chef_license.html#chef-eula). See the [frequently asked questions](https://www.chef.io/bmc-faq/) for information about the license update and the associated business model change.
+Usage of ChefDK 4.0, Chef Infra Client 15, and InSpec 4 requires accepting the [Chef EULA](https://docs.chef.io/chef_license.html#chef-eula). See the [frequently asked questions](https://www.chef.io/bmc-faq/) for information about the license update and the associated business model change.
 
 ### Chef Provisioning
 
