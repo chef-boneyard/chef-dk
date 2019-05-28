@@ -2,6 +2,10 @@
 
 ## Breaking Changes
 
+### Chef EULA
+
+Usage of ChefDK 4.0, Chef Infra Client 15, and InSpec 4 require accepting the [Chef EULA](https://docs.chef.io/chef_license.html#chef-eula). See the [frequently asked questions](https://www.chef.io/bmc-faq/) for information about the license update and the associated business model change.
+
 ### Chef Provisioning
 
 Chef Provisioning is no longer included with Chef DK, and will be officially end of life on August 31, 2019. The source code of Chef Provisioning and the drivers have been moved into the chef-boneyard GitHub organization and will not be further maintained. Current users of Chef Provisioning should contact your Chef Customer Success Manager or Account Representative to review your options.
