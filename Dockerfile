@@ -4,7 +4,7 @@ MAINTAINER Chef Software, Inc. <docker@chef.io>
 ARG CHANNEL=stable
 ARG VERSION=4.0.60
 ENV DEBIAN_FRONTEND=noninteractive \
-    PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:/root/.chefdk/gem/ruby/2.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:/root/.chefdk/gem/ruby/2.6.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Run the entire container with the default locale to be en_US.UTF-8
 RUN apt-get update && \
