@@ -6,7 +6,7 @@
 [![Docker Stars](https://img.shields.io/docker/stars/chef/chefdk.svg?maxAge=2592000)](https://hub.docker.com/r/chef/chefdk)
 [![Docker Pulls](https://img.shields.io/docker/pulls/chef/chefdk.svg?maxAge=2592000)](https://hub.docker.com/r/chef/chefdk)
 
-**Umbrella Project**: [Workstation](https://github.com/chef/chef-oss-practices/blob/master/projects/chef-workstation.md)
+**Umbrella Project**: [Chef Workstation](https://github.com/chef/chef-oss-practices/blob/master/projects/chef-workstation.md)
 
 * **[Project State](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** Active
 * **Issues [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
