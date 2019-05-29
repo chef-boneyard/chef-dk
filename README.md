@@ -31,7 +31,7 @@ are in the omnibus directory in this repository.
 
 You can get the [latest release of ChefDK from the downloads page][ChefDK].
 
-On Mac OS X, you can also use [homebrew-cask](https://caskroom.github.io/)
+On macOS, you can also use [homebrew-cask](https://caskroom.github.io/)
 to `brew cask install chef/chef/chefdk`.
 
 Once you install the package, the `chef-client` suite, `berks`,
@@ -250,7 +250,7 @@ echo 'eval (chef shell-init SHELL_NAME)' >> ~/.config/fish/config.fish
 
 ## Uninstallation Instructions
 
-### Mac OS X
+### macOS
 
 You can uninstall Chef Development Kit on Mac using the below commands.
 
@@ -264,17 +264,7 @@ sudo rm -rf /opt/chefdk
 sudo pkgutil --forget com.getchef.pkg.chefdk
 ```
 
-Next, remove the symlinks which the Chef Development Kit installs. The
-location for these differs based on your OS X version.
-
-Pre-El Capitan:
-
-```sh
-# Symlinks are in /usr/bin
-ls -la /usr/bin | egrep '/opt/chefdk' | awk '{ print $9 }' | sudo xargs -I % rm -f /usr/bin/%
-```
-
-Post-El Capitan:
+Next, remove the symlinks which the Chef Development Kit installs:
 
 ```sh
 # Symlinks are in /usr/local/bin
