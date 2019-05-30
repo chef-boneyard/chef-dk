@@ -57,7 +57,7 @@ group(:omnibus_package) do
   # gems to Rubygems now, so letting this float on latest should always give us the latest
   # stable release. May have to re-pin around major version bumping time, or during patch
   # fixes.
-  gem "chef", "= 14.12.9"
+  gem "chef", "= 14.13.11"
   gem "cheffish", ">= 14.0.1"
   gem "chefspec", ">= 7.3.0"
   gem "fauxhai", "~> 6.11" # bump this on the next DK major release
