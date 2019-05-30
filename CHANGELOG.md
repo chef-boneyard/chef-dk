@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.64 -->
-## [v4.0.64](https://github.com/chef/chef-dk/tree/v4.0.64) (2019-05-29)
+<!-- latest_release 4.0.65 -->
+## [v4.0.65](https://github.com/chef/chef-dk/tree/v4.0.65) (2019-05-30)
 
 #### Merged Pull Requests
-- Remove legacy macOS uninstall instructions [#2113](https://github.com/chef/chef-dk/pull/2113) ([tas50](https://github.com/tas50))
+- Remove old Solaris omnibus files [#2114](https://github.com/chef/chef-dk/pull/2114) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- Remove old Solaris omnibus files [#2114](https://github.com/chef/chef-dk/pull/2114) ([tas50](https://github.com/tas50)) <!-- 4.0.65 -->
 - Remove legacy macOS uninstall instructions [#2113](https://github.com/chef/chef-dk/pull/2113) ([tas50](https://github.com/tas50)) <!-- 4.0.64 -->
 - Add the proper ruby path to the Dockerfile [#2109](https://github.com/chef/chef-dk/pull/2109) ([tas50](https://github.com/tas50)) <!-- 4.0.63 -->
 - Bump kitchen-dokken to 2.7.0 [#2111](https://github.com/chef/chef-dk/pull/2111) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.62 -->
