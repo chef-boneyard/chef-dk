@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.11.1 -->
-## [v3.11.1](https://github.com/chef/chef-dk/tree/v3.11.1) (2019-05-29)
+<!-- latest_release 3.11.2 -->
+## [v3.11.2](https://github.com/chef/chef-dk/tree/v3.11.2) (2019-05-30)
 
 #### Merged Pull Requests
-- Update kitchen-dokken to 2.7 [#2112](https://github.com/chef/chef-dk/pull/2112) ([tas50](https://github.com/tas50))
+- Update Chef to 14.13.11 [#2116](https://github.com/chef/chef-dk/pull/2116) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.10.1 -->
 ### Changes since 3.10.1 release
 
 #### Merged Pull Requests
+- Update Chef to 14.13.11 [#2116](https://github.com/chef/chef-dk/pull/2116) ([tas50](https://github.com/tas50)) <!-- 3.11.2 -->
 - Update kitchen-dokken to 2.7 [#2112](https://github.com/chef/chef-dk/pull/2112) ([tas50](https://github.com/tas50)) <!-- 3.11.1 -->
 - Pull in updated kitchen-dokken, chef-apply and pushy-client [#2108](https://github.com/chef/chef-dk/pull/2108) ([tas50](https://github.com/tas50)) <!-- 3.11.0 -->
 <!-- release_rollup -->
