@@ -53,5 +53,5 @@ done
 chown -Rh 0:0 $INSTALLER_DIR
 
 echo "Thank you for installing Chef Development Kit!"
-
+echo "You can find some tips on getting started at https://learn.chef.io"
 exit 0
