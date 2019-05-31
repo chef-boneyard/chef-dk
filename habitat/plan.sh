@@ -15,7 +15,7 @@ pkg_deps=(
   core/glibc
   core/busybox-static
   # if you change major or minor you also need to update the GEM_PATH below
-  core/ruby/2.5.3
+  core/ruby/2.5.5
   core/libxml2
   core/libxslt
   core/libiconv
