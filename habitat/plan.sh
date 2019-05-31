@@ -15,7 +15,7 @@ pkg_deps=(
   core/glibc
   core/busybox-static
   # if you change major or minor you also need to update the GEM_PATH below
-  core/ruby/2.5.3
+  core/ruby26
   core/libxml2
   core/libxslt
   core/libiconv
@@ -25,6 +25,7 @@ pkg_deps=(
   core/openssl
   core/cacerts
   core/libffi
+  core/libarchive
 )
 
 pkg_svc_user=root
