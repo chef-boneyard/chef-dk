@@ -143,8 +143,8 @@ wrap_ruby_bin() {
 #!$(pkg_path_for busybox-static)/bin/sh
 set -e
 if test -n "$DEBUG"; then set -x; fi
-export GEM_HOME="$pkg_prefix/ruby/2.5.0/"
-export GEM_PATH="$(hab pkg path core/ruby)/lib/ruby/gems/2.5.0:$(hab pkg path core/bundler):$pkg_prefix/ruby/2.5.0/:$GEM_HOME"
+export GEM_HOME="$pkg_prefix/ruby/2.6.0/"
+export GEM_PATH="$(hab pkg path core/ruby)/lib/ruby/gems/2.6.0:$(hab pkg path core/bundler):$pkg_prefix/ruby/2.6.0/:$GEM_HOME"
 export SSL_CERT_FILE=$(hab pkg path core/cacerts)/ssl/cert.pem
 export APPBUNDLER_ALLOW_RVM=true
 unset RUBYOPT GEMRC
