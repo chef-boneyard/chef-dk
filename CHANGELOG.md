@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.11.4 -->
+## [v3.11.4](https://github.com/chef/chef-dk/tree/v3.11.4) (2019-05-31)
+
+#### Merged Pull Requests
+- Update Ruby in the hab plan to 2.5.5 [#2118](https://github.com/chef/chef-dk/pull/2118) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.11.3 -->
+### Changes since 3.11.3 release
+
+#### Merged Pull Requests
+- Update Ruby in the hab plan to 2.5.5 [#2118](https://github.com/chef/chef-dk/pull/2118) ([tas50](https://github.com/tas50)) <!-- 3.11.4 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
