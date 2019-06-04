@@ -9,13 +9,13 @@ Chef Infra Client has been updated to 14.13.11 with resource improvements and bu
 Test Kitchen has been updated to 1.25 with backports of many non-breaking Test Kitchen 2.0 features:
 
   - Support for accepting the Chef 15 license in Test Kitchen runs. See [Accepting the Chef License](https://docs.chef.io/chef_license_accept.html) for usage details.
-  - A new `--fail-fast` command line flag for use with the `concurency` flag. With this flag set, Test Kitchen will immediatly fail when any converge fails instead of continuing to test additional instances.
+  - A new `--fail-fast` command line flag for use with the `concurrency` flag. With this flag set, Test Kitchen will immediately fail when any converge fails instead of continuing to test additional instances.
   - The `policyfile_path` config option now accepts relative paths.
   - A new `berksfile_path` config option allows specifying Berkshelf files in non-standard locations.
   - Retries are now honored when using SSH proxies
 
 ## kitchen-dokken 2.7.0
-  - The Chef Docker image is now pulled by default so that locally cached `latest` or `curent` container versions will be compared to those available on DockerHub. See the [readme](https://github.com/someara/kitchen-dokken#disable-pulling-chef-docker-images) for instructions on reverting to the previous behavior.
+  - The Chef Docker image is now pulled by default so that locally cached `latest` or `current` container versions will be compared to those available on DockerHub. See the [readme](https://github.com/someara/kitchen-dokken#disable-pulling-chef-docker-images) for instructions on reverting to the previous behavior.
   - User namespace mode can be disabled when running privileged containers with a new `userns_host` config option. See the [readme](https://github.com/someara/kitchen-dokken#running-with-user-namespaces-enabled) for details.
   - You can now disable pulling the platform Docker images for local platform image testing or air gapped testing. See the [readme](https://github.com/someara/kitchen-dokken#disable-pulling-platform-docker-images) for details.
 
