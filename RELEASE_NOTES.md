@@ -32,7 +32,7 @@ The `chef generate` command has been updated to produce cookbooks and repositori
   - `chef generate repo` now generates a Chef repository with Policyfiles by default. You can revert to the previous roles / environment behavior with the `--roles` flag.
   - `chef generate cookbook` now generates a cookbook with a Policyfile and no Berksfile by default. You can revert to the previous behavior with the `--berks` flag.
   - `chef generate cookbook` now includes ChefSpecs that utilize the ChefSpec 7.3+ format. This is a much simpler syntax that requires less updating of specs as older platforms are deprecated.
-  - `chef generate cookbook` no longer creates cookbbook files with the unecessary `frozen_string_literal: true` comments.
+  - `chef generate cookbook` no longer creates cookbook files with the unecessary `frozen_string_literal: true` comments.
   - `chef generate cookbook` no longer generates a full Workflow (Delivery) build cookbook by default. A new `--workflow` flag has been added to allow generating the build cookbook. This flag replaces the previously unused `--delivery` flag.
   - `chef generate cookbook` now generates cookbooks with metadata requiring Chef 14 or later.
   - `chef generate cookbook --kitchen dokken` now generates a fully working kitchen-dokken config.
@@ -315,7 +315,7 @@ chef-client has been updated from 14.7 to 14.8, which includes resources improve
 ### test-kitchen 1.24
 
 - Added support for the Chef 13+ root aliases. With this chance you can now test a cookbook with a simple recipe.rb and attributes.rb file.
-- Improve WinRM support with retries and graceful connection cleanup. Thanks [@bdwyertech](https://github.com/bdwyertech) and [@dwoz](https://github.com/dwoz)
+- Improve WinRM support with retries and graceful connection cleanup. Thanks [@bdwyertech](https://github.com/bdwyertech) and [@dwoz](https://github.com/dwoz)x
 
 # ChefDK 3.5 Release Notes
 
@@ -485,7 +485,7 @@ Fauxhai 6.4.0 brings support for 3 new platforms - CentOS 7.5, Debian 8.11, and 
 
 ### Foodcritic
 
-Foodcritic 14.0.0 adds support for Chef 14.2 metadata, makes it the default, and removes old Chef 13 metadata. It also updated rules for clarity, removed an unecessary rule, and added a new rule saying when cookbooks have unecessary dependencies now that resources moved into core Chef. See the [changelog](https://github.com/Foodcritic/foodcritic/blob/master/CHANGELOG.md#1400-2018-06-28) for a full list of changes.
+Foodcritic 14.0.0 adds support for Chef 14.2 metadata, makes it the default, and removes old Chef 13 metadata. It also updated rules for clarity, removed an unnecessary rule, and added a new rule saying when cookbooks have unnecessary dependencies now that resources moved into core Chef. See the [changelog](https://github.com/Foodcritic/foodcritic/blob/master/CHANGELOG.md#1400-2018-06-28) for a full list of changes.
 
 ### knife-acl
 
