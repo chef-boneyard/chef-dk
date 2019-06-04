@@ -78,6 +78,42 @@ driver:
   pull_platform_image: false
 ```
 
+# ChefDK 3.11 Release Notes
+
+## Chef Infra Client 14.13.11
+
+Chef Infra Client has been updated to 14.13.11 with resource improvements and bug fixes. See the [Release Notes](https://github.com/chef/chef/blob/chef-14/RELEASE_NOTES.md#chef-client-release-notes-1413) for a detailed list of changes.
+
+## Test Kitchen 1.25
+
+Test Kitchen has been updated to 1.25 with backports of many non-breaking Test Kitchen 2.0 features:
+
+  - Support for accepting the Chef 15 license in Test Kitchen runs. See [Accepting the Chef License](https://docs.chef.io/chef_license_accept.html) for usage details.
+  - A new `--fail-fast` command line flag for use with the `concurrency` flag. With this flag set, Test Kitchen will immediately fail when any converge fails instead of continuing to test additional instances.
+  - The `policyfile_path` config option now accepts relative paths.
+  - A new `berksfile_path` config option allows specifying Berkshelf files in non-standard locations.
+  - Retries are now honored when using SSH proxies
+
+## kitchen-dokken 2.7.0
+  - The Chef Docker image is now pulled by default so that locally cached `latest` or `current` container versions will be compared to those available on DockerHub. See the [readme](https://github.com/someara/kitchen-dokken#disable-pulling-chef-docker-images) for instructions on reverting to the previous behavior.
+  - User namespace mode can be disabled when running privileged containers with a new `userns_host` config option. See the [readme](https://github.com/someara/kitchen-dokken#running-with-user-namespaces-enabled) for details.
+  - You can now disable pulling the platform Docker images for local platform image testing or air gapped testing. See the [readme](https://github.com/someara/kitchen-dokken#disable-pulling-platform-docker-images) for details.
+
+## Other Updated Components
+
+- openssl 1.0.2r -> 1.0.2s (bugfix only release)
+- cacerts 2019-01-23 -> 2019-05-15
+
+## Security Updates
+
+###  curl 7.65.0
+
+- CVE-2019-5435: Integer overflows in curl_url_set
+- CVE-2019-5436: tftp: use the current blksize for recvfrom()
+- CVE-2018-16890: NTLM type-2 out-of-bounds buffer read
+- CVE-2019-3822: NTLMv2 type-3 header stack buffer overflow
+- CVE-2019-3823: SMTP end-of-response out-of-bounds read
+
 # ChefDK 3.10 Release Notes
 
 ## New Policy File Functionality
