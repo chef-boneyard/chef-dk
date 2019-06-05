@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.66 -->
-## [v4.0.66](https://github.com/chef/chef-dk/tree/v4.0.66) (2019-05-30)
+<!-- latest_release 4.0.67 -->
+## [v4.0.67](https://github.com/chef/chef-dk/tree/v4.0.67) (2019-06-05)
 
 #### Merged Pull Requests
-- Direct folks to Learn Chef post install [#2115](https://github.com/chef/chef-dk/pull/2115) ([tas50](https://github.com/tas50))
+- Bump chef-apply to 0.3.0 [#2124](https://github.com/chef/chef-dk/pull/2124) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- Bump chef-apply to 0.3.0 [#2124](https://github.com/chef/chef-dk/pull/2124) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.67 -->
 - Direct folks to Learn Chef post install [#2115](https://github.com/chef/chef-dk/pull/2115) ([tas50](https://github.com/tas50)) <!-- 4.0.66 -->
 - Remove old Solaris omnibus files [#2114](https://github.com/chef/chef-dk/pull/2114) ([tas50](https://github.com/tas50)) <!-- 4.0.65 -->
 - Remove legacy macOS uninstall instructions [#2113](https://github.com/chef/chef-dk/pull/2113) ([tas50](https://github.com/tas50)) <!-- 4.0.64 -->
