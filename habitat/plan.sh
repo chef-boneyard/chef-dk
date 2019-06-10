@@ -15,7 +15,7 @@ pkg_deps=(
   core/glibc
   core/busybox-static
   # if you change major or minor you also need to update the GEM_PATH below
-  core/ruby/2.5.3
+  core/ruby26
   core/libxml2
   core/libxslt
   core/libiconv
@@ -25,6 +25,7 @@ pkg_deps=(
   core/openssl
   core/cacerts
   core/libffi
+  core/libarchive
 )
 
 pkg_svc_user=root
@@ -142,8 +143,8 @@ wrap_ruby_bin() {
 #!$(pkg_path_for busybox-static)/bin/sh
 set -e
 if test -n "$DEBUG"; then set -x; fi
-export GEM_HOME="$pkg_prefix/ruby/2.5.0/"
-export GEM_PATH="$(hab pkg path core/ruby)/lib/ruby/gems/2.5.0:$(hab pkg path core/bundler):$pkg_prefix/ruby/2.5.0/:$GEM_HOME"
+export GEM_HOME="$pkg_prefix/ruby/2.6.0/"
+export GEM_PATH="$(hab pkg path core/ruby)/lib/ruby/gems/2.6.0:$(hab pkg path core/bundler):$pkg_prefix/ruby/2.6.0/:$GEM_HOME"
 export SSL_CERT_FILE=$(hab pkg path core/cacerts)/ssl/cert.pem
 export APPBUNDLER_ALLOW_RVM=true
 unset RUBYOPT GEMRC
