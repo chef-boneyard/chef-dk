@@ -126,7 +126,7 @@ group(:ruby_prof) do
   gem "ruby-prof"
 end
 
-# Everything except AIX and Windows
+# Everything except Windows
 group(:ruby_shadow) do
   gem "ruby-shadow", platform: :ruby
 end
