@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.69 -->
-## [v4.0.69](https://github.com/chef/chef-dk/tree/v4.0.69) (2019-06-10)
+<!-- latest_release 4.0.70 -->
+## [v4.0.70](https://github.com/chef/chef-dk/tree/v4.0.70) (2019-06-10)
 
 #### Merged Pull Requests
-- Fix hab builds of ChefDK [#2119](https://github.com/chef/chef-dk/pull/2119) ([tas50](https://github.com/tas50))
+- Switch to Buildkite for PR testing [#2128](https://github.com/chef/chef-dk/pull/2128) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- Switch to Buildkite for PR testing [#2128](https://github.com/chef/chef-dk/pull/2128) ([tas50](https://github.com/tas50)) <!-- 4.0.70 -->
 - Fix hab builds of ChefDK [#2119](https://github.com/chef/chef-dk/pull/2119) ([tas50](https://github.com/tas50)) <!-- 4.0.69 -->
 - Bump mixlib-cli to 2.1.1 [#2126](https://github.com/chef/chef-dk/pull/2126) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.68 -->
 - Bump chef-apply to 0.3.0 [#2124](https://github.com/chef/chef-dk/pull/2124) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.67 -->
