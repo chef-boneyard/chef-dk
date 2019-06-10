@@ -1,0 +1,7 @@
+---
+expeditor:
+  defaults:
+    buildkite:
+      timeout_in_minutes: 30
+
+steps:
