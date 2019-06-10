@@ -9,7 +9,7 @@ steps:
   command:
     - bundle install --jobs=7 --retry=3
     - export USER="root"
-    - bundle exec rake rspec
+    - bundle exec rspec
   expeditor:
     executor:
       docker:
@@ -19,7 +19,7 @@ steps:
   command:
     - export USER="root"
     - bundle install --jobs=7 --retry=3
-    - bundle exec rake rspec
+    - bundle exec rspec
   expeditor:
     executor:
       docker:
@@ -29,7 +29,7 @@ steps:
   command:
     - export USER="root"
     - bundle install --jobs=7 --retry=3
-    - bundle exec rake rspec
+    - bundle exec rspec
   expeditor:
     executor:
       docker:
