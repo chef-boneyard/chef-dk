@@ -20,6 +20,8 @@ docker_images:
   - chefdk
 
 pipelines:
+  - verify:
+      public: true
   - habitat/build
   - omnibus/release
   - omnibus/adhoc:
@@ -46,6 +48,9 @@ github:
         version_constraint: 4.*
     - chefdk-3:
         version_constraint: 3.*
+
+changelog:
+  rollup_header: Changes not yet released to stable
 
 # These actions are taken, in order they are specified, anytime a Pull Request is merged.
 merge_actions:
