@@ -12,11 +12,15 @@ pkg_build_deps=(
   core/git
 )
 
+# declaring it once here avoids needing to replace it
+# in multple spots in the plan when it changes
+ruby_pkg=core/ruby26
+
 pkg_deps=(
   core/glibc
   core/busybox-static
-  # if you change major or minor you also need to update the GEM_PATH below
-  core/ruby26
+  # yes, this is weird
+  ${ruby_pkg}
   core/libxml2
   core/libxslt
   core/pkg-config
@@ -56,6 +60,8 @@ do_prepare() {
   export OPENSSL_LIB_DIR=$(pkg_path_for openssl)/lib
   export OPENSSL_INCLUDE_DIR=$(pkg_path_for openssl)/include
   export SSL_CERT_FILE=$(pkg_path_for cacerts)/ssl/cert.pem
+  export RUBY_ABI_VERSION=$(ls $(pkg_path_for ${ruby_pkg})/lib/ruby/gems)
+  build_line "Ruby ABI version appears to be ${RUBY_ABI_VERSION}"
 
   build_line "Setting link for /usr/bin/env to 'coreutils'"
   [[ ! -f /usr/bin/env ]] && ln -s $(pkg_path_for coreutils)/bin/env /usr/bin/env
@@ -140,12 +146,12 @@ wrap_ruby_bin() {
 #!$(pkg_path_for busybox-static)/bin/sh
 set -e
 if test -n "$DEBUG"; then set -x; fi
-export GEM_HOME="$pkg_prefix/ruby/2.6.0/"
-export GEM_PATH="$(hab pkg path core/ruby)/lib/ruby/gems/2.6.0:$(hab pkg path core/bundler):$pkg_prefix/ruby/2.6.0/:$GEM_HOME"
-export SSL_CERT_FILE=$(hab pkg path core/cacerts)/ssl/cert.pem
+export GEM_HOME="$pkg_prefix/ruby/${RUBY_ABI_VERSION}/"
+export GEM_PATH="$(pkg_path_for ${ruby_pkg})/lib/ruby/gems/${RUBY_ABI_VERSION}:$(hab pkg path core/bundler):$pkg_prefix/ruby/${RUBY_ABI_VERSION}/:$GEM_HOME"
+export SSL_CERT_FILE=$(pkg_path_for core/cacerts)/ssl/cert.pem
 export APPBUNDLER_ALLOW_RVM=true
 unset RUBYOPT GEMRC
-exec $(pkg_path_for ruby)/bin/ruby ${real_cmd} \$@
+exec $(pkg_path_for ${ruby_pkg})/bin/ruby ${real_cmd} \$@
 EOF
   chmod -v 755 "$wrapper"
 }
