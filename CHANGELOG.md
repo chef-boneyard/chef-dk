@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.72 -->
-## [v4.0.72](https://github.com/chef/chef-dk/tree/v4.0.72) (2019-06-12)
+<!-- latest_release 4.0.73 -->
+## [v4.0.73](https://github.com/chef/chef-dk/tree/v4.0.73) (2019-06-12)
 
 #### Merged Pull Requests
-- Remove some AIX code from our omnibus def [#2130](https://github.com/chef/chef-dk/pull/2130) ([tas50](https://github.com/tas50))
+- Ship libarchive in the omnibus builds for chef [#2132](https://github.com/chef/chef-dk/pull/2132) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- Ship libarchive in the omnibus builds for chef [#2132](https://github.com/chef/chef-dk/pull/2132) ([tas50](https://github.com/tas50)) <!-- 4.0.73 -->
 - Remove some AIX code from our omnibus def [#2130](https://github.com/chef/chef-dk/pull/2130) ([tas50](https://github.com/tas50)) <!-- 4.0.72 -->
 - Bump license-acceptance to 1.0.13 [#2129](https://github.com/chef/chef-dk/pull/2129) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.71 -->
 - Switch to Buildkite for PR testing [#2128](https://github.com/chef/chef-dk/pull/2128) ([tas50](https://github.com/tas50)) <!-- 4.0.70 -->
