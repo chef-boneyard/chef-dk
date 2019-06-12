@@ -44,6 +44,7 @@ dependency "libxml2"
 dependency "libxslt"
 dependency "liblzma"
 dependency "zlib"
+dependency "libarchive"
 
 #
 # NOTE: NO GEM DEPENDENCIES
