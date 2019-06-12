@@ -2,6 +2,7 @@ pkg_name=chef-dk
 pkg_origin=chef
 pkg_maintainer="The Chef Maintainers <humans@chef.io>"
 pkg_description="The Chef Developer Kit"
+pkg_version=$(cat ../VERSION)
 pkg_license=('Apache-2.0')
 pkg_bin_dirs=(bin)
 pkg_build_deps=(
@@ -18,7 +19,7 @@ pkg_deps=(
   core/ruby26
   core/libxml2
   core/libxslt
-  core/libiconv
+  core/pkg-config
   core/xz
   core/zlib
   core/bundler
@@ -29,10 +30,6 @@ pkg_deps=(
 )
 
 pkg_svc_user=root
-
-pkg_version() {
-  cat ../VERSION
-}
 
 do_before() {
   do_default_before
@@ -78,7 +75,7 @@ do_build() {
   export GEM_HOME=${pkg_prefix}
   export GEM_PATH=${_bundler_dir}:${GEM_HOME}
 
-  export NOKOGIRI_CONFIG="--use-system-libraries --with-zlib-dir=${_zlib_dir} --with-xslt-dir=${_libxslt_dir} --with-xml2-include=${_libxml2_dir}/include/libxml2 --with-xml2-lib=${_libxml2_dir}/lib"
+  export NOKOGIRI_CONFIG="--use-system-libraries --with-zlib-dir=${_zlib_dir} --with-xslt-dir=${_libxslt_dir} --with-xml2-include=${_libxml2_dir}/include/libxml2 --with-xml2-lib=${_libxml2_dir}/lib --without-iconv"
   bundle config --local build.nokogiri "${NOKOGIRI_CONFIG}"
 
   bundle config --local silence_root_warning 1
