@@ -95,7 +95,7 @@ module ChefDK
     end
 
     def show_version
-      msg("Chef Development Kit Version: #{ChefDK::VERSION}\n")
+      msg("Chef Development Kit Version: #{ChefDK::VERSION}")
       { "Chef Infra Client": "chef-client",
         "Test Kitchen": "kitchen",
         "Foodcritic": "foodcritic",
