@@ -95,15 +95,19 @@ module ChefDK
     end
 
     def show_version
-      msg("Chef Development Kit Version: #{ChefDK::VERSION}")
-
-      ["chef-client", "delivery", "berks", "kitchen", "inspec"].each do |component|
-        result = Bundler.with_clean_env { shell_out("#{component} --version") }
+      msg("Chef Development Kit Version: #{ChefDK::VERSION}\n")
+      { "Chef Infra Client": "chef-client",
+        "Test Kitchen": "kitchen",
+        "Foodcritic": "foodcritic",
+        "Cookstyle": "cookstyle",
+        "InSpec": "inspec",
+      }.each do |name, cli|
+        result = Bundler.with_clean_env { shell_out("#{cli} --version") }
         if result.exitstatus != 0
-          msg("#{component} version: ERROR")
+          msg("#{name} version: ERROR")
         else
           version = result.stdout.lines.first.scan(/(?:master\s)?[\d+\.\(\)]+\S+/).join("\s")
-          msg("#{component} version: #{version}")
+          msg("#{name} version: #{version}")
         end
       end
     end
