@@ -131,6 +131,11 @@ describe ChefDK::CLI do
           "version_output" => "Chef Infra Client: 15.0.300",
           "expected_version" => "15.0.300",
         },
+        "Chef InSpec" => {
+          "command" => "inspec",
+          "version_output" => "4.6.2\n\nYour version of InSpec is out of date! The latest version is 4.6.4.",
+          "expected_version" => "4.6.2",
+        },
         "Test Kitchen" => {
           "command" => "kitchen",
           "version_output" => "Test Kitchen version 2.2.5",
@@ -145,11 +150,6 @@ describe ChefDK::CLI do
           "command" => "cookstyle",
           "version_output" => "Cookstyle 4.0.0\n  * RuboCop 0.62.0",
           "expected_version" => "4.0.0",
-        },
-        "InSpec" => {
-          "command" => "inspec",
-          "version_output" => "4.6.2\n\nYour version of InSpec is out of date! The latest version is 4.6.4.",
-          "expected_version" => "4.6.2",
         },
       }
     end

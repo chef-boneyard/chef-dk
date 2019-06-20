@@ -97,10 +97,10 @@ module ChefDK
     def show_version
       msg("Chef Development Kit Version: #{ChefDK::VERSION}")
       { "Chef Infra Client": "chef-client",
+        "Chef InSpec": "inspec",
         "Test Kitchen": "kitchen",
         "Foodcritic": "foodcritic",
-        "Cookstyle": "cookstyle",
-        "InSpec": "inspec",
+        "Cookstyle": "cookstyle"
       }.each do |name, cli|
         result = Bundler.with_clean_env { shell_out("#{cli} --version") }
         if result.exitstatus != 0
