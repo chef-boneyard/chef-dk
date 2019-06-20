@@ -69,9 +69,9 @@ describe ChefDK::CLI do
 
   def run_cli_and_validate_tool_versions
     full_version_message = version_message
-    tools.each do |name, version|
-      expect(cli).to receive(:shell_out).with("#{name} --version").and_return(mock_shell_out(0, "#{version["version_output"]}", ""))
-      full_version_message += "#{name} version: #{version["expected_version"]}\n"
+    tools.each do |name, details|
+      expect(cli).to receive(:shell_out).with("#{details["command"]} --version").and_return(mock_shell_out(0, "#{details["version_output"]}", ""))
+      full_version_message += "#{name} version: #{details["expected_version"]}\n"
     end
     run_cli(0)
     expect(stdout).to eq(full_version_message)
@@ -123,42 +123,46 @@ describe ChefDK::CLI do
 
   context "given -v" do
     let(:argv) { %w{-v} }
-    let(:delivery_version) { "master (454c3f37819ed508a49c971f38e42267ce8a47de)" }
 
     let(:tools) do
       {
-        "chef-client" => {
-          "version_output" => "Chef: 12.0.3",
-          "expected_version" => "12.0.3",
+        "Chef Infra Client" => {
+          "command" => "chef-client",
+          "version_output" => "Chef Infra Client: 15.0.300",
+          "expected_version" => "15.0.300",
         },
-        "delivery" => {
-          "version_output" => "delivery #{delivery_version}",
-          "expected_version" => delivery_version,
+        "Chef InSpec" => {
+          "command" => "inspec",
+          "version_output" => "4.6.2\n\nYour version of InSpec is out of date! The latest version is 4.6.4.",
+          "expected_version" => "4.6.2",
         },
-        "berks" => {
-          "version_output" => "3.2.3",
-          "expected_version" => "3.2.3",
+        "Test Kitchen" => {
+          "command" => "kitchen",
+          "version_output" => "Test Kitchen version 2.2.5",
+          "expected_version" => "2.2.5",
         },
-        "kitchen" => {
-          "version_output" => "Test Kitchen version 1.3.1",
-          "expected_version" => "1.3.1",
+        "Foodcritic" => {
+          "command" => "foodcritic",
+          "version_output" => "foodcritic 16.0.0",
+          "expected_version" => "16.0.0",
         },
-        "inspec" => {
-          "version_output" => "1.19.1\n\nYour version of InSpec is out of date! The latest version is 1.21.0.",
-          "expected_version" => "1.19.1",
+        "Cookstyle" => {
+          "command" => "cookstyle",
+          "version_output" => "Cookstyle 4.0.0\n  * RuboCop 0.62.0",
+          "expected_version" => "4.0.0",
         },
       }
     end
 
     it "does not print versions of tools with missing or errored tools" do
       full_version_message = version_message
-      tools.each do |name, version|
-        if name == "berks"
-          expect(cli).to receive(:shell_out).with("#{name} --version").and_return(mock_shell_out(1, "#{version["version_output"]}", ""))
+      tools.each do |name, details|
+        if name == "inspec"
+          expect(cli).to receive(:shell_out).with("#{details["command"]} --version").and_return(mock_shell_out(1, "#{details["version_output"]}", ""))
           full_version_message += "#{name} version: ERROR\n"
         else
-          expect(cli).to receive(:shell_out).with("#{name} --version").and_return(mock_shell_out(0, "#{version["version_output"]}", ""))
-          full_version_message += "#{name} version: #{version["expected_version"]}\n"
+          expect(cli).to receive(:shell_out).with("#{details["command"]} --version").and_return(mock_shell_out(0, "#{details["version_output"]}", ""))
+          full_version_message += "#{name} version: #{details["expected_version"]}\n"
         end
       end
       run_cli(0)
@@ -167,14 +171,6 @@ describe ChefDK::CLI do
 
     it "prints the version and versions of chef-dk tools" do
       run_cli_and_validate_tool_versions
-    end
-
-    context "alternate Delivery CLI version format" do
-      let(:delivery_version) { "0.0.15 (454c3f37819ed508a49c971f38e42267ce8a47de)" }
-
-      it "prints the expected version of Delivery CLI" do
-        run_cli_and_validate_tool_versions
-      end
     end
   end
 
