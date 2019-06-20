@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.74 -->
-## [v4.0.74](https://github.com/chef/chef-dk/tree/v4.0.74) (2019-06-18)
+<!-- latest_release 4.0.75 -->
+## [v4.0.75](https://github.com/chef/chef-dk/tree/v4.0.75) (2019-06-20)
 
 #### Merged Pull Requests
-- Bump inspec to 4.6.3 [#2138](https://github.com/chef/chef-dk/pull/2138) ([chef-ci](https://github.com/chef-ci))
+- Remove Ubuntu 14.04 from the build pipeline [#2131](https://github.com/chef/chef-dk/pull/2131) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- Remove Ubuntu 14.04 from the build pipeline [#2131](https://github.com/chef/chef-dk/pull/2131) ([tas50](https://github.com/tas50)) <!-- 4.0.75 -->
 - Bump inspec to 4.6.3 [#2138](https://github.com/chef/chef-dk/pull/2138) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.74 -->
 - Ship libarchive in the omnibus builds for chef [#2132](https://github.com/chef/chef-dk/pull/2132) ([tas50](https://github.com/tas50)) <!-- 4.0.73 -->
 - Remove some AIX code from our omnibus def [#2130](https://github.com/chef/chef-dk/pull/2130) ([tas50](https://github.com/tas50)) <!-- 4.0.72 -->
