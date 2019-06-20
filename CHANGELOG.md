@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.76 -->
-## [v4.0.76](https://github.com/chef/chef-dk/tree/v4.0.76) (2019-06-20)
+<!-- latest_release 4.0.77 -->
+## [v4.0.77](https://github.com/chef/chef-dk/tree/v4.0.77) (2019-06-20)
 
 #### Merged Pull Requests
-- Update InSpec to 4.6.4 and omnibus to latest [#2142](https://github.com/chef/chef-dk/pull/2142) ([tas50](https://github.com/tas50))
+- Improve chef --version command [#2143](https://github.com/chef/chef-dk/pull/2143) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- Improve chef --version command [#2143](https://github.com/chef/chef-dk/pull/2143) ([tas50](https://github.com/tas50)) <!-- 4.0.77 -->
 - Update InSpec to 4.6.4 and omnibus to latest [#2142](https://github.com/chef/chef-dk/pull/2142) ([tas50](https://github.com/tas50)) <!-- 4.0.76 -->
 - Remove Ubuntu 14.04 from the build pipeline [#2131](https://github.com/chef/chef-dk/pull/2131) ([tas50](https://github.com/tas50)) <!-- 4.0.75 -->
 - Bump inspec to 4.6.3 [#2138](https://github.com/chef/chef-dk/pull/2138) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.74 -->
