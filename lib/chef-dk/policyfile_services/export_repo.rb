@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -242,14 +242,14 @@ module ChefDK
             use_policyfile true
             policy_document_native_api true
 
-            # In order to use this repo, you need a version of Chef Client and Chef Zero
+            # In order to use this repo, you need a version of Chef Infra Client and Chef Zero
             # that supports policyfile "native mode" APIs:
             current_version = Gem::Version.new(Chef::VERSION)
             unless Gem::Requirement.new(">= 12.7").satisfied_by?(current_version)
               puts("!" * 80)
               puts(<<-MESSAGE)
-            This Chef Repo requires features introduced in Chef 12.7, but you are using
-            Chef \#{Chef::VERSION}. Please upgrade to Chef 12.7 or later.
+            This Chef Repo requires features introduced in Chef Infra Client 12.7, but you are using
+            Chef \#{Chef::VERSION}. Please upgrade to Chef Infra Client 12.7 or later.
             MESSAGE
               puts("!" * 80)
               exit!(1)
@@ -262,7 +262,7 @@ module ChefDK
       def create_readme_md
         File.open(readme_staging_path, "wb+") do |f|
           f.print( <<~README )
-            # Exported Chef Repository for Policy '#{policy_name}'
+            # Exported Chef Infra Repository for Policy '#{policy_name}'
 
             Policy revision: #{policyfile_lock.revision_id}
 

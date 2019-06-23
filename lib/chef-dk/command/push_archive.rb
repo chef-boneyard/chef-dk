@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software Inc.
+# Copyright:: Copyright (c) 2015-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +19,7 @@ require "chef-dk/command/base"
 require "chef-dk/ui"
 require "chef-dk/policyfile_services/push_archive"
 require "chef-dk/configurable"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -28,9 +29,9 @@ module ChefDK
       include Configurable
 
       banner(<<~E)
-        Usage: chef push-archive POLICY_GROUP ARCHIVE_FILE [options]
+        Usage: #{ChefDK::Dist::EXEC} push-archive POLICY_GROUP ARCHIVE_FILE [options]
 
-        `chef push-archive` publishes a policy archive to a Chef Infra Server. Policy
+        `chef push-archive` publishes a policy archive to a #{ChefDK::Dist::SERVER_PRODUCT}. Policy
         archives can be created with `chef export -a`. The policy will be applied to
         the given POLICY_GROUP, which is a set of nodes that share the same
         run_list and cookbooks.

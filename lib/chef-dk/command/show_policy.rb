@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software Inc.
+# Copyright:: Copyright (c) 2015-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,6 +20,7 @@ require "chef-dk/ui"
 require "chef-dk/configurable"
 require "chef-dk/policyfile/lister"
 require "chef-dk/policyfile_services/show_policy"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -27,9 +28,9 @@ module ChefDK
     class ShowPolicy < Base
 
       banner(<<~BANNER)
-        Usage: chef show-policy [POLICY_NAME [POLICY_GROUP]] [options]
+        Usage: #{ChefDK::Dist::EXEC} show-policy [POLICY_NAME [POLICY_GROUP]] [options]
 
-        `chef show-policy` Displays the revisions of policyfiles on the server. By
+        `#{ChefDK::Dist::EXEC} show-policy` Displays the revisions of policyfiles on the server. By
         default, only active policy revisions are shown. Use the `--orphans` options to
         show policy revisions that are not assigned to any policy group.
 

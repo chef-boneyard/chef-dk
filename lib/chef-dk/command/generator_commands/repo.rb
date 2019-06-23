@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +16,7 @@
 #
 
 require "chef-dk/command/generator_commands/base"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -27,7 +28,7 @@ module ChefDK
       # Generates a full "chef-repo" directory structure.
       class Repo < Base
 
-        banner "Usage: chef generate repo NAME [options]"
+        banner "Usage: #{ChefDK::Dist::EXEC} generate repo NAME [options]"
 
         attr_reader :errors
         attr_reader :repo_name_or_path

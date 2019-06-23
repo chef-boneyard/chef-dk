@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software Inc.
+# Copyright:: Copyright (c) 2015-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +19,7 @@ require "chef-dk/command/base"
 require "chef-dk/ui"
 require "chef-dk/configurable"
 require "chef-dk/policyfile_services/clean_policies"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -26,12 +27,12 @@ module ChefDK
     class CleanPolicyRevisions < Base
 
       banner(<<~BANNER)
-        Usage: chef clean-policy-revisions [options]
+        Usage: #{ChefDK::Dist::EXEC} clean-policy-revisions [options]
 
-        `chef clean-policy-revisions` deletes orphaned policyfile revisions from the Chef
-        Server. Orphaned policyfile revisions are not associated to any group, and
-        therefore not in active use by any nodes. To list orphaned policyfile revisions
-        before deleting them, use `chef show-policy --orphans`.
+        `#{ChefDK::Dist::EXEC} clean-policy-revisions` deletes orphaned Policyfile revisions from the
+        #{ChefDK::Dist::SERVER_PRODUCT}. Orphaned Policyfile revisions are not associated to any group, and
+        therefore not in active use by any nodes. To list orphaned Policyfile revisions before deleting
+        them, use `#{ChefDK::Dist::EXEC} show-policy --orphans`.
 
         See our detailed README for more information:
 

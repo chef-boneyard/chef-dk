@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +16,7 @@
 #
 
 require "chef-dk/command/generator_commands/cookbook_code_file"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -27,7 +28,7 @@ module ChefDK
           long: "--source SOURCE_FILE",
           description: "Copy content from SOURCE_FILE"
 
-        banner "Usage: chef generate file [path/to/cookbook] NAME [options]"
+        banner "Usage: #{ChefDK::Dist::EXEC} generate file [path/to/cookbook] NAME [options]"
 
         options.merge!(SharedGeneratorOptions.options)
 

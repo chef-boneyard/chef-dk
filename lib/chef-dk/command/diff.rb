@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software Inc.
+# Copyright:: Copyright (c) 2015-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,6 +22,7 @@ require "chef-dk/policyfile/differ"
 require "chef-dk/policyfile/comparison_base"
 require "chef-dk/policyfile/storage_config"
 require "chef-dk/configurable"
+require "chef-dk/dist"
 require "chef/server_api"
 
 module ChefDK
@@ -33,36 +34,36 @@ module ChefDK
       include Policyfile::StorageConfigDelegation
 
       banner(<<~BANNER)
-        Usage: chef diff [POLICYFILE] [--head | --git GIT_REF | POLICY_GROUP | POLICY_GROUP...POLICY_GROUP ]
+        Usage: #{ChefDK::Dist::EXEC} diff [POLICYFILE] [--head | --git GIT_REF | POLICY_GROUP | POLICY_GROUP...POLICY_GROUP ]
 
-        `chef diff` displays an itemized diff comparing two revisions of a
+        `#{ChefDK::Dist::EXEC} diff` displays an itemized diff comparing two revisions of a
         Policyfile lock.
 
-        When the `--git` option is given, `chef diff` either compares a given
+        When the `--git` option is given, `#{ChefDK::Dist::EXEC} diff` either compares a given
         git reference against the current lockfile revision on disk or compares
         between two git references. Examples:
 
-        * `chef diff --git HEAD`: compares the current lock with the latest
+        * `#{ChefDK::Dist::EXEC} diff --git HEAD`: compares the current lock with the latest
           commit on the current branch.
-        * `chef diff --git master` compares the current lock with the latest
+        * `#{ChefDK::Dist::EXEC} diff --git master`: compares the current lock with the latest
           commit to master.
-        * `chef diff --git v1.0.0`: compares the current lock with the revision
+        * `#{ChefDK::Dist::EXEC} diff --git v1.0.0`: compares the current lock with the revision
           as of the `v1.0.0` tag.
-        * `chef diff --git master...dev-branch` compares the Policyfile lock on
+        * `#{ChefDK::Dist::EXEC} diff --git master...dev-branch`: compares the Policyfile lock on
           master with the revision on the `dev-branch` branch.
-        * `chef diff --git v1.0.0...master` compares the Policyfile lock at the
+        * `#{ChefDK::Dist::EXEC} diff --git v1.0.0...master`: compares the Policyfile lock at the
           `v1.0.0` tag with the lastest revision on the master branch.
 
-        `chef diff --head` is a shortcut for `chef diff --git HEAD`.
+        `#{ChefDK::Dist::EXEC} diff --head` is a shortcut for `#{ChefDK::Dist::EXEC} diff --git HEAD`.
 
-        When no git-specific flag is given, `chef diff` either compares the
-        current lockfile revision on disk to one on the server or compares two
-        lockfiles on the server. Lockfiles on the Chef Infra Server are specified by
-        Policy Group. Examples:
+        When no git-specific flag is given, `#{ChefDK::Dist::EXEC} diff` either compares the
+        current lockfile revision on disk to one on the #{ChefDK::Dist::SERVER_PRODUCT} or compares
+        two lockfiles on the #{ChefDK::Dist::SERVER_PRODUCT}. Lockfiles on the #{ChefDK::Dist::SERVER_PRODUCT}
+        are specified by Policy Group. Examples:
 
-        * `chef diff staging`: compares the current lock with the one currently
+        * `#{ChefDK::Dist::EXEC} diff staging`: compares the current lock with the one currently
           assigned to the `staging` Policy Group.
-        * `chef diff production...staging` compares the lock currently assigned
+        * `#{ChefDK::Dist::EXEC} diff production...staging`: compares the lock currently assigned
           to the `production` Policy Group to the lock currently assigned to the
           `staging` Policy Group.
 
@@ -72,28 +73,28 @@ module ChefDK
       option :git,
         short:       "-g GIT_REF",
         long:        "--git GIT_REF",
-        description: "Compare local lock against GIT_REF, or between two git commits"
+        description: "Compare local lock against GIT_REF, or between two git commits."
 
       option :head,
         long:        "--head",
-        description: "Compare local lock against last git commit",
+        description: "Compare local lock against last git commit.",
         boolean:     true
 
       option :pager,
         long:        "--[no-]pager",
-        description: "Enable/disable paged diff ouput (default: enabled)",
+        description: "Enable/disable paged diff ouput (default: enabled).",
         default:     true,
         boolean:     true
 
       option :config_file,
         short:       "-c CONFIG_FILE",
         long:        "--config CONFIG_FILE",
-        description: "Path to configuration file"
+        description: "Path to configuration file."
 
       option :debug,
         short:       "-D",
         long:        "--debug",
-        description: "Enable stacktraces and other debug output",
+        description: "Enable stacktraces and other debug output.",
         default:     false
 
       attr_accessor :ui

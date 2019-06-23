@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,6 +20,7 @@ require "fileutils"
 require "chef-dk/configurable"
 require "chef-dk/ui"
 require "chef-dk/command/generator_commands/base"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -32,7 +33,7 @@ module ChefDK
       # `GeneratorGenerator` to avoid causing a conflict.
       class GeneratorGenerator < Base
 
-        banner "Usage: chef generate generator [ PATH ] [options]"
+        banner "Usage: #{ChefDK::Dist::EXEC} generate generator [ PATH ] [options]"
 
         attr_reader :destination_dir
         attr_accessor :ui
@@ -108,8 +109,8 @@ module ChefDK
         def metadata_rb
           <<~METADATA
             name             '#{cookbook_name}'
-            description      'Custom code generator cookbook for use with ChefDK'
-            long_description 'Custom code generator cookbook for use with ChefDK'
+            description      'Custom code generator cookbook for use with #{ChefDK::Dist::PRODUCT}'
+            long_description 'Custom code generator cookbook for use with #{ChefDK::Dist::PRODUCT}'
             version          '0.1.0'
 
           METADATA

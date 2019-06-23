@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018, Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -151,7 +151,7 @@ module ChefDK
         validate!
         self
       rescue SyntaxError => e
-        @errors << "Invalid ruby syntax in policyfile '#{policyfile_filename}':\n\n#{e.message}"
+        @errors << "Invalid Ruby syntax in Policyfile '#{policyfile_filename}':\n\n#{e.message}"
       rescue SignalException, SystemExit
         # allow signal from kill, ctrl-C, etc. to bubble up:
         raise

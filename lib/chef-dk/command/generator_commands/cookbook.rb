@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +16,7 @@
 #
 
 require "chef-dk/command/generator_commands/base"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -29,7 +30,7 @@ module ChefDK
       # the relevant generators.
       class Cookbook < Base
 
-        banner "Usage: chef generate cookbook NAME [options]"
+        banner "Usage: #{ChefDK::Dist::EXEC} generate cookbook NAME [options]"
 
         attr_reader :errors
 
@@ -57,7 +58,7 @@ module ChefDK
         option :workflow,
           short:        "-w",
           long:         "--workflow",
-          description:  "Generate a cookbook with a full Chef Workflow (Delivery) build cookbook.",
+          description:  "Generate a cookbook with a full #{ChefDK::Dist::WORKFLOW} build cookbook.",
           boolean:      true,
           default:      false
 
@@ -70,7 +71,7 @@ module ChefDK
 
         option :pipeline,
           long:         "--pipeline PIPELINE",
-          description:  "Use PIPELINE to set target branch to something other than master for the Workflow build_cookbook",
+          description:  "Use PIPELINE to set target branch to something other than master for the #{ChefDK::Dist::WORKFLOW} build_cookbook",
           default:      "master"
 
         options.merge!(SharedGeneratorOptions.options)

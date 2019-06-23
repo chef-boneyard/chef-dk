@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software Inc.
+# Copyright:: Copyright (c) 2015-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +19,7 @@ require "chef-dk/command/base"
 require "chef-dk/ui"
 require "chef-dk/configurable"
 require "chef-dk/policyfile_services/clean_policy_cookbooks"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -26,11 +27,11 @@ module ChefDK
     class CleanPolicyCookbooks < Base
 
       banner(<<~BANNER)
-        Usage: chef clean-policy-cookbooks [options]
+        Usage: #{ChefDK::Dist::EXEC} clean-policy-cookbooks [options]
 
-        `chef clean-policy-cookbooks` deletes unused policyfile cookbooks. Cookbooks
-        are considered unused when they are not referenced by any policyfile revision
-        on the server. Note that cookbooks which are referenced by "orphaned" policy
+        `#{ChefDK::Dist::EXEC} clean-policy-cookbooks` deletes unused Policyfile cookbooks. Cookbooks
+        are considered unused when they are not referenced by any Policyfile revision
+        on the #{ChefDK::Dist::SERVER_PRODUCT}. Note that cookbooks which are referenced by "orphaned" policy
         revisions are not removed, so you may wish to run `chef clean-policy-revisions`
         to remove orphaned policies before running this command.
 

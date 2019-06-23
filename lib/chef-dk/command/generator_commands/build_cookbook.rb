@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2016 Chef Software Inc.
+# Copyright:: Copyright (c) 2016-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +16,7 @@
 #
 
 require "chef-dk/command/generator_commands/base"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -23,7 +24,7 @@ module ChefDK
 
       class BuildCookbook < Base
 
-        banner "Usage: chef generate build-cookbook NAME [options]"
+        banner "Usage: #{ChefDK::Dist::EXEC} generate build-cookbook NAME [options]"
 
         attr_reader :errors
 

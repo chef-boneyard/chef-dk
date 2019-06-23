@@ -116,7 +116,7 @@ Test Kitchen has been updated to 1.25 with backports of many non-breaking Test K
 
 # ChefDK 3.10 Release Notes
 
-## New Policy File Functionality
+## New Policyfile Functionality
 
 `include_policy` now supports `:remote` policy files. This new functionality allows you to include policy files over http. Remote policy files require remote cookbooks and `install` will fail otherwise if the included policy file includes cookbooks with paths. Thanks [@mattray](https://github.com/mattray)!
 

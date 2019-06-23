@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -51,8 +51,10 @@ module ChefDK
   end
 
   class OmnibusInstallNotFound < RuntimeError
+    require "chef-dk/dist"
+
     def initialize
-      super("Can not find omnibus installation directory for Chef.")
+      super("Can not find omnibus installation directory for #{ChefDK::Dist::PRODUCT}.")
     end
   end
 
@@ -66,7 +68,7 @@ module ChefDK
     def initialize(url, reason = nil)
       @url    = url
       @reason = reason
-      msg     = "'#{@url}' is not a valid Policy File Source URI"
+      msg     = "'#{@url}' is not a valid Policyfile Source URI"
       msg << " #{@reason}." unless @reason.nil?
       super(msg)
     end

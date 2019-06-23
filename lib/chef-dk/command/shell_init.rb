@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,6 +20,7 @@ require "erb"
 require "chef-dk/commands_map"
 require "chef-dk/builtin_commands"
 require "chef-dk/command/base"
+require "chef-dk/dist"
 require "mixlib/shellout"
 
 module ChefDK
@@ -44,28 +45,28 @@ module ChefDK
       SUPPORTED_SHELLS = %w{ bash fish zsh sh powershell posh}.map(&:freeze).freeze
 
       banner(<<~HELP)
-        Usage: chef shell-init
+        Usage: #{ChefDK::Dist::EXEC} shell-init
 
-        `chef shell-init` modifies your shell environment to make ChefDK or Workstation your
+        `#{ChefDK::Dist::EXEC} shell-init` modifies your shell environment to make ChefDK or Workstation your
         default Ruby.
 
           To enable for just the current shell session:
 
             In sh, bash, and zsh:
-              eval "$(chef shell-init SHELL_NAME)"
+              eval "$(#{ChefDK::Dist::EXEC} shell-init SHELL_NAME)"
             In fish:
-              eval (chef shell-init fish)
+              eval (#{ChefDK::Dist::EXEC} shell-init fish)
             In Powershell:
-              chef shell-init powershell | Invoke-Expression
+              #{ChefDK::Dist::EXEC} shell-init powershell | Invoke-Expression
 
           To permanently enable:
 
             In sh, bash, and zsh:
-              echo 'eval "$(chef shell-init SHELL_NAME)"' >> ~/.YOUR_SHELL_RC_FILE
+              echo 'eval "$(#{ChefDK::Dist::EXEC} shell-init SHELL_NAME)"' >> ~/.YOUR_SHELL_RC_FILE
             In fish:
-              echo 'eval (chef shell-init SHELL_NAME)' >> ~/.config/fish/config.fish
+              echo 'eval (#{ChefDK::Dist::EXEC} shell-init SHELL_NAME)' >> ~/.config/fish/config.fish
             In Powershell
-              "chef shell-init powershell | Invoke-Expression" >> $PROFILE
+              "#{ChefDK::Dist::EXEC} shell-init powershell | Invoke-Expression" >> $PROFILE
 
         OPTIONS:
 

@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,12 +16,13 @@
 #
 
 require "chef-dk/command/base"
+require "chef-dk/dist"
 require "mixlib/shellout"
 
 module ChefDK
   module Command
     class Exec < ChefDK::Command::Base
-      banner "Usage: chef exec SYSTEM_COMMAND"
+      banner "Usage: #{ChefDK::Dist::EXEC} exec SYSTEM_COMMAND"
 
       def run(params)
         # Set ENV directly on the "parent" process (us) before running #exec to

@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software Inc.
+# Copyright:: Copyright (c) 2015-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +19,7 @@ require "chef-dk/command/base"
 require "chef-dk/ui"
 require "chef-dk/configurable"
 require "chef-dk/policyfile_services/undelete"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -26,14 +27,14 @@ module ChefDK
     class Undelete < Base
 
       banner(<<~BANNER)
-        Usage: chef undelete [--list | --id ID] [options]
+        Usage: #{ChefDK::Dist::EXEC} undelete [--list | --id ID] [options]
 
-        `chef undelete` helps you recover quickly if you've deleted a policy or policy
+        `#{ChefDK::Dist::EXEC} undelete` helps you recover quickly if you've deleted a policy or policy
         group in error. When run with no arguements, it lists the available undo
         operations. To undo the last delete operation, use `chef undelete --last`.
 
         CAVEATS:
-        `chef undelete` doesn't detect conflicts. If a deleted item has been recreated,
+        `#{ChefDK::Dist::EXEC} undelete` doesn't detect conflicts. If a deleted item has been recreated,
         running `chef undelete` will overwrite it.
 
         Undo information does not include cookbooks that might be referenced by
