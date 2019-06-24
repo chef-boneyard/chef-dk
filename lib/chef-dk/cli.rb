@@ -100,7 +100,7 @@ module ChefDK
         "Chef InSpec": "inspec",
         "Test Kitchen": "kitchen",
         "Foodcritic": "foodcritic",
-        "Cookstyle": "cookstyle"
+        "Cookstyle": "cookstyle",
       }.each do |name, cli|
         result = Bundler.with_clean_env { shell_out("#{cli} --version") }
         if result.exitstatus != 0
