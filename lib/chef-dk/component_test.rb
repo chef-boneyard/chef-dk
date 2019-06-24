@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -144,9 +144,7 @@ module ChefDK
     end
 
     def nix_platform_native_bin_dir
-      if /sunos|solaris/ =~ RUBY_PLATFORM
-        "/opt/local/bin"
-      elsif /darwin/ =~ RUBY_PLATFORM
+      if /darwin/ =~ RUBY_PLATFORM
         "/usr/local/bin"
       else
         "/usr/bin"
