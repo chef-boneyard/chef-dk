@@ -3,7 +3,7 @@ module ChefDK
     # This class is not fully implemented, depending on it is not recommended!
 
     # The full marketing name of the product
-    PRODUCT = "Chef Developmet Kit".freeze
+    PRODUCT = "Chef Development Kit".freeze
 
     # the name of the overall infra product
     INFRA_PRODUCT = "Chef Infra".freeze
