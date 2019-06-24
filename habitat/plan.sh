@@ -96,38 +96,37 @@ do_install() {
   cd $CACHE_PATH
   mkdir -p $pkg_prefix/ruby-bin
 
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin chef-dk
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin chef
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin ohai
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin foodcritic
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin test-kitchen
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin berkshelf
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin inspec-bin
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin cookstyle
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin chef-apply
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin chef-vault
-  bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin dco
+  # Appbundling gems speeds up runtime by creating binstubs for Ruby executables with
+  # versions of dependencies already resolved
+  gems_to_appbundle=(
+    berkshelf
+    chef
+    chef-apply
+    chef-bin
+    chef-dk
+    chef-vault
+    cookstyle
+    dco
+    foodcritic
+    inspec-bin
+    ohai
+    test-kitchen
+  )
+  for gem in "${gems_to_appbundle[@]}"; do
+    build_line "AppBundling ${gem}"
+    bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin $gem
+  done
+
+  # Link the appbundled binstubs into the package's bin directory
+  mkdir -p $pkg_prefix/bin
+  for exe in $pkg_prefix/ruby-bin/*; do
+    wrap_ruby_bin $(basename ${exe})
+  done
 
   if [[ `readlink /usr/bin/env` = "$(pkg_path_for coreutils)/bin/env" ]]; then
     build_line "Removing the symlink we created for '/usr/bin/env'"
     rm /usr/bin/env
   fi
-
-  mkdir -p $pkg_prefix/bin
-
-  wrap_ruby_bin "chef"
-  wrap_ruby_bin "chef-client"
-  wrap_ruby_bin "chef-apply"
-  wrap_ruby_bin "chef-shell"
-  wrap_ruby_bin "chef-solo"
-  wrap_ruby_bin "ohai"
-  wrap_ruby_bin "knife"
-  wrap_ruby_bin "kitchen"
-  wrap_ruby_bin "berks"
-  wrap_ruby_bin "foodcritic"
-  wrap_ruby_bin "inspec"
-  wrap_ruby_bin "chef-resource-inspector"
-  wrap_ruby_bin "dco"
 }
 
 # Stubs
