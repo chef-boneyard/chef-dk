@@ -35,23 +35,23 @@ ChefDK.commands do |c|
 
   c.builtin "update", :Update, desc: "Updates a Policyfile.lock.json with latest run_list and cookbooks"
 
-  c.builtin "push", :Push, desc: "Push a local policy lock to a policy group on your #{ChefDK::Dist::SERVER_PRODUCT}"
+  c.builtin "push", :Push, desc: "Push a local policy lock to a policy group on the #{ChefDK::Dist::SERVER_PRODUCT}"
 
-  c.builtin "push-archive", :PushArchive, desc: "Push a policy archive to a policy group on your #{ChefDK::Dist::SERVER_PRODUCT}"
+  c.builtin "push-archive", :PushArchive, desc: "Push a policy archive to a policy group on the #{ChefDK::Dist::SERVER_PRODUCT}"
 
-  c.builtin "show-policy", :ShowPolicy, desc: "Show policyfile objects on your #{ChefDK::Dist::SERVER_PRODUCT}"
+  c.builtin "show-policy", :ShowPolicy, desc: "Show policyfile objects on the #{ChefDK::Dist::SERVER_PRODUCT}"
 
   c.builtin "diff", :Diff, desc: "Generate an itemized diff of two Policyfile lock documents"
 
   c.builtin "export", :Export, desc: "Export a policy lock as a #{ChefDK::Dist::ZERO_PRODUCT} code repo"
 
-  c.builtin "clean-policy-revisions", :CleanPolicyRevisions, desc: "Delete unused policy revisions on your #{ChefDK::Dist::SERVER_PRODUCT}"
+  c.builtin "clean-policy-revisions", :CleanPolicyRevisions, desc: "Delete unused policy revisions on the #{ChefDK::Dist::SERVER_PRODUCT}"
 
-  c.builtin "clean-policy-cookbooks", :CleanPolicyCookbooks, desc: "Delete unused policyfile cookbooks on your #{ChefDK::Dist::SERVER_PRODUCT}"
+  c.builtin "clean-policy-cookbooks", :CleanPolicyCookbooks, desc: "Delete unused policyfile cookbooks on the #{ChefDK::Dist::SERVER_PRODUCT}"
 
-  c.builtin "delete-policy-group", :DeletePolicyGroup, desc: "Delete a policy group on your #{ChefDK::Dist::SERVER_PRODUCT}"
+  c.builtin "delete-policy-group", :DeletePolicyGroup, desc: "Delete a policy group on the #{ChefDK::Dist::SERVER_PRODUCT}"
 
-  c.builtin "delete-policy", :DeletePolicy, desc: "Delete all revisions of a policy on your #{ChefDK::Dist::SERVER_PRODUCT}"
+  c.builtin "delete-policy", :DeletePolicy, desc: "Delete all revisions of a policy on the #{ChefDK::Dist::SERVER_PRODUCT}"
 
   c.builtin "undelete", :Undelete, desc: "Undo a delete command"
 
