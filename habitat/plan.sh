@@ -89,7 +89,7 @@ do_build() {
   bundle install --without dep_selector --no-deployment --jobs 2 --retry 5 --path $pkg_prefix
 
   gem build chef-dk.gemspec
-  gem install chef-dk-*.gem
+  gem install --no-doc chef-dk-*.gem
 }
 
 do_install() {
