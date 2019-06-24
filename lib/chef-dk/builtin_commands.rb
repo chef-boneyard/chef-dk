@@ -25,7 +25,7 @@ ChefDK.commands do |c|
                          desc: "Prints environment variables used by #{ChefDK::Dist::PRODUCT}"
 
   c.builtin "gem", :GemForwarder, require_path: "chef-dk/command/gem",
-                                  desc: "Runs the `gem` command in context of the the embedded Ruby"
+                                  desc: "Runs the `gem` command in context of the embedded Ruby"
 
   c.builtin "generate", :Generate, desc: "Generate a new repository, cookbook, or other component"
 
