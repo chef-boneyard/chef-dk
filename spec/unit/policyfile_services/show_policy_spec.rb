@@ -835,7 +835,7 @@ describe ChefDK::PolicyfileServices::ShowPolicy do
       end
 
       it "prints a message saying there is no policy assigned" do
-        message = "No policyfile lock named 'appserver' found in policy_group 'dev' at https://chef.example/organizations/monkeynews"
+        message = "No Policyfile lock named 'appserver' found in policy_group 'dev' at https://chef.example/organizations/monkeynews"
         expect { show_policy_service.run }.to raise_error(ChefDK::PolicyfileDownloadError, message)
       end
 

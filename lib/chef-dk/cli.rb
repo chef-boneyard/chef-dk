@@ -96,7 +96,7 @@ module ChefDK
     end
 
     def show_version
-      msg("#{ChefDK::Dist::PRODUCT}: #{ChefDK::VERSION}")
+      msg("#{ChefDK::Dist::PRODUCT} version: #{ChefDK::VERSION}")
       { "#{ChefDK::Dist::INFRA_CLIENT_PRODUCT}": "#{ChefDK::Dist::INFRA_CLIENT_CLI}",
         "#{ChefDK::Dist::INSPEC_PRODUCT}": "#{ChefDK::Dist::INSPEC_CLI}",
         "Test Kitchen": "kitchen",

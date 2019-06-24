@@ -78,12 +78,12 @@ describe ChefDK::Command::Base do
 
   it "should print the version for -v" do
     run_command(["-v"])
-    expect(stdout).to eq("Chef Development Kit Version: #{ChefDK::VERSION}\n")
+    expect(stdout).to eq("Chef Development Kit version: #{ChefDK::VERSION}\n")
   end
 
   it "should print the version for --version" do
     run_command(["--version"])
-    expect(stdout).to eq("Chef Development Kit Version: #{ChefDK::VERSION}\n")
+    expect(stdout).to eq("Chef Development Kit version: #{ChefDK::VERSION}\n")
   end
 
   it "should run the command passing in the custom options for long custom options" do
@@ -129,7 +129,7 @@ describe ChefDK::Command::Base do
                 --chef-license ACCEPTANCE    Accept the license for this product and any contained products ('accept', 'accept-no-persist', or 'accept-silent')
             -h, --help                       Show this message
             -u, --user                       If the user exists
-            -v, --version                    Show chef version
+            -v, --version                    Show Chef Development Kit version
 
       E
       expect(stdout).to eq(expected)
@@ -150,7 +150,7 @@ describe ChefDK::Command::Base do
                 --chef-license ACCEPTANCE    Accept the license for this product and any contained products ('accept', 'accept-no-persist', or 'accept-silent')
             -h, --help                       Show this message
             -u, --user                       If the user exists
-            -v, --version                    Show chef version
+            -v, --version                    Show Chef Development Kit version
 
       E
       expect(stdout).to eq(expected)

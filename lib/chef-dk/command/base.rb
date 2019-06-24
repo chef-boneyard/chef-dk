@@ -56,7 +56,7 @@ module ChefDK
           msg(opt_parser.to_s)
           0
         elsif needs_version?(params)
-          msg("#{ChefDK::Dist::PRODUCT} Version: #{ChefDK::VERSION}")
+          msg("#{ChefDK::Dist::PRODUCT} version: #{ChefDK::VERSION}")
           0
         else
           check_license_acceptance if enforce_license
