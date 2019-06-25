@@ -268,7 +268,7 @@ describe "Policyfile Comparison Bases" do
           comparison_base.lock
         rescue => exception
           expect(exception).to be_a_kind_of(ChefDK::PolicyfileDownloadError)
-          expect(exception.message).to eq("HTTP error attempting to fetch policyfile lock from https://chef.example/organizations/monkeynews")
+          expect(exception.message).to eq("HTTP error attempting to fetch Policyfile lock from https://chef.example/organizations/monkeynews")
           expect(exception.cause).to eq(http_exception)
         end
         expect(exception).to_not be_nil
@@ -302,7 +302,7 @@ describe "Policyfile Comparison Bases" do
           comparison_base.lock
         rescue => exception
           expect(exception).to be_a_kind_of(ChefDK::PolicyfileDownloadError)
-          expect(exception.message).to eq("No policyfile lock named 'chatserver' found in policy_group 'acceptance' at https://chef.example/organizations/monkeynews")
+          expect(exception.message).to eq("No Policyfile lock named 'chatserver' found in policy_group 'acceptance' at https://chef.example/organizations/monkeynews")
           expect(exception.cause).to eq(http_exception)
         end
         expect(exception).to_not be_nil

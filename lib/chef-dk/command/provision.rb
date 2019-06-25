@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +19,7 @@ require "ostruct"
 
 require "chef-dk/command/base"
 require "chef-dk/chef_runner"
+require "chef-dk/dist"
 
 module ChefDK
 
@@ -26,10 +27,10 @@ module ChefDK
 
     class Provision < Base
 
-      banner("DEPRECATED: Chef provisioning has been removed from ChefDK / Workstation. If you require Chef Provisioning you will need to install an earlier version of these products!")
+      banner("DEPRECATED: Chef provisioning has been removed from #{ChefDK::Dist::PRODUCT}. If you require Chef Provisioning you will need to install an earlier version of these products!")
 
       def run(params = [])
-        raise "Chef provisioning has been removed from ChefDK / Workstation. If you require Chef Provisioning you will need to install an earlier version of these products!"
+        raise "Chef provisioning has been removed from #{ChefDK::Dist::PRODUCT}. If you require Chef Provisioning you will need to install an earlier version of these products!"
       end
 
     end

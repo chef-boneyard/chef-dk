@@ -128,8 +128,8 @@ module ChefDK
         end
       rescue Net::ProtocolError => e
         if e.respond_to?(:response) && e.response.code.to_s == "404"
-          raise ChefDK::PolicyfileLockDownloadError.new("No policyfile lock named '#{policy_name}' found with revision '#{revision}' at #{http_client.url}") if revision
-          raise ChefDK::PolicyfileLockDownloadError.new("No policyfile lock named '#{policy_name}' found with policy group '#{policy_group}' at #{http_client.url}") if policy_group
+          raise ChefDK::PolicyfileLockDownloadError.new("No Policyfile lock named '#{policy_name}' found with revision '#{revision}' at #{http_client.url}") if revision
+          raise ChefDK::PolicyfileLockDownloadError.new("No Policyfile lock named '#{policy_name}' found with policy group '#{policy_group}' at #{http_client.url}") if policy_group
         else
           raise ChefDK::PolicyfileLockDownloadError.new("HTTP error attempting to fetch policyfile lock from #{http_client.url}")
         end

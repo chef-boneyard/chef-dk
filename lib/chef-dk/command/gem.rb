@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +16,7 @@
 #
 
 require "chef-dk/command/base"
+require "chef-dk/dist"
 require "rubygems"
 require "rubygems/gem_runner"
 require "rubygems/exceptions"
@@ -26,7 +27,7 @@ module ChefDK
 
     # Forwards all commands to rubygems.
     class GemForwarder < ChefDK::Command::Base
-      banner "Usage: chef gem GEM_COMMANDS_AND_OPTIONS"
+      banner "Usage: #{ChefDK::Dist::EXEC} gem GEM_COMMANDS_AND_OPTIONS"
 
       def run(params)
         retval = Gem::GemRunner.new.run( params.clone )

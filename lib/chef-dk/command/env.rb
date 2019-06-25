@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software Inc.
+# Copyright:: Copyright (c) 2015-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,13 +19,14 @@ require "chef-dk/command/base"
 require "chef-dk/cookbook_omnifetch"
 require "chef-dk/ui"
 require "chef-dk/version"
+require "chef-dk/dist"
 require "mixlib/shellout"
 require "yaml"
 
 module ChefDK
   module Command
     class Env < ChefDK::Command::Base
-      banner "Usage: chef env"
+      banner "Usage: #{ChefDK::Dist::EXEC} env"
 
       attr_accessor :ui
 
@@ -36,7 +37,7 @@ module ChefDK
 
       def run(params)
         info = {}
-        info["Chef Development Kit"] = Hash.new.tap do |chefdk_env|
+        info["#{ChefDK::Dist::PRODUCT}"] = Hash.new.tap do |chefdk_env|
           chefdk_env["ChefDK"] = chefdk_info
           chefdk_env["Ruby"] = ruby_info
           chefdk_env["Path"] = paths

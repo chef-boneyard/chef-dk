@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +19,7 @@ require "chef-dk/command/base"
 require "chef-dk/ui"
 require "chef-dk/policyfile_services/export_repo"
 require "chef-dk/configurable"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -28,15 +29,15 @@ module ChefDK
       include Configurable
 
       banner(<<~E)
-        Usage: chef export [ POLICY_FILE ] DESTINATION_DIRECTORY [options]
+        Usage: #{ChefDK::Dist::EXEC} export [ POLICY_FILE ] DESTINATION_DIRECTORY [options]
 
-        `chef export` creates a Chef Zero compatible Chef repository containing the
-        cookbooks described in a Policyfile.lock.json. The exported repository also
-        contains a .chef/config.rb which configures chef to apply your policy. Once the
+        `#{ChefDK::Dist::EXEC} export` creates a #{ChefDK::Dist::ZERO_PRODUCT} compatible #{ChefDK::Dist::INFRA_PRODUCT} repository containing the
+        cookbooks described in a Policyfile.lock.json. The exported repository also contains
+        a .chef/config.rb which configures #{ChefDK::Dist::INFRA_CLIENT_PRODUCT} to apply your policy. Once the
         exported repo is copied to the target machine, you can apply the policy to the
         machine with:
 
-        `chef-client -z`.
+        `#{ChefDK::Dist::INFRA_CLIENT_CLI} -z`.
 
         See our detailed README for more information:
 
@@ -89,7 +90,7 @@ module ChefDK
           ui.msg("")
           ui.msg("To converge this system with the exported policy, run:")
           ui.msg("  cd #{export_dir}")
-          ui.msg("  chef-client -z")
+          ui.msg("  #{ChefDK::Dist::INFRA_CLIENT_CLI} -z")
         end
         0
       rescue ExportDirNotEmpty => e

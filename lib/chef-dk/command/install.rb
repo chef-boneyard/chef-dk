@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +19,7 @@ require "chef-dk/command/base"
 require "chef-dk/ui"
 require "chef-dk/policyfile_services/install"
 require "chef-dk/configurable"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -28,13 +29,13 @@ module ChefDK
       include Configurable
 
       banner(<<~E)
-        Usage: chef install [ POLICY_FILE ] [options]
+        Usage: #{ChefDK::Dist::EXEC} install [ POLICY_FILE ] [options]
 
-        `chef install` evaluates a `Policyfile.rb` to find a compatible set of
+        `#{ChefDK::Dist::EXEC} install` evaluates a `Policyfile.rb` to find a compatible set of
         cookbooks for the policy's run_list and caches them locally. It emits a
         Policyfile.lock.json describing the locked cookbook set. You can use the
         lockfile to install the locked cookbooks on another machine. You can also push
-        the lockfile to a "policy group" on a Chef Infra Server and apply that exact set of
+        the lockfile to a "policy group" on a #{ChefDK::Dist::SERVER_PRODUCT} and apply that exact set of
         cookbooks to nodes in your infrastructure.
 
         See our detailed README for more information:

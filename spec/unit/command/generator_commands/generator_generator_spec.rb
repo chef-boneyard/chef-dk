@@ -182,8 +182,8 @@ describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
         metadata_content = IO.read(metadata_path)
         expected_metadata = <<~METADATA
           name             'my_cool_generator'
-          description      'Custom code generator cookbook for use with ChefDK'
-          long_description 'Custom code generator cookbook for use with ChefDK'
+          description      'Custom code generator cookbook for use with Chef Development Kit'
+          long_description 'Custom code generator cookbook for use with Chef Development Kit'
           version          '0.1.0'
 
         METADATA

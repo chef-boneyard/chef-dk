@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software Inc.
+# Copyright:: Copyright (c) 2015-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +19,7 @@ require "chef-dk/command/base"
 require "chef-dk/ui"
 require "chef-dk/configurable"
 require "chef-dk/policyfile_services/rm_policy"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -26,10 +27,10 @@ module ChefDK
     class DeletePolicy < Base
 
       banner(<<~BANNER)
-        Usage: chef delete-policy POLICY_NAME [options]
+        Usage: #{ChefDK::Dist::EXEC} delete-policy POLICY_NAME [options]
 
-        `chef delete-policy POLICY_NAME` deletes all revisions of the policy
-        `POLICY_NAME` on the configured Chef Infra Server. All policy revisions will be
+        `#{ChefDK::Dist::EXEC} delete-policy POLICY_NAME` deletes all revisions of the policy
+        `POLICY_NAME` on the configured #{ChefDK::Dist::SERVER_PRODUCT}. All policy revisions will be
         backed up locally, allowing you to undo this operation via the `chef undelete`
         command.
 
@@ -68,7 +69,7 @@ module ChefDK
       def run(params)
         return 1 unless apply_params!(params)
         rm_policy_service.run
-        ui.msg("This operation can be reversed by running `chef undelete --last`.")
+        ui.msg("This operation can be reversed by running `#{ChefDK::Dist::EXEC} undelete --last`.")
         0
       rescue PolicyfileServiceError => e
         handle_error(e)

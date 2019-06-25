@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,6 +20,7 @@ require "chef-dk/ui"
 require "chef-dk/policyfile_services/install"
 require "chef-dk/policyfile_services/update_attributes"
 require "chef-dk/configurable"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -29,9 +30,9 @@ module ChefDK
       include Configurable
 
       banner(<<~BANNER)
-        Usage: chef update [ POLICY_FILE ] [options] [cookbook_1] [...]
+        Usage: #{ChefDK::Dist::EXEC} update [ POLICY_FILE ] [options] [cookbook_1] [...]
 
-        `chef update` reads your `Policyfile.rb`, applies any changes, re-solves the
+        `#{ChefDK::Dist::EXEC} update` reads your `Policyfile.rb`, applies any changes, re-solves the
         dependencies and emits an updated `Policyfile.lock.json`. The new locked policy
         will reflect any changes to the `run_list` and pull in any cookbook updates
         that are compatible with the version constraints stated in your `Policyfile.rb`.

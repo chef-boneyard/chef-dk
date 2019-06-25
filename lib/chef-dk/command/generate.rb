@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018, Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019, Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,6 +30,7 @@ require "chef-dk/command/generator_commands/repo"
 require "chef-dk/command/generator_commands/policyfile"
 require "chef-dk/command/generator_commands/generator_generator"
 require "chef-dk/command/generator_commands/build_cookbook"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -52,14 +53,14 @@ module ChefDK
       generator(:file, :CookbookFile, "Generate a cookbook file")
       generator(:helpers, :Helpers, "Generate a cookbook helper file in libraries")
       generator(:resource, :Resource, "Generate a custom resource")
-      generator(:repo, :Repo, "Generate a Chef code repository")
+      generator(:repo, :Repo, "Generate a #{ChefDK::Dist::INFRA_PRODUCT} code repository")
       generator(:policyfile, :Policyfile, "Generate a Policyfile for use with the install/push commands")
-      generator(:generator, :GeneratorGenerator, "Copy ChefDK's generator cookbook so you can customize it")
-      generator(:'build-cookbook', :BuildCookbook, "Generate a build cookbook for use with Chef Workflow (Delivery)")
+      generator(:generator, :GeneratorGenerator, "Copy #{ChefDK::Dist::PRODUCT}'s generator cookbook so you can customize it")
+      generator(:'build-cookbook', :BuildCookbook, "Generate a build cookbook for use with #{ChefDK::Dist::WORKFLOW}")
 
       def self.banner_headline
         <<~E
-          Usage: chef generate GENERATOR [options]
+          Usage: #{ChefDK::Dist::EXEC} generate GENERATOR [options]
 
           Available generators:
         E

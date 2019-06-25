@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +18,7 @@
 require "chef-dk/command/base"
 require "chef-dk/exceptions"
 require "chef-dk/component_test"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -25,7 +26,7 @@ module ChefDK
 
       include ChefDK::Helpers
 
-      banner "Usage: chef verify [component, ...] [options]"
+      banner "Usage: #{ChefDK::Dist::EXEC} verify [component, ...] [options]"
 
       option :omnibus_dir,
         long: "--omnibus-dir OMNIBUS_DIR",

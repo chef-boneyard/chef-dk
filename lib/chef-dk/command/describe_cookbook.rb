@@ -1,6 +1,7 @@
 require "chef-dk/command/base"
 require "chef-dk/ui"
 require "chef-dk/cookbook_profiler/identifiers"
+require "chef-dk/dist"
 
 module ChefDK
   class IdDumper
@@ -48,7 +49,7 @@ module ChefDK
 
     class DescribeCookbook < ChefDK::Command::Base
 
-      banner "Usage: chef describe-cookbook <path/to/cookbook>"
+      banner "Usage: #{ChefDK::Dist::EXEC} describe-cookbook <path/to/cookbook>"
 
       attr_reader :cookbook_path
       attr_reader :ui

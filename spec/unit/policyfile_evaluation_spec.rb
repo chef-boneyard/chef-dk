@@ -53,7 +53,7 @@ describe ChefDK::PolicyfileCompiler do
 
         it "has a syntax error message" do
           expect(policyfile.errors.size).to eq(1)
-          expect(policyfile.errors.first).to match(/Invalid ruby syntax in policyfile 'TestPolicyfile.rb'/)
+          expect(policyfile.errors.first).to match(/Invalid Ruby syntax in Policyfile 'TestPolicyfile.rb'/)
         end
 
       end

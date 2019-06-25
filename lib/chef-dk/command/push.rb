@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +19,7 @@ require "chef-dk/command/base"
 require "chef-dk/ui"
 require "chef-dk/policyfile_services/push"
 require "chef-dk/configurable"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -28,9 +29,9 @@ module ChefDK
       include Configurable
 
       banner(<<~E)
-        Usage: chef push POLICY_GROUP [ POLICY_FILE ] [options]
+        Usage: #{ChefDK::Dist::EXEC} push POLICY_GROUP [ POLICY_FILE ] [options]
 
-        `chef push` Uploads an existing Policyfile.lock.json to a Chef Infra Server, along
+        `#{ChefDK::Dist::EXEC} push` Uploads an existing Policyfile.lock.json to a #{ChefDK::Dist::SERVER_PRODUCT}, along
         with all the cookbooks contained in the policy lock. The policy lock is applied
         to a specific POLICY_GROUP, which is a set of nodes that share the same
         run_list and cookbooks.

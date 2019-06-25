@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -45,7 +45,7 @@ module ChefDK
       message = "Could not find cookbook(s) to satisfy run list #{run_list.inspect} in #{cookbook_path}"
       raise CookbookNotFound.new(message, e)
     rescue => e
-      raise ChefConvergeError.new("Chef failed to converge: #{e} from file #{e.backtrace.first}", e)
+      raise ChefConvergeError.new("#{ChefDK::Dist::INFRA_PRODUCT} failed to converge: #{e} from file #{e.backtrace.first}", e)
     end
 
     def run_context

@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,6 +21,7 @@ require "chef-dk/version"
 require "chef/exceptions"
 require "license_acceptance/acceptor"
 require "license_acceptance/cli_flags/mixlib_cli"
+require "chef-dk/dist"
 
 module ChefDK
   module Command
@@ -38,7 +39,7 @@ module ChefDK
       option :version,
         short: "-v",
         long: "--version",
-        description: "Show chef version",
+        description: "Show #{ChefDK::Dist::PRODUCT} version",
         boolean: true
 
       def initialize
@@ -55,7 +56,7 @@ module ChefDK
           msg(opt_parser.to_s)
           0
         elsif needs_version?(params)
-          msg("Chef Development Kit Version: #{ChefDK::VERSION}")
+          msg("#{ChefDK::Dist::PRODUCT} version: #{ChefDK::VERSION}")
           0
         else
           check_license_acceptance if enforce_license

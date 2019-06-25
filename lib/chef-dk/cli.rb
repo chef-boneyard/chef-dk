@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,6 +21,7 @@ require "chef-dk/commands_map"
 require "chef-dk/builtin_commands"
 require "chef-dk/helpers"
 require "chef-dk/ui"
+require "chef-dk/dist"
 require "chef/util/path_helper"
 require "chef/mixin/shell_out"
 require "bundler"
@@ -41,7 +42,7 @@ module ChefDK
     option :version,
       short: "-v",
       long: "--version",
-      description: "Show chef version",
+      description: "Show #{ChefDK::Dist::PRODUCT} version",
       boolean: true
 
     option :help,
@@ -95,9 +96,9 @@ module ChefDK
     end
 
     def show_version
-      msg("Chef Development Kit Version: #{ChefDK::VERSION}")
-      { "Chef Infra Client": "chef-client",
-        "Chef InSpec": "inspec",
+      msg("#{ChefDK::Dist::PRODUCT} version: #{ChefDK::VERSION}")
+      { "#{ChefDK::Dist::INFRA_CLIENT_PRODUCT}": "#{ChefDK::Dist::INFRA_CLIENT_CLI}",
+        "#{ChefDK::Dist::INSPEC_PRODUCT}": "#{ChefDK::Dist::INSPEC_CLI}",
         "Test Kitchen": "kitchen",
         "Foodcritic": "foodcritic",
         "Cookstyle": "cookstyle",
@@ -193,11 +194,11 @@ module ChefDK
         if bin_index
           if embed_index < bin_index
             err("WARN: #{omnibus_embedded_bin_dir} is before #{omnibus_bin_dir} in your #{path_key}, please reverse that order.")
-            err("WARN: consider using the correct `chef shell-init <shell>` command to setup your environment correctly.")
+            err("WARN: consider using the correct `#{ChefDK::Dist::EXEC} shell-init <shell>` command to setup your environment correctly.")
           end
         else
           err("WARN: only #{omnibus_embedded_bin_dir} is present in your path, you must add #{omnibus_bin_dir} before that directory.")
-          err("WARN: consider using the correct `chef shell-init <shell>` command to setup your environment correctly.")
+          err("WARN: consider using the correct `#{ChefDK::Dist::EXEC} shell-init <shell>` command to setup your environment correctly.")
         end
       end
     end

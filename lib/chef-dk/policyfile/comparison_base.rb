@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software Inc.
+# Copyright:: Copyright (c) 2015-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -108,12 +108,12 @@ module ChefDK
           http_client.get("policy_groups/#{group}/policies/#{policy_name}")
         rescue Net::ProtocolError => e
           if e.respond_to?(:response) && e.response.code.to_s == "404"
-            raise PolicyfileDownloadError.new("No policyfile lock named '#{policy_name}' found in policy_group '#{group}' at #{http_client.url}", e)
+            raise PolicyfileDownloadError.new("No Policyfile lock named '#{policy_name}' found in policy_group '#{group}' at #{http_client.url}", e)
           else
-            raise PolicyfileDownloadError.new("HTTP error attempting to fetch policyfile lock from #{http_client.url}", e)
+            raise PolicyfileDownloadError.new("HTTP error attempting to fetch Policyfile lock from #{http_client.url}", e)
           end
         rescue => e
-          raise PolicyfileDownloadError.new("Failed to fetch policyfile lock from #{http_client.url}", e)
+          raise PolicyfileDownloadError.new("Failed to fetch Policyfile lock from #{http_client.url}", e)
         end
 
       end
