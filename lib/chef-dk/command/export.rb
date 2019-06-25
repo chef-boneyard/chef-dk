@@ -31,7 +31,7 @@ module ChefDK
       banner(<<~E)
         Usage: #{ChefDK::Dist::EXEC} export [ POLICY_FILE ] DESTINATION_DIRECTORY [options]
 
-        `chef export` creates a #{ChefDK::Dist::ZERO_PRODUCT} compatible #{ChefDK::Dist::INFRA_PRODUCT} repository containing the
+        `#{ChefDK::Dist::EXEC} export` creates a #{ChefDK::Dist::ZERO_PRODUCT} compatible #{ChefDK::Dist::INFRA_PRODUCT} repository containing the
         cookbooks described in a Policyfile.lock.json. The exported repository also contains
         a .chef/config.rb which configures #{ChefDK::Dist::INFRA_CLIENT_PRODUCT} to apply your policy. Once the
         exported repo is copied to the target machine, you can apply the policy to the
