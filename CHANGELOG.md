@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.80 -->
-## [v4.0.80](https://github.com/chef/chef-dk/tree/v4.0.80) (2019-06-24)
+<!-- latest_release 4.0.81 -->
+## [v4.0.81](https://github.com/chef/chef-dk/tree/v4.0.81) (2019-06-25)
 
 #### Merged Pull Requests
-- Remove Solaris support from the component_check code [#2148](https://github.com/chef/chef-dk/pull/2148) ([tas50](https://github.com/tas50))
+- Add Dist file to control the product / CLI names [#2146](https://github.com/chef/chef-dk/pull/2146) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- Add Dist file to control the product / CLI names [#2146](https://github.com/chef/chef-dk/pull/2146) ([tas50](https://github.com/tas50)) <!-- 4.0.81 -->
 - Remove Solaris support from the component_check code [#2148](https://github.com/chef/chef-dk/pull/2148) ([tas50](https://github.com/tas50)) <!-- 4.0.80 -->
 - Fix habitat packages that didn&#39;t build [#2133](https://github.com/chef/chef-dk/pull/2133) ([tas50](https://github.com/tas50)) <!-- 4.0.79 -->
 - Update ohai to 15.1.5 and ffi-libarchive to 0.4.10 [#2147](https://github.com/chef/chef-dk/pull/2147) ([tas50](https://github.com/tas50)) <!-- 4.0.78 -->
