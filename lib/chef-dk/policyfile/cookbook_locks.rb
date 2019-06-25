@@ -15,17 +15,17 @@
 # limitations under the License.
 #
 
-require "forwardable"
+require "forwardable" unless defined?(Forwardable)
 
-require "chef-dk/exceptions"
+require_relative "../exceptions"
 
-require "chef-dk/cookbook_profiler/null_scm"
-require "chef-dk/cookbook_profiler/git"
+require_relative "../cookbook_profiler/null_scm"
+require_relative "../cookbook_profiler/git"
 
-require "chef-dk/cookbook_profiler/identifiers"
-require "chef-dk/policyfile/storage_config"
+require_relative "../cookbook_profiler/identifiers"
+require_relative "storage_config"
 
-require "chef-dk/policyfile/cookbook_location_specification"
+require_relative "cookbook_location_specification"
 
 module ChefDK
 

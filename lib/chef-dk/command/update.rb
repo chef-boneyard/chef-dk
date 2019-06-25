@@ -15,12 +15,12 @@
 # limitations under the License.
 #
 
-require "chef-dk/command/base"
-require "chef-dk/ui"
-require "chef-dk/policyfile_services/install"
-require "chef-dk/policyfile_services/update_attributes"
-require "chef-dk/configurable"
-require "chef-dk/dist"
+require_relative "base"
+require_relative "../ui"
+require_relative "../policyfile_services/install"
+require_relative "../policyfile_services/update_attributes"
+require_relative "../configurable"
+require_relative "../dist"
 
 module ChefDK
   module Command

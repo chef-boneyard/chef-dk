@@ -15,12 +15,12 @@
 # limitations under the License.
 #
 
-require "fileutils"
+require "fileutils" unless defined?(FileUtils)
 
-require "ffi_yajl"
+require "ffi_yajl" unless defined?(FFI_Yajl)
 
-require "chef-dk/helpers"
-require "chef-dk/policyfile/undo_record"
+require_relative "../helpers"
+require_relative "undo_record"
 
 module ChefDK
   module Policyfile

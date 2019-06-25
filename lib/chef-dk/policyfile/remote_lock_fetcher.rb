@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-require "chef-dk/policyfile_lock"
-require "chef-dk/policyfile/lock_fetcher_mixin"
-require "chef-dk/exceptions"
+require_relative "../policyfile_lock"
+require_relative "lock_fetcher_mixin"
+require_relative "../exceptions"
 require "chef/http"
-require "tempfile"
+require "tempfile" unless defined?(Tempfile)
 
 module ChefDK
   module Policyfile

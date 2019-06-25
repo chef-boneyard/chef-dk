@@ -18,7 +18,7 @@
 require "diff/lcs"
 require "diff/lcs/hunk"
 require "paint"
-require "ffi_yajl"
+require "ffi_yajl" unless defined?(FFI_Yajl)
 
 module ChefDK
   module Policyfile

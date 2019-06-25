@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require "chef-dk/command/generator_commands/cookbook_code_file"
-require "chef-dk/dist"
+require_relative "cookbook_code_file"
+require_relative "../../dist"
 
 module ChefDK
   module Command

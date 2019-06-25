@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require "chef-dk/exceptions"
+require_relative "../exceptions"
 require "chef/cookbook_loader"
 require "chef/cookbook/file_system_file_vendor"
-require "chef-dk/ui"
+require_relative "../ui"
 
 module ChefDK
   module Policyfile

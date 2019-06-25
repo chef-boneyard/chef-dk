@@ -16,9 +16,9 @@
 #
 
 require "json"
-require "chef-dk/cookbook_omnifetch"
-require "chef-dk/policyfile/source_uri"
-require "chef-dk/exceptions"
+require_relative "../cookbook_omnifetch"
+require_relative "source_uri"
+require_relative "../exceptions"
 require "chef/http/simple"
 
 module ChefDK

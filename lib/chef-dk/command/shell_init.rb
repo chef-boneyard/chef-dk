@@ -17,11 +17,11 @@
 
 require "erb"
 
-require "chef-dk/commands_map"
-require "chef-dk/builtin_commands"
-require "chef-dk/command/base"
-require "chef-dk/dist"
-require "mixlib/shellout"
+require_relative "../commands_map"
+require_relative "../builtin_commands"
+require_relative "base"
+require_relative "../dist"
+require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
 
 module ChefDK
 

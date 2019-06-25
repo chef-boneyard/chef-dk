@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-require "chef-dk/helpers"
-require "chef-dk/policyfile/storage_config"
-require "chef-dk/policyfile/lock_applier"
-require "chef-dk/service_exceptions"
-require "chef-dk/policyfile_compiler"
+require_relative "../helpers"
+require_relative "../policyfile/storage_config"
+require_relative "../policyfile/lock_applier"
+require_relative "../service_exceptions"
+require_relative "../policyfile_compiler"
 
 module ChefDK
   module PolicyfileServices

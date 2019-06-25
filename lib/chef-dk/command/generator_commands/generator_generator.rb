@@ -15,12 +15,12 @@
 # limitations under the License.
 #
 
-require "fileutils"
+require "fileutils" unless defined?(FileUtils)
 
-require "chef-dk/configurable"
-require "chef-dk/ui"
-require "chef-dk/command/generator_commands/base"
-require "chef-dk/dist"
+require_relative "../../configurable"
+require_relative "../../ui"
+require_relative "base"
+require_relative "../../dist"
 
 module ChefDK
   module Command

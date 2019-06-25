@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-require "chef-dk/policyfile_lock"
-require "chef-dk/exceptions"
-require "chef-dk/helpers"
-require "mixlib/shellout"
-require "tmpdir"
+require_relative "../policyfile_lock"
+require_relative "../exceptions"
+require_relative "../helpers"
+require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
+require "tmpdir" unless defined?(Dir.mktmpdir)
 
 module ChefDK
   module Policyfile

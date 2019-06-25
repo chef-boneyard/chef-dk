@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require "chef-dk/policyfile/cookbook_sources"
-require "chef-dk/policyfile/cookbook_location_specification"
-require "chef-dk/policyfile/storage_config"
-require "chef-dk/policyfile/policyfile_location_specification"
+require_relative "cookbook_sources"
+require_relative "cookbook_location_specification"
+require_relative "storage_config"
+require_relative "policyfile_location_specification"
 
 require "chef/node/attribute"
 require "chef/run_list/run_list_item"

@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require "chef-dk/service_exceptions"
+require_relative "../service_exceptions"
 require "chef/server_api"
-require "chef-dk/policyfile/undo_stack"
-require "chef-dk/policyfile/undo_record"
+require_relative "../policyfile/undo_stack"
+require_relative "../policyfile/undo_record"
 
 module ChefDK
   module PolicyfileServices

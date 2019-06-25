@@ -15,12 +15,12 @@
 # limitations under the License.
 #
 
-require "chef-dk/policyfile_lock"
-require "chef-dk/policyfile/local_lock_fetcher"
-require "chef-dk/policyfile/remote_lock_fetcher"
-require "chef-dk/policyfile/chef_server_lock_fetcher"
-require "chef-dk/policyfile/git_lock_fetcher"
-require "chef-dk/exceptions"
+require_relative "../policyfile_lock"
+require_relative "local_lock_fetcher"
+require_relative "remote_lock_fetcher"
+require_relative "chef_server_lock_fetcher"
+require_relative "git_lock_fetcher"
+require_relative "../exceptions"
 
 module ChefDK
   module Policyfile

@@ -15,12 +15,12 @@
 # limitations under the License.
 #
 
-require "chef-dk/command/base"
-require "chef-dk/cookbook_omnifetch"
-require "chef-dk/ui"
-require "chef-dk/version"
-require "chef-dk/dist"
-require "mixlib/shellout"
+require_relative "base"
+require_relative "../cookbook_omnifetch"
+require_relative "../ui"
+require_relative "../version"
+require_relative "../dist"
+require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
 require "yaml"
 
 module ChefDK

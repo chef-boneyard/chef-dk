@@ -15,22 +15,22 @@
 # limitations under the License.
 #
 
-require "chef-dk/command/base"
-require "chef-dk/command/generator_commands"
-require "chef-dk/command/generator_commands/base"
-require "chef-dk/command/generator_commands/cookbook_code_file"
-require "chef-dk/command/generator_commands/cookbook"
-require "chef-dk/command/generator_commands/attribute"
-require "chef-dk/command/generator_commands/cookbook_file"
-require "chef-dk/command/generator_commands/helpers"
-require "chef-dk/command/generator_commands/resource"
-require "chef-dk/command/generator_commands/recipe"
-require "chef-dk/command/generator_commands/template"
-require "chef-dk/command/generator_commands/repo"
-require "chef-dk/command/generator_commands/policyfile"
-require "chef-dk/command/generator_commands/generator_generator"
-require "chef-dk/command/generator_commands/build_cookbook"
-require "chef-dk/dist"
+require_relative "base"
+require_relative "generator_commands"
+require_relative "generator_commands/base"
+require_relative "generator_commands/cookbook_code_file"
+require_relative "generator_commands/cookbook"
+require_relative "generator_commands/attribute"
+require_relative "generator_commands/cookbook_file"
+require_relative "generator_commands/helpers"
+require_relative "generator_commands/resource"
+require_relative "generator_commands/recipe"
+require_relative "generator_commands/template"
+require_relative "generator_commands/repo"
+require_relative "generator_commands/policyfile"
+require_relative "generator_commands/generator_generator"
+require_relative "generator_commands/build_cookbook"
+require_relative "../dist"
 
 module ChefDK
   module Command

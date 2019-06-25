@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "chef-dk/helpers"
+require_relative "../helpers"
 
 module ChefDK
   module CookbookProfiler

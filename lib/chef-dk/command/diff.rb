@@ -15,14 +15,14 @@
 # limitations under the License.
 #
 
-require "chef-dk/command/base"
-require "chef-dk/ui"
-require "chef-dk/pager"
-require "chef-dk/policyfile/differ"
-require "chef-dk/policyfile/comparison_base"
-require "chef-dk/policyfile/storage_config"
-require "chef-dk/configurable"
-require "chef-dk/dist"
+require_relative "base"
+require_relative "../ui"
+require_relative "../pager"
+require_relative "../policyfile/differ"
+require_relative "../policyfile/comparison_base"
+require_relative "../policyfile/storage_config"
+require_relative "../configurable"
+require_relative "../dist"
 require "chef/server_api"
 
 module ChefDK

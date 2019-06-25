@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require "chef-dk/command/generator_commands/base"
-require "chef-dk/dist"
+require_relative "base"
+require_relative "../../dist"
 
 module ChefDK
   module Command

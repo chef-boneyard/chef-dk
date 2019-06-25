@@ -15,12 +15,12 @@
 # limitations under the License.
 #
 
-require "mixlib/cli"
+require "mixlib/cli" unless defined?(Mixlib::CLI)
 require "rbconfig"
-require "pathname"
-require "chef-dk/command/base"
-require "chef-dk/chef_runner"
-require "chef-dk/generator"
+require "pathname" unless defined?(Pathname)
+require_relative "base"
+require_relative "../chef_runner"
+require_relative "../generator"
 
 module ChefDK
   module Command

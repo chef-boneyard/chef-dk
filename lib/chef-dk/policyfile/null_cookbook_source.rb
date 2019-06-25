@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "chef-dk/exceptions"
+require_relative "../exceptions"
 
 module ChefDK
   module Policyfile

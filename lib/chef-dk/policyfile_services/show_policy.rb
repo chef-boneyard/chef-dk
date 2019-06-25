@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require "chef-dk/policyfile/comparison_base"
-require "chef-dk/policyfile/lister"
-require "chef-dk/pager"
+require_relative "../policyfile/comparison_base"
+require_relative "../policyfile/lister"
+require_relative "../pager"
 
 module ChefDK
   module PolicyfileServices

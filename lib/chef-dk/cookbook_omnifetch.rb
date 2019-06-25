@@ -16,9 +16,9 @@
 #
 
 require "cookbook-omnifetch"
-require "chef-dk/shell_out"
-require "chef-dk/cookbook_metadata"
-require "chef-dk/helpers"
+require_relative "shell_out"
+require_relative "cookbook_metadata"
+require_relative "helpers"
 
 require "chef/http/simple"
 

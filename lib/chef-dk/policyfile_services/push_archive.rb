@@ -18,10 +18,10 @@
 require "zlib"
 require "archive/tar/minitar"
 
-require "chef-dk/service_exceptions"
-require "chef-dk/policyfile_lock"
+require_relative "../service_exceptions"
+require_relative "../policyfile_lock"
 require "chef/server_api"
-require "chef-dk/policyfile/uploader"
+require_relative "../policyfile/uploader"
 
 module ChefDK
   module PolicyfileServices

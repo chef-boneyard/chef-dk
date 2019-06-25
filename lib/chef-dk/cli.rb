@@ -15,13 +15,13 @@
 # limitations under the License.
 #
 
-require "mixlib/cli"
-require "chef-dk/version"
-require "chef-dk/commands_map"
-require "chef-dk/builtin_commands"
-require "chef-dk/helpers"
-require "chef-dk/ui"
-require "chef-dk/dist"
+require "mixlib/cli" unless defined?(Mixlib::CLI)
+require_relative "version"
+require_relative "commands_map"
+require_relative "builtin_commands"
+require_relative "helpers"
+require_relative "ui"
+require_relative "dist"
 require "chef/util/path_helper"
 require "chef/mixin/shell_out"
 require "bundler"

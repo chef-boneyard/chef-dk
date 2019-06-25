@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require "chef-dk/command/base"
-require "chef-dk/exceptions"
-require "chef-dk/component_test"
-require "chef-dk/dist"
+require_relative "base"
+require_relative "../exceptions"
+require_relative "../component_test"
+require_relative "../dist"
 
 module ChefDK
   module Command
@@ -297,7 +297,7 @@ module ChefDK
         c.gem_base_dir = "chef"
 
         test = <<-EOF.gsub(/^\s+/, "")
-        require "net/http"
+        require "net/http" unless defined?(Net::HTTP)
 
         uris = %w{https://www.google.com https://chef.io/ https://ec2.amazonaws.com}
         uris.each do |uri|

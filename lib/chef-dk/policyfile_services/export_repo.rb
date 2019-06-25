@@ -15,18 +15,18 @@
 # limitations under the License.
 #
 
-require "pathname"
-require "fileutils"
-require "tmpdir"
+require "pathname" unless defined?(Pathname)
+require "fileutils" unless defined?(FileUtils)
+require "tmpdir" unless defined?(Dir.mktmpdir)
 require "zlib"
 
 require "archive/tar/minitar"
 
 require "chef/cookbook/chefignore"
 
-require "chef-dk/service_exceptions"
-require "chef-dk/policyfile_lock"
-require "chef-dk/policyfile/storage_config"
+require_relative "../service_exceptions"
+require_relative "../policyfile_lock"
+require_relative "../policyfile/storage_config"
 
 module ChefDK
   module PolicyfileServices

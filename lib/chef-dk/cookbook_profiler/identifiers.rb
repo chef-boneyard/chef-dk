@@ -16,13 +16,13 @@
 #
 
 # TODO: Chef should require its dependency correctly.
-require "singleton"
+require "singleton" unless defined?(Singleton)
 require "chef/cookbook/cookbook_version_loader"
 require "digest/sha1"
 
 require "chef/digester"
 
-require "chef-dk/exceptions"
+require_relative "../exceptions"
 
 module ChefDK
   module CookbookProfiler
