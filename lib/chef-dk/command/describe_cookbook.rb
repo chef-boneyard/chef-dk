@@ -1,7 +1,7 @@
-require "chef-dk/command/base"
-require "chef-dk/ui"
-require "chef-dk/cookbook_profiler/identifiers"
-require "chef-dk/dist"
+require_relative "base"
+require_relative "../ui"
+require_relative "../cookbook_profiler/identifiers"
+require_relative "../dist"
 
 module ChefDK
   class IdDumper

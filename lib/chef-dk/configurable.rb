@@ -18,8 +18,8 @@
 require "chef/config"
 require "chef/workstation_config_loader"
 
-require "chef-dk/cookbook_omnifetch"
-require "chef-dk/chef_server_api_multi"
+require_relative "cookbook_omnifetch"
+require_relative "chef_server_api_multi"
 
 # Define a config context for ChefDK
 class Chef::Config

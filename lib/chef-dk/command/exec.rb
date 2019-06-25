@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require "chef-dk/command/base"
-require "chef-dk/dist"
-require "mixlib/shellout"
+require_relative "base"
+require_relative "../dist"
+require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
 
 module ChefDK
   module Command

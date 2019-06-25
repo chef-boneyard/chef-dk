@@ -16,10 +16,10 @@
 #
 
 require "chef/cookbook_uploader"
-require "chef-dk/policyfile/read_cookbook_for_compat_mode_upload"
+require_relative "read_cookbook_for_compat_mode_upload"
 
-require "chef-dk/ui"
-require "chef-dk/policyfile/reports/upload"
+require_relative "../ui"
+require_relative "reports/upload"
 
 module ChefDK
   module Policyfile

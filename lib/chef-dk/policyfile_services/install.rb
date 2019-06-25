@@ -15,14 +15,14 @@
 # limitations under the License.
 #
 
-require "ffi_yajl"
+require "ffi_yajl" unless defined?(FFI_Yajl)
 
-require "chef-dk/helpers"
-require "chef-dk/service_exceptions"
-require "chef-dk/policyfile_compiler"
-require "chef-dk/policyfile/storage_config"
-require "chef-dk/policyfile_lock"
-require "chef-dk/policyfile/lock_applier"
+require_relative "../helpers"
+require_relative "../service_exceptions"
+require_relative "../policyfile_compiler"
+require_relative "../policyfile/storage_config"
+require_relative "../policyfile_lock"
+require_relative "../policyfile/lock_applier"
 
 module ChefDK
   module PolicyfileServices

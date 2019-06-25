@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require "chef-dk/policyfile/null_cookbook_source"
-require "chef-dk/policyfile/community_cookbook_source"
-require "chef-dk/policyfile/chef_server_cookbook_source"
-require "chef-dk/policyfile/chef_repo_cookbook_source"
-require "chef-dk/policyfile/delivery_supermarket_source"
-require "chef-dk/policyfile/artifactory_cookbook_source"
+require_relative "null_cookbook_source"
+require_relative "community_cookbook_source"
+require_relative "chef_server_cookbook_source"
+require_relative "chef_repo_cookbook_source"
+require_relative "delivery_supermarket_source"
+require_relative "artifactory_cookbook_source"

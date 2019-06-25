@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require "addressable/uri"
-require "chef-dk/exceptions"
+require "addressable/uri" unless defined?(Addressable::URI)
+require_relative "../exceptions"
 
 module ChefDK
   module Policyfile

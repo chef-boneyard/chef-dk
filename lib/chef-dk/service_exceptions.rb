@@ -20,7 +20,7 @@
 # dependencies, so they are split into their own file here.
 ##
 
-require "chef-dk/service_exception_inspectors"
+require_relative "service_exception_inspectors"
 
 module ChefDK
 

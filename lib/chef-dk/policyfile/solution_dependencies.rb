@@ -16,8 +16,8 @@
 #
 
 require "semverse"
-require "set"
-require "chef-dk/exceptions"
+require "set" unless defined?(Set)
+require_relative "../exceptions"
 
 module ChefDK
   module Policyfile

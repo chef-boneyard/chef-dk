@@ -15,20 +15,20 @@
 # limitations under the License.
 #
 
-require "set"
-require "forwardable"
+require "set" unless defined?(Set)
+require "forwardable" unless defined?(Forwardable)
 
 require "solve"
 require "chef/run_list"
 require "chef/mixin/deep_merge"
 
-require "chef-dk/policyfile/dsl"
-require "chef-dk/policyfile/attribute_merge_checker"
-require "chef-dk/policyfile/included_policies_cookbook_source"
-require "chef-dk/policyfile_lock"
-require "chef-dk/ui"
-require "chef-dk/policyfile/reports/install"
-require "chef-dk/exceptions"
+require_relative "policyfile/dsl"
+require_relative "policyfile/attribute_merge_checker"
+require_relative "policyfile/included_policies_cookbook_source"
+require_relative "policyfile_lock"
+require_relative "ui"
+require_relative "policyfile/reports/install"
+require_relative "exceptions"
 
 module ChefDK
 

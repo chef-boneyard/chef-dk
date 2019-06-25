@@ -16,12 +16,12 @@
 # limitations under the License.
 #
 
-require "digest/sha2"
+require "digest/sha2" unless defined?(Digest::SHA2)
 
-require "chef-dk/policyfile/storage_config"
-require "chef-dk/policyfile/cookbook_locks"
-require "chef-dk/policyfile/solution_dependencies"
-require "chef-dk/ui"
+require_relative "policyfile/storage_config"
+require_relative "policyfile/cookbook_locks"
+require_relative "policyfile/solution_dependencies"
+require_relative "ui"
 
 module ChefDK
 

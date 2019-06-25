@@ -16,8 +16,8 @@
 #
 
 require "semverse"
-require "chef-dk/cookbook_omnifetch"
-require "chef-dk/policyfile/storage_config"
+require_relative "../cookbook_omnifetch"
+require_relative "storage_config"
 
 module ChefDK
   module Policyfile

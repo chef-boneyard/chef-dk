@@ -15,12 +15,12 @@
 # limitations under the License.
 #
 
-require "chef-dk/command/base"
-require "chef-dk/dist"
-require "rubygems"
+require_relative "base"
+require_relative "../dist"
+require "rubygems" unless defined?(Gem)
 require "rubygems/gem_runner"
 require "rubygems/exceptions"
-require "pp"
+require "pp" unless defined?(PP)
 
 module ChefDK
   module Command

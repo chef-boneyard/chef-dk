@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require "ffi_yajl"
-require "chef-dk/exceptions"
-require "chef-dk/policyfile/source_uri"
-require "chef-dk/chef_server_api_multi"
+require "ffi_yajl" unless defined?(FFI_Yajl)
+require_relative "../exceptions"
+require_relative "source_uri"
+require_relative "../chef_server_api_multi"
 
 module ChefDK
   module Policyfile

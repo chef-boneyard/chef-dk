@@ -15,13 +15,13 @@
 # limitations under the License.
 #
 
-require "chef-dk/exceptions"
-require "chef-dk/service_exceptions"
+require_relative "exceptions"
+require_relative "service_exceptions"
 require "chef/policy_builder/dynamic"
 require "chef"
 
-require "chef-dk/command/generator_commands/chef_exts/quieter_doc_formatter"
-require "chef-dk/command/generator_commands/chef_exts/recipe_dsl_ext"
+require_relative "command/generator_commands/chef_exts/quieter_doc_formatter"
+require_relative "command/generator_commands/chef_exts/recipe_dsl_ext"
 
 module ChefDK
 

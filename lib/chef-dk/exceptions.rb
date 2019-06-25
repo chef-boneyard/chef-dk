@@ -51,7 +51,7 @@ module ChefDK
   end
 
   class OmnibusInstallNotFound < RuntimeError
-    require "chef-dk/dist"
+    require_relative "dist"
 
     def initialize
       super("Can not find omnibus installation directory for #{ChefDK::Dist::PRODUCT}.")

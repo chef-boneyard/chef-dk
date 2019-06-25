@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "chef-dk/ui"
+require_relative "../ui"
 
 module ChefDK
   module Policyfile

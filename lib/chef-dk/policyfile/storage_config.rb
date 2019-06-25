@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require "chef-dk/cookbook_omnifetch"
-require "chef-dk/exceptions"
+require_relative "../cookbook_omnifetch"
+require_relative "../exceptions"
 
 module ChefDK
   module Policyfile

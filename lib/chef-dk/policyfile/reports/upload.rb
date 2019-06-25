@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "chef-dk/policyfile/reports/table_printer"
+require_relative "table_printer"
 
 module ChefDK
   module Policyfile

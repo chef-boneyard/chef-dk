@@ -17,9 +17,9 @@
 
 require "ostruct"
 
-require "chef-dk/command/base"
-require "chef-dk/chef_runner"
-require "chef-dk/dist"
+require_relative "base"
+require_relative "../chef_runner"
+require_relative "../dist"
 
 module ChefDK
 

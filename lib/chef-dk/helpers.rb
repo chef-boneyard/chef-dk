@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require "mixlib/shellout"
-require "chef-dk/exceptions"
+require "mixlib/shellout" unless defined?(Mixlib::ShellOut)
+require_relative "exceptions"
 
 module ChefDK
   module Helpers

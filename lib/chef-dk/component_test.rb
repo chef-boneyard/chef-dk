@@ -15,8 +15,8 @@
 # limitations under the License.
 #
 
-require "chef-dk/exceptions"
-require "chef-dk/helpers"
+require_relative "exceptions"
+require_relative "helpers"
 
 # https://github.com/bundler/bundler/issues/4368
 # As of rubygems 2.6.2, Rubygems will call Bundler::SpecSet#size, which does

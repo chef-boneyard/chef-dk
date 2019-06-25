@@ -16,8 +16,8 @@
 #
 
 require "chef/server_api"
-require "chef-dk/service_exceptions"
-require "chef-dk/policyfile/undo_stack"
+require_relative "../service_exceptions"
+require_relative "../policyfile/undo_stack"
 
 module ChefDK
   module PolicyfileServices

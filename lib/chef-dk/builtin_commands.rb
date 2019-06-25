@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require "chef-dk/dist"
+require_relative "dist"
 
 ChefDK.commands do |c|
   c.builtin "exec", :Exec, require_path: "chef-dk/command/exec",

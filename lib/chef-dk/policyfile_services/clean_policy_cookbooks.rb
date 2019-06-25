@@ -15,10 +15,10 @@
 # limitations under the License.
 #
 
-require "set"
+require "set" unless defined?(Set)
 
 require "chef/server_api"
-require "chef-dk/service_exceptions"
+require_relative "../service_exceptions"
 
 module ChefDK
   module PolicyfileServices

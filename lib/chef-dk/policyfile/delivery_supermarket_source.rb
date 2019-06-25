@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-require "forwardable"
+require "forwardable" unless defined?(Forwardable)
 
 require "semverse"
 
-require "chef-dk/policyfile/community_cookbook_source"
+require_relative "community_cookbook_source"
 
 module ChefDK
   module Policyfile
