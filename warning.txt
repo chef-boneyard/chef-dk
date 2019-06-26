@@ -1,9 +1,8 @@
-Thanks for installing chef-dk! Unfortunately, since Chef Development Kit is
+Thanks for installing chef-dk! Unfortunately, since ChefDK is
 supposed to be installed as the omnibus binaries in order to support various
 platforms, this is not the official way to install chef-dk.
 
 Please download the latest version for your operating system from the URL below,
 and make sure you have uninstalled your chef-dk gem to avoid conflicts:
 
-https://downloads.chef.io/chef-dk/
-
+https://downloads.chef.io/chefdk

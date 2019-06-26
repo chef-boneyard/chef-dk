@@ -54,7 +54,7 @@ describe ChefDK::CLI do
     E
   end
 
-  let(:version_message) { "Chef Development Kit version: #{ChefDK::VERSION}\n" }
+  let(:version_message) { "ChefDK version: #{ChefDK::VERSION}\n" }
 
   def run_cli(expected_exit_code)
     expect(cli).to receive(:exit).with(expected_exit_code)
