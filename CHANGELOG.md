@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.83 -->
-## [v4.0.83](https://github.com/chef/chef-dk/tree/v4.0.83) (2019-06-27)
+<!-- latest_release 4.0.84 -->
+## [v4.0.84](https://github.com/chef/chef-dk/tree/v4.0.84) (2019-06-27)
 
 #### Merged Pull Requests
-- Bump chefspec to 7.4.0 [#2153](https://github.com/chef/chef-dk/pull/2153) ([chef-ci](https://github.com/chef-ci))
+- Update rubygems to 3.0.4 [#2151](https://github.com/chef/chef-dk/pull/2151) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- Update rubygems to 3.0.4 [#2151](https://github.com/chef/chef-dk/pull/2151) ([tas50](https://github.com/tas50)) <!-- 4.0.84 -->
 - Bump chefspec to 7.4.0 [#2153](https://github.com/chef/chef-dk/pull/2153) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.83 -->
 - Use require_relative everywhere for perf boosts [#2150](https://github.com/chef/chef-dk/pull/2150) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 4.0.82 -->
 - Add Dist file to control the product / CLI names [#2146](https://github.com/chef/chef-dk/pull/2146) ([tas50](https://github.com/tas50)) <!-- 4.0.81 -->
