@@ -1,4 +1,4 @@
-# Chef Development Kit
+# ChefDK
 
 [![Build Status](https://badge.buildkite.com/19dd11f6792c0cf4617ee97195060bd54b76f6a74228fd6e07.svg?branch=master)](https://buildkite.com/chef-oss/chef-chef-dk-master-verify)
 [![Build Status Master](https://ci.appveyor.com/api/projects/status/github/chef/chef-dk?branch=master&svg=true&passingText=master%20-%20Ok&pendingText=master%20-%20Pending&failingText=master%20-%20Failing)](https://ci.appveyor.com/project/Chef/chef-dk/branch/master)
