@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2014-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2014-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -48,4 +48,8 @@ RSpec.configure do |c|
     mocks.verify_partial_doubles = true
   end
 
+  # better diffs when expects fail
+  c.expect_with :rspec do |r|
+    r.max_formatted_output_length = 400
+  end
 end
