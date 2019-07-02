@@ -194,6 +194,11 @@ module ChefDK
         c.smoke_test { sh("#{bin("chef-run")} -v") }
       end
 
+      add_component "foodcritic" do |c|
+        c.gem_base_dir = "foodcritic"
+        c.smoke_test { sh("#{embedded_bin("foodcritic -v")}") }
+      end
+
       add_component "chefspec" do |c|
         c.gem_base_dir = "chefspec"
         c.unit_test do
@@ -225,32 +230,31 @@ module ChefDK
         end
       end
 
-      add_component "generated-cookbooks-pass-chefspec" do |c|
-
+      add_component "generated-cookbooks-pass-chefspec-and-foodcritic" do |c|
         c.gem_base_dir = "chef-dk"
         c.smoke_test do
           tmpdir do |cwd|
             sh("#{bin("chef")} generate cookbook example", cwd: cwd)
             cb_cwd = File.join(cwd, "example")
             sh(embedded_bin("rspec"), cwd: cb_cwd)
+            sh(embedded_bin("foodcritic --tags ~supermarket ."), cwd: cb_cwd)
           end
         end
       end
 
+      add_component "chef-vault" do |c|
+        c.gem_base_dir = "chef-vault"
+        c.smoke_test { sh("#{embedded_bin("chef-vault -h")}") }
+      end
+
       add_component "fauxhai" do |c|
         c.gem_base_dir = "fauxhai"
-        c.smoke_test { sh("#{embedded_bin("gem")} list fauxhai") }
+        c.smoke_test { sh(embedded_bin("fauxhai")) }
       end
 
       add_component "knife-spork" do |c|
         c.gem_base_dir = "knife-spork"
         c.smoke_test { sh("#{bin("knife")} spork info") }
-      end
-
-      add_component "kitchen-vagrant" do |c|
-        c.gem_base_dir = "kitchen-vagrant"
-        # The build is not passing in travis, so no tests
-        c.smoke_test { sh("#{embedded_bin("gem")} list kitchen-vagrant") }
       end
 
       add_component "package installation" do |c|
@@ -284,6 +288,7 @@ module ChefDK
             sh!("#{usr_bin_path("ohai")} -v")
             sh!("#{usr_bin_path("foodcritic")} -V")
             sh!("#{usr_bin_path("inspec")} version")
+            sh!("#{usr_bin_path("dco")} -h")
           end
 
           # Test blocks are expected to return a Mixlib::ShellOut compatible
