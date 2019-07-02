@@ -249,7 +249,7 @@ module ChefDK
 
       add_component "fauxhai" do |c|
         c.gem_base_dir = "fauxhai"
-        c.smoke_test { sh("#{embedded_bin("gem")} fauxhai") }
+        c.smoke_test { sh(embedded_bin("fauxhai")) }
       end
 
       add_component "knife-spork" do |c|
@@ -295,7 +295,6 @@ module ChefDK
             sh!("#{usr_bin_path("foodcritic")} -V")
             sh!("#{usr_bin_path("inspec")} version")
             sh!("#{usr_bin_path("dco")} -h")
-            sh!("#{usr_bin_path("fauxhai")} -v")
           end
 
           # Test blocks are expected to return a Mixlib::ShellOut compatible
