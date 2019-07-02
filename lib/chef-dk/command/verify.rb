@@ -194,6 +194,11 @@ module ChefDK
         c.smoke_test { sh("#{bin("chef-run")} -v") }
       end
 
+      add_component "foodcritic" do |c|
+        c.gem_base_dir = "foodcritic"
+        c.smoke_test { sh("#{embedded_bin("foodcritic -v")}") }
+      end
+
       add_component "chefspec" do |c|
         c.gem_base_dir = "chefspec"
         c.unit_test do
@@ -225,21 +230,16 @@ module ChefDK
         end
       end
 
-      add_component "generated-cookbooks-pass-chefspec" do |c|
-
+      add_component "generated-cookbooks-pass-chefspec-and-foodcritic" do |c|
         c.gem_base_dir = "chef-dk"
         c.smoke_test do
           tmpdir do |cwd|
             sh("#{bin("chef")} generate cookbook example", cwd: cwd)
             cb_cwd = File.join(cwd, "example")
             sh(embedded_bin("rspec"), cwd: cb_cwd)
+            sh(embedded_bin("foodcritic ."), cwd: cb_cwd)
           end
         end
-      end
-
-      add_component "foodcritic" do |c|
-        c.gem_base_dir = "foodcritic"
-        c.smoke_test { sh("#{embedded_bin("foodcritic -v")}") }
       end
 
       add_component "chef-vault" do |c|
@@ -294,6 +294,8 @@ module ChefDK
             sh!("#{usr_bin_path("ohai")} -v")
             sh!("#{usr_bin_path("foodcritic")} -V")
             sh!("#{usr_bin_path("inspec")} version")
+            sh!("#{usr_bin_path("dco")} -h")
+            sh!("#{usr_bin_path("fauxhai")} -v")
           end
 
           # Test blocks are expected to return a Mixlib::ShellOut compatible
