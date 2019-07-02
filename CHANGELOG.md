@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.90 -->
-## [v4.0.90](https://github.com/chef/chef-dk/tree/v4.0.90) (2019-07-02)
+<!-- latest_release 4.1.0 -->
+## [v4.1.0](https://github.com/chef/chef-dk/tree/v4.1.0) (2019-07-02)
 
 #### Merged Pull Requests
-- Add verification of the appbundled Foodcritic/chef-vault/fauxhai to testing [#1901](https://github.com/chef/chef-dk/pull/1901) ([tas50](https://github.com/tas50))
+- Use the product constant in a few more places [#2162](https://github.com/chef/chef-dk/pull/2162) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- Use the product constant in a few more places [#2162](https://github.com/chef/chef-dk/pull/2162) ([tas50](https://github.com/tas50)) <!-- 4.1.0 -->
 - Add verification of the appbundled Foodcritic/chef-vault/fauxhai to testing [#1901](https://github.com/chef/chef-dk/pull/1901) ([tas50](https://github.com/tas50)) <!-- 4.0.90 -->
 - Update Chef Infra Client to 15.1.36 [#2161](https://github.com/chef/chef-dk/pull/2161) ([tas50](https://github.com/tas50)) <!-- 4.0.89 -->
 - Bump inspec to 4.6.9 [#2159](https://github.com/chef/chef-dk/pull/2159) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.88 -->
