@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.2 -->
-## [v4.1.2](https://github.com/chef/chef-dk/tree/v4.1.2) (2019-07-02)
+<!-- latest_release 4.1.3 -->
+## [v4.1.3](https://github.com/chef/chef-dk/tree/v4.1.3) (2019-07-02)
 
 #### Merged Pull Requests
-- Remove explicit dependency on rubocop [#2164](https://github.com/chef/chef-dk/pull/2164) ([tas50](https://github.com/tas50))
+- Update Cookstyle to 5.0 [#2165](https://github.com/chef/chef-dk/pull/2165) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- Update Cookstyle to 5.0 [#2165](https://github.com/chef/chef-dk/pull/2165) ([tas50](https://github.com/tas50)) <!-- 4.1.3 -->
 - Remove explicit dependency on rubocop [#2164](https://github.com/chef/chef-dk/pull/2164) ([tas50](https://github.com/tas50)) <!-- 4.1.2 -->
 - Verify foodcritic with --list not -v [#2163](https://github.com/chef/chef-dk/pull/2163) ([tas50](https://github.com/tas50)) <!-- 4.1.1 -->
 - Use the product constant in a few more places [#2162](https://github.com/chef/chef-dk/pull/2162) ([tas50](https://github.com/tas50)) <!-- 4.1.0 -->
