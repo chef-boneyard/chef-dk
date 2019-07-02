@@ -951,7 +951,6 @@ DEPENDENCIES
   rspec-core (~> 3.0)
   rspec-expectations (~> 3.0)
   rspec-mocks (~> 3.0)
-  rubocop
   ruby-prof
   ruby-shadow
   stove
