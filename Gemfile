@@ -114,7 +114,6 @@ group(:omnibus_package) do
   gem "pry-remote"
   gem "pry-stack_explorer"
   gem "rb-readline"
-  gem "rubocop"
   gem "winrm-fs"
   gem "winrm-elevated"
   gem "cucumber"
