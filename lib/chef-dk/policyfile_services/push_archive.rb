@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software Inc.
+# Copyright:: Copyright (c) 2015-2019 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,6 +22,7 @@ require_relative "../service_exceptions"
 require_relative "../policyfile_lock"
 require "chef/server_api"
 require_relative "../policyfile/uploader"
+require_relative "../dist"
 
 module ChefDK
   module PolicyfileServices
@@ -89,9 +90,9 @@ module ChefDK
           raise InvalidPolicyArchive, <<~MESSAGE
             This archive is in an unsupported format.
 
-            This archive was created with an older version of ChefDK. This version of
-            ChefDK does not support archives in the older format. Please Re-create the
-            archive with a newer version of ChefDK or Workstation.
+            This archive was created with an older version of #{ChefDK::Dist::PRODUCT}. This version of
+            #{ChefDK::Dist::PRODUCT} does not support archives in the older format. Please Re-create the
+            archive with a newer version of #{ChefDK::Dist::PRODUCT}.
           MESSAGE
         end
 

@@ -47,8 +47,7 @@ module ChefDK
       banner(<<~HELP)
         Usage: #{ChefDK::Dist::EXEC} shell-init
 
-        `#{ChefDK::Dist::EXEC} shell-init` modifies your shell environment to make ChefDK or Workstation your
-        default Ruby.
+        `#{ChefDK::Dist::EXEC} shell-init` modifies your shell environment to make #{ChefDK::Dist::PRODUCT} your default Ruby.
 
           To enable for just the current shell session:
 
