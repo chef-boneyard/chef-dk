@@ -77,7 +77,7 @@ dependency "google-protobuf"
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
-  excluded_groups = %w{server docgen maintenance pry travis integration ci}
+  excluded_groups = %w{server docgen maintenance pry integration ci}
 
   # install the whole bundle first
   bundle "install --without #{excluded_groups.join(' ')}", env: env
