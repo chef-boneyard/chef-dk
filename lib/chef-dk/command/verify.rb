@@ -196,7 +196,7 @@ module ChefDK
 
       add_component "foodcritic" do |c|
         c.gem_base_dir = "foodcritic"
-        c.smoke_test { sh("#{embedded_bin("foodcritic -v")}") }
+        c.smoke_test { sh("#{embedded_bin("foodcritic --list")}") } # -v exits non-zero so use list
       end
 
       add_component "chefspec" do |c|
