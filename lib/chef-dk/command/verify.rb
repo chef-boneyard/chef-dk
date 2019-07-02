@@ -249,7 +249,7 @@ module ChefDK
 
       add_component "fauxhai" do |c|
         c.gem_base_dir = "fauxhai"
-        c.smoke_test { sh("#{embedded_bin("gem")} list fauxhai") }
+        c.smoke_test { sh("#{embedded_bin("gem")} fauxhai") }
       end
 
       add_component "knife-spork" do |c|
