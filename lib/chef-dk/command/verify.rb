@@ -237,7 +237,7 @@ module ChefDK
             sh("#{bin("chef")} generate cookbook example", cwd: cwd)
             cb_cwd = File.join(cwd, "example")
             sh(embedded_bin("rspec"), cwd: cb_cwd)
-            sh(embedded_bin("foodcritic ."), cwd: cb_cwd)
+            sh(embedded_bin("foodcritic --tags ~supermarket ."), cwd: cb_cwd)
           end
         end
       end
