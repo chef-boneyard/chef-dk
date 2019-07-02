@@ -257,12 +257,6 @@ module ChefDK
         c.smoke_test { sh("#{bin("knife")} spork info") }
       end
 
-      add_component "kitchen-vagrant" do |c|
-        c.gem_base_dir = "kitchen-vagrant"
-        # The build is not passing in travis, so no tests
-        c.smoke_test { sh("#{embedded_bin("gem")} list kitchen-vagrant") }
-      end
-
       add_component "package installation" do |c|
 
         c.gem_base_dir = "chef-dk"

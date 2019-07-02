@@ -50,7 +50,6 @@ describe ChefDK::Command::Verify do
       "generated-cookbooks-pass-chefspec-and-foodcritic",
       "git",
       "inspec",
-      "kitchen-vagrant",
       "knife-spork",
       "openssl",
       "opscode-pushy-client",
