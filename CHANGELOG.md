@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.0.88 -->
-## [v4.0.88](https://github.com/chef/chef-dk/tree/v4.0.88) (2019-07-01)
+<!-- latest_release 4.0.89 -->
+## [v4.0.89](https://github.com/chef/chef-dk/tree/v4.0.89) (2019-07-02)
 
 #### Merged Pull Requests
-- Bump inspec to 4.6.9 [#2159](https://github.com/chef/chef-dk/pull/2159) ([chef-ci](https://github.com/chef-ci))
+- Update Chef Infra Client to 15.1.36 [#2161](https://github.com/chef/chef-dk/pull/2161) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- Update Chef Infra Client to 15.1.36 [#2161](https://github.com/chef/chef-dk/pull/2161) ([tas50](https://github.com/tas50)) <!-- 4.0.89 -->
 - Bump inspec to 4.6.9 [#2159](https://github.com/chef/chef-dk/pull/2159) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.88 -->
 - Bump train-core to 2.1.13 [#2157](https://github.com/chef/chef-dk/pull/2157) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.87 -->
 - Bump kitchen-digitalocean to 0.10.4 [#2155](https://github.com/chef/chef-dk/pull/2155) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.86 -->
