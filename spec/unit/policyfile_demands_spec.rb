@@ -727,7 +727,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
   context "Given a local cookbook with a run list containing the local cookbook and another cookbook" do
 
-    let(:run_list) { ["local-cookbook", "remote-cb"] }
+    let(:run_list) { %w{local-cookbook remote-cb} }
 
     before do
       policyfile.dsl.cookbook("local-cookbook", path: "foo/")
@@ -900,7 +900,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
     include_context "community default source"
 
-    let(:run_list) { [ "repo-cookbook-one", "remote-cb", "remote-cb-two" ] }
+    let(:run_list) { %w{repo-cookbook-one remote-cb remote-cb-two} }
 
     before do
       policyfile.default_source(:chef_repo, "path/to/repo")
@@ -1041,7 +1041,7 @@ describe ChefDK::PolicyfileCompiler, "when expressing the Policyfile graph deman
 
       context "and the conflicting cookbook is in the run list" do
 
-        let(:run_list) { [ "repo-cookbook-one", "remote-cb", "remote-cb-two" ] }
+        let(:run_list) { %w{repo-cookbook-one remote-cb remote-cb-two} }
 
         context "and no explicit source is given for the conflicting cookbook" do
 
