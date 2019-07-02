@@ -1,3 +1,53 @@
+# ChefDK 4.1 Release Notes
+
+## Updated Components
+
+### Chef Infra Client 15.1
+
+DETAILS HERE
+
+- Mention that we ship with libarchive now
+
+### Chef InSpec 4.6.9
+
+Chef InSpec has been updated from version 4.3.2 to 4.6.9.
+
+DETAILS HERE
+
+### Cookstyle 5.0.0
+
+DETAILS HERE
+
+### ChefSpec 7.4.0
+
+ChefSpec has been updated to 7.4 with better support stubbing commands and a new `policyfile_path` configuration option for specifying the path to the PolicyFile.
+
+### kitchen-dokken 2.7.0
+
+kitchen-dokken has been updated to 2.7.0 with new options for controlling how containers are setup and pulled. You can now disable user namespace mode when running privileged containers with a new `userns_host` config option. There is also a new option `pull_chef_image` (true/false) to control force pulling the chef image on each run to check for newer images. This now defaults to true so that testing on latest and current always actually mean latest and current. See the [kitchen-digitalocean readme](https://github.com/test-kitchen/kitchen-digitalocean/blob/master/README.md) for `kitchen.yml` config examples.
+
+### kitchen-digitalocean 0.10.4
+
+kitchen-digitalocean has been updated to 0.10.4 with support for new distros and additional configuration options for instance setup. You can now control the default DigitalOcean region systems are spun up in using a new `DIGITALOCEAN_REGION` env var. You can still modify the region in the driver section of your `kitchen.yml` file if you'd like, and the default region of `nyc1` has not changed. This release also adds slug support for `fedora-29`, `fedora-30`, and `ubuntu-19`. Finally if you'd like to monitor your test instances there is new `monitoring` configuration option in the `kitchen.yml` driver section that allows enabling DigitalOcean's instance monitoring. See the [kitchen-dokken readme](https://github.com/someara/kitchen-dokken/blob/master/README.md) for `kitchen.yml` config examples.
+
+## End of Ubuntu 14.04 support
+
+Ubuntu 14.04 entered the end-of-life phase April 30, 2019. Since this version of Ubuntu is now end of life we have stopped building packages for Ubuntu 14.04. If you rely on Ubuntu 14.04 in your environment we highly recommend upgrading your host to Ubuntu 16.04 or 18.04.
+
+### Security Updates
+
+###  curl 7.65.0
+
+- CVE-2019-5435: Integer overflows in curl_url_set
+- CVE-2019-5436: tftp: use the current blksize for recvfrom()
+- CVE-2018-16890: NTLM type-2 out-of-bounds buffer read
+- CVE-2019-3822: NTLMv2 type-3 header stack buffer overflow
+- CVE-2019-3823: SMTP end-of-response out-of-bounds read
+
+### cacerts 5-11-2019 release
+
+- Our cacert bundle has been updated to the 5-11-2019 bundle which adds four additional CAs.
+
 # ChefDK 4.0 Release Notes
 
 ## Breaking Changes
