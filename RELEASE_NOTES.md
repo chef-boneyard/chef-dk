@@ -18,6 +18,14 @@ DETAILS HERE
 
 DETAILS HERE
 
+### Foodcritic 6.1.1
+
+Foodcritic has been updated from 6.0.0 to 6.1.1 with new rules and support for the latest Chef:
+
+- Updated Chef Infra Client metadata for 15.1 to include the new chocolatey_feature resources as well as new properties in the launchd and chocolatey_source resources
+- Added new rule to detect large files shipped in a cookbook: FC123: Content of a cookbook file is larger than 1MB. Thanks @mattray
+- Allow configuring the size of the AST cache with a new --ast-cache-size command line option. Thanks @Babar
+
 ### ChefSpec 7.4.0
 
 ChefSpec has been updated to 7.4 with better support stubbing commands and a new `policyfile_path` configuration option for specifying the path to the PolicyFile.
