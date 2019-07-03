@@ -16,15 +16,19 @@ DETAILS HERE
 
 ### Cookstyle 5.0.0
 
-DETAILS HERE
+Cookstyle has been updated to 5.0.0 with a large number of bugfixes and major improvements that lay the groundwork for future autocorrecting of cookobook style and deprecation warnings.
+
+The RuboCop engine that powers Cookstyle has been updaed from 0.62 to 0.72, which includes several hundred bugfixes to the codebase. You may experience existing cookbooks, which now fail using Cookstyle 5.0 due to some of these bugfixes. Additionally some cops have had their names changed and the the Rubocop Performance cops have been removed. If you disabled individual cops in your .rubocop.yml file this may require you update that confg.
+
+This new release also merges in code from the `rubocop-chef` project providing new alerting and autocorrecting capablities specific to Chef Infra Cookbooks. Thank you [@coderanger](http://github.com/coderanger) for you work in the rubocop-chef project and []@chrishenry](http://github.com/chrishenry) for helping with new cops.
 
 ### Foodcritic 6.1.1
 
 Foodcritic has been updated from 6.0.0 to 6.1.1 with new rules and support for the latest Chef:
 
 - Updated Chef Infra Client metadata for 15.1 to include the new chocolatey_feature resources as well as new properties in the launchd and chocolatey_source resources
-- Added new rule to detect large files shipped in a cookbook: FC123: Content of a cookbook file is larger than 1MB. Thanks @mattray
-- Allow configuring the size of the AST cache with a new --ast-cache-size command line option. Thanks @Babar
+- Added new rule to detect large files shipped in a cookbook: FC123: Content of a cookbook file is larger than 1MB. Thanks [@mattray](http://github.com/mattray)
+- Allow configuring the size of the AST cache with a new --ast-cache-size command line option. Thanks [@Babar](http://github.com/Babar)
 
 ### ChefSpec 7.4.0
 
