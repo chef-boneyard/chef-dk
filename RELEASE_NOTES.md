@@ -4,9 +4,7 @@
 
 ### Chef Infra Client 15.1
 
-DETAILS HERE
-
-- Mention that we ship with libarchive now
+Chef Infra Client has been updated to 15.1 with new and improved resources, improvements to target mode, bootstrap bug fixes, new Ohai detection on VirtualBox hosts, and more. See the [Chef Infra Client 15.1 Release Notes](https://github.com/chef/chef/blob/master/RELEASE_NOTES.md#chef-infra-client-151) for a complete list of new and improved functionality.
 
 ### Chef InSpec 4.6.9
 
