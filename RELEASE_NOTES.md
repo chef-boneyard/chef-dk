@@ -50,13 +50,14 @@ Ubuntu 14.04 entered the end-of-life phase April 30, 2019. Since this version of
 
 ### Security Updates
 
-###  curl 7.65.0
+###  curl 7.65.1
 
 - CVE-2019-5435: Integer overflows in curl_url_set
 - CVE-2019-5436: tftp: use the current blksize for recvfrom()
 - CVE-2018-16890: NTLM type-2 out-of-bounds buffer read
 - CVE-2019-3822: NTLMv2 type-3 header stack buffer overflow
 - CVE-2019-3823: SMTP end-of-response out-of-bounds read
+- CVE-2019-5443: Windows OpenSSL engine code injection
 
 ### cacerts 5-11-2019 release
 
