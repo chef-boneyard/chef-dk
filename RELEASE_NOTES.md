@@ -65,7 +65,7 @@ Ubuntu 14.04 entered the end-of-life phase April 30, 2019. Since this version of
 
 ### cacerts 5-11-2019 release
 
-- Our cacert bundle has been updated to the 5-11-2019 bundle which adds four additional CAs.
+- Our `cacert` bundle has been updated to the 5-11-2019 bundle, which adds four additional CAs.
 
 # ChefDK 4.0 Release Notes
 
