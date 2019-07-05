@@ -34,7 +34,7 @@ Foodcritic has been updated from 6.0.0 to 6.1.1 with new rules and support for t
 
 ### ChefSpec 7.4.0
 
-ChefSpec has been updated to 7.4 with better support stubbing commands and a new `policyfile_path` configuration option for specifying the path to the PolicyFile.
+ChefSpec has been updated to 7.4 with better support stubbing commands, and a new `policyfile_path` configuration option for specifying the path to the PolicyFile.
 
 ### kitchen-dokken 2.7.0
 
