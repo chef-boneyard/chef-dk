@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.6 -->
-## [v4.1.6](https://github.com/chef/chef-dk/tree/v4.1.6) (2019-07-05)
+<!-- latest_release unreleased -->
+## Unreleased
 
 #### Merged Pull Requests
-- Bump knife-vsphere to 3.0.0 [#2170](https://github.com/chef/chef-dk/pull/2170) ([chef-ci](https://github.com/chef-ci))
+- Add the DK 4.1 Release Notes [#2166](https://github.com/chef/chef-dk/pull/2166) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- Add the DK 4.1 Release Notes [#2166](https://github.com/chef/chef-dk/pull/2166) ([tas50](https://github.com/tas50)) <!-- 4.1.6 -->
 - Bump knife-vsphere to 3.0.0 [#2170](https://github.com/chef/chef-dk/pull/2170) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.6 -->
 - Update curl to 7.65.1 to resolve a CVE [#2169](https://github.com/chef/chef-dk/pull/2169) ([tas50](https://github.com/tas50)) <!-- 4.1.5 -->
 - Bump foodcritic to 16.1.1 [#2168](https://github.com/chef/chef-dk/pull/2168) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.4 -->
