@@ -22,7 +22,7 @@ Cookstyle has been updated to 5.0.0 with a large number of bugfixes and major im
 
 The RuboCop engine that powers Cookstyle has been updated from 0.62 to 0.72, which includes several hundred bugfixes to the codebase. When using Cookstyle 5.0, you may experience existing cookbooks now failing, due to some of these bugfixes. Additionally, some cops have had their names changed and the Rubocop Performance cops have been removed. If you disabled individual cops in your .rubocop.yml file, this may require you update your confg.
 
-This new release also merges in code from the `rubocop-chef` project providing new alerting and autocorrecting capablities specific to Chef Infra Cookbooks. Thank you [@coderanger](http://github.com/coderanger) for you work in the rubocop-chef project and []@chrishenry](http://github.com/chrishenry) for helping with new cops.
+This new release also merges in code from the `rubocop-chef` project, providing new alerting and autocorrecting capabilities specific to Chef Infra Cookbooks. Thank you [@coderanger](http://github.com/coderanger) for your work in the rubocop-chef project and [@chrishenry](http://github.com/chrishenry) for helping with new cops.
 
 ### Foodcritic 6.1.1
 
