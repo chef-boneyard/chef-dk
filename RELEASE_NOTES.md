@@ -1,3 +1,72 @@
+# ChefDK 4.1 Release Notes
+
+## Updated Components
+
+### Chef Infra Client 15.1
+
+Chef Infra Client has been updated to 15.1 with new and improved resources, improvements to target mode, bootstrap bug fixes, new Ohai detection on VirtualBox hosts, and more. See the [Chef Infra Client 15.1 Release Notes](https://github.com/chef/chef/blob/master/RELEASE_NOTES.md#chef-infra-client-151) for a complete list of new and improved functionality.
+
+### Chef InSpec 4.6.9
+
+Chef InSpec has been updated from 4.3.2 to 4.6.9 with the following changes:
+
+  - InSpec `Attributes` have now been renamed to `Inputs` to avoid confusion with Chef Infra attributes.
+  - A new InSpec plugin type of `Input` has been added for defining new input types. See the [InSpec Plugins documentation](https://github.com/inspec/inspec/blob/master/docs/dev/plugins.md#implementing-input-plugins) for more information on writing these plugins.
+  - InSpec no longer prints errors to the stdout when passing `--format json`.
+  - When fetching profiles from GitHub, the URL can now include periods.
+  - The performance of InSpec startup has been improved.
+
+### Cookstyle 5.0.0
+
+Cookstyle has been updated to 5.0.0 with a large number of bugfixes and major improvements that lay the groundwork for future autocorrecting of cookobook style and deprecation warnings.
+
+The RuboCop engine that powers Cookstyle has been updated from 0.62 to 0.72, which includes several hundred bugfixes to the codebase. When using Cookstyle 5.0, you may experience existing cookbooks now failing, due to some of these bugfixes. Additionally, some cops have had their names changed and the Rubocop Performance cops have been removed. If you disabled individual cops in your .rubocop.yml file, this may require you update your confg.
+
+This new release also merges in code from the `rubocop-chef` project, providing new alerting and autocorrecting capabilities specific to Chef Infra Cookbooks. Thank you [@coderanger](http://github.com/coderanger) for your work in the rubocop-chef project and [@chrishenry](http://github.com/chrishenry) for helping with new cops.
+
+### Foodcritic 6.1.1
+
+Foodcritic has been updated from 6.0.0 to 6.1.1 with new rules and support for the latest Chef:
+
+- Updated Chef Infra Client metadata for 15.1 to include the new `chocolatey_feature` resources, as well as new properties in the `launchd` and `chocolatey_source` resources
+- Added new rule to detect large files shipped in a cookbook: `FC123: Content of a cookbook file is larger than 1MB`. Thanks [@mattray](http://github.com/mattray)
+- Allowed configuring the size of the AST cache with a new `--ast-cache-size` command line option. Thanks [@Babar](http://github.com/Babar)
+
+### ChefSpec 7.4.0
+
+ChefSpec has been updated to 7.4 with better support stubbing commands, and a new `policyfile_path` configuration option for specifying the path to the PolicyFile.
+
+### kitchen-dokken 2.7.0
+
+kitchen-dokken has been updated to 2.7.0 with new options for controlling how containers are setup and pulled. You can now disable user namespace mode when running privileged containers with a new `userns_host` config option. There is also a new option `pull_chef_image` (true/false) to control force-pulling the chef image on each run to check for newer images. This option now defaults to `true` so that testing on latest and current always actually mean latest and current. See the [kitchen-digitalocean readme](https://github.com/test-kitchen/kitchen-digitalocean/blob/master/README.md) for `kitchen.yml` config examples.
+
+### kitchen-digitalocean 0.10.4
+
+kitchen-digitalocean has been updated to 0.10.4 with support for new distros and additional configuration options for instance setup. You can now control the default DigitalOcean region systems that are spun up by using a new `DIGITALOCEAN_REGION` env var. You can still modify the region in the driver section of your `kitchen.yml` file if you'd like, and the default region of `nyc1` has not changed. This release also adds slug support for `fedora-29`, `fedora-30`, and `ubuntu-19`. Finally, if you'd like to monitor your test instances, the new `monitoring` configuration option in the `kitchen.yml` driver section allows enabling DigitalOcean's instance monitoring. See the [kitchen-dokken readme](https://github.com/someara/kitchen-dokken/blob/master/README.md) for `kitchen.yml` config examples.
+
+### knife-vsphere 3.0.0
+
+knife-vsphere has been updated to 3.0. This new version adds support for specifying the `bootstrap_template` when creating new VMs. This release also improves how the plugin finds VM hosts, in order to support hosts in nested directories.
+
+## End of Ubuntu 14.04 support
+
+Ubuntu 14.04 entered the end-of-life phase April 30, 2019. Since this version of Ubuntu is now end-of-life, we have stopped building packages for Ubuntu 14.04. If you rely on Ubuntu 14.04 in your environment, we highly recommend upgrading your host to Ubuntu 16.04 or 18.04.
+
+### Security Updates
+
+###  curl 7.65.1
+
+- CVE-2019-5435: Integer overflows in curl_url_set
+- CVE-2019-5436: tftp: use the current blksize for recvfrom()
+- CVE-2018-16890: NTLM type-2 out-of-bounds buffer read
+- CVE-2019-3822: NTLMv2 type-3 header stack buffer overflow
+- CVE-2019-3823: SMTP end-of-response out-of-bounds read
+- CVE-2019-5443: Windows OpenSSL engine code injection
+
+### cacerts 5-11-2019 release
+
+- Our `cacert` bundle has been updated to the 5-11-2019 bundle, which adds four additional CAs.
+
 # ChefDK 4.0 Release Notes
 
 ## Breaking Changes
