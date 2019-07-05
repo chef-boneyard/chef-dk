@@ -42,7 +42,7 @@ kitchen-dokken has been updated to 2.7.0 with new options for controlling how co
 
 ### kitchen-digitalocean 0.10.4
 
-kitchen-digitalocean has been updated to 0.10.4 with support for new distros and additional configuration options for instance setup. You can now control the default DigitalOcean region systems are spun up in using a new `DIGITALOCEAN_REGION` env var. You can still modify the region in the driver section of your `kitchen.yml` file if you'd like, and the default region of `nyc1` has not changed. This release also adds slug support for `fedora-29`, `fedora-30`, and `ubuntu-19`. Finally if you'd like to monitor your test instances there is new `monitoring` configuration option in the `kitchen.yml` driver section that allows enabling DigitalOcean's instance monitoring. See the [kitchen-dokken readme](https://github.com/someara/kitchen-dokken/blob/master/README.md) for `kitchen.yml` config examples.
+kitchen-digitalocean has been updated to 0.10.4 with support for new distros and additional configuration options for instance setup. You can now control the default DigitalOcean region systems that are spun up by using a new `DIGITALOCEAN_REGION` env var. You can still modify the region in the driver section of your `kitchen.yml` file if you'd like, and the default region of `nyc1` has not changed. This release also adds slug support for `fedora-29`, `fedora-30`, and `ubuntu-19`. Finally, if you'd like to monitor your test instances, the new `monitoring` configuration option in the `kitchen.yml` driver section allows enabling DigitalOcean's instance monitoring. See the [kitchen-dokken readme](https://github.com/someara/kitchen-dokken/blob/master/README.md) for `kitchen.yml` config examples.
 
 ### knife-vsphere 3.0.0
 
