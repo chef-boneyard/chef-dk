@@ -50,7 +50,7 @@ knife-vsphere has been updated to 3.0. This new version adds support for specify
 
 ## End of Ubuntu 14.04 support
 
-Ubuntu 14.04 entered the end-of-life phase April 30, 2019. Since this version of Ubuntu is now end of life we have stopped building packages for Ubuntu 14.04. If you rely on Ubuntu 14.04 in your environment we highly recommend upgrading your host to Ubuntu 16.04 or 18.04.
+Ubuntu 14.04 entered the end-of-life phase April 30, 2019. Since this version of Ubuntu is now end-of-life, we have stopped building packages for Ubuntu 14.04. If you rely on Ubuntu 14.04 in your environment, we highly recommend upgrading your host to Ubuntu 16.04 or 18.04.
 
 ### Security Updates
 
