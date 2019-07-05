@@ -20,7 +20,7 @@ Chef InSpec has been updated from 4.3.2 to 4.6.9 with the following changes:
 
 Cookstyle has been updated to 5.0.0 with a large number of bugfixes and major improvements that lay the groundwork for future autocorrecting of cookobook style and deprecation warnings.
 
-The RuboCop engine that powers Cookstyle has been updaed from 0.62 to 0.72, which includes several hundred bugfixes to the codebase. You may experience existing cookbooks, which now fail using Cookstyle 5.0 due to some of these bugfixes. Additionally some cops have had their names changed and the the Rubocop Performance cops have been removed. If you disabled individual cops in your .rubocop.yml file this may require you update that confg.
+The RuboCop engine that powers Cookstyle has been updated from 0.62 to 0.72, which includes several hundred bugfixes to the codebase. When using Cookstyle 5.0, you may experience existing cookbooks now failing, due to some of these bugfixes. Additionally, some cops have had their names changed and the Rubocop Performance cops have been removed. If you disabled individual cops in your .rubocop.yml file, this may require you update your confg.
 
 This new release also merges in code from the `rubocop-chef` project providing new alerting and autocorrecting capablities specific to Chef Infra Cookbooks. Thank you [@coderanger](http://github.com/coderanger) for you work in the rubocop-chef project and []@chrishenry](http://github.com/chrishenry) for helping with new cops.
 
