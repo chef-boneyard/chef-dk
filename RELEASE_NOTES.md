@@ -46,7 +46,7 @@ kitchen-digitalocean has been updated to 0.10.4 with support for new distros and
 
 ### knife-vsphere 3.0.0
 
-knife-vsphere has been updated to 3.0. This new version adds support for specifying the `bootstrap_template` when creating new VMs. This release also improves how the plugin finds VM hosts in order to support hosts in nested directories.
+knife-vsphere has been updated to 3.0. This new version adds support for specifying the `bootstrap_template` when creating new VMs. This release also improves how the plugin finds VM hosts, in order to support hosts in nested directories.
 
 ## End of Ubuntu 14.04 support
 
