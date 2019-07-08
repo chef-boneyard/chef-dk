@@ -70,7 +70,7 @@ group(:omnibus_package) do
   gem "kitchen-inspec", ">= 1.0"
   gem "kitchen-vagrant", ">= 1.4"
   gem "knife-acl", ">= 1.0.3"
-  gem "knife-ec2", ">= 0.19.10"
+  gem "knife-ec2", ">= 1.0"
   gem "knife-google", ">= 3.3.3"
   gem "knife-tidy", ">= 1.2.0"
   gem "knife-windows", ">= 1.9.1"
