@@ -253,7 +253,7 @@ GEM
       chef (>= 13)
       fauxhai (>= 6.11)
       rspec (~> 3.0)
-    chefstyle (0.13.0)
+    chefstyle (0.13.2)
       rubocop (= 0.72.0)
     citrus (3.0.2)
     cleanroom (1.0.0)
