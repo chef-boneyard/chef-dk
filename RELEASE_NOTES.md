@@ -24,9 +24,9 @@ The RuboCop engine that powers Cookstyle has been updated from 0.62 to 0.72, whi
 
 This new release also merges in code from the `rubocop-chef` project, providing new alerting and autocorrecting capabilities specific to Chef Infra Cookbooks. Thank you [@coderanger](http://github.com/coderanger) for your work in the rubocop-chef project and [@chrishenry](http://github.com/chrishenry) for helping with new cops.
 
-### Foodcritic 6.1.1
+### Foodcritic 16.1.1
 
-Foodcritic has been updated from 6.0.0 to 6.1.1 with new rules and support for the latest Chef:
+Foodcritic has been updated from 16.0.0 to 16.1.1 with new rules and support for the latest Chef:
 
 - Updated Chef Infra Client metadata for 15.1 to include the new `chocolatey_feature` resources, as well as new properties in the `launchd` and `chocolatey_source` resources
 - Added new rule to detect large files shipped in a cookbook: `FC123: Content of a cookbook file is larger than 1MB`. Thanks [@mattray](http://github.com/mattray)
@@ -47,6 +47,54 @@ kitchen-digitalocean has been updated to 0.10.4 with support for new distros and
 ### knife-vsphere 3.0.0
 
 knife-vsphere has been updated to 3.0. This new version adds support for specifying the `bootstrap_template` when creating new VMs. This release also improves how the plugin finds VM hosts, in order to support hosts in nested directories.
+
+### knife-ec2 1.0.7
+
+knife-ec2 has received a near-complete rewrite with this release of ChefDK. The new knife-ec2 release switches the underlying library used to communicate with AWS from `fog-aws` to Amazon's own `aws-sdk`. The official AWS SDK has greatly improved support for the many AWS authentication methods available to users. It also has support for all of the latest AWS regions and instance types. As part of this switch to the new SDK we did have to remove the `knife ec2 flavor list` command as this used hard coded values from fog-aws and not AWS API calls. The good news is we were able to add several new commands to the plugin, which make provisioning systems in AWS even easier:
+
+#### knife ec2 vpc list
+
+This command lists all VPCs in your environment including the ID which you need when provisioning new systems into a specific VPC.
+
+```
+$ knife ec2 vpc list
+ID            State      CIDR Block     Instance Tenancy  DHCP Options ID  Default VPC?
+vpc-b1bc8d9d  available  10.0.0.0/16    default           dopt-1d78412a    No
+vpc-daafd931  available  172.0.0.0/16   default           dopt-1d78412a    Yes
+```
+
+#### knife ec2 eni list
+
+This command lists all ENIs in your environment including the ID which you need when adding the ENI to a newly provisioned instance.
+
+```
+$ knife ec2 eni list
+ID                     Status  AZ          Public IP       Private IPs    IPv6 IPs  Subnet ID        VPC ID
+eni-0123f25ae7805b651  in-use  us-west-2a  63.192.209.236  10.0.0.204               subnet-4ef3b123  vpc-b1bc8d9d
+eni-2451c913           in-use  us-west-2a  137.150.209.123 10.0.0.245               subnet-4ef3b123  vpc-b1bc8d9d
+```
+
+#### knife ec2 securitygroup list
+
+This command lists all security groups in your environment including the ID which you need when assigning a newly provisioned instance a group.
+
+```
+$knife ec2 securitygroup list
+ID                    Name                                     VPC ID
+sg-12332d875a4a123d6  not-today-hackers                        vpc-dbbf59a2
+sg-123708ab12388cac5  open-to-the-world                        vpc-dbbf59a2
+```
+
+#### knife ec2 subnet list
+
+This command lists all subnets in your environment including the ID which you need when placing a newly provisioned instance in a subnet.
+
+```
+$ knife ec2 subnet list
+ID               State      CIDR Block      AZ          Available IPs  AZ Default?  Maps Public IP?  VPC ID
+subnet-bd2333a9  available  172.31.0.0/20   us-west-2b  4091           Yes          Yes              vpc-b1bc8d9d
+subnet-ba1135c9  available  172.31.16.0/20  us-west-2a  4091           Yes          Yes              vpc-b1bc8d9d
+```
 
 ## End of Ubuntu 14.04 support
 
