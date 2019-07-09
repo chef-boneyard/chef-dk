@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.9 -->
-## [v4.1.9](https://github.com/chef/chef-dk/tree/v4.1.9) (2019-07-09)
+<!-- latest_release 4.1.10 -->
+## [v4.1.10](https://github.com/chef/chef-dk/tree/v4.1.10) (2019-07-09)
 
 #### Merged Pull Requests
-- Bump chefstyle to 0.13.2 [#2173](https://github.com/chef/chef-dk/pull/2173) ([chef-ci](https://github.com/chef-ci))
+- Bump cookbook-omnifetch to 0.9.0 [#2175](https://github.com/chef/chef-dk/pull/2175) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.7 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump cookbook-omnifetch to 0.9.0 [#2175](https://github.com/chef/chef-dk/pull/2175) ([tas50](https://github.com/tas50)) <!-- 4.1.10 -->
 - new chefstyle rules for 0.13.2 [#2174](https://github.com/chef/chef-dk/pull/2174) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 4.1.8 -->
 - Bump chefstyle to 0.13.2 [#2173](https://github.com/chef/chef-dk/pull/2173) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.9 -->
 <!-- release_rollup -->
