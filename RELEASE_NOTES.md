@@ -20,7 +20,7 @@ Chef InSpec has been updated from 4.3.2 to 4.6.9 with the following changes:
 
 Cookstyle has been updated to 5.0.0 with a large number of bugfixes and major improvements that lay the groundwork for future autocorrecting of cookobook style and deprecation warnings.
 
-The RuboCop engine that powers Cookstyle has been updated from 0.62 to 0.72, which includes several hundred bugfixes to the codebase. When using Cookstyle 5.0, you may experience existing cookbooks now failing, due to some of these bugfixes. Additionally, some cops have had their names changed and the Rubocop Performance cops have been removed. If you disabled individual cops in your .rubocop.yml file, this may require you update your confg.
+The RuboCop engine that powers Cookstyle has been updated from 0.62 to 0.72, which includes several hundred bugfixes to the codebase. Due to some of these bugfixes, existing cookbooks may fail when using Cookstyle 5.0. Additionally, some cops have had their names changed and the Rubocop Performance cops have been removed. If you disabled individual cops in your .rubocop.yml file, this may require you to update your confg.
 
 This new release also merges in code from the `rubocop-chef` project, providing new alerting and autocorrecting capabilities specific to Chef Infra Cookbooks. Thank you [@coderanger](http://github.com/coderanger) for your work in the rubocop-chef project and [@chrishenry](http://github.com/chrishenry) for helping with new cops.
 
@@ -50,11 +50,11 @@ knife-vsphere has been updated to 3.0. This new version adds support for specify
 
 ### knife-ec2 1.0.7
 
-knife-ec2 has received a near-complete rewrite with this release of ChefDK. The new knife-ec2 release switches the underlying library used to communicate with AWS from `fog-aws` to Amazon's own `aws-sdk`. The official AWS SDK has greatly improved support for the many AWS authentication methods available to users. It also has support for all of the latest AWS regions and instance types. As part of this switch to the new SDK we did have to remove the `knife ec2 flavor list` command as this used hard coded values from fog-aws and not AWS API calls. The good news is we were able to add several new commands to the plugin, which make provisioning systems in AWS even easier:
+knife-ec2 has received a near-complete rewrite with this release of ChefDK. The new knife-ec2 release switches the underlying library used to communicate with AWS from `fog-aws` to Amazon's own `aws-sdk`. The official AWS SDK has greatly improved support for the many AWS authentication methods available to users. It also has support for all of the latest AWS regions and instance types. As part of this switch to the new SDK we did have to remove the `knife ec2 flavor list` command as this used hard coded values from fog-aws and not AWS API calls. The good news is, we were able to add several new commands to the plugin. This makes provisioning systems in AWS even easier.
 
 #### knife ec2 vpc list
 
-This command lists all VPCs in your environment including the ID which you need when provisioning new systems into a specific VPC.
+This command lists all VPCs in your environment including the ID, which you need when provisioning new systems into a specific VPC.
 
 ```
 $ knife ec2 vpc list
@@ -65,7 +65,7 @@ vpc-daafd931  available  172.0.0.0/16   default           dopt-1d78412a    Yes
 
 #### knife ec2 eni list
 
-This command lists all ENIs in your environment including the ID which you need when adding the ENI to a newly provisioned instance.
+This command lists all ENIs in your environment including the ID, which you need when adding the ENI to a newly provisioned instance.
 
 ```
 $ knife ec2 eni list
@@ -76,7 +76,7 @@ eni-2451c913           in-use  us-west-2a  137.150.209.123 10.0.0.245           
 
 #### knife ec2 securitygroup list
 
-This command lists all security groups in your environment including the ID which you need when assigning a newly provisioned instance a group.
+This command lists all security groups in your environment including the ID, which you need when assigning a newly provisioned instance a group.
 
 ```
 $knife ec2 securitygroup list
@@ -87,7 +87,7 @@ sg-123708ab12388cac5  open-to-the-world                        vpc-dbbf59a2
 
 #### knife ec2 subnet list
 
-This command lists all subnets in your environment including the ID which you need when placing a newly provisioned instance in a subnet.
+This command lists all subnets in your environment including the ID, which you need when placing a newly provisioned instance in a subnet.
 
 ```
 $ knife ec2 subnet list
