@@ -52,7 +52,7 @@ module ChefDK
       def upload
         ui.msg("Uploading policy #{policy_name} (#{short_revision_id}) to policy group #{policy_group}")
 
-        if !using_policy_document_native_api?
+        unless using_policy_document_native_api?
           ui.msg(<<~DRAGONS)
             WARN: Uploading policy to policy group #{policy_group} in compatibility mode.
             Cookbooks will be uploaded with very large version numbers, which may be picked
@@ -152,6 +152,7 @@ module ChefDK
       # the policyfile lock requires.
       def cookbook_versions_for_policy
         return @cookbook_versions_for_policy if @cookbook_versions_for_policy
+
         policyfile_lock.validate_cookbooks!
         @cookbook_versions_for_policy =
           if using_policy_document_native_api?
@@ -215,6 +216,7 @@ module ChefDK
         http_client.put("data/#{COMPAT_MODE_DATA_BAG_NAME}/#{policy_id}", data_item)
       rescue Net::HTTPServerException => e
         raise e unless e.response.code == "404"
+
         http_client.post("data/#{COMPAT_MODE_DATA_BAG_NAME}", data_item)
       end
     end

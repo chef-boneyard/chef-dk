@@ -69,7 +69,7 @@ module ChefDK
       end
 
       def ==(other)
-        other.kind_of?(self.class) && other.included_policy_location_specs == included_policy_location_specs
+        other.is_a?(self.class) && other.included_policy_location_specs == included_policy_location_specs
       end
 
       # Calls the slurp_metadata! helper once to calculate the @universe_graph

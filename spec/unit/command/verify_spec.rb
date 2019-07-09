@@ -29,7 +29,7 @@ end
 
 describe ChefDK::Command::Verify do
 
-  let(:command_instance) { ChefDK::Command::Verify.new() }
+  let(:command_instance) { ChefDK::Command::Verify.new }
 
   let(:command_options) { [] }
 

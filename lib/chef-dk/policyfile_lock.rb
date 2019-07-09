@@ -321,9 +321,10 @@ module ChefDK
     # Recursive, so absurd nesting levels could cause a SystemError. Invalid
     # input will cause an InvalidPolicyfileAttribute exception.
     def canonicalize(attributes)
-      unless attributes.kind_of?(Hash)
+      unless attributes.is_a?(Hash)
         raise "Top level attributes must be a Hash (you gave: #{attributes})"
       end
+
       canonicalize_elements(attributes)
     end
 
@@ -355,6 +356,7 @@ module ChefDK
         unless item.finite?
           raise InvalidPolicyfileAttribute, "Floating point numbers cannot be infinite or NaN. You gave #{item.inspect}"
         end
+
         # Support for floats assumes that any implementation of our JSON
         # canonicalization routine will use IEEE-754 doubles. In decimal terms,
         # doubles give 15-17 digits of precision, so we err on the safe side
@@ -392,7 +394,7 @@ module ChefDK
     end
 
     def validate_attr_key(key)
-      unless key.kind_of?(String)
+      unless key.is_a?(String)
         raise InvalidPolicyfileAttribute,
           "Attribute keys must be Strings (other types are not allowed in JSON). You gave: #{key.inspect} (#{key.class})"
       end
@@ -403,7 +405,7 @@ module ChefDK
 
       raise InvalidLockfile, "lockfile does not have a `name' attribute" if name_attribute.nil?
 
-      unless name_attribute.kind_of?(String)
+      unless name_attribute.is_a?(String)
         raise InvalidLockfile, "lockfile's name attribute must be a String (got: #{name_attribute.inspect})"
       end
 
@@ -419,7 +421,7 @@ module ChefDK
 
       raise InvalidLockfile, "lockfile does not have a run_list attribute" if run_list_attribute.nil?
 
-      unless run_list_attribute.kind_of?(Array)
+      unless run_list_attribute.is_a?(Array)
         raise InvalidLockfile, "lockfile's run_list must be an array of run list items (got: #{run_list_attribute.inspect})"
       end
 
@@ -438,17 +440,17 @@ module ChefDK
 
       lock_data_named_run_lists = lock_data["named_run_lists"]
 
-      unless lock_data_named_run_lists.kind_of?(Hash)
+      unless lock_data_named_run_lists.is_a?(Hash)
         msg = "lockfile's named_run_lists must be a Hash (JSON object). (got: #{lock_data_named_run_lists.inspect})"
         raise InvalidLockfile, msg
       end
 
       lock_data_named_run_lists.each do |name, run_list|
-        unless name.kind_of?(String)
+        unless name.is_a?(String)
           msg = "Keys in lockfile's named_run_lists must be Strings. (got: #{name.inspect})"
           raise InvalidLockfile, msg
         end
-        unless run_list.kind_of?(Array)
+        unless run_list.is_a?(Array)
           msg = "Values in lockfile's named_run_lists must be Arrays. (got: #{run_list.inspect})"
           raise InvalidLockfile, msg
         end
@@ -468,7 +470,7 @@ module ChefDK
         raise InvalidLockfile, "lockfile does not have a cookbook_locks attribute"
       end
 
-      unless cookbook_lock_data.kind_of?(Hash)
+      unless cookbook_lock_data.is_a?(Hash)
         raise InvalidLockfile, "lockfile's cookbook_locks attribute must be a Hash (JSON object). (got: #{cookbook_lock_data.inspect})"
       end
 
@@ -484,7 +486,7 @@ module ChefDK
         raise InvalidLockfile, "lockfile does not have a cookbook_locks attribute"
       end
 
-      unless cookbook_lock_data.kind_of?(Hash)
+      unless cookbook_lock_data.is_a?(Hash)
         raise InvalidLockfile, "lockfile's cookbook_locks attribute must be a Hash (JSON object). (got: #{cookbook_lock_data.inspect})"
       end
 
@@ -500,7 +502,7 @@ module ChefDK
         raise InvalidLockfile, "lockfile does not have a `default_attributes` attribute"
       end
 
-      unless default_attr_data.kind_of?(Hash)
+      unless default_attr_data.is_a?(Hash)
         raise InvalidLockfile, "lockfile's `default_attributes` attribute must be a Hash (JSON object). (got: #{default_attr_data.inspect})"
       end
 
@@ -510,7 +512,7 @@ module ChefDK
         raise InvalidLockfile, "lockfile does not have a `override_attributes` attribute"
       end
 
-      unless override_attr_data.kind_of?(Hash)
+      unless override_attr_data.is_a?(Hash)
         raise InvalidLockfile, "lockfile's `override_attributes` attribute must be a Hash (JSON object). (got: #{override_attr_data.inspect})"
       end
 
@@ -525,7 +527,7 @@ module ChefDK
         raise InvalidLockfile, "lockfile does not have a solution_dependencies attribute"
       end
 
-      unless soln_deps.kind_of?(Hash)
+      unless soln_deps.is_a?(Hash)
         raise InvalidLockfile, "lockfile's solution_dependencies attribute must be a Hash (JSON object). (got: #{soln_deps.inspect})"
       end
 
@@ -539,7 +541,7 @@ module ChefDK
         @included_policy_locks = []
       else
         locks.each do |lock_info|
-          if !(%w{revision_id name source_options}.all? { |key| !lock_info[key].nil? })
+          unless %w{revision_id name source_options}.all? { |key| !lock_info[key].nil? }
             raise InvalidLockfile, "lockfile included policy missing one of the required keys"
           end
         end
@@ -548,7 +550,7 @@ module ChefDK
     end
 
     def build_cookbook_lock_from_lock_data(name, lock_info)
-      unless lock_info.kind_of?(Hash)
+      unless lock_info.is_a?(Hash)
         raise InvalidLockfile, "lockfile cookbook_locks entries must be a Hash (JSON object). (got: #{lock_info.inspect})"
       end
 
@@ -560,7 +562,7 @@ module ChefDK
     end
 
     def build_cookbook_lock_as_archive_from_lock_data(name, lock_info)
-      unless lock_info.kind_of?(Hash)
+      unless lock_info.is_a?(Hash)
         raise InvalidLockfile, "lockfile cookbook_locks entries must be a Hash (JSON object). (got: #{lock_info.inspect})"
       end
 

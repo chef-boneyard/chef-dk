@@ -184,8 +184,8 @@ module ChefDK
 
       def http_client
         @http_client ||= Chef::ServerAPI.new(config.chef_server_url,
-                                                       signing_key_filename: config.client_key,
-                                                       client_name: config.node_name)
+          signing_key_filename: config.client_key,
+          client_name: config.node_name)
       end
 
       # @api private

@@ -54,6 +54,7 @@ module ChefDK
         unless policyfile_filename.end_with?(".rb")
           raise InvalidPolicyfileFilename, "Policyfile filenames must end with `.rb' extension (you gave: `#{policyfile_filename}')"
         end
+
         @policyfile_filename = policyfile_filename
         @policyfile_lock_filename = policyfile_filename.sub(/\.rb\Z/, ".lock.json")
         @relative_paths_root = File.dirname(policyfile_filename)

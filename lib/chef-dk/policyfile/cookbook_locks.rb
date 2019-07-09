@@ -82,6 +82,7 @@ module ChefDK
       def cookbook_location_spec
         raise InvalidCookbookLockData, "Cannot create CookbookLocationSpecification for #{name} without version" if version.nil?
         raise InvalidCookbookLockData, "Cannot create CookbookLocationSpecification for #{name} without source options" if source_options.nil?
+
         @location_spec ||= CookbookLocationSpecification.new(name, "= #{version}", source_options, storage_config)
       end
 
@@ -170,22 +171,22 @@ module ChefDK
         end
 
         version = lock_data["version"]
-        unless version.kind_of?(String)
+        unless version.is_a?(String)
           raise InvalidLockfile, "Lockfile cookbook_lock for #{name} `version' attribute must be a string (got: #{version})"
         end
 
         identifier = lock_data["identifier"]
-        unless identifier.kind_of?(String)
+        unless identifier.is_a?(String)
           raise InvalidLockfile, "Lockfile cookbook_lock for #{name} `identifier' attribute must be a string (got: #{identifier})"
         end
 
         cache_key = lock_data["cache_key"]
-        unless cache_key.kind_of?(String) || cache_key.nil?
+        unless cache_key.is_a?(String) || cache_key.nil?
           raise InvalidLockfile, "Lockfile cookbook_lock for #{name} `cache_key' attribute must be a string (got: #{cache_key})"
         end
 
         source_options = lock_data["source_options"]
-        unless source_options.kind_of?(Hash)
+        unless source_options.is_a?(Hash)
           raise InvalidLockfile, "Lockfile cookbook_lock for #{name} `source_options' attribute must be a Hash (JSON object) (got: #{source_options})"
         end
       end
@@ -220,6 +221,7 @@ module ChefDK
         if cache_key.nil?
           raise MissingCookbookLockData, "Cannot locate cached cookbook `#{name}' because the `cache_key' attribute is not set"
         end
+
         File.join(cache_path, cache_key)
       end
 
@@ -340,6 +342,7 @@ module ChefDK
         unless File.exist?(cookbook_path)
           raise LocalCookbookNotFound, "Cookbook `#{name}' not found at path source `#{source}` (full path: `#{cookbook_path}')"
         end
+
         unless cookbook_version.name.to_s == name
           msg = "The cookbook at path source `#{source}' is expected to be named `#{name}', but is now named `#{cookbook_version.name}' (full path: #{cookbook_path})"
           raise MalformedCookbook, msg
@@ -385,7 +388,7 @@ module ChefDK
           raise InvalidLockfile, "Lockfile cookbook_lock for #{name} is invalid. Lock data for a local cookbook must have a `source' attribute"
         end
 
-        unless source.kind_of?(String)
+        unless source.is_a?(String)
           raise InvalidLockfile, "Lockfile cookbook_lock for #{name} is invalid: `source' attribute must be a String (got: #{source.inspect})"
         end
       end

@@ -68,6 +68,7 @@ module ChefDK
 
       def run(params)
         return 1 unless apply_params!(params)
+
         clean_policies_service.run
         0
       rescue PolicyfileServiceError => e

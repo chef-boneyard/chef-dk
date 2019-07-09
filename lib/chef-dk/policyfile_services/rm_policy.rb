@@ -76,8 +76,8 @@ module ChefDK
       # server URL and credentials.
       def http_client
         @http_client ||= Chef::ServerAPI.new(chef_config.chef_server_url,
-                                             signing_key_filename: chef_config.client_key,
-                                             client_name: chef_config.node_name)
+          signing_key_filename: chef_config.client_key,
+          client_name: chef_config.node_name)
       end
 
       private
@@ -108,6 +108,7 @@ module ChefDK
           next unless group_info.key?("policies") && !group_info["policies"].empty?
           next unless group_info["policies"].key?(policy_name)
           next unless group_info["policies"][policy_name]["revision_id"] == revision_id
+
           groups << group_name if group_info
         end
         groups
@@ -119,12 +120,14 @@ module ChefDK
 
       def policy_exists?
         return true if @policy_exists
+
         fetch_policy_revision_data
         @policy_exists
       end
 
       def policy_revision_data
         return @policy_revision_data if @policy_exists
+
         fetch_policy_revision_data
       end
 
@@ -133,6 +136,7 @@ module ChefDK
         @policy_exists = true
       rescue Net::HTTPServerException => e
         raise unless e.response.code == "404"
+
         @policy_exists = false
       end
 

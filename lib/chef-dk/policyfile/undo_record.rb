@@ -52,7 +52,7 @@ module ChefDK
       end
 
       def ==(other)
-        other.kind_of?(UndoRecord) &&
+        other.is_a?(UndoRecord) &&
           other.policy_groups == policy_groups &&
           other.policy_revisions == policy_revisions
       end
@@ -68,29 +68,31 @@ module ChefDK
       def load(data)
         reset!
 
-        unless data.kind_of?(Hash)
+        unless data.is_a?(Hash)
           raise InvalidUndoRecord, "Undo data is incorrectly formatted. Must be a Hash, got '#{data}'."
         end
+
         missing_fields = %w{ format_version description backup_data }.select { |key| !data.key?(key) }
         unless missing_fields.empty?
-          raise InvalidUndoRecord, "Undo data is missing mandatory field(s) #{missing_fields.join(', ')}. Undo data: '#{data}'"
+          raise InvalidUndoRecord, "Undo data is missing mandatory field(s) #{missing_fields.join(", ")}. Undo data: '#{data}'"
         end
 
         @description = data["description"]
 
         policy_data = data["backup_data"]
-        unless policy_data.kind_of?(Hash)
+        unless policy_data.is_a?(Hash)
           raise InvalidUndoRecord, "'backup_data' in the undo record is incorrectly formatted. Must be a Hash, got '#{policy_data}'"
         end
+
         missing_policy_data_fields = %w{ policy_groups policy_revisions }.select { |key| !policy_data.key?(key) }
         unless missing_policy_data_fields.empty?
           raise InvalidUndoRecord,
-            "'backup_data' in the undo record is missing mandatory field(s) #{missing_policy_data_fields.join(', ')}. Backup data: #{policy_data}"
+            "'backup_data' in the undo record is missing mandatory field(s) #{missing_policy_data_fields.join(", ")}. Backup data: #{policy_data}"
         end
 
         policy_groups = policy_data["policy_groups"]
 
-        unless policy_groups.kind_of?(Array)
+        unless policy_groups.is_a?(Array)
           raise InvalidUndoRecord,
             "'policy_groups' data in the undo record is incorrectly formatted. Must be an Array, got '#{policy_groups}'"
         end
@@ -98,13 +100,13 @@ module ChefDK
         @policy_groups = policy_groups
 
         policy_revisions = policy_data["policy_revisions"]
-        unless policy_revisions.kind_of?(Array)
+        unless policy_revisions.is_a?(Array)
           raise InvalidUndoRecord,
             "'policy_revisions' data in the undo record is incorrectly formatted. Must be an Array, got '#{policy_revisions}'"
         end
 
         policy_revisions.each do |revision|
-          unless revision.kind_of?(Hash)
+          unless revision.is_a?(Hash)
             raise InvalidUndoRecord,
               "Invalid item in 'policy_revisions' in the undo record. Must be a Hash, got '#{revision}'"
           end

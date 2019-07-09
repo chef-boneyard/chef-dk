@@ -78,9 +78,9 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
 
   let(:chef_config) do
     double("Chef::Config",
-           chef_server_url: "https://localhost:10443",
-           client_key: "/path/to/client/key.pem",
-           node_name: "deuce")
+      chef_server_url: "https://localhost:10443",
+      client_key: "/path/to/client/key.pem",
+      node_name: "deuce")
   end
 
   subject(:clean_policy_cookbooks_service) do
@@ -89,8 +89,8 @@ describe ChefDK::PolicyfileServices::CleanPolicyCookbooks do
 
   it "configures an HTTP client with the user's credentials" do
     expect(Chef::ServerAPI).to receive(:new).with("https://localhost:10443",
-                                                       signing_key_filename: "/path/to/client/key.pem",
-                                                       client_name: "deuce")
+      signing_key_filename: "/path/to/client/key.pem",
+      client_name: "deuce")
     clean_policy_cookbooks_service.http_client
   end
 

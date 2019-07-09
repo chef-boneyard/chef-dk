@@ -52,8 +52,8 @@ module ChefDK
 
       def http_client
         @http_client ||= Chef::ServerAPI.new(config.chef_server_url,
-                                                       signing_key_filename: config.client_key,
-                                                       client_name: config.node_name)
+          signing_key_filename: config.client_key,
+          client_name: config.node_name)
       end
 
       def policy_data
@@ -64,9 +64,9 @@ module ChefDK
 
       def uploader
         ChefDK::Policyfile::Uploader.new(policyfile_lock, policy_group,
-                                         ui: ui,
-                                         http_client: http_client,
-                                         policy_document_native_api: config.policy_document_native_api)
+          ui: ui,
+          http_client: http_client,
+          policy_document_native_api: config.policy_document_native_api)
       end
 
       def run
@@ -99,6 +99,7 @@ module ChefDK
 
       def validate_lockfile
         return @policyfile_lock if @policyfile_lock
+
         @policyfile_lock = ChefDK::PolicyfileLock.new(storage_config).build_from_lock_data(policy_data)
         # TODO: enumerate any cookbook that have been updated
         @policyfile_lock.validate_cookbooks!

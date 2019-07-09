@@ -136,7 +136,8 @@ module ChefDK
 
     def omnibus_expand_path(*paths)
       dir = File.expand_path(File.join(paths))
-      raise OmnibusInstallNotFound.new() unless dir && File.directory?(dir)
+      raise OmnibusInstallNotFound.new unless dir && File.directory?(dir)
+
       dir
     end
 

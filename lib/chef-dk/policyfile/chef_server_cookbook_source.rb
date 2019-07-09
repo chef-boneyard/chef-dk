@@ -40,7 +40,7 @@ module ChefDK
       end
 
       def ==(other)
-        other.kind_of?(self.class) && other.uri == uri && other.preferred_cookbooks == preferred_cookbooks
+        other.is_a?(self.class) && other.uri == uri && other.preferred_cookbooks == preferred_cookbooks
       end
 
       def preferred_for(*cookbook_names)
@@ -84,8 +84,8 @@ module ChefDK
       def http_connection_for(base_url)
         @http_connections[base_url] ||=
           ChefServerAPIMulti.new(base_url,
-                                 signing_key_filename: chef_config.client_key,
-                                 client_name: chef_config.node_name)
+            signing_key_filename: chef_config.client_key,
+            client_name: chef_config.node_name)
       end
 
       def full_chef_server_graph

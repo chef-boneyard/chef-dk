@@ -120,6 +120,7 @@ module ChefDK
       justify_length = subcommands.map(&:length).max + 2
       subcommand_specs.each do |name, spec|
         next if spec.hidden
+
         msg("    #{"#{name}".ljust(justify_length)}#{spec.description}")
       end
     end
@@ -155,7 +156,7 @@ module ChefDK
     private
 
     def normalized_exit_code(maybe_integer)
-      if maybe_integer.kind_of?(Integer) && (0..255).cover?(maybe_integer)
+      if maybe_integer.is_a?(Integer) && (0..255).cover?(maybe_integer)
         maybe_integer
       else
         0
@@ -186,6 +187,7 @@ module ChefDK
     def sanity_check!
       # When installed outside of omnibus, trust the user to configure their PATH
       return true unless omnibus_install?
+
       paths = env[path_key].split(File::PATH_SEPARATOR)
       paths.map! { |p| drive_upcase(Chef::Util::PathHelper.cleanpath(p)) }
       embed_index = paths.index(drive_upcase(Chef::Util::PathHelper.cleanpath(omnibus_embedded_bin_dir)))

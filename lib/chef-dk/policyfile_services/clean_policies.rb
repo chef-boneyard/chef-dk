@@ -45,7 +45,7 @@ module ChefDK
           [ remove_policy(policy), policy ]
         end
 
-        failures = results.select { |result, _policy| result.kind_of?(Exception) }
+        failures = results.select { |result, _policy| result.is_a?(Exception) }
 
         unless failures.empty?
           details = failures.map do |result, policy|
@@ -76,8 +76,8 @@ module ChefDK
 
       def http_client
         @http_client ||= Chef::ServerAPI.new(chef_config.chef_server_url,
-                                               signing_key_filename: chef_config.client_key,
-                                               client_name: chef_config.node_name)
+          signing_key_filename: chef_config.client_key,
+          client_name: chef_config.node_name)
       end
 
       private

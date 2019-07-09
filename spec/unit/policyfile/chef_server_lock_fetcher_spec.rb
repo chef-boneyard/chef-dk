@@ -146,7 +146,8 @@ describe ChefDK::Policyfile::ChefServerLockFetcher do
 
     it "includes the revision id in the source_options_for_lock" do
       allow(http_client).to receive(:get).with(
-        "policy_groups/#{policy_group}/policies/#{policy_name}").and_return(minimal_lockfile)
+        "policy_groups/#{policy_group}/policies/#{policy_name}"
+      ).and_return(minimal_lockfile)
 
       expect(fetcher.source_options_for_lock).to eq(source_options_for_lock)
     end
@@ -154,7 +155,8 @@ describe ChefDK::Policyfile::ChefServerLockFetcher do
     it "correctly applies source_options that were included in the lock" do
       fetcher.apply_locked_source_options(source_options_for_lock)
       expect(http_client).to receive(:get).with(
-        "policies/#{policy_name}/revisions/#{revision_id}").and_return(minimal_lockfile)
+        "policies/#{policy_name}/revisions/#{revision_id}"
+      ).and_return(minimal_lockfile)
       fetcher.lock_data
     end
   end

@@ -50,9 +50,9 @@ describe ChefDK::Policyfile::Reports::Upload do
 
     def cb_with_lock(name, version, identifier)
       lock = instance_double("ChefDK::Policyfile::CookbookLock",
-                             name: name,
-                             version: version,
-                             identifier: identifier)
+        name: name,
+        version: version,
+        identifier: identifier)
 
       ChefDK::Policyfile::Uploader::LockedCookbookForUpload.new(nil, lock)
     end

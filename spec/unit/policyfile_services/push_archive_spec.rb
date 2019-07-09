@@ -98,10 +98,10 @@ describe ChefDK::PolicyfileServices::PushArchive do
 
   let(:config) do
     double("Chef::Config",
-           chef_server_url: "https://localhost:10443",
-           client_key: "/path/to/client/key.pem",
-           node_name: "deuce",
-           policy_document_native_api: true)
+      chef_server_url: "https://localhost:10443",
+      client_key: "/path/to/client/key.pem",
+      node_name: "deuce",
+      policy_document_native_api: true)
   end
 
   let(:ui) { TestHelpers::TestUI.new }
@@ -121,8 +121,8 @@ describe ChefDK::PolicyfileServices::PushArchive do
 
   it "configures an HTTP client" do
     expect(Chef::ServerAPI).to receive(:new).with("https://localhost:10443",
-                                                       signing_key_filename: "/path/to/client/key.pem",
-                                                       client_name: "deuce")
+      signing_key_filename: "/path/to/client/key.pem",
+      client_name: "deuce")
     push_archive_service.http_client
   end
 

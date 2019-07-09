@@ -30,7 +30,7 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
   def expect_hash_equal(actual, expected)
     expected.each do |key, expected_value|
       expect(actual).to have_key(key)
-      if expected_value.kind_of?(Hash)
+      if expected_value.is_a?(Hash)
         expect_hash_equal(actual[key], expected_value)
       else
         expect(actual[key]).to eq(expected_value)
@@ -876,18 +876,18 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
     let(:cached_location_spec) do
       double( "ChefDK::Policyfile::CookbookLocationSpecification",
-              mirrors_canonical_upstream?: true,
-              cache_key: "foo-1.0.0",
-              uri: cached_cookbook_uri,
-              source_options_for_lock: { "artifactserver" => cached_cookbook_uri, "version" => "1.0.0" })
+        mirrors_canonical_upstream?: true,
+        cache_key: "foo-1.0.0",
+        uri: cached_cookbook_uri,
+        source_options_for_lock: { "artifactserver" => cached_cookbook_uri, "version" => "1.0.0" })
     end
 
     let(:local_location_spec) do
       double( "ChefDK::Policyfile::CookbookLocationSpecification",
-              mirrors_canonical_upstream?: false,
-              relative_paths_root: relative_paths_root,
-              relative_path: "bar",
-              source_options_for_lock: { "path" => "bar" })
+        mirrors_canonical_upstream?: false,
+        relative_paths_root: relative_paths_root,
+        relative_path: "bar",
+        source_options_for_lock: { "path" => "bar" })
     end
 
     let(:policyfile_solution_dependencies) do
@@ -933,15 +933,14 @@ describe ChefDK::PolicyfileLock, "building a lockfile" do
 
     let(:policyfile_compiler) do
       double( "ChefDK::PolicyfileCompiler",
-              name: "my-policyfile",
-              normalized_run_list: %w{recipe[foo::default] recipe[bar::default]},
-              normalized_named_run_lists: { "rl2" => %w{recipe[bar::default]} },
-              all_cookbook_location_specs: { "foo" => cached_location_spec, "bar" => local_location_spec },
-              solution_dependencies: policyfile_solution_dependencies,
-              default_attributes: policyfile_default_attrs,
-              override_attributes: policyfile_override_attrs,
-              included_policies: []
-            )
+        name: "my-policyfile",
+        normalized_run_list: %w{recipe[foo::default] recipe[bar::default]},
+        normalized_named_run_lists: { "rl2" => %w{recipe[bar::default]} },
+        all_cookbook_location_specs: { "foo" => cached_location_spec, "bar" => local_location_spec },
+        solution_dependencies: policyfile_solution_dependencies,
+        default_attributes: policyfile_default_attrs,
+        override_attributes: policyfile_override_attrs,
+        included_policies: [])
     end
 
     let(:policyfile_lock) do

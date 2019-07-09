@@ -98,7 +98,7 @@ module ChefDK
           acc
         end
         source_options.merge!(options)
-        raise ChefDK::InvalidLockfile, "Invalid source_options provided from lock data: #{options_from_lock_file.inspect}" if !valid?
+        raise ChefDK::InvalidLockfile, "Invalid source_options provided from lock data: #{options_from_lock_file.inspect}" unless valid?
       end
 
       # @return [Hash] of the policyfile lock data
@@ -126,7 +126,7 @@ module ChefDK
                   # as a git repo and not a local directory. Git also doesn't like paths
                   # prefixed with `./` and cannot use relative paths outside the repo.
                   # http://rubular.com/r/JYpdYHT19p
-                  pattern = /(^..\/)|(^.\/)/
+                  pattern = %r{(^../)|(^./)}
                   opt["rel"] = opt[name].gsub(pattern, "")
                 end
 

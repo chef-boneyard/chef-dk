@@ -79,7 +79,7 @@ module ChefDK
           validate_revision_id(data["revision_id"], source_options)
           data["cookbook_locks"].each do |cookbook_name, cookbook_lock|
             cookbook_path = cookbook_lock["source_options"]["path"]
-            if !cookbook_path.nil?
+            unless cookbook_path.nil?
               raise ChefDK::InvalidLockfile, "Invalid cookbook path: #{cookbook_path}. Remote Policyfiles should only use remote cookbooks."
             end
           end

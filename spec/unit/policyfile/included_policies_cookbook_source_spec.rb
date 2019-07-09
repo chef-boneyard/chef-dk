@@ -69,7 +69,7 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
         "cache_key" => "#{cookbook_info[:name]}-#{cookbook_info[:version]}",
         "origin" => "uri",
         "source_options" => { "version" => cookbook_info[:version] }.tap do |so|
-          so["nonce"] = nonce if !nonce.nil?
+          so["nonce"] = nonce unless nonce.nil?
         end,
       }
       acc
@@ -222,7 +222,8 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
 
       it "raises an error when check_for_conflicts! is called" do
         expect { cookbook_source.check_for_conflicts! }.to raise_error(
-          ChefDK::Policyfile::IncludedPoliciesCookbookSource::ConflictingCookbookSources)
+          ChefDK::Policyfile::IncludedPoliciesCookbookSource::ConflictingCookbookSources
+        )
       end
     end
 
@@ -231,7 +232,8 @@ describe ChefDK::Policyfile::IncludedPoliciesCookbookSource do
 
       it "raises an error when check_for_conflicts! is called" do
         expect { cookbook_source.check_for_conflicts! }.to raise_error(
-          ChefDK::Policyfile::IncludedPoliciesCookbookSource::ConflictingCookbookVersions)
+          ChefDK::Policyfile::IncludedPoliciesCookbookSource::ConflictingCookbookVersions
+        )
       end
     end
 

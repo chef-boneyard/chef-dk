@@ -247,7 +247,8 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
       it "emits a lockfile where cookbooks pulled from the upstream are at identical versions" do
         expect(policyfile_lock.to_lock["solution_dependencies"]["dependencies"]).to(
-          have_key("cookbookC (2.0.0)"))
+          have_key("cookbookC (2.0.0)")
+        )
       end
     end
 
@@ -266,7 +267,8 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
         let(:run_list) { [] }
         it "it defaults to those provided in the included policy lock" do
           expect(policyfile_lock.to_lock["solution_dependencies"]["dependencies"]).to(
-            have_key("cookbookC (2.0.0)"))
+            have_key("cookbookC (2.0.0)")
+          )
         end
       end
 
@@ -309,7 +311,8 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
 
         it "solves the dependencies added by the top-level policyfile and emits them in the lockfile" do
           expect(policyfile_lock.to_lock["solution_dependencies"]["dependencies"]).to(
-            have_key("cookbookC (2.0.0)"))
+            have_key("cookbookC (2.0.0)")
+          )
         end
 
       end
@@ -375,7 +378,8 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
         it "raises an error describing all attribute conflicts" do
           expect { policyfile_lock.to_lock }.to raise_error(
             ChefDK::Policyfile::AttributeMergeChecker::ConflictError,
-            "Attribute '[shared][foo]' provided conflicting values by the following sources [\"user-specified\", \"included\"]")
+            "Attribute '[shared][foo]' provided conflicting values by the following sources [\"user-specified\", \"included\"]"
+          )
         end
       end
     end
@@ -425,7 +429,8 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
         it "raises an error describing all attribute conflicts" do
           expect { policyfile_lock.to_lock }.to raise_error(
             ChefDK::Policyfile::AttributeMergeChecker::ConflictError,
-            "Attribute '[shared][foo]' provided conflicting values by the following sources [\"user-specified\", \"included\"]")
+            "Attribute '[shared][foo]' provided conflicting values by the following sources [\"user-specified\", \"included\"]"
+          )
         end
       end
     end
@@ -652,7 +657,8 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
         it "raises an error describing the conflict" do
           expect { policyfile_lock }.to raise_error(
             ChefDK::Policyfile::AttributeMergeChecker::ConflictError,
-            "Attribute '[conflict][foo]' provided conflicting values by the following sources [\"included\", \"included2\"]")
+            "Attribute '[conflict][foo]' provided conflicting values by the following sources [\"included\", \"included2\"]"
+          )
         end
       end
     end
@@ -711,7 +717,8 @@ describe ChefDK::PolicyfileCompiler, "including upstream policy locks" do
         it "raises an error describing the conflict" do
           expect { policyfile_lock }.to raise_error(
             ChefDK::Policyfile::AttributeMergeChecker::ConflictError,
-            "Attribute '[conflict][foo]' provided conflicting values by the following sources [\"included\", \"included2\"]")
+            "Attribute '[conflict][foo]' provided conflicting values by the following sources [\"included\", \"included2\"]"
+          )
         end
       end
     end

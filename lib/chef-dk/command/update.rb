@@ -90,6 +90,7 @@ module ChefDK
 
       def run(params = [])
         return 1 unless apply_params!(params)
+
         attributes_updater.run
         installer.run(@cookbooks_to_update, config[:exclude_deps]) unless update_attributes_only?
         0

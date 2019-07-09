@@ -354,12 +354,12 @@ describe ChefDK::CLI do
       before do
         allow(File).to receive(:exist?).with(chefdk_embedded_path).and_return(false)
 
-        [
-          :omnibus_root,
-          :omnibus_apps_dir,
-          :omnibus_bin_dir,
-          :omnibus_embedded_bin_dir,
-        ].each do |method_name|
+        %i{
+          omnibus_root
+          omnibus_apps_dir
+          omnibus_bin_dir
+          omnibus_embedded_bin_dir
+        }.each do |method_name|
           allow(cli).to receive(method_name).and_raise(ChefDK::OmnibusInstallNotFound.new)
         end
       end

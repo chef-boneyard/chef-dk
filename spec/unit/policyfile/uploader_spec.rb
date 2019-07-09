@@ -48,7 +48,8 @@ describe ChefDK::Policyfile::Uploader do
 
   let(:policyfile_lock) do
     instance_double("ChefDK::PolicyfileLock", name: "example",
-                                              to_lock: policyfile_lock_data) end
+                                              to_lock: policyfile_lock_data)
+  end
 
   let(:policy_group) { "unit-test" }
 
@@ -58,9 +59,9 @@ describe ChefDK::Policyfile::Uploader do
 
   let(:uploader) do
     described_class.new(policyfile_lock,
-                        policy_group,
-                        http_client: http_client,
-                        policy_document_native_api: policy_document_native_api)
+      policy_group,
+      http_client: http_client,
+      policy_document_native_api: policy_document_native_api)
   end
 
   let(:policyfile_as_data_bag_item) do
@@ -101,16 +102,16 @@ describe ChefDK::Policyfile::Uploader do
       cache_path = "/home/user/cache_path/#{name}"
 
       lock = instance_double("ChefDK::Policyfile::CookbookLock",
-                             name: name,
-                             version: "1.0.0",
-                             identifier: identifier,
-                             dotted_decimal_identifier: dotted_decimal_id,
-                             cookbook_path: cache_path)
+        name: name,
+        version: "1.0.0",
+        identifier: identifier,
+        dotted_decimal_identifier: dotted_decimal_id,
+        cookbook_path: cache_path)
 
       cookbook_version = instance_double("Chef::CookbookVersion",
-                                         name: name,
-                                         identifier: lock.identifier,
-                                         version: dotted_decimal_id)
+        name: name,
+        identifier: lock.identifier,
+        version: dotted_decimal_id)
 
       allow(cookbook_version).to receive(:identifier=).with(lock.identifier)
 
