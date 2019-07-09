@@ -877,7 +877,7 @@ DEPENDENCIES
   berkshelf (>= 7.0.5)
   bundler
   chef (= 15.1.36)
-  chef-apply
+  chef-apply (= 0.3.0)
   chef-bin (= 15.1.36)
   chef-dk!
   chef-sugar
