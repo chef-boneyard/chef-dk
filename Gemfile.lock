@@ -211,9 +211,9 @@ GEM
     chef-api (0.9.0)
       logify (~> 0.1)
       mime-types
-    chef-apply (0.3.0)
+    chef-apply (0.3.3)
       chef (>= 15.0)
-      chef-dk (>= 4.0)
+      chef-cli (>= 1.0.3)
       chef-telemetry
       license-acceptance (~> 1.0, >= 1.0.11)
       mixlib-cli
@@ -227,6 +227,18 @@ GEM
       tty-spinner
     chef-bin (15.1.36)
       chef (= 15.1.36)
+    chef-cli (1.0.3)
+      addressable (>= 2.3.5, < 2.6)
+      chef (~> 15.0)
+      cookbook-omnifetch (~> 0.5)
+      diff-lcs (~> 1.0)
+      ffi-yajl (>= 1.0, < 3.0)
+      license-acceptance (~> 1.0, >= 1.0.11)
+      minitar (~> 0.6)
+      mixlib-cli (>= 1.7, < 3.0)
+      mixlib-shellout (>= 2.0, < 4.0)
+      paint (~> 1.0)
+      solve (> 2.0, < 5.0)
     chef-config (15.1.36)
       addressable
       fuzzyurl
