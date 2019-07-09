@@ -89,7 +89,7 @@ module ChefDK
       def fill!(acc, source_name, path, hash)
         hash.each do |(key, val)|
           new_path = "#{path}[#{key}]"
-          if val.kind_of?(Hash)
+          if val.is_a?(Hash)
             acc[key] ||= Mash.new
             fill!(acc[key], source_name, new_path, val)
           else

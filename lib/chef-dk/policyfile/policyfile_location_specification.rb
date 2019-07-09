@@ -38,7 +38,7 @@ module ChefDK
       attr_reader :chef_config
       attr_reader :ui
 
-      LOCATION_TYPES = [:path, :remote, :server, :git].freeze
+      LOCATION_TYPES = %i{path remote server git}.freeze
 
       # Initialize a location spec
       #
@@ -92,9 +92,9 @@ module ChefDK
         error_messages = []
 
         if LOCATION_TYPES.all? { |l| source_options[l].nil? }
-          error_messages << "include_policy must use one of the following sources: #{LOCATION_TYPES.join(', ')}"
+          error_messages << "include_policy must use one of the following sources: #{LOCATION_TYPES.join(", ")}"
         else
-          if !fetcher.nil?
+          unless fetcher.nil?
             error_messages += fetcher.errors
           end
         end

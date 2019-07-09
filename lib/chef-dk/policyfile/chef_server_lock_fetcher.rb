@@ -73,11 +73,11 @@ module ChefDK
       def errors
         error_messages = []
 
-        [:server, :policy_name].each do |key|
+        %i{server policy_name}.each do |key|
           error_messages << "include_policy for #{name} is missing key #{key}" unless source_options[key]
         end
 
-        if [:policy_revision_id, :policy_group].all? { |key| source_options[key].nil? }
+        if %i{policy_revision_id policy_group}.all? { |key| source_options[key].nil? }
           error_messages << "include_policy for #{name} must specify policy_revision_id or policy_group"
         end
 
@@ -101,7 +101,7 @@ module ChefDK
           acc
         end
         source_options.merge!(options)
-        raise ChefDK::InvalidLockfile, "Invalid source_options provided from lock data: #{options_from_lock_file.inspect}" if !valid?
+        raise ChefDK::InvalidLockfile, "Invalid source_options provided from lock data: #{options_from_lock_file.inspect}" unless valid?
       end
 
       # @return [String] of the policyfile lock data
@@ -158,8 +158,8 @@ module ChefDK
       # @return [Hash] Returns a parsed JSON object... I think.
       def http_client
         @http_client ||= Chef::ServerAPI.new(source_options[:server],
-                                             signing_key_filename: chef_config.client_key,
-                                             client_name: chef_config.node_name)
+          signing_key_filename: chef_config.client_key,
+          client_name: chef_config.node_name)
       end
 
     end

@@ -36,9 +36,9 @@ describe ChefDK::PolicyfileServices::RmPolicy do
 
   let(:chef_config) do
     double("Chef::Config",
-           chef_server_url: "https://localhost:10443",
-           client_key: "/path/to/client/key.pem",
-           node_name: "deuce")
+      chef_server_url: "https://localhost:10443",
+      client_key: "/path/to/client/key.pem",
+      node_name: "deuce")
   end
 
   subject(:rm_policy_service) do
@@ -55,8 +55,8 @@ describe ChefDK::PolicyfileServices::RmPolicy do
 
   it "configures an HTTP client" do
     expect(Chef::ServerAPI).to receive(:new).with("https://localhost:10443",
-                                                       signing_key_filename: "/path/to/client/key.pem",
-                                                       client_name: "deuce")
+      signing_key_filename: "/path/to/client/key.pem",
+      client_name: "deuce")
     rm_policy_service.http_client
   end
 

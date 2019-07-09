@@ -42,18 +42,18 @@ describe ChefDK::Policyfile::Reports::Install do
 
     let(:fixed_version_cookbook_one) do
       instance_double("ChefDK::Policyfile::CookbookLocationSpecification",
-                      installed?: false,
-                      name: "short-name",
-                      version_constraint: ">= 0.0.0",
-                      source_type: :git)
+        installed?: false,
+        name: "short-name",
+        version_constraint: ">= 0.0.0",
+        source_type: :git)
     end
 
     let(:fixed_version_cookbook_two) do
       instance_double("ChefDK::Policyfile::CookbookLocationSpecification",
-                      installed?: true,
-                      name: "this-name-is-longer",
-                      version_constraint: "~> 10.0.0",
-                      source_type: :path)
+        installed?: true,
+        name: "this-name-is-longer",
+        version_constraint: "~> 10.0.0",
+        source_type: :path)
     end
 
     let(:fixed_version_cookbooks) do
@@ -80,16 +80,16 @@ describe ChefDK::Policyfile::Reports::Install do
 
     let(:cookbook_one) do
       instance_double("ChefDK::Policyfile::CookbookLocationSpecification",
-                      installed?: false,
-                      name: "short-name",
-                      version_constraint: Semverse::Constraint.new("= 10.0.4"))
+        installed?: false,
+        name: "short-name",
+        version_constraint: Semverse::Constraint.new("= 10.0.4"))
     end
 
     let(:cookbook_two) do
       instance_double("ChefDK::Policyfile::CookbookLocationSpecification",
-                      installed?: true,
-                      name: "this-name-is-longer",
-                      version_constraint: Semverse::Constraint.new("= 1.2.3"))
+        installed?: true,
+        name: "this-name-is-longer",
+        version_constraint: Semverse::Constraint.new("= 1.2.3"))
     end
 
     let(:graph_solution_cookbooks) do

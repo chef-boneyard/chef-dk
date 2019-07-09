@@ -47,6 +47,7 @@ module ChefDK
 
         def run
           return 1 unless verify_params!
+
           FileUtils.cp_r(source, destination_dir)
           update_metadata_rb
           ui.msg("Copied built-in generator cookbook to #{created_cookbook_path}")

@@ -37,10 +37,10 @@ describe ChefDK::ServiceExceptionInspectors::HTTP do
 
   let(:request) do
     r = instance_double(Net::HTTP::Post,
-                        method: "POST",
-                        uri: nil,
-                        path: "/organizations/chef-oss-dev/cookbooks",
-                        body: request_body)
+      method: "POST",
+      uri: nil,
+      path: "/organizations/chef-oss-dev/cookbooks",
+      body: request_body)
     stub = allow(r).to(receive(:each_header))
     request_headers.each { |k, v| stub.and_yield(k, v) }
     r
@@ -55,9 +55,9 @@ describe ChefDK::ServiceExceptionInspectors::HTTP do
 
   let(:response) do
     r = instance_double(Net::HTTPClientError,
-                    code: "400",
-                    message: "Bad Request",
-                    body: response_body)
+      code: "400",
+      message: "Bad Request",
+      body: response_body)
     stub = allow(r).to(receive(:each_header))
     response_headers.each { |k, v| stub.and_yield(k, v) }
     r

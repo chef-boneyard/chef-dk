@@ -67,7 +67,7 @@ module ChefDK
         end
 
         policyfile_compiler.included_policies.each do |policy|
-          if !unlocked_policies.include?(policy.name)
+          unless unlocked_policies.include?(policy.name)
             lock = policyfile_lock.included_policy_locks.find do |policy_lock|
               policy_lock["name"] == policy.name
             end

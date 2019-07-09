@@ -162,10 +162,10 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
 
     allow(ChefDK::Policyfile::CookbookLocationSpecification).to receive(:new) do |cookbook_name, version_constraint, source_opts, storage_config|
       double = instance_double("ChefDK::Policyfile::CookbookLocationSpecification",
-                      name: cookbook_name,
-                      version_constraint: Semverse::Constraint.new(version_constraint),
-                      ensure_cached: nil,
-                      to_s: "#{cookbook_name} #{version_constraint}")
+        name: cookbook_name,
+        version_constraint: Semverse::Constraint.new(version_constraint),
+        ensure_cached: nil,
+        to_s: "#{cookbook_name} #{version_constraint}")
       allow(double).to receive(:cookbook_has_recipe?).and_return(true)
       allow(double).to receive(:installed?).and_return(true)
       allow(double).to receive(:mirrors_canonical_upstream?).and_return(true)
@@ -207,8 +207,8 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
         allow(mock).to receive(:validate!)
         allow(mock).to receive(:cookbook_version) do
           instance_double("Chef::CookbookVersion",
-                          version: mock.source_options[:version],
-                          manifest_records_by_path: [])
+            version: mock.source_options[:version],
+            manifest_records_by_path: [])
         end
         mock
       end
@@ -226,7 +226,8 @@ describe ChefDK::PolicyfileLock, "installing cookbooks from included policies" d
             "revision_id" => "myrevisionid",
             "source_options" => lock_source_options,
           },
-        ])
+        ]
+      )
     end
   end
 end

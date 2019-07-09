@@ -95,7 +95,7 @@ module ChefDK
           return 1
         elsif !SUPPORTED_SHELLS.include?(shell_name)
           err("Shell `#{shell_name}' is not currently supported")
-          err("Supported shells are: #{SUPPORTED_SHELLS.join(' ')}")
+          err("Supported shells are: #{SUPPORTED_SHELLS.join(" ")}")
           return 1
         end
 
@@ -116,6 +116,7 @@ module ChefDK
 
       def completion_for(shell)
         return "" unless (completion_template_basename = completion_template_for(shell))
+
         completion_template_path = expand_completion_template_path(completion_template_basename)
         erb = ERB.new(File.read(completion_template_path), nil, "-")
         context_binding = shell_completion_template_context.get_binding
@@ -165,7 +166,7 @@ module ChefDK
         # /dev/null to avoid Fish's helpful warnings about nonexistent
         # PATH elements.
         if var == "PATH"
-          emit_shell_cmd(%Q{set -gx #{var} "#{val.split(':').join('" "')}" 2>/dev/null;})
+          emit_shell_cmd(%Q{set -gx #{var} "#{val.split(":").join('" "')}" 2>/dev/null;})
         else
           emit_shell_cmd(%Q{set -gx #{var} "#{val}";})
         end

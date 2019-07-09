@@ -141,11 +141,11 @@ describe ChefDK::Policyfile::GitLockFetcher do
         expect(
           relative_path_fetcher.lock_data["cookbook_locks"][cookbook_name]["source_options"]
         ).to match(
-               {
-                 "git" => repo,
-                 "revision" => git_revision,
-               }
-             )
+          {
+            "git" => repo,
+            "revision" => git_revision,
+          }
+        )
         expect(
           relative_path_fetcher.lock_data["cookbook_locks"][cookbook_name]["source_options"]
         ).not_to match(source_options_rel)

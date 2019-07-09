@@ -90,6 +90,7 @@ module ChefDK
 
       def archive_file_location
         return nil unless archive?
+
         filename = "#{policyfile_lock.name}-#{policyfile_lock.revision_id}.tgz"
         File.join(export_dir, filename)
       end
@@ -158,7 +159,7 @@ module ChefDK
         dirname = "#{lock.name}-#{lock.identifier}"
         export_path = File.join(staging_dir, "cookbook_artifacts", dirname)
         metadata_rb_path = File.join(export_path, "metadata.rb")
-        FileUtils.mkdir(export_path) if not File.directory?(export_path)
+        FileUtils.mkdir(export_path) unless File.directory?(export_path)
         copy_unignored_cookbook_files(lock, export_path)
         FileUtils.rm_f(metadata_rb_path)
         metadata = lock.cookbook_version.metadata
@@ -320,6 +321,7 @@ module ChefDK
 
       def validate_lockfile
         return @policyfile_lock if @policyfile_lock
+
         @policyfile_lock = ChefDK::PolicyfileLock.new(storage_config).build_from_lock_data(policy_data)
         # TODO: enumerate any cookbook that have been updated
         @policyfile_lock.validate_cookbooks!
@@ -344,7 +346,7 @@ module ChefDK
 
       def assert_export_dir_clean!
         if !force_export? && !conflicting_fs_entries.empty? && !archive?
-          msg = "Export dir (#{export_dir}) not clean. Refusing to export. (Conflicting files: #{conflicting_fs_entries.join(', ')})"
+          msg = "Export dir (#{export_dir}) not clean. Refusing to export. (Conflicting files: #{conflicting_fs_entries.join(", ")})"
           raise ExportDirNotEmpty, msg
         end
       end

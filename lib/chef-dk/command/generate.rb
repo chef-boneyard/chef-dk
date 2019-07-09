@@ -111,6 +111,7 @@ module ChefDK
       # we delegate the request to the specified generator.
       def needs_help?(params)
         return false if have_generator?(params[0])
+
         super
       end
 

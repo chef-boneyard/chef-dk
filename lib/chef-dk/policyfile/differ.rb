@@ -95,6 +95,7 @@ module ChefDK
 
       def report_run_list_changes
         return nil unless updated_sections.include?("run_list")
+
         h1("RUN LIST CHANGED")
 
         old_run_list = old_lock["run_list"]
@@ -105,6 +106,7 @@ module ChefDK
 
       def report_removed_cookbooks
         return nil if removed_cookbooks.empty?
+
         h1("REMOVED COOKBOOKS")
         removed_cookbooks.each do |cb_name|
           ui.print("\n")
@@ -117,6 +119,7 @@ module ChefDK
 
       def report_added_cookbooks
         return nil if added_cookbooks.empty?
+
         h1("ADDED COOKBOOKS")
         added_cookbooks.each do |cb_name|
           ui.print("\n")
@@ -129,6 +132,7 @@ module ChefDK
 
       def report_modified_cookbooks
         return nil if modified_cookbooks.empty?
+
         h1("MODIFIED COOKBOOKS")
         modified_cookbooks.each do |cb_name|
           ui.print("\n")
@@ -202,7 +206,7 @@ module ChefDK
 
           maybe_contiguous_hunks = (previous_hunk.nil? || hunk.merge(previous_hunk))
 
-          if !maybe_contiguous_hunks
+          unless maybe_contiguous_hunks
             print_color_diff("#{previous_hunk.diff(FORMAT)}\n")
           end
           previous_hunk = hunk
@@ -231,7 +235,7 @@ module ChefDK
       end
 
       def pretty_json(data)
-        FFI_Yajl::Encoder.encode(data, pretty: true).lines.map { |l| l.chomp }
+        FFI_Yajl::Encoder.encode(data, pretty: true).lines.map(&:chomp)
       end
 
       def detect_cookbook_changes

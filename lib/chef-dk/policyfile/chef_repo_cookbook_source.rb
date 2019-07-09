@@ -54,7 +54,7 @@ module ChefDK
       end
 
       def ==(other)
-        other.kind_of?(self.class) && other.path == path && other.preferred_cookbooks == preferred_cookbooks
+        other.is_a?(self.class) && other.path == path && other.preferred_cookbooks == preferred_cookbooks
       end
 
       # Calls the slurp_metadata! helper once to calculate the @universe_graph

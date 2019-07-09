@@ -37,7 +37,7 @@ module ChefDK
 
       def run(params)
         info = {}
-        info["#{ChefDK::Dist::PRODUCT}"] = Hash.new.tap do |chefdk_env|
+        info["#{ChefDK::Dist::PRODUCT}"] = {}.tap do |chefdk_env|
           chefdk_env["ChefDK"] = chefdk_info
           chefdk_env["Ruby"] = ruby_info
           chefdk_env["Path"] = paths
@@ -46,7 +46,7 @@ module ChefDK
       end
 
       def chefdk_info
-        Hash.new.tap do |chefdk|
+        {}.tap do |chefdk|
           chefdk["ChefDK Version"] = ChefDK::VERSION
           chefdk["ChefDK Home"] = chefdk_home
           chefdk["ChefDK Install Directory"] = omnibus_root
@@ -55,10 +55,10 @@ module ChefDK
       end
 
       def ruby_info
-        Hash.new.tap do |ruby|
+        {}.tap do |ruby|
           ruby["Ruby Executable"] = Gem.ruby
           ruby["Ruby Version"] = RUBY_VERSION
-          ruby["RubyGems"] = Hash.new.tap do |rubygems|
+          ruby["RubyGems"] = {}.tap do |rubygems|
             rubygems["RubyGems Version"] = Gem::VERSION
             rubygems["RubyGems Platforms"] = Gem.platforms.map(&:to_s)
             rubygems["Gem Environment"] = gem_environment
@@ -67,7 +67,7 @@ module ChefDK
       end
 
       def gem_environment
-        Hash.new.tap do |h|
+        {}.tap do |h|
           h["GEM ROOT"] = omnibus_env["GEM_ROOT"]
           h["GEM HOME"] = omnibus_env["GEM_HOME"]
           h["GEM PATHS"] = omnibus_env["GEM_PATH"].split(File::PATH_SEPARATOR)
@@ -79,7 +79,7 @@ module ChefDK
       end
 
       def policyfile_config
-        Hash.new.tap do |h|
+        {}.tap do |h|
           h["Cache Path"] = CookbookOmnifetch.cache_path
           h["Storage Path"] = CookbookOmnifetch.storage_path.to_s
         end

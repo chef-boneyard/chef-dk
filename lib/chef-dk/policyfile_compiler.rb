@@ -39,7 +39,7 @@ module ChefDK
     DEFAULT_DEMAND_CONSTRAINT = ">= 0.0.0".freeze
 
     # Cookbooks from these sources lock that cookbook to exactly one version
-    SOURCE_TYPES_WITH_FIXED_VERSIONS = [:git, :path].freeze
+    SOURCE_TYPES_WITH_FIXED_VERSIONS = %i{git path}.freeze
 
     def self.evaluate(policyfile_string, policyfile_filename, ui: nil, chef_config: nil)
       compiler = new(ui: ui, chef_config: chef_config)
@@ -144,18 +144,20 @@ module ChefDK
 
     def default_attributes
       check_for_default_attribute_conflicts!
-      included_policies.map { |p| p.policyfile_lock }.inject(
-        dsl.node_attributes.combined_default.to_hash) do |acc, lock|
-          Chef::Mixin::DeepMerge.merge(acc, lock.default_attributes)
-        end
+      included_policies.map(&:policyfile_lock).inject(
+        dsl.node_attributes.combined_default.to_hash
+      ) do |acc, lock|
+        Chef::Mixin::DeepMerge.merge(acc, lock.default_attributes)
+      end
     end
 
     def override_attributes
       check_for_override_attribute_conflicts!
-      included_policies.map { |p| p.policyfile_lock }.inject(
-        dsl.node_attributes.combined_override.to_hash) do |acc, lock|
-          Chef::Mixin::DeepMerge.merge(acc, lock.override_attributes)
-        end
+      included_policies.map(&:policyfile_lock).inject(
+        dsl.node_attributes.combined_override.to_hash
+      ) do |acc, lock|
+        Chef::Mixin::DeepMerge.merge(acc, lock.override_attributes)
+      end
     end
 
     def lock
@@ -225,6 +227,7 @@ module ChefDK
 
     def graph_solution
       return @solution if @solution
+
       cache_fixed_version_cookbooks
       @solution = Solve.it!(graph, graph_demands)
     end
@@ -322,7 +325,7 @@ module ChefDK
     end
 
     def cookbooks_in_run_list
-      recipes = combined_run_lists.map { |recipe| recipe.name }
+      recipes = combined_run_lists.map(&:name)
       recipes.map { |r| r[/^([^:]+)/, 1] }
     end
 
@@ -443,7 +446,7 @@ module ChefDK
       deps_by_version = source.universe_graph[cookbook_name]
 
       dep_cookbook_names = deps_by_version.values.inject(Set.new) do |names, constraint_list|
-        names.merge(constraint_list.map { |c| c.first })
+        names.merge(constraint_list.map(&:first))
       end
 
       dep_cookbook_names.each do |dep_cookbook_name|
@@ -504,7 +507,7 @@ module ChefDK
     def handle_included_policies_preferred_cookbook_conflicts(included_policies_source)
       # All cookbooks in the included policies are preferred.
       conflicting_source_messages = []
-      dsl.default_source.reject { |s| s.null? }.each do |source_b|
+      dsl.default_source.reject(&:null?).each do |source_b|
         conflicting_preferences = included_policies_source.preferred_cookbooks & source_b.preferred_cookbooks
         next if conflicting_preferences.empty?
         next if conflicting_preferences.all? do |cookbook_name|
@@ -515,7 +518,8 @@ module ChefDK
             false
           end
         end
-        conflicting_source_messages << "#{source_b.desc} sets a preferred for cookbook(s) #{conflicting_preferences.join(', ')}. This conflicts with an included policy."
+
+        conflicting_source_messages << "#{source_b.desc} sets a preferred for cookbook(s) #{conflicting_preferences.join(", ")}. This conflicts with an included policy."
       end
       unless conflicting_source_messages.empty?
         msg = "You may not override the cookbook sources for any cookbooks required by included policies.\n"

@@ -27,7 +27,7 @@ module ChefDK
   module Policyfile
     class DSL
 
-      RUN_LIST_ITEM_COMPONENT = %r{^[.[:alnum:]_-]+$}.freeze
+      RUN_LIST_ITEM_COMPONENT = /^[.[:alnum:]_-]+$/.freeze
 
       include StorageConfigDelegation
 
@@ -86,6 +86,7 @@ module ChefDK
 
       def default_source(source_type = nil, source_argument = nil, &block)
         return @default_source if source_type.nil?
+
         case source_type
         when :community, :supermarket
           set_default_community_source(source_argument, &block)
@@ -252,7 +253,8 @@ module ChefDK
         default_source.combination(2).each do |source_a, source_b|
           conflicting_preferences = source_a.preferred_cookbooks & source_b.preferred_cookbooks
           next if conflicting_preferences.empty?
-          conflicting_source_messages << "#{source_a.desc} and #{source_b.desc} are both set as the preferred source for cookbook(s) '#{conflicting_preferences.join(', ')}'"
+
+          conflicting_source_messages << "#{source_a.desc} and #{source_b.desc} are both set as the preferred source for cookbook(s) '#{conflicting_preferences.join(", ")}'"
         end
         unless conflicting_source_messages.empty?
           msg = "Multiple sources are marked as the preferred source for some cookbooks. Only one source can be preferred for a cookbook.\n"

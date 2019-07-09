@@ -186,7 +186,7 @@ describe ChefDK::Command::GeneratorCommands::Repo do
         let(:file) { "chefignore" }
 
         it "has the preamble" do
-          expect(file_contents).to match(/Put files\/directories that should be ignored in this file when uploading/)
+          expect(file_contents).to match(%r{Put files/directories that should be ignored in this file when uploading})
         end
       end
 
@@ -195,17 +195,17 @@ describe ChefDK::Command::GeneratorCommands::Repo do
 
         it "has the right contents" do
           expect(file_contents).to match(/\.rake_test_cache/)
-          expect(file_contents).to match(/\.chef\/\*\.pem/)
-          expect(file_contents).to match(/\.chef\/encrypted_data_bag_secret/)
-          expect(file_contents).to_not match(/cookbooks\/\*\*/)
+          expect(file_contents).to match(%r{\.chef/\*\.pem})
+          expect(file_contents).to match(%r{\.chef/encrypted_data_bag_secret})
+          expect(file_contents).to_not match(%r{cookbooks/\*\*})
         end
 
         context "with --policy-only" do
           let(:argv) { ["new_repo", "--policy-only" ] }
 
           it "blocks cookbooks" do
-            expect(file_contents).to match(/cookbooks\/\*\*/)
-            expect(file_contents).to match(/cookbooks\/README\.md/)
+            expect(file_contents).to match(%r{cookbooks/\*\*})
+            expect(file_contents).to match(%r{cookbooks/README\.md})
           end
         end
       end

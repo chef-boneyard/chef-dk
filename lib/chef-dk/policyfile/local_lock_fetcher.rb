@@ -80,7 +80,7 @@ module ChefDK
           validate_revision_id(data["revision_id"], source_options)
           data["cookbook_locks"].each do |cookbook_name, cookbook_lock|
             cookbook_path = cookbook_lock["source_options"]["path"]
-            if !cookbook_path.nil?
+            unless cookbook_path.nil?
               cookbook_lock["source_options"]["path"] = transform_path(cookbook_path)
             end
           end
@@ -110,14 +110,16 @@ module ChefDK
           path = abs_path
           if path.directory?
             path = path.join("#{name}.lock.json")
-            if !path.file?
+            unless path.file?
               raise ChefDK::LocalPolicyfileLockNotFound.new(
-                "Expected to find file #{name}.lock.json inside #{source_options[:path]}. If the file name is different than this, provide the file name as part of the path.")
+                "Expected to find file #{name}.lock.json inside #{source_options[:path]}. If the file name is different than this, provide the file name as part of the path."
+              )
             end
           else
-            if !path.file?
+            unless path.file?
               raise ChefDK::LocalPolicyfileLockNotFound.new(
-                "The provided path #{source_options[:path]} does not exist.")
+                "The provided path #{source_options[:path]} does not exist."
+              )
             end
           end
           path

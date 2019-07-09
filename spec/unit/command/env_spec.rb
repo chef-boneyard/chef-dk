@@ -21,7 +21,7 @@ require "chef-dk/command/env"
 
 describe ChefDK::Command::Env do
   let(:ui) { TestHelpers::TestUI.new }
-  let(:command_instance) { ChefDK::Command::Env.new() }
+  let(:command_instance) { ChefDK::Command::Env.new }
 
   let(:command_options) { [] }
 

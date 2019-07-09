@@ -49,6 +49,7 @@ module ChefDK
 
     def chef_config
       return @chef_config if @chef_config
+
       config_loader.load
       @chef_config = Chef::Config
       CookbookOmnifetch.integration.default_chef_server_http_client = default_chef_server_http_client
@@ -79,8 +80,8 @@ module ChefDK
     def default_chef_server_http_client
       lambda do
         ChefServerAPIMulti.new(@chef_config.chef_server_url,
-                               signing_key_filename: @chef_config.client_key,
-                               client_name: @chef_config.node_name)
+          signing_key_filename: @chef_config.client_key,
+          client_name: @chef_config.node_name)
       end
     end
 

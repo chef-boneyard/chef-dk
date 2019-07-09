@@ -41,7 +41,7 @@ describe ChefDK::Command::Base do
 
   let(:stderr_io) { StringIO.new }
   let(:stdout_io) { StringIO.new }
-  let(:command_instance) { TestCommand.new() }
+  let(:command_instance) { TestCommand.new }
   let(:enforce_license) { false }
 
   def stdout

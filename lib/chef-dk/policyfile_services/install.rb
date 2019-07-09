@@ -84,6 +84,7 @@ module ChefDK
 
       def policyfile_lock
         return nil if policyfile_lock_content.nil?
+
         @policyfile_lock ||= begin
           lock_data = FFI_Yajl::Parser.new.parse(policyfile_lock_content)
           PolicyfileLock.new(storage_config, ui: ui).build_from_lock_data(lock_data)
@@ -115,7 +116,7 @@ module ChefDK
       end
 
       def update_lock_and_install(cookbooks_to_update, exclude_deps)
-        ui.msg "Updating #{cookbooks_to_update.join(',')} cookbooks #{exclude_deps ? '(excluding dependencies)' : ''}"
+        ui.msg "Updating #{cookbooks_to_update.join(",")} cookbooks #{exclude_deps ? "(excluding dependencies)" : ""}"
         to_update = if exclude_deps
                       cookbooks_to_update
                     else
@@ -134,6 +135,7 @@ module ChefDK
 
         policyfile_lock.cookbook_locks.each do |ck_name, location_spec|
           next if to_update.include?(ck_name)
+
           # we need to feed policyfile_compiler.cookbook_location_spec_for with a CookbookLocationSpecification
           policyfile_compiler.dsl.cookbook_location_specs[ck_name] = Policyfile::CookbookLocationSpecification.new(
             ck_name,

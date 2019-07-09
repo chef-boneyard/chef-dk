@@ -38,6 +38,7 @@ module ChefDK
         def lock
           raise LockfileNotFound, "Expected lockfile at #{policyfile_lock_relpath} does not exist" unless File.exist?(policyfile_lock_relpath)
           raise LockfileNotFound, "Expected lockfile at #{policyfile_lock_relpath} cannot be read" unless File.readable?(policyfile_lock_relpath)
+
           FFI_Yajl::Parser.parse(IO.read(policyfile_lock_relpath))
         rescue FFI_Yajl::ParseError => e
           raise MalformedLockfile, "Invalid JSON in lockfile at #{policyfile_lock_relpath}:\n  #{e.message}"

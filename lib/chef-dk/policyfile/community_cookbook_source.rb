@@ -48,7 +48,7 @@ module ChefDK
       end
 
       def ==(other)
-        other.kind_of?(self.class) && other.uri == uri && other.preferred_cookbooks == preferred_cookbooks
+        other.is_a?(self.class) && other.uri == uri && other.preferred_cookbooks == preferred_cookbooks
       end
 
       def universe_graph

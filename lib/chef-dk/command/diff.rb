@@ -125,6 +125,7 @@ module ChefDK
 
       def run(params = [])
         return 1 unless apply_params!(params)
+
         print_diff
         0
       rescue PolicyfileServiceError => e
@@ -153,7 +154,7 @@ module ChefDK
         end
       end
 
-      def differ(ui = self.ui())
+      def differ(ui = self.ui)
         Policyfile::Differ.new(old_name: old_base.name,
                                old_lock: old_lock,
                                new_name: new_base.name,
@@ -163,8 +164,8 @@ module ChefDK
 
       def http_client
         @http_client ||= Chef::ServerAPI.new(chef_config.chef_server_url,
-                                             signing_key_filename: chef_config.client_key,
-                                             client_name: chef_config.node_name)
+          signing_key_filename: chef_config.client_key,
+          client_name: chef_config.node_name)
       end
 
       def old_lock
@@ -290,6 +291,7 @@ module ChefDK
       def policy_group_comparison?(args)
         return false if args.empty?
         return true if args.size > 1
+
         !(args.first =~ /\.rb\Z/)
       end
 

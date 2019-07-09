@@ -56,6 +56,7 @@ module ChefDK
         unless File.exist?(archive_file_path)
           raise InvalidPolicyArchive, "Archive file #{archive_file_path} not found"
         end
+
         stage_unpacked_archive do |staging_dir|
           read_policyfile_lock(staging_dir)
 
@@ -69,16 +70,16 @@ module ChefDK
       # @api private
       def uploader
         ChefDK::Policyfile::Uploader.new(policyfile_lock, policy_group,
-                                         ui: ui,
-                                         http_client: http_client,
-                                         policy_document_native_api: config.policy_document_native_api)
+          ui: ui,
+          http_client: http_client,
+          policy_document_native_api: config.policy_document_native_api)
       end
 
       # @api private
       def http_client
         @http_client ||= Chef::ServerAPI.new(config.chef_server_url,
-                                             signing_key_filename: config.client_key,
-                                             client_name: config.node_name)
+          signing_key_filename: config.client_key,
+          client_name: config.node_name)
       end
 
       private

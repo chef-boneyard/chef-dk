@@ -125,7 +125,7 @@ module ChefDK
     # the return value of the test block. For tests that run a lot of commands,
     # this is inconvenient so you can use #sh! instead.
     def sh!(*args)
-      sh(*args).tap { |result| result.error! }
+      sh(*args).tap(&:error!)
     end
 
     # Run a command, if the command returns zero, raise an error,
@@ -197,6 +197,7 @@ module ChefDK
 
     def gem_base_dir
       return nil if @gem_name_for_base_dir.nil?
+
       # There is no way to say "give me the latest prerelease OR normal version of this gem.
       # So we first ask if there is a normal version, and if there is not, we ask if there
       # is a prerelease version.  ">= 0.a" is how we ask for a prerelease version, because a

@@ -54,10 +54,11 @@ describe ChefDK::Policyfile::AttributeMergeChecker do
 
       it "raises an error" do
         expect { checker.check! }.to raise_error(
-          ChefDK::Policyfile::AttributeMergeChecker::ConflictError) do |e|
-            expect(e.attribute_path).to eq("[a]")
-            expect(e.provided_by).to include("foo", "bar")
-          end
+          ChefDK::Policyfile::AttributeMergeChecker::ConflictError
+        ) do |e|
+          expect(e.attribute_path).to eq("[a]")
+          expect(e.provided_by).to include("foo", "bar")
+        end
       end
     end
 
@@ -69,10 +70,11 @@ describe ChefDK::Policyfile::AttributeMergeChecker do
 
       it "raises an error" do
         expect { checker.check! }.to raise_error(
-          ChefDK::Policyfile::AttributeMergeChecker::ConflictError) do |e|
-            expect(e.attribute_path).to eq("[a][b]")
-            expect(e.provided_by).to include("foo", "bar")
-          end
+          ChefDK::Policyfile::AttributeMergeChecker::ConflictError
+        ) do |e|
+          expect(e.attribute_path).to eq("[a][b]")
+          expect(e.provided_by).to include("foo", "bar")
+        end
       end
     end
   end

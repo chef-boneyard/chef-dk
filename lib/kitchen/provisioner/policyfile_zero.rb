@@ -45,8 +45,7 @@ module Kitchen
       # issues since berks is not yet using Solve 2.x. See also
       # PolicyfileZero#load_needed_dependencies! which is stubbed to prevent
       # berks from loading.
-      def prepare_cookbooks
-      end
+      def prepare_cookbooks; end
 
     end
 
@@ -125,8 +124,7 @@ module Kitchen
 
       # We don't want to load Berkshelf or Librarian; Policyfile is managing
       # dependencies, so these can only cause trouble.
-      def load_needed_dependencies!
-      end
+      def load_needed_dependencies!; end
 
       private
 
@@ -134,8 +132,7 @@ module Kitchen
       # don't need it.
       #
       # @api private
-      def prepare_json
-      end
+      def prepare_json; end
 
       # Copies the policyfile's cookbooks to the sandbox.
       #

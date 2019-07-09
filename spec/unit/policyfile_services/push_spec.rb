@@ -48,10 +48,10 @@ describe ChefDK::PolicyfileServices::Push do
 
   let(:config) do
     double("Chef::Config",
-           chef_server_url: "https://localhost:10443",
-           client_key: "/path/to/client/key.pem",
-           node_name: "deuce",
-           policy_document_native_api: policy_document_native_api)
+      chef_server_url: "https://localhost:10443",
+      client_key: "/path/to/client/key.pem",
+      node_name: "deuce",
+      policy_document_native_api: policy_document_native_api)
   end
 
   let(:ui) { TestHelpers::TestUI.new }
@@ -60,8 +60,8 @@ describe ChefDK::PolicyfileServices::Push do
 
   it "configures an HTTP client" do
     expect(Chef::ServerAPI).to receive(:new).with("https://localhost:10443",
-                                                       signing_key_filename: "/path/to/client/key.pem",
-                                                       client_name: "deuce")
+      signing_key_filename: "/path/to/client/key.pem",
+      client_name: "deuce")
     push_service.http_client
   end
 
@@ -190,8 +190,8 @@ describe ChefDK::PolicyfileServices::Push do
         expect(push_service).to receive(:http_client).and_return(http_client)
 
         expect(ChefDK::Policyfile::Uploader).to receive(:new)
-               .with(push_service.policyfile_lock, policy_group, http_client: http_client, ui: ui, policy_document_native_api: policy_document_native_api)
-               .and_return(uploader)
+          .with(push_service.policyfile_lock, policy_group, http_client: http_client, ui: ui, policy_document_native_api: policy_document_native_api)
+          .and_return(uploader)
       end
 
       context "when the policy document native API is disabled" do

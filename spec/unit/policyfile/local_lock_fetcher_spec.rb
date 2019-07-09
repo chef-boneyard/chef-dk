@@ -70,7 +70,7 @@ describe ChefDK::Policyfile::LocalLockFetcher do
     end
   end
 
-  [:relative, :absolute].each do |mode|
+  %i{relative absolute}.each do |mode|
     context "When path is #{mode}" do
       let(:path) { "foo/bar/baz/foo.lock.json" }
       let(:lock_file_path_abs) { "#{tempdir}/#{path}" }

@@ -21,8 +21,7 @@ module ChefDK
   module Policyfile
     class NullCookbookSource
 
-      def initialize(_uri = nil)
-      end
+      def initialize(_uri = nil); end
 
       def universe_graph
         {}

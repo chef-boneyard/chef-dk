@@ -221,9 +221,9 @@ describe ChefDK::Policyfile::LocalCookbook do
   describe "gathering identifier info" do
     let(:identifiers) do
       instance_double("ChefDK::CookbookProfiler::Identifiers",
-                     content_identifier: "abc123",
-                     dotted_decimal_identifier: "111.222.333",
-                     semver_version: "1.2.3")
+        content_identifier: "abc123",
+        dotted_decimal_identifier: "111.222.333",
+        semver_version: "1.2.3")
     end
 
     before do
@@ -364,9 +364,9 @@ describe ChefDK::Policyfile::LocalCookbook do
 
         let(:identifiers) do
           instance_double("ChefDK::CookbookProfiler::Identifiers",
-                         content_identifier: "abc123",
-                         dotted_decimal_identifier: "111.222.333",
-                         semver_version: "1.2.3")
+            content_identifier: "abc123",
+            dotted_decimal_identifier: "111.222.333",
+            semver_version: "1.2.3")
         end
 
         it "has the correct identifier" do
@@ -399,9 +399,9 @@ describe ChefDK::Policyfile::LocalCookbook do
         # represents the updated state of the cookbook
         let(:identifiers) do
           instance_double("ChefDK::CookbookProfiler::Identifiers",
-                         content_identifier: "def456",
-                         dotted_decimal_identifier: "777.888.999",
-                         semver_version: "7.8.9")
+            content_identifier: "def456",
+            dotted_decimal_identifier: "777.888.999",
+            semver_version: "7.8.9")
         end
 
         it "sets the content identifier to the new identifier" do
