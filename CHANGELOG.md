@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.8 -->
-## [v4.1.8](https://github.com/chef/chef-dk/tree/v4.1.8) (2019-07-09)
+<!-- latest_release 4.1.9 -->
+## [v4.1.9](https://github.com/chef/chef-dk/tree/v4.1.9) (2019-07-09)
 
 #### Merged Pull Requests
-- new chefstyle rules for 0.13.2 [#2174](https://github.com/chef/chef-dk/pull/2174) ([lamont-granquist](https://github.com/lamont-granquist))
+- Bump chefstyle to 0.13.2 [#2173](https://github.com/chef/chef-dk/pull/2173) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- Bump chefstyle to 0.13.2 [#2173](https://github.com/chef/chef-dk/pull/2173) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.9 -->
 - new chefstyle rules for 0.13.2 [#2174](https://github.com/chef/chef-dk/pull/2174) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 4.1.8 -->
 - Update knife-ec2 to 1.0 using the aws-sdk [#2171](https://github.com/chef/chef-dk/pull/2171) ([tas50](https://github.com/tas50)) <!-- 4.1.7 -->
 - Add the DK 4.1 Release Notes [#2166](https://github.com/chef/chef-dk/pull/2166) ([tas50](https://github.com/tas50)) <!-- 4.1.6 -->
