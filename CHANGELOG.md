@@ -6,54 +6,59 @@
 - Bump chefstyle to 0.13.2 [#2173](https://github.com/chef/chef-dk/pull/2173) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
-<!-- release_rollup since=4.0.60 -->
-### Changes since 4.0.60 release
+<!-- release_rollup since=4.1.7 -->
+### Changes not yet released to stable
 
 #### Merged Pull Requests
-- Bump chefstyle to 0.13.2 [#2173](https://github.com/chef/chef-dk/pull/2173) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.9 -->
 - new chefstyle rules for 0.13.2 [#2174](https://github.com/chef/chef-dk/pull/2174) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 4.1.8 -->
-- Update knife-ec2 to 1.0 using the aws-sdk [#2171](https://github.com/chef/chef-dk/pull/2171) ([tas50](https://github.com/tas50)) <!-- 4.1.7 -->
-- Add the DK 4.1 Release Notes [#2166](https://github.com/chef/chef-dk/pull/2166) ([tas50](https://github.com/tas50)) <!-- 4.1.6 -->
-- Bump knife-vsphere to 3.0.0 [#2170](https://github.com/chef/chef-dk/pull/2170) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.6 -->
-- Update curl to 7.65.1 to resolve a CVE [#2169](https://github.com/chef/chef-dk/pull/2169) ([tas50](https://github.com/tas50)) <!-- 4.1.5 -->
-- Bump foodcritic to 16.1.1 [#2168](https://github.com/chef/chef-dk/pull/2168) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.4 -->
-- Update Cookstyle to 5.0 [#2165](https://github.com/chef/chef-dk/pull/2165) ([tas50](https://github.com/tas50)) <!-- 4.1.3 -->
-- Remove explicit dependency on rubocop [#2164](https://github.com/chef/chef-dk/pull/2164) ([tas50](https://github.com/tas50)) <!-- 4.1.2 -->
-- Verify foodcritic with --list not -v [#2163](https://github.com/chef/chef-dk/pull/2163) ([tas50](https://github.com/tas50)) <!-- 4.1.1 -->
-- Use the product constant in a few more places [#2162](https://github.com/chef/chef-dk/pull/2162) ([tas50](https://github.com/tas50)) <!-- 4.1.0 -->
-- Add verification of the appbundled Foodcritic/chef-vault/fauxhai to testing [#1901](https://github.com/chef/chef-dk/pull/1901) ([tas50](https://github.com/tas50)) <!-- 4.0.90 -->
-- Update Chef Infra Client to 15.1.36 [#2161](https://github.com/chef/chef-dk/pull/2161) ([tas50](https://github.com/tas50)) <!-- 4.0.89 -->
-- Bump inspec to 4.6.9 [#2159](https://github.com/chef/chef-dk/pull/2159) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.88 -->
-- Bump train-core to 2.1.13 [#2157](https://github.com/chef/chef-dk/pull/2157) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.87 -->
-- Bump kitchen-digitalocean to 0.10.4 [#2155](https://github.com/chef/chef-dk/pull/2155) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.86 -->
-- Refer to the product as ChefDK to match docs + downloads [#2152](https://github.com/chef/chef-dk/pull/2152) ([tas50](https://github.com/tas50)) <!-- 4.0.85 -->
-- Update rubygems to 3.0.4 [#2151](https://github.com/chef/chef-dk/pull/2151) ([tas50](https://github.com/tas50)) <!-- 4.0.84 -->
-- Bump chefspec to 7.4.0 [#2153](https://github.com/chef/chef-dk/pull/2153) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.83 -->
-- Use require_relative everywhere for perf boosts [#2150](https://github.com/chef/chef-dk/pull/2150) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 4.0.82 -->
-- Add Dist file to control the product / CLI names [#2146](https://github.com/chef/chef-dk/pull/2146) ([tas50](https://github.com/tas50)) <!-- 4.0.81 -->
-- Remove Solaris support from the component_check code [#2148](https://github.com/chef/chef-dk/pull/2148) ([tas50](https://github.com/tas50)) <!-- 4.0.80 -->
-- Fix habitat packages that didn&#39;t build [#2133](https://github.com/chef/chef-dk/pull/2133) ([tas50](https://github.com/tas50)) <!-- 4.0.79 -->
-- Update ohai to 15.1.5 and ffi-libarchive to 0.4.10 [#2147](https://github.com/chef/chef-dk/pull/2147) ([tas50](https://github.com/tas50)) <!-- 4.0.78 -->
-- Improve chef --version command [#2143](https://github.com/chef/chef-dk/pull/2143) ([tas50](https://github.com/tas50)) <!-- 4.0.77 -->
-- Update InSpec to 4.6.4 and omnibus to latest [#2142](https://github.com/chef/chef-dk/pull/2142) ([tas50](https://github.com/tas50)) <!-- 4.0.76 -->
-- Remove Ubuntu 14.04 from the build pipeline [#2131](https://github.com/chef/chef-dk/pull/2131) ([tas50](https://github.com/tas50)) <!-- 4.0.75 -->
-- Bump inspec to 4.6.3 [#2138](https://github.com/chef/chef-dk/pull/2138) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.74 -->
-- Ship libarchive in the omnibus builds for chef [#2132](https://github.com/chef/chef-dk/pull/2132) ([tas50](https://github.com/tas50)) <!-- 4.0.73 -->
-- Remove some AIX code from our omnibus def [#2130](https://github.com/chef/chef-dk/pull/2130) ([tas50](https://github.com/tas50)) <!-- 4.0.72 -->
-- Bump license-acceptance to 1.0.13 [#2129](https://github.com/chef/chef-dk/pull/2129) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.71 -->
-- Switch to Buildkite for PR testing [#2128](https://github.com/chef/chef-dk/pull/2128) ([tas50](https://github.com/tas50)) <!-- 4.0.70 -->
-- Fix hab builds of ChefDK [#2119](https://github.com/chef/chef-dk/pull/2119) ([tas50](https://github.com/tas50)) <!-- 4.0.69 -->
-- Bump mixlib-cli to 2.1.1 [#2126](https://github.com/chef/chef-dk/pull/2126) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.68 -->
-- Bump chef-apply to 0.3.0 [#2124](https://github.com/chef/chef-dk/pull/2124) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.67 -->
-- Direct folks to Learn Chef post install [#2115](https://github.com/chef/chef-dk/pull/2115) ([tas50](https://github.com/tas50)) <!-- 4.0.66 -->
-- Remove old Solaris omnibus files [#2114](https://github.com/chef/chef-dk/pull/2114) ([tas50](https://github.com/tas50)) <!-- 4.0.65 -->
-- Remove legacy macOS uninstall instructions [#2113](https://github.com/chef/chef-dk/pull/2113) ([tas50](https://github.com/tas50)) <!-- 4.0.64 -->
-- Add the proper ruby path to the Dockerfile [#2109](https://github.com/chef/chef-dk/pull/2109) ([tas50](https://github.com/tas50)) <!-- 4.0.63 -->
-- Bump kitchen-dokken to 2.7.0 [#2111](https://github.com/chef/chef-dk/pull/2111) ([chef-ci](https://github.com/chef-ci)) <!-- 4.0.62 -->
-- Update libcurl to 7.65, openssl to 1.0.2s, and ca-certs to 2019-05-11 [#2107](https://github.com/chef/chef-dk/pull/2107) ([tas50](https://github.com/tas50)) <!-- 4.0.61 -->
+- Bump chefstyle to 0.13.2 [#2173](https://github.com/chef/chef-dk/pull/2173) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.9 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v4.1.7](https://github.com/chef/chef-dk/tree/v4.1.7) (2019-07-09)
+
+#### Merged Pull Requests
+- Update libcurl to 7.65, openssl to 1.0.2s, and ca-certs to 2019-05-11 [#2107](https://github.com/chef/chef-dk/pull/2107) ([tas50](https://github.com/tas50))
+- Bump kitchen-dokken to 2.7.0 [#2111](https://github.com/chef/chef-dk/pull/2111) ([chef-ci](https://github.com/chef-ci))
+- Add the proper ruby path to the Dockerfile [#2109](https://github.com/chef/chef-dk/pull/2109) ([tas50](https://github.com/tas50))
+- Remove legacy macOS uninstall instructions [#2113](https://github.com/chef/chef-dk/pull/2113) ([tas50](https://github.com/tas50))
+- Remove old Solaris omnibus files [#2114](https://github.com/chef/chef-dk/pull/2114) ([tas50](https://github.com/tas50))
+- Direct folks to Learn Chef post install [#2115](https://github.com/chef/chef-dk/pull/2115) ([tas50](https://github.com/tas50))
+- Bump chef-apply to 0.3.0 [#2124](https://github.com/chef/chef-dk/pull/2124) ([chef-ci](https://github.com/chef-ci))
+- Bump mixlib-cli to 2.1.1 [#2126](https://github.com/chef/chef-dk/pull/2126) ([chef-ci](https://github.com/chef-ci))
+- Fix hab builds of ChefDK [#2119](https://github.com/chef/chef-dk/pull/2119) ([tas50](https://github.com/tas50))
+- Switch to Buildkite for PR testing [#2128](https://github.com/chef/chef-dk/pull/2128) ([tas50](https://github.com/tas50))
+- Bump license-acceptance to 1.0.13 [#2129](https://github.com/chef/chef-dk/pull/2129) ([chef-ci](https://github.com/chef-ci))
+- Remove some AIX code from our omnibus def [#2130](https://github.com/chef/chef-dk/pull/2130) ([tas50](https://github.com/tas50))
+- Ship libarchive in the omnibus builds for chef [#2132](https://github.com/chef/chef-dk/pull/2132) ([tas50](https://github.com/tas50))
+- Bump inspec to 4.6.3 [#2138](https://github.com/chef/chef-dk/pull/2138) ([chef-ci](https://github.com/chef-ci))
+- Remove Ubuntu 14.04 from the build pipeline [#2131](https://github.com/chef/chef-dk/pull/2131) ([tas50](https://github.com/tas50))
+- Update InSpec to 4.6.4 and omnibus to latest [#2142](https://github.com/chef/chef-dk/pull/2142) ([tas50](https://github.com/tas50))
+- Improve chef --version command [#2143](https://github.com/chef/chef-dk/pull/2143) ([tas50](https://github.com/tas50))
+- Update ohai to 15.1.5 and ffi-libarchive to 0.4.10 [#2147](https://github.com/chef/chef-dk/pull/2147) ([tas50](https://github.com/tas50))
+- Fix habitat packages that didn&#39;t build [#2133](https://github.com/chef/chef-dk/pull/2133) ([tas50](https://github.com/tas50))
+- Remove Solaris support from the component_check code [#2148](https://github.com/chef/chef-dk/pull/2148) ([tas50](https://github.com/tas50))
+- Add Dist file to control the product / CLI names [#2146](https://github.com/chef/chef-dk/pull/2146) ([tas50](https://github.com/tas50))
+- Use require_relative everywhere for perf boosts [#2150](https://github.com/chef/chef-dk/pull/2150) ([lamont-granquist](https://github.com/lamont-granquist))
+- Bump chefspec to 7.4.0 [#2153](https://github.com/chef/chef-dk/pull/2153) ([chef-ci](https://github.com/chef-ci))
+- Update rubygems to 3.0.4 [#2151](https://github.com/chef/chef-dk/pull/2151) ([tas50](https://github.com/tas50))
+- Refer to the product as ChefDK to match docs + downloads [#2152](https://github.com/chef/chef-dk/pull/2152) ([tas50](https://github.com/tas50))
+- Bump kitchen-digitalocean to 0.10.4 [#2155](https://github.com/chef/chef-dk/pull/2155) ([chef-ci](https://github.com/chef-ci))
+- Bump train-core to 2.1.13 [#2157](https://github.com/chef/chef-dk/pull/2157) ([chef-ci](https://github.com/chef-ci))
+- Bump inspec to 4.6.9 [#2159](https://github.com/chef/chef-dk/pull/2159) ([chef-ci](https://github.com/chef-ci))
+- Update Chef Infra Client to 15.1.36 [#2161](https://github.com/chef/chef-dk/pull/2161) ([tas50](https://github.com/tas50))
+- Add verification of the appbundled Foodcritic/chef-vault/fauxhai to testing [#1901](https://github.com/chef/chef-dk/pull/1901) ([tas50](https://github.com/tas50))
+- Use the product constant in a few more places [#2162](https://github.com/chef/chef-dk/pull/2162) ([tas50](https://github.com/tas50))
+- Verify foodcritic with --list not -v [#2163](https://github.com/chef/chef-dk/pull/2163) ([tas50](https://github.com/tas50))
+- Remove explicit dependency on rubocop [#2164](https://github.com/chef/chef-dk/pull/2164) ([tas50](https://github.com/tas50))
+- Update Cookstyle to 5.0 [#2165](https://github.com/chef/chef-dk/pull/2165) ([tas50](https://github.com/tas50))
+- Bump foodcritic to 16.1.1 [#2168](https://github.com/chef/chef-dk/pull/2168) ([chef-ci](https://github.com/chef-ci))
+- Update curl to 7.65.1 to resolve a CVE [#2169](https://github.com/chef/chef-dk/pull/2169) ([tas50](https://github.com/tas50))
+- Bump knife-vsphere to 3.0.0 [#2170](https://github.com/chef/chef-dk/pull/2170) ([chef-ci](https://github.com/chef-ci))
+- Add the DK 4.1 Release Notes [#2166](https://github.com/chef/chef-dk/pull/2166) ([tas50](https://github.com/tas50))
+- Update knife-ec2 to 1.0 using the aws-sdk [#2171](https://github.com/chef/chef-dk/pull/2171) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v4.0.60](https://github.com/chef/chef-dk/tree/v4.0.60) (2019-05-28)
 
 #### Merged Pull Requests
@@ -121,7 +126,6 @@
 - Don&#39;t generate a full workflow build cookbook by default [#2096](https://github.com/chef/chef-dk/pull/2096) ([tas50](https://github.com/tas50))
 - Update license-acceptance gem to handle users specifying mixlib version as a channel [#2104](https://github.com/chef/chef-dk/pull/2104) ([tyler-ball](https://github.com/tyler-ball))
 - Do not request license when users shell-init [#2105](https://github.com/chef/chef-dk/pull/2105) ([tyler-ball](https://github.com/tyler-ball))
-<!-- latest_stable_release -->
 
 ## [v3.8.14](https://github.com/chef/chef-dk/tree/v3.8.14) (2019-02-27)
 
