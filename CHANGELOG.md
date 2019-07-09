@@ -1,16 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.7 -->
-## [v4.1.7](https://github.com/chef/chef-dk/tree/v4.1.7) (2019-07-08)
+<!-- latest_release 4.1.8 -->
+## [v4.1.8](https://github.com/chef/chef-dk/tree/v4.1.8) (2019-07-09)
 
 #### Merged Pull Requests
-- Update knife-ec2 to 1.0 using the aws-sdk [#2171](https://github.com/chef/chef-dk/pull/2171) ([tas50](https://github.com/tas50))
-- Add the DK 4.1 Release Notes [#2166](https://github.com/chef/chef-dk/pull/2166) ([tas50](https://github.com/tas50))
+- new chefstyle rules for 0.13.2 [#2174](https://github.com/chef/chef-dk/pull/2174) ([lamont-granquist](https://github.com/lamont-granquist))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.0.60 -->
 ### Changes since 4.0.60 release
 
 #### Merged Pull Requests
+- new chefstyle rules for 0.13.2 [#2174](https://github.com/chef/chef-dk/pull/2174) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 4.1.8 -->
 - Update knife-ec2 to 1.0 using the aws-sdk [#2171](https://github.com/chef/chef-dk/pull/2171) ([tas50](https://github.com/tas50)) <!-- 4.1.7 -->
 - Add the DK 4.1 Release Notes [#2166](https://github.com/chef/chef-dk/pull/2166) ([tas50](https://github.com/tas50)) <!-- 4.1.6 -->
 - Bump knife-vsphere to 3.0.0 [#2170](https://github.com/chef/chef-dk/pull/2170) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.6 -->
