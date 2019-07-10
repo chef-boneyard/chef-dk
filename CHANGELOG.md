@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.13 -->
-## [v4.1.13](https://github.com/chef/chef-dk/tree/v4.1.13) (2019-07-09)
+<!-- latest_release 4.1.14 -->
+## [v4.1.14](https://github.com/chef/chef-dk/tree/v4.1.14) (2019-07-10)
 
 #### Merged Pull Requests
-- Remove smartos support from the install scripts [#2176](https://github.com/chef/chef-dk/pull/2176) ([tas50](https://github.com/tas50))
+- Update knife-vsphere to 3.0.1 [#2183](https://github.com/chef/chef-dk/pull/2183) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.7 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update knife-vsphere to 3.0.1 [#2183](https://github.com/chef/chef-dk/pull/2183) ([tas50](https://github.com/tas50)) <!-- 4.1.14 -->
 - Remove smartos support from the install scripts [#2176](https://github.com/chef/chef-dk/pull/2176) ([tas50](https://github.com/tas50)) <!-- 4.1.13 -->
 - Bump inspec-bin to 4.7.3 [#2181](https://github.com/chef/chef-dk/pull/2181) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.12 -->
 - Lock chef-apply to =0.3.0 [#2179](https://github.com/chef/chef-dk/pull/2179) ([marcparadise](https://github.com/marcparadise)) <!-- 4.1.11 -->
