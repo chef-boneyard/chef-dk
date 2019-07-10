@@ -64,7 +64,7 @@ describe ChefDK::ServiceExceptionInspectors::HTTP do
   end
 
   let(:exception) do
-    Net::HTTPServerException.new(message, response).tap { |e| e.chef_rest_request = request }
+    Net::HTTPClientException .new(message, response).tap { |e| e.chef_rest_request = request }
   end
 
   subject(:inspector) { described_class.new(exception) }

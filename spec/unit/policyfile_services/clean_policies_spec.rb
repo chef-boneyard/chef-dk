@@ -213,7 +213,7 @@ describe ChefDK::PolicyfileServices::CleanPolicies do
           it "deletes what it can, then raises an error" do
             expected_message = <<~ERROR
               Failed to delete some policy revisions:
-              - appserver (4444444444444444444444444444444444444444444444444444444444444444): Net::HTTPServerException 403 \"Unauthorized\"
+              - appserver (4444444444444444444444444444444444444444444444444444444444444444): Net::HTTPClientException  403 \"Unauthorized\"
             ERROR
 
             expect { clean_policies_service.run }.to raise_error do |error|

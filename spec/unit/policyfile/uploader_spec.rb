@@ -319,14 +319,14 @@ describe ChefDK::Policyfile::Uploader do
 
       it "does not error when the 'policyfiles' data bag exists" do
         response = double("Net::HTTP response", code: "409")
-        error = Net::HTTPServerException.new("conflict", response)
+        error = Net::HTTPClientException .new("conflict", response)
         expect(http_client).to receive(:post).with("data", { "name" => "policyfiles" }).and_raise(error)
         expect { uploader.data_bag_create }.to_not raise_error
       end
 
       it "uploads the policyfile as a data bag item" do
         response = double("Net::HTTP response", code: "404")
-        error = Net::HTTPServerException.new("Not Found", response)
+        error = Net::HTTPClientException .new("Not Found", response)
         expect(http_client).to receive(:put)
           .with("data/policyfiles/example-unit-test", policyfile_as_data_bag_item)
           .and_raise(error)
