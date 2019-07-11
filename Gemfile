@@ -57,7 +57,7 @@ group(:omnibus_package) do
   gem "chef", "= 15.1.36"
   gem "chef-bin", "= 15.1.36"
   gem "cheffish", ">= 14.0.1"
-  gem "chefspec", ">= 7.3.0"
+  gem "chefspec", ">= 7.3.0", "< 8"
   gem "fauxhai", "~> 7.0"
   gem "inspec-bin", "~> 4.3" # the actual inspec CLI binary
   gem "inspec", "~> 4.3"

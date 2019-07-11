@@ -979,7 +979,7 @@ DEPENDENCIES
   chef-sugar
   chef-vault (>= 3.4.1)
   cheffish (>= 14.0.1)
-  chefspec (>= 7.3.0)
+  chefspec (>= 7.3.0, < 8)
   chefstyle
   cookstyle (~> 5.0)
   cucumber
