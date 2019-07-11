@@ -539,7 +539,7 @@ GEM
       excon (>= 0.50)
       knife-windows (>= 1.0)
       mixlib-shellout
-    knife-ec2 (1.0.7)
+    knife-ec2 (1.0.8)
       aws-sdk-ec2 (~> 1.95)
       aws-sdk-s3 (~> 1.43)
       chef (>= 15.1)
