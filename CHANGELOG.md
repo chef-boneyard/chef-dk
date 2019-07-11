@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.16 -->
-## [v4.1.16](https://github.com/chef/chef-dk/tree/v4.1.16) (2019-07-10)
+<!-- latest_release 4.1.17 -->
+## [v4.1.17](https://github.com/chef/chef-dk/tree/v4.1.17) (2019-07-11)
 
 #### Merged Pull Requests
-- Roll back rubygems to 3.0.3 to prevent double bundler [#2184](https://github.com/chef/chef-dk/pull/2184) ([tas50](https://github.com/tas50))
+- Bump knife-ec2 to 1.0.8 [#2187](https://github.com/chef/chef-dk/pull/2187) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.7 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-ec2 to 1.0.8 [#2187](https://github.com/chef/chef-dk/pull/2187) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.17 -->
 - Roll back rubygems to 3.0.3 to prevent double bundler [#2184](https://github.com/chef/chef-dk/pull/2184) ([tas50](https://github.com/tas50)) <!-- 4.1.16 -->
 - Bump fauxhai to 7.4.0 [#2185](https://github.com/chef/chef-dk/pull/2185) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.15 -->
 - Update knife-vsphere to 3.0.1 [#2183](https://github.com/chef/chef-dk/pull/2183) ([tas50](https://github.com/tas50)) <!-- 4.1.14 -->
