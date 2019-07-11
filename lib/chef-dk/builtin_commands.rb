@@ -59,4 +59,7 @@ ChefDK.commands do |c|
                                                     desc: "Prints cookbook checksum information used for cookbook identifier"
 
   c.builtin "verify", :Verify, desc: "Test the embedded #{ChefDK::Dist::PRODUCT} applications", hidden: true
+
+  # deprecated command that throws a failure warning if used. This was removed 4.2019
+  c.builtin "provision", :Provision, desc: "Provision VMs and clusters via cookbook", hidden: true
 end
