@@ -71,7 +71,7 @@ module ChefDK
       bundle_install_mutex = Mutex.new
 
       #
-      # Components included in Chef Development kit:
+      # Components included in ChefDK:
       # :base_dir => Relative path of the component w.r.t. omnibus_apps_dir
       # :gem_base_dir => Takes a gem name instead and uses first gem found
       # :test_cmd => Test command to be launched for the component
