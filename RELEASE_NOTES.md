@@ -18,7 +18,7 @@ Knife-vsphere has been updated to 3.0.1 to resolve Ruby warnings that occured wh
 ### Fauxhai 7.4.0
 
 Fauxhai has been updated to 7.4.0, which adds additional platforms for use with ChefSpec testing.
-  - Updated `suse` 15 from 15.0 to 15.1.
+  - Updated `suse` 15 from 15.0 to 15.1
   - Added a new `redhat` 8 definition to replace the 8.0 definition, which is now deprecated
   - Updated all `amazon` and `ubuntu` releases to Chef 15.1
   - Added `debian` 10 and 9.9
