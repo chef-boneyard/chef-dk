@@ -2,7 +2,7 @@
 
 ## Bug Fixes
 
-- Rubygems has been rolled back to 3.0.3 to resolve duplicate bundler gems that shipped in ChefDK 4.1.7, This resulted in warning messages when running commands as well as performance degredations.
+- Rubygems has been rolled back to 3.0.3 to resolve duplicate bundler gems that shipped in ChefDK 4.1.7. This resulted in warning messages when running commands as well as performance degradations.
 - Fixed 'chef install foo.lock.json' errors when loading cookbooks from Artifactory.
 
 ## Updated Components
