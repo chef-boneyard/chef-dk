@@ -1,4 +1,33 @@
-# ChefDK 4.1 Release Notes
+# ChefDK 4.2.0
+
+## Bug Fixes
+
+- Rubygems has been rolled back to 3.0.3 to resolve duplicate bundler gems that shipped in ChefDK 4.1.7. This resulted in warning messages when running commands as well as performance degradations.
+- Fixed 'chef install foo.lock.json' errors when loading cookbooks from Artifactory.
+
+## Updated Components
+
+### knife-ec2 1.0.8
+
+Knife-ec2 has been updated to 1.0.8. This release removes previously deprecated bootstrap command-line options that were removed from Chef Infra Client 15.
+
+### knife-vsphere 3.0.1
+
+Knife-vsphere has been updated to 3.0.1 to resolve Ruby warnings that occured when running some commmands.
+
+### Fauxhai 7.4.0
+
+Fauxhai has been updated to 7.4.0, which adds additional platforms for use with ChefSpec testing.
+  - Updated `suse` 15 from 15.0 to 15.1
+  - Added a new `redhat` 8 definition to replace the 8.0 definition, which is now deprecated
+  - Updated all `amazon` and `ubuntu` releases to Chef 15.1
+  - Added `debian` 10 and 9.9
+
+### Chef InSpec 4.7.3
+
+Chef InSpec has been updated to 4.7.3, which adds a new `ip6tables` resource and includes new `aws-sdk` gems that are necessary for the Chef InSpec AWS Resource Pack.
+
+# ChefDK 4.1.7 Release Notes
 
 ## Updated Components
 
