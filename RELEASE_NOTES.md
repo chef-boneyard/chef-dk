@@ -21,7 +21,7 @@ Fauxhai has been updated to 7.4.0, which adds additional platforms for use with 
   - Updated `suse` 15 from 15.0 to 15.1.
   - Added a new `redhat` 8 definition to replace the 8.0 definition, which is now deprecated
   - Updated all `amazon` and `ubuntu` releases to Chef 15.1
-  - Added ``debian`` 10 and 9.9
+  - Added `debian` 10 and 9.9
 
 ### Chef InSpec 4.7.3
 
