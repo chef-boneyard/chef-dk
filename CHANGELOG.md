@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.20 -->
-## [v4.1.20](https://github.com/chef/chef-dk/tree/v4.1.20) (2019-07-12)
+<!-- latest_release 4.2.0 -->
+## [v4.2.0](https://github.com/chef/chef-dk/tree/v4.2.0) (2019-07-12)
 
 #### Merged Pull Requests
-- Remove the last mentions of Chef Development Kit [#2191](https://github.com/chef/chef-dk/pull/2191) ([tas50](https://github.com/tas50))
+- Update the Azure SDK gems to the latest [#2192](https://github.com/chef/chef-dk/pull/2192) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.7 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update the Azure SDK gems to the latest [#2192](https://github.com/chef/chef-dk/pull/2192) ([tas50](https://github.com/tas50)) <!-- 4.2.0 -->
 - Remove the last mentions of Chef Development Kit [#2191](https://github.com/chef/chef-dk/pull/2191) ([tas50](https://github.com/tas50)) <!-- 4.1.20 -->
 - Fix deprecated chef provision command to not fail [#2189](https://github.com/chef/chef-dk/pull/2189) ([tas50](https://github.com/tas50)) <!-- 4.1.19 -->
 - pin chefspec to &lt; 8 [#2188](https://github.com/chef/chef-dk/pull/2188) ([marcparadise](https://github.com/marcparadise)) <!-- 4.1.18 -->
