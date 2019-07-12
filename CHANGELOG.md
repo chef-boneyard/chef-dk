@@ -1,32 +1,30 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.0 -->
-## [v4.2.0](https://github.com/chef/chef-dk/tree/v4.2.0) (2019-07-12)
-
-#### Merged Pull Requests
-- Update the Azure SDK gems to the latest [#2192](https://github.com/chef/chef-dk/pull/2192) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=4.1.7 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Update the Azure SDK gems to the latest [#2192](https://github.com/chef/chef-dk/pull/2192) ([tas50](https://github.com/tas50)) <!-- 4.2.0 -->
-- Remove the last mentions of Chef Development Kit [#2191](https://github.com/chef/chef-dk/pull/2191) ([tas50](https://github.com/tas50)) <!-- 4.1.20 -->
-- Fix deprecated chef provision command to not fail [#2189](https://github.com/chef/chef-dk/pull/2189) ([tas50](https://github.com/tas50)) <!-- 4.1.19 -->
-- pin chefspec to &lt; 8 [#2188](https://github.com/chef/chef-dk/pull/2188) ([marcparadise](https://github.com/marcparadise)) <!-- 4.1.18 -->
-- Bump knife-ec2 to 1.0.8 [#2187](https://github.com/chef/chef-dk/pull/2187) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.17 -->
-- Roll back rubygems to 3.0.3 to prevent double bundler [#2184](https://github.com/chef/chef-dk/pull/2184) ([tas50](https://github.com/tas50)) <!-- 4.1.16 -->
-- Bump fauxhai to 7.4.0 [#2185](https://github.com/chef/chef-dk/pull/2185) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.15 -->
-- Update knife-vsphere to 3.0.1 [#2183](https://github.com/chef/chef-dk/pull/2183) ([tas50](https://github.com/tas50)) <!-- 4.1.14 -->
-- Remove smartos support from the install scripts [#2176](https://github.com/chef/chef-dk/pull/2176) ([tas50](https://github.com/tas50)) <!-- 4.1.13 -->
-- Bump inspec-bin to 4.7.3 [#2181](https://github.com/chef/chef-dk/pull/2181) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.12 -->
-- Lock chef-apply to =0.3.0 [#2179](https://github.com/chef/chef-dk/pull/2179) ([marcparadise](https://github.com/marcparadise)) <!-- 4.1.11 -->
-- Bump cookbook-omnifetch to 0.9.0 [#2175](https://github.com/chef/chef-dk/pull/2175) ([tas50](https://github.com/tas50)) <!-- 4.1.10 -->
-- new chefstyle rules for 0.13.2 [#2174](https://github.com/chef/chef-dk/pull/2174) ([lamont-granquist](https://github.com/lamont-granquist)) <!-- 4.1.8 -->
-- Bump chefstyle to 0.13.2 [#2173](https://github.com/chef/chef-dk/pull/2173) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.9 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v4.2.0](https://github.com/chef/chef-dk/tree/v4.2.0) (2019-07-12)
+
+#### Merged Pull Requests
+- Bump chefstyle to 0.13.2 [#2173](https://github.com/chef/chef-dk/pull/2173) ([chef-ci](https://github.com/chef-ci))
+- new chefstyle rules for 0.13.2 [#2174](https://github.com/chef/chef-dk/pull/2174) ([lamont-granquist](https://github.com/lamont-granquist))
+- Bump cookbook-omnifetch to 0.9.0 [#2175](https://github.com/chef/chef-dk/pull/2175) ([tas50](https://github.com/tas50))
+- Lock chef-apply to =0.3.0 [#2179](https://github.com/chef/chef-dk/pull/2179) ([marcparadise](https://github.com/marcparadise))
+- Bump inspec-bin to 4.7.3 [#2181](https://github.com/chef/chef-dk/pull/2181) ([chef-ci](https://github.com/chef-ci))
+- Remove smartos support from the install scripts [#2176](https://github.com/chef/chef-dk/pull/2176) ([tas50](https://github.com/tas50))
+- Update knife-vsphere to 3.0.1 [#2183](https://github.com/chef/chef-dk/pull/2183) ([tas50](https://github.com/tas50))
+- Bump fauxhai to 7.4.0 [#2185](https://github.com/chef/chef-dk/pull/2185) ([chef-ci](https://github.com/chef-ci))
+- Roll back rubygems to 3.0.3 to prevent double bundler [#2184](https://github.com/chef/chef-dk/pull/2184) ([tas50](https://github.com/tas50))
+- Bump knife-ec2 to 1.0.8 [#2187](https://github.com/chef/chef-dk/pull/2187) ([chef-ci](https://github.com/chef-ci))
+- pin chefspec to &lt; 8 [#2188](https://github.com/chef/chef-dk/pull/2188) ([marcparadise](https://github.com/marcparadise))
+- Fix deprecated chef provision command to not fail [#2189](https://github.com/chef/chef-dk/pull/2189) ([tas50](https://github.com/tas50))
+- Remove the last mentions of Chef Development Kit [#2191](https://github.com/chef/chef-dk/pull/2191) ([tas50](https://github.com/tas50))
+- Update the Azure SDK gems to the latest [#2192](https://github.com/chef/chef-dk/pull/2192) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v4.1.7](https://github.com/chef/chef-dk/tree/v4.1.7) (2019-07-09)
 
 #### Merged Pull Requests
@@ -69,7 +67,6 @@
 - Bump knife-vsphere to 3.0.0 [#2170](https://github.com/chef/chef-dk/pull/2170) ([chef-ci](https://github.com/chef-ci))
 - Add the DK 4.1 Release Notes [#2166](https://github.com/chef/chef-dk/pull/2166) ([tas50](https://github.com/tas50))
 - Update knife-ec2 to 1.0 using the aws-sdk [#2171](https://github.com/chef/chef-dk/pull/2171) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v4.0.60](https://github.com/chef/chef-dk/tree/v4.0.60) (2019-05-28)
 
