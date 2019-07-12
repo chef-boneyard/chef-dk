@@ -12,7 +12,7 @@
 * **Issues [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
 * **Pull Request [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
 
-Chef Development Kit (ChefDK) brings Chef and the development tools developed by the Chef Community together and acts as the consistent interface to this awesomeness. This awesomeness is composed of:
+ChefDK brings Chef Infra Client and the development tools developed by the Chef Community together and acts as the consistent interface to this awesomeness. This awesomeness is composed of:
 
 * [Chef Infra Client][]
 * [Berkshelf][]
@@ -252,7 +252,7 @@ echo 'eval (chef shell-init SHELL_NAME)' >> ~/.config/fish/config.fish
 
 ### macOS
 
-You can uninstall Chef Development Kit on Mac using the below commands.
+You can uninstall ChefDK on Mac using the below commands.
 
 First, remove the main package files:
 
@@ -264,7 +264,7 @@ sudo rm -rf /opt/chefdk
 sudo pkgutil --forget com.getchef.pkg.chefdk
 ```
 
-Next, remove the symlinks which the Chef Development Kit installs:
+Next, remove the symlinks which the ChefDK installs:
 
 ```sh
 # Symlinks are in /usr/local/bin
@@ -278,7 +278,7 @@ Kit from your system.
 
 ### RHEL
 
-You can use `rpm` to uninstall Chef Development Kit on RHEL based systems:
+You can use `rpm` to uninstall ChefDK on RHEL based systems:
 
 ```sh
 rpm -qa *chefdk*
@@ -289,7 +289,7 @@ rm -rf ~/.chefdk
 
 ### Ubuntu
 
-You can use `dpkg` to uninstall Chef Development Kit on Ubuntu based systems:
+You can use `dpkg` to uninstall ChefDK on Ubuntu based systems:
 
 ```sh
 dpkg --list | grep chefdk # or dpkg --status chefdk
@@ -313,7 +313,7 @@ packaging, and building works.
 
 [Berkshelf]: https://docs.chef.io/berkshelf.html "Berkshelf"
 [Chef Infra Client]: https://www.chef.io/products/chef-infra/ "Chef Infra Client"
-[ChefDK]: https://downloads.chef.io/chefdk/ "Chef Development Kit"
+[ChefDK]: https://downloads.chef.io/chefdk/ "ChefDK"
 [Chef Documentation]: https://docs.chef.io "Chef Documentation"
 [ChefSpec]: http://chefspec.github.io/chefspec/ "ChefSpec"
 [Cookstyle]: https://docs.chef.io/cookstyle.html "Cookstyle"
