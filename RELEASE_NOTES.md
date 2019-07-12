@@ -1,4 +1,4 @@
-# ChefDK 4.1.18
+# ChefDK 4.2.0
 
 ## Bug Fixes
 
