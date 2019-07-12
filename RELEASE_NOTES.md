@@ -9,7 +9,7 @@
 
 ### knife-ec2 1.0.8
 
-Knife-ec2 has been updated to 1.0.8. This release removes previosly deprecated bootstrap command-line options that were removed from Chef Infra Client 15.
+Knife-ec2 has been updated to 1.0.8. This release removes previously deprecated bootstrap command-line options that were removed from Chef Infra Client 15.
 
 ### knife-vsphere 3.0.1
 
