@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.1.18 -->
-## [v4.1.18](https://github.com/chef/chef-dk/tree/v4.1.18) (2019-07-11)
+<!-- latest_release 4.1.19 -->
+## [v4.1.19](https://github.com/chef/chef-dk/tree/v4.1.19) (2019-07-12)
 
 #### Merged Pull Requests
-- pin chefspec to &lt; 8 [#2188](https://github.com/chef/chef-dk/pull/2188) ([marcparadise](https://github.com/marcparadise))
+- Fix deprecated chef provision command to not fail [#2189](https://github.com/chef/chef-dk/pull/2189) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.1.7 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Fix deprecated chef provision command to not fail [#2189](https://github.com/chef/chef-dk/pull/2189) ([tas50](https://github.com/tas50)) <!-- 4.1.19 -->
 - pin chefspec to &lt; 8 [#2188](https://github.com/chef/chef-dk/pull/2188) ([marcparadise](https://github.com/marcparadise)) <!-- 4.1.18 -->
 - Bump knife-ec2 to 1.0.8 [#2187](https://github.com/chef/chef-dk/pull/2187) ([chef-ci](https://github.com/chef-ci)) <!-- 4.1.17 -->
 - Roll back rubygems to 3.0.3 to prevent double bundler [#2184](https://github.com/chef/chef-dk/pull/2184) ([tas50](https://github.com/tas50)) <!-- 4.1.16 -->
