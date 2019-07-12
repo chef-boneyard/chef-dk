@@ -25,7 +25,7 @@ Fauxhai has been updated to 7.4.0, which adds additional platforms for use with 
 
 ### Chef InSpec 4.7.3
 
-Chef InSpec has been updated to 4.7.3, which adds a new `ip6tables` resource and includes new aws-sdk gems necessary for the Chef InSpec AWS Resource Pack.
+Chef InSpec has been updated to 4.7.3, which adds a new `ip6tables` resource and includes new `aws-sdk` gems that are necessary for the Chef InSpec AWS Resource Pack.
 
 # ChefDK 4.1.7 Release Notes
 
