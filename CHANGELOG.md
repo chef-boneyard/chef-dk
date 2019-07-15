@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.1 -->
-## [v4.2.1](https://github.com/chef/chef-dk/tree/v4.2.1) (2019-07-15)
+<!-- latest_release 4.2.2 -->
+## [v4.2.2](https://github.com/chef/chef-dk/tree/v4.2.2) (2019-07-15)
 
 #### Merged Pull Requests
-- Bump cookstyle to 5.0.4 [#2194](https://github.com/chef/chef-dk/pull/2194) ([chef-ci](https://github.com/chef-ci))
+- Bump appbundler to 0.13.1 [#2186](https://github.com/chef/chef-dk/pull/2186) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump appbundler to 0.13.1 [#2186](https://github.com/chef/chef-dk/pull/2186) ([chef-ci](https://github.com/chef-ci)) <!-- 4.2.2 -->
 - Bump cookstyle to 5.0.4 [#2194](https://github.com/chef/chef-dk/pull/2194) ([chef-ci](https://github.com/chef-ci)) <!-- 4.2.1 -->
 <!-- release_rollup -->
 
