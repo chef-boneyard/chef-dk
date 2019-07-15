@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.2.2 -->
-## [v4.2.2](https://github.com/chef/chef-dk/tree/v4.2.2) (2019-07-15)
+<!-- latest_release 4.3.0 -->
+## [v4.3.0](https://github.com/chef/chef-dk/tree/v4.3.0) (2019-07-15)
 
 #### Merged Pull Requests
-- Bump appbundler to 0.13.1 [#2186](https://github.com/chef/chef-dk/pull/2186) ([chef-ci](https://github.com/chef-ci))
+- Enable RHEL 8 packages [#2193](https://github.com/chef/chef-dk/pull/2193) ([jaymalasinha](https://github.com/jaymalasinha))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Enable RHEL 8 packages [#2193](https://github.com/chef/chef-dk/pull/2193) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 4.3.0 -->
 - Bump appbundler to 0.13.1 [#2186](https://github.com/chef/chef-dk/pull/2186) ([chef-ci](https://github.com/chef-ci)) <!-- 4.2.2 -->
 - Bump cookstyle to 5.0.4 [#2194](https://github.com/chef/chef-dk/pull/2194) ([chef-ci](https://github.com/chef-ci)) <!-- 4.2.1 -->
 <!-- release_rollup -->
