@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.3.1 -->
-## [v4.3.1](https://github.com/chef/chef-dk/tree/v4.3.1) (2019-07-16)
+<!-- latest_release 4.3.2 -->
+## [v4.3.2](https://github.com/chef/chef-dk/tree/v4.3.2) (2019-07-29)
 
 #### Merged Pull Requests
-- Add Windows 2019 build verification [#2195](https://github.com/chef/chef-dk/pull/2195) ([tas50](https://github.com/tas50))
+- Bump inspec to 4.7.18 and train to 2.1.19 [#2197](https://github.com/chef/chef-dk/pull/2197) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump inspec to 4.7.18 and train to 2.1.19 [#2197](https://github.com/chef/chef-dk/pull/2197) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.2 -->
 - Add Windows 2019 build verification [#2195](https://github.com/chef/chef-dk/pull/2195) ([tas50](https://github.com/tas50)) <!-- 4.3.1 -->
 - Enable RHEL 8 packages [#2193](https://github.com/chef/chef-dk/pull/2193) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 4.3.0 -->
 - Bump appbundler to 0.13.1 [#2186](https://github.com/chef/chef-dk/pull/2186) ([chef-ci](https://github.com/chef-ci)) <!-- 4.2.2 -->
