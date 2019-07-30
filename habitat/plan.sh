@@ -36,9 +36,8 @@ pkg_deps=(
 pkg_svc_user=root
 
 do_download() {
-  # Instead of downloading, build a gem based on the source in src/
-  cd $PLAN_CONTEXT/..
-  gem build $pkg_name.gemspec
+  build_line "Building gem from source. (${SRC_PATH}/${pkg_name}.gemspec)"
+  gem build "${SRC_PATH}/${pkg_name}.gemspec"
 }
 
 do_verify() {
@@ -48,7 +47,8 @@ do_verify() {
 do_unpack() {
   # Unpack the gem we built to the source cache path. Building then unpacking
   # the gem reuses the file inclusion/exclusion rules defined in the gemspec.
-  gem unpack $PLAN_CONTEXT/../$pkg_name-$pkg_version.gem --target=$HAB_CACHE_SRC_PATH
+  build_line "Unpacking gem into hab-cache directory. ($HAB_CACHE_SRC_PATH)"
+  gem unpack "${SRC_PATH}/${pkg_name}-${pkg_version}.gem" --target="$HAB_CACHE_SRC_PATH"
 }
 
 do_prepare() {
