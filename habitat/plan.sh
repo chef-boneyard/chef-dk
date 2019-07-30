@@ -145,21 +145,26 @@ do_strip() {
 
 # Copied from https://github.com/habitat-sh/core-plans/blob/f84832de42b300a64f1b38c54d659c4f6d303c95/bundler/plan.sh#L32
 wrap_ruby_bin() {
-  local bin_basename="$1"
-  local real_cmd="$pkg_prefix/ruby-bin/$bin_basename"
-  local wrapper="$pkg_prefix/bin/$bin_basename"
+  local bin_basename
+  local real_cmd
+  local wrapper
+  bin_basename="$1"
+  real_cmd="$ruby_bin_dir/$bin_basename"
+  wrapper="$pkg_prefix/bin/$bin_basename"
 
-  build_line "Adding wrapper $wrapper to $real_cmd"
+  build_line "Adding wrapper for $bin_basename."
+  build_line " - from: $wrapper"
+  build_line " -   to: $real_cmd"
   cat <<EOF > "$wrapper"
 #!$(pkg_path_for busybox-static)/bin/sh
 set -e
-if test -n "$DEBUG"; then set -x; fi
+if test -n "\$DEBUG"; then set -x; fi
 export GEM_HOME="$pkg_prefix/ruby/${RUBY_ABI_VERSION}/"
 export GEM_PATH="$(pkg_path_for ${ruby_pkg})/lib/ruby/gems/${RUBY_ABI_VERSION}:$(hab pkg path core/bundler):$pkg_prefix/ruby/${RUBY_ABI_VERSION}/:$GEM_HOME"
 export SSL_CERT_FILE=$(pkg_path_for core/cacerts)/ssl/cert.pem
 export APPBUNDLER_ALLOW_RVM=true
 unset RUBYOPT GEMRC
-exec $(pkg_path_for ${ruby_pkg})/bin/ruby ${real_cmd} \$@
+exec $(pkg_path_for ${ruby_pkg})/bin/ruby ${real_cmd} "\$@"
 EOF
   chmod -v 755 "$wrapper"
 }
