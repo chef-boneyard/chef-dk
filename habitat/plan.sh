@@ -35,11 +35,6 @@ pkg_deps=(
 
 pkg_svc_user=root
 
-do_before() {
-  do_default_before
-  update_pkg_version
-}
-
 do_download() {
   # Instead of downloading, build a gem based on the source in src/
   cd $PLAN_CONTEXT/..
