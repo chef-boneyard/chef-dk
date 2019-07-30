@@ -93,11 +93,11 @@ do_build() {
 }
 
 do_install() {
-  cd $CACHE_PATH
-  mkdir -p $pkg_prefix/ruby-bin
+  export ruby_bin_dir
+  ruby_bin_dir="$pkg_prefix/ruby-bin"
 
-  # Appbundling gems speeds up runtime by creating binstubs for Ruby executables with
-  # versions of dependencies already resolved
+  # TODO(afiune) Should we define this inside the repo and not here inside the plan?
+  export gems_to_appbundle
   gems_to_appbundle=(
     berkshelf
     chef
@@ -112,15 +112,24 @@ do_install() {
     ohai
     test-kitchen
   )
-  for gem in "${gems_to_appbundle[@]}"; do
-    build_line "AppBundling ${gem}"
-    bundle exec appbundler $HAB_CACHE_SRC_PATH/$pkg_dirname $pkg_prefix/ruby-bin $gem
-  done
 
-  # Link the appbundled binstubs into the package's bin directory
-  mkdir -p $pkg_prefix/bin
-  for exe in $pkg_prefix/ruby-bin/*; do
-    wrap_ruby_bin $(basename ${exe})
+  build_line "Installing generated gem. (${CACHE_PATH}/${pkg_name}-${pkg_version}.gem)"
+  gem install --no-doc "${CACHE_PATH}/${pkg_name}-${pkg_version}.gem"
+
+  build_line "Creating bin directories"
+  mkdir -p "$ruby_bin_dir"
+  mkdir -p "$pkg_prefix/bin"
+
+  # Appbundling gems speeds up runtime by creating binstubs for Ruby executables with
+  # versions of dependencies already resolved
+  build_line "AppBundling chef-dk gems: ${gems_to_appbundle[*]}"
+  ( cd "$CACHE_PATH" || exit_with "unable to enter hab-cache directory" 1
+    bundle exec appbundler "$HAB_CACHE_SRC_PATH/$pkg_dirname" "$ruby_bin_dir" ${gems_to_appbundle[*]} >/dev/null
+  )
+
+  build_line "Link the appbundled binstubs into the package's bin directory"
+  for exe in "$ruby_bin_dir"/*; do
+    wrap_ruby_bin "$(basename "${exe}")"
   done
 
   if [[ `readlink /usr/bin/env` = "$(pkg_path_for coreutils)/bin/env" ]]; then
