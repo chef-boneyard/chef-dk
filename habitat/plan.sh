@@ -5,6 +5,7 @@ pkg_description="The Chef Developer Kit"
 pkg_version=$(cat ../VERSION)
 pkg_license=('Apache-2.0')
 pkg_bin_dirs=(bin)
+pkg_svc_user=root
 pkg_build_deps=(
   core/make
   core/gcc
@@ -33,8 +34,6 @@ pkg_deps=(
   core/libarchive
 )
 
-pkg_svc_user=root
-
 do_download() {
   build_line "Building gem from source. (${SRC_PATH}/${pkg_name}.gemspec)"
   gem build "${SRC_PATH}/${pkg_name}.gemspec"
@@ -59,9 +58,7 @@ do_prepare() {
   build_line "Ruby ABI version appears to be ${RUBY_ABI_VERSION}"
 
   build_line "Setting link for /usr/bin/env to 'coreutils'"
-  [[ ! -f /usr/bin/env ]] && ln -s $(pkg_path_for coreutils)/bin/env /usr/bin/env
-
-  return 0
+  [ ! -f /usr/bin/env ] && ln -s "$(pkg_path_for coreutils)/bin/env" /usr/bin/env || return 0
 }
 
 do_build() {
