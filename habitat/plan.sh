@@ -2,7 +2,6 @@ pkg_name=chef-dk
 pkg_origin=chef
 pkg_maintainer="The Chef Maintainers <humans@chef.io>"
 pkg_description="The Chef Developer Kit"
-pkg_version=$(cat ../VERSION)
 pkg_license=('Apache-2.0')
 pkg_bin_dirs=(bin)
 pkg_svc_user=root
@@ -33,6 +32,15 @@ pkg_deps=(
   core/libffi
   core/libarchive
 )
+
+pkg_version() {
+  cat "$SRC_PATH/VERSION"
+}
+
+do_before() {
+  do_default_before
+  update_pkg_version
+}
 
 do_download() {
   build_line "Building gem from source. (${SRC_PATH}/${pkg_name}.gemspec)"
