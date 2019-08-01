@@ -8,7 +8,6 @@ pkg_svc_user=root
 pkg_build_deps=(
   core/make
   core/gcc
-  core/coreutils
   core/git
 )
 
@@ -65,8 +64,10 @@ do_prepare() {
   export RUBY_ABI_VERSION=$(ls $(pkg_path_for ${ruby_pkg})/lib/ruby/gems)
   build_line "Ruby ABI version appears to be ${RUBY_ABI_VERSION}"
 
-  build_line "Setting link for /usr/bin/env to 'coreutils'"
-  [ ! -f /usr/bin/env ] && ln -s "$(pkg_path_for coreutils)/bin/env" /usr/bin/env || return 0
+  build_line "Setting link for /usr/bin/env to 'busybox-static'"
+  if [ ! -f /usr/bin/env ]; then
+    ln -s "$(pkg_interpreter_for core/busybox-static bin/env)" /usr/bin/env
+  fi
 }
 
 do_build() {
@@ -140,8 +141,8 @@ do_install() {
     wrap_ruby_bin "$(basename "${exe}")"
   done
 
-  if [[ `readlink /usr/bin/env` = "$(pkg_path_for coreutils)/bin/env" ]]; then
-    build_line "Removing the symlink we created for '/usr/bin/env'"
+  if [ "$(readlink /usr/bin/env)" = "$(pkg_interpreter_for core/busybox-static bin/env)" ]; then
+    build_line "Removing the symlink created for '/usr/bin/env'"
     rm /usr/bin/env
   fi
 }
