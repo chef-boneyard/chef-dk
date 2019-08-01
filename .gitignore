@@ -3,6 +3,7 @@ coverage
 .DS_Store
 pkg/*
 *.gem
+*.swp
 */tags
 *~
 gem_graph.png
