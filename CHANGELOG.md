@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.3.5 -->
-## [v4.3.5](https://github.com/chef/chef-dk/tree/v4.3.5) (2019-08-05)
+<!-- latest_release 4.3.6 -->
+## [v4.3.6](https://github.com/chef/chef-dk/tree/v4.3.6) (2019-08-05)
 
 #### Merged Pull Requests
-- Bump inspec-bin to 4.10.4 [#2204](https://github.com/chef/chef-dk/pull/2204) ([chef-ci](https://github.com/chef-ci))
+- Concurrently install gems in the omnibus def [#2200](https://github.com/chef/chef-dk/pull/2200) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Concurrently install gems in the omnibus def [#2200](https://github.com/chef/chef-dk/pull/2200) ([tas50](https://github.com/tas50)) <!-- 4.3.6 -->
 - Bump inspec-bin to 4.10.4 [#2204](https://github.com/chef/chef-dk/pull/2204) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.5 -->
 - Improve packaging Chef-DK with Habitat [#2202](https://github.com/chef/chef-dk/pull/2202) ([afiune](https://github.com/afiune)) <!-- 4.3.4 -->
 - Bump knife-ec2 to 1.0.9 and InSpec to 4.7.24 [#2199](https://github.com/chef/chef-dk/pull/2199) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.3 -->
