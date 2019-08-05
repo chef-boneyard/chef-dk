@@ -64,3 +64,11 @@ steps:
     executor:
       docker:
         image: ruby:2.6-stretch
+
+- label: hab-package-build-test
+  command:
+    - habitat/scripts/ci_integration_tests.sh
+  expeditor:
+    executor:
+      docker:
+        privileged: true

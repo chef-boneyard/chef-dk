@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# This is the place where we can extend the funcitonality of the studio
+#
+
+hab pkg install chef/studio-common >/dev/null
+source "$(hab pkg path chef/studio-common)/bin/studio-common"
+
+function build_install_and_tests() {
+  build
+  if [[ $? != 0 ]]; then
+    return 1
+  fi
+
+  OPTS="--binlink --force" install
+  if [[ $? != 0 ]]; then
+    return 1
+  fi
+
+  ./habitat/tests.sh
+}
