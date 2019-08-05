@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.3.3 -->
-## [v4.3.3](https://github.com/chef/chef-dk/tree/v4.3.3) (2019-07-29)
+<!-- latest_release 4.3.4 -->
+## [v4.3.4](https://github.com/chef/chef-dk/tree/v4.3.4) (2019-08-05)
 
 #### Merged Pull Requests
-- Bump knife-ec2 to 1.0.9 and InSpec to 4.7.24 [#2199](https://github.com/chef/chef-dk/pull/2199) ([chef-ci](https://github.com/chef-ci))
+- Improve packaging Chef-DK with Habitat [#2202](https://github.com/chef/chef-dk/pull/2202) ([afiune](https://github.com/afiune))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Improve packaging Chef-DK with Habitat [#2202](https://github.com/chef/chef-dk/pull/2202) ([afiune](https://github.com/afiune)) <!-- 4.3.4 -->
 - Bump knife-ec2 to 1.0.9 and InSpec to 4.7.24 [#2199](https://github.com/chef/chef-dk/pull/2199) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.3 -->
 - Bump inspec to 4.7.18 and train to 2.1.19 [#2197](https://github.com/chef/chef-dk/pull/2197) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.2 -->
 - Add Windows 2019 build verification [#2195](https://github.com/chef/chef-dk/pull/2195) ([tas50](https://github.com/tas50)) <!-- 4.3.1 -->
