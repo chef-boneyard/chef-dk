@@ -8,7 +8,6 @@ pkg_svc_user=root
 pkg_build_deps=(
   core/make
   core/gcc
-  core/git
 )
 
 # declaring it once here avoids needing to replace it
@@ -17,7 +16,6 @@ ruby_pkg=core/ruby26
 
 pkg_deps=(
   core/glibc
-  core/busybox-static
   # yes, this is weird
   ${ruby_pkg}
   core/libxml2
@@ -30,6 +28,9 @@ pkg_deps=(
   core/cacerts
   core/libffi
   core/libarchive
+  core/git
+  core/coreutils
+  core/bash
 )
 
 pkg_version() {
@@ -64,9 +65,9 @@ do_prepare() {
   export RUBY_ABI_VERSION=$(ls $(pkg_path_for ${ruby_pkg})/lib/ruby/gems)
   build_line "Ruby ABI version appears to be ${RUBY_ABI_VERSION}"
 
-  build_line "Setting link for /usr/bin/env to 'busybox-static'"
+  build_line "Setting link for /usr/bin/env to 'coreutils'"
   if [ ! -f /usr/bin/env ]; then
-    ln -s "$(pkg_interpreter_for core/busybox-static bin/env)" /usr/bin/env
+    ln -s "$(pkg_interpreter_for core/coreutils bin/env)" /usr/bin/env
   fi
 }
 
@@ -141,7 +142,7 @@ do_install() {
     wrap_ruby_bin "$(basename "${exe}")"
   done
 
-  if [ "$(readlink /usr/bin/env)" = "$(pkg_interpreter_for core/busybox-static bin/env)" ]; then
+  if [ "$(readlink /usr/bin/env)" = "$(pkg_interpreter_for core/coreutils bin/env)" ]; then
     build_line "Removing the symlink created for '/usr/bin/env'"
     rm /usr/bin/env
   fi
@@ -165,7 +166,7 @@ wrap_ruby_bin() {
   build_line " - from: $wrapper"
   build_line " -   to: $real_cmd"
   cat <<EOF > "$wrapper"
-#!$(pkg_path_for busybox-static)/bin/sh
+#!$(pkg_interpreter_for core/bash bin/sh)
 set -e
 if test -n "\$DEBUG"; then set -x; fi
 export GEM_HOME="$pkg_prefix/ruby/${RUBY_ABI_VERSION}/"
