@@ -31,7 +31,7 @@ GEM
     artifactory (3.0.5)
     ast (2.4.0)
     aws-eventstream (1.0.3)
-    aws-partitions (1.196.0)
+    aws-partitions (1.197.0)
     aws-sdk-apigateway (1.34.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
@@ -516,7 +516,7 @@ GEM
       docker-api (~> 1.33)
       lockfile (~> 2.1)
       test-kitchen (>= 1.15, < 3)
-    kitchen-ec2 (3.0.1)
+    kitchen-ec2 (3.1.0)
       aws-sdk-ec2 (~> 1.0)
       excon
       multi_json
@@ -539,7 +539,7 @@ GEM
       excon (>= 0.50)
       knife-windows (>= 1.0)
       mixlib-shellout
-    knife-ec2 (1.0.9)
+    knife-ec2 (1.0.11)
       aws-sdk-ec2 (~> 1.95)
       aws-sdk-s3 (~> 1.43)
       chef (>= 15.1)
