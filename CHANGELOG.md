@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.3.9 -->
-## [v4.3.9](https://github.com/chef/chef-dk/tree/v4.3.9) (2019-08-08)
+<!-- latest_release 4.3.10 -->
+## [v4.3.10](https://github.com/chef/chef-dk/tree/v4.3.10) (2019-08-08)
 
 #### Merged Pull Requests
-- Bump kitchen-ec2 to 3.1.0 and knife-ec2 to 1.0.11 [#2210](https://github.com/chef/chef-dk/pull/2210) ([chef-ci](https://github.com/chef-ci))
+- Bump cookstyle to 5.1.19 and ohai to 15.2.5 [#2211](https://github.com/chef/chef-dk/pull/2211) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump cookstyle to 5.1.19 and ohai to 15.2.5 [#2211](https://github.com/chef/chef-dk/pull/2211) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.10 -->
 - Bump kitchen-ec2 to 3.1.0 and knife-ec2 to 1.0.11 [#2210](https://github.com/chef/chef-dk/pull/2210) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.9 -->
 - Stop building ChefDK on EOL SLES 11 [#2208](https://github.com/chef/chef-dk/pull/2208) ([tas50](https://github.com/tas50)) <!-- 4.3.8 -->
 - Update kitchen-vagrant to 1.6.0 [#2207](https://github.com/chef/chef-dk/pull/2207) ([tas50](https://github.com/tas50)) <!-- 4.3.7 -->
