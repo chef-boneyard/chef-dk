@@ -105,7 +105,7 @@ eni-2451c913           in-use  us-west-2a  137.150.209.123 10.0.0.245           
 
 #### knife ec2 securitygroup list
 
-This command lists all security groups in your environment including the ID, which you need when assigning a newly provisioned instance a group.
+This command lists all security groups in your environment including the ID, which you need when assigning a newly provisioned instance to a group.
 
 ```
 $knife ec2 securitygroup list
