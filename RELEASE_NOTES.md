@@ -13,7 +13,7 @@ Knife-ec2 has been updated to 1.0.8. This release removes previously deprecated 
 
 ### knife-vsphere 3.0.1
 
-Knife-vsphere has been updated to 3.0.1 to resolve Ruby warnings that occured when running some commmands.
+Knife-vsphere has been updated to 3.0.1 to resolve Ruby warnings that occurred when running some commands.
 
 ### Fauxhai 7.4.0
 
