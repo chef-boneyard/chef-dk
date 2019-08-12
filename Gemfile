@@ -54,13 +54,13 @@ group(:omnibus_package) do
   # gems to Rubygems now, so letting this float on latest should always give us the latest
   # stable release. May have to re-pin around major version bumping time, or during patch
   # fixes.
-  gem "chef", "= 15.1.36"
-  gem "chef-bin", "= 15.1.36"
+  gem "chef", "= 15.2.20"
+  gem "chef-bin", "= 15.2.20"
   gem "cheffish", ">= 14.0.1"
   gem "chefspec", ">= 7.3.0", "< 8"
   gem "fauxhai", "~> 7.0"
-  gem "inspec-bin", "~> 4.3" # the actual inspec CLI binary
-  gem "inspec", "~> 4.3"
+  gem "inspec-bin", "~> 4.10" # the actual inspec CLI binary
+  gem "inspec", "~> 4.10"
   gem "kitchen-azurerm", ">= 0.14"
   gem "kitchen-ec2", ">= 3.0", "< 4"
   gem "kitchen-digitalocean", ">= 0.10.0"
