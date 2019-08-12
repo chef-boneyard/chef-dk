@@ -1,3 +1,52 @@
+# ChefDK 4.3.0
+
+## RHEL 8 Support Added
+
+ChefDK 4.3 now includes native packages for RHEL 8 with all builds now validated on RHEL 8 hosts.
+
+## SLES 11 EOL
+
+Packages will no longer be built for SUSE Linux Enterprise Server (SLES) 11 as SLES 11 exited the 'General Support' phase on March 31, 2019. See [Chef's Platform End-of-Life Policy](https://docs.chef.io/platforms.html#platform-end-of-life-policy) for more information on when Chef ends support for an OS release.
+
+## Updated Components
+
+### Chef Infra Client
+
+Chef Infra Client has been updated from 15.1 to 15.2 with new and improved resources and support for RHEL 8. See the [Chef Infra Client 15.2 Release Notes](https://docs.chef.io/release_notes.html#chef-infra-client-15-2) for a complete list of new and improved functionality.
+
+### Chef InSpec
+
+Chef InSpec has been updated from 4.7.3 to 4.10.4 with the following changes:
+
+- Fixed handling multiple triggers in the `windows_task` resource
+- Fixed exceptions when resources are used with incompatible transports
+- Un-deprecated the `be_running` matcher on the `service` resource
+- Added `sys_info.manufacturer` and `sys_info.model` resources
+- Added `ip6tables` resource
+
+### cookstyle 5.0.0 -> 5.1.19
+
+Cookstyle has been updated from 5.0 to 5.1.19 with twenty-four new Chef specific cops to detect, and in many cases, to auto-correct errors in your cookbook code. With the release of Cookstyle 5.1, we have started the process of replacing Foodcritic with Cookstyle. Cookstyle offers a modern configuration system, auto-correction, and a faster and more reliable engine thanks to RuboCop. We will continue to port useful rules from Foodcritic to Cookstyle, as well as add rules that were not possible in the legacy Foodcritic engine. See the [Cookstyle 5.1 Release Notes](https://github.com/chef/cookstyle/blob/master/RELEASE_NOTES.md#cookstyle-51) for a complete list of new rules.
+
+### kitchen-azurerm
+
+kitchen-azurerm has been updated from 0.14.8 to 0.14.9, which adds a new `use_ephemeral_osdisk` configuration option. See Microsoft's [Empheral OS Disk Announcement](https://azure.microsoft.com/en-us/updates/azure-ephemeral-os-disk-now-generally-available/) for more information on this new feature.
+
+### kitchen-ec2
+
+kitchen-ec2 has been updated from 3.0.1 to 3.1.0 with several new features:
+  - Added support for SSH through Session Manager. Thanks [@awiddersheim](https://github.com/awiddersheim)
+  - Adds support for searching for multiple security groups, as well as searching by group name. Thanks [@bdwyertech](https://github.com/bdwyertech)
+  - Allows asking for multiple instance types and subnets for spot pricing. Thanks [@vmiszczak-teads](https://github.com/vmiszczak-teads)
+
+### kitchen-vagrant
+
+kitchen-vagrant has been updated from 1.5.2. to 1.6.0. This new version properly truncates the instance name to avoid hitting the 100 character limit in Hyper-V, and also updates the hostname length limit on Windows from 12 characters to 15 characters. Thanks [@Xorima](https://github.com/Xorima) and [@PowerSchill](https://github.com/PowerSchill).
+
+### knife-ec2
+
+knife-ec2 has beeen updated from 1.0.8 to 1.0.12. This new version includes multiple fixes for network configuration setup, a new `--cpu-crdits` option for launching T2/T3 instances as unlimited, and fixes for issues with attaching emphemeral disks.
+
 # ChefDK 4.2.0
 
 ## Bug Fixes
