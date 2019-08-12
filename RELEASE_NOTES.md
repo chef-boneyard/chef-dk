@@ -24,7 +24,7 @@ Chef InSpec has been updated from 4.7.3 to 4.10.4 with the following changes:
 - Added `sys_info.manufacturer` and `sys_info.model` resources
 - Added `ip6tables` resource
 
-### cookstyle 5.0.0 -> 5.1.19
+### cookstyle
 
 Cookstyle has been updated from 5.0 to 5.1.19 with twenty-four new Chef specific cops to detect, and in many cases, to auto-correct errors in your cookbook code. With the release of Cookstyle 5.1, we have started the process of replacing Foodcritic with Cookstyle. Cookstyle offers a modern configuration system, auto-correction, and a faster and more reliable engine thanks to RuboCop. We will continue to port useful rules from Foodcritic to Cookstyle, as well as add rules that were not possible in the legacy Foodcritic engine. See the [Cookstyle 5.1 Release Notes](https://github.com/chef/cookstyle/blob/master/RELEASE_NOTES.md#cookstyle-51) for a complete list of new rules.
 
@@ -45,7 +45,7 @@ kitchen-vagrant has been updated from 1.5.2. to 1.6.0. This new version properly
 
 ### knife-ec2
 
-knife-ec2 has beeen updated from 1.0.8 to 1.0.12. This new version includes multiple fixes for network configuration setup, a new `--cpu-crdits` option for launching T2/T3 instances as unlimited, and fixes for issues with attaching emphemeral disks.
+knife-ec2 has beeen updated from 1.0.8 to 1.0.12. This new version includes multiple fixes for network configuration setup, a new `--cpu-credits` option for launching T2/T3 instances as unlimited, and fixes for issues with attaching emphemeral disks.
 
 # ChefDK 4.2.0
 
