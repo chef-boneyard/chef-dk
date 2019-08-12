@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.3.12 -->
-## [v4.3.12](https://github.com/chef/chef-dk/tree/v4.3.12) (2019-08-12)
+<!-- latest_release 4.3.13 -->
+## [v4.3.13](https://github.com/chef/chef-dk/tree/v4.3.13) (2019-08-12)
 
 #### Merged Pull Requests
-- Update Chef Infra Client to 15.2 [#2215](https://github.com/chef/chef-dk/pull/2215) ([tas50](https://github.com/tas50))
+- Bump knife-ec2 to 1.0.12 [#2216](https://github.com/chef/chef-dk/pull/2216) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.2.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-ec2 to 1.0.12 [#2216](https://github.com/chef/chef-dk/pull/2216) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.13 -->
 - Update Chef Infra Client to 15.2 [#2215](https://github.com/chef/chef-dk/pull/2215) ([tas50](https://github.com/tas50)) <!-- 4.3.12 -->
 - Bump nokogiri to 1.10.4 [#2214](https://github.com/chef/chef-dk/pull/2214) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.11 -->
 - Bump cookstyle to 5.1.19 and ohai to 15.2.5 [#2211](https://github.com/chef/chef-dk/pull/2211) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.10 -->
