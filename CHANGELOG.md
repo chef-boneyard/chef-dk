@@ -1,34 +1,32 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.3.13 -->
-## [v4.3.13](https://github.com/chef/chef-dk/tree/v4.3.13) (2019-08-12)
-
-#### Merged Pull Requests
-- Bump knife-ec2 to 1.0.12 [#2216](https://github.com/chef/chef-dk/pull/2216) ([chef-ci](https://github.com/chef-ci))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=4.2.0 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Bump knife-ec2 to 1.0.12 [#2216](https://github.com/chef/chef-dk/pull/2216) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.13 -->
-- Update Chef Infra Client to 15.2 [#2215](https://github.com/chef/chef-dk/pull/2215) ([tas50](https://github.com/tas50)) <!-- 4.3.12 -->
-- Bump nokogiri to 1.10.4 [#2214](https://github.com/chef/chef-dk/pull/2214) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.11 -->
-- Bump cookstyle to 5.1.19 and ohai to 15.2.5 [#2211](https://github.com/chef/chef-dk/pull/2211) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.10 -->
-- Bump kitchen-ec2 to 3.1.0 and knife-ec2 to 1.0.11 [#2210](https://github.com/chef/chef-dk/pull/2210) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.9 -->
-- Stop building ChefDK on EOL SLES 11 [#2208](https://github.com/chef/chef-dk/pull/2208) ([tas50](https://github.com/tas50)) <!-- 4.3.8 -->
-- Update kitchen-vagrant to 1.6.0 [#2207](https://github.com/chef/chef-dk/pull/2207) ([tas50](https://github.com/tas50)) <!-- 4.3.7 -->
-- Concurrently install gems in the omnibus def [#2200](https://github.com/chef/chef-dk/pull/2200) ([tas50](https://github.com/tas50)) <!-- 4.3.6 -->
-- Bump inspec-bin to 4.10.4 [#2204](https://github.com/chef/chef-dk/pull/2204) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.5 -->
-- Improve packaging Chef-DK with Habitat [#2202](https://github.com/chef/chef-dk/pull/2202) ([afiune](https://github.com/afiune)) <!-- 4.3.4 -->
-- Bump knife-ec2 to 1.0.9 and InSpec to 4.7.24 [#2199](https://github.com/chef/chef-dk/pull/2199) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.3 -->
-- Bump inspec to 4.7.18 and train to 2.1.19 [#2197](https://github.com/chef/chef-dk/pull/2197) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.2 -->
-- Add Windows 2019 build verification [#2195](https://github.com/chef/chef-dk/pull/2195) ([tas50](https://github.com/tas50)) <!-- 4.3.1 -->
-- Enable RHEL 8 packages [#2193](https://github.com/chef/chef-dk/pull/2193) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 4.3.0 -->
-- Bump appbundler to 0.13.1 [#2186](https://github.com/chef/chef-dk/pull/2186) ([chef-ci](https://github.com/chef-ci)) <!-- 4.2.2 -->
-- Bump cookstyle to 5.0.4 [#2194](https://github.com/chef/chef-dk/pull/2194) ([chef-ci](https://github.com/chef-ci)) <!-- 4.2.1 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v4.3.13](https://github.com/chef/chef-dk/tree/v4.3.13) (2019-08-12)
+
+#### Merged Pull Requests
+- Bump cookstyle to 5.0.4 [#2194](https://github.com/chef/chef-dk/pull/2194) ([chef-ci](https://github.com/chef-ci))
+- Bump appbundler to 0.13.1 [#2186](https://github.com/chef/chef-dk/pull/2186) ([chef-ci](https://github.com/chef-ci))
+- Enable RHEL 8 packages [#2193](https://github.com/chef/chef-dk/pull/2193) ([jaymalasinha](https://github.com/jaymalasinha))
+- Add Windows 2019 build verification [#2195](https://github.com/chef/chef-dk/pull/2195) ([tas50](https://github.com/tas50))
+- Bump inspec to 4.7.18 and train to 2.1.19 [#2197](https://github.com/chef/chef-dk/pull/2197) ([chef-ci](https://github.com/chef-ci))
+- Bump knife-ec2 to 1.0.9 and InSpec to 4.7.24 [#2199](https://github.com/chef/chef-dk/pull/2199) ([chef-ci](https://github.com/chef-ci))
+- Improve packaging Chef-DK with Habitat [#2202](https://github.com/chef/chef-dk/pull/2202) ([afiune](https://github.com/afiune))
+- Bump inspec-bin to 4.10.4 [#2204](https://github.com/chef/chef-dk/pull/2204) ([chef-ci](https://github.com/chef-ci))
+- Concurrently install gems in the omnibus def [#2200](https://github.com/chef/chef-dk/pull/2200) ([tas50](https://github.com/tas50))
+- Update kitchen-vagrant to 1.6.0 [#2207](https://github.com/chef/chef-dk/pull/2207) ([tas50](https://github.com/tas50))
+- Stop building ChefDK on EOL SLES 11 [#2208](https://github.com/chef/chef-dk/pull/2208) ([tas50](https://github.com/tas50))
+- Bump kitchen-ec2 to 3.1.0 and knife-ec2 to 1.0.11 [#2210](https://github.com/chef/chef-dk/pull/2210) ([chef-ci](https://github.com/chef-ci))
+- Bump cookstyle to 5.1.19 and ohai to 15.2.5 [#2211](https://github.com/chef/chef-dk/pull/2211) ([chef-ci](https://github.com/chef-ci))
+- Bump nokogiri to 1.10.4 [#2214](https://github.com/chef/chef-dk/pull/2214) ([chef-ci](https://github.com/chef-ci))
+- Update Chef Infra Client to 15.2 [#2215](https://github.com/chef/chef-dk/pull/2215) ([tas50](https://github.com/tas50))
+- Bump knife-ec2 to 1.0.12 [#2216](https://github.com/chef/chef-dk/pull/2216) ([chef-ci](https://github.com/chef-ci))
+<!-- latest_stable_release -->
+
 ## [v4.2.0](https://github.com/chef/chef-dk/tree/v4.2.0) (2019-07-12)
 
 #### Merged Pull Requests
@@ -46,7 +44,6 @@
 - Fix deprecated chef provision command to not fail [#2189](https://github.com/chef/chef-dk/pull/2189) ([tas50](https://github.com/tas50))
 - Remove the last mentions of Chef Development Kit [#2191](https://github.com/chef/chef-dk/pull/2191) ([tas50](https://github.com/tas50))
 - Update the Azure SDK gems to the latest [#2192](https://github.com/chef/chef-dk/pull/2192) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v4.1.7](https://github.com/chef/chef-dk/tree/v4.1.7) (2019-07-09)
 
