@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 4.3.14 -->
+## [v4.3.14](https://github.com/chef/chef-dk/tree/v4.3.14) (2019-08-13)
+
+#### Merged Pull Requests
+- Begin signing MSI&#39;s with renewed Windows Signing Cert [#2218](https://github.com/chef/chef-dk/pull/2218) ([schisamo](https://github.com/schisamo))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=4.3.13 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- Begin signing MSI&#39;s with renewed Windows Signing Cert [#2218](https://github.com/chef/chef-dk/pull/2218) ([schisamo](https://github.com/schisamo)) <!-- 4.3.14 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
