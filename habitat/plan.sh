@@ -169,8 +169,10 @@ wrap_ruby_bin() {
 #!$(pkg_interpreter_for core/bash bin/sh)
 set -e
 if test -n "\$DEBUG"; then set -x; fi
-export GEM_HOME="$pkg_prefix/ruby/${RUBY_ABI_VERSION}/"
-export GEM_PATH="$(pkg_path_for ${ruby_pkg})/lib/ruby/gems/${RUBY_ABI_VERSION}:$(hab pkg path core/bundler):$pkg_prefix/ruby/${RUBY_ABI_VERSION}/:$GEM_HOME"
+# This variable does the switch to habitat install internally in chef-dk
+export HAB_CHEFDK_PATH="$pkg_prefix"
+export GEM_HOME="${pkg_prefix}/ruby/${RUBY_ABI_VERSION}"
+export GEM_PATH="$(pkg_path_for ${ruby_pkg})/lib/ruby/gems/${RUBY_ABI_VERSION}:$(pkg_path_for core/bundler):${pkg_prefix}/ruby/${RUBY_ABI_VERSION}/:${pkg_prefix}"
 export SSL_CERT_FILE=$(pkg_path_for core/cacerts)/ssl/cert.pem
 export APPBUNDLER_ALLOW_RVM=true
 unset RUBYOPT GEMRC
