@@ -528,7 +528,7 @@ GEM
       test-kitchen
     kitchen-hyperv (0.5.3)
       test-kitchen (>= 1.4, < 3)
-    kitchen-inspec (1.1.0)
+    kitchen-inspec (1.2.0)
       hashie (~> 3.4)
       inspec (>= 1.47, < 5.0)
       test-kitchen (>= 1.6, < 3)
@@ -862,8 +862,7 @@ GEM
       net-ssh (>= 2.9, < 6.0)
       winrm (~> 2.0)
       winrm-fs (~> 1.0)
-    train-habitat (0.2.7)
-      train (>= 1.7.5, < 3.0)
+    train-habitat (0.2.11)
     treetop (1.6.10)
       polyglot (~> 0.3)
     trollop (2.9.9)
