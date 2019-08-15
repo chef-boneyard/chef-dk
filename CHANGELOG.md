@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.3.16 -->
-## [v4.3.16](https://github.com/chef/chef-dk/tree/v4.3.16) (2019-08-15)
+<!-- latest_release 4.4.0 -->
+## [v4.4.0](https://github.com/chef/chef-dk/tree/v4.4.0) (2019-08-15)
 
 #### Merged Pull Requests
-- Bump kitchen-inspec to 1.2.0 [#2222](https://github.com/chef/chef-dk/pull/2222) ([chef-ci](https://github.com/chef-ci))
+- Bump inspec-bin to 4.12.0 [#2224](https://github.com/chef/chef-dk/pull/2224) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.3.13 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump inspec-bin to 4.12.0 [#2224](https://github.com/chef/chef-dk/pull/2224) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.0 -->
 - Bump kitchen-inspec to 1.2.0 [#2222](https://github.com/chef/chef-dk/pull/2222) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.16 -->
 - Bump train-aws to 0.1.11 [#2220](https://github.com/chef/chef-dk/pull/2220) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.15 -->
 - Begin signing MSI&#39;s with renewed Windows Signing Cert [#2218](https://github.com/chef/chef-dk/pull/2218) ([schisamo](https://github.com/schisamo)) <!-- 4.3.14 -->
