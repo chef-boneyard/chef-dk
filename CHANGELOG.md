@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.0 -->
-## [v4.4.0](https://github.com/chef/chef-dk/tree/v4.4.0) (2019-08-15)
+<!-- latest_release 4.4.1 -->
+## [v4.4.1](https://github.com/chef/chef-dk/tree/v4.4.1) (2019-08-16)
 
 #### Merged Pull Requests
-- Bump inspec-bin to 4.12.0 [#2224](https://github.com/chef/chef-dk/pull/2224) ([chef-ci](https://github.com/chef-ci))
+- Bump cookstyle to 5.2.17 [#2225](https://github.com/chef/chef-dk/pull/2225) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.3.13 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump cookstyle to 5.2.17 [#2225](https://github.com/chef/chef-dk/pull/2225) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.1 -->
 - Bump inspec-bin to 4.12.0 [#2224](https://github.com/chef/chef-dk/pull/2224) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.0 -->
 - Bump kitchen-inspec to 1.2.0 [#2222](https://github.com/chef/chef-dk/pull/2222) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.16 -->
 - Bump train-aws to 0.1.11 [#2220](https://github.com/chef/chef-dk/pull/2220) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.15 -->
