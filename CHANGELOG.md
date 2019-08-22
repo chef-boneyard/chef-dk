@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.3 -->
-## [v4.4.3](https://github.com/chef/chef-dk/tree/v4.4.3) (2019-08-22)
+<!-- latest_release 4.4.4 -->
+## [v4.4.4](https://github.com/chef/chef-dk/tree/v4.4.4) (2019-08-22)
 
 #### Merged Pull Requests
-- Fix the build arguments in the Dockerfile [#2228](https://github.com/chef/chef-dk/pull/2228) ([tduffield](https://github.com/tduffield))
+- Add knife-azure to DK [#2227](https://github.com/chef/chef-dk/pull/2227) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.3.13 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Add knife-azure to DK [#2227](https://github.com/chef/chef-dk/pull/2227) ([tas50](https://github.com/tas50)) <!-- 4.4.4 -->
 - Fix the build arguments in the Dockerfile [#2228](https://github.com/chef/chef-dk/pull/2228) ([tduffield](https://github.com/tduffield)) <!-- 4.4.3 -->
 - Bump cookstyle to 5.3.6 [#2226](https://github.com/chef/chef-dk/pull/2226) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.2 -->
 - Bump cookstyle to 5.2.17 [#2225](https://github.com/chef/chef-dk/pull/2225) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.1 -->
