@@ -1,10 +1,16 @@
 FROM ubuntu:18.04
-MAINTAINER Chef Software, Inc. <docker@chef.io>
+LABEL maintainer="Chef Software, Inc. <docker@chef.io>"
 
+ARG EXPEDITOR_CHANNEL
 ARG CHANNEL=stable
+ARG EXPEDITOR_VERSION
 ARG VERSION=4.3.13
 ENV DEBIAN_FRONTEND=noninteractive \
     PATH=/opt/chefdk/bin:/opt/chefdk/embedded/bin:/root/.chefdk/gem/ruby/2.6.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Allow the build arg below to be controlled by either build arguments
+ENV VERSION ${EXPEDITOR_VERSION:-${VERSION}}
+ENV CHANNEL ${EXPEDITOR_CHANNEL:-${CHANNEL}}
 
 # Run the entire container with the default locale to be en_US.UTF-8
 RUN apt-get update && \
