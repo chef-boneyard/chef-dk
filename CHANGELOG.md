@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.11.5 -->
-## [v3.11.5](https://github.com/chef/chef-dk/tree/v3.11.5) (2019-07-01)
+<!-- latest_release 3.11.6 -->
+## [v3.11.6](https://github.com/chef/chef-dk/tree/v3.11.6) (2019-08-22)
 
 #### Merged Pull Requests
-- Update mixlib-archive, mixlib-cli, chefspec, and rspec [#2154](https://github.com/chef/chef-dk/pull/2154) ([tas50](https://github.com/tas50))
+- Fix the build arguments in the Dockerfile [#2229](https://github.com/chef/chef-dk/pull/2229) ([tduffield](https://github.com/tduffield))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.11.3 -->
 ### Changes since 3.11.3 release
 
 #### Merged Pull Requests
+- Fix the build arguments in the Dockerfile [#2229](https://github.com/chef/chef-dk/pull/2229) ([tduffield](https://github.com/tduffield)) <!-- 3.11.6 -->
 - Update mixlib-archive, mixlib-cli, chefspec, and rspec [#2154](https://github.com/chef/chef-dk/pull/2154) ([tas50](https://github.com/tas50)) <!-- 3.11.5 -->
 - Update Ruby in the hab plan to 2.5.5 [#2118](https://github.com/chef/chef-dk/pull/2118) ([tas50](https://github.com/tas50)) <!-- 3.11.4 -->
 <!-- release_rollup -->
