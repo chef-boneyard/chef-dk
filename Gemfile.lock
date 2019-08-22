@@ -981,7 +981,7 @@ DEPENDENCIES
   appbundler
   artifactory
   bcrypt_pbkdf
-  berkshelf (>= 7.0.5)
+  berkshelf (>= 7.0.8)
   bundler
   chef (= 15.2.20)
   chef-apply (= 0.3.0)
@@ -1022,7 +1022,7 @@ DEPENDENCIES
   knife-spork
   knife-tidy (>= 1.2.0)
   knife-vsphere (>= 2.1.1)
-  knife-windows (>= 1.9.1)
+  knife-windows (>= 3.0)
   listen
   minitest (<= 5.10.3)
   mixlib-archive (>= 0.4.16)
@@ -1046,7 +1046,7 @@ DEPENDENCIES
   ruby-prof
   ruby-shadow
   stove
-  test-kitchen (>= 1.23)
+  test-kitchen (>= 2.0)
   win32-api
   win32-dir
   win32-event

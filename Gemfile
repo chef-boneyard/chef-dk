@@ -48,7 +48,7 @@ end
 # We equality pin the chef gem itself to assert which version we're shipping.
 group(:omnibus_package) do
   gem "appbundler"
-  gem "berkshelf", ">= 7.0.5"
+  gem "berkshelf", ">= 7.0.8"
   gem "chef-vault", ">= 3.4.1"
   # Expeditor manages the version of chef released to Rubygems. We only release 'stable' chef
   # gems to Rubygems now, so letting this float on latest should always give us the latest
@@ -74,13 +74,13 @@ group(:omnibus_package) do
   gem "knife-ec2", ">= 1.0"
   gem "knife-google", ">= 3.3.3"
   gem "knife-tidy", ">= 1.2.0"
-  gem "knife-windows", ">= 1.9.1"
+  gem "knife-windows", ">= 3.0"
   gem "knife-opc", ">= 0.4.0"
   gem "knife-vsphere", ">= 2.1.1"
   gem "mixlib-archive", ">= 0.4.16"
   gem "ohai", ">= 14"
   gem "net-ssh", ">= 4.2.0"
-  gem "test-kitchen", ">= 1.23"
+  gem "test-kitchen", ">= 2.0"
   gem "listen"
   gem "dco"
 
@@ -135,8 +135,7 @@ end
 
 gem "chefstyle", group: :test
 
-# TODO delete this when we figure out how to include the pushy windows dependencies
-# correctly
+# Ensure support for push-client on Windows
 platforms :mswin, :mingw do
   gem "rdp-ruby-wmi"
   gem "windows-pr"
