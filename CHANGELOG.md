@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.2 -->
-## [v4.4.2](https://github.com/chef/chef-dk/tree/v4.4.2) (2019-08-21)
+<!-- latest_release 4.4.3 -->
+## [v4.4.3](https://github.com/chef/chef-dk/tree/v4.4.3) (2019-08-22)
 
 #### Merged Pull Requests
-- Bump cookstyle to 5.3.6 [#2226](https://github.com/chef/chef-dk/pull/2226) ([chef-ci](https://github.com/chef-ci))
+- Fix the build arguments in the Dockerfile [#2228](https://github.com/chef/chef-dk/pull/2228) ([tduffield](https://github.com/tduffield))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.3.13 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Fix the build arguments in the Dockerfile [#2228](https://github.com/chef/chef-dk/pull/2228) ([tduffield](https://github.com/tduffield)) <!-- 4.4.3 -->
 - Bump cookstyle to 5.3.6 [#2226](https://github.com/chef/chef-dk/pull/2226) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.2 -->
 - Bump cookstyle to 5.2.17 [#2225](https://github.com/chef/chef-dk/pull/2225) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.1 -->
 - Bump inspec-bin to 4.12.0 [#2224](https://github.com/chef/chef-dk/pull/2224) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.0 -->
