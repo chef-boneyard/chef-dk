@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.6 -->
-## [v4.4.6](https://github.com/chef/chef-dk/tree/v4.4.6) (2019-08-27)
+<!-- latest_release 4.4.7 -->
+## [v4.4.7](https://github.com/chef/chef-dk/tree/v4.4.7) (2019-08-29)
 
 #### Merged Pull Requests
-- Bump knife-ec2 to 1.0.14 [#2233](https://github.com/chef/chef-dk/pull/2233) ([chef-ci](https://github.com/chef-ci))
+- Bump inspec to 4.16.0 [#2235](https://github.com/chef/chef-dk/pull/2235) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.3.13 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump inspec to 4.16.0 [#2235](https://github.com/chef/chef-dk/pull/2235) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.7 -->
 - Bump knife-ec2 to 1.0.14 [#2233](https://github.com/chef/chef-dk/pull/2233) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.6 -->
 - Bump test-kitchen to 2.3.1 [#2231](https://github.com/chef/chef-dk/pull/2231) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.5 -->
 - Add knife-azure to DK [#2227](https://github.com/chef/chef-dk/pull/2227) ([tas50](https://github.com/tas50)) <!-- 4.4.4 -->
