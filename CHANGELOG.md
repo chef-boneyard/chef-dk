@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.10 -->
-## [v4.4.10](https://github.com/chef/chef-dk/tree/v4.4.10) (2019-08-31)
+<!-- latest_release 4.4.11 -->
+## [v4.4.11](https://github.com/chef/chef-dk/tree/v4.4.11) (2019-08-31)
 
 #### Merged Pull Requests
-- Bump chefstyle to 0.13.3 [#2237](https://github.com/chef/chef-dk/pull/2237) ([chef-ci](https://github.com/chef-ci))
+- Deprecate macOS 10.12 and add macOS 10.15 support [#2232](https://github.com/chef/chef-dk/pull/2232) ([jaymalasinha](https://github.com/jaymalasinha))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.3.13 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Deprecate macOS 10.12 and add macOS 10.15 support [#2232](https://github.com/chef/chef-dk/pull/2232) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 4.4.11 -->
 - Bump chefstyle to 0.13.3 [#2237](https://github.com/chef/chef-dk/pull/2237) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.10 -->
 - Bump cookstyle to 5.4.13 [#2236](https://github.com/chef/chef-dk/pull/2236) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.9 -->
 - Update Ruby to 2.6.4 to address CVEs [#2234](https://github.com/chef/chef-dk/pull/2234) ([tas50](https://github.com/tas50)) <!-- 4.4.8 -->
