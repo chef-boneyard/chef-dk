@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.11 -->
-## [v4.4.11](https://github.com/chef/chef-dk/tree/v4.4.11) (2019-08-31)
+<!-- latest_release 4.4.12 -->
+## [v4.4.12](https://github.com/chef/chef-dk/tree/v4.4.12) (2019-09-04)
 
 #### Merged Pull Requests
-- Deprecate macOS 10.12 and add macOS 10.15 support [#2232](https://github.com/chef/chef-dk/pull/2232) ([jaymalasinha](https://github.com/jaymalasinha))
+- Bump mixlib-install to 3.11.21 [#2238](https://github.com/chef/chef-dk/pull/2238) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.3.13 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump mixlib-install to 3.11.21 [#2238](https://github.com/chef/chef-dk/pull/2238) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.12 -->
 - Deprecate macOS 10.12 and add macOS 10.15 support [#2232](https://github.com/chef/chef-dk/pull/2232) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 4.4.11 -->
 - Bump chefstyle to 0.13.3 [#2237](https://github.com/chef/chef-dk/pull/2237) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.10 -->
 - Bump cookstyle to 5.4.13 [#2236](https://github.com/chef/chef-dk/pull/2236) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.9 -->
