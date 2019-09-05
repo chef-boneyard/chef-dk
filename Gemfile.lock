@@ -664,7 +664,7 @@ GEM
       shellany (~> 0.0)
     octokit (4.14.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (15.2.5)
+    ohai (15.3.1)
       chef-config (>= 12.8, < 16)
       ffi (~> 1.9)
       ffi-yajl (~> 2.2)
