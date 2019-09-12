@@ -31,7 +31,7 @@ GEM
     artifactory (3.0.5)
     ast (2.4.0)
     aws-eventstream (1.0.3)
-    aws-partitions (1.210.0)
+    aws-partitions (1.211.0)
     aws-sdk-apigateway (1.34.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
@@ -74,10 +74,10 @@ GEM
     aws-sdk-codepipeline (1.24.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
-    aws-sdk-configservice (1.36.0)
+    aws-sdk-configservice (1.37.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
-    aws-sdk-core (3.66.0)
+    aws-sdk-core (3.67.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.1)
@@ -88,7 +88,7 @@ GEM
     aws-sdk-dynamodb (1.34.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
-    aws-sdk-ec2 (1.106.0)
+    aws-sdk-ec2 (1.108.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
     aws-sdk-ecr (1.20.0)
@@ -136,7 +136,7 @@ GEM
     aws-sdk-organizations (1.17.0)
       aws-sdk-core (~> 3, >= 3.39.0)
       aws-sigv4 (~> 1.0)
-    aws-sdk-rds (1.64.0)
+    aws-sdk-rds (1.65.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
     aws-sdk-redshift (1.31.0)
@@ -158,7 +158,7 @@ GEM
     aws-sdk-securityhub (1.13.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
-    aws-sdk-ses (1.25.0)
+    aws-sdk-ses (1.26.0)
       aws-sdk-core (~> 3, >= 3.61.1)
       aws-sigv4 (~> 1.1)
     aws-sdk-sms (1.16.0)
@@ -212,11 +212,11 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (11.0.1)
-    chef (15.2.20)
+    chef (15.3.14)
       addressable
       bcrypt_pbkdf (~> 1.0)
       bundler (>= 1.10)
-      chef-config (= 15.2.20)
+      chef-config (= 15.3.14)
       chef-zero (>= 14.0.11)
       diff-lcs (~> 1.2, >= 1.2.4)
       ed25519 (~> 1.2)
@@ -231,7 +231,7 @@ GEM
       mixlib-authentication (~> 2.1)
       mixlib-cli (>= 2.1.1, < 3.0)
       mixlib-log (>= 2.0.3, < 4.0)
-      mixlib-shellout (>= 2.4, < 4.0)
+      mixlib-shellout (>= 3.0.3, < 4.0)
       net-sftp (~> 2.1, >= 2.1.2)
       net-ssh (>= 4.2, < 6)
       net-ssh-multi (~> 1.2, >= 1.2.1)
@@ -239,14 +239,15 @@ GEM
       plist (~> 3.2)
       proxifier (~> 1.0)
       syslog-logger (~> 1.6)
-      train-core (~> 2.0, >= 2.0.12)
+      train-core (~> 3.0)
+      train-winrm
       tty-screen (~> 0.6)
       uuidtools (~> 2.1.5)
-    chef (15.2.20-universal-mingw32)
+    chef (15.3.14-universal-mingw32)
       addressable
       bcrypt_pbkdf (~> 1.0)
       bundler (>= 1.10)
-      chef-config (= 15.2.20)
+      chef-config (= 15.3.14)
       chef-zero (>= 14.0.11)
       diff-lcs (~> 1.2, >= 1.2.4)
       ed25519 (~> 1.2)
@@ -262,7 +263,7 @@ GEM
       mixlib-authentication (~> 2.1)
       mixlib-cli (>= 2.1.1, < 3.0)
       mixlib-log (>= 2.0.3, < 4.0)
-      mixlib-shellout (>= 2.4, < 4.0)
+      mixlib-shellout (>= 3.0.3, < 4.0)
       net-sftp (~> 2.1, >= 2.1.2)
       net-ssh (>= 4.2, < 6)
       net-ssh-multi (~> 1.2, >= 1.2.1)
@@ -270,7 +271,8 @@ GEM
       plist (~> 3.2)
       proxifier (~> 1.0)
       syslog-logger (~> 1.6)
-      train-core (~> 2.0, >= 2.0.12)
+      train-core (~> 3.0)
+      train-winrm
       tty-screen (~> 0.6)
       uuidtools (~> 2.1.5)
       win32-api (~> 1.5.3)
@@ -301,9 +303,9 @@ GEM
       toml-rb
       train
       tty-spinner
-    chef-bin (15.2.20)
-      chef (= 15.2.20)
-    chef-config (15.2.20)
+    chef-bin (15.3.14)
+      chef (= 15.3.14)
+    chef-config (15.3.14)
       addressable
       fuzzyurl
       mixlib-config (>= 2.2.12, < 4.0)
@@ -540,7 +542,7 @@ GEM
     kitchen-vagrant (1.6.0)
       test-kitchen (>= 1.4, < 3)
     knife-acl (1.0.3)
-    knife-azure (2.0.1)
+    knife-azure (2.0.2)
       azure_mgmt_compute (~> 0.18, >= 0.18.3)
       azure_mgmt_network (~> 0.18, >= 0.18.2)
       azure_mgmt_resources (~> 0.17, >= 0.17.2)
@@ -684,7 +686,7 @@ GEM
     os (1.0.1)
     paint (1.0.1)
     parallel (1.17.0)
-    parser (2.6.4.0)
+    parser (2.6.4.1)
       ast (~> 2.4.0)
     parslet (1.8.2)
     pastel (0.7.3)
@@ -869,13 +871,11 @@ GEM
       aws-sdk-sns (~> 1.9)
       aws-sdk-sqs (~> 1.10)
       aws-sdk-ssm (~> 1)
-    train-core (2.1.19)
+    train-core (3.0.3)
       json (>= 1.8, < 3.0)
       mixlib-shellout (>= 2.0, < 4.0)
       net-scp (>= 1.2, < 3.0)
       net-ssh (>= 2.9, < 6.0)
-      winrm (~> 2.0)
-      winrm-fs (~> 1.0)
     train-habitat (0.2.11)
     train-winrm (0.2.4)
       winrm (~> 2.0)
@@ -983,9 +983,9 @@ DEPENDENCIES
   bcrypt_pbkdf
   berkshelf (>= 7.0.8)
   bundler
-  chef (= 15.2.20)
+  chef (= 15.3.14)
   chef-apply (= 0.3.0)
-  chef-bin (= 15.2.20)
+  chef-bin (= 15.3.14)
   chef-dk!
   chef-sugar
   chef-vault (>= 3.4.1)
@@ -1059,4 +1059,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.17.3
+   2.0.2
