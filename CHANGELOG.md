@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.16 -->
-## [v4.4.16](https://github.com/chef/chef-dk/tree/v4.4.16) (2019-09-06)
+<!-- latest_release 4.4.17 -->
+## [v4.4.17](https://github.com/chef/chef-dk/tree/v4.4.17) (2019-09-17)
 
 #### Merged Pull Requests
-- Update Cookstyle to 5.5 [#2242](https://github.com/chef/chef-dk/pull/2242) ([tas50](https://github.com/tas50))
+- Fix hab plan by appbundling without required deps [#2249](https://github.com/chef/chef-dk/pull/2249) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.3.13 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Fix hab plan by appbundling without required deps [#2249](https://github.com/chef/chef-dk/pull/2249) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.4.17 -->
 - Update Cookstyle to 5.5 [#2242](https://github.com/chef/chef-dk/pull/2242) ([tas50](https://github.com/tas50)) <!-- 4.4.16 -->
 - Bump libarchive, test-kitchen, and mixlib-shellout to the latest [#2241](https://github.com/chef/chef-dk/pull/2241) ([tas50](https://github.com/tas50)) <!-- 4.4.15 -->
 - Bump ohai to 15.3.1 [#2240](https://github.com/chef/chef-dk/pull/2240) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.14 -->
