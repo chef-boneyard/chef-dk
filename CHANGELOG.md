@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.18 -->
-## [v4.4.18](https://github.com/chef/chef-dk/tree/v4.4.18) (2019-09-17)
+<!-- latest_release 4.4.19 -->
+## [v4.4.19](https://github.com/chef/chef-dk/tree/v4.4.19) (2019-09-17)
 
 #### Merged Pull Requests
-- Bump knife-ec2 to 1.0.16 [#2245](https://github.com/chef/chef-dk/pull/2245) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump Chef to 15.3.14 [#2244](https://github.com/chef/chef-dk/pull/2244) ([chef-ci](https://github.com/chef-ci))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.3.13 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump Chef to 15.3.14 [#2244](https://github.com/chef/chef-dk/pull/2244) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.19 -->
 - Bump knife-ec2 to 1.0.16 [#2245](https://github.com/chef/chef-dk/pull/2245) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.18 -->
 - Fix hab plan by appbundling without required deps [#2249](https://github.com/chef/chef-dk/pull/2249) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.4.17 -->
 - Update Cookstyle to 5.5 [#2242](https://github.com/chef/chef-dk/pull/2242) ([tas50](https://github.com/tas50)) <!-- 4.4.16 -->
