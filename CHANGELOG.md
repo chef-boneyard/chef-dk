@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.19 -->
-## [v4.4.19](https://github.com/chef/chef-dk/tree/v4.4.19) (2019-09-17)
+<!-- latest_release 4.4.20 -->
+## [v4.4.20](https://github.com/chef/chef-dk/tree/v4.4.20) (2019-09-17)
 
 #### Merged Pull Requests
-- Bump Chef to 15.3.14 [#2244](https://github.com/chef/chef-dk/pull/2244) ([chef-ci](https://github.com/chef-ci))
+- Bump omnibus-software from `b9e06cf` to `e177945` in /omnibus [#2252](https://github.com/chef/chef-dk/pull/2252) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.3.13 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `b9e06cf` to `e177945` in /omnibus [#2252](https://github.com/chef/chef-dk/pull/2252) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.4.20 -->
 - Bump Chef to 15.3.14 [#2244](https://github.com/chef/chef-dk/pull/2244) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.19 -->
 - Bump knife-ec2 to 1.0.16 [#2245](https://github.com/chef/chef-dk/pull/2245) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.18 -->
 - Fix hab plan by appbundling without required deps [#2249](https://github.com/chef/chef-dk/pull/2249) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.4.17 -->
