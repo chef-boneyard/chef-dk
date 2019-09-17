@@ -35,6 +35,5 @@ chef-vault -h
 # TODO(afiune) fix this since it currently doesn't work
 echo "skip: Chef CLI (not-working)"
 #chef -v
-#dco help # missing git
 
 # TODO(afiune) add more tests
