@@ -105,23 +105,6 @@ do_install() {
   export ruby_bin_dir
   ruby_bin_dir="$pkg_prefix/ruby-bin"
 
-  # TODO(afiune) Should we define this inside the repo and not here inside the plan?
-  export gems_to_appbundle
-  gems_to_appbundle=(
-    berkshelf
-    chef
-    chef-apply
-    chef-bin
-    chef-dk
-    chef-vault
-    cookstyle
-    dco
-    foodcritic
-    inspec-bin
-    ohai
-    test-kitchen
-  )
-
   build_line "Installing generated gem. (${CACHE_PATH}/${pkg_name}-${pkg_version}.gem)"
   gem install --no-doc "${CACHE_PATH}/${pkg_name}-${pkg_version}.gem"
 
@@ -131,10 +114,27 @@ do_install() {
 
   # Appbundling gems speeds up runtime by creating binstubs for Ruby executables with
   # versions of dependencies already resolved
-  build_line "AppBundling chef-dk gems: ${gems_to_appbundle[*]}"
-  ( cd "$CACHE_PATH" || exit_with "unable to enter hab-cache directory" 1
-    bundle exec appbundler "$HAB_CACHE_SRC_PATH/$pkg_dirname" "$ruby_bin_dir" ${gems_to_appbundle[*]} >/dev/null
-  )
+  pushd "$CACHE_PATH" || exit_with "unable to enter hab-cache directory" 1
+    set -x
+    bundle exec appbundler "$HAB_CACHE_SRC_PATH/$pkg_dirname" "$ruby_bin_dir" "chef" --without "docgen,chefstyle" >/dev/null
+    bundle exec appbundler "$HAB_CACHE_SRC_PATH/$pkg_dirname" "$ruby_bin_dir" "foodcritic" --without "development" >/dev/null
+    bundle exec appbundler "$HAB_CACHE_SRC_PATH/$pkg_dirname" "$ruby_bin_dir" "test-kitchen" --without "changelog,debug,docs" >/dev/null
+    bundle exec appbundler "$HAB_CACHE_SRC_PATH/$pkg_dirname" "$ruby_bin_dir" "inspec-bin" --without "deploy,tools,maintenance,integration" >/dev/null
+
+    export gems_to_appbundle
+    gems_to_appbundle=(
+      berkshelf
+      chef-apply
+      chef-bin
+      chef-dk
+      chef-vault
+      cookstyle
+      ohai
+      opscode-pushy-client
+    )
+    bundle exec appbundler "$HAB_CACHE_SRC_PATH/$pkg_dirname" "$ruby_bin_dir" ${gems_to_appbundle[*]} --without "changelog" >/dev/null
+    set +x
+  popd
 
   build_line "Link the appbundled binstubs into the package's bin directory"
   for exe in "$ruby_bin_dir"/*; do
