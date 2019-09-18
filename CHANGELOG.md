@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.24 -->
-## [v4.4.24](https://github.com/chef/chef-dk/tree/v4.4.24) (2019-09-17)
+<!-- latest_release 4.4.25 -->
+## [v4.4.25](https://github.com/chef/chef-dk/tree/v4.4.25) (2019-09-18)
 
 #### Merged Pull Requests
-- Bump kitchen-ec2 to 3.2.0 [#2255](https://github.com/chef/chef-dk/pull/2255) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump test-kitchen to 2.3.3 [#2256](https://github.com/chef/chef-dk/pull/2256) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.3.13 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump test-kitchen to 2.3.3 [#2256](https://github.com/chef/chef-dk/pull/2256) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.25 -->
 - Bump kitchen-ec2 to 3.2.0 [#2255](https://github.com/chef/chef-dk/pull/2255) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.24 -->
 - Appbundle DCO without the development gems [#2254](https://github.com/chef/chef-dk/pull/2254) ([tas50](https://github.com/tas50)) <!-- 4.4.23 -->
 - Bump git for non-Windows hosts to 2.23.0 [#2253](https://github.com/chef/chef-dk/pull/2253) ([tas50](https://github.com/tas50)) <!-- 4.4.22 -->
