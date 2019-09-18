@@ -793,7 +793,7 @@ GEM
     systemu (2.6.5)
     term-ansicolor (1.7.1)
       tins (~> 1.0)
-    test-kitchen (2.3.2)
+    test-kitchen (2.3.3)
       bcrypt_pbkdf (~> 1.0)
       ed25519 (~> 1.2)
       license-acceptance (~> 1.0, >= 1.0.11)
