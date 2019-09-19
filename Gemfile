@@ -102,7 +102,7 @@ group(:omnibus_package) do
   gem "chef-apply", "= 0.3.0"
 
   # For Delivery build node
-  gem "chef-sugar"
+  gem "chef-sugar-ng"
   gem "mixlib-versioning"
   gem "artifactory"
   gem "opscode-pushy-client", ">= 2.99"
@@ -120,7 +120,7 @@ group(:omnibus_package) do
   gem "winrm-fs"
   gem "winrm-elevated"
   gem "cucumber"
-  gem "stove"
+  gem "chef-stove"
 end
 
 # Everything except AIX
