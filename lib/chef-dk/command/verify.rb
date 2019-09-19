@@ -417,8 +417,8 @@ module ChefDK
       end
 
       # We try and use some chef-sugar code to make sure it loads correctly
-      add_component "chef-sugar" do |c|
-        c.gem_base_dir = "chef-sugar"
+      add_component "chef-sugar-ng" do |c|
+        c.gem_base_dir = "chef-sugar-ng"
         c.smoke_test do
           tmpdir do |cwd|
             with_file(File.join(cwd, "foo.rb")) do |f|
