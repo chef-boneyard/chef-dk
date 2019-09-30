@@ -358,21 +358,21 @@ describe ChefDK::PolicyfileServices::ExportRepo do
 
         context "When the export dir has conflicting content" do
 
-          let(:non_conflicting_file_in_export_dir) { File.join(export_dir, "some_random_cruft") }
+          let(:non_conflicting_file_in_export_dir) { File.join(Dir["#{export_dir}"], "some_random_cruft") }
 
-          let(:cookbook_artifacts_dir) { File.join(export_dir, "cookbook_artifacts") }
+          let(:cookbook_artifacts_dir) { File.join(Dir["#{export_dir}"], "cookbook_artifacts") }
 
           let(:file_in_cookbook_artifacts_dir) { File.join(cookbook_artifacts_dir, "some_random_cruft") }
 
-          let(:policies_dir) { File.join(export_dir, "policies") }
+          let(:policies_dir) { File.join(Dir["#{export_dir}"], "policies") }
 
-          let(:policy_groups_dir) { File.join(export_dir, "policy_groups") }
+          let(:policy_groups_dir) { File.join(Dir["#{export_dir}"], "policy_groups") }
 
           let(:extra_policy_item) { File.join(policies_dir, "leftover-policy.json") }
 
           let(:extra_policy_group_item) { File.join(policy_groups_dir, "leftover-policy-group.json") }
 
-          let(:conflicting_policyfile_lock) { File.join(export_dir, "Policyfile.lock.json") }
+          let(:conflicting_policyfile_lock) { File.join(Dir["#{export_dir}"], "Policyfile.lock.json") }
 
           before do
             FileUtils.mkdir_p(export_dir)
