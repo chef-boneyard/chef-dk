@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.29 -->
-## [v4.4.29](https://github.com/chef/chef-dk/tree/v4.4.29) (2019-09-30)
+<!-- latest_release 4.4.30 -->
+## [v4.4.30](https://github.com/chef/chef-dk/tree/v4.4.30) (2019-09-30)
 
 #### Merged Pull Requests
-- [Security] Bump rubyzip from 1.2.4 to 1.3.0 in /omnibus [#2264](https://github.com/chef/chef-dk/pull/2264) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump inspec to 4.17.14 [#2266](https://github.com/chef/chef-dk/pull/2266) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.4.27 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump inspec to 4.17.14 [#2266](https://github.com/chef/chef-dk/pull/2266) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.30 -->
 - Bump inspec-bin to 4.17.11 [#2263](https://github.com/chef/chef-dk/pull/2263) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.28 -->
 - [Security] Bump rubyzip from 1.2.4 to 1.3.0 in /omnibus [#2264](https://github.com/chef/chef-dk/pull/2264) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.4.29 -->
 <!-- release_rollup -->
