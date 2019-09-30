@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.28 -->
-## [v4.4.28](https://github.com/chef/chef-dk/tree/v4.4.28) (2019-09-28)
+<!-- latest_release 4.4.29 -->
+## [v4.4.29](https://github.com/chef/chef-dk/tree/v4.4.29) (2019-09-30)
 
 #### Merged Pull Requests
-- Bump inspec-bin to 4.17.11 [#2263](https://github.com/chef/chef-dk/pull/2263) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- [Security] Bump rubyzip from 1.2.4 to 1.3.0 in /omnibus [#2264](https://github.com/chef/chef-dk/pull/2264) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.3.13 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- [Security] Bump rubyzip from 1.2.4 to 1.3.0 in /omnibus [#2264](https://github.com/chef/chef-dk/pull/2264) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.4.29 -->
 - Bump inspec-bin to 4.17.11 [#2263](https://github.com/chef/chef-dk/pull/2263) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.28 -->
 - Bump knife-google to 4.1.0 [#2260](https://github.com/chef/chef-dk/pull/2260) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.27 -->
 - Updating gems to non-yanked versions [#2259](https://github.com/chef/chef-dk/pull/2259) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.4.26 -->
