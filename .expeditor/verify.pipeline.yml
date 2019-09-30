@@ -72,3 +72,14 @@ steps:
     executor:
       docker:
         privileged: true
+
+- label: "run-specs :windows:"
+  command:
+    - .expeditor/buildkite/verify.ps1
+  expeditor:
+    executor:
+      windows:
+        environment:
+          - FORCE_FFI_YAJL=ext
+          - SPEC_OPTS=--format progress
+          - CHEF_LICENSE=accept-no-persist
