@@ -6,46 +6,51 @@
 - [Security] Bump rubyzip from 1.2.4 to 1.3.0 in /omnibus [#2264](https://github.com/chef/chef-dk/pull/2264) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
-<!-- release_rollup since=4.3.13 -->
+<!-- release_rollup since=4.4.27 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
-- [Security] Bump rubyzip from 1.2.4 to 1.3.0 in /omnibus [#2264](https://github.com/chef/chef-dk/pull/2264) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.4.29 -->
 - Bump inspec-bin to 4.17.11 [#2263](https://github.com/chef/chef-dk/pull/2263) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.28 -->
-- Bump knife-google to 4.1.0 [#2260](https://github.com/chef/chef-dk/pull/2260) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.27 -->
-- Updating gems to non-yanked versions [#2259](https://github.com/chef/chef-dk/pull/2259) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.4.26 -->
-- Bump test-kitchen to 2.3.3 [#2256](https://github.com/chef/chef-dk/pull/2256) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.25 -->
-- Bump kitchen-ec2 to 3.2.0 [#2255](https://github.com/chef/chef-dk/pull/2255) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.24 -->
-- Appbundle DCO without the development gems [#2254](https://github.com/chef/chef-dk/pull/2254) ([tas50](https://github.com/tas50)) <!-- 4.4.23 -->
-- Bump git for non-Windows hosts to 2.23.0 [#2253](https://github.com/chef/chef-dk/pull/2253) ([tas50](https://github.com/tas50)) <!-- 4.4.22 -->
-- Bump knife-vsphere to 4.0.1 and cookstyle to 5.6.2 [#2248](https://github.com/chef/chef-dk/pull/2248) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.21 -->
-- Bump omnibus-software from `b9e06cf` to `e177945` in /omnibus [#2252](https://github.com/chef/chef-dk/pull/2252) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.4.20 -->
-- Bump Chef to 15.3.14 [#2244](https://github.com/chef/chef-dk/pull/2244) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.19 -->
-- Bump knife-ec2 to 1.0.16 [#2245](https://github.com/chef/chef-dk/pull/2245) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.18 -->
-- Fix hab plan by appbundling without required deps [#2249](https://github.com/chef/chef-dk/pull/2249) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.4.17 -->
-- Update Cookstyle to 5.5 [#2242](https://github.com/chef/chef-dk/pull/2242) ([tas50](https://github.com/tas50)) <!-- 4.4.16 -->
-- Bump libarchive, test-kitchen, and mixlib-shellout to the latest [#2241](https://github.com/chef/chef-dk/pull/2241) ([tas50](https://github.com/tas50)) <!-- 4.4.15 -->
-- Bump ohai to 15.3.1 [#2240](https://github.com/chef/chef-dk/pull/2240) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.14 -->
-- Bump train-winrm to 0.2.4 [#2239](https://github.com/chef/chef-dk/pull/2239) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.13 -->
-- Bump mixlib-install to 3.11.21 [#2238](https://github.com/chef/chef-dk/pull/2238) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.12 -->
-- Deprecate macOS 10.12 and add macOS 10.15 support [#2232](https://github.com/chef/chef-dk/pull/2232) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 4.4.11 -->
-- Bump chefstyle to 0.13.3 [#2237](https://github.com/chef/chef-dk/pull/2237) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.10 -->
-- Bump cookstyle to 5.4.13 [#2236](https://github.com/chef/chef-dk/pull/2236) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.9 -->
-- Update Ruby to 2.6.4 to address CVEs [#2234](https://github.com/chef/chef-dk/pull/2234) ([tas50](https://github.com/tas50)) <!-- 4.4.8 -->
-- Bump inspec to 4.16.0 [#2235](https://github.com/chef/chef-dk/pull/2235) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.7 -->
-- Bump knife-ec2 to 1.0.14 [#2233](https://github.com/chef/chef-dk/pull/2233) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.6 -->
-- Bump test-kitchen to 2.3.1 [#2231](https://github.com/chef/chef-dk/pull/2231) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.5 -->
-- Add knife-azure to DK [#2227](https://github.com/chef/chef-dk/pull/2227) ([tas50](https://github.com/tas50)) <!-- 4.4.4 -->
-- Fix the build arguments in the Dockerfile [#2228](https://github.com/chef/chef-dk/pull/2228) ([tduffield](https://github.com/tduffield)) <!-- 4.4.3 -->
-- Bump cookstyle to 5.3.6 [#2226](https://github.com/chef/chef-dk/pull/2226) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.2 -->
-- Bump cookstyle to 5.2.17 [#2225](https://github.com/chef/chef-dk/pull/2225) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.1 -->
-- Bump inspec-bin to 4.12.0 [#2224](https://github.com/chef/chef-dk/pull/2224) ([chef-ci](https://github.com/chef-ci)) <!-- 4.4.0 -->
-- Bump kitchen-inspec to 1.2.0 [#2222](https://github.com/chef/chef-dk/pull/2222) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.16 -->
-- Bump train-aws to 0.1.11 [#2220](https://github.com/chef/chef-dk/pull/2220) ([chef-ci](https://github.com/chef-ci)) <!-- 4.3.15 -->
-- Begin signing MSI&#39;s with renewed Windows Signing Cert [#2218](https://github.com/chef/chef-dk/pull/2218) ([schisamo](https://github.com/schisamo)) <!-- 4.3.14 -->
+- [Security] Bump rubyzip from 1.2.4 to 1.3.0 in /omnibus [#2264](https://github.com/chef/chef-dk/pull/2264) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.4.29 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v4.4.27](https://github.com/chef/chef-dk/tree/v4.4.27) (2019-09-30)
+
+#### Merged Pull Requests
+- Begin signing MSI&#39;s with renewed Windows Signing Cert [#2218](https://github.com/chef/chef-dk/pull/2218) ([schisamo](https://github.com/schisamo))
+- Bump train-aws to 0.1.11 [#2220](https://github.com/chef/chef-dk/pull/2220) ([chef-ci](https://github.com/chef-ci))
+- Bump kitchen-inspec to 1.2.0 [#2222](https://github.com/chef/chef-dk/pull/2222) ([chef-ci](https://github.com/chef-ci))
+- Bump inspec-bin to 4.12.0 [#2224](https://github.com/chef/chef-dk/pull/2224) ([chef-ci](https://github.com/chef-ci))
+- Bump cookstyle to 5.2.17 [#2225](https://github.com/chef/chef-dk/pull/2225) ([chef-ci](https://github.com/chef-ci))
+- Bump cookstyle to 5.3.6 [#2226](https://github.com/chef/chef-dk/pull/2226) ([chef-ci](https://github.com/chef-ci))
+- Fix the build arguments in the Dockerfile [#2228](https://github.com/chef/chef-dk/pull/2228) ([tduffield](https://github.com/tduffield))
+- Add knife-azure to DK [#2227](https://github.com/chef/chef-dk/pull/2227) ([tas50](https://github.com/tas50))
+- Bump test-kitchen to 2.3.1 [#2231](https://github.com/chef/chef-dk/pull/2231) ([chef-ci](https://github.com/chef-ci))
+- Bump knife-ec2 to 1.0.14 [#2233](https://github.com/chef/chef-dk/pull/2233) ([chef-ci](https://github.com/chef-ci))
+- Bump inspec to 4.16.0 [#2235](https://github.com/chef/chef-dk/pull/2235) ([chef-ci](https://github.com/chef-ci))
+- Update Ruby to 2.6.4 to address CVEs [#2234](https://github.com/chef/chef-dk/pull/2234) ([tas50](https://github.com/tas50))
+- Bump cookstyle to 5.4.13 [#2236](https://github.com/chef/chef-dk/pull/2236) ([chef-ci](https://github.com/chef-ci))
+- Bump chefstyle to 0.13.3 [#2237](https://github.com/chef/chef-dk/pull/2237) ([chef-ci](https://github.com/chef-ci))
+- Deprecate macOS 10.12 and add macOS 10.15 support [#2232](https://github.com/chef/chef-dk/pull/2232) ([jaymalasinha](https://github.com/jaymalasinha))
+- Bump mixlib-install to 3.11.21 [#2238](https://github.com/chef/chef-dk/pull/2238) ([chef-ci](https://github.com/chef-ci))
+- Bump train-winrm to 0.2.4 [#2239](https://github.com/chef/chef-dk/pull/2239) ([chef-ci](https://github.com/chef-ci))
+- Bump ohai to 15.3.1 [#2240](https://github.com/chef/chef-dk/pull/2240) ([chef-ci](https://github.com/chef-ci))
+- Bump libarchive, test-kitchen, and mixlib-shellout to the latest [#2241](https://github.com/chef/chef-dk/pull/2241) ([tas50](https://github.com/tas50))
+- Update Cookstyle to 5.5 [#2242](https://github.com/chef/chef-dk/pull/2242) ([tas50](https://github.com/tas50))
+- Fix hab plan by appbundling without required deps [#2249](https://github.com/chef/chef-dk/pull/2249) ([tyler-ball](https://github.com/tyler-ball))
+- Bump knife-ec2 to 1.0.16 [#2245](https://github.com/chef/chef-dk/pull/2245) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump Chef to 15.3.14 [#2244](https://github.com/chef/chef-dk/pull/2244) ([chef-ci](https://github.com/chef-ci))
+- Bump omnibus-software from `b9e06cf` to `e177945` in /omnibus [#2252](https://github.com/chef/chef-dk/pull/2252) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump knife-vsphere to 4.0.1 and cookstyle to 5.6.2 [#2248](https://github.com/chef/chef-dk/pull/2248) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump git for non-Windows hosts to 2.23.0 [#2253](https://github.com/chef/chef-dk/pull/2253) ([tas50](https://github.com/tas50))
+- Appbundle DCO without the development gems [#2254](https://github.com/chef/chef-dk/pull/2254) ([tas50](https://github.com/tas50))
+- Bump kitchen-ec2 to 3.2.0 [#2255](https://github.com/chef/chef-dk/pull/2255) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump test-kitchen to 2.3.3 [#2256](https://github.com/chef/chef-dk/pull/2256) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Updating gems to non-yanked versions [#2259](https://github.com/chef/chef-dk/pull/2259) ([tyler-ball](https://github.com/tyler-ball))
+- Bump knife-google to 4.1.0 [#2260](https://github.com/chef/chef-dk/pull/2260) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+<!-- latest_stable_release -->
+
 ## [v4.3.13](https://github.com/chef/chef-dk/tree/v4.3.13) (2019-08-12)
 
 #### Merged Pull Requests
@@ -65,7 +70,6 @@
 - Bump nokogiri to 1.10.4 [#2214](https://github.com/chef/chef-dk/pull/2214) ([chef-ci](https://github.com/chef-ci))
 - Update Chef Infra Client to 15.2 [#2215](https://github.com/chef/chef-dk/pull/2215) ([tas50](https://github.com/tas50))
 - Bump knife-ec2 to 1.0.12 [#2216](https://github.com/chef/chef-dk/pull/2216) ([chef-ci](https://github.com/chef-ci))
-<!-- latest_stable_release -->
 
 ## [v4.2.0](https://github.com/chef/chef-dk/tree/v4.2.0) (2019-07-12)
 
