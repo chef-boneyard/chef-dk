@@ -67,7 +67,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
 
   let(:expected_cookbook_files) do
     expected_cookbook_file_relpaths.map do |relpath|
-      File.join(tempdir, "workflow_project", ".delivery", "build_cookbook", relpath)
+      File.join(Dir["#{tempdir}"], "workflow_project", ".delivery", "build_cookbook", relpath)
     end
   end
 

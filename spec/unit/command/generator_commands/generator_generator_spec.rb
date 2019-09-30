@@ -59,14 +59,14 @@ describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
     let(:argv) { [] }
 
     let(:expected_files_full_paths) do
-      expected_files_relpaths.map { |p| File.join(tempdir, "code_generator", p) }
+      expected_files_relpaths.map { |p| File.join(Dir["#{tempdir}"], "code_generator", p) }
     end
 
     it "creates a copy of code_generator in the CWD" do
       Dir.chdir(tempdir) do
         expect(generator_generator.run).to eq(0)
       end
-      base_path = File.join(tempdir, "code_generator")
+      base_path = File.join(Dir["#{tempdir}"], "code_generator")
       expect(actual_files(base_path)).to match_array(expected_files_full_paths)
     end
 
@@ -105,7 +105,7 @@ describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
 
         it "fails" do
           expect(generator_generator.run).to eq(1)
-          expect(actual_files(tempdir)).to eq([ conflicting_dir ])
+          expect(actual_files(tempdir)).to eq(Dir["#{conflicting_dir}"])
 
           expected_msg = "ERROR: file or directory #{conflicting_dir} exists.\n"
 
@@ -116,7 +116,7 @@ describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
       context "and there isn't a directory named code_generator in that directory" do
 
         let(:expected_files_full_paths) do
-          expected_files_relpaths.map { |p| File.join(tempdir, "code_generator", p) }
+          expected_files_relpaths.map { |p| File.join(Dir["#{tempdir}"], "code_generator", p) }
         end
 
         it "names the cookbook code_generator" do
@@ -127,7 +127,7 @@ describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
         it "copies the code_generator to GIVEN_DIR/code_generator" do
           expect(generator_generator.run).to eq(0)
 
-          base_path = File.join(tempdir, "code_generator")
+          base_path = File.join(Dir["#{tempdir}"], "code_generator")
           expect(actual_files(base_path)).to match_array(expected_files_full_paths)
         end
       end
@@ -136,7 +136,7 @@ describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
 
     context "when the path is a regular file" do
 
-      let(:conflicting_file) { File.join(tempdir, "roadblock") }
+      let(:conflicting_file) { File.join(Dir["#{tempdir}"], "roadblock") }
 
       let(:argv) { [ conflicting_file ] }
 
@@ -157,7 +157,7 @@ describe ChefDK::Command::GeneratorCommands::GeneratorGenerator do
 
     context "when the last element of the given path doesn't exist" do
 
-      let(:target_dir) { File.join(tempdir, "my_cool_generator") }
+      let(:target_dir) { File.join(Dir["#{tempdir}"], "my_cool_generator") }
 
       let(:argv) { [ target_dir ] }
 

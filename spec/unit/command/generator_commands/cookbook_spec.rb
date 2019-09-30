@@ -54,7 +54,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
   let(:expected_cookbook_files) do
     expected_cookbook_file_relpaths.map do |relpath|
-      File.join(tempdir, "new_cookbook", relpath)
+      File.join(Dir["#{tempdir}"], "new_cookbook", relpath)
     end
   end
 
