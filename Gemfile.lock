@@ -843,7 +843,7 @@ PLATFORMS
 DEPENDENCIES
   appbundler (< 0.13)
   artifactory
-  berkshelf (>= 7.0.5)
+  berkshelf (>= 7.0.8)
   bundler
   chef (= 14.13.11)
   chef-apply
@@ -874,7 +874,7 @@ DEPENDENCIES
   kitchen-google (>= 2.0.0)
   kitchen-hyperv (>= 0.5.1)
   kitchen-inspec (>= 1.0)
-  kitchen-vagrant (>= 1.4)
+  kitchen-vagrant (>= 1.6)
   knife-acl (>= 1.0.3)
   knife-ec2 (>= 0.19.10)
   knife-google (>= 3.3.3)
@@ -914,7 +914,6 @@ DEPENDENCIES
   win32-mutex
   win32-process (~> 0.8.2)
   win32-service
-  windows-api
   windows-pr
   winrm-elevated
   winrm-fs
