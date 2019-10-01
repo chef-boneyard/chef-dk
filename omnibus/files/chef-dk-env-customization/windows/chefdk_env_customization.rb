@@ -10,8 +10,8 @@ if !ENV["HOME"] || !File.exist?(ENV["HOME"])
   old_home = ENV["HOME"]
   found = false
   alternate_homes = []
-  alternate_homes << "#{ENV['HOMEDRIVE']}#{ENV['HOMEPATH']}" if ENV["HOMEDRIVE"]
-  alternate_homes << "#{ENV['USERPROFILE']}" if ENV["USERPROFILE"]
+  alternate_homes << "#{ENV["HOMEDRIVE"]}#{ENV["HOMEPATH"]}" if ENV["HOMEDRIVE"]
+  alternate_homes << "#{ENV["USERPROFILE"]}" if ENV["USERPROFILE"]
 
   alternate_homes.each do |path|
     if File.exist?(path)
@@ -31,7 +31,7 @@ if !ENV["HOME"] || !File.exist?(ENV["HOME"])
 
   if found
     STDERR.puts <<~EOF
-      Falling back to using #{ENV['HOME']} as the home directory. If you would like
+      Falling back to using #{ENV["HOME"]} as the home directory. If you would like
       to use another directory as HOME, please set the HOME environment variable.
     EOF
   else

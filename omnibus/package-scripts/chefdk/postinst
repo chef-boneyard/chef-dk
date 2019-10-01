@@ -1,7 +1,7 @@
 #!/bin/sh
 # WARNING: REQUIRES /bin/sh
 #
-# Post install configuration for Chef Development Kit
+# Post install configuration for ChefDK
 #
 
 PROGNAME=`basename $0`
@@ -20,14 +20,7 @@ is_darwin()
   uname -v | grep "^Darwin" 2>&1 >/dev/null
 }
 
-is_smartos()
-{
-  uname -v | grep "^joyent" 2>&1 >/dev/null
-}
-
-if is_smartos; then
-    PREFIX="/opt/local"
-elif is_darwin; then
+if is_darwin; then
     PREFIX="/usr/local"
     mkdir -p "$PREFIX/bin"
 else
@@ -52,6 +45,6 @@ done
 # be manually fixed.
 chown -Rh 0:0 $INSTALLER_DIR
 
-echo "Thank you for installing Chef Development Kit!"
-
+echo "Thank you for installing ChefDK!"
+echo "You can find some tips on getting started at https://learn.chef.io"
 exit 0
