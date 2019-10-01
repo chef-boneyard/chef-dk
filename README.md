@@ -1,7 +1,6 @@
 # Chef Development Kit
 
-[![Build Status Master](https://travis-ci.org/chef/chef-dk.svg?branch=master)](https://travis-ci.org/chef/chef-dk)
-[![Build Status Master](https://ci.appveyor.com/api/projects/status/github/chef/chef-dk?branch=master&svg=true&passingText=master%20-%20Ok&pendingText=master%20-%20Pending&failingText=master%20-%20Failing)](https://ci.appveyor.com/project/Chef/chef-dk/branch/master)
+[![Build status](https://badge.buildkite.com/fa04ec4f723c2fe2adcaa046eb1b83c08defda28af9626ea39.svg)](https://buildkite.com/chef-oss/chef-chef-dk-chefdk-3-verify)
 [![](https://img.shields.io/badge/Release%20Policy-Cadence%20Release-brightgreen.svg)](https://github.com/chef/chef-rfc/blob/master/rfc086-chef-oss-project-policies.md#cadence-release)
 [![Docker Stars](https://img.shields.io/docker/stars/chef/chefdk.svg?maxAge=2592000)](https://hub.docker.com/r/chef/chefdk)
 [![Docker Pulls](https://img.shields.io/docker/pulls/chef/chefdk.svg?maxAge=2592000)](https://hub.docker.com/r/chef/chefdk)

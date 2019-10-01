@@ -93,7 +93,7 @@ group(:omnibus_package) do
   gem "chef-sugar"
   gem "mixlib-versioning"
   gem "artifactory"
-  gem "opscode-pushy-client", ">= 2.4.11"
+  gem "opscode-pushy-client", ">= 2.99"
   gem "ffi-rzmq-core"
   gem "knife-push"
 
@@ -105,7 +105,6 @@ group(:omnibus_package) do
   gem "pry-remote"
   gem "pry-stack_explorer"
   gem "rb-readline"
-  gem "rubocop"
   gem "winrm-fs"
   gem "winrm-elevated"
   gem "cucumber"
@@ -117,15 +116,14 @@ group(:ruby_prof) do
   gem "ruby-prof"
 end
 
-# Everything except AIX and Windows
+# Everything except Windows
 group(:ruby_shadow) do
   gem "ruby-shadow", platform: :ruby
 end
 
 gem "chefstyle", group: :test
 
-# TODO delete this when we figure out how to include the pushy windows dependencies
-# correctly
+# Ensure support for push-client on Windows
 platforms :mswin, :mingw do
   gem "rdp-ruby-wmi"
   gem "windows-api"
