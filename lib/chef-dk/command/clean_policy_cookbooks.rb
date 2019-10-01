@@ -28,8 +28,8 @@ module ChefDK
       banner(<<~BANNER)
         Usage: chef clean-policy-cookbooks [options]
 
-        `chef clean-policy-cookbooks` deletes unused policyfile cookbooks. Cookbooks
-        are considered unused when they are not referenced by any policyfile revision
+        `chef clean-policy-cookbooks` deletes unused Policyfile cookbooks. Cookbooks
+        are considered unused when they are not referenced by any Policyfile revision
         on the server. Note that cookbooks which are referenced by "orphaned" policy
         revisions are not removed, so you may wish to run `chef clean-policy-revisions`
         to remove orphaned policies before running this command.
@@ -70,6 +70,7 @@ module ChefDK
 
       def run(params)
         return 1 unless apply_params!(params)
+
         clean_policy_cookbooks_service.run
         0
       rescue PolicyfileServiceError => e

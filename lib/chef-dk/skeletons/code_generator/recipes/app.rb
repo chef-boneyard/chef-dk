@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 context = ChefDK::Generator.context
 app_dir = File.join(context.app_root, context.app_name)
 cookbooks_dir = context.cookbook_root

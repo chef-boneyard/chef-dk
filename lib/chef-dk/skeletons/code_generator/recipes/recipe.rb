@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 context = ChefDK::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
 recipe_path = File.join(cookbook_dir, 'recipes', "#{context.new_file_basename}.rb")
@@ -14,7 +12,7 @@ if File.directory?(File.join(cookbook_dir, 'test', 'recipes'))
     It appears that you have InSpec tests located at "test/recipes". This location can
     cause issues with Foodcritic and has been deprecated in favor of "test/integration/default".
     Please move your existing InSpec tests to the newly created "test/integration/default"
-    directory, and update the 'inspec_tests' value in your .kitchen.yml file(s) to
+    directory, and update the 'inspec_tests' value in your kitchen.yml file(s) to
     point to "test/integration/default".
   EOH
 end
@@ -34,7 +32,7 @@ template spec_path do
   action :create_if_missing
 end
 
-# Inspec
+# InSpec
 directory inspec_dir do
   recursive true
 end

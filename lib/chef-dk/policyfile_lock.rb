@@ -324,6 +324,7 @@ module ChefDK
       unless attributes.kind_of?(Hash)
         raise "Top level attributes must be a Hash (you gave: #{attributes})"
       end
+
       canonicalize_elements(attributes)
     end
 
@@ -355,6 +356,7 @@ module ChefDK
         unless item.finite?
           raise InvalidPolicyfileAttribute, "Floating point numbers cannot be infinite or NaN. You gave #{item.inspect}"
         end
+
         # Support for floats assumes that any implementation of our JSON
         # canonicalization routine will use IEEE-754 doubles. In decimal terms,
         # doubles give 15-17 digits of precision, so we err on the safe side

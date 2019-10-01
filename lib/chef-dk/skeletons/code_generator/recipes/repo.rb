@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 context = ChefDK::Generator.context
 repo_dir = File.join(context.repo_root, context.repo_name)
 

@@ -32,7 +32,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
 
   let(:expected_cookbook_file_relpaths) do
     %w{
-      .kitchen.yml
+      kitchen.yml
       data_bags
       data_bags/keys
       data_bags/keys/delivery_builder_keys.json

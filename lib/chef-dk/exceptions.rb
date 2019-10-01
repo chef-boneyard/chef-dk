@@ -66,7 +66,7 @@ module ChefDK
     def initialize(url, reason = nil)
       @url    = url
       @reason = reason
-      msg     = "'#{@url}' is not a valid Policy File Source URI"
+      msg     = "'#{@url}' is not a valid Policyfile Source URI"
       msg << " #{@reason}." unless @reason.nil?
       super(msg)
     end

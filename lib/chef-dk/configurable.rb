@@ -49,6 +49,7 @@ module ChefDK
 
     def chef_config
       return @chef_config if @chef_config
+
       config_loader.load
       @chef_config = Chef::Config
       CookbookOmnifetch.integration.default_chef_server_http_client = default_chef_server_http_client

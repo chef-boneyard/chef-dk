@@ -58,7 +58,7 @@ module ChefDK
       generator(:repo, :Repo, "Generate a Chef code repository")
       generator(:policyfile, :Policyfile, "Generate a Policyfile for use with the install/push commands")
       generator(:generator, :GeneratorGenerator, "Copy ChefDK's generator cookbook so you can customize it")
-      generator(:'build-cookbook', :BuildCookbook, "Generate a build cookbook for use with Delivery")
+      generator(:'build-cookbook', :BuildCookbook, "Generate a build cookbook for use with Workflow")
 
       def self.banner_headline
         <<~E
@@ -114,6 +114,7 @@ module ChefDK
       # we delegate the request to the specified generator.
       def needs_help?(params)
         return false if have_generator?(params[0])
+
         super
       end
 

@@ -24,7 +24,7 @@ describe ChefDK::Command::GeneratorCommands::CookbookFile do
   include_examples "a file generator" do
 
     let(:generator_name) { "file" }
-    let(:generated_files) { [ "files/default/new_file.txt" ] }
+    let(:generated_files) { [ "files/new_file.txt" ] }
     let(:new_file_name) { "new_file.txt" }
 
   end

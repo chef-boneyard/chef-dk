@@ -48,4 +48,8 @@ RSpec.configure do |c|
     mocks.verify_partial_doubles = true
   end
 
+  # better diffs when expects fail
+  c.expect_with :rspec do |r|
+    r.max_formatted_output_length = 400
+  end
 end

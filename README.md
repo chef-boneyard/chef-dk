@@ -191,7 +191,7 @@ environment, you can continue to do so. Just ensure that the ChefDK
 provided applications appear first in your `PATH` before any
 gem-installed versions and you're good to go.
 
-If you'd like to use ChefDK as your primary Ruby/Chef development
+If you'd like to use ChefDK as your primary Ruby/Chef Infra development
 environment, however, you can do so by initializing your shell with
 ChefDK's environment.
 

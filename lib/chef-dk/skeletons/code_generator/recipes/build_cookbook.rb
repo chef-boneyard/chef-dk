@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 context = ChefDK::Generator.context
 delivery_project_dir = context.delivery_project_dir
 pipeline = context.pipeline
@@ -16,7 +14,7 @@ cookbook_file config_json do
   not_if { File.exist?(config_json) }
 end
 
-# Adding a new prototype file for delivery-cli local commands
+# Adding the delivery local-mode config
 cookbook_file project_toml do
   source 'delivery-project.toml'
   not_if { File.exist?(project_toml) }
@@ -72,8 +70,8 @@ directory "#{build_cookbook_dir}/recipes"
 end
 
 # Test Kitchen build node
-cookbook_file "#{build_cookbook_dir}/.kitchen.yml" do
-  source 'build_cookbook/.kitchen.yml'
+cookbook_file "#{build_cookbook_dir}/kitchen.yml" do
+  source 'build_cookbook/kitchen.yml'
 end
 
 directory "#{build_cookbook_dir}/data_bags/keys" do
