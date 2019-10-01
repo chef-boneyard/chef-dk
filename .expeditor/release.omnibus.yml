@@ -14,10 +14,11 @@ builder-to-testers-map:
     - el-6-x86_64
   el-7-x86_64:
     - el-7-x86_64
-  mac_os_x-10.12-x86_64:
-    - mac_os_x-10.12-x86_64
+    - el-8-x86_64
+  mac_os_x-10.13-x86_64:
     - mac_os_x-10.13-x86_64
     - mac_os_x-10.14-x86_64
+    - mac_os_x-10.15-x86_64
   sles-12-x86_64:
     - sles-12-x86_64
     - sles-15-x86_64
@@ -31,3 +32,4 @@ builder-to-testers-map:
     - windows-2012-x86_64
     - windows-2012r2-x86_64
     - windows-2016-x86_64
+    - windows-2019-x86_64
