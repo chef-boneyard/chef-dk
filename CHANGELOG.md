@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.32 -->
-## [v4.4.32](https://github.com/chef/chef-dk/tree/v4.4.32) (2019-09-30)
+<!-- latest_release 4.4.33 -->
+## [v4.4.33](https://github.com/chef/chef-dk/tree/v4.4.33) (2019-10-01)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `ae2a2f1` to `63602e1` in /omnibus [#2269](https://github.com/chef/chef-dk/pull/2269) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump inspec-bin to 4.17.15 [#2271](https://github.com/chef/chef-dk/pull/2271) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.4.27 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump inspec-bin to 4.17.15 [#2271](https://github.com/chef/chef-dk/pull/2271) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.33 -->
 - Bump omnibus-software from `ae2a2f1` to `63602e1` in /omnibus [#2269](https://github.com/chef/chef-dk/pull/2269) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.4.32 -->
 - Add Buildkite windows verification [#2247](https://github.com/chef/chef-dk/pull/2247) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 4.4.31 -->
 - Bump inspec to 4.17.14 [#2266](https://github.com/chef/chef-dk/pull/2266) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.30 -->
