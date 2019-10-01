@@ -101,12 +101,12 @@ end
 package :msi do
   fast_msi true
   upgrade_code "AB1D6FBD-F9DC-4395-BDAD-26C4541168E7"
-  signing_identity "E05FF095D07F233B78EB322132BFF0F035E11B5B", machine_store: true
+  signing_identity "AF21BA8C9E50AE20DA9907B6E2D4B0CC3306CA03", machine_store: true
   wix_light_extension "WixUtilExtension"
 end
 
 package :appx do
-  signing_identity "E05FF095D07F233B78EB322132BFF0F035E11B5B", machine_store: true
+  signing_identity "AF21BA8C9E50AE20DA9907B6E2D4B0CC3306CA03", machine_store: true
 end
 
 compress :dmg
