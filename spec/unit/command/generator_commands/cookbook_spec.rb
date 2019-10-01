@@ -180,18 +180,15 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
         let(:expected_content) do
           <<~PROJECT_DOT_TOML
-            # Delivery Prototype for Local Phases Execution
+            # Delivery for Local Phases Execution
             #
-            # The purpose of this file is to prototype a new way to execute
-            # phases locally on your workstation. The delivery-cli will read
-            # this file and execute the command(s) that are configured for
-            # each phase. You can customize them by just modifying the phase
-            # key on this file.
+            # This file allows you to execute test phases locally on a workstation or
+            # in a CI pipeline. The delivery-cli will read this file and execute the
+            # command(s) that are configured for each phase. You can customize them
+            # by just modifying the phase key on this file.
             #
             # By default these phases are configured for Cookbook Workflow only
             #
-            # As this is still a prototype we are not modifying the current
-            # config.json file and it will continue working as usual.
 
             [local_phases]
             unit = "chef exec rspec spec/"
@@ -211,9 +208,10 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
             # Remote project.toml file
             #
-            # Specify a remote URI location for the `project.toml` file.
-            # This is useful for teams that wish to centrally manage the behavior
-            # of the `delivery local` command across many different projects.
+            # Instead of the local phases above, you may specify a remote URI location for
+            # the `project.toml` file. This is useful for teams that wish to centrally
+            # manage the behavior of the `delivery local` command across many different
+            # projects.
             #
             # remote_file = "https://url/project.toml"
           PROJECT_DOT_TOML
@@ -270,6 +268,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
             # Recipe:: publish
             #
             # Copyright:: 2019, The Authors, All Rights Reserved.
+            
             include_recipe 'delivery-truck::publish'
           CONFIG_DOT_JSON
         end
@@ -360,7 +359,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
         expected = <<~OUTPUT
           Generating cookbook new_cookbook
-          - Ensuring correct cookbook file content
+          - Ensuring correct cookbook content
           - Committing cookbook files to git
           - Ensuring delivery configuration
           - Ensuring correct delivery build cookbook content
@@ -412,7 +411,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
         expected = <<~OUTPUT
           Generating cookbook new_cookbook
-          - Ensuring correct cookbook file content
+          - Ensuring correct cookbook content
           - Committing cookbook files to git
           - Ensuring delivery configuration
           - Ensuring correct delivery build cookbook content

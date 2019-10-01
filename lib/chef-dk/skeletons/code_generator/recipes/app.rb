@@ -9,7 +9,7 @@ directory app_dir
 # Top level files
 
 # Test Kitchen
-template "#{app_dir}/.kitchen.yml" do
+template "#{app_dir}/kitchen.yml" do
   source 'kitchen.yml.erb'
   helpers(ChefDK::Generator::TemplateHelper)
 end

@@ -43,9 +43,9 @@ describe ChefDK::CookbookProfiler::Identifiers do
   let(:cookbook_files_with_cksums) do
     # Entries must be sorted lexically.
     {
+      ".kitchen.yml" => "85ba09a085dab072722cb197e04fa805",
       "README.md" => "0f15038071e5a131bef176cbe2a956d1",
       "chefignore" => "03485640b005eb1083c76518764053dd",
-      "kitchen.yml" => "85ba09a085dab072722cb197e04fa805",
       "metadata.rb" => "4879d0004b177546cfbcfb2fd26df7c8",
       "recipes/default.rb" => "9a0f27d741deaca21461073f7452474f",
     }

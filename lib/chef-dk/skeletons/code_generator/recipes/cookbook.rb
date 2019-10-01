@@ -69,7 +69,7 @@ template "#{cookbook_dir}/LICENSE" do
 end
 
 # Test Kitchen
-template "#{cookbook_dir}/.kitchen.yml" do
+template "#{cookbook_dir}/kitchen.yml" do
   if context.kitchen == 'dokken'
     # kitchen-dokken configuration works with berkshelf and policyfiles
     source 'kitchen_dokken.yml.erb'
