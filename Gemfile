@@ -47,7 +47,7 @@ end
 # We should only be using "~>" to work around bugs, or temporarily pinning some tech debt.
 # We equality pin the chef gem itself to assert which version we're shipping.
 group(:omnibus_package) do
-  gem "appbundler", ">= 0.12"
+  gem "appbundler", "< 0.13"
   gem "berkshelf", ">= 7.0.5"
   gem "chef-provisioning", ">= 2.7.1", group: :provisioning
   gem "chef-provisioning-aws", ">= 3.0.2", group: :provisioning
@@ -59,7 +59,7 @@ group(:omnibus_package) do
   # fixes.
   gem "chef", "= 14.13.11"
   gem "cheffish", ">= 14.0.1"
-  gem "chefspec", ">= 7.3.0"
+  gem "chefspec", ">= 7.3.0", "< 8.0.0" # 8.0 deps on chef-cli so we don't want that
   gem "fauxhai", "~> 6.11" # bump this on the next DK major release
   gem "inspec", "~> 3.9"
   gem "kitchen-azurerm", ">= 0.14"
@@ -76,7 +76,7 @@ group(:omnibus_package) do
   gem "knife-tidy", ">= 1.2.0"
   gem "knife-windows", ">= 1.9.1"
   gem "knife-opc", ">= 0.4.0"
-  gem "knife-vsphere", ">= 2.1.1"
+  gem "knife-vsphere", ">= 3.0.1", "< 4.0"
   gem "mixlib-archive", ">= 0.4.16"
   gem "ohai", "~> 14.0"
   gem "net-ssh", ">= 4.2.0"
