@@ -1,14 +1,19 @@
-# Chef Development Kit
+# ChefDK
 
-[![Build Status Master](https://travis-ci.org/chef/chef-dk.svg?branch=master)](https://travis-ci.org/chef/chef-dk)
-[![Build Status Master](https://ci.appveyor.com/api/projects/status/github/chef/chef-dk?branch=master&svg=true&passingText=master%20-%20Ok&pendingText=master%20-%20Pending&failingText=master%20-%20Failing)](https://ci.appveyor.com/project/Chef/chef-dk/branch/master)
+[![Build status](https://badge.buildkite.com/fa04ec4f723c2fe2adcaa046eb1b83c08defda28af9626ea39.svg)](https://buildkite.com/chef-oss/chef-chef-dk-chefdk-3-verify)
 [![](https://img.shields.io/badge/Release%20Policy-Cadence%20Release-brightgreen.svg)](https://github.com/chef/chef-rfc/blob/master/rfc086-chef-oss-project-policies.md#cadence-release)
 [![Docker Stars](https://img.shields.io/docker/stars/chef/chefdk.svg?maxAge=2592000)](https://hub.docker.com/r/chef/chefdk)
 [![Docker Pulls](https://img.shields.io/docker/pulls/chef/chefdk.svg?maxAge=2592000)](https://hub.docker.com/r/chef/chefdk)
 
-Chef Development Kit (ChefDK) brings Chef and the development tools developed by the Chef Community together and acts as the consistent interface to this awesomeness. This awesomeness is composed of:
+**Umbrella Project**: [Chef Workstation](https://github.com/chef/chef-oss-practices/blob/master/projects/chef-workstation.md)
 
-* [Chef][]
+* **[Project State](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** Active
+* **Issues [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
+* **Pull Request [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** 14 days
+
+ChefDK brings Chef Infra Client and the development tools developed by the Chef Community together and acts as the consistent interface to this awesomeness. This awesomeness is composed of:
+
+* [Chef Infra Client][]
 * [Berkshelf][]
 * [Test Kitchen][]
 * [ChefSpec][]
@@ -25,7 +30,7 @@ are in the omnibus directory in this repository.
 
 You can get the [latest release of ChefDK from the downloads page][ChefDK].
 
-On Mac OS X, you can also use [homebrew-cask](https://caskroom.github.io/)
+On macOS, you can also use [homebrew-cask](https://caskroom.github.io/)
 to `brew cask install chef/chef/chefdk`.
 
 Once you install the package, the `chef-client` suite, `berks`,
@@ -73,7 +78,7 @@ some helpful bits of functionality already included in the `chef`
 command:
 
 #### `chef generate`
-The generate subcommand generates skeleton Chef code
+The generate subcommand generates skeleton Chef Infra code
 layouts so you can skip repetitive boilerplate and get down to
 automating your infrastructure quickly. Unlike other generators, it only
 generates the minimum required files when creating a cookbook so you can
@@ -136,13 +141,13 @@ cookbooks that provide the desired recipes and meet dependency
 constraints, and emits a `Policyfile.lock.json` describing the expanded
 run list and locked cookbook set. The `Policyfile.lock.json` can be used
 to install the cookbooks on another machine. The policy lock can be
-uploaded to a Chef Server (via the `chef push` command) to apply the
+uploaded to a Chef Infra Server (via the `chef push` command) to apply the
 expanded run list and locked cookbook set to nodes in your
 infrastructure. See the POLICYFILE_README.md for further details.
 
 ### `chef push`
 `chef push POLICY_GROUP` uploads a Policyfile.lock.json along with the cookbooks it
-references to a Chef Server. The policy lock is applied to a
+references to a Chef Infra Server. The policy lock is applied to a
 `POLICY_GROUP`, which is a set of nodes that share the same run list and
 cookbook set. This command operates in compatibility mode and has the
 same caveats as `chef install`. See the POLICYFILE_README.md for further
@@ -155,7 +160,7 @@ cause only attributes from the Policyfile.rb to be updated.
 
 ### `chef diff`
 `chef diff` shows an itemized diff between Policyfile locks. It can
-compare Policyfile locks from local disk, git, and/or the Chef Server,
+compare Policyfile locks from local disk, git, and/or the Chef Infra Server,
 based on the options given.
 
 #### `chef verify`
@@ -186,7 +191,7 @@ environment, you can continue to do so. Just ensure that the ChefDK
 provided applications appear first in your `PATH` before any
 gem-installed versions and you're good to go.
 
-If you'd like to use ChefDK as your primary Ruby/Chef development
+If you'd like to use ChefDK as your primary Ruby/Chef Infra development
 environment, however, you can do so by initializing your shell with
 ChefDK's environment.
 
@@ -251,9 +256,9 @@ echo 'eval (chef shell-init SHELL_NAME)' >> ~/.config/fish/config.fish
 
 ## Uninstallation Instructions
 
-### Mac OS X
+### macOS
 
-You can uninstall Chef Development Kit on Mac using the below commands.
+You can uninstall ChefDK on Mac using the below commands.
 
 First, remove the main package files:
 
@@ -265,17 +270,7 @@ sudo rm -rf /opt/chefdk
 sudo pkgutil --forget com.getchef.pkg.chefdk
 ```
 
-Next, remove the symlinks which the Chef Development Kit installs. The
-location for these differs based on your OS X version.
-
-Pre-El Capitan:
-
-```sh
-# Symlinks are in /usr/bin
-ls -la /usr/bin | egrep '/opt/chefdk' | awk '{ print $9 }' | sudo xargs -I % rm -f /usr/bin/%
-```
-
-Post-El Capitan:
+Next, remove the symlinks which the ChefDK installs:
 
 ```sh
 # Symlinks are in /usr/local/bin
@@ -289,7 +284,7 @@ Kit from your system.
 
 ### RHEL
 
-You can use `rpm` to uninstall Chef Development Kit on RHEL based systems:
+You can use `rpm` to uninstall ChefDK on RHEL based systems:
 
 ```sh
 rpm -qa *chefdk*
@@ -300,7 +295,7 @@ rm -rf ~/.chefdk
 
 ### Ubuntu
 
-You can use `dpkg` to uninstall Chef Development Kit on Ubuntu based systems:
+You can use `dpkg` to uninstall ChefDK on Ubuntu based systems:
 
 ```sh
 dpkg --list | grep chefdk # or dpkg --status chefdk
@@ -323,8 +318,8 @@ packaging, and building works.
 - - -
 
 [Berkshelf]: https://docs.chef.io/berkshelf.html "Berkshelf"
-[Chef]: https://www.chef.io/chef/ "Chef"
-[ChefDK]: https://downloads.chef.io/chefdk "Chef Development Kit"
+[Chef Infra Client]: https://www.chef.io/products/chef-infra/ "Chef Infra Client"
+[ChefDK]: https://downloads.chef.io/chefdk/ "ChefDK"
 [Chef Documentation]: https://docs.chef.io "Chef Documentation"
 [ChefSpec]: http://chefspec.github.io/chefspec/ "ChefSpec"
 [Cookstyle]: https://docs.chef.io/cookstyle.html "Cookstyle"

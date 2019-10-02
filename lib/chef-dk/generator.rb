@@ -24,7 +24,7 @@ module ChefDK
       def self.add_attr(name)
         @attributes ||= [ ]
 
-        if !@attributes.include?(name)
+        unless @attributes.include?(name)
           @attributes << name
           attr_accessor(name)
         end

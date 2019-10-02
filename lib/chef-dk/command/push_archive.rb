@@ -97,7 +97,7 @@ module ChefDK
             policy_group: policy_group,
             ui: ui,
             config: chef_config
-        )
+          )
       end
 
       def archive_file

@@ -144,9 +144,7 @@ module ChefDK
     end
 
     def nix_platform_native_bin_dir
-      if /sunos|solaris/ =~ RUBY_PLATFORM
-        "/opt/local/bin"
-      elsif /darwin/ =~ RUBY_PLATFORM
+      if /darwin/ =~ RUBY_PLATFORM
         "/usr/local/bin"
       else
         "/usr/bin"
@@ -198,6 +196,7 @@ module ChefDK
 
     def gem_base_dir
       return nil if @gem_name_for_base_dir.nil?
+
       # There is no way to say "give me the latest prerelease OR normal version of this gem.
       # So we first ask if there is a normal version, and if there is not, we ask if there
       # is a prerelease version.  ">= 0.a" is how we ask for a prerelease version, because a

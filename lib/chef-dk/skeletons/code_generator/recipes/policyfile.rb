@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 context = ChefDK::Generator.context
 policyfile_path = File.join(context.policyfile_dir, "#{context.new_file_basename}.rb")
 

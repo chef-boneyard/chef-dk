@@ -39,7 +39,7 @@ module ChefDK
     DEFAULT_DEMAND_CONSTRAINT = ">= 0.0.0".freeze
 
     # Cookbooks from these sources lock that cookbook to exactly one version
-    SOURCE_TYPES_WITH_FIXED_VERSIONS = [:git, :path].freeze
+    SOURCE_TYPES_WITH_FIXED_VERSIONS = %i{git path}.freeze
 
     def self.evaluate(policyfile_string, policyfile_filename, ui: nil, chef_config: nil)
       compiler = new(ui: ui, chef_config: chef_config)
@@ -225,6 +225,7 @@ module ChefDK
 
     def graph_solution
       return @solution if @solution
+
       cache_fixed_version_cookbooks
       @solution = Solve.it!(graph, graph_demands)
     end
@@ -515,7 +516,8 @@ module ChefDK
             false
           end
         end
-        conflicting_source_messages << "#{source_b.desc} sets a preferred for cookbook(s) #{conflicting_preferences.join(', ')}. This conflicts with an included policy."
+
+        conflicting_source_messages << "#{source_b.desc} sets a preferred for cookbook(s) #{conflicting_preferences.join(", ")}. This conflicts with an included policy."
       end
       unless conflicting_source_messages.empty?
         msg = "You may not override the cookbook sources for any cookbooks required by included policies.\n"

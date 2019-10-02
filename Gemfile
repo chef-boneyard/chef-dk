@@ -48,7 +48,7 @@ end
 # We equality pin the chef gem itself to assert which version we're shipping.
 group(:omnibus_package) do
   gem "appbundler", "< 0.13"
-  gem "berkshelf", ">= 7.0.5"
+  gem "berkshelf", ">= 7.0.8"
   gem "chef-provisioning", ">= 2.7.1", group: :provisioning
   gem "chef-provisioning-aws", ">= 3.0.2", group: :provisioning
   gem "chef-provisioning-fog", ">= 0.26.1", group: :provisioning
@@ -69,7 +69,7 @@ group(:omnibus_package) do
   gem "kitchen-google", ">= 2.0.0"
   gem "kitchen-hyperv", ">= 0.5.1"
   gem "kitchen-inspec", ">= 1.0"
-  gem "kitchen-vagrant", ">= 1.4"
+  gem "kitchen-vagrant", ">= 1.6"
   gem "knife-acl", ">= 1.0.3"
   gem "knife-ec2", ">= 0.19.10"
   gem "knife-google", ">= 3.3.3"
@@ -93,7 +93,7 @@ group(:omnibus_package) do
   gem "chef-sugar"
   gem "mixlib-versioning"
   gem "artifactory"
-  gem "opscode-pushy-client", ">= 2.4.11"
+  gem "opscode-pushy-client", ">= 2.99"
   gem "ffi-rzmq-core"
   gem "knife-push"
 
@@ -105,7 +105,6 @@ group(:omnibus_package) do
   gem "pry-remote"
   gem "pry-stack_explorer"
   gem "rb-readline"
-  gem "rubocop"
   gem "winrm-fs"
   gem "winrm-elevated"
   gem "cucumber"
@@ -117,18 +116,16 @@ group(:ruby_prof) do
   gem "ruby-prof"
 end
 
-# Everything except AIX and Windows
+# Everything except Windows
 group(:ruby_shadow) do
   gem "ruby-shadow", platform: :ruby
 end
 
 gem "chefstyle", group: :test
 
-# TODO delete this when we figure out how to include the pushy windows dependencies
-# correctly
+# Ensure support for push-client on Windows
 platforms :mswin, :mingw do
   gem "rdp-ruby-wmi"
-  gem "windows-api"
   gem "windows-pr"
   gem "win32-api"
   gem "win32-dir"

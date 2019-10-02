@@ -32,7 +32,7 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
 
   let(:expected_cookbook_file_relpaths) do
     %w{
-      .kitchen.yml
+      kitchen.yml
       data_bags
       data_bags/keys
       data_bags/keys/delivery_builder_keys.json
@@ -162,9 +162,9 @@ describe ChefDK::Command::GeneratorCommands::BuildCookbook do
           end
         end
 
-        let(:file) { File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", ".kitchen.yml") }
+        let(:file) { File.join(tempdir, "delivery_project", ".delivery", "build_cookbook", "kitchen.yml") }
 
-        it "creates a .kitchen.yml with the expected content" do
+        it "creates a kitchen.yml with the expected content" do
           expect(IO.read(file)).to eq(expected_kitchen_yml_content)
         end
 

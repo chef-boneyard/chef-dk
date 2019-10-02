@@ -88,6 +88,7 @@ module ChefDK
 
       def run(params)
         return 1 unless apply_params!(params)
+
         if list_undo_records?
           undelete_service.list
         else

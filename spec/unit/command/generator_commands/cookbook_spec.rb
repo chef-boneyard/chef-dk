@@ -32,7 +32,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
   let(:expected_cookbook_file_relpaths) do
     %w{
       .gitignore
-      .kitchen.yml
+      kitchen.yml
       test
       test/integration
       test/integration/default/default_test.rb
@@ -63,9 +63,9 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
       Your cookbook is ready. Type `cd new_cookbook` to enter it.
 
       There are several commands you can run to get started locally developing and testing your cookbook.
-      Type `delivery local --help` to see a full list.
+      Type `delivery local --help` to see a full list of local testing commands.
 
-      Why not start by writing a test? Tests for the default recipe are stored at:
+      Why not start by writing an InSpec test? Tests for the default recipe are stored at:
 
       test/integration/default/default_test.rb
 
@@ -180,18 +180,15 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
         let(:expected_content) do
           <<~PROJECT_DOT_TOML
-            # Delivery Prototype for Local Phases Execution
+            # Delivery for Local Phases Execution
             #
-            # The purpose of this file is to prototype a new way to execute
-            # phases locally on your workstation. The delivery-cli will read
-            # this file and execute the command(s) that are configured for
-            # each phase. You can customize them by just modifying the phase
-            # key on this file.
+            # This file allows you to execute test phases locally on a workstation or
+            # in a CI pipeline. The delivery-cli will read this file and execute the
+            # command(s) that are configured for each phase. You can customize them
+            # by just modifying the phase key on this file.
             #
             # By default these phases are configured for Cookbook Workflow only
             #
-            # As this is still a prototype we are not modifying the current
-            # config.json file and it will continue working as usual.
 
             [local_phases]
             unit = "chef exec rspec spec/"
@@ -211,9 +208,10 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
             # Remote project.toml file
             #
-            # Specify a remote URI location for the `project.toml` file.
-            # This is useful for teams that wish to centrally manage the behavior
-            # of the `delivery local` command across many different projects.
+            # Instead of the local phases above, you may specify a remote URI location for
+            # the `project.toml` file. This is useful for teams that wish to centrally
+            # manage the behavior of the `delivery local` command across many different
+            # projects.
             #
             # remote_file = "https://url/project.toml"
           PROJECT_DOT_TOML
@@ -270,6 +268,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
             # Recipe:: publish
             #
             # Copyright:: 2019, The Authors, All Rights Reserved.
+
             include_recipe 'delivery-truck::publish'
           CONFIG_DOT_JSON
         end
@@ -360,7 +359,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
         expected = <<~OUTPUT
           Generating cookbook new_cookbook
-          - Ensuring correct cookbook file content
+          - Ensuring correct cookbook content
           - Committing cookbook files to git
           - Ensuring delivery configuration
           - Ensuring correct delivery build cookbook content
@@ -412,7 +411,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
         expected = <<~OUTPUT
           Generating cookbook new_cookbook
-          - Ensuring correct cookbook file content
+          - Ensuring correct cookbook content
           - Committing cookbook files to git
           - Ensuring delivery configuration
           - Ensuring correct delivery build cookbook content
@@ -475,9 +474,9 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
             end
           end
 
-          let(:file) { File.join(tempdir, "new_cookbook", ".kitchen.yml") }
+          let(:file) { File.join(tempdir, "new_cookbook", "kitchen.yml") }
 
-          it "creates a .kitchen.yml with the expected content" do
+          it "creates a kitchen.yml with the expected content" do
             expect(IO.read(file)).to eq(expected_kitchen_yml_content)
           end
 
@@ -526,7 +525,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
         let(:expected_content) do
           <<~POLICYFILE_RB
-            # Policyfile.rb - Describe how you want Chef to build your system.
+            # Policyfile.rb - Describe how you want Chef Infra Client to build your system.
             #
             # For more information on the Policyfile feature, visit
             # https://docs.chef.io/policyfile.html
@@ -568,7 +567,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
             ## The forwarded_port port feature lets you connect to ports on the VM guest via
             ## localhost on the host.
-            ## see also: https://docs.vagrantup.com/v2/networking/forwarded_ports.html
+            ## see also: https://www.vagrantup.com/docs/networking/forwarded_ports.html
 
             #  network:
             #    - ["forwarded_port", {guest: 80, host: 8080}]
@@ -576,17 +575,16 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
             provisioner:
               name: chef_zero
 
-            ## require_chef_omnibus specifies a specific chef version to install. You can
-            ## also set this to `true` to always use the latest version.
-            ## see also: https://docs.chef.io/config_yml_kitchen.html
-
-            #  require_chef_omnibus: 12.8.1
+              ## product_name and product_version specifies a specific Chef product and version to install.
+              ## see the Chef documentation for more details: https://docs.chef.io/config_yml_kitchen.html
+              #  product_name: chef
+              #  product_version: 14
 
             verifier:
               name: inspec
 
             platforms:
-              - name: ubuntu-16.04
+              - name: ubuntu-18.04
               - name: centos-7
 
             suites:
@@ -604,7 +602,6 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
         let(:expected_chefspec_spec_helper_content) do
           <<~SPEC_HELPER
-            # frozen_string_literal: true
             require 'chefspec'
             require 'chefspec/policyfile'
           SPEC_HELPER
@@ -624,7 +621,6 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
         let(:expected_content) do
           <<~POLICYFILE_RB
-            # frozen_string_literal: true
             source 'https://supermarket.chef.io'
 
             metadata
@@ -652,6 +648,13 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
             driver:
               name: vagrant
 
+            ## The forwarded_port port feature lets you connect to ports on the VM guest via
+            ## localhost on the host.
+            ## see also: https://www.vagrantup.com/docs/networking/forwarded_ports.html
+
+            #  network:
+            #    - ["forwarded_port", {guest: 80, host: 8080}]
+
             provisioner:
               name: chef_zero
               # You may wish to disable always updating cookbooks in CI or other testing environments.
@@ -659,11 +662,16 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
               #   always_update_cookbooks: <%= !ENV['CI'] %>
               always_update_cookbooks: true
 
+              ## product_name and product_version specifies a specific Chef product and version to install.
+              ## see the Chef documentation for more details: https://docs.chef.io/config_yml_kitchen.html
+              #  product_name: chef
+              #  product_version: 14
+
             verifier:
               name: inspec
 
             platforms:
-              - name: ubuntu-16.04
+              - name: ubuntu-18.04
               - name: centos-7
 
             suites:
@@ -683,7 +691,6 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
 
         let(:expected_chefspec_spec_helper_content) do
           <<~SPEC_HELPER
-            # frozen_string_literal: true
             require 'chefspec'
             require 'chefspec/berkshelf'
           SPEC_HELPER

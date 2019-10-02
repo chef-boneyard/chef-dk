@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 context = ChefDK::Generator.context
 cookbook_dir = File.join(context.cookbook_root, context.cookbook_name)
 
 silence_chef_formatter unless context.verbose
 
-generator_desc('Ensuring correct cookbook file content')
+generator_desc('Ensuring correct cookbook content')
 
 # cookbook root dir
 directory cookbook_dir
@@ -71,7 +69,7 @@ template "#{cookbook_dir}/LICENSE" do
 end
 
 # Test Kitchen
-template "#{cookbook_dir}/.kitchen.yml" do
+template "#{cookbook_dir}/kitchen.yml" do
   if context.kitchen == 'dokken'
     # kitchen-dokken configuration works with berkshelf and policyfiles
     source 'kitchen_dokken.yml.erb'
@@ -85,7 +83,7 @@ template "#{cookbook_dir}/.kitchen.yml" do
   action :create_if_missing
 end
 
-# Inspec
+# InSpec
 directory "#{cookbook_dir}/test/integration/default" do
   recursive true
 end

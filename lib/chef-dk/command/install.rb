@@ -70,6 +70,7 @@ module ChefDK
 
       def run(params = [])
         return 1 unless apply_params!(params)
+
         # Force config file to be loaded. We don't use the configuration
         # directly, but the user may have SSL configuration options that they
         # need to talk to a private supermarket (e.g., trusted_certs or

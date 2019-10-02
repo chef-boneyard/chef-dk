@@ -85,7 +85,7 @@ shared_examples_for "custom generator cookbook" do
 
     context "with a generator-cookbook path to a specific cookbook" do
 
-      let(:metadata_file) { File.join(Dir["#{generator_cookbook_path}"], "metadata.rb") }
+      let(:metadata_file) { File.join(generator_cookbook_path, "metadata.rb") }
 
       before do
         FileUtils.cp_r(default_generator_cookbook_path, generator_cookbook_path)

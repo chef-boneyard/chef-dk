@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# ~FC067 ~FC065 ~FC064
 name             'code_generator'
 maintainer       'Chef Software, Inc.'
 maintainer_email 'dev@chef.io'

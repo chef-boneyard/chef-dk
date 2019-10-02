@@ -67,6 +67,7 @@ module ChefDK
 
       def run(params)
         return 1 unless apply_params!(params)
+
         rm_policy_group_service.run
         ui.msg("This operation can be reversed by running `chef undelete --last`.")
         0

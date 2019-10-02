@@ -29,7 +29,7 @@ describe ChefDK::Command::GeneratorCommands::App do
   let(:expected_cookbook_file_relpaths) do
     %w{
       .gitignore
-      .kitchen.yml
+      kitchen.yml
       test
       test/integration
       test/integration/default
@@ -121,8 +121,8 @@ describe ChefDK::Command::GeneratorCommands::App do
         end
       end
 
-      describe ".kitchen.yml" do
-        let(:file) { File.join(tempdir, "new_app", ".kitchen.yml") }
+      describe "kitchen.yml" do
+        let(:file) { File.join(tempdir, "new_app", "kitchen.yml") }
 
         include_examples "a generated file", :cookbook_name do
           let(:line) { /\s*- recipe\[new_app::default\]/ }

@@ -22,8 +22,8 @@ module ChefDK
   # A wrapper for `Chef::ServerAPI` that supports multi-threading by creating a
   # `Chef::ServerAPI` object per-thread.
   #
-  # This is intended to be used for downloading cookbooks from the Chef Server,
-  # where the API of the Chef Server requires each file to be downloaded
+  # This is intended to be used for downloading cookbooks from the Chef Infa Server,
+  # where the API of the Chef Infra Server requires each file to be downloaded
   # individually.
   #
   # It also configures `Chef::ServerAPI` to enable keepalives by default. To

@@ -1,5 +1,5 @@
 #
-# Copyright 2014-2018, Chef Software Inc.
+# Copyright 2014-2019 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
 # TODO - when deleting this, also delete omnibus/config/templates/git-custom-bindir
 
 name "git-custom-bindir"
-default_version "2.14.1"
+default_version "2.23.0"
 
 license "LGPL-2.1"
 license_file "LGPL-2.1"
@@ -37,9 +37,7 @@ dependency "expat"
 
 relative_path "git-#{version}"
 
-version "2.14.1" do
-  source md5: "b767f0b21aa41d10268b2075078d334e"
-end
+version("2.23.0") { source sha256: "e3396c90888111a01bf607346db09b0fbf49a95bc83faf9506b61195936f0cfe" }
 
 source url: "https://www.kernel.org/pub/software/scm/git/git-#{version}.tar.gz"
 
@@ -72,14 +70,6 @@ build do
     config_hash["USE_ST_TIMESPEC"] = "YesPlease"
     config_hash["HAVE_BSD_SYSCTL"] = "YesPlease"
     config_hash["NO_R_TO_GCC_LINKER"] = "YesPlease"
-  elsif aix?
-    env["CC"] = "xlc_r"
-    env["INSTALL"] = "/opt/freeware/bin/install"
-    # xlc doesn't understand the '-Wl,-rpath' syntax at all so... we don't enable
-    # the NO_R_TO_GCC_LINKER flag. This means that it will try to use the
-    # old style -R for libraries and as a result, xlc will ignore it. In this case, we
-    # we want that to happen because we explicitly set the libpath with the correct
-    # command line argument in omnibus itself.
   else
     # Linux things!
     config_hash["HAVE_PATHS_H"] = "YesPlease"

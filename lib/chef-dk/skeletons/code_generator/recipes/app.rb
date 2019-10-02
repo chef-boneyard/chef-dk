@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 context = ChefDK::Generator.context
 app_dir = File.join(context.app_root, context.app_name)
 cookbooks_dir = context.cookbook_root
@@ -11,7 +9,7 @@ directory app_dir
 # Top level files
 
 # Test Kitchen
-template "#{app_dir}/.kitchen.yml" do
+template "#{app_dir}/kitchen.yml" do
   source 'kitchen.yml.erb'
   helpers(ChefDK::Generator::TemplateHelper)
 end

@@ -72,28 +72,28 @@ module ChefDK
       option :git,
         short:       "-g GIT_REF",
         long:        "--git GIT_REF",
-        description: "Compare local lock against GIT_REF, or between two git commits"
+        description: "Compare local lock against GIT_REF, or between two git commits."
 
       option :head,
         long:        "--head",
-        description: "Compare local lock against last git commit",
+        description: "Compare local lock against last git commit.",
         boolean:     true
 
       option :pager,
         long:        "--[no-]pager",
-        description: "Enable/disable paged diff ouput (default: enabled)",
+        description: "Enable/disable paged diff ouput (default: enabled).",
         default:     true,
         boolean:     true
 
       option :config_file,
         short:       "-c CONFIG_FILE",
         long:        "--config CONFIG_FILE",
-        description: "Path to configuration file"
+        description: "Path to configuration file."
 
       option :debug,
         short:       "-D",
         long:        "--debug",
-        description: "Enable stacktraces and other debug output",
+        description: "Enable stacktraces and other debug output.",
         default:     false
 
       attr_accessor :ui
@@ -124,6 +124,7 @@ module ChefDK
 
       def run(params = [])
         return 1 unless apply_params!(params)
+
         print_diff
         0
       rescue PolicyfileServiceError => e
@@ -152,7 +153,7 @@ module ChefDK
         end
       end
 
-      def differ(ui = self.ui())
+      def differ(ui = self.ui)
         Policyfile::Differ.new(old_name: old_base.name,
                                old_lock: old_lock,
                                new_name: new_base.name,
@@ -289,6 +290,7 @@ module ChefDK
       def policy_group_comparison?(args)
         return false if args.empty?
         return true if args.size > 1
+
         !(args.first =~ /\.rb\Z/)
       end
 
