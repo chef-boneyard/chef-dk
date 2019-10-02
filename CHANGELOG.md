@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.11.8 -->
-## [v3.11.8](https://github.com/chef/chef-dk/tree/v3.11.8) (2019-10-01)
+<!-- latest_release 3.11.9 -->
+## [v3.11.9](https://github.com/chef/chef-dk/tree/v3.11.9) (2019-10-02)
 
 #### Merged Pull Requests
-- Update Ruby / openSSL / nokogiri to address CVEs [#2268](https://github.com/chef/chef-dk/pull/2268) ([tas50](https://github.com/tas50))
+- Backport non-breaking changes from DK 4 [#2273](https://github.com/chef/chef-dk/pull/2273) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.11.3 -->
 ### Changes since 3.11.3 release
 
 #### Merged Pull Requests
+- Backport non-breaking changes from DK 4 [#2273](https://github.com/chef/chef-dk/pull/2273) ([tas50](https://github.com/tas50)) <!-- 3.11.9 -->
 - Update Ruby / openSSL / nokogiri to address CVEs [#2268](https://github.com/chef/chef-dk/pull/2268) ([tas50](https://github.com/tas50)) <!-- 3.11.8 -->
 - Jsinha/migrate appvy dk3 [#2272](https://github.com/chef/chef-dk/pull/2272) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 3.11.7 -->
 - Fix the build arguments in the Dockerfile [#2229](https://github.com/chef/chef-dk/pull/2229) ([tduffield](https://github.com/tduffield)) <!-- 3.11.6 -->
