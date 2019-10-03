@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.36 -->
-## [v4.4.36](https://github.com/chef/chef-dk/tree/v4.4.36) (2019-10-03)
+<!-- latest_release 4.4.37 -->
+## [v4.4.37](https://github.com/chef/chef-dk/tree/v4.4.37) (2019-10-03)
 
 #### Merged Pull Requests
-- Bump inspec-bin to 4.17.17 [#2282](https://github.com/chef/chef-dk/pull/2282) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump omnibus-software from `63602e1` to `3e90169` in /omnibus [#2281](https://github.com/chef/chef-dk/pull/2281) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.4.27 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `63602e1` to `3e90169` in /omnibus [#2281](https://github.com/chef/chef-dk/pull/2281) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.4.37 -->
 - Bump inspec-bin to 4.17.17 [#2282](https://github.com/chef/chef-dk/pull/2282) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.36 -->
 - Bump cookstyle to 5.6.5 [#2276](https://github.com/chef/chef-dk/pull/2276) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.35 -->
 - Bump inspec to 4.17.15 [#2270](https://github.com/chef/chef-dk/pull/2270) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.34 -->
