@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.39 -->
-## [v4.4.39](https://github.com/chef/chef-dk/tree/v4.4.39) (2019-10-04)
+<!-- latest_release 4.4.40 -->
+## [v4.4.40](https://github.com/chef/chef-dk/tree/v4.4.40) (2019-10-07)
 
 #### Merged Pull Requests
-- Bump cookstyle to 5.7.0 [#2284](https://github.com/chef/chef-dk/pull/2284) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Fix Habitat build failure [#2277](https://github.com/chef/chef-dk/pull/2277) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.4.27 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Fix Habitat build failure [#2277](https://github.com/chef/chef-dk/pull/2277) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.4.40 -->
 - Bump cookstyle to 5.7.0 [#2284](https://github.com/chef/chef-dk/pull/2284) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.39 -->
 - Bump inspec to 4.17.17 [#2280](https://github.com/chef/chef-dk/pull/2280) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.38 -->
 - Bump omnibus-software from `63602e1` to `3e90169` in /omnibus [#2281](https://github.com/chef/chef-dk/pull/2281) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.4.37 -->
