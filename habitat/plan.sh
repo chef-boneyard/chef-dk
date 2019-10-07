@@ -44,7 +44,7 @@ do_before() {
 do_download() {
   build_line "Building gem from source. (${SRC_PATH}/${pkg_name}.gemspec)"
   ( cd "${SRC_PATH}" || exit_with "unable to enter hab-src directory" 1
-    gem build "${SRC_PATH}/${pkg_name}.gemspec"
+    gem build "${pkg_name}.gemspec"
   )
 }
 
