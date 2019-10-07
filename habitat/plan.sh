@@ -40,8 +40,9 @@ do_before() {
 
 do_download() {
   # Instead of downloading, build a gem based on the source in src/
-  cd $PLAN_CONTEXT/..
-  gem build $pkg_name.gemspec
+  ( cd "${SRC_PATH}" || exit_with "unable to enter hab-src directory" 1
+    gem build "${pkg_name}.gemspec"
+  )
 }
 
 do_verify() {
