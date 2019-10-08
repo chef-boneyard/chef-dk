@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.11.11 -->
-## [v3.11.11](https://github.com/chef/chef-dk/tree/v3.11.11) (2019-10-07)
+<!-- latest_release 3.11.12 -->
+## [v3.11.12](https://github.com/chef/chef-dk/tree/v3.11.12) (2019-10-08)
 
 #### Merged Pull Requests
-- Fix Habitat build failure [#2278](https://github.com/chef/chef-dk/pull/2278) ([tyler-ball](https://github.com/tyler-ball))
+- Update openssl to 1.0.2t [#2287](https://github.com/chef/chef-dk/pull/2287) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.11.3 -->
 ### Changes since 3.11.3 release
 
 #### Merged Pull Requests
+- Update openssl to 1.0.2t [#2287](https://github.com/chef/chef-dk/pull/2287) ([tas50](https://github.com/tas50)) <!-- 3.11.12 -->
 - Fix Habitat build failure [#2278](https://github.com/chef/chef-dk/pull/2278) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.11.11 -->
 - Update deps to the latest and disable hab package promotion [#2275](https://github.com/chef/chef-dk/pull/2275) ([tas50](https://github.com/tas50)) <!-- 3.11.10 -->
 - Backport non-breaking changes from DK 4 [#2273](https://github.com/chef/chef-dk/pull/2273) ([tas50](https://github.com/tas50)) <!-- 3.11.9 -->
