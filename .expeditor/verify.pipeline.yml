@@ -13,7 +13,7 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.5-stretch
+        image: ruby:2.5-buster
 
 - label: run-specs-ruby-2.6
   command:
@@ -23,7 +23,7 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-stretch
+        image: ruby:2.6-buster
 
 - label: run-specs-ruby-2.6
   command:
@@ -33,7 +33,7 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-stretch
+        image: ruby:2.6-buster
 
 - label: foodcritic-generator-cb-tests-ruby-2.6
   command:
@@ -43,7 +43,7 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-stretch
+        image: ruby:2.6-buster
 
 - label: cookstyle-generator-cb-tests-ruby-2.6
   command:
@@ -53,7 +53,7 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-stretch
+        image: ruby:2.6-buster
 
 - label: chefstyle-tests-ruby-2.6
   command:
@@ -63,7 +63,7 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-stretch
+        image: ruby:2.6-buster
 
 - label: hab-package-build-test
   command:
