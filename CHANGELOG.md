@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.44 -->
-## [v4.4.44](https://github.com/chef/chef-dk/tree/v4.4.44) (2019-10-10)
+<!-- latest_release 4.4.45 -->
+## [v4.4.45](https://github.com/chef/chef-dk/tree/v4.4.45) (2019-10-10)
 
 #### Merged Pull Requests
-- Bump train-core to 3.1.4 [#2291](https://github.com/chef/chef-dk/pull/2291) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Test on buster containers not stretch containers [#2293](https://github.com/chef/chef-dk/pull/2293) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.4.27 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Test on buster containers not stretch containers [#2293](https://github.com/chef/chef-dk/pull/2293) ([tas50](https://github.com/tas50)) <!-- 4.4.45 -->
 - Bump train-core to 3.1.4 [#2291](https://github.com/chef/chef-dk/pull/2291) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.44 -->
 - Bump knife-google to 4.2.0 [#2290](https://github.com/chef/chef-dk/pull/2290) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.43 -->
 - Bump knife-vsphere to 4.0.3 and rspec to 3.9.0 [#2289](https://github.com/chef/chef-dk/pull/2289) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.42 -->

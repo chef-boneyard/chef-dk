@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    chef-dk (4.4.44)
+    chef-dk (4.4.45)
       addressable (>= 2.3.5, < 2.6)
       chef (~> 15.0)
       cookbook-omnifetch (~> 0.5)
