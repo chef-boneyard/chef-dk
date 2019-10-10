@@ -7,7 +7,7 @@ expeditor:
 steps:
 - label: run-specs-ruby-2.5
   command:
-    - ./run_linux_tests.sh rspec
+    - .expeditor/run_linux_tests.sh rspec
   expeditor:
     executor:
       docker:
@@ -15,7 +15,7 @@ steps:
 
 - label: run-specs-ruby-2.6
   command:
-    - ./run_linux_tests.sh rspec
+    - .expeditor/run_linux_tests.sh rspec
   expeditor:
     executor:
       docker:
@@ -23,7 +23,7 @@ steps:
 
 - label: run-specs-ruby-2.6
   command:
-    - ./run_linux_tests.sh rspec
+    - .expeditor/run_linux_tests.sh rspec
   expeditor:
     executor:
       docker:
@@ -31,7 +31,7 @@ steps:
 
 - label: foodcritic-generator-cb-tests-ruby-2.6
   command:
-    - ./run_linux_tests.sh "rake style:foodcritic"
+    - .expeditor/run_linux_tests.sh "rake style:foodcritic"
   expeditor:
     executor:
       docker:
@@ -39,7 +39,7 @@ steps:
 
 - label: cookstyle-generator-cb-tests-ruby-2.6
   command:
-    - ./run_linux_tests.sh "rake style:cookstyle"
+    - .expeditor/run_linux_tests.sh "rake style:cookstyle"
   expeditor:
     executor:
       docker:
@@ -47,7 +47,7 @@ steps:
 
 - label: chefstyle-tests-ruby-2.6
   command:
-    - ./run_linux_tests.sh "rake style:chefstyle"
+    - .expeditor/run_linux_tests.sh "rake style:chefstyle"
   expeditor:
     executor:
       docker:
