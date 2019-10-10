@@ -564,7 +564,7 @@ GEM
       aws-sdk-ec2 (~> 1.95)
       aws-sdk-s3 (~> 1.43)
       chef (>= 15.1)
-    knife-google (4.1.0)
+    knife-google (4.2.0)
       gcewinpass (~> 1.1)
       google-api-client (>= 0.19.8, < 0.25)
       knife-cloud (>= 2.0.0)
