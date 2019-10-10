@@ -23,7 +23,7 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-buster
+        image: tas50/quicker-buster-ruby-2.6
 
 - label: run-specs-ruby-2.6
   command:
@@ -33,7 +33,7 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-buster
+        image: tas50/quicker-buster-ruby-2.6
 
 - label: foodcritic-generator-cb-tests-ruby-2.6
   command:
@@ -43,7 +43,7 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-buster
+        image: tas50/quicker-buster-ruby-2.6
 
 - label: cookstyle-generator-cb-tests-ruby-2.6
   command:
@@ -53,7 +53,7 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-buster
+        image: tas50/quicker-buster-ruby-2.6
 
 - label: chefstyle-tests-ruby-2.6
   command:
@@ -63,7 +63,7 @@ steps:
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-buster
+        image: tas50/quicker-buster-ruby-2.6
 
 - label: hab-package-build-test
   command:
