@@ -15,7 +15,7 @@ echo "Fetching bundle cache archive from s3://public-cd-buildkite-cache/${BUILDK
 aws s3 cp "s3://public-cd-buildkite-cache/${BUILDKITE_PIPELINE_SLUG}/${BUILDKITE_LABEL}/bundle.tar.bz2" bundle.tar.bz2 || echo 'Could not pull the bundler directory to s3 for caching. Builds may be slower than usual as all gems will have to install.'
 
 echo "Restoring the bundle cache archive to vendor/bundle"
-if [ -f bundle.tar.bz2 ]
+if [ -f bundle.tar.bz2 ]; then
   tar -xjf bundle.tar.bz2
 fi
 bundle config --local path vendor/bundle
