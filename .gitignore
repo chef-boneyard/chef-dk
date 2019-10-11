@@ -41,3 +41,6 @@ Vagrantfile
 # some acceptance tests will leave this if they fail
 my-cookbook
 results/
+
+# for CI bundle caching
+bundle.tar.bz2
