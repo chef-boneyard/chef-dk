@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.46 -->
-## [v4.4.46](https://github.com/chef/chef-dk/tree/v4.4.46) (2019-10-11)
+<!-- latest_release 4.4.47 -->
+## [v4.4.47](https://github.com/chef/chef-dk/tree/v4.4.47) (2019-10-11)
 
 #### Merged Pull Requests
-- Bump inspec to 4.18.0 [#2295](https://github.com/chef/chef-dk/pull/2295) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Cache bundled gems in s3 to speed up testing [#2294](https://github.com/chef/chef-dk/pull/2294) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.4.27 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Cache bundled gems in s3 to speed up testing [#2294](https://github.com/chef/chef-dk/pull/2294) ([tas50](https://github.com/tas50)) <!-- 4.4.47 -->
 - Bump inspec to 4.18.0 [#2295](https://github.com/chef/chef-dk/pull/2295) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.46 -->
 - Test on buster containers not stretch containers [#2293](https://github.com/chef/chef-dk/pull/2293) ([tas50](https://github.com/tas50)) <!-- 4.4.45 -->
 - Bump train-core to 3.1.4 [#2291](https://github.com/chef/chef-dk/pull/2291) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.44 -->
