@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.49 -->
-## [v4.4.49](https://github.com/chef/chef-dk/tree/v4.4.49) (2019-10-15)
+<!-- latest_release 4.4.50 -->
+## [v4.4.50](https://github.com/chef/chef-dk/tree/v4.4.50) (2019-10-15)
 
 #### Merged Pull Requests
-- Further speed up our PR tests [#2298](https://github.com/chef/chef-dk/pull/2298) ([tas50](https://github.com/tas50))
+- Update Chef Infra Client to 15.4.45 and cookstyle to 5.8.1 [#2302](https://github.com/chef/chef-dk/pull/2302) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.4.27 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update Chef Infra Client to 15.4.45 and cookstyle to 5.8.1 [#2302](https://github.com/chef/chef-dk/pull/2302) ([tas50](https://github.com/tas50)) <!-- 4.4.50 -->
 - Further speed up our PR tests [#2298](https://github.com/chef/chef-dk/pull/2298) ([tas50](https://github.com/tas50)) <!-- 4.4.49 -->
 - Use a sha256 checksum file to avoid compressing / uploading one every run [#2297](https://github.com/chef/chef-dk/pull/2297) ([tas50](https://github.com/tas50)) <!-- 4.4.48 -->
 - Cache bundled gems in s3 to speed up testing [#2294](https://github.com/chef/chef-dk/pull/2294) ([tas50](https://github.com/tas50)) <!-- 4.4.47 -->
