@@ -1,3 +1,38 @@
+# ChefDK 4.5
+
+## Updated Components
+
+### Chef Infra Client
+
+Chef Infra Client has been updated from 15.3 to 15.4 with updated resources and several significant fixes to `knife bootstrap`.  See the [Chef Infra Client 15.4 Release Notes](https://discourse.chef.io/t/chef-infra-client-15-4-45-released/16081) for a complete list of the new and improved functionality.
+
+### Chef InSpec
+
+Chef InSpec has been updated from 4.16 to 4.18 with the following changes:
+
+### Cookstyle
+
+Cookstyle has been updated from 5.6.2 to 5.8.1, which includes 10 new Chef cops, improved detection in existing cops, and improved autocorrection. See the [Cookstyle 5.7 and 5.8 release notes](https://github.com/chef/cookstyle/blob/master/RELEASE_NOTES.md) for additional information on the new cops.
+
+### knife-google
+
+knife-google was updated from 4.1.0 to 4.2.0 with support for adding multiple local SSD interfaces to a new instance.
+
+### knife-vsphere
+
+knife-vsphere was updated from 4.0.1 to 4.0.3, which resolves a bug in determining the state of instances.
+
+## Security Updates
+
+### Ruby
+
+Ruby has been updated from 2.6.4 to 2.6.5 in order to resolve the following CVEs:
+
+- [CVE-2019-16255](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16255): A code injection vulnerability of Shell#[] and Shell#test
+- [CVE-2019-16254](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16254): HTTP response splitting in WEBrick (Additional fix)
+- [CVE-2019-15845](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-15845): A NUL injection vulnerability of File.fnmatch and File.fnmatch?
+- [CVE-2019-16201](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16201): Regular Expression Denial of Service vulnerability of WEBrick’s Digest access authentication
+
 # ChefDK 4.4
 
 ## Updated Components
