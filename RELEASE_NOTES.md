@@ -53,11 +53,6 @@ kitchen-azurerm has been updated from 0.14.8 to 0.14.9, which adds a new `use_ep
 
 kitchen-digitalocean has been updated to 0.10.4 with support for new distros and additional configuration options for instance setup. You can now control the default DigitalOcean region systems that are spun up by using a new `DIGITALOCEAN_REGION` env var. You can still modify the region in the driver section of your `kitchen.yml` file if you'd like, and the default region of `nyc1` has not changed. This release also adds slug support for `fedora-29`, `fedora-30`, and `ubuntu-19`. Finally, if you'd like to monitor your test instances, the new `monitoring` configuration option in the `kitchen.yml` driver section allows enabling DigitalOcean's instance monitoring. See the [kitchen-digitalocean readme](https://github.com/test-kitchen/kitchen-digitalocean/blob/master/README.md) for `kitchen.yml` config examples.
 
-
-### kitchen-inspec
-
-`kitchen-inspec` has been updated from 1.1.0 to 1.2.0. This renames the `attrs` key to `input_files`, and the `attributes` key to `inputs` to match InSpec 4. The old names are still supported, but issue a warning.
-
 ### kitchen-vagrant
 
 kitchen-vagrant has been updated from 1.5.2. to 1.6.0. This new version properly truncates the instance name to avoid hitting the 100 character limit in Hyper-V, and also updates the hostname length limit on Windows from 12 characters to 15 characters. Thanks [@Xorima](https://github.com/Xorima) and [@PowerSchill](https://github.com/PowerSchill).

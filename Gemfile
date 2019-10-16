@@ -68,7 +68,7 @@ group(:omnibus_package) do
   gem "kitchen-dokken", ">= 2.6.7"
   gem "kitchen-google", ">= 2.0.0"
   gem "kitchen-hyperv", ">= 0.5.1"
-  gem "kitchen-inspec", ">= 1.0"
+  gem "kitchen-inspec", ">= 1.0", "< 1.2.0" # 1.2 starts warning on attributes vs. inputs
   gem "kitchen-vagrant", ">= 1.6"
   gem "knife-acl", ">= 1.0.3"
   gem "knife-ec2", ">= 0.19.10"

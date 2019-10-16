@@ -449,7 +449,7 @@ GEM
       test-kitchen
     kitchen-hyperv (0.5.3)
       test-kitchen (>= 1.4, < 3)
-    kitchen-inspec (1.2.0)
+    kitchen-inspec (1.1.0)
       hashie (~> 3.4)
       inspec (>= 1.47, < 5.0)
       test-kitchen (>= 1.6, < 3)
@@ -873,7 +873,7 @@ DEPENDENCIES
   kitchen-ec2 (>= 2.3, < 3.0)
   kitchen-google (>= 2.0.0)
   kitchen-hyperv (>= 0.5.1)
-  kitchen-inspec (>= 1.0)
+  kitchen-inspec (>= 1.0, < 1.2.0)
   kitchen-vagrant (>= 1.6)
   knife-acl (>= 1.0.3)
   knife-ec2 (>= 0.19.10)
