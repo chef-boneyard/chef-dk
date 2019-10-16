@@ -1,5 +1,9 @@
 # ChefDK 4.5
 
+## Habitat Packages
+
+We are now publishing Habitat packages for ChefDK 4. See [chef/chef-dk](https://bldr.habitat.sh/#/pkgs/chef/chef-dk) on Habitat Depot for a complete list of available versions.
+
 ## Updated Components
 
 ### Chef Infra Client
