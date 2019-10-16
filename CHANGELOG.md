@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.5.0 -->
-## [v4.5.0](https://github.com/chef/chef-dk/tree/v4.5.0) (2019-10-16)
+<!-- latest_release 4.5.1 -->
+## [v4.5.1](https://github.com/chef/chef-dk/tree/v4.5.1) (2019-10-16)
 
 #### Merged Pull Requests
-- Add ChefDK 4.4 and 4.5 release notes &amp; bump Cookstyle [#2303](https://github.com/chef/chef-dk/pull/2303) ([tas50](https://github.com/tas50))
+- Bump kitchen-dokken to 2.8.0 [#2306](https://github.com/chef/chef-dk/pull/2306) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.4.27 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump kitchen-dokken to 2.8.0 [#2306](https://github.com/chef/chef-dk/pull/2306) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.5.1 -->
 - Add ChefDK 4.4 and 4.5 release notes &amp; bump Cookstyle [#2303](https://github.com/chef/chef-dk/pull/2303) ([tas50](https://github.com/tas50)) <!-- 4.5.0 -->
 - Enable Habitat package promotions [#2305](https://github.com/chef/chef-dk/pull/2305) ([afiune](https://github.com/afiune)) <!-- 4.4.51 -->
 - Update Chef Infra Client to 15.4.45 and cookstyle to 5.8.1 [#2302](https://github.com/chef/chef-dk/pull/2302) ([tas50](https://github.com/tas50)) <!-- 4.4.50 -->
