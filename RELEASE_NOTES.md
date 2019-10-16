@@ -16,9 +16,8 @@ Chef InSpec has been updated from 4.16 to 4.18 with the following changes:
 
 #### New Features
 
-- Use Waivers to mark controls as being administratively expected to fail.
-- We have released our beta Chef InSpec plug-in for HashiCorp Vault. Check it out in our inspec-vault GitHub repo and let us know what you think -- or better yet, start jumping in and contributing with us on it.
-- Waivers, our new beta feature, was added to InSpec! Waivers allows you to better manage compliance failures. We would love to hear your feedback on this! See our documentation for more details.
+- We have released our beta Chef InSpec plug-in for HashiCorp Vault. Check it out in our [inspec-vault GitHub repo](https://github.com/inspec/inspec-vault) and let us know what you think -- or better yet, start jumping in and contributing with us on it.
+- Waivers, our new beta feature, was added to InSpec! Waivers allows you to better manage compliance failures. We would love to hear your feedback on this! See the [InSpec Waivers documentation](https://www.inspec.io/docs/reference/waivers/) for more details.
 
 #### Improvements
 
