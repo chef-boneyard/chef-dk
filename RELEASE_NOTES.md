@@ -27,7 +27,7 @@ Chef InSpec has been updated from 4.16 to 4.18 with the following changes:
 - The `sys_info` resource now supports ip_address, fqdn, domain, and short options when giving a version of the hostname.
 - Sped up initial load/response time for all commands by removing pre-leading of resources on invocation of inspec.
 - If an error occurs when using the `json` resource with a command source, you will now get the error message from STDERR returned in the report.
-- We improved the formatting of the usage help, so what you see when you type inspec exec --help should look better!
+- We improved the formatting of the usage help, so what you see when you type `inspec exec --help` should look better!
 
 ### Cookstyle
 
