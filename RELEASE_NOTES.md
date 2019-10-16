@@ -13,11 +13,17 @@ Chef InSpec has been updated from 4.16 to 4.18 with the following changes:
 #### New Features
 
 - Use Waivers to mark controls as being administratively expected to fail.
+- We have released our beta Chef InSpec plug-in for HashiCorp Vault. Check it out in our inspec-vault GitHub repo and let us know what you think -- or better yet, start jumping in and contributing with us on it.
+- Waivers, our new beta feature, was added to InSpec! Waivers allows you to better manage compliance failures. We would love to hear your feedback on this! See our documentation for more details.
 
 #### Improvements
 
 - The `interface` resource now has a name property.
 - Expanded `user` resource to include the passwordage, maxbadpasswords, and badpasswordattempts properties with Windows.
+- The `sys_info` resource now supports ip_address, fqdn, domain, and short options when giving a version of the hostname.
+- Sped up initial load/response time for all commands by removing pre-leading of resources on invocation of inspec.
+- If an error occurs when using the `json` resource with a command source, you will now get the error message from STDERR returned in the report.
+- We improved the formatting of the usage help, so what you see when you type inspec exec --help should look better!
 
 ### Cookstyle
 
