@@ -10,6 +10,15 @@ Chef Infra Client has been updated from 15.3 to 15.4 with updated resources and 
 
 Chef InSpec has been updated from 4.16 to 4.18 with the following changes:
 
+#### New Features
+
+- Use Waivers to mark controls as being administratively expected to fail.
+
+#### Improvements
+
+- The interface resource now has a name property.
+- Expanded user resource to include the passwordage, maxbadpasswords, and badpasswordattempts properties with Windows.
+
 ### Cookstyle
 
 Cookstyle has been updated from 5.6.2 to 5.8.1, which includes 10 new Chef cops, improved detection in existing cops, and improved autocorrection. See the [Cookstyle 5.7 and 5.8 release notes](https://github.com/chef/cookstyle/blob/master/RELEASE_NOTES.md) for additional information on the new cops.
@@ -45,16 +54,16 @@ Chef Infra Client has been updated from 15.2 to 15.3 with updated resources, a n
 
 Chef InSpec has been updated from 4.10.4 to 4.16.0 with the following changes:
 
-* A new `postfix_conf` has been added for inspecting Postfix configuration files.
-* A new `plugins` section has been added to the InSpec configuration file which can be used to pass secrets or other configurations into Chef InSpec plugins.
-* The `service` resource now includes a new `startname` property for determining which user is starting the Windows services.
-* The `groups` resource now properly gathers membership information on macOS hosts.
+- A new `postfix_conf` has been added for inspecting Postfix configuration files.
+- A new `plugins` section has been added to the InSpec configuration file which can be used to pass secrets or other configurations into Chef InSpec plugins.
+- The `service` resource now includes a new `startname` property for determining which user is starting the Windows services.
+- The `groups` resource now properly gathers membership information on macOS hosts.
 
 See the [Chef InSpec 4.16.0 Release Notes](https://discourse.chef.io/t/chef-inspec-4-16-0-released/15818) for more information.
 
 ### Cookstyle
 
-Cookstyle has been updated from 5.1.19 to 5.6.2. This update brings the total number of Chef cops to 94 and divides the cops into four separate departments. The new departments make it easier to search for specific cops, and to enable and disable groups of cops. Instead of just "Chef," we now have the following departments:
+Cookstyle has been updated from 5.1.19 to 5.6.2. This update brings the total number of Chef cops to 94 and divides the cops into four separate departments. The new departments make it easier to search for specific cops, and to enable and disable groups of cops. Instead of just "Chef", we now have the following departments:
 
 - `ChefDeprecations`: Cops that detect, and in many cases correct, deprecations that will prevent cookbooks from running on modern versions of Chef Infra Client.
 - `ChefStyle`: Cops that will help you improve the format and readability of your cookbooks.
