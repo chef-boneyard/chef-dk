@@ -21,7 +21,7 @@ Chef InSpec has been updated from 4.16 to 4.18 with the following changes:
 
 ### Cookstyle
 
-Cookstyle has been updated from 5.6.2 to 5.8.1, which includes 10 new Chef cops, improved detection in existing cops, and improved autocorrection. See the [Cookstyle 5.7 and 5.8 release notes](https://github.com/chef/cookstyle/blob/master/RELEASE_NOTES.md) for additional information on the new cops.
+Cookstyle has been updated from 5.6.2 to 5.9.3, which includes 13 new Chef cops, improved detection in existing cops, and improved autocorrection. See the [Cookstyle 5.7, 5.8, and 5.9 release notes](https://github.com/chef/cookstyle/blob/master/RELEASE_NOTES.md) for additional information on the new cops.
 
 ### knife-google
 
