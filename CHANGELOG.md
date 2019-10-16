@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.4.51 -->
-## [v4.4.51](https://github.com/chef/chef-dk/tree/v4.4.51) (2019-10-16)
+<!-- latest_release 4.5.0 -->
+## [v4.5.0](https://github.com/chef/chef-dk/tree/v4.5.0) (2019-10-16)
 
 #### Merged Pull Requests
-- Enable Habitat package promotions [#2305](https://github.com/chef/chef-dk/pull/2305) ([afiune](https://github.com/afiune))
+- Add ChefDK 4.4 and 4.5 release notes &amp; bump Cookstyle [#2303](https://github.com/chef/chef-dk/pull/2303) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.4.27 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Add ChefDK 4.4 and 4.5 release notes &amp; bump Cookstyle [#2303](https://github.com/chef/chef-dk/pull/2303) ([tas50](https://github.com/tas50)) <!-- 4.5.0 -->
 - Enable Habitat package promotions [#2305](https://github.com/chef/chef-dk/pull/2305) ([afiune](https://github.com/afiune)) <!-- 4.4.51 -->
 - Update Chef Infra Client to 15.4.45 and cookstyle to 5.8.1 [#2302](https://github.com/chef/chef-dk/pull/2302) ([tas50](https://github.com/tas50)) <!-- 4.4.50 -->
 - Further speed up our PR tests [#2298](https://github.com/chef/chef-dk/pull/2298) ([tas50](https://github.com/tas50)) <!-- 4.4.49 -->
