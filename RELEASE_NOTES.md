@@ -56,7 +56,7 @@ See the [Chef InSpec 4.16.0 Release Notes](https://discourse.chef.io/t/chef-insp
 
 Cookstyle has been updated from 5.1.19 to 5.6.2. This update brings the total number of Chef cops to 94 and divides the cops into four separate departments. The new departments make it easier to search for specific cops and to enable and disable groups of cops. Instead of just "Chef", we now have the following departments:
 
-- `ChefDeprecations`: Cops that detect (and in many cases correct) deprecations that will prevent cookbooks from running on modern versions of Chef Infra Client.
+- `ChefDeprecations`: Cops that detect, and in many cases correct, deprecations that will prevent cookbooks from running on modern versions of Chef Infra Client.
 - `ChefStyle`: Cops that will help you improve the format and readability of your cookbooks.
 - `ChefModernize`: Cops that will help you modernize your cookbooks by including features introduced in new releases of Chef Infra Client.
 - `ChefEffortless`: Cops that will help you migrate your cookbooks to the Effortless pattern. These are disabled by default.
