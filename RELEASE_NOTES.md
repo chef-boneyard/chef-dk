@@ -4,7 +4,7 @@
 
 ### Chef Infra Client
 
-Chef Infra Client has been updated from 15.3 to 15.4 with updated resources and several significant fixes to `knife bootstrap`.  See the [Chef Infra Client 15.4 Release Notes](https://discourse.chef.io/t/chef-infra-client-15-4-45-released/16081) for a complete list of the new and improved functionality.
+Chef Infra Client has been updated from 15.3 to 15.4 with updated resources and several significant fixes to `knife bootstrap`. See the [Chef Infra Client 15.4 Release Notes](https://discourse.chef.io/t/chef-infra-client-15-4-45-released/16081) for a complete list of the new and improved functionality.
 
 ### Chef InSpec
 
