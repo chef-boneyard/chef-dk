@@ -90,7 +90,7 @@ Going forward, Cookstyle will be our sole Ruby and Chef Infra cookbook linting t
 
 ### kitchen-inspec
 
-`kitchen-inspec` has been updated from 1.1.0 to 1.2.0. This renames the `attrs` key to `input_files` and `attributes` key to `inputs` to match InSpec 4. The old names are still supported but issue a warning.
+`kitchen-inspec` has been updated from 1.1.0 to 1.2.0. This renames the `attrs` key to `input_files`, and the `attributes` key to `inputs` to match InSpec 4. The old names are still supported, but issue a warning.
 
 ### knife-ec2
 
