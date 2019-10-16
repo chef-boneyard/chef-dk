@@ -6,39 +6,44 @@
 - Bump kitchen-dokken to 2.8.0 [#2306](https://github.com/chef/chef-dk/pull/2306) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
-<!-- release_rollup since=4.4.27 -->
+<!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
 - Bump kitchen-dokken to 2.8.0 [#2306](https://github.com/chef/chef-dk/pull/2306) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.5.1 -->
-- Add ChefDK 4.4 and 4.5 release notes &amp; bump Cookstyle [#2303](https://github.com/chef/chef-dk/pull/2303) ([tas50](https://github.com/tas50)) <!-- 4.5.0 -->
-- Enable Habitat package promotions [#2305](https://github.com/chef/chef-dk/pull/2305) ([afiune](https://github.com/afiune)) <!-- 4.4.51 -->
-- Update Chef Infra Client to 15.4.45 and cookstyle to 5.8.1 [#2302](https://github.com/chef/chef-dk/pull/2302) ([tas50](https://github.com/tas50)) <!-- 4.4.50 -->
-- Further speed up our PR tests [#2298](https://github.com/chef/chef-dk/pull/2298) ([tas50](https://github.com/tas50)) <!-- 4.4.49 -->
-- Use a sha256 checksum file to avoid compressing / uploading one every run [#2297](https://github.com/chef/chef-dk/pull/2297) ([tas50](https://github.com/tas50)) <!-- 4.4.48 -->
-- Cache bundled gems in s3 to speed up testing [#2294](https://github.com/chef/chef-dk/pull/2294) ([tas50](https://github.com/tas50)) <!-- 4.4.47 -->
-- Bump inspec to 4.18.0 [#2295](https://github.com/chef/chef-dk/pull/2295) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.46 -->
-- Test on buster containers not stretch containers [#2293](https://github.com/chef/chef-dk/pull/2293) ([tas50](https://github.com/tas50)) <!-- 4.4.45 -->
-- Bump train-core to 3.1.4 [#2291](https://github.com/chef/chef-dk/pull/2291) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.44 -->
-- Bump knife-google to 4.2.0 [#2290](https://github.com/chef/chef-dk/pull/2290) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.43 -->
-- Bump knife-vsphere to 4.0.3 and rspec to 3.9.0 [#2289](https://github.com/chef/chef-dk/pull/2289) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.42 -->
-- Update ruby to 2.6.5 [#2286](https://github.com/chef/chef-dk/pull/2286) ([tas50](https://github.com/tas50)) <!-- 4.4.41 -->
-- Fix Habitat build failure [#2277](https://github.com/chef/chef-dk/pull/2277) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.4.40 -->
-- Bump cookstyle to 5.7.0 [#2284](https://github.com/chef/chef-dk/pull/2284) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.39 -->
-- Bump inspec to 4.17.17 [#2280](https://github.com/chef/chef-dk/pull/2280) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.38 -->
-- Bump omnibus-software from `63602e1` to `3e90169` in /omnibus [#2281](https://github.com/chef/chef-dk/pull/2281) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.4.37 -->
-- Bump inspec-bin to 4.17.17 [#2282](https://github.com/chef/chef-dk/pull/2282) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.36 -->
-- Bump cookstyle to 5.6.5 [#2276](https://github.com/chef/chef-dk/pull/2276) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.35 -->
-- Bump inspec to 4.17.15 [#2270](https://github.com/chef/chef-dk/pull/2270) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.34 -->
-- Bump inspec-bin to 4.17.15 [#2271](https://github.com/chef/chef-dk/pull/2271) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.33 -->
-- Bump omnibus-software from `ae2a2f1` to `63602e1` in /omnibus [#2269](https://github.com/chef/chef-dk/pull/2269) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.4.32 -->
-- Add Buildkite windows verification [#2247](https://github.com/chef/chef-dk/pull/2247) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 4.4.31 -->
-- Bump inspec to 4.17.14 [#2266](https://github.com/chef/chef-dk/pull/2266) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.30 -->
-- Bump inspec-bin to 4.17.11 [#2263](https://github.com/chef/chef-dk/pull/2263) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.4.28 -->
-- [Security] Bump rubyzip from 1.2.4 to 1.3.0 in /omnibus [#2264](https://github.com/chef/chef-dk/pull/2264) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.4.29 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v4.5.0](https://github.com/chef/chef-dk/tree/v4.5.0) (2019-10-16)
+
+#### Merged Pull Requests
+- [Security] Bump rubyzip from 1.2.4 to 1.3.0 in /omnibus [#2264](https://github.com/chef/chef-dk/pull/2264) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump inspec-bin to 4.17.11 [#2263](https://github.com/chef/chef-dk/pull/2263) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump inspec to 4.17.14 [#2266](https://github.com/chef/chef-dk/pull/2266) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Add Buildkite windows verification [#2247](https://github.com/chef/chef-dk/pull/2247) ([jaymalasinha](https://github.com/jaymalasinha))
+- Bump omnibus-software from `ae2a2f1` to `63602e1` in /omnibus [#2269](https://github.com/chef/chef-dk/pull/2269) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump inspec-bin to 4.17.15 [#2271](https://github.com/chef/chef-dk/pull/2271) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump inspec to 4.17.15 [#2270](https://github.com/chef/chef-dk/pull/2270) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump cookstyle to 5.6.5 [#2276](https://github.com/chef/chef-dk/pull/2276) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump inspec-bin to 4.17.17 [#2282](https://github.com/chef/chef-dk/pull/2282) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump omnibus-software from `63602e1` to `3e90169` in /omnibus [#2281](https://github.com/chef/chef-dk/pull/2281) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump inspec to 4.17.17 [#2280](https://github.com/chef/chef-dk/pull/2280) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump cookstyle to 5.7.0 [#2284](https://github.com/chef/chef-dk/pull/2284) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Fix Habitat build failure [#2277](https://github.com/chef/chef-dk/pull/2277) ([tyler-ball](https://github.com/tyler-ball))
+- Update ruby to 2.6.5 [#2286](https://github.com/chef/chef-dk/pull/2286) ([tas50](https://github.com/tas50))
+- Bump knife-vsphere to 4.0.3 and rspec to 3.9.0 [#2289](https://github.com/chef/chef-dk/pull/2289) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-google to 4.2.0 [#2290](https://github.com/chef/chef-dk/pull/2290) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump train-core to 3.1.4 [#2291](https://github.com/chef/chef-dk/pull/2291) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Test on buster containers not stretch containers [#2293](https://github.com/chef/chef-dk/pull/2293) ([tas50](https://github.com/tas50))
+- Bump inspec to 4.18.0 [#2295](https://github.com/chef/chef-dk/pull/2295) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Cache bundled gems in s3 to speed up testing [#2294](https://github.com/chef/chef-dk/pull/2294) ([tas50](https://github.com/tas50))
+- Use a sha256 checksum file to avoid compressing / uploading one every run [#2297](https://github.com/chef/chef-dk/pull/2297) ([tas50](https://github.com/tas50))
+- Further speed up our PR tests [#2298](https://github.com/chef/chef-dk/pull/2298) ([tas50](https://github.com/tas50))
+- Update Chef Infra Client to 15.4.45 and cookstyle to 5.8.1 [#2302](https://github.com/chef/chef-dk/pull/2302) ([tas50](https://github.com/tas50))
+- Enable Habitat package promotions [#2305](https://github.com/chef/chef-dk/pull/2305) ([afiune](https://github.com/afiune))
+- Add ChefDK 4.4 and 4.5 release notes &amp; bump Cookstyle [#2303](https://github.com/chef/chef-dk/pull/2303) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v4.4.27](https://github.com/chef/chef-dk/tree/v4.4.27) (2019-09-30)
 
 #### Merged Pull Requests
@@ -73,7 +78,6 @@
 - Bump test-kitchen to 2.3.3 [#2256](https://github.com/chef/chef-dk/pull/2256) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 - Updating gems to non-yanked versions [#2259](https://github.com/chef/chef-dk/pull/2259) ([tyler-ball](https://github.com/tyler-ball))
 - Bump knife-google to 4.1.0 [#2260](https://github.com/chef/chef-dk/pull/2260) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
-<!-- latest_stable_release -->
 
 ## [v4.3.13](https://github.com/chef/chef-dk/tree/v4.3.13) (2019-08-12)
 
