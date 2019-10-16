@@ -16,7 +16,7 @@ Chef InSpec has been updated from 4.16 to 4.18 with the following changes:
 
 #### Improvements
 
-- The interface resource now has a name property.
+- The `interface` resource now has a name property.
 - Expanded user resource to include the passwordage, maxbadpasswords, and badpasswordattempts properties with Windows.
 
 ### Cookstyle
