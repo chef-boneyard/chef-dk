@@ -110,7 +110,7 @@ Test Kitchen has been updated from 2.2.5 to 2.3.2 with the following changes:
 
 ### knife-google
 
-The knife-google plugin has been updated to 4.1.0 with support for bootstrapping Chef Infra Client 15 and also includes a new ``knife google image list command`` which lists project and public images.
+The knife-google plugin has been updated to 4.1.0 with support for bootstrapping Chef Infra Client 15, and also includes a new ``knife google image list command``, which lists project and public images.
 
 For example `knife google image list --gce_project "chef-msys"`:
 
