@@ -79,7 +79,7 @@ module ChefDK
 
       def data_bag_create
         http_client.post("data", { "name" => COMPAT_MODE_DATA_BAG_NAME })
-      rescue Net::HTTPClientException  => e
+      rescue Net::HTTPClientException => e
         raise e unless e.response.code == "409"
       end
 
@@ -214,7 +214,7 @@ module ChefDK
 
       def upload_lockfile_as_data_bag_item(policy_id, data_item)
         http_client.put("data/#{COMPAT_MODE_DATA_BAG_NAME}/#{policy_id}", data_item)
-      rescue Net::HTTPClientException  => e
+      rescue Net::HTTPClientException => e
         raise e unless e.response.code == "404"
 
         http_client.post("data/#{COMPAT_MODE_DATA_BAG_NAME}", data_item)
