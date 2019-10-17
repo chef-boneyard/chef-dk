@@ -2,7 +2,7 @@
 
 ## Chef Generate Updates
 
-Many of the non-breaking updates that to the `chef generate` command, which shipped in ChefDK 4 have been backported to ChefDK 3.
+Many of the non-breaking updates to the `chef generate` command that shipped in ChefDK 4 have been backported to ChefDK 3.
 
 - `chef generate cookbook` now includes ChefSpecs that utilize the ChefSpec 7.3+ format. This is a much simpler syntax that requires less updating of specs as older platforms are deprecated.
 - `chef generate cookbook` now generates Test Kitchen configs with Ubuntu 18.04
@@ -51,7 +51,7 @@ kitchen-azurerm has been updated from 0.14.8 to 0.14.9, which adds a new `use_ep
 
 ### kitchen-digitalocean 0.10.4
 
-kitchen-digitalocean has been updated to 0.10.4 with support for new distros and additional configuration options for instance setup. You can now control the default DigitalOcean region systems that are spun up by using a new `DIGITALOCEAN_REGION` env var. You can still modify the region in the driver section of your `kitchen.yml` file if you'd like, and the default region of `nyc1` has not changed. This release also adds slug support for `fedora-29`, `fedora-30`, and `ubuntu-19`. Finally, if you'd like to monitor your test instances, the new `monitoring` configuration option in the `kitchen.yml` driver section allows enabling DigitalOcean's instance monitoring. See the [kitchen-digitalocean readme](https://github.com/test-kitchen/kitchen-digitalocean/blob/master/README.md) for `kitchen.yml` config examples.
+kitchen-digitalocean has been updated to 0.10.4 with support for new distros and additional configuration options for instance setup. You can now control the default DigitalOcean region systems that are spun up by using a new `DIGITALOCEAN_REGION` environmental variable. You can still modify the region in the driver section of your `kitchen.yml` file if you'd like, and the default region of `nyc1` has not changed. This release also adds slug support for `fedora-29`, `fedora-30`, and `ubuntu-19`. Finally, if you'd like to monitor your test instances, the new `monitoring` configuration option in the `kitchen.yml` driver section allows enabling DigitalOcean's instance monitoring. See the [kitchen-digitalocean readme](https://github.com/test-kitchen/kitchen-digitalocean/blob/master/README.md) for `kitchen.yml` config examples.
 
 ### kitchen-vagrant
 
@@ -75,13 +75,14 @@ Ruby has been updated from 2.5.5 to 2.5.6 in order to resolve the following CVEs
 ### openssl
 
 OpenSSL has been updated from 1.0.2r to 1.0.2t to resolve the following CVEs:
+
 - [CVE-2019-1563](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1563)
 - [CVE-2019-1547](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1547)
 - [CVE-2019-1552](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1552)
 
 ### Nokogiri
 
-Nokogiri has been updated from 1.10.3 to 1.10.4 in order to resolve [CVE-2019-5477](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5477)
+Nokogiri has been updated from 1.10.3 to 1.10.4 in order to resolve [CVE-2019-5477](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5477).
 
 # ChefDK 3.11 Release Notes
 
