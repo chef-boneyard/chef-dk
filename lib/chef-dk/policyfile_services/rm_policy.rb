@@ -134,7 +134,7 @@ module ChefDK
       def fetch_policy_revision_data
         @policy_revision_data = http_client.get("/policies/#{policy_name}")
         @policy_exists = true
-      rescue Net::HTTPServerException => e
+      rescue Net::HTTPClientException => e
         raise unless e.response.code == "404"
 
         @policy_exists = false

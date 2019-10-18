@@ -211,6 +211,8 @@ describe ChefDK::PolicyfileServices::CleanPolicies do
           end
 
           it "deletes what it can, then raises an error" do
+            # Ruby 2.6 deprecated HTTPServerException but the errors are still initialized using it, so
+            # this will continue to print that out until they remove HTTPServerException
             expected_message = <<~ERROR
               Failed to delete some policy revisions:
               - appserver (4444444444444444444444444444444444444444444444444444444444444444): Net::HTTPServerException 403 \"Unauthorized\"
