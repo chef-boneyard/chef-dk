@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.5.2 -->
-## [v4.5.2](https://github.com/chef/chef-dk/tree/v4.5.2) (2019-10-17)
+<!-- latest_release 4.5.3 -->
+## [v4.5.3](https://github.com/chef/chef-dk/tree/v4.5.3) (2019-10-18)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `3d99fdf` to `39acd5f` in /omnibus [#2308](https://github.com/chef/chef-dk/pull/2308) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Replace usage of deprecated Net::HTTPServerException error class [#2182](https://github.com/chef/chef-dk/pull/2182) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Replace usage of deprecated Net::HTTPServerException error class [#2182](https://github.com/chef/chef-dk/pull/2182) ([tas50](https://github.com/tas50)) <!-- 4.5.3 -->
 - Bump omnibus-software from `3d99fdf` to `39acd5f` in /omnibus [#2308](https://github.com/chef/chef-dk/pull/2308) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.5.2 -->
 - Bump kitchen-dokken to 2.8.0 [#2306](https://github.com/chef/chef-dk/pull/2306) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.5.1 -->
 <!-- release_rollup -->
