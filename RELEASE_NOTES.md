@@ -1,3 +1,89 @@
+# ChefDK 3.12 Release Notes
+
+## Chef Generate Updates
+
+Many of the non-breaking updates to the `chef generate` command that shipped in ChefDK 4 have been backported to ChefDK 3.
+
+- `chef generate cookbook` now includes ChefSpecs that utilize the ChefSpec 7.3+ format. This is a much simpler syntax that requires less updating of specs as older platforms are deprecated.
+- `chef generate cookbook` now generates Test Kitchen configs with Ubuntu 18.04
+- `chef generate cookbook` now generates non-hidden Test Kitchen configs (kitchen.yml instead of .kitchen.yml)
+- `chef generate cookbook --kitchen dokken` now generates a fully working kitchen-dokken config.
+- `chef generate cookbook` no longer creates cookbook files with the unecessary `frozen_string_literal: true` comments.
+- `chef generate cookbook` now generates Test Kitchen configs with the `product_name`/`product_version` method of specifying Chef Infra Client releases as `require_chef_omnibus` will be removed in the next major Test Kitchen release.
+- `chef generate cookbook_file` no longer places the specified file in a "default" folder as these aren't needed in Chef Infra Client 12 and later.
+- `chef generate cookbook` now generates cookbooks with updated .gitignore and chefignore files
+
+## Platform Support Updates
+
+### macOS 10.15 Support
+
+ChefDK is now validated against macOS 10.15 (Catalina) with packages available at [downloads.chef.io](https://downloads.chef.io/chefdk/). Additionally, ChefDK will no longer be validated against macOS 10.12.
+
+### RHEL 8 Support
+
+ChefDK is now validated against RHEL 8 with packages available at [downloads.chef.io](https://downloads.chef.io/chefdk/).
+
+### Windows 2019 Support
+
+ChefDK is now validated against Windows 2019 with packages available at [downloads.chef.io](https://downloads.chef.io/chefdk/).
+
+### SLES 11 EOL
+
+Packages will no longer be built for SUSE Linux Enterprise Server (SLES) 11 as SLES 11 exited the 'General Support' phase on March 31, 2019. See [Chef's Platform End-of-Life Policy](https://docs.chef.io/platforms.html#platform-end-of-life-policy) for more information on when Chef ends support for an OS release.
+
+### Ubuntu 14.04 EOL
+
+Packages will no longer be built for Ubuntu 14.04 as Ubuntu 14.04 entered "End of life" status April 2019. See [Chef's Platform End-of-Life Policy](https://docs.chef.io/platforms.html#platform-end-of-life-policy) for more information on when Chef ends support for an OS release.
+
+## Updated Components
+
+### Chef Infra Client 14.14.25
+
+Chef Infra Client has been udpated from 14.13 to 14.14.25. This release includes support for the new `unified_mode` in custom resources, a large number of improvements to resources, improved platform detection support, as well as bug fix. See the [Chef Infra Client 14.14.25 Release Notes](https://github.com/chef/chef/blob/chef-14/RELEASE_NOTES.md#chef-client-release-notes-141425) for a detailed list of changes.
+
+### ChefSpec 7.4.0
+
+ChefSpec has been updated to 7.4 with better support stubbing commands, and a new `policyfile_path` configuration option for specifying the path to the PolicyFile.
+
+### kitchen-azurerm
+
+kitchen-azurerm has been updated from 0.14.8 to 0.14.9, which adds a new `use_ephemeral_osdisk` configuration option. See Microsoft's [Empheral OS Disk Announcement](https://azure.microsoft.com/en-us/updates/azure-ephemeral-os-disk-now-generally-available/) for more information on this new feature.
+
+### kitchen-digitalocean 0.10.4
+
+kitchen-digitalocean has been updated to 0.10.4 with support for new distros and additional configuration options for instance setup. You can now control the default DigitalOcean region systems that are spun up by using a new `DIGITALOCEAN_REGION` environmental variable. You can still modify the region in the driver section of your `kitchen.yml` file if you'd like, and the default region of `nyc1` has not changed. This release also adds slug support for `fedora-29`, `fedora-30`, and `ubuntu-19`. Finally, if you'd like to monitor your test instances, the new `monitoring` configuration option in the `kitchen.yml` driver section allows enabling DigitalOcean's instance monitoring. See the [kitchen-digitalocean readme](https://github.com/test-kitchen/kitchen-digitalocean/blob/master/README.md) for `kitchen.yml` config examples.
+
+### kitchen-vagrant
+
+kitchen-vagrant has been updated from 1.5.2. to 1.6.0. This new version properly truncates the instance name to avoid hitting the 100 character limit in Hyper-V, and also updates the hostname length limit on Windows from 12 characters to 15 characters. Thanks [@Xorima](https://github.com/Xorima) and [@PowerSchill](https://github.com/PowerSchill).
+
+### knife-vsphere 3.0.1
+
+Knife-vsphere has been updated to 3.0.1. This new version adds support for specifying the `bootstrap_template` when creating new VMs. This release also improves how the plugin finds VM hosts, in order to support hosts in nested directories.
+
+## Security Updates
+
+### Ruby
+
+Ruby has been updated from 2.5.5 to 2.5.6 in order to resolve the following CVEs:
+
+- [CVE-2019-16255](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16255): A code injection vulnerability of Shell#[] and Shell#test
+- [CVE-2019-16254](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16254): HTTP response splitting in WEBrick (Additional fix)
+- [CVE-2019-15845](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-15845): A NUL injection vulnerability of File.fnmatch and File.fnmatch?
+- [CVE-2019-16201](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16201): Regular Expression Denial of Service vulnerability of WEBrick’s Digest access authentication
+
+### openssl
+
+OpenSSL has been updated from 1.0.2r to 1.0.2t to resolve the following CVEs:
+
+- [CVE-2019-1563](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1563)
+- [CVE-2019-1547](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1547)
+- [CVE-2019-1552](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1552)
+
+### Nokogiri
+
+Nokogiri has been updated from 1.10.3 to 1.10.4 in order to resolve [CVE-2019-5477](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5477).
+
 # ChefDK 3.11 Release Notes
 
 ## Chef Infra Client 14.13.11
