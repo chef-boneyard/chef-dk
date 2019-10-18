@@ -1,30 +1,28 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.12.0 -->
-## [v3.12.0](https://github.com/chef/chef-dk/tree/v3.12.0) (2019-10-18)
-
-#### Merged Pull Requests
-- A few last minute changes + ChefDK 3.12 release notes [#2307](https://github.com/chef/chef-dk/pull/2307) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.11.3 -->
-### Changes since 3.11.3 release
-
-#### Merged Pull Requests
-- A few last minute changes + ChefDK 3.12 release notes [#2307](https://github.com/chef/chef-dk/pull/2307) ([tas50](https://github.com/tas50)) <!-- 3.12.0 -->
-- Update chef to 14.14.25 [#2299](https://github.com/chef/chef-dk/pull/2299) ([tas50](https://github.com/tas50)) <!-- 3.11.14 -->
-- Update Chef Client to 14.14.14 and rspec to 3.9.0 [#2288](https://github.com/chef/chef-dk/pull/2288) ([tas50](https://github.com/tas50)) <!-- 3.11.13 -->
-- Update openssl to 1.0.2t [#2287](https://github.com/chef/chef-dk/pull/2287) ([tas50](https://github.com/tas50)) <!-- 3.11.12 -->
-- Fix Habitat build failure [#2278](https://github.com/chef/chef-dk/pull/2278) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.11.11 -->
-- Update deps to the latest and disable hab package promotion [#2275](https://github.com/chef/chef-dk/pull/2275) ([tas50](https://github.com/tas50)) <!-- 3.11.10 -->
-- Backport non-breaking changes from DK 4 [#2273](https://github.com/chef/chef-dk/pull/2273) ([tas50](https://github.com/tas50)) <!-- 3.11.9 -->
-- Update Ruby / openSSL / nokogiri to address CVEs [#2268](https://github.com/chef/chef-dk/pull/2268) ([tas50](https://github.com/tas50)) <!-- 3.11.8 -->
-- Jsinha/migrate appvy dk3 [#2272](https://github.com/chef/chef-dk/pull/2272) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 3.11.7 -->
-- Fix the build arguments in the Dockerfile [#2229](https://github.com/chef/chef-dk/pull/2229) ([tduffield](https://github.com/tduffield)) <!-- 3.11.6 -->
-- Update mixlib-archive, mixlib-cli, chefspec, and rspec [#2154](https://github.com/chef/chef-dk/pull/2154) ([tas50](https://github.com/tas50)) <!-- 3.11.5 -->
-- Update Ruby in the hab plan to 2.5.5 [#2118](https://github.com/chef/chef-dk/pull/2118) ([tas50](https://github.com/tas50)) <!-- 3.11.4 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.12.0](https://github.com/chef/chef-dk/tree/v3.12.0) (2019-10-18)
+
+#### Merged Pull Requests
+- Update Ruby in the hab plan to 2.5.5 [#2118](https://github.com/chef/chef-dk/pull/2118) ([tas50](https://github.com/tas50))
+- Update mixlib-archive, mixlib-cli, chefspec, and rspec [#2154](https://github.com/chef/chef-dk/pull/2154) ([tas50](https://github.com/tas50))
+- Fix the build arguments in the Dockerfile [#2229](https://github.com/chef/chef-dk/pull/2229) ([tduffield](https://github.com/tduffield))
+- Jsinha/migrate appvy dk3 [#2272](https://github.com/chef/chef-dk/pull/2272) ([jaymalasinha](https://github.com/jaymalasinha))
+- Update Ruby / openSSL / nokogiri to address CVEs [#2268](https://github.com/chef/chef-dk/pull/2268) ([tas50](https://github.com/tas50))
+- Backport non-breaking changes from DK 4 [#2273](https://github.com/chef/chef-dk/pull/2273) ([tas50](https://github.com/tas50))
+- Update deps to the latest and disable hab package promotion [#2275](https://github.com/chef/chef-dk/pull/2275) ([tas50](https://github.com/tas50))
+- Fix Habitat build failure [#2278](https://github.com/chef/chef-dk/pull/2278) ([tyler-ball](https://github.com/tyler-ball))
+- Update openssl to 1.0.2t [#2287](https://github.com/chef/chef-dk/pull/2287) ([tas50](https://github.com/tas50))
+- Update Chef Client to 14.14.14 and rspec to 3.9.0 [#2288](https://github.com/chef/chef-dk/pull/2288) ([tas50](https://github.com/tas50))
+- Update chef to 14.14.25 [#2299](https://github.com/chef/chef-dk/pull/2299) ([tas50](https://github.com/tas50))
+- A few last minute changes + ChefDK 3.12 release notes [#2307](https://github.com/chef/chef-dk/pull/2307) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v3.11.3](https://github.com/chef/chef-dk/tree/v3.11.3) (2019-05-31)
 
 #### Merged Pull Requests
@@ -32,7 +30,6 @@
 - Update kitchen-dokken to 2.7 [#2112](https://github.com/chef/chef-dk/pull/2112) ([tas50](https://github.com/tas50))
 - Update Chef to 14.13.11 [#2116](https://github.com/chef/chef-dk/pull/2116) ([tas50](https://github.com/tas50))
 - Update Test Kitchen to 1.25 [#2117](https://github.com/chef/chef-dk/pull/2117) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v3.10.1](https://github.com/chef/chef-dk/tree/v3.10.1) (2019-05-17)
 
