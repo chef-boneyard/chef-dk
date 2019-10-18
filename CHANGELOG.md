@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.11.14 -->
-## [v3.11.14](https://github.com/chef/chef-dk/tree/v3.11.14) (2019-10-15)
+<!-- latest_release 3.12.0 -->
+## [v3.12.0](https://github.com/chef/chef-dk/tree/v3.12.0) (2019-10-18)
 
 #### Merged Pull Requests
-- Update chef to 14.14.25 [#2299](https://github.com/chef/chef-dk/pull/2299) ([tas50](https://github.com/tas50))
+- A few last minute changes + ChefDK 3.12 release notes [#2307](https://github.com/chef/chef-dk/pull/2307) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.11.3 -->
 ### Changes since 3.11.3 release
 
 #### Merged Pull Requests
+- A few last minute changes + ChefDK 3.12 release notes [#2307](https://github.com/chef/chef-dk/pull/2307) ([tas50](https://github.com/tas50)) <!-- 3.12.0 -->
 - Update chef to 14.14.25 [#2299](https://github.com/chef/chef-dk/pull/2299) ([tas50](https://github.com/tas50)) <!-- 3.11.14 -->
 - Update Chef Client to 14.14.14 and rspec to 3.9.0 [#2288](https://github.com/chef/chef-dk/pull/2288) ([tas50](https://github.com/tas50)) <!-- 3.11.13 -->
 - Update openssl to 1.0.2t [#2287](https://github.com/chef/chef-dk/pull/2287) ([tas50](https://github.com/tas50)) <!-- 3.11.12 -->
