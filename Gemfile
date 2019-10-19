@@ -120,7 +120,7 @@ group(:omnibus_package) do
   gem "winrm-fs"
   gem "winrm-elevated"
   gem "cucumber"
-  gem "chef-stove"
+  gem "stove", ">= 7.1.5"
 end
 
 # Everything except AIX
