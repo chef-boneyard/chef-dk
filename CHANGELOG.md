@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.5.4 -->
-## [v4.5.4](https://github.com/chef/chef-dk/tree/v4.5.4) (2019-10-23)
+<!-- latest_release 4.5.5 -->
+## [v4.5.5](https://github.com/chef/chef-dk/tree/v4.5.5) (2019-10-23)
 
 #### Merged Pull Requests
-- Bump stove to 7.1.5 [#2309](https://github.com/chef/chef-dk/pull/2309) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Switch back to the stove gem [#2310](https://github.com/chef/chef-dk/pull/2310) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Switch back to the stove gem [#2310](https://github.com/chef/chef-dk/pull/2310) ([tas50](https://github.com/tas50)) <!-- 4.5.5 -->
 - Bump stove to 7.1.5 [#2309](https://github.com/chef/chef-dk/pull/2309) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.5.4 -->
 - Replace usage of deprecated Net::HTTPServerException error class [#2182](https://github.com/chef/chef-dk/pull/2182) ([tas50](https://github.com/tas50)) <!-- 4.5.3 -->
 - Bump omnibus-software from `3d99fdf` to `39acd5f` in /omnibus [#2308](https://github.com/chef/chef-dk/pull/2308) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.5.2 -->
