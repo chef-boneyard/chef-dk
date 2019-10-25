@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.1 -->
-## [v4.6.1](https://github.com/chef/chef-dk/tree/v4.6.1) (2019-10-24)
+<!-- latest_release 4.6.2 -->
+## [v4.6.2](https://github.com/chef/chef-dk/tree/v4.6.2) (2019-10-25)
 
 #### Merged Pull Requests
-- Bump cookstyle to 5.10.11 [#2312](https://github.com/chef/chef-dk/pull/2312) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump cookstyle to 5.10.13 [#2322](https://github.com/chef/chef-dk/pull/2322) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump cookstyle to 5.10.13 [#2322](https://github.com/chef/chef-dk/pull/2322) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.2 -->
 - Bump cookstyle to 5.10.11 [#2312](https://github.com/chef/chef-dk/pull/2312) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.1 -->
 - Bump kitchen-digitalocean to 0.10.5 [#2311](https://github.com/chef/chef-dk/pull/2311) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.0 -->
 - Switch back to the stove gem [#2310](https://github.com/chef/chef-dk/pull/2310) ([tas50](https://github.com/tas50)) <!-- 4.5.5 -->
