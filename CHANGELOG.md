@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.12.3 -->
-## [v3.12.3](https://github.com/chef/chef-dk/tree/v3.12.3) (2019-10-29)
+<!-- latest_release 3.12.4 -->
+## [v3.12.4](https://github.com/chef/chef-dk/tree/v3.12.4) (2019-10-31)
 
 #### Merged Pull Requests
-- Bump omnibus from `ac881b7` to `e066879` in /omnibus [#2325](https://github.com/chef/chef-dk/pull/2325) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `433a18f` to `a16abe9` in /omnibus [#2339](https://github.com/chef/chef-dk/pull/2339) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.12.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `433a18f` to `a16abe9` in /omnibus [#2339](https://github.com/chef/chef-dk/pull/2339) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.4 -->
 - Bump omnibus from `ac881b7` to `e066879` in /omnibus [#2325](https://github.com/chef/chef-dk/pull/2325) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.3 -->
 - Bump omnibus-software from `39acd5f` to `433a18f` in /omnibus [#2328](https://github.com/chef/chef-dk/pull/2328) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.2 -->
 - Bump omnibus-software from `3d99fdf` to `39acd5f` in /omnibus [#2316](https://github.com/chef/chef-dk/pull/2316) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.1 -->
