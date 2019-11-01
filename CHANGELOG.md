@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.7 -->
-## [v4.6.7](https://github.com/chef/chef-dk/tree/v4.6.7) (2019-10-31)
+<!-- latest_release 4.6.8 -->
+## [v4.6.8](https://github.com/chef/chef-dk/tree/v4.6.8) (2019-11-01)
 
 #### Merged Pull Requests
-- Bump omnibus from `ac881b7` to `c5c10bf` in /omnibus [#2335](https://github.com/chef/chef-dk/pull/2335) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump train-aws to 0.1.12 [#2341](https://github.com/chef/chef-dk/pull/2341) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump train-aws to 0.1.12 [#2341](https://github.com/chef/chef-dk/pull/2341) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.8 -->
 - Bump omnibus from `ac881b7` to `c5c10bf` in /omnibus [#2335](https://github.com/chef/chef-dk/pull/2335) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.7 -->
 - Bump omnibus-software from `433a18f` to `a16abe9` in /omnibus [#2337](https://github.com/chef/chef-dk/pull/2337) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.6 -->
 - Bump nokogiri to 1.10.5 [#2333](https://github.com/chef/chef-dk/pull/2333) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.5 -->
