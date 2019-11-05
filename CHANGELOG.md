@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.12 -->
-## [v4.6.12](https://github.com/chef/chef-dk/tree/v4.6.12) (2019-11-05)
+<!-- latest_release 4.6.13 -->
+## [v4.6.13](https://github.com/chef/chef-dk/tree/v4.6.13) (2019-11-05)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `9068533` to `3f47c11` in /omnibus [#2352](https://github.com/chef/chef-dk/pull/2352) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Update all deps to the latest including openssl+libxml2+libxslt [#2360](https://github.com/chef/chef-dk/pull/2360) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update all deps to the latest including openssl+libxml2+libxslt [#2360](https://github.com/chef/chef-dk/pull/2360) ([tas50](https://github.com/tas50)) <!-- 4.6.13 -->
 - Bump omnibus-software from `9068533` to `3f47c11` in /omnibus [#2352](https://github.com/chef/chef-dk/pull/2352) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.12 -->
 - Bump omnibus from `5d95243` to `acdcf27` in /omnibus [#2359](https://github.com/chef/chef-dk/pull/2359) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.11 -->
 - Bump omnibus-software from `a16abe9` to `9068533` in /omnibus [#2344](https://github.com/chef/chef-dk/pull/2344) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.10 -->
