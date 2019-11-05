@@ -48,19 +48,26 @@ end
 # We equality pin the chef gem itself to assert which version we're shipping.
 group(:omnibus_package) do
   gem "appbundler"
-  gem "berkshelf", ">= 7.0.8"
-  gem "chef-vault", ">= 3.4.1"
+
   # Expeditor manages the version of chef released to Rubygems. We only release 'stable' chef
   # gems to Rubygems now, so letting this float on latest should always give us the latest
   # stable release. May have to re-pin around major version bumping time, or during patch
   # fixes.
   gem "chef", "= 15.4.45"
   gem "chef-bin", "= 15.4.45"
+  gem "ohai", ">= 14"
   gem "cheffish", ">= 14.0.1"
+
+  # chefspec
   gem "chefspec", ">= 7.3.0", "< 8"
   gem "fauxhai", "~> 7.0"
+
+  # inspec
   gem "inspec-bin", "~> 4.10" # the actual inspec CLI binary
   gem "inspec", "~> 4.10"
+
+  # test-kitchen and plugins
+  gem "test-kitchen", ">= 2.0"
   gem "kitchen-azurerm", ">= 0.14"
   gem "kitchen-ec2", ">= 3.0", "< 4"
   gem "kitchen-digitalocean", ">= 0.10.0"
@@ -69,26 +76,16 @@ group(:omnibus_package) do
   gem "kitchen-hyperv", ">= 0.5.1"
   gem "kitchen-inspec", ">= 1.0"
   gem "kitchen-vagrant", ">= 1.6"
+
+  # knife plugins
   gem "knife-acl", ">= 1.0.3"
   gem "knife-azure", ">= 2.0.1"
   gem "knife-ec2", ">= 1.0"
-  gem "knife-google", ">= 3.3.3"
+  gem "knife-google", ">= 4.2.0"
   gem "knife-tidy", ">= 1.2.0"
   gem "knife-windows", ">= 3.0"
   gem "knife-opc", ">= 0.4.0"
-  gem "knife-vsphere", ">= 2.1.1"
-  gem "mixlib-archive", ">= 0.4.16"
-  gem "ohai", ">= 14"
-  gem "net-ssh", ">= 4.2.0"
-  gem "test-kitchen", ">= 2.0"
-  gem "listen"
-  gem "dco"
-
-  # many layers down these bring in ethon which uses ffi / libcurl and breaks on windows
-  # we want to get this working, but for now it's disabled so we can get a build out
-  # make sure to add curl back to the omnibus def before enabling this again
-  # gem "knife-vcenter", ">= 2.0"
-  # gem "kitchen-vcenter", ">= 2.0"
+  gem "knife-vsphere", ">= 4.0"
 
   # ed25519 ssh key support done here as it's a native gem we can't put in train
   gem "ed25519"
@@ -110,6 +107,10 @@ group(:omnibus_package) do
   gem "knife-push"
 
   # All of the following used to be software definitions we included:
+  gem "mixlib-archive", ">= 0.4.16"
+  gem "net-ssh", ">= 4.2.0"
+  gem "listen"
+  gem "dco"
   gem "knife-spork"
   gem "mixlib-install"
   gem "nokogiri"
@@ -121,6 +122,8 @@ group(:omnibus_package) do
   gem "winrm-elevated"
   gem "cucumber"
   gem "stove", ">= 7.1.5"
+  gem "berkshelf", ">= 7.0.8"
+  gem "chef-vault", ">= 3.4.1"
 end
 
 # Everything except AIX
