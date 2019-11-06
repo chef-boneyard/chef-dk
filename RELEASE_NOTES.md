@@ -15,7 +15,7 @@ kitchen-digitalocean has been updated to 0.10.5 which adds new image aliases for
 
 ### kitchen-dokkken 2.8.0
 
-kitchen-dokken has been updated to 2.8.0, which now exposes the `CI` and `TEST_KITCHEN` environmental variables to match the behavior of `kitchen-vagrant`.
+kitchen-dokken has been updated to 2.8.0. This will make the `CI` and `TEST_KITCHEN` environmental variables match the behavior of `kitchen-vagrant`.
 
 ## Security Updates
 
