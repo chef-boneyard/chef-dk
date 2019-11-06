@@ -1,4 +1,21 @@
-# ChefDK 3.12 Release Notes
+# ChefDK 3.12.10 Release Notes
+
+## Updated Components
+
+### Chef Infra Client 14.14.29
+
+Chef Infra Client has been updated to 14.14.29 with the following bug fixes:
+ - Fixed service/systemd_unit resource trying to reenable services with an indirect status
+ - systemd_unit now logs at info level
+ - Fixed knife config get throwing a TypeError: no implicit conversion of nil into String error
+
+## Security Updates
+
+### libxslt
+
+libxslt has been updated to 1.1.34 to resolve [CVE-2019-13118](https://nvd.nist.gov/vuln/detail/CVE-2019-13118)
+
+# ChefDK 3.12.0 Release Notes
 
 ## Chef Generate Updates
 
