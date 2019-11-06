@@ -23,6 +23,15 @@ kitchen-dokken has been updated to 2.8.0. This will make the `CI` and `TEST_KITC
 
 libxslt has been updated to 1.1.34 to resolve [CVE-2019-13118](https://nvd.nist.gov/vuln/detail/CVE-2019-13118).
 
+### Ruby
+
+Ruby has been updated from 2.5.6 to 2.5.7 in order to resolve the following CVEs:
+
+- [CVE-2019-16255](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16255): A code injection vulnerability of Shell#[] and Shell#test
+- [CVE-2019-16254](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16254): HTTP response splitting in WEBrick (Additional fix)
+- [CVE-2019-15845](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-15845): A NUL injection vulnerability of File.fnmatch and File.fnmatch?
+- [CVE-2019-16201](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16201): Regular Expression Denial of Service vulnerability of WEBrick’s Digest access authentication
+
 # ChefDK 3.12.0 Release Notes
 
 ## Chef Generate Updates
