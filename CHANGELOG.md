@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.12.9 -->
-## [v3.12.9](https://github.com/chef/chef-dk/tree/v3.12.9) (2019-11-05)
+<!-- latest_release 3.12.10 -->
+## [v3.12.10](https://github.com/chef/chef-dk/tree/v3.12.10) (2019-11-06)
 
 #### Merged Pull Requests
-- Update all DK 3 deps to the latest [#2361](https://github.com/chef/chef-dk/pull/2361) ([tas50](https://github.com/tas50))
+- Update Chef Infra Client to 14.14.29 [#2368](https://github.com/chef/chef-dk/pull/2368) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.12.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update Chef Infra Client to 14.14.29 [#2368](https://github.com/chef/chef-dk/pull/2368) ([tas50](https://github.com/tas50)) <!-- 3.12.10 -->
 - Update all DK 3 deps to the latest [#2361](https://github.com/chef/chef-dk/pull/2361) ([tas50](https://github.com/tas50)) <!-- 3.12.9 -->
 - Bump omnibus-software from `9068533` to `3f47c11` in /omnibus [#2350](https://github.com/chef/chef-dk/pull/2350) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.8 -->
 - Bump omnibus from `5d95243` to `acdcf27` in /omnibus [#2353](https://github.com/chef/chef-dk/pull/2353) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.7 -->
