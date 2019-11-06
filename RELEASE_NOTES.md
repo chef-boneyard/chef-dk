@@ -9,6 +9,14 @@ Chef Infra Client has been updated to 14.14.29 with the following bug fixes:
  - systemd_unit now logs at info level
  - Fixed knife config get throwing a TypeError: no implicit conversion of nil into String error
 
+### kitchen-digitalocean 0.10.4
+
+kitchen-digitalocean has been updated to 0.10.5, which adds new image aliases for Debian-10 and FreeBSD-12.
+
+### kitchen-dokkken 2.8.0
+
+kitchen-dokken has been updated to 2.8.0, which now exposes the `CI` and `TEST_KITCHEN` environmental variables to match the behavior of `kitchen-vagrant`.
+
 ## Security Updates
 
 ### libxslt
