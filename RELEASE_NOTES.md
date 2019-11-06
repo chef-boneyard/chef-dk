@@ -6,7 +6,7 @@
 
 Chef Infra Client has been updated to 14.14.29 with the following bug fixes:
  - Fixed service/systemd_unit resource trying to reenable services with an indirect status
- - systemd_unit now logs at info level
+ - The `systemd_unit` resource now logs at the info level.
  - Fixed knife config get throwing a TypeError: no implicit conversion of nil into String error
 
 ### kitchen-digitalocean 0.10.4
