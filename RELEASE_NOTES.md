@@ -21,7 +21,7 @@ kitchen-dokken has been updated to 2.8.0, which now exposes the `CI` and `TEST_K
 
 ### libxslt
 
-libxslt has been updated to 1.1.34 to resolve [CVE-2019-13118](https://nvd.nist.gov/vuln/detail/CVE-2019-13118)
+libxslt has been updated to 1.1.34 to resolve [CVE-2019-13118](https://nvd.nist.gov/vuln/detail/CVE-2019-13118).
 
 # ChefDK 3.12.0 Release Notes
 
