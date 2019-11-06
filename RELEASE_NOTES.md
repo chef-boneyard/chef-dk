@@ -1,4 +1,29 @@
-# ChefDK 3.12 Release Notes
+# ChefDK 3.12.10 Release Notes
+
+## Updated Components
+
+### Chef Infra Client 14.14.29
+
+Chef Infra Client has been updated to 14.14.29 with the following bug fixes:
+ - Fixed an error with the `service` and `systemd_unit` resources which would try to re-enable services with an indirect status.```
+ - The `systemd_unit` resource now logs at the info level.
+ - Fixed knife config when it returned a `TypeError: no implicit conversion of nil into String` error.
+
+### kitchen-digitalocean 0.10.4
+
+kitchen-digitalocean has been updated to 0.10.5 which adds new image aliases for Debian-10 and FreeBSD-12.
+
+### kitchen-dokkken 2.8.0
+
+kitchen-dokken has been updated to 2.8.0. This will make the `CI` and `TEST_KITCHEN` environmental variables match the behavior of `kitchen-vagrant`.
+
+## Security Updates
+
+### libxslt
+
+libxslt has been updated to 1.1.34 to resolve [CVE-2019-13118](https://nvd.nist.gov/vuln/detail/CVE-2019-13118).
+
+# ChefDK 3.12.0 Release Notes
 
 ## Chef Generate Updates
 
