@@ -5,7 +5,7 @@
 ### Chef Infra Client 14.14.29
 
 Chef Infra Client has been updated to 14.14.29 with the following bug fixes:
- - Fixed service/systemd_unit resource trying to reenable services with an indirect status
+ - Fixed an error with the `service` and `systemd_unit` resources which would try to re-enable services with an indirect status.```
  - The `systemd_unit` resource now logs at the info level.
  - Fixed knife config get throwing a TypeError: no implicit conversion of nil into String error
 
