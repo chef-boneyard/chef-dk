@@ -26,13 +26,13 @@ GEM
     artifactory (3.0.5)
     ast (2.4.0)
     aws-eventstream (1.0.3)
-    aws-sdk (2.11.389)
-      aws-sdk-resources (= 2.11.389)
-    aws-sdk-core (2.11.389)
+    aws-sdk (2.11.390)
+      aws-sdk-resources (= 2.11.390)
+    aws-sdk-core (2.11.390)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.389)
-      aws-sdk-core (= 2.11.389)
+    aws-sdk-resources (2.11.390)
+      aws-sdk-core (= 2.11.390)
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
     axiom-types (0.1.1)
@@ -65,10 +65,10 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (11.0.1)
-    chef (14.14.25)
+    chef (14.14.29)
       addressable
       bundler (>= 1.10)
-      chef-config (= 14.14.25)
+      chef-config (= 14.14.29)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -95,10 +95,10 @@ GEM
       specinfra (~> 2.10)
       syslog-logger (~> 1.6)
       uuidtools (~> 2.1.5)
-    chef (14.14.25-universal-mingw32)
+    chef (14.14.29-universal-mingw32)
       addressable
       bundler (>= 1.10)
-      chef-config (= 14.14.25)
+      chef-config (= 14.14.29)
       chef-zero (>= 13.0)
       diff-lcs (~> 1.2, >= 1.2.4)
       erubis (~> 2.7)
@@ -154,7 +154,7 @@ GEM
       toml-rb
       train
       tty-spinner
-    chef-config (14.14.25)
+    chef-config (14.14.29)
       addressable
       fuzzyurl
       mixlib-config (>= 2.2.12, < 4.0)
@@ -680,7 +680,7 @@ GEM
     solve (4.0.2)
       molinillo (~> 0.6)
       semverse (>= 1.1, < 4.0)
-    specinfra (2.82.3)
+    specinfra (2.82.4)
       net-scp
       net-ssh (>= 2.7)
       net-telnet (= 0.1.1)
@@ -837,7 +837,7 @@ DEPENDENCIES
   artifactory
   berkshelf (>= 7.0.8)
   bundler
-  chef (= 14.14.25)
+  chef (= 14.14.29)
   chef-apply
   chef-dk!
   chef-provisioning (>= 2.7.1)
