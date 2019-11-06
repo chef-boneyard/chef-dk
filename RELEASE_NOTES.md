@@ -11,7 +11,7 @@ Chef Infra Client has been updated to 14.14.29 with the following bug fixes:
 
 ### kitchen-digitalocean 0.10.4
 
-kitchen-digitalocean has been updated to 0.10.5, which adds new image aliases for Debian-10 and FreeBSD-12.
+kitchen-digitalocean has been updated to 0.10.5 which adds new image aliases for Debian-10 and FreeBSD-12.
 
 ### kitchen-dokkken 2.8.0
 
