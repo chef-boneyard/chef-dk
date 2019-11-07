@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.14 -->
-## [v4.6.14](https://github.com/chef/chef-dk/tree/v4.6.14) (2019-11-05)
+<!-- latest_release 4.6.15 -->
+## [v4.6.15](https://github.com/chef/chef-dk/tree/v4.6.15) (2019-11-07)
 
 #### Merged Pull Requests
-- Bump knife-vsphere to 4.0.7 [#2366](https://github.com/chef/chef-dk/pull/2366) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump foodcritic to 16.2.0 [#2372](https://github.com/chef/chef-dk/pull/2372) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump foodcritic to 16.2.0 [#2372](https://github.com/chef/chef-dk/pull/2372) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.15 -->
 - Bump knife-vsphere to 4.0.7 [#2366](https://github.com/chef/chef-dk/pull/2366) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.14 -->
 - Update all deps to the latest including openssl+libxml2+libxslt [#2360](https://github.com/chef/chef-dk/pull/2360) ([tas50](https://github.com/tas50)) <!-- 4.6.13 -->
 - Bump omnibus-software from `9068533` to `3f47c11` in /omnibus [#2352](https://github.com/chef/chef-dk/pull/2352) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.12 -->
