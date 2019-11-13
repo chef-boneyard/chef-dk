@@ -99,7 +99,7 @@ group(:omnibus_package) do
   gem "chef-apply", "= 0.3.0"
 
   # For Delivery build node
-  gem "chef-sugar-ng"
+  gem "chef-sugar"
   gem "mixlib-versioning"
   gem "artifactory"
   gem "opscode-pushy-client", ">= 2.99"
