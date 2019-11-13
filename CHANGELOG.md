@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.17 -->
-## [v4.6.17](https://github.com/chef/chef-dk/tree/v4.6.17) (2019-11-13)
+<!-- latest_release 4.6.18 -->
+## [v4.6.18](https://github.com/chef/chef-dk/tree/v4.6.18) (2019-11-13)
 
 #### Merged Pull Requests
-- Bump omnibus from `e18e22b` to `f0e30ed` in /omnibus [#2390](https://github.com/chef/chef-dk/pull/2390) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `3f47c11` to `8381e66` in /omnibus [#2388](https://github.com/chef/chef-dk/pull/2388) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `3f47c11` to `8381e66` in /omnibus [#2388](https://github.com/chef/chef-dk/pull/2388) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.18 -->
 - Bump omnibus from `e18e22b` to `f0e30ed` in /omnibus [#2390](https://github.com/chef/chef-dk/pull/2390) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.17 -->
 - Bump cookstyle to 5.11 [#2381](https://github.com/chef/chef-dk/pull/2381) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.16 -->
 - Bump foodcritic to 16.2.0 [#2372](https://github.com/chef/chef-dk/pull/2372) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.15 -->
