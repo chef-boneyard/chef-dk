@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.15 -->
-## [v4.6.15](https://github.com/chef/chef-dk/tree/v4.6.15) (2019-11-07)
+<!-- latest_release 4.6.16 -->
+## [v4.6.16](https://github.com/chef/chef-dk/tree/v4.6.16) (2019-11-13)
 
 #### Merged Pull Requests
-- Bump foodcritic to 16.2.0 [#2372](https://github.com/chef/chef-dk/pull/2372) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump cookstyle to 5.11 [#2381](https://github.com/chef/chef-dk/pull/2381) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump cookstyle to 5.11 [#2381](https://github.com/chef/chef-dk/pull/2381) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.16 -->
 - Bump foodcritic to 16.2.0 [#2372](https://github.com/chef/chef-dk/pull/2372) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.15 -->
 - Bump knife-vsphere to 4.0.7 [#2366](https://github.com/chef/chef-dk/pull/2366) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.14 -->
 - Update all deps to the latest including openssl+libxml2+libxslt [#2360](https://github.com/chef/chef-dk/pull/2360) ([tas50](https://github.com/tas50)) <!-- 4.6.13 -->
