@@ -1,10 +1,9 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 3f47c11c9ea3186faed62ff52e88d0f580a759ff
+  revision: 53ab4169b691367dc16a317fca4426fb6563a65a
   branch: master
   specs:
     omnibus-software (4.0.0)
-      chef-sugar-ng (>= 5.0.0)
       omnibus (>= 5.6.1)
 
 GIT
@@ -33,17 +32,17 @@ GEM
     artifactory (3.0.5)
     awesome_print (1.8.0)
     aws-eventstream (1.0.3)
-    aws-partitions (1.238.0)
-    aws-sdk-core (3.76.0)
+    aws-partitions (1.239.0)
+    aws-sdk-core (3.77.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
-      aws-partitions (~> 1, >= 1.228.0)
+      aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
     aws-sdk-kms (1.25.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.53.0)
-      aws-sdk-core (~> 3, >= 3.71.0)
+    aws-sdk-s3 (1.54.0)
+      aws-sdk-core (~> 3, >= 3.77.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.1.0)
@@ -145,7 +144,6 @@ GEM
       mixlib-shellout (>= 2.0, < 4.0)
       tomlrb (~> 1.2)
     chef-sugar (5.1.9)
-    chef-sugar-ng (5.1.9)
     chef-zero (14.0.13)
       ffi-yajl (~> 2.2)
       hashie (>= 2.0, < 4.0)
