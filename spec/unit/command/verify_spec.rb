@@ -41,7 +41,7 @@ describe ChefDK::Command::Verify do
       "chef-apply",
       "chef-client",
       "chef-dk",
-      "chef-sugar-ng",
+      "chef-sugar",
       "chef-vault",
       "chefspec",
       "delivery-cli",
