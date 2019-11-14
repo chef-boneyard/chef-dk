@@ -2,68 +2,62 @@
 expeditor:
   defaults:
     buildkite:
+      retry:
+        automatic:
+          limit: 1
       timeout_in_minutes: 30
+      retry:
+        automatic:
+          limit: 1
 
 steps:
 - label: run-specs-ruby-2.5
   command:
-    - bundle install --jobs=7 --retry=3
-    - export USER="root"
-    - bundle exec rspec
+    - .expeditor/run_linux_tests.sh rspec
   expeditor:
     executor:
       docker:
-        image: ruby:2.5-stretch
+        image: ruby:2.5-buster
 
 - label: run-specs-ruby-2.6
   command:
-    - export USER="root"
-    - bundle install --jobs=7 --retry=3
-    - bundle exec rspec
+    - .expeditor/run_linux_tests.sh rspec
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-stretch
-
-- label: run-specs-ruby-2.6
-  command:
-    - export USER="root"
-    - bundle install --jobs=7 --retry=3
-    - bundle exec rspec
-  expeditor:
-    executor:
-      docker:
-        image: ruby:2.6-stretch
+        image: ruby:2.6-buster
 
 - label: foodcritic-generator-cb-tests-ruby-2.6
   command:
-    - export USER="root"
-    - bundle install --jobs=7 --retry=3
-    - bundle exec rake style:foodcritic
+    - .expeditor/run_linux_tests.sh "rake style:foodcritic"
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-stretch
+        image: ruby:2.6-buster
 
 - label: cookstyle-generator-cb-tests-ruby-2.6
   command:
-    - export USER="root"
-    - bundle install --jobs=7 --retry=3
-    - bundle exec rake style:cookstyle
+    - .expeditor/run_linux_tests.sh "rake style:cookstyle"
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-stretch
+        image: ruby:2.6-buster
 
 - label: chefstyle-tests-ruby-2.6
   command:
-    - export USER="root"
-    - bundle install --jobs=7 --retry=3
-    - bundle exec rake style:chefstyle
+    - .expeditor/run_linux_tests.sh "rake style:chefstyle"
   expeditor:
     executor:
       docker:
-        image: ruby:2.6-stretch
+        image: ruby:2.6-buster
+
+- label: hab-package-build-test
+  command:
+    - habitat/scripts/ci_integration_tests.sh
+  expeditor:
+    executor:
+      docker:
+        privileged: true
 
 - label: "run-specs :windows:"
   command:
