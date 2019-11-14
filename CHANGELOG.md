@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.12.11 -->
-## [v3.12.11](https://github.com/chef/chef-dk/tree/v3.12.11) (2019-11-13)
+<!-- latest_release 3.12.12 -->
+## [v3.12.12](https://github.com/chef/chef-dk/tree/v3.12.12) (2019-11-14)
 
 #### Merged Pull Requests
-- Bump omnibus from `e18e22b` to `f0e30ed` in /omnibus [#2391](https://github.com/chef/chef-dk/pull/2391) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `3f47c11` to `53ab416` in /omnibus [#2400](https://github.com/chef/chef-dk/pull/2400) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.12.10 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `3f47c11` to `53ab416` in /omnibus [#2400](https://github.com/chef/chef-dk/pull/2400) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.12 -->
 - Bump omnibus from `e18e22b` to `f0e30ed` in /omnibus [#2391](https://github.com/chef/chef-dk/pull/2391) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.11 -->
 <!-- release_rollup -->
 
