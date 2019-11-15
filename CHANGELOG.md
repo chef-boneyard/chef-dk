@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.22 -->
-## [v4.6.22](https://github.com/chef/chef-dk/tree/v4.6.22) (2019-11-14)
+<!-- latest_release 4.6.23 -->
+## [v4.6.23](https://github.com/chef/chef-dk/tree/v4.6.23) (2019-11-15)
 
 #### Merged Pull Requests
-- Bump inspec to 4.18.38 [#2404](https://github.com/chef/chef-dk/pull/2404) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump inspec to 4.18.39 [#2405](https://github.com/chef/chef-dk/pull/2405) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump inspec to 4.18.39 [#2405](https://github.com/chef/chef-dk/pull/2405) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.23 -->
 - Bump inspec to 4.18.38 [#2404](https://github.com/chef/chef-dk/pull/2404) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.22 -->
 - Bump cookstyle to 5.12.13 and mixlib-config to 3.0.5 [#2403](https://github.com/chef/chef-dk/pull/2403) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.21 -->
 - Switch back to chef-sugar from chef-sugar-ng [#2393](https://github.com/chef/chef-dk/pull/2393) ([tas50](https://github.com/tas50)) <!-- 4.6.20 -->
