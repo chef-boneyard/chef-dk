@@ -1,0 +1,24 @@
+diff --git a/bin/fsevent_watch b/bin/fsevent_watch
+index 889204f..17b894b 100755
+Binary files a/bin/fsevent_watch and b/bin/fsevent_watch differ
+diff --git a/ext/rakefile.rb b/ext/rakefile.rb
+index d7789bd..fd8ec36 100644
+--- a/ext/rakefile.rb
++++ b/ext/rakefile.rb
+@@ -48,13 +48,13 @@ CLOBBER.include $final_exe.to_s
+ task :sw_vers do
+   $mac_product_version = `sw_vers -productVersion`.strip
+   $mac_build_version = `sw_vers -buildVersion`.strip
+-  $MACOSX_DEPLOYMENT_TARGET = ENV["MACOSX_DEPLOYMENT_TARGET"] || $mac_product_version.sub(/\.\d*$/, '')
+-  $CFLAGS = "#{$CFLAGS} -mmacosx-version-min=#{$MACOSX_DEPLOYMENT_TARGET}"
++  $MACOSX_MIN_TARGET = $mac_product_version.sub(/\.\d*$/, '')
++  $CFLAGS = "#{$CFLAGS} -mmacosx-version-min=#{$MACOSX_MIN_TARGET}"
+ end
+ 
+ task :get_sdk_info => :sw_vers do
+   $SDK_INFO = {}
+-  version_info = `xcodebuild -version -sdk macosx#{$MACOSX_DEPLOYMENT_TARGET}`
++  version_info = `xcodebuild -version -sdk macosx`
+   raise "invalid SDK" unless !!$?.exitstatus
+   version_info.strip.each_line do |line|
+     next if line.strip.empty?
