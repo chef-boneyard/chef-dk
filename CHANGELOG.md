@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.12.14 -->
-## [v3.12.14](https://github.com/chef/chef-dk/tree/v3.12.14) (2019-11-18)
+<!-- latest_release 3.12.15 -->
+## [v3.12.15](https://github.com/chef/chef-dk/tree/v3.12.15) (2019-11-18)
 
 #### Merged Pull Requests
-- Bump mixlib-config from 3.0.1 to 3.0.5 in /omnibus [#2416](https://github.com/chef/chef-dk/pull/2416) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus from `f0e30ed` to `97490bb` in /omnibus [#2415](https://github.com/chef/chef-dk/pull/2415) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.12.10 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus from `f0e30ed` to `97490bb` in /omnibus [#2415](https://github.com/chef/chef-dk/pull/2415) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.15 -->
 - Bump mixlib-config from 3.0.1 to 3.0.5 in /omnibus [#2416](https://github.com/chef/chef-dk/pull/2416) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.14 -->
 - Fix habitat builds by using the DK4 plan [#2402](https://github.com/chef/chef-dk/pull/2402) ([tas50](https://github.com/tas50)) <!-- 3.12.13 -->
 - Bump omnibus-software from `3f47c11` to `53ab416` in /omnibus [#2400](https://github.com/chef/chef-dk/pull/2400) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.12 -->
