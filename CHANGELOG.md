@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.23 -->
-## [v4.6.23](https://github.com/chef/chef-dk/tree/v4.6.23) (2019-11-15)
+<!-- latest_release 4.6.24 -->
+## [v4.6.24](https://github.com/chef/chef-dk/tree/v4.6.24) (2019-11-18)
 
 #### Merged Pull Requests
-- Bump inspec to 4.18.39 [#2405](https://github.com/chef/chef-dk/pull/2405) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump mixlib-config from 3.0.1 to 3.0.5 in /omnibus [#2408](https://github.com/chef/chef-dk/pull/2408) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump mixlib-config from 3.0.1 to 3.0.5 in /omnibus [#2408](https://github.com/chef/chef-dk/pull/2408) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.24 -->
 - Bump inspec to 4.18.39 [#2405](https://github.com/chef/chef-dk/pull/2405) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.23 -->
 - Bump inspec to 4.18.38 [#2404](https://github.com/chef/chef-dk/pull/2404) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.22 -->
 - Bump cookstyle to 5.12.13 and mixlib-config to 3.0.5 [#2403](https://github.com/chef/chef-dk/pull/2403) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.21 -->
