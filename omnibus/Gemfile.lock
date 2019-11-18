@@ -8,10 +8,10 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: f0e30edfaaaf47f403c441ddf6665b21a26f4546
+  revision: 97490bb29fc5203d32d9475b044807ecad3ef7ef
   branch: master
   specs:
-    omnibus (6.1.13)
+    omnibus (6.1.14)
       aws-sdk-s3 (~> 1)
       chef-cleanroom (~> 1.0)
       chef-sugar (>= 3.3)
@@ -206,7 +206,7 @@ GEM
       mixlib-log
     mixlib-authentication (2.1.1)
     mixlib-cli (2.1.1)
-    mixlib-config (3.0.1)
+    mixlib-config (3.0.5)
       tomlrb
     mixlib-install (3.11.21)
       mixlib-shellout
