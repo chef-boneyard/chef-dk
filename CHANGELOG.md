@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.26 -->
-## [v4.6.26](https://github.com/chef/chef-dk/tree/v4.6.26) (2019-11-18)
+<!-- latest_release 4.6.27 -->
+## [v4.6.27](https://github.com/chef/chef-dk/tree/v4.6.27) (2019-11-18)
 
 #### Merged Pull Requests
-- Bump Chef to 15.5.9 [#2418](https://github.com/chef/chef-dk/pull/2418) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump train to 3.1.8 [#2423](https://github.com/chef/chef-dk/pull/2423) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump train to 3.1.8 [#2423](https://github.com/chef/chef-dk/pull/2423) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.27 -->
 - Bump Chef to 15.5.9 [#2418](https://github.com/chef/chef-dk/pull/2418) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.26 -->
 - Bump omnibus from `f0e30ed` to `97490bb` in /omnibus [#2407](https://github.com/chef/chef-dk/pull/2407) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.25 -->
 - Bump mixlib-config from 3.0.1 to 3.0.5 in /omnibus [#2408](https://github.com/chef/chef-dk/pull/2408) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.24 -->
