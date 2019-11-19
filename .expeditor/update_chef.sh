@@ -21,7 +21,7 @@ sed -i -r "s/^\s*gem \"chef-bin\".*/  gem \"chef-bin\", \"= ${EXPEDITOR_VERSION}
 
 # it appears that the gem that triggers this script fires off this script before
 # the gem is actually available via bundler on rubygems.org.
-sleep 240
+sleep 600
 
 gem install rake
 rake dependencies:update_gemfile_lock
