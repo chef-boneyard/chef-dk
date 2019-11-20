@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 53ab4169b691367dc16a317fca4426fb6563a65a
+  revision: f81ec7b4c2f2d54696703d3e1e2b6978f9050983
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -32,8 +32,8 @@ GEM
     artifactory (3.0.5)
     awesome_print (1.8.0)
     aws-eventstream (1.0.3)
-    aws-partitions (1.240.0)
-    aws-sdk-core (3.78.0)
+    aws-partitions (1.241.0)
+    aws-sdk-core (3.79.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
@@ -41,7 +41,7 @@ GEM
     aws-sdk-kms (1.25.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.55.0)
+    aws-sdk-s3 (1.56.0)
       aws-sdk-core (~> 3, >= 3.77.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
@@ -191,9 +191,9 @@ GEM
       tomlrb (~> 1.2)
       tty-box (~> 0.3)
       tty-prompt (~> 0.18)
-    license_scout (1.0.28)
+    license_scout (1.0.29)
       ffi-yajl (~> 2.2)
-      mixlib-shellout (~> 2.2)
+      mixlib-shellout (>= 2.2, < 4.0)
       toml-rb (~> 1.0)
     little-plugger (1.1.4)
     logging (2.2.2)
@@ -213,8 +213,8 @@ GEM
       mixlib-versioning
       thor
     mixlib-log (3.0.1)
-    mixlib-shellout (2.4.4)
-    mixlib-shellout (2.4.4-universal-mingw32)
+    mixlib-shellout (3.0.7)
+    mixlib-shellout (3.0.7-universal-mingw32)
       win32-process (~> 0.8.2)
       wmi-lite (~> 1.0)
     mixlib-versioning (1.2.7)
