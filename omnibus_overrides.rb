@@ -9,7 +9,6 @@ override :bundler, version: "1.17.2" # currently pinned to what ships in Ruby to
 override "libffi", version: "3.2.1"
 override "libiconv", version: "1.15"
 override "liblzma", version: "5.2.4"
-override "libtool", version: "2.4.2"
 override "libxml2", version: "2.9.10"
 override "libxslt", version: "1.1.34"
 override "libyaml", version: "0.1.7"
