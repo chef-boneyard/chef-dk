@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.28 -->
-## [v4.6.28](https://github.com/chef/chef-dk/tree/v4.6.28) (2019-11-19)
+<!-- latest_release 4.6.29 -->
+## [v4.6.29](https://github.com/chef/chef-dk/tree/v4.6.29) (2019-11-20)
 
 #### Merged Pull Requests
-- Update Chef Infra Client to 15.5.15 [#2427](https://github.com/chef/chef-dk/pull/2427) ([tas50](https://github.com/tas50))
+- Remove libtool version pin and other build time omnibus deps [#2428](https://github.com/chef/chef-dk/pull/2428) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Remove libtool version pin and other build time omnibus deps [#2428](https://github.com/chef/chef-dk/pull/2428) ([tas50](https://github.com/tas50)) <!-- 4.6.29 -->
 - Update Chef Infra Client to 15.5.15 [#2427](https://github.com/chef/chef-dk/pull/2427) ([tas50](https://github.com/tas50)) <!-- 4.6.28 -->
 - Bump train to 3.1.8 [#2423](https://github.com/chef/chef-dk/pull/2423) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.27 -->
 - Bump Chef to 15.5.9 [#2418](https://github.com/chef/chef-dk/pull/2418) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.26 -->
