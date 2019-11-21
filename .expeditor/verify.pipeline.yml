@@ -6,9 +6,6 @@ expeditor:
         automatic:
           limit: 1
       timeout_in_minutes: 30
-      retry:
-        automatic:
-          limit: 1
 
 steps:
 - label: run-specs-ruby-2.5
