@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.30 -->
-## [v4.6.30](https://github.com/chef/chef-dk/tree/v4.6.30) (2019-11-20)
+<!-- latest_release 4.6.31 -->
+## [v4.6.31](https://github.com/chef/chef-dk/tree/v4.6.31) (2019-11-21)
 
 #### Merged Pull Requests
-- Update license scout dependency to unblock chef versions [#2429](https://github.com/chef/chef-dk/pull/2429) ([tas50](https://github.com/tas50))
+- Rollback omnibus-software and update cookstyle to 5.13 [#2440](https://github.com/chef/chef-dk/pull/2440) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Rollback omnibus-software and update cookstyle to 5.13 [#2440](https://github.com/chef/chef-dk/pull/2440) ([tas50](https://github.com/tas50)) <!-- 4.6.31 -->
 - Update license scout dependency to unblock chef versions [#2429](https://github.com/chef/chef-dk/pull/2429) ([tas50](https://github.com/tas50)) <!-- 4.6.30 -->
 - Remove libtool version pin and other build time omnibus deps [#2428](https://github.com/chef/chef-dk/pull/2428) ([tas50](https://github.com/tas50)) <!-- 4.6.29 -->
 - Update Chef Infra Client to 15.5.15 [#2427](https://github.com/chef/chef-dk/pull/2427) ([tas50](https://github.com/tas50)) <!-- 4.6.28 -->
