@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.33 -->
-## [v4.6.33](https://github.com/chef/chef-dk/tree/v4.6.33) (2019-11-26)
+<!-- latest_release 4.6.34 -->
+## [v4.6.34](https://github.com/chef/chef-dk/tree/v4.6.34) (2019-11-28)
 
 #### Merged Pull Requests
-- Bump Chef to 15.5.17 [#2452](https://github.com/chef/chef-dk/pull/2452) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-google to 4.2.1 [#2480](https://github.com/chef/chef-dk/pull/2480) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-google to 4.2.1 [#2480](https://github.com/chef/chef-dk/pull/2480) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.34 -->
 - Bump Chef to 15.5.17 [#2452](https://github.com/chef/chef-dk/pull/2452) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.33 -->
 - Bump Chef to 15.5.16 [#2441](https://github.com/chef/chef-dk/pull/2441) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.32 -->
 - Rollback omnibus-software and update cookstyle to 5.13 [#2440](https://github.com/chef/chef-dk/pull/2440) ([tas50](https://github.com/tas50)) <!-- 4.6.31 -->
