@@ -1,3 +1,105 @@
+# ChefDK 4.6
+
+# Updated Components
+
+## Chef Infra Client
+
+The Chef Infra Client has been updated from 15.4.45 to 15.5.17 with updated helpers, Chefignore improvements, and a new chef_sleep resource:
+
+#### New Cookbook Helpers
+
+Chef Infra Client now includes a new `chef-utils` gem which ships with a large number of helpers to make writing cookbooks easier. Many of these helpers existed previously in the `chef-sugar` gem. We have renamed many of the named helpers for consistency while providing backwards compatibility with existing `chef-sugar` names. Existing cookbooks written with `chef-sugar` should work unmodified with any of these new helpers. Expect a Cookstyle rule in the near future to help you update existing `chef-sugar` code to use the newer built-in helpers.
+
+For more information on all of the new helpers available, see the [chef-utils readme](https://github.com/chef/chef/blob/master/chef-utils/README.md)
+
+#### Chefignore Improvements
+
+We've reworked how chefignore files are handled in `knife` which has allowed us to close out a large number of long outstanding bugs. `knife` will now traverse all the way up the directory structure looking for a chefignore file. This means you can place a chefignore file in each cookbook or any parent directory in your repository structure. Additionally, we have made fixes that ensure that commands like `knife diff` and `knife cookbook upload` always honor your chefignore files.
+
+#### chef_sleep Resource
+
+The new `chef_sleep` resource can be used to sleep for a specified number of seconds during a Chef Infra Client run. This may be helpful to use with other commands that return a completed status before they are actually ready. In general, do not use this resource unless you truly need it.
+
+Using with a Windows service that starts, but is not immediately ready:
+
+```ruby
+service 'Service that is slow to start and reports as started' do
+  service_name 'my_database'
+  action :start
+  notifies :sleep, chef_sleep['wait for service start']
+end
+
+chef_sleep 'wait for service start' do
+  seconds 30
+  action :nothing
+end
+```
+
+## Cookstyle
+
+The Cookstyle cookbook linter has been updated from 5.9 to 5.13 and includes 28 new Chef cops for detecting deprecated and outdated cookbook code. This release also updates the underlying RuboCop engine used by Cookstyle which includes a large number of bug fixes that better detect violations and prevent false positives. See the [Cookstyle Release Notes](https://github.com/chef/cookstyle/blob/master/RELEASE_NOTES.md#cookstyle-513) for a complete list of changes between 5.9 and 5.13.
+
+This new release also allows you to use `cookstyle` specific comments in your cookbook code to enable or disable cops instead of the standard `rubocop` comments. We think that it will be easier to understand the cops that you intend to control if you use `cookstyle` comments. You can continue to use the existing `rubocop` comments, if you prefer them, since both types of comments will be honored by Cookstyle.
+
+Rubocop comment to disable a cop:
+
+```ruby
+'node.normal[:foo] # rubocop: disable ChefCorrectness/Bar'
+```
+
+Cookstyle comment to disable a cop:
+
+```ruby
+'node.normal[:foo] # cookstyle: disable ChefCorrectness/Bar'
+```
+
+## Foodcritic
+
+Foodcritic has been updated from 16.1.1 to 16.2.0. This release includes a fix for detecting incorrect notification actions and ships with updated Chef Infra Client Metadata. Keep in mind that Foodcritic is no longer being actively developed and users should migrate to Cookstyle instead.
+
+## Chef InSpec
+
+Chef InSpec has been updated from 4.18.0 to 4.18.39. This release includes a large number of bug fixes to resources:
+
+- The `service` resource now includes a `startname` property for Windows and systemd services.
+- The `nginx` resource now includes parsing support for wildcard, dot prefix, and regex.
+- The `iis_app_pool` resource now handles empty app pools.
+- The `filesystem` resource now supports devices with very long names.
+- The `apt` better handles URIs and supports repos with an `arch`.
+- The `oracledb_session` has received multiple fixes to make it work better.
+
+## Test Kitchen
+
+We updated Test Kitchen has to 2.3.4, which includes more robust code for finding the Chef binary on Windows and also improves some logging messages.
+
+## knife-ec2
+
+The `knife-ec2` plugin has been updated from 1.0.16 to 1.0.17 which includes a fix for an error when launching non-T2 type instances.
+
+## kitchen-digitalocean
+
+kitchen-digitalocean has been updated to 0.10.5 which adds new image aliases for Debian-10 and FreeBSD-12.
+
+## kitchen-dokkken
+
+kitchen-dokken has been updated to 2.8.0. This will make the CI and TEST_KITCHEN environmental variables match the behavior of kitchen-vagrant.
+
+## kitchen-inspec
+
+We updated the kitchen-inspec plugin to 1.3.1, which allows relative paths in the GIT fetcher and resolves failures when using inputs.
+
+## Performance Improvements
+
+This release of ChefDK ships with several optimizations to our Ruby installation that improve the performance of the included commands, especially on Windows systems. Expect to see more here in future releases.
+
+## Security Updates
+
+libxlst was updated from 1.1.30 to 1.1.34 to resolve these vulnerabilities:
+
+- [CVE-2019-11068](https://www.cvedetails.com/cve/CVE-2019-11068/)
+- [CVE-2019-13117](https://www.cvedetails.com/cve/CVE-2019-13117/)
+- [CVE-2019-13118](https://www.cvedetails.com/cve/CVE-2019-13118/)
+
 # ChefDK 4.5
 
 ## Habitat Packages
