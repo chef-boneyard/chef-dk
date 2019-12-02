@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 4.6.36 -->
+## [v4.6.36](https://github.com/chef/chef-dk/tree/v4.6.36) (2019-12-02)
+
+#### Merged Pull Requests
+- Update kitchen-azurerm to 0.15 [#2490](https://github.com/chef/chef-dk/pull/2490) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=4.6.35 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- Update kitchen-azurerm to 0.15 [#2490](https://github.com/chef/chef-dk/pull/2490) ([tas50](https://github.com/tas50)) <!-- 4.6.36 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
