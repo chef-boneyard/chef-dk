@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.37 -->
-## [v4.6.37](https://github.com/chef/chef-dk/tree/v4.6.37) (2019-12-03)
+<!-- latest_release 4.6.38 -->
+## [v4.6.38](https://github.com/chef/chef-dk/tree/v4.6.38) (2019-12-03)
 
 #### Merged Pull Requests
-- Add the Ruby cleanup omnibus logic from Workstation [#2489](https://github.com/chef/chef-dk/pull/2489) ([tas50](https://github.com/tas50))
+- Bump knife-ec2 to 1.0.18 and train to 3.2.0 [#2493](https://github.com/chef/chef-dk/pull/2493) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-ec2 to 1.0.18 and train to 3.2.0 [#2493](https://github.com/chef/chef-dk/pull/2493) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.38 -->
 - Add the Ruby cleanup omnibus logic from Workstation [#2489](https://github.com/chef/chef-dk/pull/2489) ([tas50](https://github.com/tas50)) <!-- 4.6.37 -->
 - Update kitchen-azurerm to 0.15 [#2490](https://github.com/chef/chef-dk/pull/2490) ([tas50](https://github.com/tas50)) <!-- 4.6.36 -->
 <!-- release_rollup -->
