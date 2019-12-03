@@ -47,11 +47,6 @@ dependency "delivery-cli"
 # This is a build-time dependency, so we won't leave it behind:
 dependency "rust-uninstall"
 
-# necessary for vsphere-automation-* -> typhoeus -> ethon (libcurl wrapper)
-# if ethon isn't necessary in the future we can remove this dep
-# 5.3.2019: This is removed along with the vsphere gems to unbreak builds
-# dependency "curl"
-
 # Leave for last so system git is used for most of the build.
 if windows?
   dependency "git-windows"
@@ -86,6 +81,9 @@ if windows?
 end
 
 dependency "ruby-cleanup"
+
+# further gem cleanup other projects might not yet want to use
+dependency "more-ruby-cleanup"
 
 package :rpm do
   signing_passphrase ENV["OMNIBUS_RPM_SIGNING_PASSPHRASE"]
