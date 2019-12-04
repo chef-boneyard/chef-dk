@@ -579,7 +579,7 @@ GEM
       chef (>= 11.0.0)
       diffy (>= 3.0.1)
       git (>= 1.2.5)
-    knife-tidy (2.0.1)
+    knife-tidy (2.0.6)
     knife-vsphere (4.0.7)
       chef (>= 15.1)
       chef-bin (>= 15.1)
