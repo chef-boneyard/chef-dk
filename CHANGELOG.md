@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.42 -->
-## [v4.6.42](https://github.com/chef/chef-dk/tree/v4.6.42) (2019-12-04)
+<!-- latest_release 4.6.43 -->
+## [v4.6.43](https://github.com/chef/chef-dk/tree/v4.6.43) (2019-12-04)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `06c78cc` to `8e7803d` in /omnibus [#2497](https://github.com/chef/chef-dk/pull/2497) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump knife-tidy to 2.0.6 [#2504](https://github.com/chef/chef-dk/pull/2504) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-tidy to 2.0.6 [#2504](https://github.com/chef/chef-dk/pull/2504) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.43 -->
 - Bump omnibus-software from `06c78cc` to `8e7803d` in /omnibus [#2497](https://github.com/chef/chef-dk/pull/2497) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.42 -->
 - Bump nokogiri to 1.10.7 [#2503](https://github.com/chef/chef-dk/pull/2503) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.41 -->
 - Bump nokogiri to 1.10.6 [#2495](https://github.com/chef/chef-dk/pull/2495) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.40 -->
