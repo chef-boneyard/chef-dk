@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.40 -->
-## [v4.6.40](https://github.com/chef/chef-dk/tree/v4.6.40) (2019-12-04)
+<!-- latest_release 4.6.41 -->
+## [v4.6.41](https://github.com/chef/chef-dk/tree/v4.6.41) (2019-12-04)
 
 #### Merged Pull Requests
-- Bump nokogiri to 1.10.6 [#2495](https://github.com/chef/chef-dk/pull/2495) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump nokogiri to 1.10.7 [#2503](https://github.com/chef/chef-dk/pull/2503) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump nokogiri to 1.10.7 [#2503](https://github.com/chef/chef-dk/pull/2503) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.41 -->
 - Bump nokogiri to 1.10.6 [#2495](https://github.com/chef/chef-dk/pull/2495) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.40 -->
 - Bump chef-telemetry to 1.0.0 [#2494](https://github.com/chef/chef-dk/pull/2494) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.39 -->
 - Bump knife-ec2 to 1.0.18 and train to 3.2.0 [#2493](https://github.com/chef/chef-dk/pull/2493) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.38 -->
