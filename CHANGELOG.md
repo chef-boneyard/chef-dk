@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.44 -->
-## [v4.6.44](https://github.com/chef/chef-dk/tree/v4.6.44) (2019-12-04)
+<!-- latest_release 4.6.45 -->
+## [v4.6.45](https://github.com/chef/chef-dk/tree/v4.6.45) (2019-12-04)
 
 #### Merged Pull Requests
-- Remove chef-run [#2506](https://github.com/chef/chef-dk/pull/2506) ([marcparadise](https://github.com/marcparadise))
+- Bump omnibus-software from `8e7803d` to `c155758` in /omnibus [#2508](https://github.com/chef/chef-dk/pull/2508) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `8e7803d` to `c155758` in /omnibus [#2508](https://github.com/chef/chef-dk/pull/2508) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.45 -->
 - Remove chef-run [#2506](https://github.com/chef/chef-dk/pull/2506) ([marcparadise](https://github.com/marcparadise)) <!-- 4.6.44 -->
 - Bump knife-tidy to 2.0.6 [#2504](https://github.com/chef/chef-dk/pull/2504) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.43 -->
 - Bump omnibus-software from `06c78cc` to `8e7803d` in /omnibus [#2497](https://github.com/chef/chef-dk/pull/2497) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.42 -->
