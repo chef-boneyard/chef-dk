@@ -130,7 +130,7 @@ GEM
     aws-sdk-kms (1.26.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-lambda (1.33.0)
+    aws-sdk-lambda (1.34.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-organizations (1.17.0)
@@ -317,7 +317,7 @@ GEM
       mixlib-shellout (>= 2.0, < 4.0)
       tomlrb (~> 1.2)
     chef-sugar (5.1.9)
-    chef-telemetry (1.0.0)
+    chef-telemetry (0.1.8)
       chef-config
       concurrent-ruby (~> 1.0)
       ffi-yajl (~> 2.2)
@@ -997,6 +997,7 @@ DEPENDENCIES
   chef-bin (= 15.5.17)
   chef-dk!
   chef-sugar
+  chef-telemetry (< 1.0)
   chef-vault (>= 3.4.1)
   cheffish (>= 14.0.1)
   chefspec (>= 7.3.0, < 8)

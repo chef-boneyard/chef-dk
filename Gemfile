@@ -97,6 +97,7 @@ group(:omnibus_package) do
   # Version 3.3 switches to ChefCLI instead of ChefDK - we want to lock to
   # the latest version before that so that we don't pull in ChefCLI.
   gem "chef-apply", "= 0.3.0"
+  gem "chef-telemetry", "< 1.0"
 
   # For Delivery build node
   gem "chef-sugar"
