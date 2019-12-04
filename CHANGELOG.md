@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.12.19 -->
-## [v3.12.19](https://github.com/chef/chef-dk/tree/v3.12.19) (2019-12-04)
+<!-- latest_release 3.12.20 -->
+## [v3.12.20](https://github.com/chef/chef-dk/tree/v3.12.20) (2019-12-04)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `06c78cc` to `8e7803d` in /omnibus [#2499](https://github.com/chef/chef-dk/pull/2499) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `8e7803d` to `c155758` in /omnibus [#2507](https://github.com/chef/chef-dk/pull/2507) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.12.10 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `8e7803d` to `c155758` in /omnibus [#2507](https://github.com/chef/chef-dk/pull/2507) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.20 -->
 - Bump omnibus-software from `06c78cc` to `8e7803d` in /omnibus [#2499](https://github.com/chef/chef-dk/pull/2499) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.19 -->
 - Update chef-sugar and other deps to the latest [#2477](https://github.com/chef/chef-dk/pull/2477) ([tas50](https://github.com/tas50)) <!-- 3.12.18 -->
 - Bump omnibus-software from `53ab416` to `06c78cc` in /omnibus [#2447](https://github.com/chef/chef-dk/pull/2447) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.17 -->
