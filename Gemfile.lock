@@ -130,7 +130,7 @@ GEM
     aws-sdk-kms (1.26.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-lambda (1.33.0)
+    aws-sdk-lambda (1.34.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-organizations (1.17.0)
@@ -293,20 +293,6 @@ GEM
     chef-api (0.10.0)
       logify (~> 0.1)
       mime-types
-    chef-apply (0.3.0)
-      chef (>= 15.0)
-      chef-dk (>= 4.0)
-      chef-telemetry
-      license-acceptance (~> 1.0, >= 1.0.11)
-      mixlib-cli
-      mixlib-config
-      mixlib-install
-      mixlib-log
-      pastel
-      r18n-desktop
-      toml-rb
-      train
-      tty-spinner
     chef-bin (15.5.17)
       chef (= 15.5.17)
     chef-config (15.5.17)
@@ -317,11 +303,6 @@ GEM
       mixlib-shellout (>= 2.0, < 4.0)
       tomlrb (~> 1.2)
     chef-sugar (5.1.9)
-    chef-telemetry (1.0.0)
-      chef-config
-      concurrent-ruby (~> 1.0)
-      ffi-yajl (~> 2.2)
-      http (~> 2.2)
     chef-utils (15.5.17)
     chef-vault (3.4.3)
     chef-zero (14.0.13)
@@ -339,7 +320,6 @@ GEM
       rspec (~> 3.0)
     chefstyle (0.14.0)
       rubocop (= 0.75.1)
-    citrus (3.0.2)
     cleanroom (1.0.0)
     coderay (1.1.2)
     coercible (1.0.0)
@@ -463,15 +443,8 @@ GEM
     hashie (3.6.0)
     highline (1.7.10)
     htmlentities (4.3.4)
-    http (2.2.2)
-      addressable (~> 2.3)
-      http-cookie (~> 1.0)
-      http-form_data (~> 1.0.1)
-      http_parser.rb (~> 0.6.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    http-form_data (1.0.3)
-    http_parser.rb (0.6.0)
     httpclient (2.8.3)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
@@ -716,9 +689,6 @@ GEM
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
     public_suffix (3.1.1)
-    r18n-core (3.2.0)
-    r18n-desktop (3.2.0)
-      r18n-core (= 3.2.0)
     rack (2.0.7)
     rainbow (3.0.0)
     rake (12.3.2)
@@ -816,8 +786,6 @@ GEM
     thread_safe (0.3.6)
     timeliness (0.3.10)
     tins (1.22.2)
-    toml-rb (2.0.1)
-      citrus (~> 3.0, > 3.0)
     tomlrb (1.2.9)
     train (3.2.0)
       activesupport (~> 5.2.3)
@@ -906,8 +874,6 @@ GEM
       tty-screen (~> 0.7)
       wisper (~> 2.0.0)
     tty-screen (0.7.0)
-    tty-spinner (0.9.1)
-      tty-cursor (~> 0.7)
     tty-table (0.11.0)
       equatable (~> 0.6)
       necromancer (~> 0.5)
@@ -993,7 +959,6 @@ DEPENDENCIES
   berkshelf (>= 7.0.8)
   bundler
   chef (= 15.5.17)
-  chef-apply (= 0.3.0)
   chef-bin (= 15.5.17)
   chef-dk!
   chef-sugar
@@ -1068,4 +1033,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.17.3
+   1.17.2

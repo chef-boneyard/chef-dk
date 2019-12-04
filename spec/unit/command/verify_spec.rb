@@ -38,7 +38,6 @@ describe ChefDK::Command::Verify do
   let(:default_components) do
     [
       "berkshelf",
-      "chef-apply",
       "chef-client",
       "chef-dk",
       "chef-sugar",

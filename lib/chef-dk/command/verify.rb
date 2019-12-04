@@ -185,15 +185,6 @@ module ChefDK
         end
       end
 
-      add_component "chef-apply" do |c|
-        c.gem_base_dir = "chef-apply"
-      #   c.unit_test do
-      #     bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
-      #     sh("#{embedded_bin("bundle")} exec rspec")
-      #   end
-        c.smoke_test { sh("#{bin("chef-run")} -v") }
-      end
-
       add_component "foodcritic" do |c|
         c.gem_base_dir = "foodcritic"
         c.smoke_test { sh("#{embedded_bin("foodcritic --list")}") } # foodcritic -v exits with 2 so use --list which exits 0

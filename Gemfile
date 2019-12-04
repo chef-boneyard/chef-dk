@@ -91,13 +91,6 @@ group(:omnibus_package) do
   gem "ed25519"
   gem "bcrypt_pbkdf"
 
-  # Right now we must import chef-apply as a gem into the ChefDK because this is where all the gem
-  # dependency resolution occurs. Putting it elsewhere endangers older ChefDK issues of gem version
-  # conflicts post-build.
-  # Version 3.3 switches to ChefCLI instead of ChefDK - we want to lock to
-  # the latest version before that so that we don't pull in ChefCLI.
-  gem "chef-apply", "= 0.3.0"
-
   # For Delivery build node
   gem "chef-sugar"
   gem "mixlib-versioning"
