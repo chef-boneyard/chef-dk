@@ -95,7 +95,7 @@ build do
   appbundle "inspec", lockdir: project_dir, gem: "inspec-bin", without: %w{deploy tools maintenance integration}, env: env
   appbundle "dco", lockdir: project_dir, gem: "dco", without: %w{development}, env: env
 
-  %w{chef-bin chef-dk chef-apply chef-vault ohai opscode-pushy-client cookstyle berkshelf}.each do |gem|
+  %w{chef-bin chef-dk chef-vault ohai opscode-pushy-client cookstyle berkshelf}.each do |gem|
     appbundle gem, lockdir: project_dir, gem: gem, without: %w{changelog}, env: env
   end
 

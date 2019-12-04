@@ -126,7 +126,6 @@ do_install() {
     export gems_to_appbundle
     gems_to_appbundle=(
       berkshelf
-      chef-apply
       chef-bin
       chef-dk
       chef-vault
