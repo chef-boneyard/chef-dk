@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.6.47 -->
-## [v4.6.47](https://github.com/chef/chef-dk/tree/v4.6.47) (2019-12-05)
+<!-- latest_release 4.6.48 -->
+## [v4.6.48](https://github.com/chef/chef-dk/tree/v4.6.48) (2019-12-05)
 
 #### Merged Pull Requests
-- Make sure we don&#39;t cleanup warning.txt [#2511](https://github.com/chef/chef-dk/pull/2511) ([tas50](https://github.com/tas50))
+- Bump omnibus to the latest [#2512](https://github.com/chef/chef-dk/pull/2512) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus to the latest [#2512](https://github.com/chef/chef-dk/pull/2512) ([tas50](https://github.com/tas50)) <!-- 4.6.48 -->
 - Make sure we don&#39;t cleanup warning.txt [#2511](https://github.com/chef/chef-dk/pull/2511) ([tas50](https://github.com/tas50)) <!-- 4.6.47 -->
 - Bump omnibus-software from `c155758` to `a6beb05` in /omnibus [#2510](https://github.com/chef/chef-dk/pull/2510) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.46 -->
 - Bump omnibus-software from `8e7803d` to `c155758` in /omnibus [#2508](https://github.com/chef/chef-dk/pull/2508) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.45 -->
