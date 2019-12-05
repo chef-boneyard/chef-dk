@@ -68,7 +68,6 @@ build do
       Manifest
       CHANGES.txt
       CHANGELOG.txt
-      warning.txt
       FAQ.txt
       release-script.txt
       TODO
