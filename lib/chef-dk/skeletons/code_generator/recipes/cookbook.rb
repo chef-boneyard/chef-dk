@@ -129,7 +129,7 @@ unless context.enable_workflow
   # Adding the delivery local-mode config
   cookbook_file "#{cookbook_dir}/.delivery/project.toml" do
     source 'delivery-project.toml'
-    not_if { File.exist?("#{cookbook_dir}/.delivery/project.toml") }
+    not_if { ::File.exist?("#{cookbook_dir}/.delivery/project.toml") }
   end
 end
 

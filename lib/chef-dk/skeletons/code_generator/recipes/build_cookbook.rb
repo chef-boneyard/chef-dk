@@ -11,13 +11,13 @@ directory dot_delivery_dir
 
 cookbook_file config_json do
   source 'delivery-config.json'
-  not_if { File.exist?(config_json) }
+  not_if { ::File.exist?(config_json) }
 end
 
 # Adding the delivery local-mode config
 cookbook_file project_toml do
   source 'delivery-project.toml'
-  not_if { File.exist?(project_toml) }
+  not_if { ::File.exist?(project_toml) }
 end
 
 generator_desc('Ensuring correct Workflow (Delivery) build cookbook content')
