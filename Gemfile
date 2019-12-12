@@ -53,18 +53,18 @@ group(:omnibus_package) do
   # gems to Rubygems now, so letting this float on latest should always give us the latest
   # stable release. May have to re-pin around major version bumping time, or during patch
   # fixes.
-  gem "chef", "= 15.5.17"
-  gem "chef-bin", "= 15.5.17"
-  gem "ohai", ">= 14"
+  gem "chef", "= 15.6.10"
+  gem "chef-bin", "= 15.6.10"
+  gem "ohai", ">= 15"
   gem "cheffish", ">= 14.0.1"
 
   # chefspec
   gem "chefspec", ">= 7.3.0", "< 8"
-  gem "fauxhai", "~> 7.0"
+  gem "fauxhai", "~> 7.4"
 
   # inspec
-  gem "inspec-bin", "~> 4.10" # the actual inspec CLI binary
-  gem "inspec", "~> 4.10"
+  gem "inspec-bin", "~> 4.18" # the actual inspec CLI binary
+  gem "inspec", "~> 4.18"
 
   # test-kitchen and plugins
   gem "test-kitchen", ">= 2.0"
@@ -100,7 +100,7 @@ group(:omnibus_package) do
   gem "knife-push"
 
   # All of the following used to be software definitions we included:
-  gem "mixlib-archive", ">= 0.4.16"
+  gem "mixlib-archive", ">= 1.0"
   gem "net-ssh", ">= 4.2.0"
   gem "listen"
   gem "dco"

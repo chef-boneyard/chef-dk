@@ -214,12 +214,12 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.4)
     byebug (11.0.1)
-    chef (15.5.17)
+    chef (15.6.10)
       addressable
       bcrypt_pbkdf (~> 1.0)
       bundler (>= 1.10)
-      chef-config (= 15.5.17)
-      chef-utils (= 15.5.17)
+      chef-config (= 15.6.10)
+      chef-utils (= 15.6.10)
       chef-zero (>= 14.0.11)
       diff-lcs (~> 1.2, >= 1.2.4)
       ed25519 (~> 1.2)
@@ -246,12 +246,12 @@ GEM
       train-winrm (>= 0.2.5)
       tty-screen (~> 0.6)
       uuidtools (~> 2.1.5)
-    chef (15.5.17-universal-mingw32)
+    chef (15.6.10-universal-mingw32)
       addressable
       bcrypt_pbkdf (~> 1.0)
       bundler (>= 1.10)
-      chef-config (= 15.5.17)
-      chef-utils (= 15.5.17)
+      chef-config (= 15.6.10)
+      chef-utils (= 15.6.10)
       chef-zero (>= 14.0.11)
       diff-lcs (~> 1.2, >= 1.2.4)
       ed25519 (~> 1.2)
@@ -293,17 +293,17 @@ GEM
     chef-api (0.10.0)
       logify (~> 0.1)
       mime-types
-    chef-bin (15.5.17)
-      chef (= 15.5.17)
-    chef-config (15.5.17)
+    chef-bin (15.6.10)
+      chef (= 15.6.10)
+    chef-config (15.6.10)
       addressable
-      chef-utils (= 15.5.17)
+      chef-utils (= 15.6.10)
       fuzzyurl
       mixlib-config (>= 2.2.12, < 4.0)
       mixlib-shellout (>= 2.0, < 4.0)
       tomlrb (~> 1.2)
     chef-sugar (5.1.9)
-    chef-utils (15.5.17)
+    chef-utils (15.6.10)
     chef-vault (3.4.3)
     chef-zero (14.0.13)
       ffi-yajl (~> 2.2)
@@ -597,7 +597,7 @@ GEM
     mixlib-cli (2.1.1)
     mixlib-config (3.0.5)
       tomlrb
-    mixlib-install (3.11.21)
+    mixlib-install (3.11.24)
       mixlib-shellout
       mixlib-versioning
       thor
@@ -787,7 +787,7 @@ GEM
     timeliness (0.3.10)
     tins (1.22.2)
     tomlrb (1.2.9)
-    train (3.2.0)
+    train (3.2.3)
       activesupport (~> 5.2.3)
       azure_graph_rbac (~> 0.16)
       azure_mgmt_key_vault (~> 0.17)
@@ -848,7 +848,7 @@ GEM
       aws-sdk-sns (~> 1.9)
       aws-sdk-sqs (~> 1.10)
       aws-sdk-ssm (~> 1)
-    train-core (3.2.0)
+    train-core (3.2.3)
       json (>= 1.8, < 3.0)
       mixlib-shellout (>= 2.0, < 4.0)
       net-scp (>= 1.2, < 3.0)
@@ -958,8 +958,8 @@ DEPENDENCIES
   bcrypt_pbkdf
   berkshelf (>= 7.0.8)
   bundler
-  chef (= 15.5.17)
-  chef-bin (= 15.5.17)
+  chef (= 15.6.10)
+  chef-bin (= 15.6.10)
   chef-dk!
   chef-sugar
   chef-vault (>= 3.4.1)
@@ -972,13 +972,13 @@ DEPENDENCIES
   dep-selector-libgecode
   dep_selector
   ed25519
-  fauxhai (~> 7.0)
+  fauxhai (~> 7.4)
   ffi-libarchive
   ffi-rzmq-core
   foodcritic (>= 16.0)
   guard
-  inspec (~> 4.10)
-  inspec-bin (~> 4.10)
+  inspec (~> 4.18)
+  inspec-bin (~> 4.18)
   kitchen-azurerm (>= 0.14)
   kitchen-digitalocean (>= 0.10.0)
   kitchen-dokken (>= 2.6.7)
@@ -999,12 +999,12 @@ DEPENDENCIES
   knife-windows (>= 3.0)
   listen
   minitest (<= 5.10.3)
-  mixlib-archive (>= 0.4.16)
+  mixlib-archive (>= 1.0)
   mixlib-install
   mixlib-versioning
   net-ssh (>= 4.2.0)
   nokogiri
-  ohai (>= 14)
+  ohai (>= 15)
   opscode-pushy-client (>= 2.99)
   pry
   pry-byebug
