@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: bed563eb2e1872ab02b5cdaee07b3ef42491fd85
+  revision: e707177c0eecc79b281c838d63543ee1f959d454
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -32,7 +32,7 @@ GEM
     artifactory (3.0.5)
     awesome_print (1.8.0)
     aws-eventstream (1.0.3)
-    aws-partitions (1.253.0)
+    aws-partitions (1.254.0)
     aws-sdk-core (3.85.1)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -303,7 +303,7 @@ GEM
     toml-rb (1.1.2)
       citrus (~> 3.0, > 3.0)
     tomlrb (1.2.9)
-    train-core (3.2.3)
+    train-core (3.2.5)
       json (>= 1.8, < 3.0)
       mixlib-shellout (>= 2.0, < 4.0)
       net-scp (>= 1.2, < 3.0)
