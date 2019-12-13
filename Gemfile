@@ -71,7 +71,7 @@ group(:omnibus_package) do
   gem "kitchen-azurerm", ">= 0.14"
   gem "kitchen-ec2", ">= 3.0", "< 4"
   gem "kitchen-digitalocean", ">= 0.10.0"
-  gem "kitchen-dokken", ">= 2.6.7"
+  gem "kitchen-dokken", ">= 2.8.1"
   gem "kitchen-google", ">= 2.0.0"
   gem "kitchen-hyperv", ">= 0.5.1"
   gem "kitchen-inspec", ">= 1.0"
