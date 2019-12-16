@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.4 -->
-## [v4.7.4](https://github.com/chef/chef-dk/tree/v4.7.4) (2019-12-13)
+<!-- latest_release 4.7.5 -->
+## [v4.7.5](https://github.com/chef/chef-dk/tree/v4.7.5) (2019-12-16)
 
 #### Merged Pull Requests
-- Update kitchen-dokken to 2.8.1 [#2544](https://github.com/chef/chef-dk/pull/2544) ([tas50](https://github.com/tas50))
+- Update ruby-prof to 1.1.0 [#2557](https://github.com/chef/chef-dk/pull/2557) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update ruby-prof to 1.1.0 [#2557](https://github.com/chef/chef-dk/pull/2557) ([tas50](https://github.com/tas50)) <!-- 4.7.5 -->
 - Update kitchen-dokken to 2.8.1 [#2544](https://github.com/chef/chef-dk/pull/2544) ([tas50](https://github.com/tas50)) <!-- 4.7.4 -->
 - Update Chef Infra Client to 15.6 [#2541](https://github.com/chef/chef-dk/pull/2541) ([tas50](https://github.com/tas50)) <!-- 4.7.3 -->
 - Bump cookstyle to 5.15.7 [#2531](https://github.com/chef/chef-dk/pull/2531) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.2 -->
