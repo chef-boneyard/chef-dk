@@ -332,7 +332,7 @@ GEM
     concurrent-ruby (1.1.5)
     cookbook-omnifetch (0.9.0)
       mixlib-archive (>= 0.4, < 2.0)
-    cookstyle (5.16.10)
+    cookstyle (5.16.11)
       rubocop (= 0.75.1)
     cucumber (3.1.2)
       builder (>= 2.1.2)
