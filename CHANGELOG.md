@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.7 -->
-## [v4.7.7](https://github.com/chef/chef-dk/tree/v4.7.7) (2019-12-17)
+<!-- latest_release 4.7.8 -->
+## [v4.7.8](https://github.com/chef/chef-dk/tree/v4.7.8) (2019-12-17)
 
 #### Merged Pull Requests
-- Bump cookstyle to 5.16.10 [#2561](https://github.com/chef/chef-dk/pull/2561) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-ec2 to 1.0.21 [#2562](https://github.com/chef/chef-dk/pull/2562) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-ec2 to 1.0.21 [#2562](https://github.com/chef/chef-dk/pull/2562) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.8 -->
 - Bump cookstyle to 5.16.10 [#2561](https://github.com/chef/chef-dk/pull/2561) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.7 -->
 - Bump inspec to 4.18.51 and knife-ec2 to 1.0.20 [#2558](https://github.com/chef/chef-dk/pull/2558) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.6 -->
 - Update ruby-prof to 1.1.0 [#2557](https://github.com/chef/chef-dk/pull/2557) ([tas50](https://github.com/tas50)) <!-- 4.7.5 -->
