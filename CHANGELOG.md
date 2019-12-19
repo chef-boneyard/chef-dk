@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.9 -->
-## [v4.7.9](https://github.com/chef/chef-dk/tree/v4.7.9) (2019-12-17)
+<!-- latest_release 4.7.10 -->
+## [v4.7.10](https://github.com/chef/chef-dk/tree/v4.7.10) (2019-12-19)
 
 #### Merged Pull Requests
-- Bump cookstyle to 5.16.11 [#2565](https://github.com/chef/chef-dk/pull/2565) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump chef-telemetry to 1.0.2 [#2570](https://github.com/chef/chef-dk/pull/2570) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump chef-telemetry to 1.0.2 [#2570](https://github.com/chef/chef-dk/pull/2570) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.10 -->
 - Bump cookstyle to 5.16.11 [#2565](https://github.com/chef/chef-dk/pull/2565) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.9 -->
 - Bump knife-ec2 to 1.0.21 [#2562](https://github.com/chef/chef-dk/pull/2562) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.8 -->
 - Bump cookstyle to 5.16.10 [#2561](https://github.com/chef/chef-dk/pull/2561) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.7 -->
