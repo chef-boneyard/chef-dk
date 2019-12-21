@@ -290,7 +290,7 @@ GEM
       win32-service (>= 2.1.2, < 3.0)
       win32-taskscheduler (~> 2.0)
       wmi-lite (~> 1.0)
-    chef-api (0.10.0)
+    chef-api (0.10.2)
       logify (~> 0.1)
       mime-types
     chef-bin (15.6.10)
@@ -549,7 +549,7 @@ GEM
       chef (>= 15.0)
       excon (>= 0.50)
       mixlib-shellout
-    knife-ec2 (1.0.21)
+    knife-ec2 (1.0.22)
       aws-sdk-ec2 (~> 1.95)
       aws-sdk-s3 (~> 1.43)
       chef (>= 15.1)
@@ -566,7 +566,7 @@ GEM
       diffy (>= 3.0.1)
       git (>= 1.2.5)
     knife-tidy (2.0.6)
-    knife-vsphere (4.0.7)
+    knife-vsphere (4.0.8)
       chef (>= 15.1)
       chef-bin (>= 15.1)
       chef-vault (>= 2.6.0)
