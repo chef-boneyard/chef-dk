@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.17 -->
-## [v4.7.17](https://github.com/chef/chef-dk/tree/v4.7.17) (2019-12-21)
+<!-- latest_release 4.7.18 -->
+## [v4.7.18](https://github.com/chef/chef-dk/tree/v4.7.18) (2019-12-21)
 
 #### Merged Pull Requests
-- Bump cookstyle to 5.17.4 [#2586](https://github.com/chef/chef-dk/pull/2586) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Update openssl to 1.0.2u [#2588](https://github.com/chef/chef-dk/pull/2588) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update openssl to 1.0.2u [#2588](https://github.com/chef/chef-dk/pull/2588) ([tas50](https://github.com/tas50)) <!-- 4.7.18 -->
 - Bump cookstyle to 5.17.4 [#2586](https://github.com/chef/chef-dk/pull/2586) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.17 -->
 - Remove appveyor config files [#2585](https://github.com/chef/chef-dk/pull/2585) ([tas50](https://github.com/tas50)) <!-- 4.7.16 -->
 - Bump cheffish to 14.0.13 [#2584](https://github.com/chef/chef-dk/pull/2584) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.15 -->
