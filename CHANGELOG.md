@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.15 -->
-## [v4.7.15](https://github.com/chef/chef-dk/tree/v4.7.15) (2019-12-21)
+<!-- latest_release 4.7.16 -->
+## [v4.7.16](https://github.com/chef/chef-dk/tree/v4.7.16) (2019-12-21)
 
 #### Merged Pull Requests
-- Bump cheffish to 14.0.13 [#2584](https://github.com/chef/chef-dk/pull/2584) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Remove appveyor config files [#2585](https://github.com/chef/chef-dk/pull/2585) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Remove appveyor config files [#2585](https://github.com/chef/chef-dk/pull/2585) ([tas50](https://github.com/tas50)) <!-- 4.7.16 -->
 - Bump cheffish to 14.0.13 [#2584](https://github.com/chef/chef-dk/pull/2584) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.15 -->
 - Bump omnibus-software from `42ded1e` to `7402675` in /omnibus [#2583](https://github.com/chef/chef-dk/pull/2583) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.14 -->
 - Bump omnibus-software from `e707177` to `42ded1e` in /omnibus [#2576](https://github.com/chef/chef-dk/pull/2576) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.11 -->
