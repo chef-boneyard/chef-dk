@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.19 -->
-## [v4.7.19](https://github.com/chef/chef-dk/tree/v4.7.19) (2019-12-21)
+<!-- latest_release 4.7.20 -->
+## [v4.7.20](https://github.com/chef/chef-dk/tree/v4.7.20) (2019-12-21)
 
 #### Merged Pull Requests
-- Bump knife-vsphere to 4.0.8, knife-ec2 to 1.0.22, and chef-api to 0.10.2 [#2587](https://github.com/chef/chef-dk/pull/2587) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-tidy to 2.0.9, knife-azure to 2.0.6, and knife-windows to 3.0.6 [#2591](https://github.com/chef/chef-dk/pull/2591) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-tidy to 2.0.9, knife-azure to 2.0.6, and knife-windows to 3.0.6 [#2591](https://github.com/chef/chef-dk/pull/2591) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.20 -->
 - Bump knife-vsphere to 4.0.8, knife-ec2 to 1.0.22, and chef-api to 0.10.2 [#2587](https://github.com/chef/chef-dk/pull/2587) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.19 -->
 - Update openssl to 1.0.2u [#2588](https://github.com/chef/chef-dk/pull/2588) ([tas50](https://github.com/tas50)) <!-- 4.7.18 -->
 - Bump cookstyle to 5.17.4 [#2586](https://github.com/chef/chef-dk/pull/2586) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.17 -->
