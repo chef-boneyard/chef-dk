@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.21 -->
-## [v4.7.21](https://github.com/chef/chef-dk/tree/v4.7.21) (2019-12-21)
+<!-- latest_release 4.7.22 -->
+## [v4.7.22](https://github.com/chef/chef-dk/tree/v4.7.22) (2019-12-21)
 
 #### Merged Pull Requests
-- Pin InSpec / Train and bump others [#2593](https://github.com/chef/chef-dk/pull/2593) ([tas50](https://github.com/tas50))
+- Bump knife-cloud to 2.0.5 [#2594](https://github.com/chef/chef-dk/pull/2594) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-cloud to 2.0.5 [#2594](https://github.com/chef/chef-dk/pull/2594) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.22 -->
 - Pin InSpec / Train and bump others [#2593](https://github.com/chef/chef-dk/pull/2593) ([tas50](https://github.com/tas50)) <!-- 4.7.21 -->
 - Bump knife-tidy to 2.0.9, knife-azure to 2.0.6, and knife-windows to 3.0.6 [#2591](https://github.com/chef/chef-dk/pull/2591) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.20 -->
 - Bump knife-vsphere to 4.0.8, knife-ec2 to 1.0.22, and chef-api to 0.10.2 [#2587](https://github.com/chef/chef-dk/pull/2587) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.19 -->
