@@ -21,6 +21,10 @@ gemspec
 
 gem "bundler"
 
+## Until we resolve https://github.com/inspec/train/issues/548
+gem "train", "=3.2.0"
+gem "train-core", "=3.2.0"
+
 group(:omnibus_package, :development, :test) do
   # we pin these gems as they are installed in the ruby source and if we let them
   # float we'll end up with 2 copies shipped in DK. When we bump Ruby we need to
@@ -63,8 +67,8 @@ group(:omnibus_package) do
   gem "fauxhai", "~> 7.4"
 
   # inspec
-  gem "inspec-bin", "~> 4.18" # the actual inspec CLI binary
-  gem "inspec", "~> 4.18"
+  gem "inspec-bin", "= 4.18.39" # the actual inspec CLI binary
+  gem "inspec", "= 4.18.39"
 
   # test-kitchen and plugins
   gem "test-kitchen", ">= 2.0"
