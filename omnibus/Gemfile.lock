@@ -32,7 +32,7 @@ GEM
     artifactory (3.0.5)
     awesome_print (1.8.0)
     aws-eventstream (1.0.3)
-    aws-partitions (1.259.0)
+    aws-partitions (1.260.0)
     aws-sdk-core (3.86.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -211,7 +211,7 @@ GEM
     mixlib-archive (1.0.1-universal-mingw32)
       mixlib-log
     mixlib-authentication (3.0.4)
-    mixlib-cli (2.1.1)
+    mixlib-cli (2.1.5)
     mixlib-config (3.0.5)
       tomlrb
     mixlib-install (3.11.24)
@@ -353,7 +353,7 @@ GEM
     win32-taskscheduler (2.0.4)
       ffi
       structured_warnings
-    winrm (2.3.3)
+    winrm (2.3.4)
       builder (>= 2.1.2)
       erubi (~> 1.8)
       gssapi (~> 1.2)
