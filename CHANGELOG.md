@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.26 -->
-## [v4.7.26](https://github.com/chef/chef-dk/tree/v4.7.26) (2019-12-27)
+<!-- latest_release 4.7.27 -->
+## [v4.7.27](https://github.com/chef/chef-dk/tree/v4.7.27) (2019-12-28)
 
 #### Merged Pull Requests
-- Update all deps to current [#2606](https://github.com/chef/chef-dk/pull/2606) ([tas50](https://github.com/tas50))
+- Update ffi-libarchive to 1.0.0 [#2607](https://github.com/chef/chef-dk/pull/2607) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update ffi-libarchive to 1.0.0 [#2607](https://github.com/chef/chef-dk/pull/2607) ([tas50](https://github.com/tas50)) <!-- 4.7.27 -->
 - Update all deps to current [#2606](https://github.com/chef/chef-dk/pull/2606) ([tas50](https://github.com/tas50)) <!-- 4.7.26 -->
 - Bump public_suffix from 4.0.1 to 4.0.2 in /omnibus [#2603](https://github.com/chef/chef-dk/pull/2603) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.25 -->
 - Bump knife-ec2 to 1.0.25 [#2596](https://github.com/chef/chef-dk/pull/2596) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.24 -->
