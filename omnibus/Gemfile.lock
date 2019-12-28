@@ -211,7 +211,7 @@ GEM
     mixlib-archive (1.0.1-universal-mingw32)
       mixlib-log
     mixlib-authentication (3.0.4)
-    mixlib-cli (2.1.1)
+    mixlib-cli (2.1.5)
     mixlib-config (3.0.5)
       tomlrb
     mixlib-install (3.11.21)
