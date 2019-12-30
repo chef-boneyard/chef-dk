@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.33 -->
-## [v4.7.33](https://github.com/chef/chef-dk/tree/v4.7.33) (2019-12-30)
+<!-- latest_release 4.7.34 -->
+## [v4.7.34](https://github.com/chef/chef-dk/tree/v4.7.34) (2019-12-30)
 
 #### Merged Pull Requests
-- Bump mixlib-archive to 1.0.5 [#2613](https://github.com/chef/chef-dk/pull/2613) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump mixlib-versioning to 1.2.12 [#2614](https://github.com/chef/chef-dk/pull/2614) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump mixlib-versioning to 1.2.12 [#2614](https://github.com/chef/chef-dk/pull/2614) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.34 -->
 - Bump mixlib-archive to 1.0.5 [#2613](https://github.com/chef/chef-dk/pull/2613) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.33 -->
 - Bump mixlib-log to 3.0.8 [#2612](https://github.com/chef/chef-dk/pull/2612) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.32 -->
 - Bump wmi-lite to 1.0.5 [#2611](https://github.com/chef/chef-dk/pull/2611) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.31 -->
