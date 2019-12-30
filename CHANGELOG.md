@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.41 -->
-## [v4.7.41](https://github.com/chef/chef-dk/tree/v4.7.41) (2019-12-30)
+<!-- latest_release 4.7.42 -->
+## [v4.7.42](https://github.com/chef/chef-dk/tree/v4.7.42) (2019-12-30)
 
 #### Merged Pull Requests
-- Bump knife-acl to 1.0.6 [#2621](https://github.com/chef/chef-dk/pull/2621) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump chef-vault to 4.0.1 [#2632](https://github.com/chef/chef-dk/pull/2632) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump chef-vault to 4.0.1 [#2632](https://github.com/chef/chef-dk/pull/2632) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.42 -->
 - Bump knife-acl to 1.0.6 [#2621](https://github.com/chef/chef-dk/pull/2621) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.41 -->
 - Bump knife-push to 1.1.5 [#2620](https://github.com/chef/chef-dk/pull/2620) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.40 -->
 - Bump mixlib-shellout to 3.0.9 [#2618](https://github.com/chef/chef-dk/pull/2618) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.39 -->
