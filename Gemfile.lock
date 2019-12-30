@@ -395,7 +395,7 @@ GEM
       ffi
     ffi-win32-extensions (1.0.3)
       ffi
-    ffi-yajl (2.3.1)
+    ffi-yajl (2.3.3)
       libyajl2 (~> 1.2)
     filesize (0.2.0)
     foodcritic (16.2.0)
