@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.39 -->
-## [v4.7.39](https://github.com/chef/chef-dk/tree/v4.7.39) (2019-12-30)
+<!-- latest_release 4.7.40 -->
+## [v4.7.40](https://github.com/chef/chef-dk/tree/v4.7.40) (2019-12-30)
 
 #### Merged Pull Requests
-- Bump mixlib-shellout to 3.0.9 [#2618](https://github.com/chef/chef-dk/pull/2618) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-push to 1.1.5 [#2620](https://github.com/chef/chef-dk/pull/2620) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-push to 1.1.5 [#2620](https://github.com/chef/chef-dk/pull/2620) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.40 -->
 - Bump mixlib-shellout to 3.0.9 [#2618](https://github.com/chef/chef-dk/pull/2618) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.39 -->
 - Update mixlib-shellout to 3.0.9 + bump omnibus deps [#2619](https://github.com/chef/chef-dk/pull/2619) ([tas50](https://github.com/tas50)) <!-- 4.7.38 -->
 - Bump chef-zero to 14.0.17 [#2617](https://github.com/chef/chef-dk/pull/2617) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.37 -->
