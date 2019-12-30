@@ -545,7 +545,7 @@ GEM
       google-api-client (>= 0.23.9, < 0.35.0)
       knife-cloud (>= 2.0.0)
     knife-opc (0.4.1)
-    knife-push (1.1.2)
+    knife-push (1.1.5)
       chef (>= 13.0)
     knife-spork (1.7.2)
       app_conf (>= 0.4.0)
@@ -1036,4 +1036,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
