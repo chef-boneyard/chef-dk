@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.29 -->
-## [v4.7.29](https://github.com/chef/chef-dk/tree/v4.7.29) (2019-12-29)
+<!-- latest_release 4.7.30 -->
+## [v4.7.30](https://github.com/chef/chef-dk/tree/v4.7.30) (2019-12-30)
 
 #### Merged Pull Requests
-- Bump mixlib-config to 3.0.6 [#2609](https://github.com/chef/chef-dk/pull/2609) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump ffi-yajl to 2.3.3 [#2610](https://github.com/chef/chef-dk/pull/2610) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump ffi-yajl to 2.3.3 [#2610](https://github.com/chef/chef-dk/pull/2610) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.30 -->
 - Bump mixlib-config to 3.0.6 [#2609](https://github.com/chef/chef-dk/pull/2609) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.29 -->
 - Bump knife-ec2 to 1.0.26 [#2608](https://github.com/chef/chef-dk/pull/2608) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.28 -->
 - Update ffi-libarchive to 1.0.0 [#2607](https://github.com/chef/chef-dk/pull/2607) ([tas50](https://github.com/tas50)) <!-- 4.7.27 -->
