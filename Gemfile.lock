@@ -520,7 +520,7 @@ GEM
       test-kitchen (>= 1.6, < 3)
     kitchen-vagrant (1.6.0)
       test-kitchen (>= 1.4, < 3)
-    knife-acl (1.0.3)
+    knife-acl (1.0.6)
     knife-azure (2.0.6)
       azure_mgmt_compute (~> 0.18, >= 0.18.3)
       azure_mgmt_network (~> 0.18, >= 0.18.2)
