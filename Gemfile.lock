@@ -305,7 +305,7 @@ GEM
     chef-sugar (5.1.9)
     chef-utils (15.6.10)
     chef-vault (3.4.3)
-    chef-zero (14.0.13)
+    chef-zero (14.0.17)
       ffi-yajl (~> 2.2)
       hashie (>= 2.0, < 4.0)
       mixlib-log (>= 2.0, < 4.0)
