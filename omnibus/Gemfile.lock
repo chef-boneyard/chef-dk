@@ -372,7 +372,7 @@ GEM
       rubyzip (~> 2.0)
       winrm (~> 2.0)
     wisper (2.0.1)
-    wmi-lite (1.0.2)
+    wmi-lite (1.0.5)
     zhexdump (0.0.2)
 
 PLATFORMS
