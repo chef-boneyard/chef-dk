@@ -210,7 +210,7 @@ GEM
       mixlib-log
     mixlib-archive (1.0.5-universal-mingw32)
       mixlib-log
-    mixlib-authentication (3.0.4)
+    mixlib-authentication (3.0.6)
     mixlib-cli (2.1.5)
     mixlib-config (3.0.6)
       tomlrb
