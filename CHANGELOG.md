@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.35 -->
-## [v4.7.35](https://github.com/chef/chef-dk/tree/v4.7.35) (2019-12-30)
+<!-- latest_release 4.7.36 -->
+## [v4.7.36](https://github.com/chef/chef-dk/tree/v4.7.36) (2019-12-30)
 
 #### Merged Pull Requests
-- Bump mixlib-install to 3.11.26 [#2615](https://github.com/chef/chef-dk/pull/2615) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump mixlib-authentication to 3.0.6 [#2616](https://github.com/chef/chef-dk/pull/2616) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump mixlib-authentication to 3.0.6 [#2616](https://github.com/chef/chef-dk/pull/2616) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.36 -->
 - Bump mixlib-install to 3.11.26 [#2615](https://github.com/chef/chef-dk/pull/2615) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.35 -->
 - Bump mixlib-versioning to 1.2.12 [#2614](https://github.com/chef/chef-dk/pull/2614) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.34 -->
 - Bump mixlib-archive to 1.0.5 [#2613](https://github.com/chef/chef-dk/pull/2613) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.33 -->
