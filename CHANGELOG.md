@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.43 -->
-## [v4.7.43](https://github.com/chef/chef-dk/tree/v4.7.43) (2019-12-30)
+<!-- latest_release 4.7.44 -->
+## [v4.7.44](https://github.com/chef/chef-dk/tree/v4.7.44) (2019-12-31)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `7402675` to `0ead966` in /omnibus [#2633](https://github.com/chef/chef-dk/pull/2633) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump train-winrm to 0.2.6 [#2637](https://github.com/chef/chef-dk/pull/2637) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump train-winrm to 0.2.6 [#2637](https://github.com/chef/chef-dk/pull/2637) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.44 -->
 - Bump omnibus-software from `7402675` to `0ead966` in /omnibus [#2633](https://github.com/chef/chef-dk/pull/2633) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.43 -->
 - Bump chef-vault to 4.0.1 [#2632](https://github.com/chef/chef-dk/pull/2632) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.42 -->
 - Bump knife-acl to 1.0.6 [#2621](https://github.com/chef/chef-dk/pull/2621) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.41 -->
