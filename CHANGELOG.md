@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.45 -->
-## [v4.7.45](https://github.com/chef/chef-dk/tree/v4.7.45) (2019-12-31)
+<!-- latest_release 4.7.46 -->
+## [v4.7.46](https://github.com/chef/chef-dk/tree/v4.7.46) (2019-12-31)
 
 #### Merged Pull Requests
-- Bump train-aws to 0.1.15 [#2638](https://github.com/chef/chef-dk/pull/2638) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Remove Foodcritic tests / Foodcritic from the readme [#2639](https://github.com/chef/chef-dk/pull/2639) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Remove Foodcritic tests / Foodcritic from the readme [#2639](https://github.com/chef/chef-dk/pull/2639) ([tas50](https://github.com/tas50)) <!-- 4.7.46 -->
 - Bump train-aws to 0.1.15 [#2638](https://github.com/chef/chef-dk/pull/2638) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.45 -->
 - Bump train-winrm to 0.2.6 [#2637](https://github.com/chef/chef-dk/pull/2637) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.44 -->
 - Bump omnibus-software from `7402675` to `0ead966` in /omnibus [#2633](https://github.com/chef/chef-dk/pull/2633) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.43 -->
