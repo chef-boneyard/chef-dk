@@ -28,7 +28,7 @@ GEM
     appbundler (0.13.1)
       mixlib-cli (>= 1.4, < 3.0)
       mixlib-shellout (>= 2.0, < 4.0)
-    artifactory (3.0.5)
+    artifactory (3.0.12)
     ast (2.4.0)
     aws-eventstream (1.0.3)
     aws-partitions (1.260.0)
@@ -946,7 +946,7 @@ GEM
       winrm (~> 2.0)
     wisper (2.0.1)
     wmi-lite (1.0.5)
-    yard (0.9.20)
+    yard (0.9.22)
 
 PLATFORMS
   ruby

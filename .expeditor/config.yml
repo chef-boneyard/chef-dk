@@ -286,3 +286,9 @@ subscriptions:
   - workload: ruby_gem_published:cookbook-omnifetch-*
     actions:
       - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:artifactory-*
+    actions:
+      - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:yard-*
+    actions:
+      - bash:.expeditor/update_dep.sh
