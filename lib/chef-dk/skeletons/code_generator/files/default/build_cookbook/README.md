@@ -129,7 +129,7 @@ delivery review
 
 ## FAQ
 
-### Why don't I just run rspec and foodcritic/rubocop on my local system?
+### Why don't I just run rspec and cookstyle/chefspec on my local system?
 
 An objection to the Test Kitchen approach is that it is much faster to run the unit, lint, and syntax commands for the project on the local system. That is totally true, and also totally valid. Do that for the really fast feedback loop. However, the dance we do with Test Kitchen brings a much higher degree of confidence in the changes we're making, that everything will run on the build nodes in Chef Workflow. We strongly encourage this approach before actually pushing the changes to Workflow.
 
