@@ -1,6 +1,5 @@
 # THIS IS NOW HAND MANAGED, JUST EDIT THE THING
-# .travis.yml and appveyor.yml consume this,
-# try to keep it machine-parsable.
+# Buildkite consume this so keep it machine-parsable.
 #
 # NOTE: You MUST update omnibus-software when adding new versions of
 # software here: bundle exec rake dependencies:update_omnibus_gemfile_lock
