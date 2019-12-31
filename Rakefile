@@ -49,27 +49,11 @@ namespace :style do
       spec/unit/fixtures/local_path_cookbooks
     })
 
-    desc "Run Chef Ruby style checks"
+    desc "Run Cookstyle style checks"
     RuboCop::RakeTask.new(:chefstyle) do |t|
       t.requires = ["chefstyle"]
       t.patterns = `rubocop --list-target-files`.split("\n").reject { |f| f =~ ignore_dirs }
       t.options = ["--display-cop-names"]
-    end
-  rescue LoadError => e
-    puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV["CI"]
-  end
-
-  begin
-    require "foodcritic"
-
-    desc "Run Chef Cookbook (Foodcritic) style checks"
-    FoodCritic::Rake::LintTask.new(:foodcritic) do |t|
-      t.options = {
-        fail_tags: ["any"],
-        tags: ["~FC071", "~supermarket", "~FC031"],
-        cookbook_paths: ["lib/chef-dk/skeletons/code_generator"],
-        progress: true,
-      }
     end
   rescue LoadError => e
     puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV["CI"]

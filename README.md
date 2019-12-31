@@ -15,13 +15,13 @@
 ChefDK brings Chef Infra Client and the development tools developed by the Chef Community together and acts as the consistent interface to this awesomeness. This awesomeness is composed of:
 
 * [Chef Infra Client][]
-* [Berkshelf][]
+* [Chef InSpec][]
 * [Test Kitchen][]
 * [ChefSpec][]
-* [Foodcritic][]
 * [Cookstyle][]
 * [Delivery CLI][]
 * [Push Jobs Client][]
+* [Berkshelf][]
 
 This repository contains the code for the `chef` command. The full
 package is built with omnibus. Project and component build definitions
@@ -43,7 +43,7 @@ system bin directory, ready to use.
 The following commands will download the latest ChefDK package from the `current` channel.  The `current` channel holds builds that have passed testing and are candidates for release.
 More information about flags supported by install.sh available here: https://docs.chef.io/api_omnitruck.html
 
-#### Linux and OS/X:
+#### Linux and macOS
 
 In a terminal, run:
 
@@ -313,11 +313,11 @@ packaging, and building works.
 
 [Berkshelf]: https://docs.chef.io/berkshelf.html "Berkshelf"
 [Chef Infra Client]: https://www.chef.io/products/chef-infra/ "Chef Infra Client"
+[Chef InSpec]: https://www.inspec.io/ "Chef InSpec"
 [ChefDK]: https://downloads.chef.io/chefdk/ "ChefDK"
 [Chef Documentation]: https://docs.chef.io "Chef Documentation"
 [ChefSpec]: http://chefspec.github.io/chefspec/ "ChefSpec"
 [Cookstyle]: https://docs.chef.io/cookstyle.html "Cookstyle"
-[Foodcritic]: http://foodcritic.io "Foodcritic"
 [Learn Chef]: https://learn.chef.io "Learn Chef"
 [Test Kitchen]: http://kitchen.ci "Test Kitchen"
 [Delivery CLI]: https://docs.chef.io/delivery_cli.html "Delivery CLI"
