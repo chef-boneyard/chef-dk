@@ -8,10 +8,10 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 9fbb95fd6636a034874e9a7e3a1a02e4c8b74c2f
+  revision: 7dd5e7fc9b28cd0437ba8288a11d371f8ed8e5d0
   branch: master
   specs:
-    omnibus (6.1.18)
+    omnibus (6.1.20)
       aws-sdk-s3 (~> 1)
       chef-cleanroom (~> 1.0)
       chef-sugar (>= 3.3)
@@ -22,7 +22,7 @@ GIT
       ohai (>= 13, < 16)
       pedump
       ruby-progressbar (~> 1.7)
-      thor (~> 0.18)
+      thor (>= 0.18, < 2.0)
 
 GEM
   remote: https://rubygems.org/
