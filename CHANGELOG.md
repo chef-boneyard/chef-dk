@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.47 -->
-## [v4.7.47](https://github.com/chef/chef-dk/tree/v4.7.47) (2019-12-31)
+<!-- latest_release 4.7.48 -->
+## [v4.7.48](https://github.com/chef/chef-dk/tree/v4.7.48) (2020-01-03)
 
 #### Merged Pull Requests
-- Update yard and artifactory deps [#2641](https://github.com/chef/chef-dk/pull/2641) ([tas50](https://github.com/tas50))
+- Bump cookstyle to 5.18.4 [#2653](https://github.com/chef/chef-dk/pull/2653) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump cookstyle to 5.18.4 [#2653](https://github.com/chef/chef-dk/pull/2653) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.48 -->
 - Update yard and artifactory deps [#2641](https://github.com/chef/chef-dk/pull/2641) ([tas50](https://github.com/tas50)) <!-- 4.7.47 -->
 - Remove Foodcritic tests / Foodcritic from the readme [#2639](https://github.com/chef/chef-dk/pull/2639) ([tas50](https://github.com/tas50)) <!-- 4.7.46 -->
 - Bump train-aws to 0.1.15 [#2638](https://github.com/chef/chef-dk/pull/2638) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.45 -->
