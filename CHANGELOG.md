@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.49 -->
-## [v4.7.49](https://github.com/chef/chef-dk/tree/v4.7.49) (2020-01-05)
+<!-- latest_release 4.7.50 -->
+## [v4.7.50](https://github.com/chef/chef-dk/tree/v4.7.50) (2020-01-08)
 
 #### Merged Pull Requests
-- Bump yard to 0.9.23 [#2654](https://github.com/chef/chef-dk/pull/2654) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump yard to 0.9.24 [#2659](https://github.com/chef/chef-dk/pull/2659) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump yard to 0.9.24 [#2659](https://github.com/chef/chef-dk/pull/2659) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.50 -->
 - Bump yard to 0.9.23 [#2654](https://github.com/chef/chef-dk/pull/2654) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.49 -->
 - Bump cookstyle to 5.18.4 [#2653](https://github.com/chef/chef-dk/pull/2653) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.48 -->
 - Update yard and artifactory deps [#2641](https://github.com/chef/chef-dk/pull/2641) ([tas50](https://github.com/tas50)) <!-- 4.7.47 -->
