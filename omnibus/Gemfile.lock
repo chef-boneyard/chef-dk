@@ -267,7 +267,7 @@ GEM
     progressbar (1.10.1)
     proxifier (1.0.3)
     public_suffix (4.0.3)
-    rack (2.0.8)
+    rack (2.1.1)
     retryable (3.0.5)
     ruby-progressbar (1.10.1)
     rubyntlm (0.6.2)
