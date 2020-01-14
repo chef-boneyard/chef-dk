@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.52 -->
-## [v4.7.52](https://github.com/chef/chef-dk/tree/v4.7.52) (2020-01-14)
+<!-- latest_release 4.7.53 -->
+## [v4.7.53](https://github.com/chef/chef-dk/tree/v4.7.53) (2020-01-14)
 
 #### Merged Pull Requests
-- Update license_scout to 1.1.3 [#2669](https://github.com/chef/chef-dk/pull/2669) ([tas50](https://github.com/tas50))
+- Bump omnibus-software from `ee6adeb` to `ac5f042` in /omnibus [#2671](https://github.com/chef/chef-dk/pull/2671) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `ee6adeb` to `ac5f042` in /omnibus [#2671](https://github.com/chef/chef-dk/pull/2671) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.53 -->
 - Update license_scout to 1.1.3 [#2669](https://github.com/chef/chef-dk/pull/2669) ([tas50](https://github.com/tas50)) <!-- 4.7.52 -->
 - Bump cookstyle to 5.19.9 [#2668](https://github.com/chef/chef-dk/pull/2668) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.51 -->
 - Bump yard to 0.9.24 [#2659](https://github.com/chef/chef-dk/pull/2659) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.50 -->
