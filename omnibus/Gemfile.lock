@@ -331,7 +331,7 @@ GEM
     unicode_utils (1.4.0)
     uuidtools (2.1.5)
     win32-api (1.5.3-universal-mingw32)
-    win32-certstore (0.3.0)
+    win32-certstore (0.4.0)
       ffi
       mixlib-shellout
     win32-dir (0.5.1)
