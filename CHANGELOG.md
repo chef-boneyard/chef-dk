@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.50 -->
-## [v4.7.50](https://github.com/chef/chef-dk/tree/v4.7.50) (2020-01-08)
+<!-- latest_release 4.7.51 -->
+## [v4.7.51](https://github.com/chef/chef-dk/tree/v4.7.51) (2020-01-14)
 
 #### Merged Pull Requests
-- Bump yard to 0.9.24 [#2659](https://github.com/chef/chef-dk/pull/2659) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump cookstyle to 5.19.9 [#2668](https://github.com/chef/chef-dk/pull/2668) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump cookstyle to 5.19.9 [#2668](https://github.com/chef/chef-dk/pull/2668) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.51 -->
 - Bump yard to 0.9.24 [#2659](https://github.com/chef/chef-dk/pull/2659) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.50 -->
 - Bump yard to 0.9.23 [#2654](https://github.com/chef/chef-dk/pull/2654) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.49 -->
 - Bump cookstyle to 5.18.4 [#2653](https://github.com/chef/chef-dk/pull/2653) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.48 -->
