@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: ac5f042854a09956d11710a5eb1152a9417f7aae
+  revision: 7efbf128d4cb0c60a00744af7a9a0d5b6ffd0fb3
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -33,7 +33,7 @@ GEM
     awesome_print (1.8.0)
     aws-eventstream (1.0.3)
     aws-partitions (1.263.0)
-    aws-sdk-core (3.89.0)
+    aws-sdk-core (3.89.1)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
@@ -166,9 +166,9 @@ GEM
     erubis (2.7.0)
     faraday (1.0.0)
       multipart-post (>= 1.2, < 3)
-    ffi (1.11.3)
-    ffi (1.11.3-x64-mingw32)
-    ffi (1.11.3-x86-mingw32)
+    ffi (1.12.1)
+    ffi (1.12.1-x64-mingw32)
+    ffi (1.12.1-x86-mingw32)
     ffi-libarchive (1.0.0)
       ffi (~> 1.0)
     ffi-win32-extensions (1.0.3)
