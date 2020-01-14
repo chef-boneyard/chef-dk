@@ -271,7 +271,7 @@ describe ChefDK::Command::GeneratorCommands::Cookbook do
               # Cookbook:: build_cookbook
               # Recipe:: publish
               #
-              # Copyright:: 2019, The Authors, All Rights Reserved.
+              # Copyright:: 2020, The Authors, All Rights Reserved.
 
               include_recipe 'delivery-truck::publish'
             CONFIG_DOT_JSON
