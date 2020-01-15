@@ -84,6 +84,9 @@ group(:omnibus_package) do
   gem "listen"
   gem "dco"
 
+  # this pin prevents pulling in 1.x that has breaking changes for our apps here
+  gem "chef-telemetry", "~> 0.1"
+
   # Right now we must import chef-apply as a gem into the ChefDK because this is where all the gem
   # dependency resolution occurs. Putting it elsewhere endangers older ChefDK issues of gem version
   # conflicts post-build.
