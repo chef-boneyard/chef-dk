@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.56 -->
-## [v4.7.56](https://github.com/chef/chef-dk/tree/v4.7.56) (2020-01-14)
+<!-- latest_release 4.7.57 -->
+## [v4.7.57](https://github.com/chef/chef-dk/tree/v4.7.57) (2020-01-15)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `ee6adeb` to `7efbf12` in /omnibus [#2680](https://github.com/chef/chef-dk/pull/2680) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `7efbf12` to `ebdd701` in /omnibus [#2685](https://github.com/chef/chef-dk/pull/2685) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `7efbf12` to `ebdd701` in /omnibus [#2685](https://github.com/chef/chef-dk/pull/2685) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.57 -->
 - Bump omnibus-software from `ee6adeb` to `7efbf12` in /omnibus [#2680](https://github.com/chef/chef-dk/pull/2680) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.56 -->
 - Remove Windows 2008 R2 from the build pipeline [#2670](https://github.com/chef/chef-dk/pull/2670) ([tas50](https://github.com/tas50)) <!-- 4.7.55 -->
 - Bump ffi from 1.11.3 to 1.12.1 in /omnibus [#2678](https://github.com/chef/chef-dk/pull/2678) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.54 -->
