@@ -518,7 +518,7 @@ GEM
       hashie (~> 3.4)
       inspec (>= 1.47, < 5.0)
       test-kitchen (>= 1.6, < 3)
-    kitchen-vagrant (1.6.0)
+    kitchen-vagrant (1.6.1)
       test-kitchen (>= 1.4, < 3)
     knife-acl (1.0.6)
     knife-azure (2.0.6)
