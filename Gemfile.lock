@@ -490,7 +490,7 @@ GEM
       addressable (>= 2.4)
     jwt (2.2.1)
     kartograph (0.2.7)
-    kitchen-azurerm (0.15.0)
+    kitchen-azurerm (0.15.1)
       azure_mgmt_network (~> 0.18, >= 0.18.2)
       azure_mgmt_resources (~> 0.17, >= 0.17.2)
       inifile (~> 3.0, >= 3.0.0)
