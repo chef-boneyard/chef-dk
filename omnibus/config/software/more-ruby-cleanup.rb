@@ -34,62 +34,36 @@ build do
     files = %w{
       .github
       .kokoro
-      examples
-      example
-      docs
-      doc
-      doc-api
-      sample
-      samples
-      test
-      tests
+      Appraisals
+      autotest/*
+      bench
       benchmark
       benchmarks
-      rakelib
-      CHANGELOG.md
-      CONTRIBUTORS.md
-      README.md
-      README.markdown
-      HISTORY.md
-      TODO.md
-      CONTRIBUTING.md
-      ISSUE_TEMPLATE.md
-      UPGRADING.md
-      CODE_OF_CONDUCT.md
-      Code-of-Conduct.md
-      ARCHITECTURE.md
-      CHANGES.md
-      README.YARD.md
-      GUIDE.md
-      MIGRATING.md
-      README.txt
-      HISTORY.txt
-      Manifest.txt
-      Manifest
-      CHANGES.txt
-      CHANGELOG.txt
-      FAQ.txt
-      release-script.txt
-      TODO
-      HISTORY
-      CHANGES
-      CHANGELOG
-      README
-      README-json-jruby.md
-      Gemfile.travis
-      Gemfile.lock
-      Gemfile.devtools
-      README.rdoc
-      CHANGELOG.rdoc
-      History.rdoc
-      CONTRIBUTING.rdoc
-      README_INDEX.rdoc
-      logo.png
+      doc
+      doc-api
+      docs
       donate.png
-      Appraisals
-      website
+      ed25519.png
+      example
+      examples
+      ext
+      frozen_old_spec
+      Gemfile.devtools
+      Gemfile.lock
+      Gemfile.travis
+      logo.png
       man
+      rakelib
+      release-script.txt
+      sample
+      samples
       site
+      test
+      tests
+      travis_build_script.sh
+      warning.txt
+      website
+      yard-template
     }
 
     Dir.glob(Dir.glob("#{target_dir}/*/{#{files.join(",")}}")).each do |f|
@@ -99,6 +73,38 @@ build do
         FileUtils.remove_dir(f)
       else
         File.delete(f)
+      end
+    end
+
+    block "Removing Gemspec / Rakefile / Gemfile unless there's a bin dir" do
+      # find the embedded ruby gems dir and clean it up for globbing
+      target_dir = "#{install_dir}/embedded/lib/ruby/gems/*/gems".tr('\\', "/")
+      files = %w{
+        *.gemspec
+        Gemfile
+        Rakefile
+      }
+
+      Dir.glob(Dir.glob("#{target_dir}/*/{#{files.join(",")}}")).each do |f|
+        # don't delete these files if there's a bin dir in the same dir
+        unless Dir.exist?(File.join(File.dirname(f), "bin"))
+          puts "Deleting #{f}"
+          File.delete(f)
+        end
+      end
+    end
+
+    block "Removing spec dirs unless we're in components we test in the verify command" do
+      # find the embedded ruby gems dir and clean it up for globbing
+      target_dir = "#{install_dir}/embedded/lib/ruby/gems/*/gems".tr('\\', "/")
+
+      Dir.glob(Dir.glob("#{target_dir}/*/spec")).each do |f|
+
+        # don't delete these files if we use them in our verify tests
+        unless File.basename(File.expand_path("..", f)).match?(/^(berkshelf|test-kitchen|chef|chef-dk|chef-apply|chefspec)-\d/)
+          puts "Deleting unused spec dir #{f}"
+          FileUtils.remove_dir(f)
+        end
       end
     end
   end
