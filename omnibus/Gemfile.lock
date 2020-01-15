@@ -189,7 +189,7 @@ GEM
     iso8601 (0.12.1)
     jmespath (1.4.0)
     json (2.3.0)
-    kitchen-vagrant (1.6.0)
+    kitchen-vagrant (1.6.1)
       test-kitchen (>= 1.4, < 3)
     libyajl2 (1.2.0)
     license-acceptance (1.0.13)
