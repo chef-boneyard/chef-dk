@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.59 -->
-## [v4.7.59](https://github.com/chef/chef-dk/tree/v4.7.59) (2020-01-15)
+<!-- latest_release 4.7.60 -->
+## [v4.7.60](https://github.com/chef/chef-dk/tree/v4.7.60) (2020-01-15)
 
 #### Merged Pull Requests
-- Bump kitchen-ec2 to 3.3.0 [#2688](https://github.com/chef/chef-dk/pull/2688) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-ec2 to 1.0.28 [#2693](https://github.com/chef/chef-dk/pull/2693) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-ec2 to 1.0.28 [#2693](https://github.com/chef/chef-dk/pull/2693) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.60 -->
 - Bump kitchen-ec2 to 3.3.0 [#2688](https://github.com/chef/chef-dk/pull/2688) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.59 -->
 - Bump kitchen-google to 2.0.3 [#2687](https://github.com/chef/chef-dk/pull/2687) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.58 -->
 - Bump omnibus-software from `7efbf12` to `ebdd701` in /omnibus [#2685](https://github.com/chef/chef-dk/pull/2685) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.57 -->
