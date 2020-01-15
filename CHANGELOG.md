@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.60 -->
-## [v4.7.60](https://github.com/chef/chef-dk/tree/v4.7.60) (2020-01-15)
+<!-- latest_release 4.7.61 -->
+## [v4.7.61](https://github.com/chef/chef-dk/tree/v4.7.61) (2020-01-15)
 
 #### Merged Pull Requests
-- Bump knife-ec2 to 1.0.28 [#2693](https://github.com/chef/chef-dk/pull/2693) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Perform the same artifact cleanup we do in workstation [#2695](https://github.com/chef/chef-dk/pull/2695) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Perform the same artifact cleanup we do in workstation [#2695](https://github.com/chef/chef-dk/pull/2695) ([tas50](https://github.com/tas50)) <!-- 4.7.61 -->
 - Bump knife-ec2 to 1.0.28 [#2693](https://github.com/chef/chef-dk/pull/2693) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.60 -->
 - Bump kitchen-ec2 to 3.3.0 [#2688](https://github.com/chef/chef-dk/pull/2688) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.59 -->
 - Bump kitchen-google to 2.0.3 [#2687](https://github.com/chef/chef-dk/pull/2687) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.58 -->
