@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.12.32 -->
-## [v3.12.32](https://github.com/chef/chef-dk/tree/v3.12.32) (2020-01-14)
+<!-- latest_release 3.12.33 -->
+## [v3.12.33](https://github.com/chef/chef-dk/tree/v3.12.33) (2020-01-15)
 
 #### Merged Pull Requests
-- Bump ffi from 1.11.3 to 1.12.1 in /omnibus [#2679](https://github.com/chef/chef-dk/pull/2679) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `7efbf12` to `ebdd701` in /omnibus [#2686](https://github.com/chef/chef-dk/pull/2686) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.12.10 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `7efbf12` to `ebdd701` in /omnibus [#2686](https://github.com/chef/chef-dk/pull/2686) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.33 -->
 - Bump ffi from 1.11.3 to 1.12.1 in /omnibus [#2679](https://github.com/chef/chef-dk/pull/2679) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.32 -->
 - Bump license_scout from 1.0.29 to 1.1.3 in /omnibus [#2673](https://github.com/chef/chef-dk/pull/2673) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.31 -->
 - Bump omnibus-software from `09a3cb0` to `7efbf12` in /omnibus [#2677](https://github.com/chef/chef-dk/pull/2677) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.30 -->
