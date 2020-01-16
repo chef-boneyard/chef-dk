@@ -8,4 +8,4 @@ update_configs:
       - "Type: Chore"
     ignored_updates:
       - match:
-        dependency_name: "aws*"
+          dependency_name: "aws*"
