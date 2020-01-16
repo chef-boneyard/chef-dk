@@ -61,7 +61,6 @@ build do
       test
       tests
       travis_build_script.sh
-      warning.txt
       website
       yard-template
     }
