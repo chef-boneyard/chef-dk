@@ -32,7 +32,7 @@ With the addition of these new departments, we've moved many cops out of the Che
 kitchen-azurerm has been updated from 0.14.9 to 0.15.1 with the following improvements:
 
 - Enable the WinRM HTTP listener by default. Thanks [@sean-nixon](https//github.com/sean-nixon)
-- Allow overriding the `subscription_id` by setting the `AZURE_SUBSCRIPTION_ID` ENV variable
+- Allow overriding of the `subscription_id` by setting the `AZURE_SUBSCRIPTION_ID` ENV variable.
 - Add a new `nic_name` config. Thanks [@libertymutual](https//github.com/libertymutual)
 - Support for creating VM with Azure KeyVault certificate. Thanks [@javgallegos](https//github.com/javgallegos)
 
