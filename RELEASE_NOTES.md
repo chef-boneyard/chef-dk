@@ -80,7 +80,7 @@ We continue to optimize the size of the ChefDK package with this release taking 
 
 ## Platform Support
 
-ChefDK packages are no longer produced for Windows 2008 R2 as this release went end of life on Jan 14th 2020.
+ChefDK packages are no longer produced for Windows 2008 R2 as this release reached its end of life on January 14th, 2020.
 
 ## Security Updates
 
