@@ -4,7 +4,7 @@
 
 ### Chef Infra Client
 
-Chef Infra Client has been updated from 15.5 to 15.6, which includes improvements to the `apt_repository`, `file`, `user` and `yum_repository` resources as well as the usual collection of bug fixes.
+Chef Infra Client has been updated from 15.5 to 15.6 which includes improvements to the `apt_repository`, `file`, `user`, and `yum_repository` resources as well as the usual collection of bug fixes.
 
 ### Cookstyle
 
