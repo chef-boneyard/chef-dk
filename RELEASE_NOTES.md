@@ -51,7 +51,7 @@ knife-ec2 has been updated from 1.0.17 to 1.0.28 with the following fixes:
 - Resolved a missing credential error when using aws-profile.
 - Mask AWS access keys data in any error or debug logs.
 - Resolved ssh_gateway uninitialised error.
-- Fixed invalid format of auto generated keypair file name
+- Fixed invalid format of auto generated keypair file name.
 - Raises an error if password length is less than 8 characters on Windows and will stop warning on passwords over 14 characters.
 
 ### knife-tidy
