@@ -1,8 +1,112 @@
+# ChefDK 4.7
+
+## Updated Components
+
+### Chef Infra Client
+
+Chef Infra Client has been updated from 15.5 to 15.6, which includes improvements to the `apt_repository`, `file`, `user` and `yum_repository` resources as well as the usual collection of bug fixes.
+
+### Cookstyle
+
+Cookstyle has been updated from 5.13 to 5.19 with 29 new cops, improvements to existing cops, a new TargetChefVersion config option, and expanded cop departments.
+
+#### TargetChefVersion Config
+
+Cookstyle now includes a new top-level configuration option `TargetChefVersion`. This new configuration option works similarly to RuboCop's `TargetRubyVersion` config option and allows you to specify a Chef Infra version that you want to target in your Cookstyle analysis. This prevents Cookstyle from autocorrecting cookbook code in a way that would make your cookbook incompatible with your desired Chef Infra Client version. It also makes it easier to perform staged upgrades of the Chef Infra Client by allowing you to step the `TargetChefVersion` one major version at a time.
+
+Example .rubocop.yml config specifying a TargetChefVersion of 14.0:
+
+```yaml
+AllCops:
+  TargetChefVersion: 14.0
+```
+
+#### New ChefSharing and ChefRedundantCode Departments
+
+Cookstyle now includes two new Chef cop departments with a large number of existing cops moved into these more appropriate departments. Our goal is to have clearly defined cop departments that can be enabled or disabled to detect particular conditions in your cookbooks. Cops in the new ChefSharing department are focused around sharing cookbooks internally or on the public Supermarket. This includes things like ensuring proper license strings and complete metadata. Cops in the ChefRedundantCode category detect and correct unnecessary cookbook code. Anything detected by ChefRedundantCode cops can be removed regardless of the Chef Infra Client release you run in your infrastructure, so these are always safe to run.
+
+With the addition of these new departments, we've moved many cops out of the ChefCorrectness department. Going forward only cops that detect code that may fail a Chef Infra Client run or cause it to behave incorrectly will be included in this category. We hope that ChefCorrectness along with ChefDeprecations are used in most cookbook CI pipelines.
+
+### kitchen-azurerm
+
+kitchen-azurerm has been updated from 0.14.9 to 0.15.1 with the following improvements:
+
+- Enable the WinRM HTTP listener by default. Thanks [@sean-nixon](https//github.com/sean-nixon)
+- Allow overriding the `subscription_id` by setting the `AZURE_SUBSCRIPTION_ID` ENV variable
+- Add a new `nic_name` config. Thanks [@libertymutual](https//github.com/libertymutual)
+- Support for creating VM with Azure KeyVault certificate. Thanks [@javgallegos](https//github.com/javgallegos)
+
+### kitchen-dokken
+
+kitchen-dokken has been updated to 2.8.1 which fixes a bug that prevented ENV vars from being passed into containers.
+
+### kitchen-google and knife-google
+
+kitchen-google and knife-google plugins have been updated to allow the updated google-api-client SDK v0.35.
+
+### knife-ec2
+
+knife-ec2 has been updated from 1.0.17 to 1.0.28 with the following fixes:
+
+- Resolved a missing credential error when using aws-profile.
+- Mask AWS access keys data in any error or debug logs.
+- Resolved ssh_gateway uninitialised error
+- Fixed invalid format of auto generated keypair file name
+- Raises an error if password length is less than 8 characters on Windows and will stop warning on passwords over 14 characters.
+
+### knife-tidy
+
+knife-tidy has been updated from 2.0.1 to 2.0.6 to resolve issues if an org was named `cookbooks` and to improve error messages.
+
+### mixlib-install
+
+mixlib-install has been updated from 3.11.21 to 3.11.24, which properly identifies Windows 2019 hosts.
+
+### chef-vault
+
+The chef-vault gem has been updated to 4.0.1. This release includes bug fixes from [@MarkGibbons](https://github.com/MarkGibbons) and [@jeremy-clerc](https://github.com/jeremy-clerc) as well as a new way to update existing keys to sparse-mode by running `knife vault update --keys_mode sparse` thanks to [@jeunito](https://github.com/jeunito).
+
+### kitchen-ec2
+
+kitchen-ec2 has been updated to 3.3.0. This new version improves how we search for security groups by tags, improves the logic that detects usage of the chef Test Kitchen provisioner, and improves security group and spot instance logic. Thanks [@slapvanilla](https://github.com/slapvanilla) and [@bdwyertech](https://github.com/bdwyertech) for these enhancements.
+
+## Performance Improvements
+
+This release of ChefDK ships with several optimizations to our Ruby installation to improve the performance of loading the various commands bundled with ChefDK. These improvements are particularly noticeable on non-SSD hosts and on Windows.
+
+## Smaller Size
+
+We continue to optimize the size of the ChefDK package with this release taking up 9% less space on disk and containing nearly 5,000 fewer files.
+
+## Platform Support
+
+ChefDK packages are no longer produced for Windows 2008 R2 as this release went end of life on Jan 14th 2020.
+
+## Security Updates
+
+### OpenSSL
+
+OpenSSL has been updated to 1.0.2u to resolve [CVE-2019-1551](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1551)
+
+### Git
+
+The embedded git client has been updated to 2.24.1 to resolve the following CVEs:
+
+- [CVE-2019-1348](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1348)
+- [CVE-2019-1349](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1349)
+- [CVE-2019-1350](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1350)
+- [CVE-2019-1351](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1351)
+- [CVE-2019-1352](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1352)
+- [CVE-2019-1353](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1353)
+- [CVE-2019-1354](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1354)
+- [CVE-2019-1387](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1387)
+- [CVE-2019-19604](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-19604)
+
 # ChefDK 4.6
 
-# Updated Components
+## Updated Components
 
-## Chef Infra Client
+### Chef Infra Client
 
 The Chef Infra Client has been updated from 15.4.45 to 15.5.17 with updated helpers, Chefignore improvements, and a new chef_sleep resource:
 
@@ -35,7 +139,7 @@ chef_sleep 'wait for service start' do
 end
 ```
 
-## Cookstyle
+### Cookstyle
 
 The Cookstyle cookbook linter has been updated from 5.9 to 5.13 and includes 28 new Chef cops for detecting deprecated and outdated cookbook code. This release also updates the underlying RuboCop engine used by Cookstyle which includes a large number of bug fixes that better detect violations and prevent false positives. See the [Cookstyle Release Notes](https://github.com/chef/cookstyle/blob/master/RELEASE_NOTES.md#cookstyle-513) for a complete list of changes between 5.9 and 5.13.
 
@@ -53,11 +157,11 @@ Cookstyle comment to disable a cop:
 'node.normal[:foo] # cookstyle: disable ChefCorrectness/Bar'
 ```
 
-## Foodcritic
+### Foodcritic
 
 Foodcritic has been updated from 16.1.1 to 16.2.0. This release includes a fix for detecting incorrect notification actions and ships with updated Chef Infra Client Metadata. Keep in mind that Foodcritic is no longer being actively developed and users should migrate to Cookstyle instead.
 
-## Chef InSpec
+### Chef InSpec
 
 Chef InSpec has been updated from 4.18.0 to 4.18.39. This release includes a large number of bug fixes to resources:
 
@@ -68,23 +172,23 @@ Chef InSpec has been updated from 4.18.0 to 4.18.39. This release includes a lar
 - The `apt` better handles URIs and supports repos with an `arch`.
 - The `oracledb_session` has received multiple fixes to make it work better.
 
-## Test Kitchen
+### Test Kitchen
 
 We updated Test Kitchen has to 2.3.4, which includes more robust code for finding the Chef binary on Windows and also improves some logging messages.
 
-## knife-ec2
+### knife-ec2
 
 The `knife-ec2` plugin has been updated from 1.0.16 to 1.0.17 which includes a fix for an error when launching non-T2 type instances.
 
-## kitchen-digitalocean
+### kitchen-digitalocean
 
 kitchen-digitalocean has been updated to 0.10.5 which adds new image aliases for Debian-10 and FreeBSD-12.
 
-## kitchen-dokkken
+### kitchen-dokkken
 
 kitchen-dokken has been updated to 2.8.0. This will make the CI and TEST_KITCHEN environmental variables match the behavior of kitchen-vagrant.
 
-## kitchen-inspec
+### kitchen-inspec
 
 We updated the kitchen-inspec plugin to 1.3.1, which allows relative paths in the GIT fetcher and resolves failures when using inputs.
 
