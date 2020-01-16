@@ -327,7 +327,7 @@ GEM
       tty-screen (~> 0.7)
       wisper (~> 2.0.0)
     tty-screen (0.7.0)
-    unicode-display_width (1.6.0)
+    unicode-display_width (1.6.1)
     unicode_utils (1.4.0)
     uuidtools (2.1.5)
     win32-api (1.5.3-universal-mingw32)
