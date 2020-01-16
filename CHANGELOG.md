@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.12.36 -->
-## [v3.12.36](https://github.com/chef/chef-dk/tree/v3.12.36) (2020-01-15)
+<!-- latest_release 3.13.0 -->
+## [v3.13.0](https://github.com/chef/chef-dk/tree/v3.13.0) (2020-01-16)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `f651ce4` to `1b2dfe4` in /omnibus [#2701](https://github.com/chef/chef-dk/pull/2701) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Stop producing Windows 2008 R2 builds [#2707](https://github.com/chef/chef-dk/pull/2707) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.12.10 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Stop producing Windows 2008 R2 builds [#2707](https://github.com/chef/chef-dk/pull/2707) ([tas50](https://github.com/tas50)) <!-- 3.13.0 -->
 - Bump omnibus-software from `f651ce4` to `1b2dfe4` in /omnibus [#2701](https://github.com/chef/chef-dk/pull/2701) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.36 -->
 - Bump omnibus-software from `ebdd701` to `f651ce4` in /omnibus [#2698](https://github.com/chef/chef-dk/pull/2698) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.35 -->
 - Update all deps to current + openssl 1.0.2u [#2694](https://github.com/chef/chef-dk/pull/2694) ([tas50](https://github.com/tas50)) <!-- 3.12.34 -->
