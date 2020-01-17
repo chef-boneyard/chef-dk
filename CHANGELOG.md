@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.63 -->
-## [v4.7.63](https://github.com/chef/chef-dk/tree/v4.7.63) (2020-01-16)
+<!-- latest_release 4.7.64 -->
+## [v4.7.64](https://github.com/chef/chef-dk/tree/v4.7.64) (2020-01-17)
 
 #### Merged Pull Requests
-- Keep warning.txt which we need in the DK gem [#2704](https://github.com/chef/chef-dk/pull/2704) ([tas50](https://github.com/tas50))
+- Don&#39;t remove rakefile/gemfiles in gems [#2710](https://github.com/chef/chef-dk/pull/2710) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Don&#39;t remove rakefile/gemfiles in gems [#2710](https://github.com/chef/chef-dk/pull/2710) ([tas50](https://github.com/tas50)) <!-- 4.7.64 -->
 - Keep warning.txt which we need in the DK gem [#2704](https://github.com/chef/chef-dk/pull/2704) ([tas50](https://github.com/tas50)) <!-- 4.7.63 -->
 - Bump omnibus-software from `ebdd701` to `1b2dfe4` in /omnibus [#2700](https://github.com/chef/chef-dk/pull/2700) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.62 -->
 - Perform the same artifact cleanup we do in workstation [#2695](https://github.com/chef/chef-dk/pull/2695) ([tas50](https://github.com/tas50)) <!-- 4.7.61 -->
