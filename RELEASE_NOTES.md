@@ -25,7 +25,7 @@ knife-tidy has been updated from 2.0.1 to 2.0.6 to resolve issues if an org was 
 
 ### mixlib-install
 
-mixlib-install has been updated from 3.11.21 to 3.11.24 and will now properly identifies Windows 2019 hosts.
+mixlib-install has been updated from 3.11.21 to 3.11.24 and will now properly identify Windows 2019 hosts.
 
 ## Performance Improvements
 
@@ -33,7 +33,7 @@ This release of ChefDK ships with several optimizations to our Ruby installation
 
 ## Smaller Size
 
-We continue to optimize the size of the ChefDK package with this release taking up 9% less space on disk and containing nearly 5,000 fewer files.
+We continue to optimize the size of the ChefDK package with this release taking up 11% less space on disk and containing nearly 5,000 fewer files.
 
 ## Platform Support
 
