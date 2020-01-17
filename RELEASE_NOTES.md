@@ -25,7 +25,7 @@ knife-tidy has been updated from 2.0.1 to 2.0.6 to resolve issues if an org was 
 
 ### mixlib-install
 
-mixlib-install has been updated from 3.11.21 to 3.11.24, which properly identifies Windows 2019 hosts.
+mixlib-install has been updated from 3.11.21 to 3.11.24 and will now properly identifies Windows 2019 hosts.
 
 ## Performance Improvements
 
