@@ -1,5 +1,5 @@
 #
-# Copyright 2014-2019 Chef Software, Inc.
+# Copyright 2014-2020 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
 # TODO - when deleting this, also delete omnibus/config/templates/git-custom-bindir
 
 name "git-custom-bindir"
-default_version "2.23.0"
+default_version "2.24.1"
 
 license "LGPL-2.1"
 license_file "LGPL-2.1"
@@ -37,7 +37,7 @@ dependency "expat"
 
 relative_path "git-#{version}"
 
-version("2.23.0") { source sha256: "e3396c90888111a01bf607346db09b0fbf49a95bc83faf9506b61195936f0cfe" }
+version("2.24.1") { source sha256: "ad5334956301c86841eb1e5b1bb20884a6bad89a10a6762c958220c7cf64da02" }
 
 source url: "https://www.kernel.org/pub/software/scm/git/git-#{version}.tar.gz"
 
