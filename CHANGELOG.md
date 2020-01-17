@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 3.13.2 -->
+## [v3.13.2](https://github.com/chef/chef-dk/tree/v3.13.2) (2020-01-17)
+
+#### Merged Pull Requests
+- Actually bump git to 2.24.1 [#2712](https://github.com/chef/chef-dk/pull/2712) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=3.13.1 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- Actually bump git to 2.24.1 [#2712](https://github.com/chef/chef-dk/pull/2712) ([tas50](https://github.com/tas50)) <!-- 3.13.2 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
