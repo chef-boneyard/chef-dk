@@ -1,3 +1,65 @@
+# ChefDK 3.13
+
+## Updated Components
+
+### chef-vault
+
+The chef-vault gem has been updated to 4.0.1. This release includes bug fixes from [@MarkGibbons](https://github.com/MarkGibbons) and [@jeremy-clerc](https://github.com/jeremy-clerc) as well as a new way to update existing keys to sparse-mode by running `knife vault update --keys_mode sparse` thanks to [@jeunito](https://github.com/jeunito).
+
+### kitchen-azurerm
+
+kitchen-azurerm has been updated from 0.14.9 to 0.15.1 with the following improvements:
+
+- Enable the WinRM HTTP listener by default. Thanks [@sean-nixon](https//github.com/sean-nixon)
+- Allow overriding of the `subscription_id` by setting the `AZURE_SUBSCRIPTION_ID` ENV variable.
+- Add a new `nic_name` config. Thanks [@libertymutual](https//github.com/libertymutual)
+- Support for creating VM with Azure KeyVault certificate. Thanks [@javgallegos](https//github.com/javgallegos)
+
+### kitchen-dokken
+
+kitchen-dokken has been updated to 2.8.1 which fixes a bug that prevented ENV vars from being passed into containers.
+
+### knife-tidy
+
+knife-tidy has been updated from 2.0.1 to 2.0.6 to resolve issues if an org was named `cookbooks` and to improve error messages.
+
+### mixlib-install
+
+mixlib-install has been updated from 3.11.21 to 3.11.24 and will now properly identify Windows 2019 hosts.
+
+## Performance Improvements
+
+This release of ChefDK ships with several optimizations to our Ruby installation to improve the performance of loading the various commands bundled with ChefDK. These improvements are particularly noticeable on non-SSD hosts and on Windows.
+
+## Smaller Size
+
+We continue to optimize the size of the ChefDK package with this release taking up 11% less space on disk and containing nearly 5,000 fewer files.
+
+## Platform Support
+
+ChefDK packages are no longer produced for Windows 2008 R2 as this release reached its end of life on Jan 14th, 2020.
+
+## Security Updates
+
+### OpenSSL
+
+OpenSSL has been updated to 1.0.2u to resolve [CVE-2019-1551](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1551)
+
+### Git
+
+The embedded git client has been updated to 2.24.1 to resolve the following CVEs:
+
+- [CVE-2019-1348](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1348)
+- [CVE-2019-1349](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1349)
+- [CVE-2019-1350](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1350)
+- [CVE-2019-1351](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1351)
+- [CVE-2019-1352](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1352)
+- [CVE-2019-1353](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1353)
+- [CVE-2019-1354](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1354)
+- [CVE-2019-1387](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1387)
+- [CVE-2019-19604](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-19604)
+
+
 # ChefDK 3.12.10 Release Notes
 
 ## Updated Components
