@@ -1,45 +1,43 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.13.1 -->
-## [v3.13.1](https://github.com/chef/chef-dk/tree/v3.13.1) (2020-01-16)
-
-#### Merged Pull Requests
-- Cleanup testing files in our gem installs to reduce DK 3 install size [#2708](https://github.com/chef/chef-dk/pull/2708) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=3.12.10 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Cleanup testing files in our gem installs to reduce DK 3 install size [#2708](https://github.com/chef/chef-dk/pull/2708) ([tas50](https://github.com/tas50)) <!-- 3.13.1 -->
-- Stop producing Windows 2008 R2 builds [#2707](https://github.com/chef/chef-dk/pull/2707) ([tas50](https://github.com/tas50)) <!-- 3.13.0 -->
-- Bump omnibus-software from `f651ce4` to `1b2dfe4` in /omnibus [#2701](https://github.com/chef/chef-dk/pull/2701) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.36 -->
-- Bump omnibus-software from `ebdd701` to `f651ce4` in /omnibus [#2698](https://github.com/chef/chef-dk/pull/2698) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.35 -->
-- Update all deps to current + openssl 1.0.2u [#2694](https://github.com/chef/chef-dk/pull/2694) ([tas50](https://github.com/tas50)) <!-- 3.12.34 -->
-- Bump omnibus-software from `7efbf12` to `ebdd701` in /omnibus [#2686](https://github.com/chef/chef-dk/pull/2686) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.33 -->
-- Bump ffi from 1.11.3 to 1.12.1 in /omnibus [#2679](https://github.com/chef/chef-dk/pull/2679) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.32 -->
-- Bump license_scout from 1.0.29 to 1.1.3 in /omnibus [#2673](https://github.com/chef/chef-dk/pull/2673) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.31 -->
-- Bump omnibus-software from `09a3cb0` to `7efbf12` in /omnibus [#2677](https://github.com/chef/chef-dk/pull/2677) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.30 -->
-- Bump omnibus-software from `7402675` to `0ead966` in /omnibus [#2634](https://github.com/chef/chef-dk/pull/2634) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.29 -->
-- Bump public_suffix from 4.0.1 to 4.0.2 in /omnibus [#2605](https://github.com/chef/chef-dk/pull/2605) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.28 -->
-- Bump omnibus-software from `42ded1e` to `7402675` in /omnibus [#2582](https://github.com/chef/chef-dk/pull/2582) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.27 -->
-- Bump omnibus-software from `e707177` to `42ded1e` in /omnibus [#2578](https://github.com/chef/chef-dk/pull/2578) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.25 -->
-- Bump omnibus-software from `7b2e94c` to `bed563e` in /omnibus [#2519](https://github.com/chef/chef-dk/pull/2519) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.24 -->
-- Bump omnibus-software from `fb16512` to `7b2e94c` in /omnibus [#2517](https://github.com/chef/chef-dk/pull/2517) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.23 -->
-- Bump omnibus-software from `a6beb05` to `fb16512` in /omnibus [#2513](https://github.com/chef/chef-dk/pull/2513) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.22 -->
-- Bump omnibus-software from `c155758` to `a6beb05` in /omnibus [#2509](https://github.com/chef/chef-dk/pull/2509) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.21 -->
-- Bump omnibus-software from `8e7803d` to `c155758` in /omnibus [#2507](https://github.com/chef/chef-dk/pull/2507) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.20 -->
-- Bump omnibus-software from `06c78cc` to `8e7803d` in /omnibus [#2499](https://github.com/chef/chef-dk/pull/2499) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.19 -->
-- Update chef-sugar and other deps to the latest [#2477](https://github.com/chef/chef-dk/pull/2477) ([tas50](https://github.com/tas50)) <!-- 3.12.18 -->
-- Bump omnibus-software from `53ab416` to `06c78cc` in /omnibus [#2447](https://github.com/chef/chef-dk/pull/2447) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.17 -->
-- Bump chef from 15.2.20 to 15.5.15 in /omnibus [#2437](https://github.com/chef/chef-dk/pull/2437) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.16 -->
-- Bump omnibus from `f0e30ed` to `97490bb` in /omnibus [#2415](https://github.com/chef/chef-dk/pull/2415) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.15 -->
-- Bump mixlib-config from 3.0.1 to 3.0.5 in /omnibus [#2416](https://github.com/chef/chef-dk/pull/2416) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.14 -->
-- Fix habitat builds by using the DK4 plan [#2402](https://github.com/chef/chef-dk/pull/2402) ([tas50](https://github.com/tas50)) <!-- 3.12.13 -->
-- Bump omnibus-software from `3f47c11` to `53ab416` in /omnibus [#2400](https://github.com/chef/chef-dk/pull/2400) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.12 -->
-- Bump omnibus from `e18e22b` to `f0e30ed` in /omnibus [#2391](https://github.com/chef/chef-dk/pull/2391) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.12.11 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v3.13.1](https://github.com/chef/chef-dk/tree/v3.13.1) (2020-01-17)
+
+#### Merged Pull Requests
+- Bump omnibus from `e18e22b` to `f0e30ed` in /omnibus [#2391](https://github.com/chef/chef-dk/pull/2391) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `3f47c11` to `53ab416` in /omnibus [#2400](https://github.com/chef/chef-dk/pull/2400) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Fix habitat builds by using the DK4 plan [#2402](https://github.com/chef/chef-dk/pull/2402) ([tas50](https://github.com/tas50))
+- Bump mixlib-config from 3.0.1 to 3.0.5 in /omnibus [#2416](https://github.com/chef/chef-dk/pull/2416) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus from `f0e30ed` to `97490bb` in /omnibus [#2415](https://github.com/chef/chef-dk/pull/2415) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump chef from 15.2.20 to 15.5.15 in /omnibus [#2437](https://github.com/chef/chef-dk/pull/2437) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `53ab416` to `06c78cc` in /omnibus [#2447](https://github.com/chef/chef-dk/pull/2447) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Update chef-sugar and other deps to the latest [#2477](https://github.com/chef/chef-dk/pull/2477) ([tas50](https://github.com/tas50))
+- Bump omnibus-software from `06c78cc` to `8e7803d` in /omnibus [#2499](https://github.com/chef/chef-dk/pull/2499) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `8e7803d` to `c155758` in /omnibus [#2507](https://github.com/chef/chef-dk/pull/2507) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `c155758` to `a6beb05` in /omnibus [#2509](https://github.com/chef/chef-dk/pull/2509) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `a6beb05` to `fb16512` in /omnibus [#2513](https://github.com/chef/chef-dk/pull/2513) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `fb16512` to `7b2e94c` in /omnibus [#2517](https://github.com/chef/chef-dk/pull/2517) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `7b2e94c` to `bed563e` in /omnibus [#2519](https://github.com/chef/chef-dk/pull/2519) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `e707177` to `42ded1e` in /omnibus [#2578](https://github.com/chef/chef-dk/pull/2578) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `42ded1e` to `7402675` in /omnibus [#2582](https://github.com/chef/chef-dk/pull/2582) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump public_suffix from 4.0.1 to 4.0.2 in /omnibus [#2605](https://github.com/chef/chef-dk/pull/2605) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `7402675` to `0ead966` in /omnibus [#2634](https://github.com/chef/chef-dk/pull/2634) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `09a3cb0` to `7efbf12` in /omnibus [#2677](https://github.com/chef/chef-dk/pull/2677) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump license_scout from 1.0.29 to 1.1.3 in /omnibus [#2673](https://github.com/chef/chef-dk/pull/2673) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump ffi from 1.11.3 to 1.12.1 in /omnibus [#2679](https://github.com/chef/chef-dk/pull/2679) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `7efbf12` to `ebdd701` in /omnibus [#2686](https://github.com/chef/chef-dk/pull/2686) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Update all deps to current + openssl 1.0.2u [#2694](https://github.com/chef/chef-dk/pull/2694) ([tas50](https://github.com/tas50))
+- Bump omnibus-software from `ebdd701` to `f651ce4` in /omnibus [#2698](https://github.com/chef/chef-dk/pull/2698) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `f651ce4` to `1b2dfe4` in /omnibus [#2701](https://github.com/chef/chef-dk/pull/2701) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Stop producing Windows 2008 R2 builds [#2707](https://github.com/chef/chef-dk/pull/2707) ([tas50](https://github.com/tas50))
+- Cleanup testing files in our gem installs to reduce DK 3 install size [#2708](https://github.com/chef/chef-dk/pull/2708) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v3.12.10](https://github.com/chef/chef-dk/tree/v3.12.10) (2019-11-06)
 
 #### Merged Pull Requests
@@ -53,7 +51,6 @@
 - Bump omnibus-software from `9068533` to `3f47c11` in /omnibus [#2350](https://github.com/chef/chef-dk/pull/2350) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 - Update all DK 3 deps to the latest [#2361](https://github.com/chef/chef-dk/pull/2361) ([tas50](https://github.com/tas50))
 - Update Chef Infra Client to 14.14.29 [#2368](https://github.com/chef/chef-dk/pull/2368) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v3.12.0](https://github.com/chef/chef-dk/tree/v3.12.0) (2019-10-18)
 
