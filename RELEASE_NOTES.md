@@ -70,13 +70,9 @@ The chef-vault gem has been updated to 4.0.1. This release includes bug fixes fr
 
 kitchen-ec2 has been updated to 3.3.0. This new version improves how we search for security groups by tags, improves the logic that detects usage of the chef Test Kitchen provisioner, and improves security group and spot instance logic. Thanks [@slapvanilla](https://github.com/slapvanilla) and [@bdwyertech](https://github.com/bdwyertech) for these enhancements.
 
-## Performance Improvements
-
-This release of ChefDK ships with several optimizations to our Ruby installation to improve the performance of loading the various commands bundled with ChefDK. These improvements are particularly noticeable on non-SSD hosts and on Windows.
-
 ## Smaller Size
 
-We continue to optimize the size of the ChefDK package with this release taking up 9% less space on disk and containing nearly 5,000 fewer files.
+We continue to optimize the size of the ChefDK package with this release taking up 12% less space on disk and containing 7,000 fewer files.
 
 ## Platform Support
 
