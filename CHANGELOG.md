@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.66 -->
-## [v4.7.66](https://github.com/chef/chef-dk/tree/v4.7.66) (2020-01-21)
+<!-- latest_release 4.7.67 -->
+## [v4.7.67](https://github.com/chef/chef-dk/tree/v4.7.67) (2020-01-23)
 
 #### Merged Pull Requests
-- Bump ohai to 15.7.4 [#2713](https://github.com/chef/chef-dk/pull/2713) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump Chef to 15.7.30 [#2714](https://github.com/chef/chef-dk/pull/2714) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump Chef to 15.7.30 [#2714](https://github.com/chef/chef-dk/pull/2714) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.67 -->
 - Bump ohai to 15.7.4 [#2713](https://github.com/chef/chef-dk/pull/2713) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.66 -->
 - Bump git to 2.24.1 [#2711](https://github.com/chef/chef-dk/pull/2711) ([tas50](https://github.com/tas50)) <!-- 4.7.65 -->
 - Don&#39;t remove rakefile/gemfiles in gems [#2710](https://github.com/chef/chef-dk/pull/2710) ([tas50](https://github.com/tas50)) <!-- 4.7.64 -->
