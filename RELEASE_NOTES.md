@@ -8,7 +8,7 @@ Chef Infra Client has been updated from 15.5 to 15.7 which includes improvements
 
 ### Cookstyle
 
-Cookstyle has been updated from 5.13 to 5.19 with 29 new cops, improvements to existing cops, a new TargetChefVersion config option, and expanded cop departments.
+Cookstyle has been updated from 5.13 to 5.20 with 30 new cops, improvements to existing cops, a new TargetChefVersion config option, and expanded cop departments.
 
 #### TargetChefVersion Config
 
