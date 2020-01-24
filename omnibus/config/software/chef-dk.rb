@@ -88,7 +88,7 @@ build do
 
   env["NOKOGIRI_USE_SYSTEM_LIBRARIES"] = "true"
 
-  appbundle "chef", lockdir: project_dir, gem: "chef", without: %w{docgen chefstyle}, env: env
+  appbundle "chef", lockdir: project_dir, gem: "chef", without: %w{docgen chefstyle omnibus_software}, env: env
 
   appbundle "foodcritic", lockdir: project_dir, gem: "foodcritic", without: %w{development}, env: env
   appbundle "test-kitchen", lockdir: project_dir, gem: "test-kitchen", without: %w{changelog debug docs}, env: env
