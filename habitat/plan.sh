@@ -118,7 +118,7 @@ do_install() {
   # versions of dependencies already resolved
   pushd "$CACHE_PATH" || exit_with "unable to enter hab-cache directory" 1
     set -x
-    bundle exec appbundler "$HAB_CACHE_SRC_PATH/$pkg_dirname" "$ruby_bin_dir" "chef" --without "docgen,chefstyle" >/dev/null
+    bundle exec appbundler "$HAB_CACHE_SRC_PATH/$pkg_dirname" "$ruby_bin_dir" "chef" --without "docgen,chefstyle,omnibus_software" >/dev/null
     bundle exec appbundler "$HAB_CACHE_SRC_PATH/$pkg_dirname" "$ruby_bin_dir" "dco" "foodcritic" --without "development" >/dev/null
     bundle exec appbundler "$HAB_CACHE_SRC_PATH/$pkg_dirname" "$ruby_bin_dir" "inspec-bin" --without "deploy,tools,maintenance,integration" >/dev/null
     bundle exec appbundler "$HAB_CACHE_SRC_PATH/$pkg_dirname" "$ruby_bin_dir" "test-kitchen" --without "changelog,debug,docs" >/dev/null
