@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.70 -->
-## [v4.7.70](https://github.com/chef/chef-dk/tree/v4.7.70) (2020-01-24)
+<!-- latest_release 4.7.71 -->
+## [v4.7.71](https://github.com/chef/chef-dk/tree/v4.7.71) (2020-01-24)
 
 #### Merged Pull Requests
-- Update InSpec to 4.18.51 and pin train to 3.2.0 [#2725](https://github.com/chef/chef-dk/pull/2725) ([tas50](https://github.com/tas50))
+- Exclude omnibus_packages in chef bundle testing [#2726](https://github.com/chef/chef-dk/pull/2726) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Exclude omnibus_packages in chef bundle testing [#2726](https://github.com/chef/chef-dk/pull/2726) ([tas50](https://github.com/tas50)) <!-- 4.7.71 -->
 - Update InSpec to 4.18.51 and pin train to 3.2.0 [#2725](https://github.com/chef/chef-dk/pull/2725) ([tas50](https://github.com/tas50)) <!-- 4.7.70 -->
 - Bump Chef Infra Client to 15.7.31 [#2724](https://github.com/chef/chef-dk/pull/2724) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.69 -->
 - Update Cookstyle to 5.20 [#2717](https://github.com/chef/chef-dk/pull/2717) ([tas50](https://github.com/tas50)) <!-- 4.7.68 -->
