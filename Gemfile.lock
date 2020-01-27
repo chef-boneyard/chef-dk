@@ -214,12 +214,12 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.4)
     byebug (11.1.1)
-    chef (15.7.31)
+    chef (15.7.32)
       addressable
       bcrypt_pbkdf (~> 1.0)
       bundler (>= 1.10)
-      chef-config (= 15.7.31)
-      chef-utils (= 15.7.31)
+      chef-config (= 15.7.32)
+      chef-utils (= 15.7.32)
       chef-zero (>= 14.0.11)
       diff-lcs (~> 1.2, >= 1.2.4)
       ed25519 (~> 1.2)
@@ -246,12 +246,12 @@ GEM
       train-winrm (>= 0.2.5)
       tty-screen (~> 0.6)
       uuidtools (~> 2.1.5)
-    chef (15.7.31-universal-mingw32)
+    chef (15.7.32-universal-mingw32)
       addressable
       bcrypt_pbkdf (~> 1.0)
       bundler (>= 1.10)
-      chef-config (= 15.7.31)
-      chef-utils (= 15.7.31)
+      chef-config (= 15.7.32)
+      chef-utils (= 15.7.32)
       chef-zero (>= 14.0.11)
       diff-lcs (~> 1.2, >= 1.2.4)
       ed25519 (~> 1.2)
@@ -293,11 +293,11 @@ GEM
     chef-api (0.10.2)
       logify (~> 0.1)
       mime-types
-    chef-bin (15.7.31)
-      chef (= 15.7.31)
-    chef-config (15.7.31)
+    chef-bin (15.7.32)
+      chef (= 15.7.32)
+    chef-config (15.7.32)
       addressable
-      chef-utils (= 15.7.31)
+      chef-utils (= 15.7.32)
       fuzzyurl
       mixlib-config (>= 2.2.12, < 4.0)
       mixlib-shellout (>= 2.0, < 4.0)
@@ -308,7 +308,7 @@ GEM
       concurrent-ruby (~> 1.0)
       ffi-yajl (~> 2.2)
       http (~> 2.2)
-    chef-utils (15.7.31)
+    chef-utils (15.7.32)
     chef-vault (4.0.1)
     chef-zero (14.0.17)
       ffi-yajl (~> 2.2)
@@ -703,7 +703,7 @@ GEM
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
     public_suffix (3.1.1)
-    rack (2.1.1)
+    rack (2.1.2)
     rainbow (3.0.0)
     rake (12.3.2)
     rb-fsevent (0.10.3)
@@ -974,8 +974,8 @@ DEPENDENCIES
   bcrypt_pbkdf
   berkshelf (>= 7.0.9)
   bundler
-  chef (= 15.7.31)
-  chef-bin (= 15.7.31)
+  chef (= 15.7.32)
+  chef-bin (= 15.7.32)
   chef-dk!
   chef-sugar
   chef-vault (>= 3.4.1)
@@ -1051,4 +1051,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.17.3
+   2.1.4
