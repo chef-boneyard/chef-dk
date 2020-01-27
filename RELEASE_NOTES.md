@@ -6,6 +6,10 @@
 
 Chef Infra Client has been updated from 15.5 to 15.7 which includes improvements to the `apt_repository`, `archive_file`, `cron`, `cron_d`, `file`, `launchd`, `sudo`, `user`, `windows_task`, `x509_certificate`, and `yum_repository` resources as well as the usual collection of bug fixes and bootstrap improvements.
 
+### Berkshelf
+
+Berkshelf has been updated from 7.0.8 to 7.0.9, which resolves errors when running `berks verify` and when using the ``--skip-syntax-check`` flag.
+
 ### Cookstyle
 
 Cookstyle has been updated from 5.13 to 5.20 with 30 new cops, improvements to existing cops, a new TargetChefVersion config option, and expanded cop departments.
