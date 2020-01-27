@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.72 -->
-## [v4.7.72](https://github.com/chef/chef-dk/tree/v4.7.72) (2020-01-27)
+<!-- latest_release 4.7.73 -->
+## [v4.7.73](https://github.com/chef/chef-dk/tree/v4.7.73) (2020-01-27)
 
 #### Merged Pull Requests
-- Require Berkshelf 7.0.9 or later [#2731](https://github.com/chef/chef-dk/pull/2731) ([tas50](https://github.com/tas50))
+- Bump Chef Infra Client to 15.7.32 [#2733](https://github.com/chef/chef-dk/pull/2733) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.6.35 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump Chef Infra Client to 15.7.32 [#2733](https://github.com/chef/chef-dk/pull/2733) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.73 -->
 - Require Berkshelf 7.0.9 or later [#2731](https://github.com/chef/chef-dk/pull/2731) ([tas50](https://github.com/tas50)) <!-- 4.7.72 -->
 - Exclude omnibus_packages in chef bundle testing [#2726](https://github.com/chef/chef-dk/pull/2726) ([tas50](https://github.com/tas50)) <!-- 4.7.71 -->
 - Update InSpec to 4.18.51 and pin train to 3.2.0 [#2725](https://github.com/chef/chef-dk/pull/2725) ([tas50](https://github.com/tas50)) <!-- 4.7.70 -->
