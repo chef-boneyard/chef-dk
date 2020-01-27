@@ -123,7 +123,7 @@ group(:omnibus_package) do
   gem "winrm-elevated"
   gem "cucumber"
   gem "stove", ">= 7.1.5"
-  gem "berkshelf", ">= 7.0.8"
+  gem "berkshelf", ">= 7.0.9"
   gem "chef-vault", ">= 3.4.1"
 end
 
