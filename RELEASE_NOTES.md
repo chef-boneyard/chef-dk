@@ -2,13 +2,21 @@
 
 ## Updated Components
 
+### Berkshelf
+
+Berkshelf has been updated from 7.0.8 to 7.0.9, which resolves errors when running `berks verify` and when using the ``--skip-syntax-check`` flag.
+
 ### Chef Infra Client
 
 Chef Infra Client has been updated from 15.5 to 15.7 which includes improvements to the `apt_repository`, `archive_file`, `cron`, `cron_d`, `file`, `launchd`, `sudo`, `user`, `windows_task`, `x509_certificate`, and `yum_repository` resources as well as the usual collection of bug fixes and bootstrap improvements.
 
-### Berkshelf
+### Chef InSpec
 
-Berkshelf has been updated from 7.0.8 to 7.0.9, which resolves errors when running `berks verify` and when using the ``--skip-syntax-check`` flag.
+Chef InSpec has been updated from 4.18.39 to 4.18.51 with the following improvements:
+
+  - Example groups can now use InSpec resources
+  - The user resource can now check the last login date on Windows
+  - Improved the fetchers to fail consistently 
 
 ### Cookstyle
 
