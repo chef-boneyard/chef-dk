@@ -1,104 +1,102 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.73 -->
-## [v4.7.73](https://github.com/chef/chef-dk/tree/v4.7.73) (2020-01-27)
-
-#### Merged Pull Requests
-- Bump Chef Infra Client to 15.7.32 [#2733](https://github.com/chef/chef-dk/pull/2733) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=4.6.35 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Bump Chef Infra Client to 15.7.32 [#2733](https://github.com/chef/chef-dk/pull/2733) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.73 -->
-- Require Berkshelf 7.0.9 or later [#2731](https://github.com/chef/chef-dk/pull/2731) ([tas50](https://github.com/tas50)) <!-- 4.7.72 -->
-- Exclude omnibus_packages in chef bundle testing [#2726](https://github.com/chef/chef-dk/pull/2726) ([tas50](https://github.com/tas50)) <!-- 4.7.71 -->
-- Update InSpec to 4.18.51 and pin train to 3.2.0 [#2725](https://github.com/chef/chef-dk/pull/2725) ([tas50](https://github.com/tas50)) <!-- 4.7.70 -->
-- Bump Chef Infra Client to 15.7.31 [#2724](https://github.com/chef/chef-dk/pull/2724) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.69 -->
-- Update Cookstyle to 5.20 [#2717](https://github.com/chef/chef-dk/pull/2717) ([tas50](https://github.com/tas50)) <!-- 4.7.68 -->
-- Bump Chef to 15.7.30 [#2714](https://github.com/chef/chef-dk/pull/2714) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.67 -->
-- Bump ohai to 15.7.4 [#2713](https://github.com/chef/chef-dk/pull/2713) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.66 -->
-- Bump git to 2.24.1 [#2711](https://github.com/chef/chef-dk/pull/2711) ([tas50](https://github.com/tas50)) <!-- 4.7.65 -->
-- Don&#39;t remove rakefile/gemfiles in gems [#2710](https://github.com/chef/chef-dk/pull/2710) ([tas50](https://github.com/tas50)) <!-- 4.7.64 -->
-- Keep warning.txt which we need in the DK gem [#2704](https://github.com/chef/chef-dk/pull/2704) ([tas50](https://github.com/tas50)) <!-- 4.7.63 -->
-- Bump omnibus-software from `ebdd701` to `1b2dfe4` in /omnibus [#2700](https://github.com/chef/chef-dk/pull/2700) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.62 -->
-- Perform the same artifact cleanup we do in workstation [#2695](https://github.com/chef/chef-dk/pull/2695) ([tas50](https://github.com/tas50)) <!-- 4.7.61 -->
-- Bump knife-ec2 to 1.0.28 [#2693](https://github.com/chef/chef-dk/pull/2693) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.60 -->
-- Bump kitchen-ec2 to 3.3.0 [#2688](https://github.com/chef/chef-dk/pull/2688) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.59 -->
-- Bump kitchen-google to 2.0.3 [#2687](https://github.com/chef/chef-dk/pull/2687) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.58 -->
-- Bump omnibus-software from `7efbf12` to `ebdd701` in /omnibus [#2685](https://github.com/chef/chef-dk/pull/2685) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.57 -->
-- Bump omnibus-software from `ee6adeb` to `7efbf12` in /omnibus [#2680](https://github.com/chef/chef-dk/pull/2680) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.56 -->
-- Remove Windows 2008 R2 from the build pipeline [#2670](https://github.com/chef/chef-dk/pull/2670) ([tas50](https://github.com/tas50)) <!-- 4.7.55 -->
-- Bump ffi from 1.11.3 to 1.12.1 in /omnibus [#2678](https://github.com/chef/chef-dk/pull/2678) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.54 -->
-- Bump omnibus-software from `ee6adeb` to `ac5f042` in /omnibus [#2671](https://github.com/chef/chef-dk/pull/2671) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.53 -->
-- Update license_scout to 1.1.3 [#2669](https://github.com/chef/chef-dk/pull/2669) ([tas50](https://github.com/tas50)) <!-- 4.7.52 -->
-- Bump cookstyle to 5.19.9 [#2668](https://github.com/chef/chef-dk/pull/2668) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.51 -->
-- Bump yard to 0.9.24 [#2659](https://github.com/chef/chef-dk/pull/2659) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.50 -->
-- Bump yard to 0.9.23 [#2654](https://github.com/chef/chef-dk/pull/2654) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.49 -->
-- Bump cookstyle to 5.18.4 [#2653](https://github.com/chef/chef-dk/pull/2653) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.48 -->
-- Update yard and artifactory deps [#2641](https://github.com/chef/chef-dk/pull/2641) ([tas50](https://github.com/tas50)) <!-- 4.7.47 -->
-- Remove Foodcritic tests / Foodcritic from the readme [#2639](https://github.com/chef/chef-dk/pull/2639) ([tas50](https://github.com/tas50)) <!-- 4.7.46 -->
-- Bump train-aws to 0.1.15 [#2638](https://github.com/chef/chef-dk/pull/2638) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.45 -->
-- Bump train-winrm to 0.2.6 [#2637](https://github.com/chef/chef-dk/pull/2637) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.44 -->
-- Bump omnibus-software from `7402675` to `0ead966` in /omnibus [#2633](https://github.com/chef/chef-dk/pull/2633) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.43 -->
-- Bump chef-vault to 4.0.1 [#2632](https://github.com/chef/chef-dk/pull/2632) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.42 -->
-- Bump knife-acl to 1.0.6 [#2621](https://github.com/chef/chef-dk/pull/2621) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.41 -->
-- Bump knife-push to 1.1.5 [#2620](https://github.com/chef/chef-dk/pull/2620) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.40 -->
-- Bump mixlib-shellout to 3.0.9 [#2618](https://github.com/chef/chef-dk/pull/2618) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.39 -->
-- Update mixlib-shellout to 3.0.9 + bump omnibus deps [#2619](https://github.com/chef/chef-dk/pull/2619) ([tas50](https://github.com/tas50)) <!-- 4.7.38 -->
-- Bump chef-zero to 14.0.17 [#2617](https://github.com/chef/chef-dk/pull/2617) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.37 -->
-- Bump mixlib-authentication to 3.0.6 [#2616](https://github.com/chef/chef-dk/pull/2616) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.36 -->
-- Bump mixlib-install to 3.11.26 [#2615](https://github.com/chef/chef-dk/pull/2615) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.35 -->
-- Bump mixlib-versioning to 1.2.12 [#2614](https://github.com/chef/chef-dk/pull/2614) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.34 -->
-- Bump mixlib-archive to 1.0.5 [#2613](https://github.com/chef/chef-dk/pull/2613) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.33 -->
-- Bump mixlib-log to 3.0.8 [#2612](https://github.com/chef/chef-dk/pull/2612) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.32 -->
-- Bump wmi-lite to 1.0.5 [#2611](https://github.com/chef/chef-dk/pull/2611) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.31 -->
-- Bump ffi-yajl to 2.3.3 [#2610](https://github.com/chef/chef-dk/pull/2610) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.30 -->
-- Bump mixlib-config to 3.0.6 [#2609](https://github.com/chef/chef-dk/pull/2609) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.29 -->
-- Bump knife-ec2 to 1.0.26 [#2608](https://github.com/chef/chef-dk/pull/2608) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.28 -->
-- Update ffi-libarchive to 1.0.0 [#2607](https://github.com/chef/chef-dk/pull/2607) ([tas50](https://github.com/tas50)) <!-- 4.7.27 -->
-- Update all deps to current [#2606](https://github.com/chef/chef-dk/pull/2606) ([tas50](https://github.com/tas50)) <!-- 4.7.26 -->
-- Bump public_suffix from 4.0.1 to 4.0.2 in /omnibus [#2603](https://github.com/chef/chef-dk/pull/2603) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.25 -->
-- Bump knife-ec2 to 1.0.25 [#2596](https://github.com/chef/chef-dk/pull/2596) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.24 -->
-- Bump mixlib-cli to 2.1.5 [#2595](https://github.com/chef/chef-dk/pull/2595) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.23 -->
-- Bump knife-cloud to 2.0.5 [#2594](https://github.com/chef/chef-dk/pull/2594) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.22 -->
-- Pin InSpec / Train and bump others [#2593](https://github.com/chef/chef-dk/pull/2593) ([tas50](https://github.com/tas50)) <!-- 4.7.21 -->
-- Bump knife-tidy to 2.0.9, knife-azure to 2.0.6, and knife-windows to 3.0.6 [#2591](https://github.com/chef/chef-dk/pull/2591) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.20 -->
-- Bump knife-vsphere to 4.0.8, knife-ec2 to 1.0.22, and chef-api to 0.10.2 [#2587](https://github.com/chef/chef-dk/pull/2587) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.19 -->
-- Update openssl to 1.0.2u [#2588](https://github.com/chef/chef-dk/pull/2588) ([tas50](https://github.com/tas50)) <!-- 4.7.18 -->
-- Bump cookstyle to 5.17.4 [#2586](https://github.com/chef/chef-dk/pull/2586) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.17 -->
-- Remove appveyor config files [#2585](https://github.com/chef/chef-dk/pull/2585) ([tas50](https://github.com/tas50)) <!-- 4.7.16 -->
-- Bump cheffish to 14.0.13 [#2584](https://github.com/chef/chef-dk/pull/2584) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.15 -->
-- Bump omnibus-software from `42ded1e` to `7402675` in /omnibus [#2583](https://github.com/chef/chef-dk/pull/2583) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.14 -->
-- Bump omnibus-software from `e707177` to `42ded1e` in /omnibus [#2576](https://github.com/chef/chef-dk/pull/2576) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.11 -->
-- Bump chef-telemetry to 1.0.2 [#2570](https://github.com/chef/chef-dk/pull/2570) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.10 -->
-- Bump cookstyle to 5.16.11 [#2565](https://github.com/chef/chef-dk/pull/2565) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.9 -->
-- Bump knife-ec2 to 1.0.21 [#2562](https://github.com/chef/chef-dk/pull/2562) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.8 -->
-- Bump cookstyle to 5.16.10 [#2561](https://github.com/chef/chef-dk/pull/2561) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.7 -->
-- Bump inspec to 4.18.51 and knife-ec2 to 1.0.20 [#2558](https://github.com/chef/chef-dk/pull/2558) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.6 -->
-- Update ruby-prof to 1.1.0 [#2557](https://github.com/chef/chef-dk/pull/2557) ([tas50](https://github.com/tas50)) <!-- 4.7.5 -->
-- Update kitchen-dokken to 2.8.1 [#2544](https://github.com/chef/chef-dk/pull/2544) ([tas50](https://github.com/tas50)) <!-- 4.7.4 -->
-- Update Chef Infra Client to 15.6 [#2541](https://github.com/chef/chef-dk/pull/2541) ([tas50](https://github.com/tas50)) <!-- 4.7.3 -->
-- Bump cookstyle to 5.15.7 [#2531](https://github.com/chef/chef-dk/pull/2531) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.2 -->
-- Bump omnibus-software from `7b2e94c` to `bed563e` in /omnibus [#2520](https://github.com/chef/chef-dk/pull/2520) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.1 -->
-- Bump cookstyle to 5.14.1 [#2518](https://github.com/chef/chef-dk/pull/2518) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.0 -->
-- Bump omnibus-software from `fb16512` to `7b2e94c` in /omnibus [#2516](https://github.com/chef/chef-dk/pull/2516) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.49 -->
-- Bump omnibus to the latest [#2512](https://github.com/chef/chef-dk/pull/2512) ([tas50](https://github.com/tas50)) <!-- 4.6.48 -->
-- Make sure we don&#39;t cleanup warning.txt [#2511](https://github.com/chef/chef-dk/pull/2511) ([tas50](https://github.com/tas50)) <!-- 4.6.47 -->
-- Bump omnibus-software from `c155758` to `a6beb05` in /omnibus [#2510](https://github.com/chef/chef-dk/pull/2510) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.46 -->
-- Bump omnibus-software from `8e7803d` to `c155758` in /omnibus [#2508](https://github.com/chef/chef-dk/pull/2508) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.45 -->
-- Remove chef-run [#2506](https://github.com/chef/chef-dk/pull/2506) ([marcparadise](https://github.com/marcparadise)) <!-- 4.6.44 -->
-- Bump knife-tidy to 2.0.6 [#2504](https://github.com/chef/chef-dk/pull/2504) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.43 -->
-- Bump omnibus-software from `06c78cc` to `8e7803d` in /omnibus [#2497](https://github.com/chef/chef-dk/pull/2497) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.6.42 -->
-- Bump nokogiri to 1.10.7 [#2503](https://github.com/chef/chef-dk/pull/2503) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.41 -->
-- Bump nokogiri to 1.10.6 [#2495](https://github.com/chef/chef-dk/pull/2495) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.40 -->
-- Bump chef-telemetry to 1.0.0 [#2494](https://github.com/chef/chef-dk/pull/2494) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.39 -->
-- Bump knife-ec2 to 1.0.18 and train to 3.2.0 [#2493](https://github.com/chef/chef-dk/pull/2493) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.6.38 -->
-- Add the Ruby cleanup omnibus logic from Workstation [#2489](https://github.com/chef/chef-dk/pull/2489) ([tas50](https://github.com/tas50)) <!-- 4.6.37 -->
-- Update kitchen-azurerm to 0.15 [#2490](https://github.com/chef/chef-dk/pull/2490) ([tas50](https://github.com/tas50)) <!-- 4.6.36 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v4.7.73](https://github.com/chef/chef-dk/tree/v4.7.73) (2020-01-28)
+
+#### Merged Pull Requests
+- Update kitchen-azurerm to 0.15 [#2490](https://github.com/chef/chef-dk/pull/2490) ([tas50](https://github.com/tas50))
+- Add the Ruby cleanup omnibus logic from Workstation [#2489](https://github.com/chef/chef-dk/pull/2489) ([tas50](https://github.com/tas50))
+- Bump knife-ec2 to 1.0.18 and train to 3.2.0 [#2493](https://github.com/chef/chef-dk/pull/2493) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump chef-telemetry to 1.0.0 [#2494](https://github.com/chef/chef-dk/pull/2494) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump nokogiri to 1.10.6 [#2495](https://github.com/chef/chef-dk/pull/2495) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump nokogiri to 1.10.7 [#2503](https://github.com/chef/chef-dk/pull/2503) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump omnibus-software from `06c78cc` to `8e7803d` in /omnibus [#2497](https://github.com/chef/chef-dk/pull/2497) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump knife-tidy to 2.0.6 [#2504](https://github.com/chef/chef-dk/pull/2504) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Remove chef-run [#2506](https://github.com/chef/chef-dk/pull/2506) ([marcparadise](https://github.com/marcparadise))
+- Bump omnibus-software from `8e7803d` to `c155758` in /omnibus [#2508](https://github.com/chef/chef-dk/pull/2508) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `c155758` to `a6beb05` in /omnibus [#2510](https://github.com/chef/chef-dk/pull/2510) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Make sure we don&#39;t cleanup warning.txt [#2511](https://github.com/chef/chef-dk/pull/2511) ([tas50](https://github.com/tas50))
+- Bump omnibus to the latest [#2512](https://github.com/chef/chef-dk/pull/2512) ([tas50](https://github.com/tas50))
+- Bump omnibus-software from `fb16512` to `7b2e94c` in /omnibus [#2516](https://github.com/chef/chef-dk/pull/2516) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump cookstyle to 5.14.1 [#2518](https://github.com/chef/chef-dk/pull/2518) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump omnibus-software from `7b2e94c` to `bed563e` in /omnibus [#2520](https://github.com/chef/chef-dk/pull/2520) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump cookstyle to 5.15.7 [#2531](https://github.com/chef/chef-dk/pull/2531) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Update Chef Infra Client to 15.6 [#2541](https://github.com/chef/chef-dk/pull/2541) ([tas50](https://github.com/tas50))
+- Update kitchen-dokken to 2.8.1 [#2544](https://github.com/chef/chef-dk/pull/2544) ([tas50](https://github.com/tas50))
+- Update ruby-prof to 1.1.0 [#2557](https://github.com/chef/chef-dk/pull/2557) ([tas50](https://github.com/tas50))
+- Bump inspec to 4.18.51 and knife-ec2 to 1.0.20 [#2558](https://github.com/chef/chef-dk/pull/2558) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump cookstyle to 5.16.10 [#2561](https://github.com/chef/chef-dk/pull/2561) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-ec2 to 1.0.21 [#2562](https://github.com/chef/chef-dk/pull/2562) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump cookstyle to 5.16.11 [#2565](https://github.com/chef/chef-dk/pull/2565) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump chef-telemetry to 1.0.2 [#2570](https://github.com/chef/chef-dk/pull/2570) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump omnibus-software from `e707177` to `42ded1e` in /omnibus [#2576](https://github.com/chef/chef-dk/pull/2576) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `42ded1e` to `7402675` in /omnibus [#2583](https://github.com/chef/chef-dk/pull/2583) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump cheffish to 14.0.13 [#2584](https://github.com/chef/chef-dk/pull/2584) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Remove appveyor config files [#2585](https://github.com/chef/chef-dk/pull/2585) ([tas50](https://github.com/tas50))
+- Bump cookstyle to 5.17.4 [#2586](https://github.com/chef/chef-dk/pull/2586) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Update openssl to 1.0.2u [#2588](https://github.com/chef/chef-dk/pull/2588) ([tas50](https://github.com/tas50))
+- Bump knife-vsphere to 4.0.8, knife-ec2 to 1.0.22, and chef-api to 0.10.2 [#2587](https://github.com/chef/chef-dk/pull/2587) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-tidy to 2.0.9, knife-azure to 2.0.6, and knife-windows to 3.0.6 [#2591](https://github.com/chef/chef-dk/pull/2591) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Pin InSpec / Train and bump others [#2593](https://github.com/chef/chef-dk/pull/2593) ([tas50](https://github.com/tas50))
+- Bump knife-cloud to 2.0.5 [#2594](https://github.com/chef/chef-dk/pull/2594) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump mixlib-cli to 2.1.5 [#2595](https://github.com/chef/chef-dk/pull/2595) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-ec2 to 1.0.25 [#2596](https://github.com/chef/chef-dk/pull/2596) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump public_suffix from 4.0.1 to 4.0.2 in /omnibus [#2603](https://github.com/chef/chef-dk/pull/2603) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Update all deps to current [#2606](https://github.com/chef/chef-dk/pull/2606) ([tas50](https://github.com/tas50))
+- Update ffi-libarchive to 1.0.0 [#2607](https://github.com/chef/chef-dk/pull/2607) ([tas50](https://github.com/tas50))
+- Bump knife-ec2 to 1.0.26 [#2608](https://github.com/chef/chef-dk/pull/2608) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump mixlib-config to 3.0.6 [#2609](https://github.com/chef/chef-dk/pull/2609) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump ffi-yajl to 2.3.3 [#2610](https://github.com/chef/chef-dk/pull/2610) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump wmi-lite to 1.0.5 [#2611](https://github.com/chef/chef-dk/pull/2611) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump mixlib-log to 3.0.8 [#2612](https://github.com/chef/chef-dk/pull/2612) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump mixlib-archive to 1.0.5 [#2613](https://github.com/chef/chef-dk/pull/2613) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump mixlib-versioning to 1.2.12 [#2614](https://github.com/chef/chef-dk/pull/2614) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump mixlib-install to 3.11.26 [#2615](https://github.com/chef/chef-dk/pull/2615) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump mixlib-authentication to 3.0.6 [#2616](https://github.com/chef/chef-dk/pull/2616) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump chef-zero to 14.0.17 [#2617](https://github.com/chef/chef-dk/pull/2617) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Update mixlib-shellout to 3.0.9 + bump omnibus deps [#2619](https://github.com/chef/chef-dk/pull/2619) ([tas50](https://github.com/tas50))
+- Bump mixlib-shellout to 3.0.9 [#2618](https://github.com/chef/chef-dk/pull/2618) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-push to 1.1.5 [#2620](https://github.com/chef/chef-dk/pull/2620) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-acl to 1.0.6 [#2621](https://github.com/chef/chef-dk/pull/2621) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump chef-vault to 4.0.1 [#2632](https://github.com/chef/chef-dk/pull/2632) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump omnibus-software from `7402675` to `0ead966` in /omnibus [#2633](https://github.com/chef/chef-dk/pull/2633) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump train-winrm to 0.2.6 [#2637](https://github.com/chef/chef-dk/pull/2637) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump train-aws to 0.1.15 [#2638](https://github.com/chef/chef-dk/pull/2638) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Remove Foodcritic tests / Foodcritic from the readme [#2639](https://github.com/chef/chef-dk/pull/2639) ([tas50](https://github.com/tas50))
+- Update yard and artifactory deps [#2641](https://github.com/chef/chef-dk/pull/2641) ([tas50](https://github.com/tas50))
+- Bump cookstyle to 5.18.4 [#2653](https://github.com/chef/chef-dk/pull/2653) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump yard to 0.9.23 [#2654](https://github.com/chef/chef-dk/pull/2654) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump yard to 0.9.24 [#2659](https://github.com/chef/chef-dk/pull/2659) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump cookstyle to 5.19.9 [#2668](https://github.com/chef/chef-dk/pull/2668) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Update license_scout to 1.1.3 [#2669](https://github.com/chef/chef-dk/pull/2669) ([tas50](https://github.com/tas50))
+- Bump omnibus-software from `ee6adeb` to `ac5f042` in /omnibus [#2671](https://github.com/chef/chef-dk/pull/2671) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump ffi from 1.11.3 to 1.12.1 in /omnibus [#2678](https://github.com/chef/chef-dk/pull/2678) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Remove Windows 2008 R2 from the build pipeline [#2670](https://github.com/chef/chef-dk/pull/2670) ([tas50](https://github.com/tas50))
+- Bump omnibus-software from `ee6adeb` to `7efbf12` in /omnibus [#2680](https://github.com/chef/chef-dk/pull/2680) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `7efbf12` to `ebdd701` in /omnibus [#2685](https://github.com/chef/chef-dk/pull/2685) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump kitchen-google to 2.0.3 [#2687](https://github.com/chef/chef-dk/pull/2687) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump kitchen-ec2 to 3.3.0 [#2688](https://github.com/chef/chef-dk/pull/2688) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-ec2 to 1.0.28 [#2693](https://github.com/chef/chef-dk/pull/2693) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Perform the same artifact cleanup we do in workstation [#2695](https://github.com/chef/chef-dk/pull/2695) ([tas50](https://github.com/tas50))
+- Bump omnibus-software from `ebdd701` to `1b2dfe4` in /omnibus [#2700](https://github.com/chef/chef-dk/pull/2700) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Keep warning.txt which we need in the DK gem [#2704](https://github.com/chef/chef-dk/pull/2704) ([tas50](https://github.com/tas50))
+- Don&#39;t remove rakefile/gemfiles in gems [#2710](https://github.com/chef/chef-dk/pull/2710) ([tas50](https://github.com/tas50))
+- Bump git to 2.24.1 [#2711](https://github.com/chef/chef-dk/pull/2711) ([tas50](https://github.com/tas50))
+- Bump ohai to 15.7.4 [#2713](https://github.com/chef/chef-dk/pull/2713) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump Chef to 15.7.30 [#2714](https://github.com/chef/chef-dk/pull/2714) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Update Cookstyle to 5.20 [#2717](https://github.com/chef/chef-dk/pull/2717) ([tas50](https://github.com/tas50))
+- Bump Chef Infra Client to 15.7.31 [#2724](https://github.com/chef/chef-dk/pull/2724) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Update InSpec to 4.18.51 and pin train to 3.2.0 [#2725](https://github.com/chef/chef-dk/pull/2725) ([tas50](https://github.com/tas50))
+- Exclude omnibus_packages in chef bundle testing [#2726](https://github.com/chef/chef-dk/pull/2726) ([tas50](https://github.com/tas50))
+- Require Berkshelf 7.0.9 or later [#2731](https://github.com/chef/chef-dk/pull/2731) ([tas50](https://github.com/tas50))
+- Bump Chef Infra Client to 15.7.32 [#2733](https://github.com/chef/chef-dk/pull/2733) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+<!-- latest_stable_release -->
+
 ## [v4.6.35](https://github.com/chef/chef-dk/tree/v4.6.35) (2019-12-02)
 
 #### Merged Pull Requests
@@ -143,7 +141,6 @@
 - Bump Chef to 15.5.17 [#2452](https://github.com/chef/chef-dk/pull/2452) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 - Bump knife-google to 4.2.1 [#2480](https://github.com/chef/chef-dk/pull/2480) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 - Update kitchen-google to 2.0.2 [#2485](https://github.com/chef/chef-dk/pull/2485) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v4.5.0](https://github.com/chef/chef-dk/tree/v4.5.0) (2019-10-16)
 
