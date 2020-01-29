@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.80 -->
-## [v4.7.80](https://github.com/chef/chef-dk/tree/v4.7.80) (2020-01-29)
+<!-- latest_release 4.7.81 -->
+## [v4.7.81](https://github.com/chef/chef-dk/tree/v4.7.81) (2020-01-29)
 
 #### Merged Pull Requests
-- Update to chef-api 0.10.5 [#2738](https://github.com/chef/chef-dk/pull/2738) ([tas50](https://github.com/tas50))
+- Bump knife-azure to 2.0.11 [#2739](https://github.com/chef/chef-dk/pull/2739) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-azure to 2.0.11 [#2739](https://github.com/chef/chef-dk/pull/2739) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.81 -->
 - Update to chef-api 0.10.5 [#2738](https://github.com/chef/chef-dk/pull/2738) ([tas50](https://github.com/tas50)) <!-- 4.7.80 -->
 - Bump knife-google to 4.2.7 [#2737](https://github.com/chef/chef-dk/pull/2737) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.79 -->
 - Bump knife-google to 4.2.6 [#2736](https://github.com/chef/chef-dk/pull/2736) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.78 -->
