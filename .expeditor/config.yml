@@ -172,6 +172,9 @@ subscriptions:
   - workload: ruby_gem_published:knife-acl-*
     actions:
       - bash:.expeditor/update_dep.sh
+  - workload: ruby_gem_published:knife-azure-*
+    actions:
+       - bash:.expeditor/update_dep.sh
   - workload: ruby_gem_published:knife-cloud-*
     actions:
       - bash:.expeditor/update_dep.sh

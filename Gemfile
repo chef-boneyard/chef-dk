@@ -87,7 +87,7 @@ group(:omnibus_package) do
 
   # knife plugins
   gem "knife-acl", ">= 1.0.3"
-  gem "knife-azure", ">= 2.0.1"
+  gem "knife-azure", ">= 2.0.10"
   gem "knife-ec2", ">= 1.0"
   gem "knife-google", ">= 4.2.0"
   gem "knife-tidy", ">= 1.2.0"
