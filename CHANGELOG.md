@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.77 -->
-## [v4.7.77](https://github.com/chef/chef-dk/tree/v4.7.77) (2020-01-29)
+<!-- latest_release 4.7.78 -->
+## [v4.7.78](https://github.com/chef/chef-dk/tree/v4.7.78) (2020-01-29)
 
 #### Merged Pull Requests
-- Update knife-azure to 2.0.10 to speed up knife [#2735](https://github.com/chef/chef-dk/pull/2735) ([tas50](https://github.com/tas50))
+- Bump knife-google to 4.2.6 [#2736](https://github.com/chef/chef-dk/pull/2736) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-google to 4.2.6 [#2736](https://github.com/chef/chef-dk/pull/2736) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.78 -->
 - Update knife-azure to 2.0.10 to speed up knife [#2735](https://github.com/chef/chef-dk/pull/2735) ([tas50](https://github.com/tas50)) <!-- 4.7.77 -->
 - Bump omnibus-software from `1b2dfe4` to `ad7ed67` in /omnibus [#2719](https://github.com/chef/chef-dk/pull/2719) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.76 -->
 - Fixes all notarization issues [#2691](https://github.com/chef/chef-dk/pull/2691) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 4.7.75 -->
