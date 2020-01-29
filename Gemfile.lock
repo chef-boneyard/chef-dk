@@ -389,9 +389,9 @@ GEM
       faraday (>= 0.7.4, < 1.0)
     fauxhai (7.4.0)
       net-ssh
-    ffi (1.12.1)
-    ffi (1.12.1-x64-mingw32)
-    ffi (1.12.1-x86-mingw32)
+    ffi (1.11.3)
+    ffi (1.11.3-x64-mingw32)
+    ffi (1.11.3-x86-mingw32)
     ffi-libarchive (1.0.0)
       ffi (~> 1.0)
     ffi-rzmq (2.0.7)
@@ -989,6 +989,7 @@ DEPENDENCIES
   dep_selector
   ed25519
   fauxhai (~> 7.4)
+  ffi (< 1.12)
   ffi-libarchive
   ffi-rzmq-core
   foodcritic (>= 16.0)

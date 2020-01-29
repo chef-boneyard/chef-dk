@@ -21,6 +21,10 @@ gemspec
 
 gem "bundler"
 
+## avoid ffi warnings about overwriting struct layouts which 1.12 introduced
+# https://github.com/chef/chef-workstation/issues/904 tracks fixing this in win32-service
+gem "ffi", "< 1.12"
+
 ## Until we resolve https://github.com/inspec/train/issues/548
 gem "train", "=3.2.0"
 gem "train-core", "=3.2.0"
