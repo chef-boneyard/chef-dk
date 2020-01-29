@@ -290,9 +290,9 @@ GEM
       win32-service (>= 2.1.2, < 3.0)
       win32-taskscheduler (~> 2.0)
       wmi-lite (~> 1.0)
-    chef-api (0.10.2)
-      logify (~> 0.1)
+    chef-api (0.10.5)
       mime-types
+      mixlib-log (>= 1, < 4)
     chef-bin (15.7.32)
       chef (= 15.7.32)
     chef-config (15.7.32)
