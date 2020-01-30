@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.84 -->
-## [v4.7.84](https://github.com/chef/chef-dk/tree/v4.7.84) (2020-01-30)
+<!-- latest_release 4.7.85 -->
+## [v4.7.85](https://github.com/chef/chef-dk/tree/v4.7.85) (2020-01-30)
 
 #### Merged Pull Requests
-- Bump knife-windows to 3.0.10 [#2742](https://github.com/chef/chef-dk/pull/2742) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-vsphere to 4.1.0 [#2743](https://github.com/chef/chef-dk/pull/2743) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-vsphere to 4.1.0 [#2743](https://github.com/chef/chef-dk/pull/2743) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.85 -->
 - Bump knife-windows to 3.0.10 [#2742](https://github.com/chef/chef-dk/pull/2742) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.84 -->
 - Bump stove to 7.1.6 [#2741](https://github.com/chef/chef-dk/pull/2741) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.83 -->
 - Pin FFI to avoid warnings on Windows hosts when running knife [#2740](https://github.com/chef/chef-dk/pull/2740) ([tas50](https://github.com/tas50)) <!-- 4.7.82 -->
