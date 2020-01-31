@@ -566,7 +566,7 @@ GEM
       diffy (>= 3.0.1)
       git (>= 1.2.5)
     knife-tidy (2.0.9)
-    knife-vsphere (4.1.0)
+    knife-vsphere (4.1.1)
       chef (>= 15.1)
       chef-vault (>= 2.6.0)
       filesize (>= 0.1.1, < 0.3.0)
