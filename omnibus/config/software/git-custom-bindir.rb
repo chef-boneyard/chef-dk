@@ -41,6 +41,8 @@ version("2.24.1") { source sha256: "ad5334956301c86841eb1e5b1bb20884a6bad89a10a6
 
 source url: "https://www.kernel.org/pub/software/scm/git/git-#{version}.tar.gz"
 
+bin_dirs ["#{install_dir}/gitbin", "#{install_dir}/embedded/libexec/git-core"]
+
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
