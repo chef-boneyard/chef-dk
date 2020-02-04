@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.88 -->
-## [v4.7.88](https://github.com/chef/chef-dk/tree/v4.7.88) (2020-02-02)
+<!-- latest_release 4.7.89 -->
+## [v4.7.89](https://github.com/chef/chef-dk/tree/v4.7.89) (2020-02-04)
 
 #### Merged Pull Requests
-- Adding entitlement for unsigned memory execution [#2748](https://github.com/chef/chef-dk/pull/2748) ([jonsmorrow](https://github.com/jonsmorrow))
+- Bump knife-windows to 3.0.11 [#2751](https://github.com/chef/chef-dk/pull/2751) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-windows to 3.0.11 [#2751](https://github.com/chef/chef-dk/pull/2751) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.89 -->
 - Adding entitlement for unsigned memory execution [#2748](https://github.com/chef/chef-dk/pull/2748) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 4.7.88 -->
 - Bump knife-vsphere to 4.1.1 [#2745](https://github.com/chef/chef-dk/pull/2745) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.87 -->
 - Bump win32-service to 2.1.5 [#2744](https://github.com/chef/chef-dk/pull/2744) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.86 -->
