@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.92 -->
-## [v4.7.92](https://github.com/chef/chef-dk/tree/v4.7.92) (2020-02-07)
+<!-- latest_release 4.7.93 -->
+## [v4.7.93](https://github.com/chef/chef-dk/tree/v4.7.93) (2020-02-07)
 
 #### Merged Pull Requests
-- Bump knife-windows to 3.0.12 [#2758](https://github.com/chef/chef-dk/pull/2758) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-windows to 3.0.13 [#2759](https://github.com/chef/chef-dk/pull/2759) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-windows to 3.0.13 [#2759](https://github.com/chef/chef-dk/pull/2759) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.93 -->
 - Bump knife-windows to 3.0.12 [#2758](https://github.com/chef/chef-dk/pull/2758) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.92 -->
 - Bump inspec-bin to 4.18.85 [#2757](https://github.com/chef/chef-dk/pull/2757) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.91 -->
 - Bump inspec to 4.18.85 [#2755](https://github.com/chef/chef-dk/pull/2755) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.90 -->
