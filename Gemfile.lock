@@ -576,7 +576,7 @@ GEM
       filesize (>= 0.1.1, < 0.3.0)
       netaddr (~> 1.5)
       rbvmomi (>= 1.8, < 3.0)
-    knife-windows (3.0.12)
+    knife-windows (3.0.13)
       chef (>= 15.0)
       winrm (~> 2.1)
       winrm-elevated (~> 1.0)
