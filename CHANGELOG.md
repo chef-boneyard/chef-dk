@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.95 -->
-## [v4.7.95](https://github.com/chef/chef-dk/tree/v4.7.95) (2020-02-10)
+<!-- latest_release 4.7.96 -->
+## [v4.7.96](https://github.com/chef/chef-dk/tree/v4.7.96) (2020-02-10)
 
 #### Merged Pull Requests
-- Bump nokogiri to 1.10.8 [#2761](https://github.com/chef/chef-dk/pull/2761) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump Chef Infra Client to 15.8.23 [#2762](https://github.com/chef/chef-dk/pull/2762) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump Chef Infra Client to 15.8.23 [#2762](https://github.com/chef/chef-dk/pull/2762) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.96 -->
 - Bump nokogiri to 1.10.8 [#2761](https://github.com/chef/chef-dk/pull/2761) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.95 -->
 - Bump knife-windows to 3.0.14 [#2760](https://github.com/chef/chef-dk/pull/2760) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.94 -->
 - Bump knife-windows to 3.0.13 [#2759](https://github.com/chef/chef-dk/pull/2759) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.93 -->
