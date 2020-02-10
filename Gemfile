@@ -65,8 +65,8 @@ group(:omnibus_package) do
   # gems to Rubygems now, so letting this float on latest should always give us the latest
   # stable release. May have to re-pin around major version bumping time, or during patch
   # fixes.
-  gem "chef", "= 15.7.32"
-  gem "chef-bin", "= 15.7.32"
+  gem "chef", "= 15.8.23"
+  gem "chef-bin", "= 15.8.23"
   gem "ohai", ">= 15"
   gem "cheffish", ">= 14.0.1"
 
