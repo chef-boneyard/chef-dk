@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.102 -->
-## [v4.7.102](https://github.com/chef/chef-dk/tree/v4.7.102) (2020-02-12)
+<!-- latest_release 4.7.103 -->
+## [v4.7.103](https://github.com/chef/chef-dk/tree/v4.7.103) (2020-02-12)
 
 #### Merged Pull Requests
-- Bump knife-google to 4.2.8 [#2770](https://github.com/chef/chef-dk/pull/2770) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Validate builds on Debian 10 [#2773](https://github.com/chef/chef-dk/pull/2773) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Validate builds on Debian 10 [#2773](https://github.com/chef/chef-dk/pull/2773) ([tas50](https://github.com/tas50)) <!-- 4.7.103 -->
 - Bump knife-google to 4.2.8 [#2770](https://github.com/chef/chef-dk/pull/2770) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.102 -->
 - Bump knife-acl to 1.0.8 and knife-azure to 2.0.13 [#2769](https://github.com/chef/chef-dk/pull/2769) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.101 -->
 - Bump knife-ec2 to 1.0.31 [#2768](https://github.com/chef/chef-dk/pull/2768) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.100 -->
