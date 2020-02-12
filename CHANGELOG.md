@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.106 -->
-## [v4.7.106](https://github.com/chef/chef-dk/tree/v4.7.106) (2020-02-12)
+<!-- latest_release 4.7.107 -->
+## [v4.7.107](https://github.com/chef/chef-dk/tree/v4.7.107) (2020-02-12)
 
 #### Merged Pull Requests
-- Bump winrm-elevated from 1.1.2 to 1.2.1 in /omnibus [#2776](https://github.com/chef/chef-dk/pull/2776) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump chefstyle to 0.14.1 [#2778](https://github.com/chef/chef-dk/pull/2778) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump chefstyle to 0.14.1 [#2778](https://github.com/chef/chef-dk/pull/2778) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.107 -->
 - Bump winrm-elevated from 1.1.2 to 1.2.1 in /omnibus [#2776](https://github.com/chef/chef-dk/pull/2776) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.106 -->
 - Bump appbundler to 0.13.2 [#2775](https://github.com/chef/chef-dk/pull/2775) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.105 -->
 - Bump cookbook-omnifetch to 0.9.1 [#2774](https://github.com/chef/chef-dk/pull/2774) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.104 -->
