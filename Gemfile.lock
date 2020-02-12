@@ -330,7 +330,7 @@ GEM
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.1.6)
-    cookbook-omnifetch (0.9.0)
+    cookbook-omnifetch (0.9.1)
       mixlib-archive (>= 0.4, < 2.0)
     cookstyle (5.20.0)
       rubocop (= 0.75.1)
