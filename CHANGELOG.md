@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.13.5 -->
-## [v3.13.5](https://github.com/chef/chef-dk/tree/v3.13.5) (2020-02-03)
+<!-- latest_release 3.13.6 -->
+## [v3.13.6](https://github.com/chef/chef-dk/tree/v3.13.6) (2020-02-12)
 
 #### Merged Pull Requests
-- Adding notarization and entitlements for unsigned memory execution (backport from master) [#2749](https://github.com/chef/chef-dk/pull/2749) ([jonsmorrow](https://github.com/jonsmorrow))
+- Bump winrm-elevated from 1.1.2 to 1.2.1 in /omnibus [#2777](https://github.com/chef/chef-dk/pull/2777) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.13.1 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump winrm-elevated from 1.1.2 to 1.2.1 in /omnibus [#2777](https://github.com/chef/chef-dk/pull/2777) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.13.6 -->
 - Adding notarization and entitlements for unsigned memory execution (backport from master) [#2749](https://github.com/chef/chef-dk/pull/2749) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.13.5 -->
 - Bump omnibus-software from `1b2dfe4` to `ad7ed67` in /omnibus [#2720](https://github.com/chef/chef-dk/pull/2720) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.13.4 -->
 - Bump omnibus from `70855aa` to `d642ae6` in /omnibus [#2721](https://github.com/chef/chef-dk/pull/2721) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.13.3 -->
