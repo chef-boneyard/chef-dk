@@ -25,7 +25,7 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     app_conf (0.4.2)
-    appbundler (0.13.1)
+    appbundler (0.13.2)
       mixlib-cli (>= 1.4, < 3.0)
       mixlib-shellout (>= 2.0, < 4.0)
     artifactory (3.0.12)
