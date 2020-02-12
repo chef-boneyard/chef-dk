@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.100 -->
-## [v4.7.100](https://github.com/chef/chef-dk/tree/v4.7.100) (2020-02-12)
+<!-- latest_release 4.7.101 -->
+## [v4.7.101](https://github.com/chef/chef-dk/tree/v4.7.101) (2020-02-12)
 
 #### Merged Pull Requests
-- Bump knife-ec2 to 1.0.31 [#2768](https://github.com/chef/chef-dk/pull/2768) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-acl to 1.0.8 and knife-azure to 2.0.13 [#2769](https://github.com/chef/chef-dk/pull/2769) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-acl to 1.0.8 and knife-azure to 2.0.13 [#2769](https://github.com/chef/chef-dk/pull/2769) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.101 -->
 - Bump knife-ec2 to 1.0.31 [#2768](https://github.com/chef/chef-dk/pull/2768) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.100 -->
 - Bump knife-vsphere to 4.1.3 [#2767](https://github.com/chef/chef-dk/pull/2767) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.99 -->
 - Bump knife-windows to 3.0.16 [#2766](https://github.com/chef/chef-dk/pull/2766) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.98 -->
