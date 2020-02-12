@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.104 -->
-## [v4.7.104](https://github.com/chef/chef-dk/tree/v4.7.104) (2020-02-12)
+<!-- latest_release 4.7.105 -->
+## [v4.7.105](https://github.com/chef/chef-dk/tree/v4.7.105) (2020-02-12)
 
 #### Merged Pull Requests
-- Bump cookbook-omnifetch to 0.9.1 [#2774](https://github.com/chef/chef-dk/pull/2774) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump appbundler to 0.13.2 [#2775](https://github.com/chef/chef-dk/pull/2775) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump appbundler to 0.13.2 [#2775](https://github.com/chef/chef-dk/pull/2775) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.105 -->
 - Bump cookbook-omnifetch to 0.9.1 [#2774](https://github.com/chef/chef-dk/pull/2774) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.104 -->
 - Validate builds on Debian 10 [#2773](https://github.com/chef/chef-dk/pull/2773) ([tas50](https://github.com/tas50)) <!-- 4.7.103 -->
 - Bump knife-google to 4.2.8 [#2770](https://github.com/chef/chef-dk/pull/2770) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.102 -->
