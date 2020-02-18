@@ -250,9 +250,6 @@ subscriptions:
   - workload: ruby_gem_published:kitchen-vagrant-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: ruby_gem_published:kitchen-vcenter-*
-    actions:
-      - bash:.expeditor/update_dep.sh
   - workload: ruby_gem_published:test-kitchen-*
     actions:
       - bash:.expeditor/update_dep.sh
