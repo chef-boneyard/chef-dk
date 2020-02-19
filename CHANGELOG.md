@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.110 -->
-## [v4.7.110](https://github.com/chef/chef-dk/tree/v4.7.110) (2020-02-19)
+<!-- latest_release 4.7.111 -->
+## [v4.7.111](https://github.com/chef/chef-dk/tree/v4.7.111) (2020-02-19)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `96e3a0b` to `80259ef` in /omnibus [#2784](https://github.com/chef/chef-dk/pull/2784) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus from `5baaf7a` to `6b0f340` in /omnibus [#2783](https://github.com/chef/chef-dk/pull/2783) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus from `5baaf7a` to `6b0f340` in /omnibus [#2783](https://github.com/chef/chef-dk/pull/2783) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.111 -->
 - Bump omnibus-software from `96e3a0b` to `80259ef` in /omnibus [#2784](https://github.com/chef/chef-dk/pull/2784) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.110 -->
 - Bump chef-telemetry to 1.0.3 [#2782](https://github.com/chef/chef-dk/pull/2782) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.109 -->
 - Bump knife-opc to 0.4.4 [#2779](https://github.com/chef/chef-dk/pull/2779) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.108 -->
