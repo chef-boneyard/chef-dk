@@ -293,8 +293,8 @@ module ChefDK
       add_component "chefspec" do |c|
         c.gem_base_dir = "chefspec"
         c.unit_test do
-          bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install") }
-          sh("#{embedded_bin("bundle")} exec #{embedded_bin("rake")} unit")
+          bundle_install_mutex.synchronize { sh("#{embedded_bin("bundle")} install", env: { "GEMFILE_MOD" => "true" } ) }
+          sh("#{embedded_bin("bundle")} exec #{embedded_bin("rake")} unit", env: { "GEMFILE_MOD" => "true" })
         end
         c.smoke_test do
           tmpdir do |cwd|
