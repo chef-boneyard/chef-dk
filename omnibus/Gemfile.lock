@@ -290,7 +290,7 @@ GEM
     structured_warnings (0.4.0)
     syslog-logger (1.6.8)
     systemu (2.6.5)
-    test-kitchen (2.3.4)
+    test-kitchen (2.4.0)
       bcrypt_pbkdf (~> 1.0)
       ed25519 (~> 1.2)
       license-acceptance (~> 1.0, >= 1.0.11)
