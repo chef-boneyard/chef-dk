@@ -25,10 +25,6 @@ gem "bundler"
 # https://github.com/chef/chef-workstation/issues/904 tracks fixing this in win32-service
 gem "ffi", "< 1.12"
 
-## Until we resolve https://github.com/inspec/train/issues/548
-gem "train", "=3.2.0"
-gem "train-core", "=3.2.0"
-
 group(:omnibus_package, :development, :test) do
   # we pin these gems as they are installed in the ruby source and if we let them
   # float we'll end up with 2 copies shipped in DK. When we bump Ruby we need to
