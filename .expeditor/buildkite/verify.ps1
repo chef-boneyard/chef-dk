@@ -107,7 +107,7 @@ gem install bundler -v $env:BUNDLER_VERSION --force --no-document --quiet
 bundle --version
 
 echo "--- bundle install"
-bundle install --jobs=7 --retry=3 --without tools integration travis style omnibus_package aix bsd linux mac_os_x solaris
+bundle install --jobs=7 --retry=3 --without tools integration style omnibus_package aix bsd linux mac_os_x solaris
 
 echo "+++ bundle exec rspec"
 bundle exec rspec

@@ -73,7 +73,7 @@ group(:omnibus_package) do
 
   # test-kitchen and plugins
   gem "test-kitchen", ">= 2.0"
-  gem "kitchen-azurerm", ">= 0.14", "< 0.16.0"
+  gem "kitchen-azurerm", ">= 0.14"
   gem "kitchen-ec2", ">= 3.0", "< 4"
   gem "kitchen-digitalocean", ">= 0.10.0"
   gem "kitchen-dokken", ">= 2.8.1"
