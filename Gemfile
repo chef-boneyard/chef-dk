@@ -63,8 +63,9 @@ group(:omnibus_package) do
   # fixes.
   gem "chef", "= 15.8.23"
   gem "chef-bin", "= 15.8.23"
-  gem "ohai", ">= 15"
-  gem "cheffish", ">= 14.0.1"
+  gem "ohai", ">= 15", "< 15.9"
+  gem "cheffish", ">= 14.0.13", "< 15.0.0"
+  gem "chef-zero", ">= 14.0.17", "< 15.0.0"
 
   # chefspec
   gem "chefspec", ">= 7.3.0", "< 8"
@@ -76,7 +77,7 @@ group(:omnibus_package) do
 
   # test-kitchen and plugins
   gem "test-kitchen", ">= 2.0"
-  gem "kitchen-azurerm", ">= 0.14"
+  gem "kitchen-azurerm", ">= 0.14", "< 0.16.0"
   gem "kitchen-ec2", ">= 3.0", "< 4"
   gem "kitchen-digitalocean", ">= 0.10.0"
   gem "kitchen-dokken", ">= 2.8.1"
