@@ -92,8 +92,8 @@ echo "--- update bundler and rubygems"
 
 ruby -v
 
-$env:RUBYGEMS_VERSION=$(findstr rubygems omnibus_overrides.rb | %{ $_.split(" ")[3] })
-$env:BUNDLER_VERSION=$(findstr bundler omnibus_overrides.rb | %{ $_.split(" ")[3] })
+$env:RUBYGEMS_VERSION=$(findstr :rubygems omnibus_overrides.rb | %{ $_.split(" ")[3] })
+$env:BUNDLER_VERSION=$(findstr :bundler omnibus_overrides.rb | %{ $_.split(" ")[3] })
 
 $env:RUBYGEMS_VERSION=($env:RUBYGEMS_VERSION -replace '"', "")
 $env:BUNDLER_VERSION=($env:BUNDLER_VERSION -replace '"', "")
