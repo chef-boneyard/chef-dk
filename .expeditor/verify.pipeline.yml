@@ -8,13 +8,6 @@ expeditor:
       timeout_in_minutes: 30
 
 steps:
-- label: run-specs-ruby-2.5
-  command:
-    - .expeditor/run_linux_tests.sh rspec
-  expeditor:
-    executor:
-      docker:
-        image: ruby:2.5-buster
 
 - label: run-specs-ruby-2.6
   command:
