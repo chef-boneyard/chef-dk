@@ -60,8 +60,8 @@ group(:omnibus_package) do
   gem "chef", "= 15.10.12"
   gem "chef-bin", "= 15.10.12"
   gem "ohai", ">= 15"
-  gem "cheffish", ">= 14.0.13", "< 15.0.0"
-  gem "chef-zero", ">= 14.0.17"
+  gem "cheffish", ">= 15", "< 16"
+  gem "chef-zero", ">= 15", "< 16"
 
   # chefspec
   gem "chefspec", ">= 7.3.0", "< 8"
