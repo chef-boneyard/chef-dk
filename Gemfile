@@ -25,10 +25,6 @@ gem "bundler"
 # https://github.com/chef/chef-workstation/issues/904 tracks fixing this in win32-service
 gem "ffi", "< 1.12"
 
-## Until we resolve https://github.com/inspec/train/issues/548
-gem "train", "=3.2.0"
-gem "train-core", "=3.2.0"
-
 group(:omnibus_package, :development, :test) do
   # we pin these gems as they are installed in the ruby source and if we let them
   # float we'll end up with 2 copies shipped in DK. When we bump Ruby we need to
@@ -57,18 +53,15 @@ end
 group(:omnibus_package) do
   gem "appbundler"
 
-  ## Until we resolve https://github.com/inspec/train/issues/548
-  gem "train", "=3.2.0"
-  gem "train-core", "=3.2.0"
-
   # Expeditor manages the version of chef released to Rubygems. We only release 'stable' chef
   # gems to Rubygems now, so letting this float on latest should always give us the latest
   # stable release. May have to re-pin around major version bumping time, or during patch
   # fixes.
-  gem "chef", "= 15.8.23"
-  gem "chef-bin", "= 15.8.23"
+  gem "chef", "= 15.10.12"
+  gem "chef-bin", "= 15.10.12"
   gem "ohai", ">= 15"
-  gem "cheffish", ">= 14.0.1"
+  gem "cheffish", ">= 15", "< 16"
+  gem "chef-zero", ">= 15", "< 16"
 
   # chefspec
   gem "chefspec", ">= 7.3.0", "< 8"
