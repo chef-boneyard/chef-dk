@@ -68,8 +68,6 @@ dependency "libzmq"
 
 # ruby and bundler and friends
 dependency "ruby"
-dependency "rubygems"
-dependency "bundler" # technically a gem, but we gotta solve the chicken-egg problem here
 
 # for train
 dependency "google-protobuf"

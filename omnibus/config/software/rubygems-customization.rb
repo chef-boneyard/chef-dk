@@ -23,7 +23,6 @@ license :project_license
 source path: "#{project.files_path}/#{name}"
 
 dependency "ruby"
-dependency "rubygems"
 
 build do
   block "Add Rubygems customization file" do

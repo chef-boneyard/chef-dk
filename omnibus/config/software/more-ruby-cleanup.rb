@@ -25,7 +25,6 @@ license :project_license
 source path: "#{project.files_path}/#{name}"
 
 dependency "ruby"
-dependency "rubygems"
 
 build do
   block "Removing additional non-code files from installed gems" do

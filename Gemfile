@@ -29,7 +29,7 @@ group(:omnibus_package, :development, :test) do
   # we pin these gems as they are installed in the ruby source and if we let them
   # float we'll end up with 2 copies shipped in DK. When we bump Ruby we need to
   # look at these pins and adjust them
-  gem "rake", "<= 12.3.2"
+  gem "rake", ">= 13.0.0"
   gem "rdoc", "<= 6.0.1"
   gem "minitest", "<= 5.10.3"
 
@@ -94,7 +94,7 @@ group(:omnibus_package) do
 
   # ed25519 ssh key support done here as it's a native gem we can't put in train
   gem "ed25519"
-  gem "bcrypt_pbkdf"
+  gem "bcrypt_pbkdf", ">= 1.1.0.rc1"
 
   # For Delivery build node
   gem "chef-sugar"
