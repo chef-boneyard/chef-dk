@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.113 -->
-## [v4.7.113](https://github.com/chef/chef-dk/tree/v4.7.113) (2020-02-19)
+<!-- latest_release 4.7.114 -->
+## [v4.7.114](https://github.com/chef/chef-dk/tree/v4.7.114) (2020-05-06)
 
 #### Merged Pull Requests
-- Bump cookstyle to 5.21.9 [#2790](https://github.com/chef/chef-dk/pull/2790) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Update Windows msys2_path to custom installed msys2 lookup first [#2874](https://github.com/chef/chef-dk/pull/2874) ([jaymalasinha](https://github.com/jaymalasinha))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update Windows msys2_path to custom installed msys2 lookup first [#2874](https://github.com/chef/chef-dk/pull/2874) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 4.7.114 -->
 - Bump cookstyle to 5.21.9 [#2790](https://github.com/chef/chef-dk/pull/2790) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.113 -->
 - Bump all deps to the latest [#2788](https://github.com/chef/chef-dk/pull/2788) ([tas50](https://github.com/tas50)) <!-- 4.7.112 -->
 - Bump omnibus from `5baaf7a` to `6b0f340` in /omnibus [#2783](https://github.com/chef/chef-dk/pull/2783) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.7.111 -->
