@@ -21,18 +21,7 @@ gemspec
 
 gem "bundler"
 
-## avoid ffi warnings about overwriting struct layouts which 1.12 introduced
-# https://github.com/chef/chef-workstation/issues/904 tracks fixing this in win32-service
-gem "ffi", "< 1.12"
-
 group(:omnibus_package, :development, :test) do
-  # we pin these gems as they are installed in the ruby source and if we let them
-  # float we'll end up with 2 copies shipped in DK. When we bump Ruby we need to
-  # look at these pins and adjust them
-  gem "rake", ">= 13.0.0"
-  gem "rdoc", "<= 6.0.1"
-  gem "minitest", "<= 5.10.3"
-
   gem "pry"
   gem "yard"
   gem "guard"
@@ -145,5 +134,5 @@ platforms :mswin, :mingw do
   gem "win32-event"
   gem "win32-mutex"
   gem "win32-process", "~> 0.8.2"
-  gem "win32-service"
+  gem "win32-service", ">= 2.1.5" # avoid ffi warnings
 end
