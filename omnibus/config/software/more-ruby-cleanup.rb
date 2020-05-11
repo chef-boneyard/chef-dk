@@ -25,13 +25,14 @@ license :project_license
 source path: "#{project.files_path}/#{name}"
 
 dependency "ruby"
-dependency "rubygems"
 
 build do
   block "Removing additional non-code files from installed gems" do
     # find the embedded ruby gems dir and clean it up for globbing
     target_dir = "#{install_dir}/embedded/lib/ruby/gems/*/gems".tr('\\', "/")
     files = %w{
+      .appveyor.yml
+      .autotest
       .github
       .kokoro
       Appraisals

@@ -21,9 +21,6 @@ skip_transitive_dependency_licensing true
 
 dependency "ruby"
 
-dependency "rubygems"
-dependency "bundler"
-
 source git: "https://github.com/copiousfreetime/hitimes"
 default_version "master"
 
