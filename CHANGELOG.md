@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.7.114 -->
-## [v4.7.114](https://github.com/chef/chef-dk/tree/v4.7.114) (2020-05-06)
+<!-- latest_release 4.8.0 -->
+## [v4.8.0](https://github.com/chef/chef-dk/tree/v4.8.0) (2020-05-11)
 
 #### Merged Pull Requests
-- Update Windows msys2_path to custom installed msys2 lookup first [#2874](https://github.com/chef/chef-dk/pull/2874) ([jaymalasinha](https://github.com/jaymalasinha))
+- Preparing for minor version release by bumping deps [#2872](https://github.com/chef/chef-dk/pull/2872) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Preparing for minor version release by bumping deps [#2872](https://github.com/chef/chef-dk/pull/2872) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.8.0 -->
 - Update Windows msys2_path to custom installed msys2 lookup first [#2874](https://github.com/chef/chef-dk/pull/2874) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 4.7.114 -->
 - Bump cookstyle to 5.21.9 [#2790](https://github.com/chef/chef-dk/pull/2790) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.7.113 -->
 - Bump all deps to the latest [#2788](https://github.com/chef/chef-dk/pull/2788) ([tas50](https://github.com/tas50)) <!-- 4.7.112 -->
