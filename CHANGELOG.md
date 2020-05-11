@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.13.7 -->
-## [v3.13.7](https://github.com/chef/chef-dk/tree/v3.13.7) (2020-02-19)
+<!-- latest_release 3.14.0 -->
+## [v3.14.0](https://github.com/chef/chef-dk/tree/v3.14.0) (2020-05-11)
 
 #### Merged Pull Requests
-- Ensure we don&#39;t pull chef gem from git in chefspec [#2789](https://github.com/chef/chef-dk/pull/2789) ([marcparadise](https://github.com/marcparadise))
+- Preparing for ChefDK 3 release [#2873](https://github.com/chef/chef-dk/pull/2873) ([tyler-ball](https://github.com/tyler-ball))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.13.1 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Preparing for ChefDK 3 release [#2873](https://github.com/chef/chef-dk/pull/2873) ([tyler-ball](https://github.com/tyler-ball)) <!-- 3.14.0 -->
 - Ensure we don&#39;t pull chef gem from git in chefspec [#2789](https://github.com/chef/chef-dk/pull/2789) ([marcparadise](https://github.com/marcparadise)) <!-- 3.13.7 -->
 - Bump winrm-elevated from 1.1.2 to 1.2.1 in /omnibus [#2777](https://github.com/chef/chef-dk/pull/2777) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.13.6 -->
 - Adding notarization and entitlements for unsigned memory execution (backport from master) [#2749](https://github.com/chef/chef-dk/pull/2749) ([jonsmorrow](https://github.com/jonsmorrow)) <!-- 3.13.5 -->
