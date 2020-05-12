@@ -31,7 +31,7 @@ GEM
     artifactory (3.0.12)
     ast (2.4.0)
     aws-eventstream (1.1.0)
-    aws-partitions (1.312.0)
+    aws-partitions (1.313.0)
     aws-sdk-apigateway (1.40.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
@@ -85,10 +85,10 @@ GEM
     aws-sdk-costandusagereportservice (1.20.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-dynamodb (1.46.0)
+    aws-sdk-dynamodb (1.46.1)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-ec2 (1.157.0)
+    aws-sdk-ec2 (1.158.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-ecr (1.28.0)
@@ -987,7 +987,6 @@ DEPENDENCIES
   artifactory
   bcrypt_pbkdf (>= 1.1.0.rc1)
   berkshelf (>= 7.0.9)
-  bundler
   chef (= 15.10.12)
   chef-bin (= 15.10.12)
   chef-dk!
