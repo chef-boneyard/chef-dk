@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.1 -->
-## [v4.8.1](https://github.com/chef/chef-dk/tree/v4.8.1) (2020-05-12)
+<!-- latest_release 4.8.2 -->
+## [v4.8.2](https://github.com/chef/chef-dk/tree/v4.8.2) (2020-05-13)
 
 #### Merged Pull Requests
-- Update openSSL to 1.0.2v [#2888](https://github.com/chef/chef-dk/pull/2888) ([tas50](https://github.com/tas50))
+- Bump cheffish to 15.0.3 [#2889](https://github.com/chef/chef-dk/pull/2889) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump cheffish to 15.0.3 [#2889](https://github.com/chef/chef-dk/pull/2889) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.2 -->
 - Update openSSL to 1.0.2v [#2888](https://github.com/chef/chef-dk/pull/2888) ([tas50](https://github.com/tas50)) <!-- 4.8.1 -->
 - Preparing for minor version release by bumping deps [#2872](https://github.com/chef/chef-dk/pull/2872) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.8.0 -->
 - Update Windows msys2_path to custom installed msys2 lookup first [#2874](https://github.com/chef/chef-dk/pull/2874) ([jaymalasinha](https://github.com/jaymalasinha)) <!-- 4.7.114 -->
