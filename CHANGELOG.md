@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.2 -->
-## [v4.8.2](https://github.com/chef/chef-dk/tree/v4.8.2) (2020-05-13)
+<!-- latest_release 4.8.3 -->
+## [v4.8.3](https://github.com/chef/chef-dk/tree/v4.8.3) (2020-05-16)
 
 #### Merged Pull Requests
-- Bump cheffish to 15.0.3 [#2889](https://github.com/chef/chef-dk/pull/2889) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Update deps to latest and remove a Ruby 2.4+ check [#2894](https://github.com/chef/chef-dk/pull/2894) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update deps to latest and remove a Ruby 2.4+ check [#2894](https://github.com/chef/chef-dk/pull/2894) ([tas50](https://github.com/tas50)) <!-- 4.8.3 -->
 - Bump cheffish to 15.0.3 [#2889](https://github.com/chef/chef-dk/pull/2889) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.2 -->
 - Update openSSL to 1.0.2v [#2888](https://github.com/chef/chef-dk/pull/2888) ([tas50](https://github.com/tas50)) <!-- 4.8.1 -->
 - Preparing for minor version release by bumping deps [#2872](https://github.com/chef/chef-dk/pull/2872) ([tyler-ball](https://github.com/tyler-ball)) <!-- 4.8.0 -->
