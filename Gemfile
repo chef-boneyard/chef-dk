@@ -134,5 +134,5 @@ platforms :mswin, :mingw do
   gem "win32-event"
   gem "win32-mutex"
   gem "win32-process", "~> 0.8.2"
-  gem "win32-service", ">= 2.1.5" # avoid ffi warnings
+  gem "win32-service", ">= 2.1.5" # 2.1.5 resolves ffi warnings
 end
