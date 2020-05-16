@@ -115,7 +115,7 @@ end
 
 # Everything except AIX
 group(:ruby_prof) do
-  gem "ruby-prof"
+  gem "ruby-prof", "< 1.4" # 1.4 introduces a x64-mingw32 gem that causes failures
 end
 
 # Everything except Windows
