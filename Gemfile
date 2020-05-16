@@ -116,7 +116,7 @@ end
 
 # Everything except AIX
 group(:ruby_prof) do
-  gem "ruby-prof"
+  gem "ruby-prof", "< 1.4" # avoid the 1.4 release which includes a problematic mingw32 gem
 end
 
 # Everything except Windows
