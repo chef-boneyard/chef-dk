@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.4 -->
-## [v4.8.4](https://github.com/chef/chef-dk/tree/v4.8.4) (2020-05-16)
+<!-- latest_release 4.8.5 -->
+## [v4.8.5](https://github.com/chef/chef-dk/tree/v4.8.5) (2020-05-17)
 
 #### Merged Pull Requests
-- Pin ruby-prof &lt; 1.4 to avoid x64-mingw32 gem [#2895](https://github.com/chef/chef-dk/pull/2895) ([tas50](https://github.com/tas50))
+- Update Test Kichen, kitchen-ec2, and kitchen-hyperv [#2901](https://github.com/chef/chef-dk/pull/2901) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update Test Kichen, kitchen-ec2, and kitchen-hyperv [#2901](https://github.com/chef/chef-dk/pull/2901) ([tas50](https://github.com/tas50)) <!-- 4.8.5 -->
 - Pin ruby-prof &lt; 1.4 to avoid x64-mingw32 gem [#2895](https://github.com/chef/chef-dk/pull/2895) ([tas50](https://github.com/tas50)) <!-- 4.8.4 -->
 - Update deps to latest and remove a Ruby 2.4+ check [#2894](https://github.com/chef/chef-dk/pull/2894) ([tas50](https://github.com/tas50)) <!-- 4.8.3 -->
 - Bump cheffish to 15.0.3 [#2889](https://github.com/chef/chef-dk/pull/2889) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.2 -->
