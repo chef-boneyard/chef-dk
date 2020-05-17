@@ -529,7 +529,7 @@ GEM
       docker-api (~> 1.33)
       lockfile (~> 2.1)
       test-kitchen (>= 1.15, < 3)
-    kitchen-ec2 (3.5.0)
+    kitchen-ec2 (3.6.0)
       aws-sdk-ec2 (~> 1.0)
       excon
       multi_json
@@ -539,7 +539,7 @@ GEM
       gcewinpass (~> 1.1)
       google-api-client (>= 0.23.9, < 0.36.0)
       test-kitchen
-    kitchen-hyperv (0.5.4)
+    kitchen-hyperv (0.5.5)
       test-kitchen (>= 1.4, < 3)
     kitchen-inspec (1.3.2)
       hashie (~> 3.4)
@@ -612,7 +612,7 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitar (0.9)
-    minitest (5.14.0)
+    minitest (5.14.1)
     mixlib-archive (1.0.5)
       mixlib-log
     mixlib-archive (1.0.5-universal-mingw32)
@@ -796,7 +796,7 @@ GEM
     systemu (2.6.5)
     term-ansicolor (1.7.1)
       tins (~> 1.0)
-    test-kitchen (2.5.0)
+    test-kitchen (2.5.1)
       bcrypt_pbkdf (~> 1.0)
       ed25519 (~> 1.2)
       license-acceptance (~> 1.0, >= 1.0.11)
