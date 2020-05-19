@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: e714063667f88b69d9012720e7ba0c0766bd9832
+  revision: 286f226adbcf206425b72ae0c4cfc9affc424664
   branch: legacy_ruby
   specs:
     omnibus-software (4.0.0)
@@ -32,8 +32,8 @@ GEM
     artifactory (3.0.13)
     awesome_print (1.8.0)
     aws-eventstream (1.1.0)
-    aws-partitions (1.316.0)
-    aws-sdk-core (3.96.0)
+    aws-partitions (1.317.0)
+    aws-sdk-core (3.96.1)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
@@ -41,8 +41,8 @@ GEM
     aws-sdk-kms (1.31.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.64.0)
-      aws-sdk-core (~> 3, >= 3.83.0)
+    aws-sdk-s3 (1.65.0)
+      aws-sdk-core (~> 3, >= 3.96.1)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.1.3)
@@ -295,7 +295,7 @@ GEM
     structured_warnings (0.4.0)
     syslog-logger (1.6.8)
     systemu (2.6.5)
-    test-kitchen (2.5.0)
+    test-kitchen (2.5.1)
       bcrypt_pbkdf (~> 1.0)
       ed25519 (~> 1.2)
       license-acceptance (~> 1.0, >= 1.0.11)
