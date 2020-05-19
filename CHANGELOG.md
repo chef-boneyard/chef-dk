@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.7 -->
-## [v4.8.7](https://github.com/chef/chef-dk/tree/v4.8.7) (2020-05-18)
+<!-- latest_release 4.8.8 -->
+## [v4.8.8](https://github.com/chef/chef-dk/tree/v4.8.8) (2020-05-19)
 
 #### Merged Pull Requests
-- Bump kitchen-digitalocean to 0.11.0 [#2905](https://github.com/chef/chef-dk/pull/2905) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Minor dep bump [#2906](https://github.com/chef/chef-dk/pull/2906) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Minor dep bump [#2906](https://github.com/chef/chef-dk/pull/2906) ([tas50](https://github.com/tas50)) <!-- 4.8.8 -->
 - Bump kitchen-digitalocean to 0.11.0 [#2905](https://github.com/chef/chef-dk/pull/2905) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.7 -->
 - Bump knife-windows to 3.0.17 [#2903](https://github.com/chef/chef-dk/pull/2903) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.6 -->
 - Update Test Kichen, kitchen-ec2, and kitchen-hyperv [#2901](https://github.com/chef/chef-dk/pull/2901) ([tas50](https://github.com/tas50)) <!-- 4.8.5 -->
