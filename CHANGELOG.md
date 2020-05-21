@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.8 -->
-## [v4.8.8](https://github.com/chef/chef-dk/tree/v4.8.8) (2020-05-19)
+<!-- latest_release 4.8.9 -->
+## [v4.8.9](https://github.com/chef/chef-dk/tree/v4.8.9) (2020-05-21)
 
 #### Merged Pull Requests
-- Minor dep bump [#2906](https://github.com/chef/chef-dk/pull/2906) ([tas50](https://github.com/tas50))
+- Bump knife-cloud to 3.0.3 and knife-google to 4.2.14 [#2908](https://github.com/chef/chef-dk/pull/2908) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-cloud to 3.0.3 and knife-google to 4.2.14 [#2908](https://github.com/chef/chef-dk/pull/2908) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.9 -->
 - Minor dep bump [#2906](https://github.com/chef/chef-dk/pull/2906) ([tas50](https://github.com/tas50)) <!-- 4.8.8 -->
 - Bump kitchen-digitalocean to 0.11.0 [#2905](https://github.com/chef/chef-dk/pull/2905) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.7 -->
 - Bump knife-windows to 3.0.17 [#2903](https://github.com/chef/chef-dk/pull/2903) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.6 -->
