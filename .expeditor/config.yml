@@ -124,9 +124,6 @@ subscriptions:
   - workload: ruby_gem_published:chef-vault-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: ruby_gem_published:chef-zero-*
-    actions:
-      - bash:.expeditor/update_dep.sh
   - workload: ruby_gem_published:ohai-*
     actions:
       - bash:.expeditor/update_dep.sh
@@ -151,9 +148,6 @@ subscriptions:
   - workload: ruby_gem_published:libyajl2-*
     actions:
       - bash:.expeditor/update_dep.sh
-  - workload: ruby_gem_published:cheffish-*
-    actions:
-      - bash:.expeditor/update_dep.sh
   - workload: ruby_gem_published:appbundler-*
     actions:
       - bash:.expeditor/update_dep.sh
@@ -161,12 +155,6 @@ subscriptions:
     actions:
       - bash:.expeditor/update_dep.sh
   - workload: ruby_gem_published:chef-telemetry-*
-    actions:
-      - bash:.expeditor/update_dep.sh
-  - workload: ruby_gem_published:chefstyle-*
-    actions:
-      - bash:.expeditor/update_dep.sh
-  - workload: ruby_gem_published:cookstyle-*
     actions:
       - bash:.expeditor/update_dep.sh
   - workload: ruby_gem_published:knife-acl-*
@@ -254,9 +242,6 @@ subscriptions:
     actions:
       - bash:.expeditor/update_dep.sh
   - workload: ruby_gem_published:foodcritic-*
-    actions:
-      - bash:.expeditor/update_dep.sh
-  - workload: ruby_gem_published:chefspec-*
     actions:
       - bash:.expeditor/update_dep.sh
   - workload: ruby_gem_published:fauxhai-*
