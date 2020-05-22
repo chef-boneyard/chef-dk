@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.10 -->
-## [v4.8.10](https://github.com/chef/chef-dk/tree/v4.8.10) (2020-05-22)
+<!-- latest_release 4.8.11 -->
+## [v4.8.11](https://github.com/chef/chef-dk/tree/v4.8.11) (2020-05-22)
 
 #### Merged Pull Requests
-- Update Chef to 15.11.3 and knife-azure to 3.0.1 [#2909](https://github.com/chef/chef-dk/pull/2909) ([tas50](https://github.com/tas50))
+- Update knife-cloud to 3.0.4 [#2910](https://github.com/chef/chef-dk/pull/2910) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update knife-cloud to 3.0.4 [#2910](https://github.com/chef/chef-dk/pull/2910) ([tas50](https://github.com/tas50)) <!-- 4.8.11 -->
 - Update Chef to 15.11.3 and knife-azure to 3.0.1 [#2909](https://github.com/chef/chef-dk/pull/2909) ([tas50](https://github.com/tas50)) <!-- 4.8.10 -->
 - Bump knife-cloud to 3.0.3 and knife-google to 4.2.14 [#2908](https://github.com/chef/chef-dk/pull/2908) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.9 -->
 - Minor dep bump [#2906](https://github.com/chef/chef-dk/pull/2906) ([tas50](https://github.com/tas50)) <!-- 4.8.8 -->
