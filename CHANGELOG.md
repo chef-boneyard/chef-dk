@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.12 -->
-## [v4.8.12](https://github.com/chef/chef-dk/tree/v4.8.12) (2020-05-27)
+<!-- latest_release 4.8.13 -->
+## [v4.8.13](https://github.com/chef/chef-dk/tree/v4.8.13) (2020-05-27)
 
 #### Merged Pull Requests
-- Bump knife-cloud to 3.0.4 [#2911](https://github.com/chef/chef-dk/pull/2911) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Swap tk-policyfile-provisioner testing for a basic cookstyle test [#2912](https://github.com/chef/chef-dk/pull/2912) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Swap tk-policyfile-provisioner testing for a basic cookstyle test [#2912](https://github.com/chef/chef-dk/pull/2912) ([tas50](https://github.com/tas50)) <!-- 4.8.13 -->
 - Bump knife-cloud to 3.0.4 [#2911](https://github.com/chef/chef-dk/pull/2911) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.12 -->
 - Update knife-cloud to 3.0.4 [#2910](https://github.com/chef/chef-dk/pull/2910) ([tas50](https://github.com/tas50)) <!-- 4.8.11 -->
 - Update Chef to 15.11.3 and knife-azure to 3.0.1 [#2909](https://github.com/chef/chef-dk/pull/2909) ([tas50](https://github.com/tas50)) <!-- 4.8.10 -->
