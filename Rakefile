@@ -49,7 +49,7 @@ namespace :style do
       spec/unit/fixtures/local_path_cookbooks
     })
 
-    desc "Run Cookstyle style checks"
+    desc "Run Chef Ruby style checks"
     RuboCop::RakeTask.new(:chefstyle) do |t|
       t.requires = ["chefstyle"]
       t.patterns = `rubocop --list-target-files`.split("\n").reject { |f| f =~ ignore_dirs }
