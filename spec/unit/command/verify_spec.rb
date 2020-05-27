@@ -43,6 +43,7 @@ describe ChefDK::Command::Verify do
       "chef-sugar",
       "chef-vault",
       "chefspec",
+      "cookstyle",
       "delivery-cli",
       "fauxhai",
       "foodcritic",
@@ -54,7 +55,6 @@ describe ChefDK::Command::Verify do
       "opscode-pushy-client",
       "package installation",
       "test-kitchen",
-      "tk-policyfile-provisioner",
     ]
   end
 

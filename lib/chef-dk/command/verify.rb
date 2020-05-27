@@ -118,43 +118,6 @@ module ChefDK
         c.smoke_test { run_in_tmpdir("kitchen init --create-gemfile") }
       end
 
-      add_component "tk-policyfile-provisioner" do |c|
-
-        c.gem_base_dir = "chef-dk"
-
-        c.smoke_test do
-          tmpdir do |cwd|
-            File.open(File.join(cwd, "kitchen.yml"), "w+") do |f|
-              f.print(<<~KITCHEN_YML)
-                ---
-                driver:
-                  name: dummy
-                  network:
-                    - ["forwarded_port", {guest: 80, host: 8080}]
-
-                provisioner:
-                  name: policyfile_zero
-                  require_chef_omnibus: 12.3.0
-
-                platforms:
-                  - name: ubuntu-14.04
-
-                suites:
-                  - name: default
-                    run_list:
-                      - recipe[aar::default]
-                    attributes:
-
-              KITCHEN_YML
-            end
-
-            sh("kitchen list", cwd: cwd)
-
-          end
-        end
-
-      end
-
       add_component "chef-client" do |c|
         c.gem_base_dir = "chef"
         c.unit_test do
@@ -188,6 +151,11 @@ module ChefDK
       add_component "foodcritic" do |c|
         c.gem_base_dir = "foodcritic"
         c.smoke_test { sh("#{embedded_bin("foodcritic --list")}") } # foodcritic -v exits with 2 so use --list which exits 0
+      end
+
+      add_component "cookstyle" do |c|
+        c.gem_base_dir = "cookstyle"
+        c.smoke_test { sh("#{embedded_bin("cookstyle -v")}") }
       end
 
       add_component "chefspec" do |c|
