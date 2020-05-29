@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.16 -->
-## [v4.8.16](https://github.com/chef/chef-dk/tree/v4.8.16) (2020-05-29)
+<!-- latest_release 4.8.17 -->
+## [v4.8.17](https://github.com/chef/chef-dk/tree/v4.8.17) (2020-05-29)
 
 #### Merged Pull Requests
-- Minor dep bumps [#2915](https://github.com/chef/chef-dk/pull/2915) ([tas50](https://github.com/tas50))
+- Bump to chef-telemetry 1.0.8 [#2916](https://github.com/chef/chef-dk/pull/2916) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump to chef-telemetry 1.0.8 [#2916](https://github.com/chef/chef-dk/pull/2916) ([tas50](https://github.com/tas50)) <!-- 4.8.17 -->
 - Minor dep bumps [#2915](https://github.com/chef/chef-dk/pull/2915) ([tas50](https://github.com/tas50)) <!-- 4.8.16 -->
 - Bump inspec-core to 4.19.0 [#2914](https://github.com/chef/chef-dk/pull/2914) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.15 -->
 - Make sure we install bundler 1.17.3 in hab + bump deps [#2913](https://github.com/chef/chef-dk/pull/2913) ([tas50](https://github.com/tas50)) <!-- 4.8.14 -->
