@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.15 -->
-## [v4.8.15](https://github.com/chef/chef-dk/tree/v4.8.15) (2020-05-29)
+<!-- latest_release 4.8.16 -->
+## [v4.8.16](https://github.com/chef/chef-dk/tree/v4.8.16) (2020-05-29)
 
 #### Merged Pull Requests
-- Bump inspec-core to 4.19.0 [#2914](https://github.com/chef/chef-dk/pull/2914) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Minor dep bumps [#2915](https://github.com/chef/chef-dk/pull/2915) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Minor dep bumps [#2915](https://github.com/chef/chef-dk/pull/2915) ([tas50](https://github.com/tas50)) <!-- 4.8.16 -->
 - Bump inspec-core to 4.19.0 [#2914](https://github.com/chef/chef-dk/pull/2914) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.15 -->
 - Make sure we install bundler 1.17.3 in hab + bump deps [#2913](https://github.com/chef/chef-dk/pull/2913) ([tas50](https://github.com/tas50)) <!-- 4.8.14 -->
 - Swap tk-policyfile-provisioner testing for a basic cookstyle test [#2912](https://github.com/chef/chef-dk/pull/2912) ([tas50](https://github.com/tas50)) <!-- 4.8.13 -->
