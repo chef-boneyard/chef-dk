@@ -19,7 +19,7 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "chef-telemetry", "=1.0.3" # avoid bringing in http 4
+gem "chef-telemetry", ">= 1.0.8" # avoid bringing in http dep
 
 group(:omnibus_package, :development, :test) do
   gem "pry"
