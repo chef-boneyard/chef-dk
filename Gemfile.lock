@@ -554,10 +554,10 @@ GEM
       chef (>= 15.0)
       excon (>= 0.50)
       mixlib-shellout
-    knife-ec2 (1.0.36)
+    knife-ec2 (2.0.0)
       aws-sdk-ec2 (~> 1.95)
       aws-sdk-s3 (~> 1.43)
-      chef (>= 15.1)
+      chef (>= 15.11)
     knife-google (4.2.14)
       gcewinpass (~> 1.1)
       google-api-client (>= 0.23.9, < 0.39.0)
