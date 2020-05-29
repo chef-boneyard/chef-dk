@@ -29,7 +29,7 @@ GEM
   specs:
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    artifactory (3.0.13)
+    artifactory (3.0.15)
     awesome_print (1.8.0)
     aws-eventstream (1.1.0)
     aws-partitions (1.317.0)
