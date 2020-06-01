@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.21 -->
-## [v4.8.21](https://github.com/chef/chef-dk/tree/v4.8.21) (2020-05-30)
+<!-- latest_release 4.8.22 -->
+## [v4.8.22](https://github.com/chef/chef-dk/tree/v4.8.22) (2020-06-01)
 
 #### Merged Pull Requests
-- Bump knife-windows to 4.0.2 [#2922](https://github.com/chef/chef-dk/pull/2922) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Update Chef to 15.11.8 [#2925](https://github.com/chef/chef-dk/pull/2925) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.7.73 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update Chef to 15.11.8 [#2925](https://github.com/chef/chef-dk/pull/2925) ([tas50](https://github.com/tas50)) <!-- 4.8.22 -->
 - Bump knife-windows to 4.0.2 [#2922](https://github.com/chef/chef-dk/pull/2922) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.21 -->
 - Bump knife-windows to 4.0.0 [#2920](https://github.com/chef/chef-dk/pull/2920) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.20 -->
 - Bump artifactory to 3.0.15 [#2919](https://github.com/chef/chef-dk/pull/2919) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.19 -->
