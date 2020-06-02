@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.25 -->
-## [v4.8.25](https://github.com/chef/chef-dk/tree/v4.8.25) (2020-06-02)
+<!-- latest_release 4.8.26 -->
+## [v4.8.26](https://github.com/chef/chef-dk/tree/v4.8.26) (2020-06-02)
 
 #### Merged Pull Requests
-- Bump knife-push to 2.0.0 [#2928](https://github.com/chef/chef-dk/pull/2928) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Pin FFI to &lt; 1.13 for now [#2929](https://github.com/chef/chef-dk/pull/2929) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.8.23 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Pin FFI to &lt; 1.13 for now [#2929](https://github.com/chef/chef-dk/pull/2929) ([tas50](https://github.com/tas50)) <!-- 4.8.26 -->
 - Bump knife-push to 2.0.0 [#2928](https://github.com/chef/chef-dk/pull/2928) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.25 -->
 - Disable habitat in expeditor [#2927](https://github.com/chef/chef-dk/pull/2927) ([tas50](https://github.com/tas50)) <!-- 4.8.24 -->
 <!-- release_rollup -->
