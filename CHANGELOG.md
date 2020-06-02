@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 4.8.24 -->
+## [v4.8.24](https://github.com/chef/chef-dk/tree/v4.8.24) (2020-06-02)
+
+#### Merged Pull Requests
+- Disable habitat in expeditor [#2927](https://github.com/chef/chef-dk/pull/2927) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=4.8.23 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- Disable habitat in expeditor [#2927](https://github.com/chef/chef-dk/pull/2927) ([tas50](https://github.com/tas50)) <!-- 4.8.24 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
