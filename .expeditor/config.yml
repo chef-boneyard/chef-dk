@@ -22,7 +22,7 @@ docker_images:
 pipelines:
   - verify:
       public: true
-  - habitat/build
+#  - habitat/build
   - omnibus/release
   - omnibus/adhoc:
       definition: .expeditor/release.omnibus.yml
@@ -70,11 +70,11 @@ merge_actions:
       ignore_labels:
         - "Expeditor: Skip Changelog"
         - "Expeditor: Skip All"
-  - trigger_pipeline:habitat/build:
-      ignore_labels:
-        - "Expeditor: Skip Habitat"
-        - "Expeditor: Skip All"
-      only_if: built_in:bump_version
+  # - trigger_pipeline:habitat/build:
+  #     ignore_labels:
+  #       - "Expeditor: Skip Habitat"
+  #       - "Expeditor: Skip All"
+  #     only_if: built_in:bump_version
   - trigger_pipeline:omnibus/release:
       ignore_labels:
         - "Expeditor: Skip Omnibus"
@@ -91,13 +91,13 @@ subscriptions:
   - workload: artifact_published:current:chefdk:{{version_constraint}}
     actions:
       - built_in:tag_docker_image
-      - built_in:promote_habitat_packages
+ #     - built_in:promote_habitat_packages
   - workload: artifact_published:stable:chefdk:{{version_constraint}}
     actions:
       - built_in:rollover_changelog
       - bash:.expeditor/update_dockerfile.sh
       - built_in:tag_docker_image
-      - built_in:promote_habitat_packages
+#      - built_in:promote_habitat_packages
       - built_in:publish_rubygems
       - built_in:notify_chefio_slack_channels
   - workload: artifact_published:stable:chef:15*
