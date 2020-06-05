@@ -1,3 +1,45 @@
+# ChefDk 3.14
+
+ChefDK 3.14 is the last release of ChefDK 3 as this release of ChefDK is now end of life. We highly recommend upgrading to Chef Workstation which includes significant improvements over ChefDK 3 and 4, including the latest Chef Infra and testing tooling.
+
+## Updated Components
+
+### Chef Infra Client 14.15
+
+Chef Infra Client has updated from 14.14.29 to 14.15.6, which includes improvements to resources, and important bug fixes. For a complete list of changes, see the [Chef Infra Client 14.15 release notes](https://docs.chef.io/release_notes/#whats-new-in-1415).
+
+#### Kitchen AzureRM
+
+The Kitchen AzureRM driver has updated from 0.15.1 to 1.0. This release fixes several failures from running the Kitchen Azurerm driver. It also includes support for Azure Marketplace plans and Managed Service Identity (MSI). Thanks [@jasonwbarnett](https://github.com/jasonwbarnett), [@zanecodes](https://github.com/zanecodes), [@albertvaka](https://github.com/albertvaka), and [@KSerrania](https://github.com/KSerrania) for these improvements.
+
+#### Kitchen Hyper-V
+
+The Kitchen Hyper-V driver has updated from 0.5.3 to 0.5.4, which resolves failures from getting the default VM Switch if there were spaces in the name. Thanks [@kdoores](http://github.com/kdoores) for this improvement.
+
+#### Kitchen DigitalOcean
+
+The Kitchen DigitalOcean driver has updated from 0.10.5 to 0.11.0. This release adds slugs for Ubuntu 20.04 / RHEL 8 / Fedora 31 support, increases the the default instance memory size to 1GB, and adds support for VPCs. Thanks [@zmaupin](https://github.com/zmaupin), [@tolland](https://github.com/tolland), and [@gregf](https://github.com/gregf) for these improvements.
+
+#### Kitchen Dokken
+
+The Kitchen Dokken driver has updated from 2.8.1 to 2.9.0. This release adds a new provisioning configuration, `clean_dokken_sandbox`, that does not require cleaning the Chef Infra and Test Kitchen files between converges. This configuration will speed up repeatedly converging systems. This defaults to `true` which maintains the existing behavior. Thanks [@chrisUsick](https://github.com/chrisUsick).
+
+### Knife Plugins
+
+#### Knife Tidy
+
+Knife Tidy has updated from 2.0.9 to 2.0.12, which provides compatibility with Chef Infra Client 15 and improves error handling in JSON parsing.
+
+#### Knife Spork
+
+Knife Spork has updated from 1.7.2 to 1.7.3. This release adds a new `--fail-if-frozen` flag to `knife spork check` to only fail when local version matches a frozen version and allows the git plugin to push to the current branch. Thanks to [@shoekstra](https://github.com/shoekstra) and [@zmaupin](https://github.com/zmaupin) for these improvements.
+
+### Security Updates
+
+#### OpenSSL
+
+openSSL has updated from 1.0.2u to 1.0.2v, which does not address any particular CVEs, but includes multiple security hardening updates.
+
 # ChefDK 3.13
 
 ## Updated Components
