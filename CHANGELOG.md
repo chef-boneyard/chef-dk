@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.14.7 -->
-## [v3.14.7](https://github.com/chef/chef-dk/tree/v3.14.7) (2020-06-05)
+<!-- latest_release 3.14.8 -->
+## [v3.14.8](https://github.com/chef/chef-dk/tree/v3.14.8) (2020-06-05)
 
 #### Merged Pull Requests
-- pin berks to avoid appbundler failures [#2941](https://github.com/chef/chef-dk/pull/2941) ([tas50](https://github.com/tas50))
+- Update git to 2.26.2 and bring in DK 4 omnibus updates [#2942](https://github.com/chef/chef-dk/pull/2942) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.13.1 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update git to 2.26.2 and bring in DK 4 omnibus updates [#2942](https://github.com/chef/chef-dk/pull/2942) ([tas50](https://github.com/tas50)) <!-- 3.14.8 -->
 - pin berks to avoid appbundler failures [#2941](https://github.com/chef/chef-dk/pull/2941) ([tas50](https://github.com/tas50)) <!-- 3.14.7 -->
 - Don&#39;t appbundler chef-apply [#2940](https://github.com/chef/chef-dk/pull/2940) ([tas50](https://github.com/tas50)) <!-- 3.14.6 -->
 - Bump everything to the latest [#2939](https://github.com/chef/chef-dk/pull/2939) ([tas50](https://github.com/tas50)) <!-- 3.14.5 -->
