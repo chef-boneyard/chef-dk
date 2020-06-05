@@ -36,6 +36,13 @@ Knife Spork has updated from 1.7.2 to 1.7.3. This release adds a new `--fail-if-
 
 ### Security Updates
 
+### Git
+
+Git has updated from 2.24.1 to 2.26.2 to resolve the following CVEs:
+
+- [CVE-2020-5260](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-5260/): Heap exposure vulnerability in the socket library
+- [CVE-2020-11008](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11008/): Heap exposure vulnerability in the socket library
+
 #### OpenSSL
 
 openSSL has updated from 1.0.2u to 1.0.2v which does not address any particular CVEs, but includes multiple security hardening updates.
