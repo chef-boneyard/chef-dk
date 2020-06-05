@@ -6,7 +6,7 @@ ChefDK 3.14 is the last release of ChefDK 3 as this release of ChefDK is now end
 
 ### Chef Infra Client 14.15
 
-Chef Infra Client has updated from 14.14.29 to 14.15.6, which includes improvements to resources, and important bug fixes. For a complete list of changes, see the [Chef Infra Client 14.15 release notes](https://docs.chef.io/release_notes/#whats-new-in-1415).
+Chef Infra Client has updated from 14.14.29 to 14.15.6 which includes improvements to resources and important bug fixes. For a complete list of changes, see the [Chef Infra Client 14.15 release notes](https://docs.chef.io/release_notes/#whats-new-in-1415).
 
 #### Kitchen AzureRM
 
