@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.14.5 -->
-## [v3.14.5](https://github.com/chef/chef-dk/tree/v3.14.5) (2020-06-05)
+<!-- latest_release 3.14.6 -->
+## [v3.14.6](https://github.com/chef/chef-dk/tree/v3.14.6) (2020-06-05)
 
 #### Merged Pull Requests
-- Bump everything to the latest [#2939](https://github.com/chef/chef-dk/pull/2939) ([tas50](https://github.com/tas50))
+- Don&#39;t appbundler chef-apply [#2940](https://github.com/chef/chef-dk/pull/2940) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.13.1 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Don&#39;t appbundler chef-apply [#2940](https://github.com/chef/chef-dk/pull/2940) ([tas50](https://github.com/tas50)) <!-- 3.14.6 -->
 - Bump everything to the latest [#2939](https://github.com/chef/chef-dk/pull/2939) ([tas50](https://github.com/tas50)) <!-- 3.14.5 -->
 - Remove hab pipelines in Expeditor [#2938](https://github.com/chef/chef-dk/pull/2938) ([tas50](https://github.com/tas50)) <!-- 3.14.4 -->
 - Bump omnibus from `3327abf` to `656496e` in /omnibus [#2936](https://github.com/chef/chef-dk/pull/2936) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.14.3 -->
