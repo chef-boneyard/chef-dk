@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.14.9 -->
-## [v3.14.9](https://github.com/chef/chef-dk/tree/v3.14.9) (2020-06-05)
+<!-- latest_release 3.14.10 -->
+## [v3.14.10](https://github.com/chef/chef-dk/tree/v3.14.10) (2020-06-05)
 
 #### Merged Pull Requests
-- Make sure we only pull in nokogiri 1.10 [#2945](https://github.com/chef/chef-dk/pull/2945) ([tas50](https://github.com/tas50))
+- Pin back mini_portile2 [#2946](https://github.com/chef/chef-dk/pull/2946) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.13.1 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Pin back mini_portile2 [#2946](https://github.com/chef/chef-dk/pull/2946) ([tas50](https://github.com/tas50)) <!-- 3.14.10 -->
 - Make sure we only pull in nokogiri 1.10 [#2945](https://github.com/chef/chef-dk/pull/2945) ([tas50](https://github.com/tas50)) <!-- 3.14.9 -->
 - Update git to 2.26.2 and bring in DK 4 omnibus updates [#2942](https://github.com/chef/chef-dk/pull/2942) ([tas50](https://github.com/tas50)) <!-- 3.14.8 -->
 - pin berks to avoid appbundler failures [#2941](https://github.com/chef/chef-dk/pull/2941) ([tas50](https://github.com/tas50)) <!-- 3.14.7 -->
