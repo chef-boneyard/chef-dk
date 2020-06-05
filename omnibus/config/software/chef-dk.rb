@@ -76,7 +76,7 @@ dependency "google-protobuf"
 
 # This is a transative dep but we need to build from source so binaries are built on current sdk.
 # Only matters on mac.
-# TODO: Contact gem mainter about getting new release.
+# @todo Contact gem mainter about getting new release.
 dependency "rb-fsevent-gem" if mac_os_x?
 
 build do
