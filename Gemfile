@@ -113,7 +113,7 @@ group(:omnibus_package) do
   gem "rb-readline"
   gem "winrm-fs"
   gem "winrm-elevated"
-  gem "cucumber"
+  gem "cucumber", "< 4.0"
   gem "stove"
 end
 
