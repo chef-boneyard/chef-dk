@@ -38,7 +38,7 @@ Knife Spork has updated from 1.7.2 to 1.7.3. This release adds a new `--fail-if-
 
 #### OpenSSL
 
-openSSL has updated from 1.0.2u to 1.0.2v, which does not address any particular CVEs, but includes multiple security hardening updates.
+openSSL has updated from 1.0.2u to 1.0.2v which does not address any particular CVEs, but includes multiple security hardening updates.
 
 # ChefDK 3.13
 
