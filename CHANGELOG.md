@@ -1,8 +1,9 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release unreleased -->
-## Unreleased
+<!-- latest_release 3.14.3 -->
+## [v3.14.3](https://github.com/chef/chef-dk/tree/v3.14.3) (2020-06-05)
 
 #### Merged Pull Requests
+- Bump omnibus from `3327abf` to `656496e` in /omnibus [#2936](https://github.com/chef/chef-dk/pull/2936) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 - Bump artifactory from 3.0.13 to 3.0.15 in /omnibus [#2918](https://github.com/chef/chef-dk/pull/2918) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
@@ -10,6 +11,7 @@
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus from `3327abf` to `656496e` in /omnibus [#2936](https://github.com/chef/chef-dk/pull/2936) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.14.3 -->
 - Bump artifactory from 3.0.13 to 3.0.15 in /omnibus [#2918](https://github.com/chef/chef-dk/pull/2918) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.14.2 -->
 - Update kitchen plugins and omnibus-software [#2907](https://github.com/chef/chef-dk/pull/2907) ([tas50](https://github.com/tas50)) <!-- 3.14.2 -->
 - Bump DK 3 deps and pin ruby-prof [#2896](https://github.com/chef/chef-dk/pull/2896) ([tas50](https://github.com/tas50)) <!-- 3.14.1 -->
