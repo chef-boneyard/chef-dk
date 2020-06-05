@@ -28,7 +28,7 @@ The Kitchen Dokken driver has updated from 2.8.1 to 2.9.0. This release adds a n
 
 #### Knife Tidy
 
-Knife Tidy has updated from 2.0.9 to 2.0.12, which provides compatibility with Chef Infra Client 15 and improves error handling in JSON parsing.
+Knife Tidy has updated from 2.0.9 to 2.0.12 which provides compatibility with Chef Infra Client 15 and improves error handling in JSON parsing.
 
 #### Knife Spork
 
