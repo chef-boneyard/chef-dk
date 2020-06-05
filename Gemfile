@@ -47,6 +47,9 @@ end
 # We should only be using "~>" to work around bugs, or temporarily pinning some tech debt.
 # We equality pin the chef gem itself to assert which version we're shipping.
 group(:omnibus_package) do
+  # ffi 1.13 crashes on windows
+  gem "ffi", "< 1.13"
+
   gem "appbundler", "< 0.13"
   gem "berkshelf", ">= 7.0.8"
   gem "chef-provisioning", ">= 2.7.1", group: :provisioning
@@ -77,20 +80,11 @@ group(:omnibus_package) do
   gem "knife-windows", ">= 1.9.1"
   gem "knife-opc", ">= 0.4.0"
   gem "knife-vsphere", ">= 3.0.1", "< 4.0"
-  gem "mixlib-archive", ">= 0.4.16"
   gem "ohai", "~> 14.0"
-  gem "net-ssh", ">= 4.2.0"
   gem "test-kitchen", ">= 1.23.0", "< 2"
-  gem "listen"
-  gem "dco"
 
   # this pin prevents pulling in 1.x that has breaking changes for our apps here
   gem "chef-telemetry", "~> 0.1"
-
-  # Right now we must import chef-apply as a gem into the ChefDK because this is where all the gem
-  # dependency resolution occurs. Putting it elsewhere endangers older ChefDK issues of gem version
-  # conflicts post-build.
-  gem "chef-apply"
 
   # For Delivery build node
   gem "chef-sugar"
@@ -101,16 +95,20 @@ group(:omnibus_package) do
   gem "knife-push"
 
   # All of the following used to be software definitions we included:
+  gem "mixlib-archive", ">= 0.4.16"
+  gem "net-ssh", ">= 4.2.0"
+  gem "listen"
+  gem "dco"
   gem "knife-spork"
   gem "mixlib-install"
-  gem "nokogiri"
+  gem "nokogiri", ">= 1.10"
   gem "pry-byebug"
   gem "pry-remote"
   gem "pry-stack_explorer"
   gem "rb-readline"
   gem "winrm-fs"
   gem "winrm-elevated"
-  gem "cucumber"
+  gem "cucumber", "< 4.0"
   gem "stove"
 end
 
