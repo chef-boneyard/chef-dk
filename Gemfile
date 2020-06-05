@@ -47,6 +47,9 @@ end
 # We should only be using "~>" to work around bugs, or temporarily pinning some tech debt.
 # We equality pin the chef gem itself to assert which version we're shipping.
 group(:omnibus_package) do
+  # ffi 1.13 crashes on windows
+  gem "ffi", "< 1.13"
+
   gem "appbundler", "< 0.13"
   gem "berkshelf", ">= 7.0.8"
   gem "chef-provisioning", ">= 2.7.1", group: :provisioning
