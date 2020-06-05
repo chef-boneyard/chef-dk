@@ -11,13 +11,6 @@ expeditor:
           limit: 1
 
 steps:
-- label: run-specs-ruby-2.5
-  command:
-    - .expeditor/run_linux_tests.sh rspec
-  expeditor:
-    executor:
-      docker:
-        image: ruby:2.5-buster
 
 - label: run-specs-ruby-2.6
   command:
@@ -50,14 +43,6 @@ steps:
     executor:
       docker:
         image: ruby:2.6-buster
-
-- label: hab-package-build-test
-  command:
-    - habitat/scripts/ci_integration_tests.sh
-  expeditor:
-    executor:
-      docker:
-        privileged: true
 
 - label: "run-specs :windows:"
   command:
