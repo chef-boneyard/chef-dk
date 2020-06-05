@@ -23,10 +23,11 @@
 # TODO - when deleting this, also delete omnibus/config/templates/git-custom-bindir
 
 name "git-custom-bindir"
-default_version "2.24.1"
+default_version "2.26.2"
 
 license "LGPL-2.1"
 license_file "LGPL-2.1"
+skip_transitive_dependency_licensing true
 
 dependency "curl"
 dependency "zlib"
@@ -37,7 +38,7 @@ dependency "expat"
 
 relative_path "git-#{version}"
 
-version("2.24.1") { source sha256: "ad5334956301c86841eb1e5b1bb20884a6bad89a10a6762c958220c7cf64da02" }
+version("2.26.2") { source sha256: "e1c17777528f55696815ef33587b1d20f5eec246669f3b839d15dbfffad9c121" }
 
 source url: "https://www.kernel.org/pub/software/scm/git/git-#{version}.tar.gz"
 

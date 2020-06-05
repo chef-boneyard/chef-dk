@@ -32,6 +32,8 @@ build do
     # find the embedded ruby gems dir and clean it up for globbing
     target_dir = "#{install_dir}/embedded/lib/ruby/gems/*/gems".tr('\\', "/")
     files = %w{
+      .appveyor.yml
+      .autotest
       .github
       .kokoro
       Appraisals
@@ -82,7 +84,7 @@ build do
       Dir.glob(Dir.glob("#{target_dir}/*/spec")).each do |f|
 
         # don't delete these files if we use them in our verify tests
-        unless File.basename(File.expand_path("..", f)).match?(/^(berkshelf|test-kitchen|chef|chef-cli|chef-apply|chefspec)-\d/)
+        unless File.basename(File.expand_path("..", f)).match?(/^(berkshelf|test-kitchen|chef|chef-dk|chef-apply|chefspec)-\d/)
           puts "Deleting unused spec dir #{f}"
           FileUtils.remove_dir(f)
         end

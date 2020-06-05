@@ -15,7 +15,7 @@
 #
 
 name "chefdk"
-friendly_name "Chef Development Kit"
+friendly_name "ChefDK"
 maintainer "Chef Software, Inc. <maintainers@chef.io>"
 homepage "https://www.chef.io"
 license "Apache-2.0"
