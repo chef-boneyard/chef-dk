@@ -26,13 +26,13 @@ GEM
     artifactory (3.0.15)
     ast (2.4.0)
     aws-eventstream (1.1.0)
-    aws-sdk (2.11.521)
-      aws-sdk-resources (= 2.11.521)
-    aws-sdk-core (2.11.521)
+    aws-sdk (2.11.522)
+      aws-sdk-resources (= 2.11.522)
+    aws-sdk-core (2.11.522)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.521)
-      aws-sdk-core (= 2.11.521)
+    aws-sdk-resources (2.11.522)
+      aws-sdk-core (= 2.11.522)
     aws-sigv4 (1.1.4)
       aws-eventstream (~> 1.0, >= 1.0.2)
     axiom-types (0.1.1)
@@ -48,7 +48,7 @@ GEM
     azure_mgmt_resources (0.17.9)
       ms_rest_azure (~> 0.12.0)
     backports (3.17.2)
-    berkshelf (7.0.10)
+    berkshelf (7.0.8)
       chef (>= 13.6.52)
       chef-config
       cleanroom (~> 1.0)
@@ -815,7 +815,7 @@ PLATFORMS
 DEPENDENCIES
   appbundler (< 0.13)
   artifactory
-  berkshelf (>= 7.0.8)
+  berkshelf (= 7.0.8)
   bundler
   chef (= 14.15.6)
   chef-dk!
