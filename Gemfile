@@ -51,7 +51,7 @@ group(:omnibus_package) do
   gem "ffi", "< 1.13"
 
   gem "appbundler", "< 0.13"
-  gem "berkshelf", ">= 7.0.8"
+  gem "berkshelf", "= 7.0.8"
   gem "chef-provisioning", ">= 2.7.1", group: :provisioning
   gem "chef-provisioning-aws", ">= 3.0.2", group: :provisioning
   gem "chef-provisioning-fog", ">= 0.26.1", group: :provisioning
