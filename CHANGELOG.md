@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.29 -->
-## [v4.8.29](https://github.com/chef/chef-dk/tree/v4.8.29) (2020-06-05)
+<!-- latest_release 4.8.30 -->
+## [v4.8.30](https://github.com/chef/chef-dk/tree/v4.8.30) (2020-06-10)
 
 #### Merged Pull Requests
-- Bump knife-cloud to 4.0.0 [#2944](https://github.com/chef/chef-dk/pull/2944) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump train-core to 3.3.1 [#2949](https://github.com/chef/chef-dk/pull/2949) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.8.23 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump train-core to 3.3.1 [#2949](https://github.com/chef/chef-dk/pull/2949) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.30 -->
 - Bump knife-cloud to 4.0.0 [#2944](https://github.com/chef/chef-dk/pull/2944) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.29 -->
 - Bump omnibus from `3327abf` to `656496e` in /omnibus [#2937](https://github.com/chef/chef-dk/pull/2937) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.8.28 -->
 - Bump inspec-core to 4.19.2 [#2934](https://github.com/chef/chef-dk/pull/2934) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.27 -->
