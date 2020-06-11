@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.33 -->
-## [v4.8.33](https://github.com/chef/chef-dk/tree/v4.8.33) (2020-06-11)
+<!-- latest_release 4.8.34 -->
+## [v4.8.34](https://github.com/chef/chef-dk/tree/v4.8.34) (2020-06-11)
 
 #### Merged Pull Requests
-- Bump test-kitchen to 2.5.2 [#2952](https://github.com/chef/chef-dk/pull/2952) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump test-kitchen from 2.5.1 to 2.5.2 in /omnibus [#2953](https://github.com/chef/chef-dk/pull/2953) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.8.23 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump test-kitchen from 2.5.1 to 2.5.2 in /omnibus [#2953](https://github.com/chef/chef-dk/pull/2953) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.8.34 -->
 - Bump test-kitchen to 2.5.2 [#2952](https://github.com/chef/chef-dk/pull/2952) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.33 -->
 - Bump knife-tidy to 2.0.15 [#2951](https://github.com/chef/chef-dk/pull/2951) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.32 -->
 - Bump inspec-core to 4.20.2 [#2950](https://github.com/chef/chef-dk/pull/2950) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.31 -->
