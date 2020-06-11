@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 3.14.12 -->
-## [v3.14.12](https://github.com/chef/chef-dk/tree/v3.14.12) (2020-06-06)
+<!-- latest_release 3.14.13 -->
+## [v3.14.13](https://github.com/chef/chef-dk/tree/v3.14.13) (2020-06-11)
 
 #### Merged Pull Requests
-- Remove another test reference to chef-apply [#2948](https://github.com/chef/chef-dk/pull/2948) ([tas50](https://github.com/tas50))
+- Bump test-kitchen from 2.5.1 to 2.5.2 in /omnibus [#2954](https://github.com/chef/chef-dk/pull/2954) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=3.13.1 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump test-kitchen from 2.5.1 to 2.5.2 in /omnibus [#2954](https://github.com/chef/chef-dk/pull/2954) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 3.14.13 -->
 - Remove another test reference to chef-apply [#2948](https://github.com/chef/chef-dk/pull/2948) ([tas50](https://github.com/tas50)) <!-- 3.14.12 -->
 - Remove the verify step for chef-run [#2947](https://github.com/chef/chef-dk/pull/2947) ([tas50](https://github.com/tas50)) <!-- 3.14.11 -->
 - Pin back mini_portile2 [#2946](https://github.com/chef/chef-dk/pull/2946) ([tas50](https://github.com/tas50)) <!-- 3.14.10 -->
