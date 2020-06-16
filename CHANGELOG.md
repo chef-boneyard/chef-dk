@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.36 -->
-## [v4.8.36](https://github.com/chef/chef-dk/tree/v4.8.36) (2020-06-15)
+<!-- latest_release 4.8.37 -->
+## [v4.8.37](https://github.com/chef/chef-dk/tree/v4.8.37) (2020-06-16)
 
 #### Merged Pull Requests
-- [Security] Bump rack from 2.2.2 to 2.2.3 in /omnibus [#2958](https://github.com/chef/chef-dk/pull/2958) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump train-aws to 0.1.17 [#2959](https://github.com/chef/chef-dk/pull/2959) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.8.23 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump train-aws to 0.1.17 [#2959](https://github.com/chef/chef-dk/pull/2959) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.37 -->
 - [Security] Bump rack from 2.2.2 to 2.2.3 in /omnibus [#2958](https://github.com/chef/chef-dk/pull/2958) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.8.36 -->
 - Bump omnibus from `656496e` to `d757185` in /omnibus [#2956](https://github.com/chef/chef-dk/pull/2956) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.8.35 -->
 - Bump test-kitchen from 2.5.1 to 2.5.2 in /omnibus [#2953](https://github.com/chef/chef-dk/pull/2953) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.8.34 -->
