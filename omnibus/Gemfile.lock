@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 86a1c7ebb859161385676e3bfe537e13ba680f59
+  revision: 2cf96c6c07de7d05ded6b45a0531feb10ae7cd9e
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -32,7 +32,7 @@ GEM
     artifactory (3.0.15)
     awesome_print (1.8.0)
     aws-eventstream (1.1.0)
-    aws-partitions (1.329.0)
+    aws-partitions (1.331.0)
     aws-sdk-core (3.100.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -41,12 +41,12 @@ GEM
     aws-sdk-kms (1.34.1)
       aws-sdk-core (~> 3, >= 3.99.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.68.1)
+    aws-sdk-s3 (1.69.0)
       aws-sdk-core (~> 3, >= 3.99.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
-    aws-sigv4 (1.1.4)
-      aws-eventstream (~> 1.0, >= 1.0.2)
+    aws-sigv4 (1.2.0)
+      aws-eventstream (~> 1, >= 1.0.2)
     bcrypt_pbkdf (1.1.0.rc1)
     bcrypt_pbkdf (1.1.0.rc1-x64-mingw32)
     bcrypt_pbkdf (1.1.0.rc1-x86-mingw32)
@@ -247,7 +247,7 @@ GEM
     octokit (4.18.0)
       faraday (>= 0.9)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (16.1.1)
+    ohai (16.2.0)
       chef-config (>= 12.8, < 17)
       chef-utils (>= 16.0, < 17)
       ffi (~> 1.9)
