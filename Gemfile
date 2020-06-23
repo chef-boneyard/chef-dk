@@ -110,7 +110,7 @@ group(:omnibus_package) do
   gem "rb-readline"
   gem "winrm-fs"
   gem "winrm-elevated"
-  gem "cucumber"
+  gem "cucumber", "< 4" # 4 has breaking changes so don't bring this in
   gem "stove", ">= 7.1.5"
   gem "berkshelf", ">= 7.0.9"
   gem "chef-vault", ">= 3.4.1"
