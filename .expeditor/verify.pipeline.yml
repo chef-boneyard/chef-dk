@@ -35,13 +35,13 @@ steps:
       docker:
         image: ruby:2.6-buster
 
-- label: hab-package-build-test
-  command:
-    - habitat/scripts/ci_integration_tests.sh
-  expeditor:
-    executor:
-      docker:
-        privileged: true
+# - label: hab-package-build-test
+#   command:
+#     - habitat/scripts/ci_integration_tests.sh
+#   expeditor:
+#     executor:
+#       docker:
+#         privileged: true
 
 - label: "run-specs :windows:"
   command:
