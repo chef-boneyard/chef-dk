@@ -19,6 +19,8 @@ source "https://rubygems.org"
 
 gemspec
 
+gem "diff-lcs", "=1.3" # 1.4 breaks diff behavior
+
 gem "chef-telemetry", ">= 1.0.8" # avoid bringing in http dep
 
 group(:omnibus_package, :development, :test) do
