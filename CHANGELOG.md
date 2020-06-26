@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.8.39 -->
-## [v4.8.39](https://github.com/chef/chef-dk/tree/v4.8.39) (2020-06-26)
+<!-- latest_release 4.9.0 -->
+## [v4.9.0](https://github.com/chef/chef-dk/tree/v4.9.0) (2020-06-26)
 
 #### Merged Pull Requests
-- Bump Chef Infra Client to 15.12.22 / pin cucumber / bump foodcritic [#2970](https://github.com/chef/chef-dk/pull/2970) ([tas50](https://github.com/tas50))
+- Remove the pin on FFI now that 1.13.1 is out [#2971](https://github.com/chef/chef-dk/pull/2971) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.8.23 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Remove the pin on FFI now that 1.13.1 is out [#2971](https://github.com/chef/chef-dk/pull/2971) ([tas50](https://github.com/tas50)) <!-- 4.9.0 -->
 - Bump Chef Infra Client to 15.12.22 / pin cucumber / bump foodcritic [#2970](https://github.com/chef/chef-dk/pull/2970) ([tas50](https://github.com/tas50)) <!-- 4.8.39 -->
 - Bump inspec-core to 4.20.6 [#2961](https://github.com/chef/chef-dk/pull/2961) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.38 -->
 - Bump train-aws to 0.1.17 [#2959](https://github.com/chef/chef-dk/pull/2959) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.37 -->
