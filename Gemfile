@@ -19,6 +19,8 @@ source "https://rubygems.org"
 
 gemspec
 
+gem "diff-lcs", "=1.3" # 1.4 breaks diff behavior
+
 gem "chef-telemetry", ">= 1.0.8" # avoid bringing in http dep
 
 group(:omnibus_package, :development, :test) do
@@ -49,8 +51,8 @@ group(:omnibus_package) do
   # gems to Rubygems now, so letting this float on latest should always give us the latest
   # stable release. May have to re-pin around major version bumping time, or during patch
   # fixes.
-  gem "chef", "= 15.11.8"
-  gem "chef-bin", "= 15.11.8"
+  gem "chef", "= 15.12.22"
+  gem "chef-bin", "= 15.12.22"
   gem "ohai", ">= 15"
   gem "cheffish", ">= 15", "< 16"
   gem "chef-zero", ">= 15", "< 16"
@@ -103,14 +105,14 @@ group(:omnibus_package) do
   gem "dco"
   gem "knife-spork"
   gem "mixlib-install"
-  gem "nokogiri"
+  gem "nokogiri", ">= 1.10.9"
   gem "pry-byebug"
   gem "pry-remote"
   gem "pry-stack_explorer"
   gem "rb-readline"
   gem "winrm-fs"
   gem "winrm-elevated"
-  gem "cucumber"
+  gem "cucumber", "< 4" # 4 has breaking changes so don't bring this in
   gem "stove", ">= 7.1.5"
   gem "berkshelf", ">= 7.0.9"
   gem "chef-vault", ">= 3.4.1"
