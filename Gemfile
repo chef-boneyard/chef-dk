@@ -44,9 +44,6 @@ end
 group(:omnibus_package) do
   gem "appbundler"
 
-  # ffi 1.13 crashes on windows
-  gem "ffi", "< 1.13"
-
   # Expeditor manages the version of chef released to Rubygems. We only release 'stable' chef
   # gems to Rubygems now, so letting this float on latest should always give us the latest
   # stable release. May have to re-pin around major version bumping time, or during patch
