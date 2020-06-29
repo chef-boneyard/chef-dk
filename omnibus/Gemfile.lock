@@ -8,10 +8,10 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: d75718522deb9faeb3c21b50c60e94daf70ce9b6
+  revision: 320d9350cdf39abdcc4c37d5bc2971b3c222a0a0
   branch: master
   specs:
-    omnibus (7.0.13)
+    omnibus (7.0.14)
       aws-sdk-s3 (~> 1)
       chef-cleanroom (~> 1.0)
       chef-sugar (>= 3.3)
@@ -32,21 +32,21 @@ GEM
     artifactory (3.0.15)
     awesome_print (1.8.0)
     aws-eventstream (1.1.0)
-    aws-partitions (1.329.0)
-    aws-sdk-core (3.100.0)
+    aws-partitions (1.336.0)
+    aws-sdk-core (3.102.1)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
-    aws-sdk-kms (1.34.1)
+    aws-sdk-kms (1.35.0)
       aws-sdk-core (~> 3, >= 3.99.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.68.1)
-      aws-sdk-core (~> 3, >= 3.99.0)
+    aws-sdk-s3 (1.72.0)
+      aws-sdk-core (~> 3, >= 3.102.1)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
-    aws-sigv4 (1.1.4)
-      aws-eventstream (~> 1.0, >= 1.0.2)
+    aws-sigv4 (1.2.1)
+      aws-eventstream (~> 1, >= 1.0.2)
     bcrypt_pbkdf (1.1.0.rc1)
     bcrypt_pbkdf (1.1.0.rc1-x64-mingw32)
     bcrypt_pbkdf (1.1.0.rc1-x86-mingw32)
@@ -247,7 +247,7 @@ GEM
     octokit (4.18.0)
       faraday (>= 0.9)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (16.1.1)
+    ohai (16.2.1)
       chef-config (>= 12.8, < 17)
       chef-utils (>= 16.0, < 17)
       ffi (~> 1.9)
