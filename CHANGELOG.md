@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.9.4 -->
-## [v4.9.4](https://github.com/chef/chef-dk/tree/v4.9.4) (2020-07-02)
+<!-- latest_release 4.9.5 -->
+## [v4.9.5](https://github.com/chef/chef-dk/tree/v4.9.5) (2020-07-02)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `2cf96c6` to `c40e056` in /omnibus [#2976](https://github.com/chef/chef-dk/pull/2976) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump train-core to 3.3.6 [#2978](https://github.com/chef/chef-dk/pull/2978) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.8.23 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump train-core to 3.3.6 [#2978](https://github.com/chef/chef-dk/pull/2978) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.5 -->
 - Bump omnibus-software from `2cf96c6` to `c40e056` in /omnibus [#2976](https://github.com/chef/chef-dk/pull/2976) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.4 -->
 - Bump inspec-core to 4.21.3 [#2977](https://github.com/chef/chef-dk/pull/2977) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.3 -->
 - Bump inspec-core to 4.21.1 [#2972](https://github.com/chef/chef-dk/pull/2972) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.2 -->
