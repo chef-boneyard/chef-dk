@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.9.7 -->
-## [v4.9.7](https://github.com/chef/chef-dk/tree/v4.9.7) (2020-07-06)
+<!-- latest_release 4.9.8 -->
+## [v4.9.8](https://github.com/chef/chef-dk/tree/v4.9.8) (2020-07-06)
 
 #### Merged Pull Requests
-- Bump nokogiri to 1.10.10 [#2981](https://github.com/chef/chef-dk/pull/2981) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Add 4.9 release notes [#2985](https://github.com/chef/chef-dk/pull/2985) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.8.23 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Add 4.9 release notes [#2985](https://github.com/chef/chef-dk/pull/2985) ([tas50](https://github.com/tas50)) <!-- 4.9.8 -->
 - Bump nokogiri to 1.10.10 [#2981](https://github.com/chef/chef-dk/pull/2981) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.7 -->
 - Bump kitchen-ec2 to 3.7.0 [#2979](https://github.com/chef/chef-dk/pull/2979) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.6 -->
 - Bump train-core to 3.3.6 [#2978](https://github.com/chef/chef-dk/pull/2978) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.5 -->
