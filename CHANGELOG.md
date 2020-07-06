@@ -6,38 +6,43 @@
 - Add 4.9 release notes [#2985](https://github.com/chef/chef-dk/pull/2985) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup since=4.8.23 -->
+<!-- release_rollup since=4.9.7 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
 - Add 4.9 release notes [#2985](https://github.com/chef/chef-dk/pull/2985) ([tas50](https://github.com/tas50)) <!-- 4.9.8 -->
-- Bump nokogiri to 1.10.10 [#2981](https://github.com/chef/chef-dk/pull/2981) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.7 -->
-- Bump kitchen-ec2 to 3.7.0 [#2979](https://github.com/chef/chef-dk/pull/2979) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.6 -->
-- Bump train-core to 3.3.6 [#2978](https://github.com/chef/chef-dk/pull/2978) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.5 -->
-- Bump omnibus-software from `2cf96c6` to `c40e056` in /omnibus [#2976](https://github.com/chef/chef-dk/pull/2976) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.4 -->
-- Bump inspec-core to 4.21.3 [#2977](https://github.com/chef/chef-dk/pull/2977) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.3 -->
-- Bump inspec-core to 4.21.1 [#2972](https://github.com/chef/chef-dk/pull/2972) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.2 -->
-- Bump omnibus from `d757185` to `320d935` in /omnibus [#2973](https://github.com/chef/chef-dk/pull/2973) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.1 -->
-- Remove the pin on FFI now that 1.13.1 is out [#2971](https://github.com/chef/chef-dk/pull/2971) ([tas50](https://github.com/tas50)) <!-- 4.9.0 -->
-- Bump Chef Infra Client to 15.12.22 / pin cucumber / bump foodcritic [#2970](https://github.com/chef/chef-dk/pull/2970) ([tas50](https://github.com/tas50)) <!-- 4.8.39 -->
-- Bump inspec-core to 4.20.6 [#2961](https://github.com/chef/chef-dk/pull/2961) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.38 -->
-- Bump train-aws to 0.1.17 [#2959](https://github.com/chef/chef-dk/pull/2959) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.37 -->
-- [Security] Bump rack from 2.2.2 to 2.2.3 in /omnibus [#2958](https://github.com/chef/chef-dk/pull/2958) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.8.36 -->
-- Bump omnibus from `656496e` to `d757185` in /omnibus [#2956](https://github.com/chef/chef-dk/pull/2956) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.8.35 -->
-- Bump test-kitchen from 2.5.1 to 2.5.2 in /omnibus [#2953](https://github.com/chef/chef-dk/pull/2953) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.8.34 -->
-- Bump test-kitchen to 2.5.2 [#2952](https://github.com/chef/chef-dk/pull/2952) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.33 -->
-- Bump knife-tidy to 2.0.15 [#2951](https://github.com/chef/chef-dk/pull/2951) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.32 -->
-- Bump inspec-core to 4.20.2 [#2950](https://github.com/chef/chef-dk/pull/2950) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.31 -->
-- Bump train-core to 3.3.1 [#2949](https://github.com/chef/chef-dk/pull/2949) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.30 -->
-- Bump knife-cloud to 4.0.0 [#2944](https://github.com/chef/chef-dk/pull/2944) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.29 -->
-- Bump omnibus from `3327abf` to `656496e` in /omnibus [#2937](https://github.com/chef/chef-dk/pull/2937) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.8.28 -->
-- Bump inspec-core to 4.19.2 [#2934](https://github.com/chef/chef-dk/pull/2934) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.27 -->
-- Pin FFI to &lt; 1.13 for now [#2929](https://github.com/chef/chef-dk/pull/2929) ([tas50](https://github.com/tas50)) <!-- 4.8.26 -->
-- Bump knife-push to 2.0.0 [#2928](https://github.com/chef/chef-dk/pull/2928) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.8.25 -->
-- Disable habitat in expeditor [#2927](https://github.com/chef/chef-dk/pull/2927) ([tas50](https://github.com/tas50)) <!-- 4.8.24 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v4.9.7](https://github.com/chef/chef-dk/tree/v4.9.7) (2020-07-06)
+
+#### Merged Pull Requests
+- Disable habitat in expeditor [#2927](https://github.com/chef/chef-dk/pull/2927) ([tas50](https://github.com/tas50))
+- Bump knife-push to 2.0.0 [#2928](https://github.com/chef/chef-dk/pull/2928) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Pin FFI to &lt; 1.13 for now [#2929](https://github.com/chef/chef-dk/pull/2929) ([tas50](https://github.com/tas50))
+- Bump inspec-core to 4.19.2 [#2934](https://github.com/chef/chef-dk/pull/2934) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump omnibus from `3327abf` to `656496e` in /omnibus [#2937](https://github.com/chef/chef-dk/pull/2937) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump knife-cloud to 4.0.0 [#2944](https://github.com/chef/chef-dk/pull/2944) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump train-core to 3.3.1 [#2949](https://github.com/chef/chef-dk/pull/2949) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump inspec-core to 4.20.2 [#2950](https://github.com/chef/chef-dk/pull/2950) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-tidy to 2.0.15 [#2951](https://github.com/chef/chef-dk/pull/2951) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump test-kitchen to 2.5.2 [#2952](https://github.com/chef/chef-dk/pull/2952) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump test-kitchen from 2.5.1 to 2.5.2 in /omnibus [#2953](https://github.com/chef/chef-dk/pull/2953) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus from `656496e` to `d757185` in /omnibus [#2956](https://github.com/chef/chef-dk/pull/2956) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- [Security] Bump rack from 2.2.2 to 2.2.3 in /omnibus [#2958](https://github.com/chef/chef-dk/pull/2958) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump train-aws to 0.1.17 [#2959](https://github.com/chef/chef-dk/pull/2959) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump inspec-core to 4.20.6 [#2961](https://github.com/chef/chef-dk/pull/2961) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump Chef Infra Client to 15.12.22 / pin cucumber / bump foodcritic [#2970](https://github.com/chef/chef-dk/pull/2970) ([tas50](https://github.com/tas50))
+- Remove the pin on FFI now that 1.13.1 is out [#2971](https://github.com/chef/chef-dk/pull/2971) ([tas50](https://github.com/tas50))
+- Bump omnibus from `d757185` to `320d935` in /omnibus [#2973](https://github.com/chef/chef-dk/pull/2973) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump inspec-core to 4.21.1 [#2972](https://github.com/chef/chef-dk/pull/2972) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump inspec-core to 4.21.3 [#2977](https://github.com/chef/chef-dk/pull/2977) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump omnibus-software from `2cf96c6` to `c40e056` in /omnibus [#2976](https://github.com/chef/chef-dk/pull/2976) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump train-core to 3.3.6 [#2978](https://github.com/chef/chef-dk/pull/2978) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump kitchen-ec2 to 3.7.0 [#2979](https://github.com/chef/chef-dk/pull/2979) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump nokogiri to 1.10.10 [#2981](https://github.com/chef/chef-dk/pull/2981) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+<!-- latest_stable_release -->
+
 ## [v4.8.23](https://github.com/chef/chef-dk/tree/v4.8.23) (2020-06-02)
 
 #### Merged Pull Requests
@@ -106,7 +111,6 @@
 - Bump knife-windows to 4.0.2 [#2922](https://github.com/chef/chef-dk/pull/2922) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 - Update Chef to 15.11.8 [#2925](https://github.com/chef/chef-dk/pull/2925) ([tas50](https://github.com/tas50))
 - Revert FFI in omnibus [#2926](https://github.com/chef/chef-dk/pull/2926) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v4.7.73](https://github.com/chef/chef-dk/tree/v4.7.73) (2020-01-28)
 
