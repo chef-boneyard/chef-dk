@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.9.6 -->
-## [v4.9.6](https://github.com/chef/chef-dk/tree/v4.9.6) (2020-07-02)
+<!-- latest_release 4.9.7 -->
+## [v4.9.7](https://github.com/chef/chef-dk/tree/v4.9.7) (2020-07-06)
 
 #### Merged Pull Requests
-- Bump kitchen-ec2 to 3.7.0 [#2979](https://github.com/chef/chef-dk/pull/2979) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump nokogiri to 1.10.10 [#2981](https://github.com/chef/chef-dk/pull/2981) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.8.23 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump nokogiri to 1.10.10 [#2981](https://github.com/chef/chef-dk/pull/2981) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.7 -->
 - Bump kitchen-ec2 to 3.7.0 [#2979](https://github.com/chef/chef-dk/pull/2979) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.6 -->
 - Bump train-core to 3.3.6 [#2978](https://github.com/chef/chef-dk/pull/2978) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.5 -->
 - Bump omnibus-software from `2cf96c6` to `c40e056` in /omnibus [#2976](https://github.com/chef/chef-dk/pull/2976) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.4 -->
