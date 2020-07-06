@@ -1,3 +1,56 @@
+# ChefDK 4.9
+
+## Updated Components
+
+### Chef Infra Client
+
+The Chef Infra Client has been updated from 15.11 to 15.12. This release includes a large number of backported improvements to resources from our Chef Infra Client 16 releases. See the [release notes](https://docs.chef.io/release_notes/#whats-new-in-1512) for a complete list of what's new.
+
+### InSpec
+
+InSpec was updated from 4.19 to 4.21. This new release includes the following improvements:
+
+* Certain substrings within a .toml file no longer cause unexpected crashes.
+* Accurate InSpec CLI input parsing for numeric values and structured data, which were previously treated as strings. Numeric values are cast to an integer or float and YAML or JSON structures are converted to a hash or an array.
+* Suppress deprecation warnings on `inspec exec` with the `--silence-deprecations` option.
+
+### knife bootstrap
+
+The `knife bootstrap` command has been updated with several fixes and improvements
+
+- knife bootstrap will now warn when bootstrapping a system using a validation key. Users should instead use validatorless bootstrapping with `knife bootstrap` which generates node and client keys using the client key of the user bootstrapping the node. This method is far more secure as an organization-wide validation key does not need to be distributed or rotated. Users can switch to validatorless bootstrapping by removing any `validation_key` entries in their config.rb (knife.rb) file.
+- Resolved an error bootstrapping Linux nodes from Windows hosts
+- Improved information messages during the bootstrap process
+- Bootstrapping will now be done using a single SSH connection improving bootstrap times on high latency network connection.
+
+### Knife Tidy
+
+Knife Tidy has been updated from 2.0.12 to 2.1.0 which adds support for a `--keep-versions` command line flag. Specifying this keeps a minimum number of versions of each cookbook and defaults to `0`.
+
+### net-ssh
+
+The `net-ssh` gem which powers `knife ssh` and `knife bootstrap` commands has been updated from 5.2.0 to 6.1.0 which includes the following updates:
+
+- Support empty lines and comments in known_hosts.
+- Add sha2-{256,512}-etm@openssh.com MAC algorithms.
+- curve25519sha256 support.
+
+### kitchen-ec2
+
+The Test Kitchen driver kitchen-ec2 has been updated from 3.6.0 to 3.7.0. This new release improves how instances and volumes are tagged to ensure that these are tagged at create time. This resolves failures on AWS accounts that enforced tagging rules on all objects.
+
+### kitchen-inspec
+
+The Test Kitchen verifier kitchen-inspec has been updated from 1.3.2 to 2.0.0. This new release adds a config option `load_plugins` which can be used to load all InSpec plugins during the Test Kitchen verify phase.
+
+Sample kitchen.yml config:
+
+```yaml
+    verifier:
+      name: inspec
+      load_plugins: true
+```
+
 # ChefDK 4.8
 
 ## New Platforms
