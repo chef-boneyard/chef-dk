@@ -19,16 +19,6 @@ rubygems:
 docker_images:
   - chefdk
 
-pipelines:
-  - verify:
-      public: true
-#  - habitat/build
-  - omnibus/release
-  - omnibus/adhoc:
-      definition: .expeditor/release.omnibus.yml
-      env:
-        - ADHOC: true
-
 github:
   # This deletes the GitHub PR branch after successfully merged into the release branch
   delete_branch_on_merge: true
@@ -70,16 +60,6 @@ merge_actions:
       ignore_labels:
         - "Expeditor: Skip Changelog"
         - "Expeditor: Skip All"
-  # - trigger_pipeline:habitat/build:
-  #     ignore_labels:
-  #       - "Expeditor: Skip Habitat"
-  #       - "Expeditor: Skip All"
-  #     only_if: built_in:bump_version
-  - trigger_pipeline:omnibus/release:
-      ignore_labels:
-        - "Expeditor: Skip Omnibus"
-        - "Expeditor: Skip All"
-      only_if: built_in:bump_version
   - built_in:build_gem:
       only_if:
         - built_in:bump_version
