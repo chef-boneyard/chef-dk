@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.9.12 -->
-## [v4.9.12](https://github.com/chef/chef-dk/tree/v4.9.12) (2020-07-14)
+<!-- latest_release 4.9.13 -->
+## [v4.9.13](https://github.com/chef/chef-dk/tree/v4.9.13) (2020-07-14)
 
 #### Merged Pull Requests
-- Bump kitchen-dokken to 2.9.1 [#2993](https://github.com/chef/chef-dk/pull/2993) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump omnibus from `320d935` to `67f54ef` in /omnibus [#2989](https://github.com/chef/chef-dk/pull/2989) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.9.7 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus from `320d935` to `67f54ef` in /omnibus [#2989](https://github.com/chef/chef-dk/pull/2989) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.13 -->
 - Bump kitchen-dokken to 2.9.1 [#2993](https://github.com/chef/chef-dk/pull/2993) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.12 -->
 - Bump kitchen-ec2 to 3.7.1 / knife-google to 5.0.3 [#2991](https://github.com/chef/chef-dk/pull/2991) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.11 -->
 - Bump test-kitchen to 2.5.3 [#2988](https://github.com/chef/chef-dk/pull/2988) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.10 -->
