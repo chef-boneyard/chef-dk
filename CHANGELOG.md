@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.9.10 -->
-## [v4.9.10](https://github.com/chef/chef-dk/tree/v4.9.10) (2020-07-13)
+<!-- latest_release 4.9.11 -->
+## [v4.9.11](https://github.com/chef/chef-dk/tree/v4.9.11) (2020-07-14)
 
 #### Merged Pull Requests
-- Bump test-kitchen to 2.5.3 [#2988](https://github.com/chef/chef-dk/pull/2988) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump kitchen-ec2 to 3.7.1 / knife-google to 5.0.3 [#2991](https://github.com/chef/chef-dk/pull/2991) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.9.7 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump kitchen-ec2 to 3.7.1 / knife-google to 5.0.3 [#2991](https://github.com/chef/chef-dk/pull/2991) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.11 -->
 - Bump test-kitchen to 2.5.3 [#2988](https://github.com/chef/chef-dk/pull/2988) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.10 -->
 - Update project status to &#39;maintained&#39; [#2983](https://github.com/chef/chef-dk/pull/2983) ([marcparadise](https://github.com/marcparadise)) <!-- 4.9.9 -->
 - Add 4.9 release notes [#2985](https://github.com/chef/chef-dk/pull/2985) ([tas50](https://github.com/tas50)) <!-- 4.9.8 -->
