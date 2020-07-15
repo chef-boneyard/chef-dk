@@ -550,7 +550,7 @@ GEM
       ipaddress
       listen (~> 3.1)
       nokogiri (>= 1.5.5)
-    knife-cloud (4.0.0)
+    knife-cloud (4.0.2)
       chef (>= 15.11)
       excon (>= 0.50)
       mixlib-shellout
