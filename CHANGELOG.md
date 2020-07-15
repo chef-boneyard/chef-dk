@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.9.16 -->
-## [v4.9.16](https://github.com/chef/chef-dk/tree/v4.9.16) (2020-07-15)
+<!-- latest_release 4.9.17 -->
+## [v4.9.17](https://github.com/chef/chef-dk/tree/v4.9.17) (2020-07-15)
 
 #### Merged Pull Requests
-- Bump knife-cloud to 4.0.2 [#2999](https://github.com/chef/chef-dk/pull/2999) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Remove dependabot config for dk-3 and bump omnibus [#3000](https://github.com/chef/chef-dk/pull/3000) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.9.7 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Remove dependabot config for dk-3 and bump omnibus [#3000](https://github.com/chef/chef-dk/pull/3000) ([tas50](https://github.com/tas50)) <!-- 4.9.17 -->
 - Bump knife-cloud to 4.0.2 [#2999](https://github.com/chef/chef-dk/pull/2999) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.16 -->
 - Bump cookbook-omnifetch to 0.10.0 [#2998](https://github.com/chef/chef-dk/pull/2998) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.15 -->
 - Bump kitchen-dokken to 2.10.0 [#2994](https://github.com/chef/chef-dk/pull/2994) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.14 -->
