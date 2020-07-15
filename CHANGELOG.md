@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.9.15 -->
-## [v4.9.15](https://github.com/chef/chef-dk/tree/v4.9.15) (2020-07-15)
+<!-- latest_release 4.9.16 -->
+## [v4.9.16](https://github.com/chef/chef-dk/tree/v4.9.16) (2020-07-15)
 
 #### Merged Pull Requests
-- Bump cookbook-omnifetch to 0.10.0 [#2998](https://github.com/chef/chef-dk/pull/2998) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-cloud to 4.0.2 [#2999](https://github.com/chef/chef-dk/pull/2999) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.9.7 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump knife-cloud to 4.0.2 [#2999](https://github.com/chef/chef-dk/pull/2999) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.16 -->
 - Bump cookbook-omnifetch to 0.10.0 [#2998](https://github.com/chef/chef-dk/pull/2998) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.15 -->
 - Bump kitchen-dokken to 2.10.0 [#2994](https://github.com/chef/chef-dk/pull/2994) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.14 -->
 - Bump omnibus from `320d935` to `67f54ef` in /omnibus [#2989](https://github.com/chef/chef-dk/pull/2989) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.13 -->
