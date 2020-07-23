@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 6909d445b211528dc3c56b66813bca78dc22d213
+  revision: 70b006114a9ed20899ef32fedb863ee517a37322
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -32,8 +32,8 @@ GEM
     artifactory (3.0.15)
     awesome_print (1.8.0)
     aws-eventstream (1.1.0)
-    aws-partitions (1.341.0)
-    aws-sdk-core (3.103.0)
+    aws-partitions (1.344.0)
+    aws-sdk-core (3.104.2)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
@@ -41,8 +41,8 @@ GEM
     aws-sdk-kms (1.36.0)
       aws-sdk-core (~> 3, >= 3.99.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.74.0)
-      aws-sdk-core (~> 3, >= 3.102.1)
+    aws-sdk-s3 (1.75.0)
+      aws-sdk-core (~> 3, >= 3.104.1)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.1)
@@ -224,8 +224,10 @@ GEM
       mixlib-versioning
       thor
     mixlib-log (3.0.8)
-    mixlib-shellout (3.0.9)
-    mixlib-shellout (3.0.9-universal-mingw32)
+    mixlib-shellout (3.1.1)
+      chef-utils
+    mixlib-shellout (3.1.1-universal-mingw32)
+      chef-utils
       win32-process (~> 0.8.2)
       wmi-lite (~> 1.0)
     mixlib-versioning (1.2.12)
