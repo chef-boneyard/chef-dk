@@ -265,15 +265,13 @@ GEM
     pastel (0.7.4)
       equatable (~> 0.6)
       tty-color (~> 0.5)
-    pedump (0.5.4)
+    pedump (0.6.1)
       awesome_print
       iostruct (>= 0.0.4)
       multipart-post (>= 2.0.0)
-      progressbar
       rainbow
       zhexdump (>= 0.0.2)
     plist (3.5.0)
-    progressbar (1.10.1)
     proxifier (1.0.3)
     public_suffix (4.0.5)
     rack (2.2.3)
