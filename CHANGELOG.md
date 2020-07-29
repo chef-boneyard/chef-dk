@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.9.22 -->
-## [v4.9.22](https://github.com/chef/chef-dk/tree/v4.9.22) (2020-07-29)
+<!-- latest_release 4.10.0 -->
+## [v4.10.0](https://github.com/chef/chef-dk/tree/v4.10.0) (2020-07-29)
 
 #### Merged Pull Requests
-- Update liblzma, chef, and inspec releases [#3009](https://github.com/chef/chef-dk/pull/3009) ([tas50](https://github.com/tas50))
+- Update knife-opcs to 0.4.6 [#3010](https://github.com/chef/chef-dk/pull/3010) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.9.7 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update knife-opcs to 0.4.6 [#3010](https://github.com/chef/chef-dk/pull/3010) ([tas50](https://github.com/tas50)) <!-- 4.10.0 -->
 - Update liblzma, chef, and inspec releases [#3009](https://github.com/chef/chef-dk/pull/3009) ([tas50](https://github.com/tas50)) <!-- 4.9.22 -->
 - Bump test-kitchen from 2.5.3 to 2.5.4 in /omnibus [#3008](https://github.com/chef/chef-dk/pull/3008) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.21 -->
 - Bump omnibus from `37c578e` to `f8f202c` in /omnibus [#3002](https://github.com/chef/chef-dk/pull/3002) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.20 -->
