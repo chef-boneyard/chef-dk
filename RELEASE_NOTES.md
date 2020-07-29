@@ -41,7 +41,7 @@ kitchen-ec2 has been updated from 3.7.0 to 3.7.1. This release fixes the default
 
 ## Bug Fixes
 
-- Support for legacy DSA host keys has been restored in knife ssh and knife bootstrap commands.
+- Support for legacy DSA host keys has been restored in `knife ssh` and `knife bootstrap` commands.
 
 # ChefDK 4.9
 
