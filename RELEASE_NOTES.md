@@ -1,3 +1,48 @@
+# ChefDK 4.10
+
+## Updates Components
+
+### Chef Infra Client
+
+Chef Infra Client has been updated from 15.12.2 to 15.3.8. This new release includes a new deprecation warning when resources specify `resource_name` without also specifying `provides` which results in failures on Chef Infra Client 16.2 and later. This release also improves the warning message that occurs when a cookbook includes a resource that is now bundled directly in Chef Infra Client.
+
+### Chef InSpec
+
+Chef InSpec has been updated from 4.21.3 to 4.22.1:
+
+- The = character is now allowed for command line inputs
+- apt-cdrom repositories are now skipped when parsing out the list of apt repositories
+- Faulty profiles are now reported instead of causing a crash
+- Improved macOS support in the `service` resource
+
+### cookbook-omnifetch
+
+cookbook-omnifetch has been updated from 0.9.1 to 0.10.0. This release adds support for Chef Server API v2 so we can support segmentless cookbooks with the Chef CLI and Policyfiles.
+
+### knife-cloud
+
+knife-cloud has been updated from 4.0.0 to 4.0.2. This release properly supports jump hosts when the bootstrap flags are used.
+
+### knife-google
+
+knife-google has been updated from 5.0.0 to 5.0.5. This release adds support for all the aliases for new OSes and distributions, and removes several EOL distributions.
+
+#### knife-opc
+
+kitchen-opc has been updated from 0.4.4 to 0.4.6. This release fixes several errors that could occur when running `knife opc user edit USERNAME`.
+
+#### kitchen-dokken
+
+kitchen-dokken has been updated from 2.9.0 to 2.10.0. This release adds a `memory_limit` config to set memory usage limits on the container. It also fixes the `multiple_converge` and `enforce_idempotency` configurations so they work correctly.
+
+#### kitchen-ec2
+
+kitchen-ec2 has been updated from 3.7.0 to 3.7.1. This release fixes the default search for CentOS machines to use the official CentOS images and adds support for subnet filtering with spot instances.
+
+## Bug Fixes
+
+- Support for legacy DSA host keys has been restored in `knife ssh` and `knife bootstrap` commands.
+
 # ChefDK 4.9
 
 ## Updated Components
