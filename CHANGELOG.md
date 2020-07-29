@@ -1,34 +1,32 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.10.0 -->
-## [v4.10.0](https://github.com/chef/chef-dk/tree/v4.10.0) (2020-07-29)
-
-#### Merged Pull Requests
-- Update knife-opcs to 0.4.6 [#3010](https://github.com/chef/chef-dk/pull/3010) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=4.9.7 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Update knife-opcs to 0.4.6 [#3010](https://github.com/chef/chef-dk/pull/3010) ([tas50](https://github.com/tas50)) <!-- 4.10.0 -->
-- Update liblzma, chef, and inspec releases [#3009](https://github.com/chef/chef-dk/pull/3009) ([tas50](https://github.com/tas50)) <!-- 4.9.22 -->
-- Bump test-kitchen from 2.5.3 to 2.5.4 in /omnibus [#3008](https://github.com/chef/chef-dk/pull/3008) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.21 -->
-- Bump omnibus from `37c578e` to `f8f202c` in /omnibus [#3002](https://github.com/chef/chef-dk/pull/3002) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.20 -->
-- Bump omnibus-software from `ca92f96` to `d0427be` in /omnibus [#3007](https://github.com/chef/chef-dk/pull/3007) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.19 -->
-- Bump omnibus-software from `6909d44` to `ca92f96` in /omnibus [#3005](https://github.com/chef/chef-dk/pull/3005) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.18 -->
-- Remove dependabot config for dk-3 and bump omnibus [#3000](https://github.com/chef/chef-dk/pull/3000) ([tas50](https://github.com/tas50)) <!-- 4.9.17 -->
-- Bump knife-cloud to 4.0.2 [#2999](https://github.com/chef/chef-dk/pull/2999) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.16 -->
-- Bump cookbook-omnifetch to 0.10.0 [#2998](https://github.com/chef/chef-dk/pull/2998) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.15 -->
-- Bump kitchen-dokken to 2.10.0 [#2994](https://github.com/chef/chef-dk/pull/2994) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.14 -->
-- Bump omnibus from `320d935` to `67f54ef` in /omnibus [#2989](https://github.com/chef/chef-dk/pull/2989) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.13 -->
-- Bump kitchen-dokken to 2.9.1 [#2993](https://github.com/chef/chef-dk/pull/2993) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.12 -->
-- Bump kitchen-ec2 to 3.7.1 / knife-google to 5.0.3 [#2991](https://github.com/chef/chef-dk/pull/2991) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.11 -->
-- Bump test-kitchen to 2.5.3 [#2988](https://github.com/chef/chef-dk/pull/2988) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.10 -->
-- Update project status to &#39;maintained&#39; [#2983](https://github.com/chef/chef-dk/pull/2983) ([marcparadise](https://github.com/marcparadise)) <!-- 4.9.9 -->
-- Add 4.9 release notes [#2985](https://github.com/chef/chef-dk/pull/2985) ([tas50](https://github.com/tas50)) <!-- 4.9.8 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v4.10.0](https://github.com/chef/chef-dk/tree/v4.10.0) (2020-07-29)
+
+#### Merged Pull Requests
+- Add 4.9 release notes [#2985](https://github.com/chef/chef-dk/pull/2985) ([tas50](https://github.com/tas50))
+- Update project status to &#39;maintained&#39; [#2983](https://github.com/chef/chef-dk/pull/2983) ([marcparadise](https://github.com/marcparadise))
+- Bump test-kitchen to 2.5.3 [#2988](https://github.com/chef/chef-dk/pull/2988) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump kitchen-ec2 to 3.7.1 / knife-google to 5.0.3 [#2991](https://github.com/chef/chef-dk/pull/2991) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump kitchen-dokken to 2.9.1 [#2993](https://github.com/chef/chef-dk/pull/2993) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump omnibus from `320d935` to `67f54ef` in /omnibus [#2989](https://github.com/chef/chef-dk/pull/2989) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump kitchen-dokken to 2.10.0 [#2994](https://github.com/chef/chef-dk/pull/2994) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump cookbook-omnifetch to 0.10.0 [#2998](https://github.com/chef/chef-dk/pull/2998) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Bump knife-cloud to 4.0.2 [#2999](https://github.com/chef/chef-dk/pull/2999) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
+- Remove dependabot config for dk-3 and bump omnibus [#3000](https://github.com/chef/chef-dk/pull/3000) ([tas50](https://github.com/tas50))
+- Bump omnibus-software from `6909d44` to `ca92f96` in /omnibus [#3005](https://github.com/chef/chef-dk/pull/3005) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `ca92f96` to `d0427be` in /omnibus [#3007](https://github.com/chef/chef-dk/pull/3007) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus from `37c578e` to `f8f202c` in /omnibus [#3002](https://github.com/chef/chef-dk/pull/3002) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump test-kitchen from 2.5.3 to 2.5.4 in /omnibus [#3008](https://github.com/chef/chef-dk/pull/3008) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Update liblzma, chef, and inspec releases [#3009](https://github.com/chef/chef-dk/pull/3009) ([tas50](https://github.com/tas50))
+- Update knife-opcs to 0.4.6 [#3010](https://github.com/chef/chef-dk/pull/3010) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v4.9.7](https://github.com/chef/chef-dk/tree/v4.9.7) (2020-07-06)
 
 #### Merged Pull Requests
@@ -56,7 +54,6 @@
 - Bump train-core to 3.3.6 [#2978](https://github.com/chef/chef-dk/pull/2978) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 - Bump kitchen-ec2 to 3.7.0 [#2979](https://github.com/chef/chef-dk/pull/2979) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
 - Bump nokogiri to 1.10.10 [#2981](https://github.com/chef/chef-dk/pull/2981) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot]))
-<!-- latest_stable_release -->
 
 ## [v4.8.23](https://github.com/chef/chef-dk/tree/v4.8.23) (2020-06-02)
 
