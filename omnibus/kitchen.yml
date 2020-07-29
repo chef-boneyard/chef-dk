@@ -31,15 +31,9 @@ platforms:
     run_list: yum-epel::default
   - name: centos-7
     run_list: yum-epel::default
-  - name: debian-8
-    run_list: apt::default
   - name: debian-9
     run_list: apt::default
-  - name: ubuntu-14.04
-    run_list: apt::default
   - name: ubuntu-16.04
-    run_list: apt::default
-  - name: ubuntu-18.04
     run_list: apt::default
   # The following (private) boxes are shared via Vagrant Cloud and are only
   # available to users working for Chef. Sorry, it's about software licensing.
@@ -53,21 +47,21 @@ platforms:
   # by activating the `kitchen.vmware.yml` file with the `KITCHEN_LOCAL_YAML`
   # environment variable:
   #
-  #   KITCHEN_LOCAL_YAML=kitchen.vmware.yml kitchen converge chefdk-macosx-1011
+  #   KITCHEN_LOCAL_YAML=kitchen.vmware.yml kitchen converge chefdk-macos-1013
   #
-  # OSX
-  <% %w(
-    macosx-10.11
-    macos-10.12
-    macos-10.13
-  ).each do |mac_version| %>
-  - name: <%= mac_version %>
+
+  # macOS
+  - name: macos-10.13
     driver:
       provider: vmware_fusion
       customize:
         numvcpus: 4
         memsize: 4096
-  <% end %>
+      box: chef/macos-10.13 # private
+      synced_folders:
+      - ['..', '/Users/vagrant/chef']
+      - ['../../omnibus', '/Users/vagrant/omnibus']
+      - ['../../omnibus-software', '/Users/vagrant/omnibus-software']
 
   # By adding an `i386` to the name the Omnibus cookbook's `load-omnibus-toolchain.bat`
   # will load the 32-bit version of the MinGW toolchain.

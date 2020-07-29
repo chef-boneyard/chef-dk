@@ -5,6 +5,8 @@ channel="${CHANNEL:-unstable}"
 product="${PRODUCT:-chefdk}"
 version="${VERSION:-latest}"
 
+export INSTALL_DIR="/opt/chefdk"
+
 echo "--- Installing $channel $product $version"
 package_file="$(/opt/omnibus-toolchain/bin/install-omnibus-product -c "$channel" -P "$product" -v "$version" | tail -n 1)"
 
@@ -15,7 +17,6 @@ sudo rm -f "$package_file"
 
 echo "--- Verifying ownership of package files"
 
-export INSTALL_DIR=/opt/chefdk
 NONROOT_FILES="$(find "$INSTALL_DIR" ! -user 0 -print)"
 if [[ "$NONROOT_FILES" == "" ]]; then
   echo "Packages files are owned by root.  Continuing verification."
