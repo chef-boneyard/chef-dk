@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.9.18 -->
-## [v4.9.18](https://github.com/chef/chef-dk/tree/v4.9.18) (2020-07-28)
+<!-- latest_release 4.9.19 -->
+## [v4.9.19](https://github.com/chef/chef-dk/tree/v4.9.19) (2020-07-29)
 
 #### Merged Pull Requests
-- Bump omnibus-software from `6909d44` to `ca92f96` in /omnibus [#3005](https://github.com/chef/chef-dk/pull/3005) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `ca92f96` to `d0427be` in /omnibus [#3007](https://github.com/chef/chef-dk/pull/3007) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.9.7 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `ca92f96` to `d0427be` in /omnibus [#3007](https://github.com/chef/chef-dk/pull/3007) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.19 -->
 - Bump omnibus-software from `6909d44` to `ca92f96` in /omnibus [#3005](https://github.com/chef/chef-dk/pull/3005) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.9.18 -->
 - Remove dependabot config for dk-3 and bump omnibus [#3000](https://github.com/chef/chef-dk/pull/3000) ([tas50](https://github.com/tas50)) <!-- 4.9.17 -->
 - Bump knife-cloud to 4.0.2 [#2999](https://github.com/chef/chef-dk/pull/2999) ([chef-expeditor[bot]](https://github.com/chef-expeditor[bot])) <!-- 4.9.16 -->
