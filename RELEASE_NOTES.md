@@ -25,7 +25,7 @@ knife-cloud has been updated from 4.0.0 to 4.0.2. This release properly supports
 
 ### knife-google
 
-knife-google has been updated from 5.0.0 to 5.0.5. This release adds support for all the aliases for new OSes and distributions and removes several EOL distributions.
+knife-google has been updated from 5.0.0 to 5.0.5. This release adds support for all the aliases for new OSes and distributions, and removes several EOL distributions.
 
 #### knife-opc
 
