@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.10.8 -->
-## [v4.10.8](https://github.com/chef/chef-dk/tree/v4.10.8) (2020-09-09)
+<!-- latest_release 4.10.9 -->
+## [v4.10.9](https://github.com/chef/chef-dk/tree/v4.10.9) (2020-09-10)
 
 #### Merged Pull Requests
-- Bump test-kitchen from 2.6.0 to 2.7.0 in /omnibus [#3029](https://github.com/chef/chef-dk/pull/3029) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus-software from `379f9c7` to `0d5f81d` in /omnibus [#3030](https://github.com/chef/chef-dk/pull/3030) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.10.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus-software from `379f9c7` to `0d5f81d` in /omnibus [#3030](https://github.com/chef/chef-dk/pull/3030) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.10.9 -->
 - Bump test-kitchen from 2.6.0 to 2.7.0 in /omnibus [#3029](https://github.com/chef/chef-dk/pull/3029) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.10.8 -->
 - Bump all deps to current [#3026](https://github.com/chef/chef-dk/pull/3026) ([tas50](https://github.com/tas50)) <!-- 4.10.7 -->
 - Bump omnibus-software from `348b519` to `379f9c7` in /omnibus [#3023](https://github.com/chef/chef-dk/pull/3023) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.10.6 -->
