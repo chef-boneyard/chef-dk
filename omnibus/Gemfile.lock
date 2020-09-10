@@ -176,7 +176,7 @@ GEM
     ffi (1.13.1-x86-mingw32)
     ffi-libarchive (1.0.4)
       ffi (~> 1.0)
-    ffi-win32-extensions (1.0.3)
+    ffi-win32-extensions (1.0.4)
       ffi
     ffi-yajl (2.3.4)
       libyajl2 (~> 1.2)
