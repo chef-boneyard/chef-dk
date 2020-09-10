@@ -366,7 +366,7 @@ GEM
       logging (>= 1.6.1, < 3.0)
       nori (~> 2.0)
       rubyntlm (~> 0.6.0, >= 0.6.1)
-    winrm-elevated (1.2.1)
+    winrm-elevated (1.2.2)
       erubi (~> 1.8)
       winrm (~> 2.0)
       winrm-fs (~> 1.0)
