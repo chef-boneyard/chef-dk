@@ -1,10 +1,63 @@
+# ChefDK 4.11
+
+## Knife Improvements
+
+We've reworked how the knife command loads dependencies to greatly improve performance. For some users this may result in a 2/3 reduction in the time knife commands take to load the first time. We also fixed the `knife ssh` command hanging when connecting to Windows nodes over SSH.
+
+## Updates Components
+
+### Chef Infra Client
+
+Chef Infra Client has been updated from 15.13.8 to 15.14.0 with a large number of improvements to built-in Chef Infra resources.
+
+### Chef InSpec
+
+Chef InSpec has been updated from 4.22.1 to 4.22.22. This new release includes the following improvements:
+
+- Fix mysql_session stdout, stderr and exit_status parameters. Thanks [@ramereth](https://github.com/ramereth)!
+- Add new windows_firewall and windows_firewall_rule resources. Thanks [@tecracer-theinen](https://github.com/tecracer-theinen)!
+
+### Chef Vault
+
+Chef Vault has been updated from 4.0.1 to 4.0.11. This release resolves errors when running some knife vault commands and better inputs command inputs.
+
+### Test Kitchen
+
+Test Kitchen has been updated from 2.6 to 2.7, which adds the ability to mark plugins as unable to run with a concurrency (`-c`) level greater than 1. This will help prevent strange failures that occur with some plugins which cannot run concurrently in the future.
+
+### Kitchen AzureRM
+
+Kitchen AzureRM has been updated from 1.0.0 to 1.3.0. This release includes:
+
+- Support for deletion or preservation of resource group tags with a new `destroy_explicit_resource_group_tags` config that defaults to true.
+- Default password generation increased to 25 characters to avoid failures on newer Windows releases
+- Improve performance by loading depedencies only when we need them.
+
+### Kitchen Vagrant
+
+The `kitchen-vagrant` plugin  has been updated from 1.6.1 to 1.7.0. This release adds new `box_auto_update` and box_auto_prune options to pull newer Vagrant base boxes. Thank you [@Stromweld](https://github.com/Stromweld)!
+
+## Platform Packages
+
+- We now produce packages for Apple's upcoming macOS 11 Big Sur release.
+
+## Security
+
+### OpenSSL
+
+OpenSSL has been updated to 1.0.2w which includes a fix for [CVE-2020-1968](https://cve.mitre.org/cgi-bin/cvename.cgi?name=2020-1968).
+
+### CA Root Certificates
+
+The included `cacerts` bundle in Chef Infra Client has been updated to the 7-22-2020 release. This new release removes 4 legacy root certificates and adds 4 additional root certificates.
+
 # ChefDK 4.10
 
 ## Updates Components
 
 ### Chef Infra Client
 
-Chef Infra Client has been updated from 15.12.2 to 15.3.8. This new release includes a new deprecation warning when resources specify `resource_name` without also specifying `provides` which results in failures on Chef Infra Client 16.2 and later. This release also improves the warning message that occurs when a cookbook includes a resource that is now bundled directly in Chef Infra Client.
+Chef Infra Client has been updated from 15.12.2 to 15.13.8. This new release includes a new deprecation warning when resources specify `resource_name` without also specifying `provides` which results in failures on Chef Infra Client 16.2 and later. This release also improves the warning message that occurs when a cookbook includes a resource that is now bundled directly in Chef Infra Client.
 
 ### Chef InSpec
 
