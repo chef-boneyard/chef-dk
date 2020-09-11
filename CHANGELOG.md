@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.10.11 -->
-## [v4.10.11](https://github.com/chef/chef-dk/tree/v4.10.11) (2020-09-10)
+<!-- latest_release 4.10.12 -->
+## [v4.10.12](https://github.com/chef/chef-dk/tree/v4.10.12) (2020-09-11)
 
 #### Merged Pull Requests
-- Bump openssl to 1.0.2w and all other deps to current [#3031](https://github.com/chef/chef-dk/pull/3031) ([tas50](https://github.com/tas50))
+- Bump winrm-elevated from 1.2.1 to 1.2.2 in /omnibus [#3032](https://github.com/chef/chef-dk/pull/3032) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.10.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump winrm-elevated from 1.2.1 to 1.2.2 in /omnibus [#3032](https://github.com/chef/chef-dk/pull/3032) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.10.12 -->
 - Bump openssl to 1.0.2w and all other deps to current [#3031](https://github.com/chef/chef-dk/pull/3031) ([tas50](https://github.com/tas50)) <!-- 4.10.11 -->
 - Bump omnibus from `0f93174` to `22ce151` in /omnibus [#3028](https://github.com/chef/chef-dk/pull/3028) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.10.10 -->
 - Bump omnibus-software from `379f9c7` to `0d5f81d` in /omnibus [#3030](https://github.com/chef/chef-dk/pull/3030) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.10.9 -->
