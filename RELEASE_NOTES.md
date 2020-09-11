@@ -23,7 +23,7 @@ Chef Vault has been updated from 4.0.1 to 4.0.11. This release resolves errors w
 
 ### Test Kitchen
 
-Test Kitchen has been updated from 2.6 to 2.7, which adds the ability to mark plugins as unable to run with a concurrency (`-c`) level greater than 1. This will help prevent strange failures that occur with some plugins which cannot run concurrently in the future.
+Test Kitchen has been updated from 2.5.4 to 2.7.0, which adds the ability to mark plugins as unable to run with a concurrency (`-c`) level greater than 1. This will help prevent strange failures that occur with some plugins which cannot run concurrently in the future.
 
 ### Kitchen AzureRM
 
