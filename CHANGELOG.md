@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 4.11.1 -->
+## [v4.11.1](https://github.com/chef/chef-dk/tree/v4.11.1) (2020-09-15)
+
+#### Merged Pull Requests
+- Bump test-kitchen from 2.7.0 to 2.7.1 in /omnibus [#3035](https://github.com/chef/chef-dk/pull/3035) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=4.11.0 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- Bump test-kitchen from 2.7.0 to 2.7.1 in /omnibus [#3035](https://github.com/chef/chef-dk/pull/3035) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.11.1 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
