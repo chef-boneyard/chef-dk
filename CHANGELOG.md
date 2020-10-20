@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.11.2 -->
-## [v4.11.2](https://github.com/chef/chef-dk/tree/v4.11.2) (2020-10-14)
+<!-- latest_release 4.11.3 -->
+## [v4.11.3](https://github.com/chef/chef-dk/tree/v4.11.3) (2020-10-20)
 
 #### Merged Pull Requests
-- Update all the dependencies [#3046](https://github.com/chef/chef-dk/pull/3046) ([tas50](https://github.com/tas50))
+- Bump omnibus from `f3ed5d3` to `222d66e` in /omnibus [#3047](https://github.com/chef/chef-dk/pull/3047) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.11.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump omnibus from `f3ed5d3` to `222d66e` in /omnibus [#3047](https://github.com/chef/chef-dk/pull/3047) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.11.3 -->
 - Update all the dependencies [#3046](https://github.com/chef/chef-dk/pull/3046) ([tas50](https://github.com/tas50)) <!-- 4.11.2 -->
 - Bump test-kitchen from 2.7.0 to 2.7.1 in /omnibus [#3035](https://github.com/chef/chef-dk/pull/3035) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.11.1 -->
 <!-- release_rollup -->
