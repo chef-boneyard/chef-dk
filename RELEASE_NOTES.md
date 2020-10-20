@@ -1,3 +1,56 @@
+# ChefDK 4.12
+
+## Updates Components
+
+### Chef InSpec
+
+InSpec has been updated from 4.22.22 to 4.23.11. This release includes a `--no-diff` CLI option to suppress diff output for textual tests, a `--sort_results_by` CLI option to sort control output, and implements a sensitive mechanism to hide sensitive output.
+
+### kitchen-azurerm
+
+The `kitchen-azurerm` plugin has been updated from 1.3.0 to 1.4.0. This release includes multiple bug fixes, as well as a new `use_fqdn_hostname` config option that forces using the instance's FQDN for all communication.
+
+### kitchen-dokken
+
+The `kitchen-dokken` plugin has been updated from 2.10.0 to 2.11.0. This release works with newer Docker API releases and resolves Ruby 2.7 compatibility warnings.
+
+### kitchen-ec2
+
+The `kitchen-ec2` plugin has been updated from 3.7.1 to 3.8.0. This release now avoids beta releases of Red Hat when searching for AMIs to converge, allows multiple IP addresses to be specified when creating a security group, and fixes `block_duration_minutes` when creating spot instances.
+
+### kitchen-inspec
+
+The `kitchen-inspec` plugin has been updated from 2.0.0 to 2.2.1. This release includes the ability to disable input caching in InSpec, as well as a fix for using the `junit` reporter under Test Kitchen.
+
+### Test Kitchen
+
+Test Kitchen has been updated from 2.7.0 to 2.7.2. This release marks the legacy `chef_solo` provisioner as unsafe for concurrency and includes various performance optimizations.
+
+### knife-opc
+
+The `knife-opc` plugin has been updated from 0.4.6 to 0.4.7. This release includes a new `--all-info` flag for use with the `knife opc user list` command. This flag provides additional details on each listed user:
+
+```
+antima_gupta:
+  display_name: Antima Gupta
+  email:        agupta@example.com
+  first_name:   Antima
+  last_name:    Gupta
+pivotal:
+  display_name: Chef Server Superuser
+  email:        root@localhost.localdomain
+  first_name:   Chef
+  last_name:    Server
+```
+
+### knife-ec2
+
+The `knife-ec2` plugin has been updated from 2.0.4 to 2.0.6. This release fixes an error that would occur when using the `--server-connect-attribute private_ip_address` flag.
+
+### chef-vault
+
+The `chef-vault` gem has been updated from 4.0.11 to 4.0.12. This release fixes `vault show -F json` and `knife vault list -F json` displaying invalid JSON.
+
 # ChefDK 4.11
 
 ## Knife Improvements
