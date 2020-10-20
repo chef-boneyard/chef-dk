@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 222d66e53b1836c941051078e68b86048bf308a7
+  revision: 1782bac8e7c70e6aa7c5b0483dd64c14d5ec2776
   branch: master
   specs:
     omnibus (7.0.33)
@@ -171,8 +171,9 @@ GEM
     ed25519 (1.2.4)
     erubi (1.9.0)
     erubis (2.7.0)
-    faraday (1.0.1)
+    faraday (1.1.0)
       multipart-post (>= 1.2, < 3)
+      ruby2_keywords
     ffi (1.13.1)
     ffi (1.13.1-x64-mingw32)
     ffi (1.13.1-x86-mingw32)
@@ -278,6 +279,7 @@ GEM
     rainbow (3.0.0)
     retryable (3.0.5)
     ruby-progressbar (1.10.1)
+    ruby2_keywords (0.0.2)
     rubyntlm (0.6.2)
     rubyzip (2.3.0)
     sawyer (0.8.2)
