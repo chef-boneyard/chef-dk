@@ -1,22 +1,20 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.12.0 -->
-## [v4.12.0](https://github.com/chef/chef-dk/tree/v4.12.0) (2020-10-20)
-
-#### Merged Pull Requests
-- More software updates [#3048](https://github.com/chef/chef-dk/pull/3048) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=4.11.0 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- More software updates [#3048](https://github.com/chef/chef-dk/pull/3048) ([tas50](https://github.com/tas50)) <!-- 4.12.0 -->
-- Bump omnibus from `f3ed5d3` to `222d66e` in /omnibus [#3047](https://github.com/chef/chef-dk/pull/3047) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.11.3 -->
-- Update all the dependencies [#3046](https://github.com/chef/chef-dk/pull/3046) ([tas50](https://github.com/tas50)) <!-- 4.11.2 -->
-- Bump test-kitchen from 2.7.0 to 2.7.1 in /omnibus [#3035](https://github.com/chef/chef-dk/pull/3035) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.11.1 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v4.12.0](https://github.com/chef/chef-dk/tree/v4.12.0) (2020-10-21)
+
+#### Merged Pull Requests
+- Bump test-kitchen from 2.7.0 to 2.7.1 in /omnibus [#3035](https://github.com/chef/chef-dk/pull/3035) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Update all the dependencies [#3046](https://github.com/chef/chef-dk/pull/3046) ([tas50](https://github.com/tas50))
+- Bump omnibus from `f3ed5d3` to `222d66e` in /omnibus [#3047](https://github.com/chef/chef-dk/pull/3047) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- More software updates [#3048](https://github.com/chef/chef-dk/pull/3048) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v4.11.0](https://github.com/chef/chef-dk/tree/v4.11.0) (2020-09-11)
 
 #### Merged Pull Requests
@@ -33,7 +31,6 @@
 - Bump openssl to 1.0.2w and all other deps to current [#3031](https://github.com/chef/chef-dk/pull/3031) ([tas50](https://github.com/tas50))
 - Bump winrm-elevated from 1.2.1 to 1.2.2 in /omnibus [#3032](https://github.com/chef/chef-dk/pull/3032) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 - Update Chef Infra Client to 15.14.0 &amp; build macOS 11 packages [#3033](https://github.com/chef/chef-dk/pull/3033) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v4.10.0](https://github.com/chef/chef-dk/tree/v4.10.0) (2020-07-29)
 
