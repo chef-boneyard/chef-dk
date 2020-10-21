@@ -1,8 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release -->
+<!-- latest_release 4.12.1 -->
+## [v4.12.1](https://github.com/chef/chef-dk/tree/v4.12.1) (2020-10-21)
+
+#### Merged Pull Requests
+- Bump omnibus-software from `9c01df0` to `28a9db0` in /omnibus [#3050](https://github.com/chef/chef-dk/pull/3050) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=4.12.0 -->
+### Changes not yet released to stable
+
+#### Merged Pull Requests
+- Bump omnibus-software from `9c01df0` to `28a9db0` in /omnibus [#3050](https://github.com/chef/chef-dk/pull/3050) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.12.1 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
