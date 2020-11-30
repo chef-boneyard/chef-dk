@@ -1,17 +1,17 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: 28a9db0795189580b0d260de670e55ddd9f073f2
+  revision: e1ffbb1091fa35e09bc040bab64647bb4df9bb70
   branch: master
   specs:
     omnibus-software (4.0.0)
-      omnibus (>= 5.6.1)
+      omnibus (>= 8.0.0)
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: 48266df97da2525bd504c864e139c0eb0c9de38e
+  revision: e8951da8c2b52524116a87af3cf632d9c799a435
   branch: master
   specs:
-    omnibus (8.0.2)
+    omnibus (8.0.9)
       aws-sdk-s3 (~> 1)
       chef-cleanroom (~> 1.0)
       chef-utils (>= 15.4)
@@ -32,8 +32,8 @@ GEM
     artifactory (3.0.15)
     awesome_print (1.8.0)
     aws-eventstream (1.1.0)
-    aws-partitions (1.392.0)
-    aws-sdk-core (3.109.2)
+    aws-partitions (1.399.0)
+    aws-sdk-core (3.109.3)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
@@ -41,7 +41,7 @@ GEM
     aws-sdk-kms (1.39.0)
       aws-sdk-core (~> 3, >= 3.109.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.84.1)
+    aws-sdk-s3 (1.85.0)
       aws-sdk-core (~> 3, >= 3.109.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
@@ -64,12 +64,12 @@ GEM
       solve (~> 4.0)
       thor (>= 0.20)
     builder (3.2.4)
-    chef (16.6.14)
+    chef (16.7.61)
       addressable
       bcrypt_pbkdf (= 1.1.0.rc1)
       bundler (>= 1.10)
-      chef-config (= 16.6.14)
-      chef-utils (= 16.6.14)
+      chef-config (= 16.7.61)
+      chef-utils (= 16.7.61)
       chef-vault
       chef-zero (>= 14.0.11)
       diff-lcs (>= 1.2.4, < 1.4.0)
@@ -100,12 +100,12 @@ GEM
       tty-screen (~> 0.6)
       tty-table (~> 0.11)
       uuidtools (~> 2.1.5)
-    chef (16.6.14-universal-mingw32)
+    chef (16.7.61-universal-mingw32)
       addressable
       bcrypt_pbkdf (= 1.1.0.rc1)
       bundler (>= 1.10)
-      chef-config (= 16.6.14)
-      chef-utils (= 16.6.14)
+      chef-config (= 16.7.61)
+      chef-utils (= 16.7.61)
       chef-vault
       chef-zero (>= 14.0.11)
       diff-lcs (>= 1.2.4, < 1.4.0)
@@ -143,20 +143,20 @@ GEM
       win32-eventlog (= 0.6.3)
       win32-mmap (~> 0.4.1)
       win32-mutex (~> 0.4.2)
-      win32-process (~> 0.8.2)
+      win32-process (~> 0.9)
       win32-service (>= 2.1.5, < 3.0)
       win32-taskscheduler (~> 2.0)
       wmi-lite (~> 1.0)
     chef-cleanroom (1.0.2)
-    chef-config (16.6.14)
+    chef-config (16.7.61)
       addressable
-      chef-utils (= 16.6.14)
+      chef-utils (= 16.7.61)
       fuzzyurl
       mixlib-config (>= 2.2.12, < 4.0)
       mixlib-shellout (>= 2.0, < 4.0)
       tomlrb (~> 1.2)
-    chef-utils (16.6.14)
-    chef-vault (4.0.12)
+    chef-utils (16.7.61)
+    chef-vault (4.1.0)
     chef-zero (15.0.3)
       ffi-yajl (~> 2.2)
       hashie (>= 2.0, < 5.0)
@@ -168,7 +168,7 @@ GEM
     concurrent-ruby (1.1.7)
     diff-lcs (1.3)
     ed25519 (1.2.4)
-    erubi (1.9.0)
+    erubi (1.10.0)
     erubis (2.7.0)
     faraday (1.1.0)
       multipart-post (>= 1.2, < 3)
@@ -183,7 +183,7 @@ GEM
     ffi-yajl (2.3.4)
       libyajl2 (~> 1.2)
     fuzzyurl (0.9.0)
-    gssapi (1.3.0)
+    gssapi (1.3.1)
       ffi (>= 1.0.1)
     gyoku (1.3.1)
       builder (>= 2.1.2)
@@ -196,7 +196,7 @@ GEM
     iso8601 (0.13.0)
     jmespath (1.4.0)
     json (2.3.1)
-    kitchen-vagrant (1.7.1)
+    kitchen-vagrant (1.7.2)
       test-kitchen (>= 1.4, < 3)
     libyajl2 (1.2.0)
     license-acceptance (2.1.2)
@@ -226,15 +226,15 @@ GEM
       mixlib-versioning
       thor
     mixlib-log (3.0.9)
-    mixlib-shellout (3.2.0)
+    mixlib-shellout (3.2.2)
       chef-utils
-    mixlib-shellout (3.2.0-universal-mingw32)
+    mixlib-shellout (3.2.2-universal-mingw32)
       chef-utils
       ffi-win32-extensions (~> 1.0.3)
-      win32-process (~> 0.8.2)
+      win32-process (~> 0.9)
       wmi-lite (~> 1.0)
     mixlib-versioning (1.2.12)
-    molinillo (0.6.6)
+    molinillo (0.7.0)
     multi_json (1.15.0)
     multipart-post (2.1.1)
     net-scp (3.0.0)
@@ -248,10 +248,10 @@ GEM
       net-ssh (>= 2.6.5)
       net-ssh-gateway (>= 1.2.0)
     nori (2.6.0)
-    octokit (4.18.0)
+    octokit (4.19.0)
       faraday (>= 0.9)
       sawyer (~> 0.8.0, >= 0.5.3)
-    ohai (16.7.18)
+    ohai (16.7.37)
       chef-config (>= 12.8, < 17)
       chef-utils (>= 16.0, < 17)
       ffi (~> 1.9)
@@ -328,7 +328,7 @@ GEM
       pastel (~> 0.8)
       strings (~> 0.2.0)
       tty-cursor (~> 0.7)
-    tty-color (0.5.2)
+    tty-color (0.6.0)
     tty-cursor (0.7.1)
     tty-prompt (0.22.0)
       pastel (~> 0.8)
@@ -359,9 +359,9 @@ GEM
       ffi
     win32-mutex (0.4.3)
       win32-ipc (>= 0.6.0)
-    win32-process (0.8.3)
+    win32-process (0.9.0)
       ffi (>= 1.0.0)
-    win32-service (2.1.6)
+    win32-service (2.2.0)
       ffi
       ffi-win32-extensions
     win32-taskscheduler (2.0.4)
@@ -376,7 +376,7 @@ GEM
       logging (>= 1.6.1, < 3.0)
       nori (~> 2.0)
       rubyntlm (~> 0.6.0, >= 0.6.1)
-    winrm-elevated (1.2.2)
+    winrm-elevated (1.2.3)
       erubi (~> 1.8)
       winrm (~> 2.0)
       winrm-fs (~> 1.0)
