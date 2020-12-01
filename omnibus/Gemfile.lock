@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chef/omnibus-software.git
-  revision: e1ffbb1091fa35e09bc040bab64647bb4df9bb70
+  revision: 01f76620796c00bea448f0355bb177647b3a64a2
   branch: master
   specs:
     omnibus-software (4.0.0)
@@ -32,7 +32,7 @@ GEM
     artifactory (3.0.15)
     awesome_print (1.8.0)
     aws-eventstream (1.1.0)
-    aws-partitions (1.399.0)
+    aws-partitions (1.400.0)
     aws-sdk-core (3.109.3)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
