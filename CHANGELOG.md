@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.13.0 -->
-## [v4.13.0](https://github.com/chef/chef-dk/tree/v4.13.0) (2020-12-03)
+<!-- latest_release 4.13.1 -->
+## [v4.13.1](https://github.com/chef/chef-dk/tree/v4.13.1) (2020-12-03)
 
 #### Merged Pull Requests
-- Bump the world one last time [#3068](https://github.com/chef/chef-dk/pull/3068) ([tas50](https://github.com/tas50))
+- Update libffi and libiconv to the latest [#3069](https://github.com/chef/chef-dk/pull/3069) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.12.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Update libffi and libiconv to the latest [#3069](https://github.com/chef/chef-dk/pull/3069) ([tas50](https://github.com/tas50)) <!-- 4.13.1 -->
 - Bump the world one last time [#3068](https://github.com/chef/chef-dk/pull/3068) ([tas50](https://github.com/tas50)) <!-- 4.13.0 -->
 - Bump omnibus from `d890d36` to `48266df` in /omnibus [#3057](https://github.com/chef/chef-dk/pull/3057) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.12.4 -->
 - Bump omnibus from `1782bac` to `d890d36` in /omnibus [#3052](https://github.com/chef/chef-dk/pull/3052) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.12.3 -->
