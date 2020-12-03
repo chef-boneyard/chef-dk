@@ -1,8 +1,8 @@
 # THIS IS NOW HAND MANAGED, JUST EDIT THE THING
 # Buildkite consume this so keep it machine-parsable.
 
-override "libffi", version: "3.2.1"
-override "libiconv", version: "1.15"
+override "libffi", version: "3.3.0"
+override "libiconv", version: "1.16"
 override "liblzma", version: "5.2.5"
 override "libxml2", version: "2.9.10"
 override "libxslt", version: "1.1.34"
