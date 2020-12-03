@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.12.4 -->
-## [v4.12.4](https://github.com/chef/chef-dk/tree/v4.12.4) (2020-11-13)
+<!-- latest_release 4.13.0 -->
+## [v4.13.0](https://github.com/chef/chef-dk/tree/v4.13.0) (2020-12-03)
 
 #### Merged Pull Requests
-- Bump omnibus from `d890d36` to `48266df` in /omnibus [#3057](https://github.com/chef/chef-dk/pull/3057) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump the world one last time [#3068](https://github.com/chef/chef-dk/pull/3068) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.12.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump the world one last time [#3068](https://github.com/chef/chef-dk/pull/3068) ([tas50](https://github.com/tas50)) <!-- 4.13.0 -->
 - Bump omnibus from `d890d36` to `48266df` in /omnibus [#3057](https://github.com/chef/chef-dk/pull/3057) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.12.4 -->
 - Bump omnibus from `1782bac` to `d890d36` in /omnibus [#3052](https://github.com/chef/chef-dk/pull/3052) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.12.3 -->
 - Bump kitchen-vagrant from 1.7.0 to 1.7.1 in /omnibus [#3051](https://github.com/chef/chef-dk/pull/3051) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.12.2 -->
