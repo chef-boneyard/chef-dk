@@ -1,3 +1,33 @@
+# ChefDK 4.13
+
+Note: ChefDK will be enter end-of-life product phase Dec 31st 2020. The 4.13 release of ChefDK is the last planned release and all users should upgrade to Chef Workstation, which offers signicant improvements to all included tools.
+
+## Package Updates
+
+ChefDK packages are no longer produced for Debian 8 and RHEL/CentOS 6 as these platforms are now both EOL.
+
+## Updated Components
+
+### Test Kitchen
+
+Test Kitchen was updated from 2.7.2 to 2.8.0. This release improves how we execute commands on Windows hosts in order to avoid failures executing commands that are too long for the windows command line. Thanks for this fix [@ramereth](https://github.com/ramereth)!
+
+### Kitchen Google
+
+The Kitchen Google driver for Test Kitchen was updated from 2.0.3 to 2.1.0. This release adds a new network_ip config for an IPv4 internal IP address to assign to the instance. The driver automatically assigns an unused internal IP to an unconfigured network_ip. Thanks [@eReGeBe](https://github.com/eReGeBe) for this new feature!
+
+### Kitchen Vagrant
+
+The kitchen-vagrant plugin is updated from version 1.7.1 to 1.7.2 with a bug fix to no longer stop with an error when updating a Vagrant box that has not yet been downloaded.
+
+### Chef InSpec
+
+Chef InSpec is updated from 4.23.11 to 4.23.15. A bug fix included ensuring that waiver expiration data is always populated.
+
+### chef-vault
+
+We've updated the release of chef-vault to 4.1. Chef Vault 4.1 properly handles escape strings in secrets and greatly improves performance for users with large numbers of secrets. Thanks for the performance work [@Annih](https://github.com/Annih)!
+
 # ChefDK 4.12
 
 ## Updates Components
