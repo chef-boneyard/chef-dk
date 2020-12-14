@@ -20,13 +20,35 @@ The Kitchen Google driver for Test Kitchen was updated from 2.0.3 to 2.1.0. This
 
 The kitchen-vagrant plugin is updated from version 1.7.1 to 1.7.2 with a bug fix to no longer stop with an error when updating a Vagrant box that has not yet been downloaded.
 
+### Kitchen Dokken
+
+Kitchen Dokken has been updated to 2.11.2 to resolve failures from creating containers during the Test Kitchen converge. Thanks for reporting this issue [@emeshuris](https://github.com/emeshuris)!
+
 ### Chef InSpec
 
-Chef InSpec is updated from 4.23.11 to 4.23.15. A bug fix included ensuring that waiver expiration data is always populated.
+Chef InSpec has been updated to 4.24.8 including the following improvements:
+
+- An unset `HOME` environment variable will not cause execution failures
+- You can use wildcards in `platform-name` and `release` in InSpec profiles. Thanks for this improvement [@yarick](https://github.com/yarick)!
+- The `WMI` resource now returns an array to support returning multiple WMI objects
+- The `package` resource on Windows properly escapes package names. Thanks for this improvement [@ramereth](https://github.com/ramereth)!
+- The `grub_conf` resource succeeds even if without a `menuentry` in the grub config
+- Loaded plugins won't try to re-load themselves
+- Waiver expiration is now always populated
 
 ### chef-vault
 
 We've updated the release of chef-vault to 4.1. Chef Vault 4.1 properly handles escape strings in secrets and greatly improves performance for users with large numbers of secrets. Thanks for the performance work [@Annih](https://github.com/Annih)!
+
+### knife-ec2
+
+The knife-ec2 plugin has been updated to 2.1.0, which allows for the creation of instances with ST1 or SC1 EBS volume types
+
+## Security
+
+### openSSL
+
+The openSSL library has been updated to 1.0.2x to resolve [CVE-2020-1971](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-1971).
 
 # ChefDK 4.12
 
