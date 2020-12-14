@@ -1,15 +1,16 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.13.2 -->
-## [v4.13.2](https://github.com/chef/chef-dk/tree/v4.13.2) (2020-12-03)
+<!-- latest_release 4.13.3 -->
+## [v4.13.3](https://github.com/chef/chef-dk/tree/v4.13.3) (2020-12-14)
 
 #### Merged Pull Requests
-- Fix the FFI version string [#3072](https://github.com/chef/chef-dk/pull/3072) ([tas50](https://github.com/tas50))
+- Bump openssl and all other deps [#3075](https://github.com/chef/chef-dk/pull/3075) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=4.12.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Bump openssl and all other deps [#3075](https://github.com/chef/chef-dk/pull/3075) ([tas50](https://github.com/tas50)) <!-- 4.13.3 -->
 - Fix the FFI version string [#3072](https://github.com/chef/chef-dk/pull/3072) ([tas50](https://github.com/tas50)) <!-- 4.13.2 -->
 - Update libffi and libiconv to the latest [#3069](https://github.com/chef/chef-dk/pull/3069) ([tas50](https://github.com/tas50)) <!-- 4.13.1 -->
 - Bump the world one last time [#3068](https://github.com/chef/chef-dk/pull/3068) ([tas50](https://github.com/tas50)) <!-- 4.13.0 -->
