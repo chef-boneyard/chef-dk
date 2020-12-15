@@ -1,26 +1,24 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
-<!-- latest_release 4.13.3 -->
-## [v4.13.3](https://github.com/chef/chef-dk/tree/v4.13.3) (2020-12-14)
-
-#### Merged Pull Requests
-- Bump openssl and all other deps [#3075](https://github.com/chef/chef-dk/pull/3075) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=4.12.0 -->
-### Changes not yet released to stable
-
-#### Merged Pull Requests
-- Bump openssl and all other deps [#3075](https://github.com/chef/chef-dk/pull/3075) ([tas50](https://github.com/tas50)) <!-- 4.13.3 -->
-- Fix the FFI version string [#3072](https://github.com/chef/chef-dk/pull/3072) ([tas50](https://github.com/tas50)) <!-- 4.13.2 -->
-- Update libffi and libiconv to the latest [#3069](https://github.com/chef/chef-dk/pull/3069) ([tas50](https://github.com/tas50)) <!-- 4.13.1 -->
-- Bump the world one last time [#3068](https://github.com/chef/chef-dk/pull/3068) ([tas50](https://github.com/tas50)) <!-- 4.13.0 -->
-- Bump omnibus from `d890d36` to `48266df` in /omnibus [#3057](https://github.com/chef/chef-dk/pull/3057) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.12.4 -->
-- Bump omnibus from `1782bac` to `d890d36` in /omnibus [#3052](https://github.com/chef/chef-dk/pull/3052) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.12.3 -->
-- Bump kitchen-vagrant from 1.7.0 to 1.7.1 in /omnibus [#3051](https://github.com/chef/chef-dk/pull/3051) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.12.2 -->
-- Bump omnibus-software from `9c01df0` to `28a9db0` in /omnibus [#3050](https://github.com/chef/chef-dk/pull/3050) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 4.12.1 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v4.13.3](https://github.com/chef/chef-dk/tree/v4.13.3) (2020-12-15)
+
+#### Merged Pull Requests
+- Bump omnibus-software from `9c01df0` to `28a9db0` in /omnibus [#3050](https://github.com/chef/chef-dk/pull/3050) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump kitchen-vagrant from 1.7.0 to 1.7.1 in /omnibus [#3051](https://github.com/chef/chef-dk/pull/3051) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus from `1782bac` to `d890d36` in /omnibus [#3052](https://github.com/chef/chef-dk/pull/3052) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump omnibus from `d890d36` to `48266df` in /omnibus [#3057](https://github.com/chef/chef-dk/pull/3057) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump the world one last time [#3068](https://github.com/chef/chef-dk/pull/3068) ([tas50](https://github.com/tas50))
+- Update libffi and libiconv to the latest [#3069](https://github.com/chef/chef-dk/pull/3069) ([tas50](https://github.com/tas50))
+- Fix the FFI version string [#3072](https://github.com/chef/chef-dk/pull/3072) ([tas50](https://github.com/tas50))
+- Bump openssl and all other deps [#3075](https://github.com/chef/chef-dk/pull/3075) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v4.12.0](https://github.com/chef/chef-dk/tree/v4.12.0) (2020-10-21)
 
 #### Merged Pull Requests
@@ -28,7 +26,6 @@
 - Update all the dependencies [#3046](https://github.com/chef/chef-dk/pull/3046) ([tas50](https://github.com/tas50))
 - Bump omnibus from `f3ed5d3` to `222d66e` in /omnibus [#3047](https://github.com/chef/chef-dk/pull/3047) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 - More software updates [#3048](https://github.com/chef/chef-dk/pull/3048) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v4.11.0](https://github.com/chef/chef-dk/tree/v4.11.0) (2020-09-11)
 
