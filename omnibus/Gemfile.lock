@@ -8,10 +8,10 @@ GIT
 
 GIT
   remote: https://github.com/chef/omnibus.git
-  revision: d13ae1686e8b54e065ce2a3f27585a2890f1abec
+  revision: 7e26b8909b1daf7485a34afc4cc2428dc163c176
   branch: master
   specs:
-    omnibus (8.0.9)
+    omnibus (8.0.10)
       aws-sdk-s3 (~> 1)
       chef-cleanroom (~> 1.0)
       chef-utils (>= 15.4)
@@ -32,18 +32,18 @@ GEM
     artifactory (3.0.15)
     awesome_print (1.8.0)
     aws-eventstream (1.1.0)
-    aws-partitions (1.406.0)
+    aws-partitions (1.412.0)
     aws-sdk-core (3.110.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
-    aws-sdk-kms (1.39.0)
+    aws-sdk-kms (1.40.0)
       aws-sdk-core (~> 3, >= 3.109.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.86.2)
+    aws-sdk-s3 (1.87.0)
       aws-sdk-core (~> 3, >= 3.109.0)
-      aws-sdk-kms (~> 1.26)
+      aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.2)
       aws-eventstream (~> 1, >= 1.0.2)
@@ -179,9 +179,9 @@ GEM
     erubis (2.7.0)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
-    ffi (1.13.1)
-    ffi (1.13.1-x64-mingw32)
-    ffi (1.13.1-x86-mingw32)
+    ffi (1.14.2)
+    ffi (1.14.2-x64-mingw32)
+    ffi (1.14.2-x86-mingw32)
     ffi-libarchive (1.0.4)
       ffi (~> 1.0)
     ffi-win32-extensions (1.0.4)
@@ -223,7 +223,7 @@ GEM
     ipaddress (0.8.3)
     iso8601 (0.13.0)
     jmespath (1.4.0)
-    json (2.3.1)
+    json (2.5.1)
     kitchen-vagrant (1.7.2)
       test-kitchen (>= 1.4, < 3)
     libyajl2 (1.2.0)
