@@ -7,12 +7,14 @@
 
 **Umbrella Project**: [Chef Workstation](https://github.com/chef/chef-oss-practices/blob/master/projects/chef-workstation.md)
 
-* **[Project State](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** Maintained
+* **[Project State](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md#deprecated):** Deprecated
 * **Issues [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** Never
 * **Pull Request [Response Time Maximum](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md):** Never
 
-ChefDK is deprecated as a supported Chef product.  It has been replaced with [Chef Workstation](https://github.com/chef/chef-workstation.git).
-You can also [download](https://downloads.chef.io/chef-workstation/) Chef Workstation for the latest features and tools.
+### WARNING
+
+[ChefDK is now EOL](https://blog.chef.io/goodbye-chefdk-hello-chef-workstation) and will receive no further updates. It has been replaced with [Chef Workstation](https://github.com/chef/chef-workstation.git).
+[Download](https://downloads.chef.io/products/workstation) Chef Workstation for the latest features and tools.
 
 
 [ChefDK](ChefDK) brings Chef Infra Client and the development tools developed by the Chef Community together and acts as the consistent interface to this awesomeness. This awesomeness is composed of:
