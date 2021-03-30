@@ -25,8 +25,10 @@ describe ChefDK::CookbookProfiler::Git do
 
   include ChefDK::Helpers
 
+  let(:shared_scm_context) { Hash.new }
+  let(:git_repo) { File.join(cookbook_path, '.git') }
   let(:git_profiler) do
-    ChefDK::CookbookProfiler::Git.new(cookbook_path)
+    ChefDK::CookbookProfiler::Git.new(cookbook_path, shared_scm_context)
   end
 
   context "with cookbooks in a valid git repo" do
@@ -69,6 +71,32 @@ describe ChefDK::CookbookProfiler::Git do
 
       it "reports that the repo doesn't have a remote" do
         expect(git_profiler.have_remote?).to be(false)
+      end
+
+    end
+
+    context "when the shared context is used" do
+
+      let(:shared_scm_context) { instance_double('Hash') }
+
+      it 'should set shared scm context for new cookbook' do
+        expect(shared_scm_context).to receive(:[]).with(git_repo).and_return(nil).once
+        expect(shared_scm_context).to receive(:[]=).once
+        git_profiler.profile_data
+      end
+
+      it 'should use shared scm context if existing' do
+        expect(shared_scm_context).to receive(:[]).with(git_repo).and_return({}).twice
+        git_profiler.profile_data
+        git_profiler.profile_data
+      end
+    end
+
+    context "when a shared context is provided" do
+      let(:shared_scm_context) { { git_repo => {"scm"=>"git", "remote"=>nil, "revision"=>"abcdef123456789", "working_tree_clean"=>true, "published"=>false, "synchronized_remote_branches"=>[]} } }
+
+      it 'should return values from it' do
+        expect(git_profiler.profile_data).to eq(shared_scm_context[git_repo])
       end
 
     end

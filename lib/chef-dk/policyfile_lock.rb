@@ -114,6 +114,8 @@ module ChefDK
       @included_policy_locks = []
 
       @install_report = InstallReport.new(ui: @ui, policyfile_lock: self)
+
+      @shared_scm_context = {}
     end
 
     def lock_data_for(cookbook_name)
@@ -127,7 +129,7 @@ module ChefDK
     end
 
     def local_cookbook(name)
-      local_cookbook = Policyfile::LocalCookbook.new(name, storage_config)
+      local_cookbook = Policyfile::LocalCookbook.new(name, storage_config, @shared_scm_context)
       yield local_cookbook if block_given?
       @cookbook_locks[name] = local_cookbook
     end
